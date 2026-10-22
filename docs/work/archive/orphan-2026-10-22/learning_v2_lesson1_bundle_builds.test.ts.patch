@@ -1,0 +1,45 @@
+diff --git a/tests/learning_v2_lesson1_bundle_builds.test.ts b/tests/learning_v2_lesson1_bundle_builds.test.ts
+index a7b861284..6a1d6519c 100644
+--- a/tests/learning_v2_lesson1_bundle_builds.test.ts
++++ b/tests/learning_v2_lesson1_bundle_builds.test.ts
+@@ -16,10 +16,12 @@ jest.mock("../app/learning_v2_course_session_audio_preload_v1", () => ({
+ /* eslint-disable import/first -- native/transport seams are mocked first */
+ import { bundledLearningV2CourseSessionMaterialV3 } from "../app/learning_v2_course_released_session_client_v3";
+ import { FACTORY_NATIVE_MANIFEST_V1 } from "../modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated";
++import { LEARNING_V2_RELEASED_SESSION_COUNT_V1, learningV2SessionCourseIndexV1 } from "../app/learning_v2_session_availability_v1";
+ 
+-// зачем (релиз-гейт, решение координатора 04.10): сборка в стор не должна пройти, если хоть у одного встроенного занятия (урок 1–N из манифеста
+-// фабрики) нет озвучки для какой-либо реплики. Поэтому проверяем ВСЕ строки манифеста, а не только урок 1; запускает scripts/learning_v2_audio_coverage_gate.mjs
+-// (release:precheck и eas-build-post-install).
++// зачем (владелец 11.10: показывать только реально доступный непрерывный префикс):
++// фабричный манифест содержит и будущие черновые строки, поэтому релиз-гейт
++// обязан проверять полный звук и сборку только для локально активированного
++// префикса. Граница берётся из того же сгенерированного артефакта, что каталог.
+ const locatorFor = (lessonOrdinal: number, sessionOrdinal: number) => ({
+   environment: "production" as const,
+   targetLanguage: "en",
+@@ -38,8 +40,22 @@ describe("every bundled factory session builds from the bundle (no network)", ()
+     }
+   });
+ 
+-  test.each(FACTORY_NATIVE_MANIFEST_V1.map((row) => [row.lessonOrdinal, row.sessionOrdinal] as const))(
+-    "lesson %i session %i (en/ru) has complete bundled audio and builds",
++  const releasedRows = FACTORY_NATIVE_MANIFEST_V1
++    .filter((row) => {
++      const index = learningV2SessionCourseIndexV1(row.lessonOrdinal, row.sessionOrdinal);
++      return index >= 0 && index < LEARNING_V2_RELEASED_SESSION_COUNT_V1;
++    })
++    .map((row) => [row.lessonOrdinal, row.sessionOrdinal] as const);
++
++  test("released rows are the exact contiguous availability prefix", () => {
++    expect(releasedRows).toHaveLength(LEARNING_V2_RELEASED_SESSION_COUNT_V1);
++    expect(releasedRows.map(([lessonOrdinal, sessionOrdinal]) =>
++      learningV2SessionCourseIndexV1(lessonOrdinal, sessionOrdinal)))
++      .toEqual(Array.from({ length: LEARNING_V2_RELEASED_SESSION_COUNT_V1 }, (_, index) => index));
++  });
++
++  test.each(releasedRows)(
++    "released lesson %i session %i (en/ru) has complete bundled audio and builds",
+     (lessonOrdinal, sessionOrdinal) => {
+       const missing: string[] = [];
+       const spy = jest.spyOn(console, "warn").mockImplementation((...args: unknown[]) => {

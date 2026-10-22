@@ -1,0 +1,2857 @@
+diff --git a/scripts/generate_learning_v2_factory_production_audio.mjs b/scripts/generate_learning_v2_factory_production_audio.mjs
+index 55457b8ef..e03d3720c 100644
+--- a/scripts/generate_learning_v2_factory_production_audio.mjs
++++ b/scripts/generate_learning_v2_factory_production_audio.mjs
+@@ -1,222 +1,1324 @@
+ #!/usr/bin/env node
+ import crypto from "node:crypto";
+-import { Buffer } from "node:buffer";
+ import { spawnSync } from "node:child_process";
+ import fs from "node:fs";
++import os from "node:os";
+ import path from "node:path";
++import { fileURLToPath } from "node:url";
+ 
+ import {
+   requireCodexOpenAiTtsOnly,
+   requireOpenAiDevSpendGuard,
+ } from "./openai-dev-guard.mjs";
+-import { requireOpenAiTtsKey } from "./openai-tts-key.mjs";
+-
+-const root = process.cwd();
+-const apply = process.argv.includes("--apply");
+-const concurrencyArg = process.argv.find((value) => value.startsWith("--concurrency="));
+-const concurrency = Math.max(1, Math.min(8, Number(concurrencyArg?.split("=")[1] ?? 6)));
+-const model = "gpt-4o-mini-tts";
+-const voices = Object.freeze(["ash", "onyx", "nova", "coral"]);
+-const releaseRoot = path.resolve(root, "modules/learning-v2/content/factory_native/generated_release/en");
+-const outputDir = path.resolve(root, "assets/audio/learning-v2/factory-production-v1");
+-const manifestPath = path.join(outputDir, "manifest.json");
+-const legacyManifestPath = path.resolve(root, "assets/audio/learning-v2/session1-production-v1/manifest.json");
++
++export const AUDIO_SETTINGS = Object.freeze({
++  schemaVersion: "learning-v2-factory-production-audio-settings.v2",
++  model: "gpt-4o-mini-tts",
++  speed: 1.08,
++  responseFormat: "mp3",
++  instructions: "Natural, warm American English learning voice. Say the exact supplied text once, clearly and confidently, with no introduction, no repetition, and no added words. Keep pauses brief.",
++  voices: Object.freeze(["ash", "onyx", "nova", "coral"]),
++});
++
++const MANIFEST_SCHEMA = "learning-v2-factory-production-audio-manifest.v1";
++const AUDIO_APPEND_CHAIN_SCHEMA = "learning-v2-factory-production-audio-append-chain.v1";
++const SESSION_PATTERN = /^en\/l\d{2}\/s\d{2}$/u;
++const CANDIDATE_BOUND_SESSIONS = new Set(["en/l01/s01", "en/l01/s02", "en/l01/s03"]);
++const LEGACY_BASE_MANIFEST_SHA256 = "a9c9ae13d9f4714db10117ac58b350ce9b7cc1a589a2742abed006cb3e59dcdc";
++const LEGACY_BASE_ENTRIES_SHA256 = "5870b817cc3828b6b8de40e60b5c193eaef3ba14c0783d2052fe5364560bb4bb";
++const LEGACY_BASE_ENTRY_COUNT = 3192;
++const LEGACY_SOURCES = new Set(["generated_factory_v1", "recovered_factory_v1", "reused_session1"]);
++const SCOPED_BATCH_ASSET_PATTERN = /^assets\/audio\/learning-v2\/factory-production-v1\/batches\/([a-f0-9]{64})\/([a-f0-9]{64})\.mp3$/u;
++const CANDIDATE_PROJECTION_NAMES = Object.freeze(["intro.json", "auxiliary.json", "learner.json", "learner.uk.json", "answers.json"]);
+ const sha256 = (value) => crypto.createHash("sha256").update(value).digest("hex");
+ const coordinateKey = (transcript, voiceId) => `${transcript}\u0000${voiceId}`;
++const portable = (value) => value.replaceAll("\\", "/");
++
++function audioBatchHash({ generatedAt, beforeManifestSha256, generatorPath, generatorSha256, settingsHash, sourceFiles, files }) {
++  return sha256(JSON.stringify({
++    schemaVersion: "learning-v2-factory-production-audio-batch.v3",
++    generatedAt,
++    beforeManifestSha256,
++    generatorPath,
++    generatorSha256,
++    settingsHash,
++    sourceFiles,
++    files,
++  }));
++}
++
++export function buildAudioIdentity({ transcript, voiceId, settings = AUDIO_SETTINGS }) {
++  const normalizedTranscript = normalizeTranscript(transcript);
++  if (!normalizedTranscript) throw new Error("audio_identity_transcript_invalid");
++  if (typeof voiceId !== "string" || !voiceId) throw new Error("audio_identity_voice_invalid");
++  const bound = {
++    schemaVersion: settings.schemaVersion,
++    transcript: normalizedTranscript,
++    voiceId,
++    model: settings.model,
++    speed: settings.speed,
++    responseFormat: settings.responseFormat,
++    instructions: settings.instructions,
++  };
++  return sha256(JSON.stringify(bound));
++}
++
++function assertInside(root, candidate, code) {
++  const relative = path.relative(root, candidate);
++  if (relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative))) return;
++  throw new Error(`${code}:${portable(candidate)}`);
++}
++
++function normalizeTranscript(value) {
++  return typeof value === "string" ? value.normalize("NFKC").trim() : "";
++}
+ 
+-function normalizeMp3Size(filePath) {
+-  let bytes = fs.readFileSync(filePath);
+-  if (bytes.length <= 64 * 1024) return bytes;
+-  const temporary = `${filePath}.compressed.mp3`;
+-  const result = spawnSync("ffmpeg", [
+-    "-hide_banner", "-loglevel", "error", "-y", "-i", filePath,
+-    "-ac", "1", "-b:a", "24k", "-map_metadata", "-1", temporary,
+-  ], { stdio: "pipe" });
+-  if (result.status !== 0 || !fs.existsSync(temporary)) {
+-    throw new Error(`tts_compression_failed:${path.basename(filePath)}`);
+-  }
+-  fs.renameSync(temporary, filePath);
+-  bytes = fs.readFileSync(filePath);
+-  if (bytes.length < 500 || bytes.length > 64 * 1024) {
+-    throw new Error(`tts_compressed_size_invalid:${bytes.length}`);
+-  }
+-  return bytes;
+-}
+-
+-function walk(directory) {
+-  if (!fs.existsSync(directory)) return [];
+-  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+-    const absolute = path.join(directory, entry.name);
+-    return entry.isDirectory() ? walk(absolute) : [absolute];
++export function parseArguments(argv) {
++  const sessions = [];
++  let apply = false;
++  let concurrency = 6;
++  for (let index = 0; index < argv.length; index += 1) {
++    const argument = argv[index];
++    if (argument === "--apply") {
++      apply = true;
++      continue;
++    }
++    if (argument === "--session") {
++      const value = argv[++index];
++      if (!value) throw new Error("required_argument_value:--session");
++      sessions.push(value);
++      continue;
++    }
++    if (argument.startsWith("--session=")) {
++      sessions.push(argument.slice("--session=".length));
++      continue;
++    }
++    if (argument.startsWith("--concurrency=")) {
++      const value = Number(argument.slice("--concurrency=".length));
++      if (!Number.isInteger(value) || value < 1 || value > 8) {
++        throw new Error(`invalid_concurrency:${argument.slice("--concurrency=".length)}`);
++      }
++      concurrency = value;
++      continue;
++    }
++    throw new Error(`unknown_argument:${argument}`);
++  }
++  if (sessions.length === 0) throw new Error("required_argument_missing:--session");
++  for (const session of sessions) {
++    if (!SESSION_PATTERN.test(session)) throw new Error(`invalid_session:${session}`);
++  }
++  return Object.freeze({
++    apply,
++    concurrency,
++    sessions: Object.freeze([...new Set(sessions)]),
+   });
+ }
+ 
+ function transcriptsFor(interaction) {
+   const payload = interaction?.modePayload;
+   if (payload?.isWordCard === true && typeof payload?.wordCard?.word === "string") {
+-    const word = payload.wordCard.word.normalize("NFKC").trim();
++    const word = normalizeTranscript(payload.wordCard.word);
+     return word ? [word] : [];
+   }
+   const references = payload?.family === "sound_contrast"
+     ? [payload.audioA, payload.audioB]
+     : [payload?.referenceAudio];
+-  return references
+-    .map((reference) => typeof reference?.transcript === "string"
+-      ? reference.transcript.normalize("NFKC").trim()
+-      : "")
+-    .filter(Boolean);
+-}
+-
+-const transcripts = new Set();
+-for (const file of walk(releaseRoot).filter((entry) => path.basename(entry) === "learner.json")) {
+-  const learner = JSON.parse(fs.readFileSync(file, "utf8"));
+-  for (const interaction of learner.interactions) {
+-    const values = transcriptsFor(interaction);
+-    const needsAudio = Array.isArray(interaction.audioTargetIds) && interaction.audioTargetIds.length > 0;
+-    const isWordCard = interaction?.modePayload?.isWordCard === true;
+-    if (!needsAudio && !isWordCard) continue;
+-    if (values.length === 0) throw new Error(`audio_transcript_missing:${interaction.interactionId}`);
+-    values.forEach((value) => transcripts.add(value));
+-  }
+-}
+-
+-const targets = [...transcripts].sort().flatMap((transcript) =>
+-  voices.map((voiceId) => Object.freeze({ transcript, voiceId })),
+-);
+-const known = new Map();
+-if (fs.existsSync(legacyManifestPath)) {
+-  const legacy = JSON.parse(fs.readFileSync(legacyManifestPath, "utf8"));
+-  for (const entry of legacy.entries ?? []) {
+-    const absolute = path.resolve(path.dirname(legacyManifestPath), entry.filename);
+-    if (!fs.existsSync(absolute)) continue;
+-    known.set(coordinateKey(entry.transcript.normalize("NFKC").trim(), entry.voiceId), {
+-      transcript: entry.transcript.normalize("NFKC").trim(),
+-      voiceId: entry.voiceId,
+-      model: entry.model ?? model,
+-      assetPath: path.relative(root, absolute).replaceAll("\\", "/"),
+-      byteSize: entry.byteSize,
+-      contentHash: entry.contentHash,
+-      source: "reused_session1",
++  return references.map((reference) => normalizeTranscript(reference?.transcript)).filter(Boolean);
++}
++
++function readJson(filePath, code) {
++  try {
++    return JSON.parse(fs.readFileSync(filePath, "utf8"));
++  } catch (error) {
++    throw new Error(`${code}:${portable(filePath)}:${error instanceof Error ? error.message : String(error)}`);
++  }
++}
++
++function parseJsonBytes(bytes, filePath, code) {
++  try {
++    return JSON.parse(bytes.toString("utf8"));
++  } catch (error) {
++    throw new Error(`${code}:${portable(filePath)}:${error instanceof Error ? error.message : String(error)}`);
++  }
++}
++
++function readExactEnvValue(filePath, name) {
++  if (!fs.existsSync(filePath)) return "";
++  for (const rawLine of fs.readFileSync(filePath, "utf8").split(/\r?\n/u)) {
++    const line = rawLine.trim();
++    if (!line || line.startsWith("#") || !line.includes("=")) continue;
++    const [key, ...rest] = line.split("=");
++    if (key.trim() === name) return rest.join("=").trim().replace(/^["']|["']$/gu, "");
++  }
++  return "";
++}
++
++export function requireStrictOpenAiTtsKey(root, env = process.env) {
++  const direct = String(env.OPENAI_TTS_API_KEY ?? "").trim();
++  if (direct) return direct;
++  for (const envFile of [".env.local", ".env"]) {
++    const value = readExactEnvValue(path.join(root, envFile), "OPENAI_TTS_API_KEY");
++    if (value) return value;
++  }
++  const genericPresent = String(env.OPENAI_API_KEY ?? "").trim()
++    || [".env.local", ".env"].some((envFile) => readExactEnvValue(path.join(root, envFile), "OPENAI_API_KEY"));
++  if (genericPresent || env.PHRASEMAN_ALLOW_LEGACY_OPENAI_API_KEY_FOR_TTS === "1") {
++    throw new Error("OPENAI_TTS_API_KEY_required_generic_fallback_forbidden");
++  }
++  throw new Error("OPENAI_TTS_API_KEY_required");
++}
++
++function expectedCourseSessionId(sessionId) {
++  const match = /^en\/l(\d{2})\/s(\d{2})$/u.exec(sessionId);
++  if (!match) throw new Error(`invalid_session:${sessionId}`);
++  return `en:lesson-${match[1]}:session-${match[2]}`;
++}
++
++function validateReceiptChain(root, receiptPath, seen = new Set()) {
++  const absoluteReceiptPath = path.resolve(root, receiptPath);
++  assertInside(root, absoluteReceiptPath, "candidate_receipt_outside_root");
++  if (seen.has(absoluteReceiptPath)) throw new Error("candidate_receipt_chain_cycle");
++  seen.add(absoluteReceiptPath);
++  if (!fs.existsSync(absoluteReceiptPath)) throw new Error(`candidate_receipt_missing:${portable(receiptPath)}`);
++  const receiptBytes = fs.readFileSync(absoluteReceiptPath);
++  const receipt = parseJsonBytes(receiptBytes, absoluteReceiptPath, "candidate_receipt_invalid");
++  if (receipt.schemaVersion !== "learning_v2_session_candidate_content_receipt_v1"
++    || receipt.releaseAuthority !== false
++    || receipt.immutableContentOnly !== true
++    || typeof receipt.candidateRoot !== "string"
++    || !Array.isArray(receipt.files)
++    || receipt.fileCount !== receipt.files.length) {
++    throw new Error(`candidate_receipt_shape_invalid:${portable(receiptPath)}`);
++  }
++  const verifiedFiles = [];
++  const candidateEntries = [];
++  const candidateRoot = path.resolve(root, receipt.candidateRoot);
++  assertInside(root, candidateRoot, "candidate_receipt_root_outside_root");
++  let previousPath = "";
++  const uniquePaths = new Set();
++  for (const entry of receipt.files) {
++    if (!entry || typeof entry.category !== "string" || typeof entry.path !== "string"
++      || typeof entry.bytes !== "number" || typeof entry.sha256 !== "string") {
++      throw new Error(`candidate_receipt_entry_invalid:${portable(receiptPath)}`);
++    }
++    if (entry.path.includes("\\") || entry.path <= previousPath || uniquePaths.has(entry.path)) {
++      throw new Error(`candidate_receipt_inventory_order_invalid:${entry.path}`);
++    }
++    previousPath = entry.path;
++    uniquePaths.add(entry.path);
++    const absolute = path.resolve(root, entry.path);
++    assertInside(root, absolute, "candidate_receipt_file_outside_root");
++    if (entry.category === "candidate") assertInside(candidateRoot, absolute, "candidate_receipt_file_outside_candidate");
++    if (!fs.existsSync(absolute)) throw new Error(`candidate_receipt_file_missing:${entry.path}`);
++    const bytes = fs.readFileSync(absolute);
++    if (bytes.length !== entry.bytes || sha256(bytes) !== entry.sha256) {
++      throw new Error(`candidate_receipt_file_stale:${entry.path}`);
++    }
++    const stable = { category: entry.category, path: entry.path, bytes: entry.bytes, sha256: entry.sha256 };
++    verifiedFiles.push(stable);
++    if (entry.category === "candidate") {
++      candidateEntries.push({ path: entry.path, bytes: entry.bytes, sha256: entry.sha256 });
++    }
++  }
++  const inventorySha256 = sha256(JSON.stringify(verifiedFiles));
++  const candidateBundleSha256 = sha256(JSON.stringify(candidateEntries));
++  if (inventorySha256 !== receipt.inventorySha256) throw new Error("candidate_receipt_inventory_stale");
++  if (candidateBundleSha256 !== receipt.candidateBundleSha256) throw new Error("candidate_receipt_bundle_stale");
++  if (receipt.frozenPredecessor) {
++    const predecessor = receipt.frozenPredecessor;
++    if (predecessor.status !== "PASS" || typeof predecessor.receiptPath !== "string") {
++      throw new Error("candidate_predecessor_invalid");
++    }
++    const verifiedPredecessor = validateReceiptChain(root, predecessor.receiptPath, seen);
++    if (verifiedPredecessor.receiptSha256 !== predecessor.receiptSha256
++      || verifiedPredecessor.receipt.inventorySha256 !== predecessor.inventorySha256) {
++      throw new Error("candidate_predecessor_hash_mismatch");
++    }
++  }
++  return Object.freeze({
++    receipt,
++    receiptBytes,
++    receiptSha256: sha256(receiptBytes),
++    inventorySha256,
++    candidateBundleSha256,
++  });
++}
++
++function resolveLearner(root, sessionId) {
++  const previewPath = path.resolve(
++    root,
++    "content/learning-v2-course/sessions",
++    sessionId,
++    "owner-review-preview-manifest.json",
++  );
++  if (fs.existsSync(previewPath)) {
++    const previewBytes = fs.readFileSync(previewPath);
++    const preview = parseJsonBytes(previewBytes, previewPath, "preview_manifest_invalid");
++    if (preview.schemaVersion !== "learning_v2_session_private_preview_manifest_v1"
++      || preview.courseSessionId !== expectedCourseSessionId(sessionId)
++      || preview.releaseAuthority !== false) {
++      throw new Error(`preview_manifest_schema_invalid:${sessionId}`);
++    }
++    if (typeof preview.candidateRoot !== "string" || !Array.isArray(preview.candidateFiles)
++      || typeof preview.candidateReceiptPath !== "string") {
++      throw new Error(`preview_manifest_shape_invalid:${sessionId}`);
++    }
++    const expectedCandidateParent = path.resolve(root, "content/learning-v2-course/outputs");
++    const candidateRoot = path.resolve(root, preview.candidateRoot);
++    assertInside(expectedCandidateParent, candidateRoot, "preview_candidate_outside_outputs");
++    if (path.dirname(candidateRoot) !== expectedCandidateParent) throw new Error(`preview_candidate_not_direct_output:${sessionId}`);
++    const expectedReceiptPath = path.join(candidateRoot, "content-receipt.json");
++    const declaredReceiptPath = path.resolve(root, preview.candidateReceiptPath);
++    if (declaredReceiptPath !== expectedReceiptPath) throw new Error(`preview_receipt_path_mismatch:${sessionId}`);
++    const verifiedReceipt = validateReceiptChain(root, preview.candidateReceiptPath);
++    const receipt = verifiedReceipt.receipt;
++    if (receipt.courseSessionId !== preview.courseSessionId || receipt.candidateRoot !== preview.candidateRoot
++      || verifiedReceipt.inventorySha256 !== preview.candidateReceiptInventorySha256
++      || verifiedReceipt.receiptSha256 !== preview.contentReceiptSha256
++      || verifiedReceipt.candidateBundleSha256 !== preview.candidateBundleSha256) {
++      throw new Error(`candidate_receipt_chain_mismatch:${sessionId}`);
++    }
++    const expectedProjection = CANDIDATE_PROJECTION_NAMES.map((name) => `${sessionId}/${name}`).sort();
++    const declaredProjection = preview.candidateFiles.map((entry) => portable(entry?.path ?? "")).sort();
++    if (JSON.stringify(declaredProjection) !== JSON.stringify(expectedProjection)) {
++      throw new Error(`preview_candidate_file_set_invalid:${sessionId}`);
++    }
++    const receiptByRelativePath = new Map(receipt.files
++      .filter((entry) => entry.category === "candidate")
++      .map((entry) => [portable(path.relative(candidateRoot, path.resolve(root, entry.path))), entry]));
++    for (const declaredFile of preview.candidateFiles) {
++      const receiptEntry = receiptByRelativePath.get(portable(declaredFile.path));
++      if (!receiptEntry || receiptEntry.bytes !== declaredFile.bytes || receiptEntry.sha256 !== declaredFile.sha256) {
++        throw new Error(`preview_candidate_file_receipt_mismatch:${declaredFile.path}`);
++      }
++    }
++    const learnerRelative = `${sessionId}/learner.json`;
++    const declared = preview.candidateFiles.find((entry) => portable(entry?.path ?? "") === learnerRelative);
++    if (!declared) throw new Error(`preview_learner_not_declared:${sessionId}`);
++    const learnerPath = path.resolve(candidateRoot, learnerRelative);
++    assertInside(candidateRoot, learnerPath, "preview_learner_outside_candidate");
++    if (!fs.existsSync(learnerPath)) throw new Error(`preview_learner_missing:${sessionId}`);
++    const bytes = fs.readFileSync(learnerPath);
++    if (bytes.length !== declared.bytes || sha256(bytes) !== declared.sha256) {
++      throw new Error(`preview_learner_hash_mismatch:${sessionId}`);
++    }
++    const provenance = {
++      previewPath: portable(path.relative(root, previewPath)),
++      previewSha256: sha256(previewBytes),
++      contentReceiptPath: portable(path.relative(root, declaredReceiptPath)),
++      contentReceiptSha256: verifiedReceipt.receiptSha256,
++      inventorySha256: verifiedReceipt.inventorySha256,
++      candidateBundleSha256: verifiedReceipt.candidateBundleSha256,
++    };
++    return Object.freeze({
++      sessionId,
++      learnerPath,
++      sourceKind: "private_candidate",
++      bytes: bytes.length,
++      sha256: sha256(bytes),
++      ...provenance,
++      provenanceSha256: sha256(JSON.stringify(provenance)),
+     });
+   }
++
++  if (CANDIDATE_BOUND_SESSIONS.has(sessionId)) throw new Error(`candidate_preview_required:${sessionId}`);
++
++  const learnerPath = path.resolve(
++    root,
++    "modules/learning-v2/content/factory_native/generated_release",
++    sessionId,
++    "learner.json",
++  );
++  assertInside(root, learnerPath, "native_learner_outside_root");
++  if (!fs.existsSync(learnerPath)) throw new Error(`native_learner_missing:${sessionId}`);
++  const bytes = fs.readFileSync(learnerPath);
++  return Object.freeze({
++    sessionId,
++    learnerPath,
++    sourceKind: "canonical_native",
++    bytes: bytes.length,
++    sha256: sha256(bytes),
++    provenanceSha256: sha256(JSON.stringify({
++      sourceKind: "canonical_native",
++      learnerPath: portable(path.relative(root, learnerPath)),
++      bytes: bytes.length,
++      sha256: sha256(bytes),
++    })),
++  });
+ }
+-if (fs.existsSync(manifestPath)) {
+-  const previous = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+-  for (const entry of previous.entries ?? []) {
+-    const absolute = path.resolve(root, entry.assetPath);
+-    if (!fs.existsSync(absolute)) continue;
+-    const original = fs.readFileSync(absolute);
+-    if (original.length !== entry.byteSize || sha256(original) !== entry.contentHash) continue;
+-    const bytes = apply ? normalizeMp3Size(absolute) : original;
+-    known.set(coordinateKey(entry.transcript, entry.voiceId), {
+-      ...entry,
+-      byteSize: bytes.length,
+-      contentHash: sha256(bytes),
++
++function collectTranscripts(sourceFiles) {
++  const transcripts = new Set();
++  for (const source of sourceFiles) {
++    const learnerBytes = fs.readFileSync(source.learnerPath);
++    if (learnerBytes.length !== source.bytes || sha256(learnerBytes) !== source.sha256) {
++      throw new Error(`source_changed_during_plan:${source.sessionId}`);
++    }
++    const learner = parseJsonBytes(learnerBytes, source.learnerPath, "learner_invalid");
++    if (!Array.isArray(learner.interactions)) throw new Error(`learner_interactions_invalid:${source.sessionId}`);
++    for (const interaction of learner.interactions) {
++      const needsAudio = Array.isArray(interaction.audioTargetIds) && interaction.audioTargetIds.length > 0;
++      const isWordCard = interaction?.modePayload?.isWordCard === true;
++      if (!needsAudio && !isWordCard) continue;
++      const values = transcriptsFor(interaction);
++      if (values.length === 0) throw new Error(`audio_transcript_missing:${source.sessionId}:${interaction.interactionId}`);
++      for (const value of values) transcripts.add(value);
++    }
++  }
++  return transcripts;
++}
++
++function sourceReceiptDescriptor(root, source) {
++  return {
++    sessionId: source.sessionId,
++    path: portable(path.relative(root, source.learnerPath)),
++    sourceKind: source.sourceKind,
++    bytes: source.bytes,
++    sha256: source.sha256,
++    provenanceSha256: source.provenanceSha256,
++    ...(source.sourceKind === "private_candidate" ? {
++      previewPath: source.previewPath,
++      previewSha256: source.previewSha256,
++      contentReceiptPath: source.contentReceiptPath,
++      contentReceiptSha256: source.contentReceiptSha256,
++      inventorySha256: source.inventorySha256,
++      candidateBundleSha256: source.candidateBundleSha256,
++    } : {}),
++  };
++}
++
++export function buildSourceReceiptDescriptors(root, sourceFiles) {
++  if (!Array.isArray(sourceFiles) || sourceFiles.length === 0) throw new Error("source_files_empty");
++  return sourceFiles.map((source) => Object.freeze(sourceReceiptDescriptor(root, source)));
++}
++
++function validateSourceReceiptDescriptors(root, sourceFiles) {
++  if (!Array.isArray(sourceFiles) || sourceFiles.length === 0) throw new Error("source_files_empty");
++  const seen = new Set();
++  for (const declared of sourceFiles) {
++    const sessionId = typeof declared?.sessionId === "string" ? declared.sessionId : "";
++    if (!SESSION_PATTERN.test(sessionId) || seen.has(sessionId)) throw new Error(`source_receipt_invalid:${sessionId || "missing"}`);
++    seen.add(sessionId);
++    let current;
++    try {
++      current = sourceReceiptDescriptor(root, resolveLearner(root, sessionId));
++    } catch (error) {
++      throw new Error(`source_receipt_mismatch:${sessionId}`, { cause: error });
++    }
++    if (JSON.stringify(declared) !== JSON.stringify(current)) throw new Error(`source_receipt_mismatch:${sessionId}`);
++  }
++}
++
++function isIdentityBoundEntry(entry) {
++  return ["speed", "responseFormat", "instructions", "settingsSchemaVersion", "settingsHash", "identityHash"]
++    .some((field) => Object.hasOwn(entry, field));
++}
++
++function validateManifestDecoders(entriesWithPaths) {
++  const batchSize = 24;
++  for (let offset = 0; offset < entriesWithPaths.length; offset += batchSize) {
++    const batch = entriesWithPaths.slice(offset, offset + batchSize);
++    const args = ["-nostdin", "-v", "error", "-xerror"];
++    for (const item of batch) args.push("-i", item.absolute);
++    batch.forEach((_, index) => args.push("-map", `${index}:a:0`));
++    args.push("-f", "null", "-");
++    const decoded = spawnSync("ffmpeg", args, { stdio: ["ignore", "ignore", "pipe"], encoding: "utf8" });
++    if (decoded.status === 0) continue;
++    for (const item of batch) {
++      if (!isDecoderReadableMp3Bytes(fs.readFileSync(item.absolute))) {
++        throw new Error(`manifest_asset_decode_invalid:${portable(item.entry.assetPath)}`);
++      }
++    }
++    throw new Error(`manifest_audio_decode_batch_failed:${offset}`);
++  }
++}
++
++function receiptFileProjection(entry) {
++  return {
++    transcript: entry.transcript,
++    voiceId: entry.voiceId,
++    identityHash: entry.identityHash,
++    assetPath: entry.assetPath,
++    byteSize: entry.byteSize,
++    contentHash: entry.contentHash,
++  };
++}
++
++function validatePersistedBatchReceipts(root, manifest, manifestRawSha256) {
++  const chain = manifest.audioAppendChain;
++  const hasScopedEntries = manifest.entries.some((entry) => entry.source === "generated_factory_scoped_v2"
++    || SCOPED_BATCH_ASSET_PATTERN.test(entry.assetPath ?? ""));
++  if (chain === undefined) {
++    if (hasScopedEntries) throw new Error("audio_append_chain_missing");
++    return;
++  }
++  if (chain === null
++    || chain.schemaVersion !== AUDIO_APPEND_CHAIN_SCHEMA
++    || !/^[a-f0-9]{64}$/u.test(chain.genesisManifestSha256)
++    || !/^[a-f0-9]{64}$/u.test(chain.genesisEntriesSha256)
++    || !Number.isInteger(chain.genesisEntryCount)
++    || chain.genesisEntryCount < 0
++    || chain.genesisEntryCount >= manifest.entries.length
++    || !Array.isArray(chain.batchHashes)
++    || chain.batchHashes.length === 0
++    || chain.batchHashes.some((batchHash) => !/^[a-f0-9]{64}$/u.test(batchHash))
++    || new Set(chain.batchHashes).size !== chain.batchHashes.length) {
++    throw new Error("audio_append_chain_invalid");
++  }
++  const genesisEntriesSha256 = sha256(JSON.stringify(manifest.entries.slice(0, chain.genesisEntryCount)));
++  if (genesisEntriesSha256 !== chain.genesisEntriesSha256) {
++    throw new Error("audio_append_chain_genesis_entries_mismatch");
++  }
++  const legacyCompatibility = manifest.legacyCompatibility;
++  const hasLegacyCompatibility = legacyCompatibility?.schemaVersion
++      === "learning-v2-factory-production-audio-legacy-compatibility.v1"
++    && legacyCompatibility.baseManifestSha256 === LEGACY_BASE_MANIFEST_SHA256
++    && legacyCompatibility.baseEntryCount === LEGACY_BASE_ENTRY_COUNT
++    && legacyCompatibility.baseEntriesSha256 === LEGACY_BASE_ENTRIES_SHA256;
++  if (hasLegacyCompatibility) {
++    if (chain.genesisEntryCount !== LEGACY_BASE_ENTRY_COUNT) {
++      throw new Error("audio_append_chain_genesis_count_mismatch");
++    }
++    if (chain.genesisManifestSha256 !== LEGACY_BASE_MANIFEST_SHA256) {
++      throw new Error("audio_append_chain_genesis_manifest_mismatch");
++    }
++    if (chain.genesisEntriesSha256 !== LEGACY_BASE_ENTRIES_SHA256) {
++      throw new Error("audio_append_chain_genesis_entries_mismatch");
++    }
++  }
++  for (let entryIndex = 0; entryIndex < chain.genesisEntryCount; entryIndex += 1) {
++    if (manifest.entries[entryIndex].source === "generated_factory_scoped_v2") {
++      throw new Error(`audio_append_chain_genesis_invalid:${entryIndex}`);
++    }
++  }
++  const groups = [];
++  for (let entryIndex = chain.genesisEntryCount; entryIndex < manifest.entries.length; entryIndex += 1) {
++    const entry = manifest.entries[entryIndex];
++    if (entry.source !== "generated_factory_scoped_v2") throw new Error(`audio_append_chain_source_invalid:${entryIndex}`);
++    const match = SCOPED_BATCH_ASSET_PATTERN.exec(entry.assetPath);
++    if (!match || match[2] !== entry.identityHash) throw new Error(`batch_receipt_asset_path_invalid:${entry.assetPath}`);
++    let group = groups.at(-1);
++    if (!group || group.batchHash !== match[1]) {
++      if (groups.some((existing) => existing.batchHash === match[1])) {
++        throw new Error(`batch_receipt_entries_not_contiguous:${match[1]}`);
++      }
++      group = { batchHash: match[1], firstIndex: entryIndex, lastIndex: entryIndex, entries: [] };
++      groups.push(group);
++    }
++    group.lastIndex = entryIndex;
++    group.entries.push(entry);
++  }
++  if (groups.length !== chain.batchHashes.length
++    || groups.some((group, index) => group.batchHash !== chain.batchHashes[index])) {
++    throw new Error("audio_append_chain_batch_sequence_mismatch");
++  }
++  let previousAfterManifestSha256 = null;
++  let headGeneratedAt = null;
++  for (const [groupIndex, group] of groups.entries()) {
++    const receiptPath = path.resolve(root, `assets/audio/learning-v2/factory-production-v1/batches/${group.batchHash}/receipt.json`);
++    assertInside(root, receiptPath, "batch_receipt_outside_root");
++    if (!fs.existsSync(receiptPath)) throw new Error(`batch_receipt_missing:${group.batchHash}`);
++    const receiptRaw = fs.readFileSync(receiptPath);
++    let receipt;
++    try {
++      receipt = JSON.parse(receiptRaw.toString("utf8"));
++    } catch (error) {
++      throw new Error(`batch_receipt_invalid:${group.batchHash}`, { cause: error });
++    }
++    const canonicalReceiptRaw = Buffer.from(`${JSON.stringify(receipt, null, 2)}\n`, "utf8");
++    if (!receiptRaw.equals(canonicalReceiptRaw)) throw new Error(`batch_receipt_noncanonical:${group.batchHash}`);
++    if (receipt.schemaVersion !== "learning-v2-factory-production-audio-receipt.v3"
++      || receipt.batchHash !== group.batchHash
++      || receipt.settingsHash !== sha256(JSON.stringify(AUDIO_SETTINGS))
++      || JSON.stringify(receipt.settings) !== JSON.stringify(AUDIO_SETTINGS)
++      || !Array.isArray(receipt.sourceFiles) || receipt.sourceFiles.length === 0
++      || !Array.isArray(receipt.files)
++      || !/^[a-f0-9]{64}$/u.test(receipt.beforeManifestSha256)
++      || !/^[a-f0-9]{64}$/u.test(receipt.afterManifestSha256)
++      || !/^[a-f0-9]{64}$/u.test(receipt.generatorSha256)
++      || typeof receipt.generatorPath !== "string") {
++      throw new Error(`batch_receipt_binding_mismatch:${group.batchHash}`);
++    }
++    const expectedFiles = group.entries.map(receiptFileProjection);
++    if (JSON.stringify(receipt.files) !== JSON.stringify(expectedFiles)) {
++      throw new Error(`batch_receipt_binding_mismatch:${group.batchHash}`);
++    }
++    const recalculatedBatchHash = audioBatchHash({
++      generatedAt: receipt.generatedAt,
++      beforeManifestSha256: receipt.beforeManifestSha256,
++      generatorPath: receipt.generatorPath,
++      generatorSha256: receipt.generatorSha256,
++      settingsHash: receipt.settingsHash,
++      sourceFiles: receipt.sourceFiles,
++      files: receipt.files.map(({ transcript, voiceId, identityHash, byteSize, contentHash }) => ({
++        transcript, voiceId, identityHash, byteSize, contentHash,
++      })),
+     });
++    if (recalculatedBatchHash !== group.batchHash) throw new Error(`batch_receipt_hash_mismatch:${group.batchHash}`);
++    const expectedBeforeManifestSha256 = groupIndex === 0
++      ? chain.genesisManifestSha256
++      : previousAfterManifestSha256;
++    if (receipt.beforeManifestSha256 !== expectedBeforeManifestSha256) {
++      throw new Error(`batch_receipt_chain_mismatch:${group.batchHash}`);
++    }
++    previousAfterManifestSha256 = receipt.afterManifestSha256;
++    headGeneratedAt = receipt.generatedAt;
++  }
++  const head = groups.at(-1);
++  if (!head || head.lastIndex !== manifest.entries.length - 1) throw new Error("audio_append_chain_unreceipted_tail");
++  if (previousAfterManifestSha256 !== manifestRawSha256 || headGeneratedAt !== manifest.generatedAt) {
++    throw new Error(`batch_receipt_manifest_head_mismatch:${head.batchHash}`);
+   }
+ }
+ 
+-const missing = targets.filter((target) => !known.has(coordinateKey(target.transcript, target.voiceId)));
+-const estimatedCharacters = missing.reduce((sum, target) => sum + target.transcript.length, 0);
+-const estimatedWords = missing.reduce((sum, target) => sum + target.transcript.split(/\s+/u).filter(Boolean).length, 0);
+-const estimatedAudioMinutes = estimatedWords / 145;
+-const estimatedCostUsd = Math.max(0.01, estimatedAudioMinutes * 0.03);
+-console.log(JSON.stringify({
+-  mode: apply ? "apply" : "dry-run",
+-  model,
+-  voices,
+-  uniqueTranscriptCount: transcripts.size,
+-  expectedFileCount: targets.length,
+-  reusableFileCount: targets.length - missing.length,
+-  missingFileCount: missing.length,
+-  estimatedCharacters,
+-  estimatedAudioMinutes: Number(estimatedAudioMinutes.toFixed(2)),
+-  conservativeEstimatedCostUsd: Number(estimatedCostUsd.toFixed(2)),
+-  concurrency,
+-  outputDir: path.relative(root, outputDir).replaceAll("\\", "/"),
+-}, null, 2));
+-if (!apply || missing.length === 0) process.exit(0);
+-
+-requireCodexOpenAiTtsOnly({
+-  action: "Learning V2 factory production voice pack",
+-  endpoint: "audio/speech",
+-});
+-requireOpenAiDevSpendGuard({
+-  action: "Learning V2 factory production voice pack",
+-  estimatedCostUsd,
+-  units: missing.length,
+-});
+-const apiKey = requireOpenAiTtsKey(root);
+-fs.mkdirSync(outputDir, { recursive: true });
+-
+-let completed = 0;
+-function writeManifest() {
+-  const entries = targets
+-    .map((target) => known.get(coordinateKey(target.transcript, target.voiceId)))
+-    .filter(Boolean);
+-  const body = `${JSON.stringify({
+-    schemaVersion: "learning-v2-factory-production-audio-manifest.v1",
+-    generatedAt: new Date().toISOString(),
+-    model,
+-    voices,
+-    expectedEntryCount: targets.length,
+-    entries,
+-  }, null, 2)}\n`;
+-  let lastError = null;
+-  for (let attempt = 1; attempt <= 20; attempt += 1) {
++function loadAndValidateManifest(root, manifestPath) {
++  if (!fs.existsSync(manifestPath)) throw new Error(`manifest_missing:${portable(manifestPath)}`);
++  const raw = fs.readFileSync(manifestPath);
++  const manifest = parseJsonBytes(raw, manifestPath, "manifest_invalid");
++  if (manifest.schemaVersion !== MANIFEST_SCHEMA) throw new Error(`manifest_schema_invalid:${manifest.schemaVersion}`);
++  if (!Array.isArray(manifest.entries)) throw new Error("manifest_entries_invalid");
++  if (manifest.expectedEntryCount !== manifest.entries.length) {
++    throw new Error(`manifest_entry_count_mismatch:${manifest.expectedEntryCount}:${manifest.entries.length}`);
++  }
++  const rawSha256 = sha256(raw);
++  const baseManifestExact = rawSha256 === LEGACY_BASE_MANIFEST_SHA256;
++  const declaredLegacyProof = manifest.legacyCompatibility;
++  const legacyPrefixProven = baseManifestExact || (
++    declaredLegacyProof?.schemaVersion === "learning-v2-factory-production-audio-legacy-compatibility.v1"
++    && declaredLegacyProof.baseManifestSha256 === LEGACY_BASE_MANIFEST_SHA256
++    && declaredLegacyProof.baseEntryCount === LEGACY_BASE_ENTRY_COUNT
++    && declaredLegacyProof.baseEntriesSha256 === LEGACY_BASE_ENTRIES_SHA256
++    && manifest.entries.length >= LEGACY_BASE_ENTRY_COUNT
++    && sha256(JSON.stringify(manifest.entries.slice(0, LEGACY_BASE_ENTRY_COUNT))) === LEGACY_BASE_ENTRIES_SHA256
++  );
++  const known = new Map();
++  const entriesWithPaths = [];
++  for (const [entryIndex, entry] of manifest.entries.entries()) {
++    const transcript = normalizeTranscript(entry?.transcript);
++    const voiceId = typeof entry?.voiceId === "string" ? entry.voiceId : "";
++    if (!transcript || !voiceId) throw new Error("manifest_coordinate_invalid");
++    const key = coordinateKey(transcript, voiceId);
++    if (known.has(key)) throw new Error(`manifest_coordinate_duplicate:${transcript}:${voiceId}`);
++    if (typeof entry.assetPath !== "string") throw new Error(`manifest_asset_path_invalid:${transcript}:${voiceId}`);
++    const absolute = path.resolve(root, entry.assetPath);
++    assertInside(root, absolute, "manifest_asset_outside_root");
++    if (!fs.existsSync(absolute)) throw new Error(`manifest_asset_missing:${portable(entry.assetPath)}`);
++    const bytes = fs.readFileSync(absolute);
++    if (bytes.length !== entry.byteSize) throw new Error(`manifest_asset_size_mismatch:${portable(entry.assetPath)}`);
++    if (sha256(bytes) !== entry.contentHash) throw new Error(`manifest_asset_hash_mismatch:${portable(entry.assetPath)}`);
++    if (isIdentityBoundEntry(entry)) {
++      const expectedIdentityHash = buildAudioIdentity({ transcript, voiceId, settings: AUDIO_SETTINGS });
++      if (legacyPrefixProven && entryIndex >= LEGACY_BASE_ENTRY_COUNT
++        && entry.source !== "generated_factory_scoped_v2") {
++        throw new Error(`manifest_identity_source_invalid:${transcript}:${voiceId}`);
++      }
++      if (entry.model !== AUDIO_SETTINGS.model
++        || entry.speed !== AUDIO_SETTINGS.speed
++        || entry.responseFormat !== AUDIO_SETTINGS.responseFormat
++        || entry.instructions !== AUDIO_SETTINGS.instructions
++        || entry.settingsSchemaVersion !== AUDIO_SETTINGS.schemaVersion
++        || entry.settingsHash !== sha256(JSON.stringify(AUDIO_SETTINGS))
++        || entry.identityHash !== expectedIdentityHash) {
++        throw new Error(`manifest_settings_identity_mismatch:${transcript}:${voiceId}`);
++      }
++      known.set(key, Object.freeze({ ...entry, transcript, voiceId, compatibility: "settings_identity_v2" }));
++    } else {
++      if (!legacyPrefixProven || entryIndex >= LEGACY_BASE_ENTRY_COUNT
++        || entry.model !== AUDIO_SETTINGS.model || !LEGACY_SOURCES.has(entry.source)) {
++        throw new Error(`manifest_legacy_compatibility_unproven:${transcript}:${voiceId}`);
++      }
++      const compatibilityProofHash = sha256(JSON.stringify({
++        schemaVersion: "learning-v2-factory-production-audio-legacy-entry-proof.v1",
++        baseManifestSha256: LEGACY_BASE_MANIFEST_SHA256,
++        baseEntriesSha256: LEGACY_BASE_ENTRIES_SHA256,
++        entryIndex,
++        transcript,
++        voiceId,
++        model: entry.model,
++        contentHash: entry.contentHash,
++      }));
++      known.set(key, Object.freeze({ ...entry, transcript, voiceId, compatibility: "proof_bound_legacy_v1", compatibilityProofHash }));
++    }
++    entriesWithPaths.push({ entry, absolute });
++  }
++  validateManifestDecoders(entriesWithPaths);
++  validatePersistedBatchReceipts(root, manifest, rawSha256);
++  return Object.freeze({
++    raw,
++    manifest,
++    known,
++    sha256: rawSha256,
++    legacyCompatibility: legacyPrefixProven ? Object.freeze({
++      schemaVersion: "learning-v2-factory-production-audio-legacy-compatibility.v1",
++      baseManifestSha256: LEGACY_BASE_MANIFEST_SHA256,
++      baseEntryCount: LEGACY_BASE_ENTRY_COUNT,
++      baseEntriesSha256: LEGACY_BASE_ENTRIES_SHA256,
++    }) : null,
++  });
++}
++
++function atomicReplace(filePath, bytes) {
++  const temporary = `${filePath}.tmp-${process.pid}-${crypto.randomUUID()}`;
++  writeFileExclusiveDurable(temporary, bytes);
++  try {
++    fs.renameSync(temporary, filePath);
++    syncDirectory(path.dirname(filePath));
++  } catch (error) {
++    if (fs.existsSync(temporary)) fs.unlinkSync(temporary);
++    throw error;
++  }
++}
++
++function syncDirectory(directory) {
++  if (process.platform === "win32") return;
++  const descriptor = fs.openSync(directory, "r");
++  try {
++    fs.fsyncSync(descriptor);
++  } finally {
++    fs.closeSync(descriptor);
++  }
++}
++
++function writeFileExclusiveDurable(filePath, bytes) {
++  const descriptor = fs.openSync(filePath, "wx");
++  try {
++    fs.writeFileSync(descriptor, bytes);
++    fs.fsyncSync(descriptor);
++  } finally {
++    fs.closeSync(descriptor);
++  }
++  syncDirectory(path.dirname(filePath));
++}
++
++const AUDIO_APPEND_LOCK_NAME = ".append-only.lock";
++const AUDIO_APPEND_JOURNAL_NAME = ".append-only-journal.json";
++
++function processIsAlive(pid) {
++  if (!Number.isInteger(pid) || pid <= 0) return false;
++  try {
++    process.kill(pid, 0);
++    return true;
++  } catch (error) {
++    return error?.code === "EPERM";
++  }
++}
++
++function acquireAudioAppendLock(outputDir) {
++  const lockPath = path.join(outputDir, AUDIO_APPEND_LOCK_NAME);
++  fs.mkdirSync(outputDir, { recursive: true });
++  for (let attempt = 0; attempt < 3; attempt += 1) {
++    const token = crypto.randomUUID();
++    const claimPath = `${lockPath}.claim-${process.pid}-${token}`;
+     try {
+-      fs.writeFileSync(manifestPath, body, "utf8");
+-      return;
++      fs.mkdirSync(claimPath);
++      const owner = { schemaVersion: "learning-v2-audio-append-lock.v1", pid: process.pid, token, createdAt: new Date().toISOString() };
++      writeFileExclusiveDurable(path.join(claimPath, "owner.json"), `${JSON.stringify(owner, null, 2)}\n`);
++      fs.renameSync(claimPath, lockPath);
++      syncDirectory(outputDir);
++      return Object.freeze({ lockPath, token });
+     } catch (error) {
+-      lastError = error;
+-      if (attempt < 20) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 50 * attempt);
++      if (fs.existsSync(claimPath)) fs.rmSync(claimPath, { recursive: true, force: true });
++      if (!fs.existsSync(lockPath)) {
++        throw error;
++      }
++      const ownerPath = path.join(lockPath, "owner.json");
++      let owner = null;
++      try {
++        owner = JSON.parse(fs.readFileSync(ownerPath, "utf8"));
++      } catch {
++        throw new Error("audio_publish_locked:owner_unreadable");
++      }
++      if (owner?.schemaVersion !== "learning-v2-audio-append-lock.v1"
++        || !Number.isInteger(owner.pid) || owner.pid <= 0
++        || typeof owner.token !== "string" || !owner.token) throw new Error("audio_publish_locked:owner_invalid");
++      if (owner && processIsAlive(owner.pid)) throw new Error(`audio_publish_locked:${owner.pid}`);
++      const orphanPath = `${lockPath}.orphan-${process.pid}-${crypto.randomUUID()}`;
++      try {
++        fs.renameSync(lockPath, orphanPath);
++        syncDirectory(outputDir);
++        fs.rmSync(orphanPath, { recursive: true, force: true });
++        syncDirectory(outputDir);
++      } catch (takeoverError) {
++        if (fs.existsSync(lockPath)) throw new Error("audio_publish_locked:takeover_failed", { cause: takeoverError });
++      }
+     }
+   }
+-  throw lastError;
++  throw new Error("audio_publish_locked:retry_exhausted");
+ }
+ 
+-function isDecoderReadableMp3(filePath) {
+-  const result = spawnSync("ffprobe", [
+-    "-v", "error",
+-    "-select_streams", "a:0",
+-    "-show_entries", "stream=codec_name,duration",
+-    "-of", "json",
+-    filePath,
+-  ], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+-  if (result.status !== 0) return false;
++function releaseAudioAppendLock(lock) {
++  if (!lock || !fs.existsSync(lock.lockPath)) return;
++  let owner;
+   try {
+-    const stream = JSON.parse(result.stdout)?.streams?.[0];
+-    return stream?.codec_name === "mp3" && Number(stream.duration) > 0;
++    owner = JSON.parse(fs.readFileSync(path.join(lock.lockPath, "owner.json"), "utf8"));
++  } catch {
++    throw new Error("audio_publish_lock_owner_unreadable");
++  }
++  if (owner.token !== lock.token || owner.pid !== process.pid) throw new Error("audio_publish_lock_ownership_lost");
++  fs.rmSync(lock.lockPath, { recursive: true, force: false });
++  syncDirectory(path.dirname(lock.lockPath));
++}
++
++function assertManifestCas(manifestPath, expectedSha256) {
++  const current = fs.readFileSync(manifestPath);
++  if (sha256(current) !== expectedSha256) throw new Error("manifest_compare_and_swap_failed");
++  return current;
++}
++
++function writeRecoveryJournal(journalPath, payload) {
++  if (fs.existsSync(journalPath)) throw new Error("audio_recovery_journal_conflict");
++  const payloadSha256 = sha256(JSON.stringify(payload));
++  atomicReplace(journalPath, Buffer.from(`${JSON.stringify({
++    schemaVersion: "learning-v2-factory-production-audio-journal.v1",
++    payloadSha256,
++    payload,
++  }, null, 2)}\n`, "utf8"));
++}
++
++function readRecoveryJournal(journalPath) {
++  const wrapper = readJson(journalPath, "audio_recovery_journal_invalid");
++  if (wrapper.schemaVersion !== "learning-v2-factory-production-audio-journal.v1"
++    || !wrapper.payload || wrapper.payloadSha256 !== sha256(JSON.stringify(wrapper.payload))) {
++    throw new Error("audio_recovery_journal_integrity_failed");
++  }
++  return wrapper.payload;
++}
++
++function isDecoderReadableMp3Bytes(bytes) {
++  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "learning-v2-audio-verify-"));
++  const filePath = path.join(directory, "candidate.mp3");
++  try {
++    fs.writeFileSync(filePath, bytes, { flag: "wx" });
++    const probe = spawnSync("ffprobe", [
++      "-v", "error",
++      "-select_streams", "a:0",
++      "-show_entries", "stream=codec_name,duration",
++      "-of", "json",
++      filePath,
++    ], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
++    if (probe.status !== 0) return false;
++    const stream = JSON.parse(probe.stdout)?.streams?.[0];
++    if (stream?.codec_name !== "mp3" || !(Number(stream.duration) > 0)) return false;
++    const decoded = spawnSync("ffmpeg", [
++      "-nostdin", "-v", "error", "-xerror", "-i", filePath,
++      "-map", "0:a:0", "-f", "null", "-",
++    ], { encoding: "utf8", stdio: ["ignore", "ignore", "pipe"] });
++    return decoded.status === 0;
+   } catch {
+     return false;
++  } finally {
++    fs.rmSync(directory, { recursive: true, force: true });
+   }
+ }
+ 
+-async function generate(target) {
+-  const transcriptHash = sha256(target.transcript).slice(0, 24);
+-  const filename = `${transcriptHash}-${target.voiceId}.mp3`;
+-  const outputPath = path.join(outputDir, filename);
+-  // A previous worker may have completed the immutable file just before a
+-  // Windows manifest checkpoint was temporarily locked. Re-admit those bytes
+-  // instead of paying for the same TTS coordinate twice.
+-  if (fs.existsSync(outputPath)) {
+-    const bytes = normalizeMp3Size(outputPath);
+-    if (
+-      bytes.length >= 500 &&
+-      bytes.length <= 64 * 1024 &&
+-      isDecoderReadableMp3(outputPath)
+-    ) {
+-      return Object.freeze({
+-        transcript: target.transcript,
+-        voiceId: target.voiceId,
+-        model,
+-        assetPath: path.relative(root, outputPath).replaceAll("\\", "/"),
+-        byteSize: bytes.length,
+-        contentHash: sha256(bytes),
+-        source: "recovered_factory_v1",
+-      });
++function validateReceiptLiveInputs(root, receipt) {
++  if (receipt.settingsHash !== sha256(JSON.stringify(AUDIO_SETTINGS))
++    || JSON.stringify(receipt.settings) !== JSON.stringify(AUDIO_SETTINGS)) {
++    throw new Error("audio_recovery_settings_mismatch");
++  }
++  validateSourceReceiptDescriptors(root, receipt.sourceFiles);
++  const generatorPath = path.resolve(root, receipt.generatorPath);
++  assertInside(root, generatorPath, "audio_recovery_generator_outside_root");
++  if (!fs.existsSync(generatorPath) || sha256(fs.readFileSync(generatorPath)) !== receipt.generatorSha256) {
++    throw new Error("generator_changed_inside_publish");
++  }
++}
++
++function validateReceiptManifestProjection(receipt, afterManifestRaw) {
++  if (sha256(afterManifestRaw) !== receipt.afterManifestSha256) throw new Error("audio_recovery_after_manifest_hash_mismatch");
++  let manifest;
++  try {
++    manifest = JSON.parse(afterManifestRaw.toString("utf8"));
++  } catch (error) {
++    throw new Error("audio_recovery_after_manifest_invalid", { cause: error });
++  }
++  const appended = manifest.entries?.slice(-receipt.files.length) ?? [];
++  if (appended.length !== receipt.files.length
++    || manifest.expectedEntryCount !== manifest.entries.length
++    || JSON.stringify(appended.map(receiptFileProjection)) !== JSON.stringify(receipt.files)
++    || appended.some((entry) => entry.source !== "generated_factory_scoped_v2"
++      || entry.model !== receipt.settings.model
++      || entry.speed !== receipt.settings.speed
++      || entry.responseFormat !== receipt.settings.responseFormat
++      || entry.instructions !== receipt.settings.instructions
++      || entry.settingsSchemaVersion !== receipt.settings.schemaVersion
++      || entry.settingsHash !== receipt.settingsHash)) {
++    throw new Error("audio_recovery_manifest_receipt_projection_mismatch");
++  }
++}
++
++function validatePublishedBatch({ root, outputDir, payload, verifyLiveInputs = false }) {
++  const finalBatchDir = path.resolve(root, payload.finalBatchRelative);
++  assertInside(outputDir, finalBatchDir, "audio_recovery_batch_outside_output");
++  if (!fs.existsSync(finalBatchDir)) throw new Error("audio_recovery_batch_missing");
++  const receiptPath = path.join(finalBatchDir, "receipt.json");
++  const receiptRaw = fs.readFileSync(receiptPath);
++  if (sha256(receiptRaw) !== payload.receiptSha256) throw new Error("audio_recovery_receipt_hash_mismatch");
++  const receipt = JSON.parse(receiptRaw.toString("utf8"));
++  if (!receiptRaw.equals(Buffer.from(`${JSON.stringify(receipt, null, 2)}\n`, "utf8"))) {
++    throw new Error("audio_recovery_receipt_noncanonical");
++  }
++  if (receipt.schemaVersion !== "learning-v2-factory-production-audio-receipt.v3"
++    || receipt.batchHash !== payload.batchHash
++    || receipt.beforeManifestSha256 !== payload.beforeManifestSha256
++    || receipt.afterManifestSha256 !== payload.afterManifestSha256
++    || !Array.isArray(receipt.files) || receipt.files.length === 0
++    || !Array.isArray(receipt.sourceFiles) || receipt.sourceFiles.length === 0) {
++    throw new Error("audio_recovery_receipt_binding_mismatch");
++  }
++  const recalculatedBatchHash = audioBatchHash({
++    generatedAt: receipt.generatedAt,
++    beforeManifestSha256: receipt.beforeManifestSha256,
++    generatorPath: receipt.generatorPath,
++    generatorSha256: receipt.generatorSha256,
++    settingsHash: receipt.settingsHash,
++    sourceFiles: receipt.sourceFiles,
++    files: receipt.files.map(({ transcript, voiceId, identityHash, byteSize, contentHash }) => ({
++      transcript, voiceId, identityHash, byteSize, contentHash,
++    })),
++  });
++  if (recalculatedBatchHash !== payload.batchHash) throw new Error("audio_recovery_receipt_binding_mismatch");
++  const afterManifestRaw = Buffer.from(payload.afterManifestRawBase64, "base64");
++  validateReceiptManifestProjection(receipt, afterManifestRaw);
++  if (verifyLiveInputs) validateReceiptLiveInputs(root, receipt);
++  for (const file of receipt.files) {
++    const absolute = path.resolve(root, file.assetPath);
++    assertInside(finalBatchDir, absolute, "audio_recovery_asset_outside_batch");
++    const bytes = fs.readFileSync(absolute);
++    if (bytes.length !== file.byteSize || sha256(bytes) !== file.contentHash) {
++      throw new Error(`audio_recovery_asset_hash_mismatch:${file.assetPath}`);
+     }
++    if (!isDecoderReadableMp3Bytes(bytes)) throw new Error(`audio_recovery_asset_decode_invalid:${file.assetPath}`);
++  }
++  return receipt;
++}
++
++function recoverPendingAudioPublicationInsideLock({ root, outputDir, manifestPath }) {
++  const journalPath = path.join(outputDir, AUDIO_APPEND_JOURNAL_NAME);
++  if (!fs.existsSync(journalPath)) return Object.freeze({ status: "no_pending" });
++  const payload = readRecoveryJournal(journalPath);
++  const beforeManifestRaw = Buffer.from(payload.beforeManifestRawBase64, "base64");
++  const afterManifestRaw = Buffer.from(payload.afterManifestRawBase64, "base64");
++  if (sha256(beforeManifestRaw) !== payload.beforeManifestSha256) {
++    throw new Error("audio_recovery_before_manifest_hash_mismatch");
++  }
++  if (sha256(afterManifestRaw) !== payload.afterManifestSha256) {
++    throw new Error("audio_recovery_after_manifest_hash_mismatch");
+   }
++  const finalBatchDir = path.resolve(root, payload.finalBatchRelative);
++  const stagingDir = path.resolve(root, payload.stagingRelative);
++  assertInside(outputDir, finalBatchDir, "audio_recovery_batch_outside_output");
++  assertInside(outputDir, stagingDir, "audio_recovery_staging_outside_output");
++  const currentSha256 = sha256(fs.readFileSync(manifestPath));
++  let manifestCommitted = currentSha256 === payload.afterManifestSha256;
++  try {
++    if (currentSha256 === payload.beforeManifestSha256) {
++      if (!fs.existsSync(finalBatchDir)) {
++        if (!fs.existsSync(stagingDir)) throw new Error("audio_recovery_assets_missing");
++        fs.renameSync(stagingDir, finalBatchDir);
++        syncDirectory(path.dirname(finalBatchDir));
++      } else if (fs.existsSync(stagingDir)) {
++        throw new Error("audio_recovery_duplicate_batch_state");
++      }
++      validatePublishedBatch({ root, outputDir, payload, verifyLiveInputs: true });
++      const validatedBefore = loadAndValidateManifest(root, manifestPath);
++      if (validatedBefore.sha256 !== payload.beforeManifestSha256) throw new Error("manifest_compare_and_swap_failed");
++      assertManifestCas(manifestPath, payload.beforeManifestSha256);
++      atomicReplace(manifestPath, afterManifestRaw);
++      manifestCommitted = true;
++    } else if (currentSha256 === payload.afterManifestSha256) {
++      validatePublishedBatch({ root, outputDir, payload, verifyLiveInputs: true });
++    } else {
++      throw new Error("audio_recovery_manifest_conflict");
++    }
++    assertManifestCas(manifestPath, payload.afterManifestSha256);
++    const validatedAfter = loadAndValidateManifest(root, manifestPath);
++    if (validatedAfter.sha256 !== payload.afterManifestSha256) throw new Error("manifest_compare_and_swap_failed");
++    const receipt = validatePublishedBatch({ root, outputDir, payload, verifyLiveInputs: true });
++    validateReceiptLiveInputs(root, receipt);
++  } catch (error) {
++    if (manifestCommitted) {
++      try {
++        if (sha256(fs.readFileSync(manifestPath)) === payload.afterManifestSha256) {
++          atomicReplace(manifestPath, beforeManifestRaw);
++          assertManifestCas(manifestPath, payload.beforeManifestSha256);
++        }
++      } catch {
++        // Preserve the recovery journal and batch for fail-closed manual recovery.
++      }
++    }
++    throw error;
++  }
++  if (fs.existsSync(stagingDir)) fs.rmSync(stagingDir, { recursive: true, force: true });
++  fs.unlinkSync(journalPath);
++  syncDirectory(outputDir);
++  return Object.freeze({
++    status: "recovered",
++    batchHash: payload.batchHash,
++    beforeManifestSha256: payload.beforeManifestSha256,
++    afterManifestSha256: payload.afterManifestSha256,
++    receiptPath: path.join(finalBatchDir, "receipt.json"),
++    receiptSha256: payload.receiptSha256,
++    appendedEntryCount: payload.appendedEntryCount,
++  });
++}
++
++export function recoverPendingAudioPublication({ root, outputDir, manifestPath }) {
++  const resolvedRoot = path.resolve(root);
++  const resolvedOutputDir = path.resolve(outputDir);
++  const resolvedManifestPath = path.resolve(manifestPath);
++  assertInside(resolvedRoot, resolvedOutputDir, "audio_output_outside_root");
++  assertInside(resolvedOutputDir, resolvedManifestPath, "audio_manifest_outside_output");
++  const lock = acquireAudioAppendLock(resolvedOutputDir);
++  try {
++    return recoverPendingAudioPublicationInsideLock({
++      root: resolvedRoot,
++      outputDir: resolvedOutputDir,
++      manifestPath: resolvedManifestPath,
++    });
++  } finally {
++    releaseAudioAppendLock(lock);
++  }
++}
++
++export function publishAppendOnlyBatch({
++  root,
++  outputDir,
++  manifestPath,
++  beforeManifestRaw,
++  sourceFiles,
++  generated,
++  generatorPath,
++  expectedGeneratorSha256 = null,
++  now = new Date().toISOString(),
++  settings = AUDIO_SETTINGS,
++  precommitVerifier = null,
++  lifecycleHook = null,
++  simulateCrashAt = null,
++}) {
++  const resolvedRoot = path.resolve(root);
++  const resolvedOutputDir = path.resolve(outputDir);
++  const resolvedManifestPath = path.resolve(manifestPath);
++  assertInside(resolvedRoot, resolvedOutputDir, "audio_output_outside_root");
++  assertInside(resolvedOutputDir, resolvedManifestPath, "audio_manifest_outside_output");
++  if (!Buffer.isBuffer(beforeManifestRaw)) throw new Error("before_manifest_raw_invalid");
++  if (!Array.isArray(sourceFiles)) throw new Error("source_files_invalid");
++  if (!Array.isArray(generated) || generated.length === 0) throw new Error("generated_audio_empty");
++
++  const beforeManifest = JSON.parse(beforeManifestRaw.toString("utf8"));
++  if (beforeManifest.schemaVersion !== MANIFEST_SCHEMA || !Array.isArray(beforeManifest.entries)) {
++    throw new Error("before_manifest_invalid");
++  }
++  if (beforeManifest.expectedEntryCount !== beforeManifest.entries.length) {
++    throw new Error("before_manifest_entry_count_mismatch");
++  }
++  const existingCoordinates = new Set();
++  for (const entry of beforeManifest.entries) {
++    const key = coordinateKey(normalizeTranscript(entry.transcript), entry.voiceId);
++    if (existingCoordinates.has(key)) throw new Error(`before_manifest_coordinate_duplicate:${entry.transcript}:${entry.voiceId}`);
++    existingCoordinates.add(key);
++  }
++
++  const generatedCoordinates = new Set();
++  const prepared = generated.map((item) => {
++    const transcript = normalizeTranscript(item?.transcript);
++    const voiceId = typeof item?.voiceId === "string" ? item.voiceId : "";
++    if (!transcript || !voiceId) throw new Error("generated_audio_coordinate_invalid");
++    if (!settings.voices.includes(voiceId)) throw new Error(`generated_audio_voice_invalid:${voiceId}`);
++    if (!Buffer.isBuffer(item.bytes) || item.bytes.length < 500 || item.bytes.length > 64 * 1024) {
++      throw new Error(`generated_audio_size_invalid:${transcript}:${voiceId}:${item?.bytes?.length ?? "not-buffer"}`);
++    }
++    if (!isDecoderReadableMp3Bytes(item.bytes)) {
++      throw new Error(`generated_audio_decode_invalid:${transcript}:${voiceId}`);
++    }
++    const key = coordinateKey(transcript, voiceId);
++    if (existingCoordinates.has(key)) throw new Error(`generated_audio_coordinate_conflict:${transcript}:${voiceId}`);
++    if (generatedCoordinates.has(key)) throw new Error(`generated_audio_coordinate_duplicate:${transcript}:${voiceId}`);
++    generatedCoordinates.add(key);
++    const identityHash = buildAudioIdentity({ transcript, voiceId, settings });
++    return Object.freeze({
++      transcript,
++      voiceId,
++      bytes: item.bytes,
++      identityHash,
++      byteSize: item.bytes.length,
++      contentHash: sha256(item.bytes),
++    });
++  });
++
++  validateSourceReceiptDescriptors(resolvedRoot, sourceFiles);
++
++  const generatorBytes = fs.readFileSync(generatorPath);
++  const generatorSha256 = sha256(generatorBytes);
++  if (expectedGeneratorSha256 && generatorSha256 !== expectedGeneratorSha256) {
++    throw new Error("generator_changed_during_generation");
++  }
++  const beforeManifestSha256 = sha256(beforeManifestRaw);
++  const settingsHash = sha256(JSON.stringify(settings));
++  if (settingsHash !== sha256(JSON.stringify(AUDIO_SETTINGS))) throw new Error("audio_settings_not_approved");
++  const generatorRelativePath = portable(path.relative(resolvedRoot, path.resolve(generatorPath)));
++  const batchFiles = prepared.map(({ transcript, voiceId, identityHash, byteSize, contentHash }) => ({
++    transcript, voiceId, identityHash, byteSize, contentHash,
++  }));
++  const batchHash = audioBatchHash({
++    generatedAt: now,
++    beforeManifestSha256,
++    generatorPath: generatorRelativePath,
++    generatorSha256,
++    settingsHash,
++    sourceFiles,
++    files: batchFiles,
++  });
++  const batchRelative = `assets/audio/learning-v2/factory-production-v1/batches/${batchHash}`;
++  const finalBatchDir = path.resolve(resolvedRoot, batchRelative);
++  assertInside(resolvedOutputDir, finalBatchDir, "audio_batch_outside_output");
++
++  const appendedEntries = prepared.map((item) => ({
++    transcript: item.transcript,
++    voiceId: item.voiceId,
++    model: settings.model,
++    speed: settings.speed,
++    responseFormat: settings.responseFormat,
++    instructions: settings.instructions,
++    settingsSchemaVersion: settings.schemaVersion,
++    settingsHash,
++    identityHash: item.identityHash,
++    assetPath: `${batchRelative}/${item.identityHash}.mp3`,
++    byteSize: item.byteSize,
++    contentHash: item.contentHash,
++    source: "generated_factory_scoped_v2",
++  }));
++  const afterManifest = {
++    ...beforeManifest,
++    generatedAt: now,
++    legacyCompatibility: beforeManifest.legacyCompatibility ?? (
++      beforeManifestSha256 === LEGACY_BASE_MANIFEST_SHA256
++        ? {
++            schemaVersion: "learning-v2-factory-production-audio-legacy-compatibility.v1",
++            baseManifestSha256: LEGACY_BASE_MANIFEST_SHA256,
++            baseEntryCount: LEGACY_BASE_ENTRY_COUNT,
++            baseEntriesSha256: LEGACY_BASE_ENTRIES_SHA256,
++          }
++        : undefined
++    ),
++    audioAppendChain: beforeManifest.audioAppendChain
++      ? {
++          ...beforeManifest.audioAppendChain,
++          batchHashes: [...beforeManifest.audioAppendChain.batchHashes, batchHash],
++        }
++      : {
++          schemaVersion: AUDIO_APPEND_CHAIN_SCHEMA,
++          genesisManifestSha256: beforeManifestSha256,
++          genesisEntryCount: beforeManifest.entries.length,
++          genesisEntriesSha256: sha256(JSON.stringify(beforeManifest.entries)),
++          batchHashes: [batchHash],
++        },
++    expectedEntryCount: beforeManifest.entries.length + appendedEntries.length,
++    entries: [...beforeManifest.entries, ...appendedEntries],
++  };
++  const afterManifestRaw = Buffer.from(`${JSON.stringify(afterManifest, null, 2)}\n`, "utf8");
++  const afterManifestSha256 = sha256(afterManifestRaw);
++  const receipt = {
++    schemaVersion: "learning-v2-factory-production-audio-receipt.v3",
++    generatedAt: now,
++    batchHash,
++    beforeManifestSha256,
++    afterManifestSha256,
++    generatorPath: generatorRelativePath,
++    generatorSha256,
++    settings,
++    settingsHash,
++    sourceFiles,
++    files: appendedEntries.map(receiptFileProjection),
++  };
++  const receiptRaw = Buffer.from(`${JSON.stringify(receipt, null, 2)}\n`, "utf8");
++
++  const receiptSha256 = sha256(receiptRaw);
++  const journalPath = path.join(resolvedOutputDir, AUDIO_APPEND_JOURNAL_NAME);
++  const lock = acquireAudioAppendLock(resolvedOutputDir);
++  let stagingDir = null;
++  let batchPublished = false;
++  let manifestPublished = false;
++  try {
++    const recovery = recoverPendingAudioPublicationInsideLock({
++      root: resolvedRoot,
++      outputDir: resolvedOutputDir,
++      manifestPath: resolvedManifestPath,
++    });
++    if (recovery.status === "recovered") {
++      if (recovery.batchHash === batchHash) return recovery;
++      throw new Error("manifest_compare_and_swap_failed");
++    }
++    assertManifestCas(resolvedManifestPath, beforeManifestSha256);
++    if (typeof lifecycleHook === "function") lifecycleHook("inside_lock_precommit");
++    if (typeof precommitVerifier === "function") precommitVerifier("inside_lock_precommit");
++    validateSourceReceiptDescriptors(resolvedRoot, sourceFiles);
++    assertManifestCas(resolvedManifestPath, beforeManifestSha256);
++    if (sha256(fs.readFileSync(generatorPath)) !== generatorSha256) {
++      throw new Error("generator_changed_inside_publish");
++    }
++    const validatedBefore = loadAndValidateManifest(resolvedRoot, resolvedManifestPath);
++    if (validatedBefore.sha256 !== beforeManifestSha256) throw new Error("manifest_compare_and_swap_failed");
++    fs.mkdirSync(path.dirname(finalBatchDir), { recursive: true });
++    if (fs.existsSync(finalBatchDir)) throw new Error(`audio_batch_already_exists:${batchHash}`);
++    stagingDir = `${finalBatchDir}.staging-${process.pid}-${crypto.randomUUID()}`;
++    fs.mkdirSync(stagingDir, { recursive: false });
++    for (const item of prepared) {
++      writeFileExclusiveDurable(path.join(stagingDir, `${item.identityHash}.mp3`), item.bytes);
++    }
++    writeFileExclusiveDurable(path.join(stagingDir, "receipt.json"), receiptRaw);
++    syncDirectory(stagingDir);
++    writeRecoveryJournal(journalPath, {
++      batchHash,
++      beforeManifestSha256,
++      afterManifestSha256,
++      beforeManifestRawBase64: beforeManifestRaw.toString("base64"),
++      afterManifestRawBase64: afterManifestRaw.toString("base64"),
++      finalBatchRelative: portable(path.relative(resolvedRoot, finalBatchDir)),
++      stagingRelative: portable(path.relative(resolvedRoot, stagingDir)),
++      receiptSha256,
++      appendedEntryCount: appendedEntries.length,
++    });
++    if (simulateCrashAt === "after_journal") {
++      const error = new Error("simulated_crash:after_journal");
++      error.preserveRecoveryState = true;
++      throw error;
++    }
++    assertManifestCas(resolvedManifestPath, beforeManifestSha256);
++    fs.renameSync(stagingDir, finalBatchDir);
++    syncDirectory(path.dirname(finalBatchDir));
++    batchPublished = true;
++    if (simulateCrashAt === "after_batch_rename") {
++      const error = new Error("simulated_crash:after_batch_rename");
++      error.preserveRecoveryState = true;
++      throw error;
++    }
++    if (simulateCrashAt === "hard_after_batch_rename") {
++      process.kill(process.pid, "SIGKILL");
++      throw new Error("hard_crash_signal_failed");
++    }
++    validatePublishedBatch({
++      root: resolvedRoot,
++      outputDir: resolvedOutputDir,
++      payload: {
++        batchHash,
++        beforeManifestSha256,
++        afterManifestSha256,
++        afterManifestRawBase64: afterManifestRaw.toString("base64"),
++        finalBatchRelative: batchRelative,
++        receiptSha256,
++      },
++      verifyLiveInputs: true,
++    });
++    assertManifestCas(resolvedManifestPath, beforeManifestSha256);
++    atomicReplace(resolvedManifestPath, afterManifestRaw);
++    manifestPublished = true;
++    assertManifestCas(resolvedManifestPath, afterManifestSha256);
++    if (simulateCrashAt === "after_manifest_commit") {
++      const error = new Error("simulated_crash:after_manifest_commit");
++      error.preserveRecoveryState = true;
++      throw error;
++    }
++    if (typeof lifecycleHook === "function") lifecycleHook("after_manifest_commit");
++    if (typeof precommitVerifier === "function") precommitVerifier("after_manifest_commit");
++    validateSourceReceiptDescriptors(resolvedRoot, sourceFiles);
++    assertManifestCas(resolvedManifestPath, afterManifestSha256);
++    if (sha256(fs.readFileSync(generatorPath)) !== generatorSha256) throw new Error("generator_changed_inside_publish");
++    const validatedAfter = loadAndValidateManifest(resolvedRoot, resolvedManifestPath);
++    if (validatedAfter.sha256 !== afterManifestSha256) throw new Error("manifest_compare_and_swap_failed");
++    fs.unlinkSync(journalPath);
++    syncDirectory(resolvedOutputDir);
++  } catch (error) {
++    if (error?.preserveRecoveryState === true) throw error;
++    let safeToClean = false;
++    try {
++      const currentSha256 = sha256(fs.readFileSync(resolvedManifestPath));
++      if (manifestPublished && currentSha256 === afterManifestSha256) {
++        atomicReplace(resolvedManifestPath, beforeManifestRaw);
++        assertManifestCas(resolvedManifestPath, beforeManifestSha256);
++        safeToClean = true;
++      } else if (currentSha256 === beforeManifestSha256) {
++        safeToClean = true;
++      }
++    } catch {
++      safeToClean = false;
++    }
++    if (safeToClean) {
++      if (stagingDir && fs.existsSync(stagingDir)) fs.rmSync(stagingDir, { recursive: true, force: true });
++      if (batchPublished && fs.existsSync(finalBatchDir)) fs.rmSync(finalBatchDir, { recursive: true, force: true });
++      if (fs.existsSync(journalPath)) fs.unlinkSync(journalPath);
++    }
++    throw error;
++  } finally {
++    releaseAudioAppendLock(lock);
++  }
++
++  return Object.freeze({
++    batchHash,
++    beforeManifestSha256,
++    afterManifestSha256,
++    receiptPath: path.join(finalBatchDir, "receipt.json"),
++    receiptSha256,
++    appendedEntryCount: appendedEntries.length,
++  });
++}
++
++export function createPlan(root, parsed) {
++  const outputDir = path.resolve(root, "assets/audio/learning-v2/factory-production-v1");
++  const manifestPath = path.join(outputDir, "manifest.json");
++  const sourceFiles = parsed.sessions.map((sessionId) => resolveLearner(root, sessionId));
++  const transcripts = collectTranscripts(sourceFiles);
++  const validatedManifest = loadAndValidateManifest(root, manifestPath);
++  const targets = [...transcripts].sort().flatMap((transcript) =>
++    AUDIO_SETTINGS.voices.map((voiceId) => Object.freeze({ transcript, voiceId })),
++  );
++  const missing = targets.filter((target) => !validatedManifest.known.has(coordinateKey(target.transcript, target.voiceId)));
++  const estimatedWords = missing.reduce((sum, target) => sum + target.transcript.split(/\s+/u).filter(Boolean).length, 0);
++  const estimatedAudioMinutes = estimatedWords / 145;
++  return Object.freeze({
++    root,
++    outputDir,
++    manifestPath,
++    sourceFiles,
++    transcripts,
++    targets,
++    missing,
++    validatedManifest,
++    estimatedAudioMinutes,
++    estimatedCostUsd: Math.max(0.01, estimatedAudioMinutes * 0.03),
++  });
++}
++
++function reportFor(plan, parsed) {
++  return {
++    mode: parsed.apply ? "apply" : "dry-run",
++    selectedSessions: [...parsed.sessions],
++    settings: AUDIO_SETTINGS,
++    settingsHash: sha256(JSON.stringify(AUDIO_SETTINGS)),
++    sourceFiles: plan.sourceFiles.map((source) => ({
++      sessionId: source.sessionId,
++      path: portable(path.relative(plan.root, source.learnerPath)),
++      sourceKind: source.sourceKind,
++      bytes: source.bytes,
++      sha256: source.sha256,
++      provenanceSha256: source.provenanceSha256,
++    })),
++    existingManifestEntryCount: plan.validatedManifest.manifest.entries.length,
++    existingManifestSha256: plan.validatedManifest.sha256,
++    uniqueTranscriptCount: plan.transcripts.size,
++    expectedFileCount: plan.targets.length,
++    reusableFileCount: plan.targets.length - plan.missing.length,
++    missingFileCount: plan.missing.length,
++    missingCoordinates: plan.missing,
++    estimatedCharacters: plan.missing.reduce((sum, target) => sum + target.transcript.length, 0),
++    estimatedAudioMinutes: Number(plan.estimatedAudioMinutes.toFixed(2)),
++    conservativeEstimatedCostUsd: Number(plan.estimatedCostUsd.toFixed(2)),
++    concurrency: parsed.concurrency,
++    outputDir: portable(path.relative(plan.root, plan.outputDir)),
++  };
++}
++
++async function synthesizeWithOpenAi(target, apiKey) {
+   let lastError = null;
+   for (let attempt = 1; attempt <= 5; attempt += 1) {
+     try {
+@@ -224,57 +1326,135 @@ async function generate(target) {
+         method: "POST",
+         headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+         body: JSON.stringify({
+-          model,
++          model: AUDIO_SETTINGS.model,
+           voice: target.voiceId,
+           input: target.transcript,
+-          response_format: "mp3",
+-          speed: 1.08,
+-          instructions: "Natural, warm American English learning voice. Say the exact supplied text once, clearly and confidently, with no introduction, no repetition, and no added words. Keep pauses brief.",
++          response_format: AUDIO_SETTINGS.responseFormat,
++          speed: AUDIO_SETTINGS.speed,
++          instructions: AUDIO_SETTINGS.instructions,
+         }),
+       });
+       if (!response.ok) {
+         const detail = (await response.text()).slice(0, 300);
+         throw new Error(`tts_failed:${response.status}:${detail}`);
+       }
+-      const received = Buffer.from(await response.arrayBuffer());
+-      if (received.length < 500 || received.length > 256 * 1024) {
+-        throw new Error(`tts_invalid_size:${received.length}`);
++      const bytes = Buffer.from(await response.arrayBuffer());
++      if (bytes.length < 500 || bytes.length > 64 * 1024) {
++        throw new Error(`tts_size_invalid:${target.transcript}:${target.voiceId}:${bytes.length}`);
+       }
+-      fs.writeFileSync(outputPath, received);
+-      const bytes = normalizeMp3Size(outputPath);
+-      return Object.freeze({
+-        transcript: target.transcript,
+-        voiceId: target.voiceId,
+-        model,
+-        assetPath: path.relative(root, outputPath).replaceAll("\\", "/"),
+-        byteSize: bytes.length,
+-        contentHash: sha256(bytes),
+-        source: "generated_factory_v1",
+-      });
++      return bytes;
+     } catch (error) {
+       lastError = error;
+       if (attempt < 5) await new Promise((resolve) => setTimeout(resolve, 400 * 2 ** (attempt - 1)));
+     }
+   }
+-  throw new Error(`tts_exhausted:${target.voiceId}:${target.transcript}:${String(lastError)}`);
++  throw new Error(`tts_exhausted:${target.transcript}:${target.voiceId}:${lastError instanceof Error ? lastError.message : String(lastError)}`);
+ }
+ 
+-let next = 0;
+-const workers = Array.from({ length: Math.min(concurrency, missing.length) }, async () => {
+-  for (;;) {
+-    const index = next;
+-    next += 1;
+-    if (index >= missing.length) return;
+-    const target = missing[index];
+-    const entry = await generate(target);
+-    known.set(coordinateKey(target.transcript, target.voiceId), entry);
+-    completed += 1;
+-    if (completed % 10 === 0 || completed === missing.length) writeManifest();
+-    if (completed % 50 === 0 || completed === missing.length) {
+-      console.log(`generated ${completed}/${missing.length}`);
++export async function generateMissingAudio(plan, parsed, {
++  synthesize,
++  generatorPath = fileURLToPath(import.meta.url),
++  now = new Date().toISOString(),
++  lifecycleHook = null,
++} = {}) {
++  if (plan.missing.length === 0) return Object.freeze({ appendedEntryCount: 0 });
++  if (typeof synthesize !== "function") throw new Error("synthesize_function_required");
++  const generatorSha256Before = sha256(fs.readFileSync(generatorPath));
++  const generated = new Array(plan.missing.length);
++  let nextIndex = 0;
++  const workers = Array.from(
++    { length: Math.min(parsed.concurrency, plan.missing.length) },
++    async () => {
++      for (;;) {
++        const index = nextIndex;
++        nextIndex += 1;
++        if (index >= plan.missing.length) return;
++        const target = plan.missing[index];
++        const bytes = await synthesize(target);
++        generated[index] = { ...target, bytes };
++      }
++    },
++  );
++  await Promise.all(workers);
++  for (const original of plan.sourceFiles) {
++    let current;
++    try {
++      current = resolveLearner(plan.root, original.sessionId);
++    } catch {
++      throw new Error(`source_changed_during_generation:${original.sessionId}`);
++    }
++    if (
++      path.resolve(current.learnerPath) !== path.resolve(original.learnerPath)
++      || current.bytes !== original.bytes
++      || current.sha256 !== original.sha256
++      || current.provenanceSha256 !== original.provenanceSha256
++    ) {
++      throw new Error(`source_changed_during_generation:${original.sessionId}`);
+     }
+   }
+-});
+-await Promise.all(workers);
+-writeManifest();
+-console.log(`manifest ${path.relative(root, manifestPath).replaceAll("\\", "/")}`);
++  if (sha256(fs.readFileSync(generatorPath)) !== generatorSha256Before) {
++    throw new Error("generator_changed_during_generation");
++  }
++  const verifyInsidePublish = () => {
++    for (const original of plan.sourceFiles) {
++      let current;
++      try {
++        current = resolveLearner(plan.root, original.sessionId);
++      } catch {
++        throw new Error(`source_changed_inside_publish:${original.sessionId}`);
++      }
++      if (
++        path.resolve(current.learnerPath) !== path.resolve(original.learnerPath)
++        || current.bytes !== original.bytes
++        || current.sha256 !== original.sha256
++        || current.provenanceSha256 !== original.provenanceSha256
++      ) {
++        throw new Error(`source_changed_inside_publish:${original.sessionId}`);
++      }
++    }
++    if (sha256(fs.readFileSync(generatorPath)) !== generatorSha256Before) {
++      throw new Error("generator_changed_inside_publish");
++    }
++  };
++  return publishAppendOnlyBatch({
++    root: plan.root,
++    outputDir: plan.outputDir,
++    manifestPath: plan.manifestPath,
++    beforeManifestRaw: plan.validatedManifest.raw,
++    sourceFiles: buildSourceReceiptDescriptors(plan.root, plan.sourceFiles),
++    generated,
++    generatorPath,
++    expectedGeneratorSha256: generatorSha256Before,
++    now,
++    precommitVerifier: verifyInsidePublish,
++    lifecycleHook,
++  });
++}
++
++export async function main(argv = process.argv.slice(2), root = process.cwd()) {
++  const parsed = parseArguments(argv);
++  const plan = createPlan(path.resolve(root), parsed);
++  console.log(JSON.stringify(reportFor(plan, parsed), null, 2));
++  if (!parsed.apply || plan.missing.length === 0) return;
++
++  requireCodexOpenAiTtsOnly({ action: "Learning V2 scoped production voice pack", endpoint: "audio/speech" });
++  requireOpenAiDevSpendGuard({
++    action: "Learning V2 scoped production voice pack",
++    estimatedCostUsd: plan.estimatedCostUsd,
++    units: plan.missing.length,
++  });
++  const apiKey = requireStrictOpenAiTtsKey(root);
++  const result = await generateMissingAudio(plan, parsed, {
++    synthesize: (target) => synthesizeWithOpenAi(target, apiKey),
++  });
++  console.log(JSON.stringify({ publication: result }, null, 2));
++}
++
++const isEntrypoint = process.argv[1]
++  && path.resolve(process.argv[1]).toLowerCase() === fileURLToPath(import.meta.url).toLowerCase();
++if (isEntrypoint) {
++  main().catch((error) => {
++    console.error(error instanceof Error ? error.message : String(error));
++    process.exitCode = 1;
++  });
++}
+diff --git a/scripts/generate_learning_v2_factory_production_audio.test.mjs b/scripts/generate_learning_v2_factory_production_audio.test.mjs
+index 6aa5592af..db9f0ac19 100644
+--- a/scripts/generate_learning_v2_factory_production_audio.test.mjs
++++ b/scripts/generate_learning_v2_factory_production_audio.test.mjs
+@@ -1,97 +1,1118 @@
+ import assert from "node:assert/strict";
+ import crypto from "node:crypto";
+-import { execFileSync, spawnSync } from "node:child_process";
++import { spawn, spawnSync } from "node:child_process";
+ import fs from "node:fs";
+ import os from "node:os";
+ import path from "node:path";
+ import test from "node:test";
+-import { fileURLToPath } from "node:url";
++import { fileURLToPath, pathToFileURL } from "node:url";
+ 
+ const scriptPath = fileURLToPath(new URL("./generate_learning_v2_factory_production_audio.mjs", import.meta.url));
+ const voices = ["ash", "onyx", "nova", "coral"];
+-const transcript = "The nights are quiet.";
+ const sha256 = (value) => crypto.createHash("sha256").update(value).digest("hex");
++const TEST_SETTINGS = Object.freeze({
++  schemaVersion: "learning-v2-factory-production-audio-settings.v2",
++  model: "gpt-4o-mini-tts",
++  speed: 1.08,
++  responseFormat: "mp3",
++  instructions: "Natural, warm American English learning voice. Say the exact supplied text once, clearly and confidently, with no introduction, no repetition, and no added words. Keep pauses brief.",
++  voices,
++});
++const settingsHash = sha256(JSON.stringify(TEST_SETTINGS));
++const audioIdentity = (transcript, voiceId) => sha256(JSON.stringify({
++  schemaVersion: TEST_SETTINGS.schemaVersion,
++  transcript,
++  voiceId,
++  model: TEST_SETTINGS.model,
++  speed: TEST_SETTINGS.speed,
++  responseFormat: TEST_SETTINGS.responseFormat,
++  instructions: TEST_SETTINGS.instructions,
++}));
++let validMp3Bytes;
++let probeOnlyCorruptMp3Bytes;
+ 
+-function makeFixture() {
+-  const root = fs.mkdtempSync(path.join(os.tmpdir(), "learning-v2-audio-dry-run-"));
+-  const releaseDir = path.join(
+-    root,
+-    "modules/learning-v2/content/factory_native/generated_release/en/l01/s52",
+-  );
++function getValidMp3Bytes() {
++  if (validMp3Bytes) return validMp3Bytes;
++  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "learning-v2-valid-mp3-"));
++  const filePath = path.join(directory, "fixture.mp3");
++  try {
++    const result = spawnSync("ffmpeg", [
++      "-hide_banner", "-loglevel", "error", "-y",
++      "-f", "lavfi", "-i", "sine=frequency=440:duration=0.25",
++      "-ac", "1", "-b:a", "24k", "-map_metadata", "-1", filePath,
++    ], { encoding: "utf8" });
++    assert.equal(result.status, 0, result.stderr);
++    validMp3Bytes = fs.readFileSync(filePath);
++    assert.ok(validMp3Bytes.length >= 500 && validMp3Bytes.length <= 64 * 1024);
++    return validMp3Bytes;
++  } finally {
++    fs.rmSync(directory, { recursive: true, force: true });
++  }
++}
++
++function getProbeOnlyCorruptMp3Bytes() {
++  if (probeOnlyCorruptMp3Bytes) return probeOnlyCorruptMp3Bytes;
++  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "learning-v2-corrupt-mp3-"));
++  const goodPath = path.join(directory, "good.mp3");
++  try {
++    const generated = spawnSync("ffmpeg", [
++      "-hide_banner", "-loglevel", "error", "-y",
++      "-f", "lavfi", "-i", "sine=frequency=440:duration=5",
++      "-ac", "1", "-b:a", "24k", "-map_metadata", "-1", goodPath,
++    ], { encoding: "utf8" });
++    assert.equal(generated.status, 0, generated.stderr);
++    const good = fs.readFileSync(goodPath);
++    const candidates = [0.95, 0.9, 0.75, 0.6, 0.45].map((ratio) => Buffer.from(good.subarray(0, Math.floor(good.length * ratio))));
++    for (const fraction of [0.2, 0.4, 0.6]) {
++      for (const length of [64, 256, 1024]) {
++        const zeroed = Buffer.from(good);
++        zeroed.fill(0, Math.floor(zeroed.length * fraction), Math.min(zeroed.length, Math.floor(zeroed.length * fraction) + length));
++        candidates.push(zeroed);
++        const removedAt = Math.floor(good.length * fraction);
++        candidates.push(Buffer.concat([good.subarray(0, removedAt), good.subarray(Math.min(good.length, removedAt + length))]));
++      }
++    }
++    for (const [index, bytes] of candidates.entries()) {
++      if (bytes.length < 500 || bytes.length > 64 * 1024) continue;
++      const candidatePath = path.join(directory, `candidate-${index}.mp3`);
++      fs.writeFileSync(candidatePath, bytes);
++      const probe = spawnSync("ffprobe", [
++        "-v", "error", "-select_streams", "a:0",
++        "-show_entries", "stream=codec_name,duration", "-of", "json", candidatePath,
++      ], { encoding: "utf8" });
++      const decode = spawnSync("ffmpeg", [
++        "-nostdin", "-v", "error", "-xerror", "-i", candidatePath,
++        "-map", "0:a:0", "-f", "null", "-",
++      ], { encoding: "utf8" });
++      if (probe.status === 0 && decode.status !== 0) {
++        probeOnlyCorruptMp3Bytes = Buffer.from(bytes);
++        return probeOnlyCorruptMp3Bytes;
++      }
++    }
++    throw new Error("unable_to_construct_probe_only_corrupt_mp3_fixture");
++  } finally {
++    fs.rmSync(directory, { recursive: true, force: true });
++  }
++}
++
++function writeJson(filePath, value) {
++  fs.mkdirSync(path.dirname(filePath), { recursive: true });
++  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
++}
++
++function learnerFor(transcripts) {
++  return {
++    interactions: transcripts.map((transcript, index) => ({
++      interactionId: `i${index + 1}`,
++      audioTargetIds: [`target-${index + 1}`],
++      modePayload: { family: "listen_choose", referenceAudio: { transcript } },
++    })),
++  };
++}
++
++function makeFixture({ sessions = { s01: ["I am here."], s02: ["I am fine."] } } = {}) {
++  const root = fs.mkdtempSync(path.join(os.tmpdir(), "learning-v2-audio-scoped-"));
++  const generatorPath = path.join(root, "scripts/generate_learning_v2_factory_production_audio.mjs");
++  fs.mkdirSync(path.dirname(generatorPath), { recursive: true });
++  fs.copyFileSync(scriptPath, generatorPath);
+   const outputDir = path.join(root, "assets/audio/learning-v2/factory-production-v1");
+-  fs.mkdirSync(releaseDir, { recursive: true });
+   fs.mkdirSync(outputDir, { recursive: true });
+-  fs.writeFileSync(path.join(releaseDir, "learner.json"), JSON.stringify({
+-    interactions: [{
+-      interactionId: "en:l01:s52:i21",
+-      audioTargetIds: ["target"],
+-      modePayload: {
+-        family: "listen_choose",
+-        referenceAudio: { transcript },
++
++  for (const [sessionName, transcripts] of Object.entries(sessions)) {
++    const sessionId = `en/l01/${sessionName}`;
++    const candidateRootRelative = `content/learning-v2-course/outputs/${sessionName}-candidate`;
++    const learnerRelative = `en/l01/${sessionName}/learner.json`;
++    const candidateRoot = path.join(root, candidateRootRelative);
++    const projectionNames = ["intro.json", "auxiliary.json", "learner.json", "learner.uk.json", "answers.json"];
++    const candidateFilePaths = projectionNames.map((name) => `en/l01/${sessionName}/${name}`);
++    for (const candidatePath of candidateFilePaths) {
++      writeJson(path.join(candidateRoot, candidatePath), candidatePath === learnerRelative ? learnerFor(transcripts) : { fixture: candidatePath });
++    }
++    for (const name of ["app.js", "data.js", "external.html", "index.html"]) {
++      fs.writeFileSync(path.join(candidateRoot, name), `fixture:${sessionName}:${name}\n`, "utf8");
++    }
++    const receiptFiles = [
++      ...candidateFilePaths,
++      "app.js", "data.js", "external.html", "index.html",
++    ].map((relativePath) => {
++      const bytes = fs.readFileSync(path.join(candidateRoot, relativePath));
++      return {
++        category: "candidate",
++        path: `${candidateRootRelative}/${relativePath}`,
++        bytes: bytes.length,
++        sha256: sha256(bytes),
++      };
++    }).sort((left, right) => left.path.localeCompare(right.path));
++    const candidateStable = JSON.stringify(receiptFiles.map(({ path: file, bytes, sha256: digest }) => ({ path: file, bytes, sha256: digest })));
++    const inventoryStable = JSON.stringify(receiptFiles.map(({ category, path: file, bytes, sha256: digest }) => ({ category, path: file, bytes, sha256: digest })));
++    const receipt = {
++      schemaVersion: "learning_v2_session_candidate_content_receipt_v1",
++      courseSessionId: `en:lesson-01:session-${sessionName.slice(1)}`,
++      releaseAuthority: false,
++      candidateRoot: candidateRootRelative,
++      immutableContentOnly: true,
++      candidateBundleSha256: sha256(candidateStable),
++      fileCount: receiptFiles.length,
++      inventorySha256: sha256(inventoryStable),
++      files: receiptFiles,
++    };
++    const receiptPath = path.join(candidateRoot, "content-receipt.json");
++    writeJson(receiptPath, receipt);
++    const receiptBytes = fs.readFileSync(receiptPath);
++    const candidateFiles = candidateFilePaths.map((relativePath) => {
++      const bytes = fs.readFileSync(path.join(candidateRoot, relativePath));
++      return { path: relativePath, bytes: bytes.length, sha256: sha256(bytes) };
++    });
++    writeJson(
++      path.join(root, `content/learning-v2-course/sessions/${sessionId}/owner-review-preview-manifest.json`),
++      {
++        schemaVersion: "learning_v2_session_private_preview_manifest_v1",
++        courseSessionId: receipt.courseSessionId,
++        releaseAuthority: false,
++        candidateRoot: candidateRootRelative,
++        candidateReceiptPath: `${candidateRootRelative}/content-receipt.json`,
++        candidateReceiptInventorySha256: receipt.inventorySha256,
++        contentReceiptSha256: sha256(receiptBytes),
++        candidateBundleSha256: receipt.candidateBundleSha256,
++        candidateFiles,
+       },
+-    }],
+-  }));
++    );
++  }
+ 
+-  const seedPath = path.join(root, "seed.mp3");
+-  const ffmpeg = spawnSync("ffmpeg", [
+-    "-hide_banner", "-loglevel", "error", "-y",
+-    "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono",
+-    "-t", "15", "-b:a", "128k", seedPath,
+-  ], { encoding: "utf8" });
+-  assert.equal(ffmpeg.status, 0, ffmpeg.stderr);
+-  const seed = fs.readFileSync(seedPath);
+-  assert.ok(seed.length > 64 * 1024, `fixture must exercise normalization: ${seed.length} bytes`);
+-
+-  const entries = voices.map((voiceId) => {
+-    const filename = `${voiceId}.mp3`;
+-    const assetPath = `assets/audio/learning-v2/factory-production-v1/${filename}`;
+-    fs.writeFileSync(path.join(outputDir, filename), seed);
+-    return {
+-      transcript,
+-      voiceId,
++  const admittedBytes = getValidMp3Bytes();
++  const admittedPath = path.join(outputDir, "admitted.mp3");
++  fs.writeFileSync(admittedPath, admittedBytes);
++  const manifestPath = path.join(outputDir, "manifest.json");
++  writeJson(manifestPath, {
++    schemaVersion: "learning-v2-factory-production-audio-manifest.v1",
++    expectedEntryCount: 1,
++    entries: [{
++      transcript: "I am here.",
++      voiceId: "ash",
+       model: "gpt-4o-mini-tts",
+-      assetPath,
+-      byteSize: seed.length,
+-      contentHash: sha256(seed),
++      speed: TEST_SETTINGS.speed,
++      responseFormat: TEST_SETTINGS.responseFormat,
++      instructions: TEST_SETTINGS.instructions,
++      settingsSchemaVersion: TEST_SETTINGS.schemaVersion,
++      settingsHash,
++      identityHash: audioIdentity("I am here.", "ash"),
++      assetPath: "assets/audio/learning-v2/factory-production-v1/admitted.mp3",
++      byteSize: admittedBytes.length,
++      contentHash: sha256(admittedBytes),
+       source: "fixture",
+-    };
++    }],
+   });
+-  fs.writeFileSync(path.join(outputDir, "manifest.json"), JSON.stringify({ entries }));
+-  return { root, outputDir, originalHash: sha256(seed), originalSize: seed.length };
++  return { root, outputDir, manifestPath, admittedPath, admittedHash: sha256(admittedBytes), generatorPath };
+ }
+ 
+-function runGenerator(root, args = []) {
+-  return execFileSync(process.execPath, [scriptPath, ...args], {
++function runGenerator(root, args = [], options = {}) {
++  return spawnSync(process.execPath, [scriptPath, ...args], {
+     cwd: root,
+     encoding: "utf8",
+-    env: { ...process.env },
++    env: { ...process.env, ...options.env },
+   });
+ }
+ 
+-test("dry-run leaves every admitted MP3 byte-for-byte unchanged", (t) => {
++function sourceDescriptorsFor(module, fixture, sessions = ["en/l01/s01"]) {
++  const parsed = module.parseArguments(sessions.flatMap((session) => ["--session", session]));
++  const plan = module.createPlan(fixture.root, parsed);
++  return module.buildSourceReceiptDescriptors(fixture.root, plan.sourceFiles);
++}
++
++const subprocessPublisherCode = `
++import fs from "node:fs";
++const payload = JSON.parse(process.env.AUDIO_APPEND_TEST_PAYLOAD);
++const module = await import(payload.moduleUrl);
++try {
++  const result = module.publishAppendOnlyBatch({
++    root: payload.root,
++    outputDir: payload.outputDir,
++    manifestPath: payload.manifestPath,
++    beforeManifestRaw: Buffer.from(payload.beforeManifestBase64, "base64"),
++    sourceFiles: payload.sourceFiles,
++    generated: [{ transcript: "I am here.", voiceId: payload.voiceId, bytes: Buffer.from(payload.audioBase64, "base64") }],
++    generatorPath: payload.generatorPath,
++    lifecycleHook: (phase) => {
++      if (phase === "inside_lock_precommit" && payload.markerPath) {
++        fs.writeFileSync(payload.markerPath, "locked", "utf8");
++        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, payload.holdMs);
++      }
++    },
++    simulateCrashAt: payload.simulateCrashAt,
++  });
++  process.stdout.write(JSON.stringify(result));
++} catch (error) {
++  process.stderr.write(error instanceof Error ? error.message : String(error));
++  process.exitCode = 3;
++}
++`;
++
++function spawnPublisher(payload) {
++  return spawn(process.execPath, ["--input-type=module", "--eval", subprocessPublisherCode], {
++    cwd: payload.root,
++    env: { ...process.env, AUDIO_APPEND_TEST_PAYLOAD: JSON.stringify(payload) },
++    stdio: ["ignore", "pipe", "pipe"],
++  });
++}
++
++function waitForChild(child) {
++  return new Promise((resolve) => {
++    let stdout = "";
++    let stderr = "";
++    child.stdout.on("data", (chunk) => { stdout += chunk; });
++    child.stderr.on("data", (chunk) => { stderr += chunk; });
++    child.on("close", (code, signal) => resolve({ code, signal, stdout, stderr }));
++  });
++}
++
++async function waitForFile(filePath, timeoutMs = 5_000) {
++  const deadline = Date.now() + timeoutMs;
++  while (!fs.existsSync(filePath)) {
++    if (Date.now() >= deadline) throw new Error(`timed_out_waiting_for_file:${filePath}`);
++    await new Promise((resolve) => setTimeout(resolve, 10));
++  }
++}
++
++test("module import is side-effect free", () => {
++  const result = spawnSync(process.execPath, [
++    "--input-type=module",
++    "--eval",
++    `await import(${JSON.stringify(pathToFileURL(scriptPath).href)}); console.log("imported");`,
++  ], { encoding: "utf8", cwd: os.tmpdir() });
++  assert.equal(result.status, 0, result.stderr);
++  assert.equal(result.stdout.trim(), "imported");
++});
++
++test("requires one or more strict --session arguments", (t) => {
+   const fixture = makeFixture();
+   t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
+ 
+-  const output = runGenerator(fixture.root);
++  const missing = runGenerator(fixture.root);
++  assert.notEqual(missing.status, 0);
++  assert.match(missing.stderr, /required_argument_missing:--session/u);
++
++  const invalid = runGenerator(fixture.root, ["--session", "l01/s01"]);
++  assert.notEqual(invalid.status, 0);
++  assert.match(invalid.stderr, /invalid_session:l01\/s01/u);
++});
++
++test("repeatable --session dry-run resolves candidate learners and never mutates admitted bytes", (t) => {
++  const fixture = makeFixture();
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const manifestBefore = fs.readFileSync(fixture.manifestPath);
++
++  const result = runGenerator(fixture.root, ["--session=en/l01/s01", "--session", "en/l01/s02"]);
++  assert.equal(result.status, 0, result.stderr);
++  const report = JSON.parse(result.stdout);
++  assert.deepEqual(report.selectedSessions, ["en/l01/s01", "en/l01/s02"]);
++  assert.equal(report.uniqueTranscriptCount, 2);
++  assert.equal(report.expectedFileCount, 8);
++  assert.equal(report.reusableFileCount, 1);
++  assert.equal(report.missingFileCount, 7);
++  assert.deepEqual(report.sourceFiles.map((entry) => entry.sessionId), report.selectedSessions);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), manifestBefore);
++  assert.equal(sha256(fs.readFileSync(fixture.admittedPath)), fixture.admittedHash);
++});
++
++test("validates every existing manifest entry, including coordinates outside selected scope", (t) => {
++  const fixture = makeFixture();
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  manifest.entries.push({ ...manifest.entries[0], transcript: "Outside scope.", assetPath: "assets/audio/learning-v2/factory-production-v1/missing.mp3" });
++  manifest.expectedEntryCount = 2;
++  writeJson(fixture.manifestPath, manifest);
++
++  const result = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(result.status, 0);
++  assert.match(result.stderr, /manifest_asset_missing:.*missing\.mp3/u);
++});
+ 
+-  assert.match(output, /"mode": "dry-run"/u);
+-  for (const voiceId of voices) {
+-    const bytes = fs.readFileSync(path.join(fixture.outputDir, `${voiceId}.mp3`));
+-    assert.equal(bytes.length, fixture.originalSize);
+-    assert.equal(sha256(bytes), fixture.originalHash);
++test("fails closed on duplicate manifest coordinates", (t) => {
++  const fixture = makeFixture();
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  manifest.entries.push({ ...manifest.entries[0] });
++  manifest.expectedEntryCount = 2;
++  writeJson(fixture.manifestPath, manifest);
++
++  const result = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(result.status, 0);
++  assert.match(result.stderr, /manifest_coordinate_duplicate:I am here\.:ash/u);
++});
++
++test("--apply with no missing coordinates is a byte-for-byte no-op", (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  manifest.entries = voices.map((voiceId, index) => {
++    const bytes = getValidMp3Bytes();
++    const assetPath = `assets/audio/learning-v2/factory-production-v1/admitted-${index}.mp3`;
++    fs.writeFileSync(path.join(fixture.root, assetPath), bytes);
++    return {
++      transcript: "I am here.", voiceId, model: TEST_SETTINGS.model, speed: TEST_SETTINGS.speed,
++      responseFormat: TEST_SETTINGS.responseFormat, instructions: TEST_SETTINGS.instructions,
++      settingsSchemaVersion: TEST_SETTINGS.schemaVersion,
++      settingsHash, identityHash: audioIdentity("I am here.", voiceId), assetPath,
++      byteSize: bytes.length, contentHash: sha256(bytes), source: "fixture",
++    };
++  });
++  manifest.expectedEntryCount = 4;
++  writeJson(fixture.manifestPath, manifest);
++  const before = fs.readFileSync(fixture.manifestPath);
++
++  const result = runGenerator(fixture.root, ["--apply", "--session", "en/l01/s01"]);
++  assert.equal(result.status, 0, result.stderr);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++  for (const entry of manifest.entries) {
++    const bytes = fs.readFileSync(path.join(fixture.root, entry.assetPath));
++    assert.equal(bytes.length, entry.byteSize);
++    assert.equal(sha256(bytes), entry.contentHash);
++  }
++});
++
++test("audio identity binds transcript, voice, model, speed, instructions, and schema", async () => {
++  const module = await import(pathToFileURL(scriptPath).href);
++  assert.equal(typeof module.buildAudioIdentity, "function");
++  const base = {
++    transcript: "I am fine.",
++    voiceId: "ash",
++    settings: module.AUDIO_SETTINGS,
++  };
++  const original = module.buildAudioIdentity(base);
++  const mutations = [
++    { transcript: "I am ready." },
++    { voiceId: "nova" },
++    { settings: { ...module.AUDIO_SETTINGS, model: "different-model" } },
++    { settings: { ...module.AUDIO_SETTINGS, speed: 1 } },
++    { settings: { ...module.AUDIO_SETTINGS, responseFormat: "wav" } },
++    { settings: { ...module.AUDIO_SETTINGS, instructions: "Different." } },
++    { settings: { ...module.AUDIO_SETTINGS, schemaVersion: "different-schema" } },
++  ];
++  for (const mutation of mutations) {
++    assert.notEqual(module.buildAudioIdentity({ ...base, ...mutation }), original);
+   }
+ });
+ 
+-test("apply still normalizes admitted MP3 files that exceed the size limit", (t) => {
++test("append-only publication preserves old entries and writes immutable bound receipt", async (t) => {
+   const fixture = makeFixture();
+   t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  assert.equal(typeof module.publishAppendOnlyBatch, "function");
++  const before = fs.readFileSync(fixture.manifestPath);
++  const oldEntry = JSON.parse(before).entries[0];
++  const generated = ["onyx", "nova"].map((voiceId) => ({
++    transcript: "I am here.",
++    voiceId,
++    bytes: getValidMp3Bytes(),
++  }));
++  const sourceFiles = sourceDescriptorsFor(module, fixture);
+ 
+-  const output = runGenerator(fixture.root, ["--apply"]);
++  const result = module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: before,
++    sourceFiles,
++    generated,
++    generatorPath: fixture.generatorPath,
++    now: "2026-10-14T00:00:00.000Z",
++  });
+ 
+-  assert.match(output, /"mode": "apply"/u);
+-  for (const voiceId of voices) {
+-    const bytes = fs.readFileSync(path.join(fixture.outputDir, `${voiceId}.mp3`));
+-    assert.ok(bytes.length >= 500 && bytes.length <= 64 * 1024, `${voiceId}: ${bytes.length} bytes`);
+-    assert.notEqual(sha256(bytes), fixture.originalHash);
++  const afterRaw = fs.readFileSync(fixture.manifestPath);
++  const after = JSON.parse(afterRaw);
++  assert.equal(after.entries.length, 3);
++  assert.deepEqual(after.entries[0], oldEntry);
++  assert.equal(result.beforeManifestSha256, sha256(before));
++  assert.equal(result.afterManifestSha256, sha256(afterRaw));
++  assert.ok(fs.existsSync(result.receiptPath));
++  const receiptRaw = fs.readFileSync(result.receiptPath);
++  const receipt = JSON.parse(receiptRaw);
++  assert.equal(receipt.beforeManifestSha256, sha256(before));
++  assert.equal(receipt.afterManifestSha256, sha256(afterRaw));
++  assert.equal(receipt.generatorSha256, sha256(fs.readFileSync(fixture.generatorPath)));
++  assert.deepEqual(receipt.settings, module.AUDIO_SETTINGS);
++  assert.equal(receipt.files.length, 2);
++  for (const file of receipt.files) {
++    const asset = fs.readFileSync(path.join(fixture.root, file.assetPath));
++    assert.equal(asset.length, file.byteSize);
++    assert.equal(sha256(asset), file.contentHash);
++    assert.equal(file.identityHash, module.buildAudioIdentity({
++      transcript: file.transcript,
++      voiceId: file.voiceId,
++      settings: module.AUDIO_SETTINGS,
++    }));
+   }
+ });
++
++test("publication failure leaves manifest and asset namespace unchanged", async (t) => {
++  const fixture = makeFixture();
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const before = fs.readFileSync(fixture.manifestPath);
++  const namesBefore = fs.readdirSync(fixture.outputDir).sort();
++
++  assert.throws(() => module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: before,
++    sourceFiles: [],
++    generated: [
++      { transcript: "I am fine.", voiceId: "ash", bytes: getValidMp3Bytes() },
++      { transcript: "I am fine.", voiceId: "onyx", bytes: Buffer.alloc(0) },
++    ],
++    generatorPath: fixture.generatorPath,
++    now: "2026-10-14T00:00:00.000Z",
++  }), /generated_audio_size_invalid:I am fine\.:onyx/u);
++
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++  assert.deepEqual(fs.readdirSync(fixture.outputDir).sort(), namesBefore);
++});
++
++test("publication rejects undecodable bytes before touching output", async (t) => {
++  const fixture = makeFixture();
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const before = fs.readFileSync(fixture.manifestPath);
++  const namesBefore = fs.readdirSync(fixture.outputDir).sort();
++  assert.throws(() => module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: before,
++    sourceFiles: [],
++    generated: [{ transcript: "I am fine.", voiceId: "ash", bytes: Buffer.alloc(600, 1) }],
++    generatorPath: fixture.generatorPath,
++  }), /generated_audio_decode_invalid:I am fine\.:ash/u);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++  assert.deepEqual(fs.readdirSync(fixture.outputDir).sort(), namesBefore);
++});
++
++test("publication rejects MP3 bytes that pass ffprobe but fail full decode", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  assert.throws(() => module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: fs.readFileSync(fixture.manifestPath),
++    sourceFiles: sourceDescriptorsFor(module, fixture),
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getProbeOnlyCorruptMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++  }), /generated_audio_decode_invalid:I am here\.:onyx/u);
++});
++
++test("generation publishes only after every scoped target succeeds", async (t) => {
++  const fixture = makeFixture();
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  assert.equal(typeof module.createPlan, "function");
++  assert.equal(typeof module.generateMissingAudio, "function");
++  const parsed = module.parseArguments(["--apply", "--session", "en/l01/s01"]);
++  const plan = module.createPlan(fixture.root, parsed);
++  const result = await module.generateMissingAudio(plan, parsed, {
++    generatorPath: fixture.generatorPath,
++    now: "2026-10-14T00:00:00.000Z",
++    synthesize: async () => getValidMp3Bytes(),
++  });
++  assert.equal(result.appendedEntryCount, 3);
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  assert.equal(manifest.entries.length, 4);
++});
++
++test("synthesis failure publishes no manifest, audio, or receipt", async (t) => {
++  const fixture = makeFixture();
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const parsed = module.parseArguments(["--apply", "--session", "en/l01/s01"]);
++  const plan = module.createPlan(fixture.root, parsed);
++  const before = fs.readFileSync(fixture.manifestPath);
++  const namesBefore = fs.readdirSync(fixture.outputDir).sort();
++  let calls = 0;
++  await assert.rejects(
++    module.generateMissingAudio(plan, parsed, {
++      generatorPath: fixture.generatorPath,
++      synthesize: async (target) => {
++        calls += 1;
++        if (target.voiceId === "nova") throw new Error("fixture_synthesis_failed");
++        return getValidMp3Bytes();
++      },
++    }),
++    /fixture_synthesis_failed/u,
++  );
++  assert.ok(calls >= 1);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++  assert.deepEqual(fs.readdirSync(fixture.outputDir).sort(), namesBefore);
++});
++
++test("source change during synthesis fails closed before publication", async (t) => {
++  const fixture = makeFixture();
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const parsed = module.parseArguments(["--apply", "--session", "en/l01/s01"]);
++  const plan = module.createPlan(fixture.root, parsed);
++  const before = fs.readFileSync(fixture.manifestPath);
++  let changed = false;
++
++  await assert.rejects(
++    module.generateMissingAudio(plan, parsed, {
++      generatorPath: fixture.generatorPath,
++      synthesize: async (target) => {
++        if (!changed) {
++          changed = true;
++          fs.appendFileSync(plan.sourceFiles[0].learnerPath, " ");
++        }
++        return getValidMp3Bytes();
++      },
++    }),
++    /source_changed_during_generation:en\/l01\/s01/u,
++  );
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++  assert.equal(fs.existsSync(path.join(fixture.outputDir, "batches")), false);
++});
++
++test("generator change during synthesis fails closed before publication", async (t) => {
++  const fixture = makeFixture();
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const parsed = module.parseArguments(["--apply", "--session", "en/l01/s01"]);
++  const plan = module.createPlan(fixture.root, parsed);
++  const generatorCopy = path.join(fixture.root, "generator-copy.mjs");
++  fs.copyFileSync(scriptPath, generatorCopy);
++  const before = fs.readFileSync(fixture.manifestPath);
++  let changed = false;
++
++  await assert.rejects(
++    module.generateMissingAudio(plan, parsed, {
++      generatorPath: generatorCopy,
++      synthesize: async () => {
++        if (!changed) {
++          changed = true;
++          fs.appendFileSync(generatorCopy, "\n// changed during synthesis\n");
++        }
++        return getValidMp3Bytes();
++      },
++    }),
++    /generator_changed_during_generation/u,
++  );
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++  assert.equal(fs.existsSync(path.join(fixture.outputDir, "batches")), false);
++});
++
++test("candidate-bound sessions reject missing preview instead of falling back to canonical native", (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const previewPath = path.join(fixture.root, "content/learning-v2-course/sessions/en/l01/s01/owner-review-preview-manifest.json");
++  fs.unlinkSync(previewPath);
++  writeJson(
++    path.join(fixture.root, "modules/learning-v2/content/factory_native/generated_release/en/l01/s01/learner.json"),
++    learnerFor(["Fallback must not be used."]),
++  );
++  const result = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(result.status, 0);
++  assert.match(result.stderr, /candidate_preview_required:en\/l01\/s01/u);
++});
++
++test("candidate receipt chain detects tamper outside learner.json", (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  fs.appendFileSync(path.join(fixture.root, "content/learning-v2-course/outputs/s01-candidate/app.js"), "tamper");
++  const result = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(result.status, 0);
++  assert.match(result.stderr, /candidate_receipt_file_stale:.*app\.js/u);
++});
++
++test("settings identity mismatch fails closed", (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  manifest.entries[0].speed = 0.75;
++  writeJson(fixture.manifestPath, manifest);
++  const result = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(result.status, 0);
++  assert.match(result.stderr, /manifest_settings_identity_mismatch:I am here\.:ash/u);
++});
++
++test("unproven legacy entry fails closed", (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  delete manifest.entries[0].speed;
++  delete manifest.entries[0].responseFormat;
++  delete manifest.entries[0].instructions;
++  delete manifest.entries[0].settingsSchemaVersion;
++  delete manifest.entries[0].settingsHash;
++  delete manifest.entries[0].identityHash;
++  manifest.entries[0].source = "generated_factory_v1";
++  writeJson(fixture.manifestPath, manifest);
++  const result = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(result.status, 0);
++  assert.match(result.stderr, /manifest_legacy_compatibility_unproven:I am here\.:ash/u);
++});
++
++test("hash-valid but undecodable existing MP3 fails full manifest validation", (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  const corrupt = Buffer.alloc(600, 7);
++  fs.writeFileSync(fixture.admittedPath, corrupt);
++  manifest.entries[0].byteSize = corrupt.length;
++  manifest.entries[0].contentHash = sha256(corrupt);
++  writeJson(fixture.manifestPath, manifest);
++  const result = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(result.status, 0);
++  assert.match(result.stderr, /manifest_asset_decode_invalid:.*admitted\.mp3/u);
++});
++
++test("strict TTS key accessor never accepts generic OPENAI_API_KEY fallback", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  assert.equal(typeof module.requireStrictOpenAiTtsKey, "function");
++  assert.throws(() => module.requireStrictOpenAiTtsKey(fixture.root, {
++    OPENAI_API_KEY: "generic-key",
++    PHRASEMAN_ALLOW_LEGACY_OPENAI_API_KEY_FOR_TTS: "1",
++  }), /OPENAI_TTS_API_KEY_required_generic_fallback_forbidden/u);
++  assert.equal(module.requireStrictOpenAiTtsKey(fixture.root, {
++    OPENAI_API_KEY: "generic-key",
++    OPENAI_TTS_API_KEY: "tts-key",
++  }), "tts-key");
++});
++
++test("publication rejects fabricated source receipt claims", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const before = fs.readFileSync(fixture.manifestPath);
++  assert.throws(() => module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: before,
++    sourceFiles: [{
++      sessionId: "en/l01/s01",
++      path: "content/learning-v2-course/outputs/fabricated/en/l01/s01/learner.json",
++      sourceKind: "private_candidate",
++      bytes: 1,
++      sha256: "a".repeat(64),
++      provenanceSha256: "b".repeat(64),
++    }],
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++  }), /source_receipt_mismatch:en\/l01\/s01/u);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++});
++
++test("exclusive interprocess lock rejects a concurrent live writer", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const sourceFiles = sourceDescriptorsFor(module, fixture);
++  fs.mkdirSync(path.join(fixture.outputDir, ".append-only.lock"));
++  writeJson(path.join(fixture.outputDir, ".append-only.lock", "owner.json"), { pid: process.pid });
++  const before = fs.readFileSync(fixture.manifestPath);
++  assert.throws(() => module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: before,
++    sourceFiles,
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++  }), /audio_publish_locked/u);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++});
++
++test("two real processes cannot publish from the same manifest snapshot", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const markerPath = path.join(fixture.root, "writer-one-locked.marker");
++  const common = {
++    moduleUrl: pathToFileURL(scriptPath).href,
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestBase64: fs.readFileSync(fixture.manifestPath).toString("base64"),
++    sourceFiles: sourceDescriptorsFor(module, fixture),
++    audioBase64: getValidMp3Bytes().toString("base64"),
++    generatorPath: fixture.generatorPath,
++  };
++  const first = spawnPublisher({ ...common, voiceId: "onyx", markerPath, holdMs: 1_000 });
++  await waitForFile(markerPath);
++  const secondResult = await waitForChild(spawnPublisher({ ...common, voiceId: "nova", holdMs: 0 }));
++  const firstResult = await waitForChild(first);
++  assert.equal(firstResult.code, 0, firstResult.stderr);
++  assert.notEqual(secondResult.code, 0);
++  assert.match(secondResult.stderr, /audio_publish_locked/u);
++  assert.equal(JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8")).entries.length, 2);
++});
++
++test("orphaned append journal completes exactly once after a crash", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const sourceFiles = sourceDescriptorsFor(module, fixture);
++  const before = fs.readFileSync(fixture.manifestPath);
++  assert.throws(() => module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: before,
++    sourceFiles,
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++    simulateCrashAt: "after_batch_rename",
++  }), /simulated_crash:after_batch_rename/u);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++  assert.equal(fs.existsSync(path.join(fixture.outputDir, ".append-only-journal.json")), true);
++
++  const recovered = module.recoverPendingAudioPublication({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++  });
++  assert.equal(recovered.status, "recovered");
++  const committed = fs.readFileSync(fixture.manifestPath);
++  assert.notDeepEqual(committed, before);
++  assert.equal(JSON.parse(committed).entries.length, 2);
++  assert.equal(fs.existsSync(path.join(fixture.outputDir, ".append-only-journal.json")), false);
++
++  const repeated = module.recoverPendingAudioPublication({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++  });
++  assert.equal(repeated.status, "no_pending");
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), committed);
++});
++
++test("a killed writer leaves a durable orphan that a new process recovers", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const before = fs.readFileSync(fixture.manifestPath);
++  const killed = await waitForChild(spawnPublisher({
++    moduleUrl: pathToFileURL(scriptPath).href,
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestBase64: before.toString("base64"),
++    sourceFiles: sourceDescriptorsFor(module, fixture),
++    audioBase64: getValidMp3Bytes().toString("base64"),
++    generatorPath: fixture.generatorPath,
++    voiceId: "onyx",
++    holdMs: 0,
++    simulateCrashAt: "hard_after_batch_rename",
++  }));
++  assert.ok(killed.code !== 0 || killed.signal, `writer unexpectedly survived: ${killed.stdout}`);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++  assert.equal(fs.existsSync(path.join(fixture.outputDir, ".append-only-journal.json")), true);
++  assert.equal(fs.existsSync(path.join(fixture.outputDir, ".append-only.lock")), true);
++  const recovered = module.recoverPendingAudioPublication({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++  });
++  assert.equal(recovered.status, "recovered");
++  assert.equal(JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8")).entries.length, 2);
++  assert.equal(fs.existsSync(path.join(fixture.outputDir, ".append-only-journal.json")), false);
++  assert.equal(fs.existsSync(path.join(fixture.outputDir, ".append-only.lock")), false);
++});
++
++test("recovery refuses an orphan when candidate provenance changed", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const sourceFiles = sourceDescriptorsFor(module, fixture);
++  const before = fs.readFileSync(fixture.manifestPath);
++  assert.throws(() => module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: before,
++    sourceFiles,
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++    simulateCrashAt: "after_batch_rename",
++  }), /simulated_crash:after_batch_rename/u);
++  const learnerPath = path.join(fixture.root, sourceFiles[0].path);
++  fs.appendFileSync(learnerPath, " ");
++  assert.throws(() => module.recoverPendingAudioPublication({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++  }), /source_receipt_mismatch:en\/l01\/s01/u);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++});
++
++test("recovery refuses an orphan when its generator changed", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const before = fs.readFileSync(fixture.manifestPath);
++  assert.throws(() => module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: before,
++    sourceFiles: sourceDescriptorsFor(module, fixture),
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++    simulateCrashAt: "after_batch_rename",
++  }), /simulated_crash:after_batch_rename/u);
++  fs.appendFileSync(fixture.generatorPath, "\n// changed after crash\n");
++  assert.throws(() => module.recoverPendingAudioPublication({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++  }), /generator_changed_inside_publish/u);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++});
++
++test("a tampered persisted batch receipt fails every later manifest load", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const result = module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: fs.readFileSync(fixture.manifestPath),
++    sourceFiles: sourceDescriptorsFor(module, fixture),
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++  });
++  const receipt = JSON.parse(fs.readFileSync(result.receiptPath, "utf8"));
++  receipt.sourceFiles[0].sha256 = "f".repeat(64);
++  writeJson(result.receiptPath, receipt);
++  const later = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(later.status, 0);
++  assert.match(later.stderr, /batch_receipt_(?:hash|binding)_mismatch/u);
++});
++
++test("receipt-chain coverage cannot be bypassed by downgrading entry source", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  module.publishAppendOnlyBatch({
++    root: fixture.root, outputDir: fixture.outputDir, manifestPath: fixture.manifestPath,
++    beforeManifestRaw: fs.readFileSync(fixture.manifestPath),
++    sourceFiles: sourceDescriptorsFor(module, fixture),
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++  });
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  manifest.entries.at(-1).source = "fixture";
++  writeJson(fixture.manifestPath, manifest);
++  const later = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(later.status, 0);
++  assert.match(later.stderr, /audio_append_chain_source_invalid/u);
++});
++
++test("receipt-chain coverage cannot be removed after downgrading entry source", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  module.publishAppendOnlyBatch({
++    root: fixture.root, outputDir: fixture.outputDir, manifestPath: fixture.manifestPath,
++    beforeManifestRaw: fs.readFileSync(fixture.manifestPath),
++    sourceFiles: sourceDescriptorsFor(module, fixture),
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++  });
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  manifest.entries.at(-1).source = "fixture";
++  delete manifest.audioAppendChain;
++  writeJson(fixture.manifestPath, manifest);
++  const later = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(later.status, 0);
++  assert.match(later.stderr, /audio_append_chain_missing/u);
++});
++
++test("receipt chain rejects an identity-bound but unreceipted manifest tail", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  module.publishAppendOnlyBatch({
++    root: fixture.root, outputDir: fixture.outputDir, manifestPath: fixture.manifestPath,
++    beforeManifestRaw: fs.readFileSync(fixture.manifestPath),
++    sourceFiles: sourceDescriptorsFor(module, fixture),
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++  });
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  const admitted = manifest.entries[0];
++  manifest.entries.push({
++    ...admitted,
++    transcript: "Unreceipted.",
++    voiceId: "coral",
++    identityHash: module.buildAudioIdentity({ transcript: "Unreceipted.", voiceId: "coral" }),
++    source: "fixture",
++  });
++  manifest.expectedEntryCount = manifest.entries.length;
++  writeJson(fixture.manifestPath, manifest);
++  const later = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(later.status, 0);
++  assert.match(later.stderr, /audio_append_chain_source_invalid/u);
++});
++
++test("malformed stale lock metadata is never treated as proof that a writer died", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const lockPath = path.join(fixture.outputDir, ".append-only.lock");
++  fs.mkdirSync(lockPath);
++  fs.writeFileSync(path.join(lockPath, "owner.json"), "not-json", "utf8");
++  const old = new Date(Date.now() - 120_000);
++  fs.utimesSync(lockPath, old, old);
++  assert.throws(() => module.publishAppendOnlyBatch({
++    root: fixture.root,
++    outputDir: fixture.outputDir,
++    manifestPath: fixture.manifestPath,
++    beforeManifestRaw: fs.readFileSync(fixture.manifestPath),
++    sourceFiles: sourceDescriptorsFor(module, fixture),
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++  }), /audio_publish_locked:owner_unreadable/u);
++});
++
++test("stale plan cannot overwrite a concurrent manifest append", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const sourceFiles = sourceDescriptorsFor(module, fixture);
++  const stale = fs.readFileSync(fixture.manifestPath);
++  module.publishAppendOnlyBatch({
++    root: fixture.root, outputDir: fixture.outputDir, manifestPath: fixture.manifestPath,
++    beforeManifestRaw: stale, sourceFiles,
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++  });
++  const committed = fs.readFileSync(fixture.manifestPath);
++  assert.throws(() => module.publishAppendOnlyBatch({
++    root: fixture.root, outputDir: fixture.outputDir, manifestPath: fixture.manifestPath,
++    beforeManifestRaw: stale, sourceFiles,
++    generated: [{ transcript: "I am here.", voiceId: "nova", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++  }), /manifest_compare_and_swap_failed/u);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), committed);
++});
++
++test("persisted receipt chain validates across two sequential appends", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const sourceFiles = sourceDescriptorsFor(module, fixture);
++  module.publishAppendOnlyBatch({
++    root: fixture.root, outputDir: fixture.outputDir, manifestPath: fixture.manifestPath,
++    beforeManifestRaw: fs.readFileSync(fixture.manifestPath), sourceFiles,
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++    now: "2026-10-14T00:00:00.000Z",
++  });
++  module.publishAppendOnlyBatch({
++    root: fixture.root, outputDir: fixture.outputDir, manifestPath: fixture.manifestPath,
++    beforeManifestRaw: fs.readFileSync(fixture.manifestPath), sourceFiles,
++    generated: [{ transcript: "I am here.", voiceId: "nova", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++    now: "2026-10-14T00:01:00.000Z",
++  });
++  const result = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.equal(result.status, 0, result.stderr);
++  assert.equal(JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8")).entries.length, 3);
++});
++
++test("receipt chain genesis cannot absorb an earlier appended batch", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const sourceFiles = sourceDescriptorsFor(module, fixture);
++  module.publishAppendOnlyBatch({
++    root: fixture.root, outputDir: fixture.outputDir, manifestPath: fixture.manifestPath,
++    beforeManifestRaw: fs.readFileSync(fixture.manifestPath), sourceFiles,
++    generated: [{ transcript: "I am here.", voiceId: "onyx", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++    now: "2026-10-14T00:00:00.000Z",
++  });
++  module.publishAppendOnlyBatch({
++    root: fixture.root, outputDir: fixture.outputDir, manifestPath: fixture.manifestPath,
++    beforeManifestRaw: fs.readFileSync(fixture.manifestPath), sourceFiles,
++    generated: [{ transcript: "I am here.", voiceId: "nova", bytes: getValidMp3Bytes() }],
++    generatorPath: fixture.generatorPath,
++    now: "2026-10-14T00:01:00.000Z",
++  });
++
++  const manifest = JSON.parse(fs.readFileSync(fixture.manifestPath, "utf8"));
++  const [firstBatchHash, secondBatchHash] = manifest.audioAppendChain.batchHashes;
++  const secondReceiptPath = path.join(fixture.outputDir, "batches", secondBatchHash, "receipt.json");
++  const secondReceipt = JSON.parse(fs.readFileSync(secondReceiptPath, "utf8"));
++  manifest.entries[1].source = "fixture";
++  manifest.audioAppendChain.genesisEntryCount = 2;
++  manifest.audioAppendChain.genesisManifestSha256 = secondReceipt.beforeManifestSha256;
++  manifest.audioAppendChain.batchHashes = [secondBatchHash];
++  assert.notEqual(firstBatchHash, secondBatchHash);
++  writeJson(fixture.manifestPath, manifest);
++  secondReceipt.afterManifestSha256 = sha256(fs.readFileSync(fixture.manifestPath));
++  writeJson(secondReceiptPath, secondReceipt);
++
++  const result = runGenerator(fixture.root, ["--session", "en/l01/s01"]);
++  assert.notEqual(result.status, 0);
++  assert.match(result.stderr, /audio_append_chain_genesis_(?:count|entries|manifest)_mismatch/u);
++});
++
++test("source and generator are rechecked inside lock and after commit", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const parsed = module.parseArguments(["--apply", "--session", "en/l01/s01"]);
++  const plan = module.createPlan(fixture.root, parsed);
++  const before = fs.readFileSync(fixture.manifestPath);
++  await assert.rejects(module.generateMissingAudio(plan, parsed, {
++    generatorPath: fixture.generatorPath,
++    synthesize: async () => getValidMp3Bytes(),
++    lifecycleHook: (phase) => {
++      if (phase === "inside_lock_precommit") fs.appendFileSync(plan.sourceFiles[0].learnerPath, " ");
++    },
++  }), /source_changed_inside_publish:en\/l01\/s01/u);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++});
++
++test("existing admitted assets are revalidated inside lock before append", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const parsed = module.parseArguments(["--apply", "--session", "en/l01/s01"]);
++  const plan = module.createPlan(fixture.root, parsed);
++  const before = fs.readFileSync(fixture.manifestPath);
++  await assert.rejects(module.generateMissingAudio(plan, parsed, {
++    generatorPath: fixture.generatorPath,
++    synthesize: async () => getValidMp3Bytes(),
++    lifecycleHook: (phase) => {
++      if (phase === "inside_lock_precommit") fs.writeFileSync(fixture.admittedPath, Buffer.alloc(600, 9));
++    },
++  }), /manifest_asset_(?:size|hash)_mismatch/u);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++});
++
++test("postcommit source change rolls manifest and batch back before unlock", async (t) => {
++  const fixture = makeFixture({ sessions: { s01: ["I am here."] } });
++  t.after(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
++  const module = await import(pathToFileURL(scriptPath).href);
++  const parsed = module.parseArguments(["--apply", "--session", "en/l01/s01"]);
++  const plan = module.createPlan(fixture.root, parsed);
++  const before = fs.readFileSync(fixture.manifestPath);
++  await assert.rejects(module.generateMissingAudio(plan, parsed, {
++    generatorPath: fixture.generatorPath,
++    synthesize: async () => getValidMp3Bytes(),
++    lifecycleHook: (phase) => {
++      if (phase === "after_manifest_commit") fs.appendFileSync(plan.sourceFiles[0].learnerPath, " ");
++    },
++  }), /source_changed_inside_publish:en\/l01\/s01/u);
++  assert.deepEqual(fs.readFileSync(fixture.manifestPath), before);
++  assert.equal(fs.existsSync(path.join(fixture.outputDir, ".append-only-journal.json")), false);
++  assert.equal(fs.existsSync(path.join(fixture.outputDir, ".append-only.lock")), false);
++  const batchRoot = path.join(fixture.outputDir, "batches");
++  assert.deepEqual(fs.existsSync(batchRoot) ? fs.readdirSync(batchRoot) : [], []);
++});

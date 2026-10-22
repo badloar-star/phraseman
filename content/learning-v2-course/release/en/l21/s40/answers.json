@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-40:word:compare-prices",
+    "correctText": "compare prices",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i01",
+    "correctText": "I compare prices to save money.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i02",
+    "correctText": "I compare prices to save money.",
+    "correctResponseId": "en:lesson-21:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i03",
+    "correctText": "to save",
+    "correctResponseId": "en:lesson-21:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:word:read-reviews",
+    "correctText": "read reviews",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i04",
+    "correctText": "I read reviews to choose a hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i05",
+    "correctText": "I read reviews to choose a hotel.",
+    "correctResponseId": "en:lesson-21:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i06",
+    "correctText": "to choose",
+    "correctResponseId": "en:lesson-21:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:word:check-availability",
+    "correctText": "check availability",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i07",
+    "correctText": "I check availability to plan my visit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i08",
+    "correctText": "I check availability to plan my visit.",
+    "correctResponseId": "en:lesson-21:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i09",
+    "correctText": "to plan",
+    "correctResponseId": "en:lesson-21:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:word:make-a-booking",
+    "correctText": "make a booking",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i10",
+    "correctText": "I make a booking to celebrate my birthday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i11",
+    "correctText": "I make a booking to celebrate my birthday.",
+    "correctResponseId": "en:lesson-21:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i12",
+    "correctText": "to celebrate",
+    "correctResponseId": "en:lesson-21:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i13",
+    "correctText": "en:lesson-21:session-40:i13:p1=compare prices\nen:lesson-21:session-40:i13:p2=read reviews\nen:lesson-21:session-40:i13:p3=check availability\nen:lesson-21:session-40:i13:p4=make a booking",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i16",
+    "correctText": "I check availability to plan my visit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-40:i17",
+    "correctText": "I make a booking to celebrate my birthday.",
+    "correctResponseId": null
+  }
+]

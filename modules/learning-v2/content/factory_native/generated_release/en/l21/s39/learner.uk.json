@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-39:word:take-notes",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take notes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:word:take-notes:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take notes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:word:take-notes:audio",
+          "transcript": "take notes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-39:word:take-notes:r1",
+            "targetText": "take notes",
+            "meaningByLocale": {
+              "ru": "делать заметки.",
+              "uk": "робити нотатки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take notes",
+          "definitionByLocale": {
+            "ru": "делать заметки.",
+            "uk": "робити нотатки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я роблю нотатки, щоб запамʼятати ідеї».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я роблю нотатки, щоб запамʼятати ідеї».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I take notes to remember the ideas.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я делаю заметки, чтобы запомнить идеи».",
+          "uk": "Скажіть: «Я роблю нотатки, щоб запамʼятати ідеї»."
+        },
+        "orderedTokens": [
+          "I",
+          "take",
+          "notes",
+          "to",
+          "remember",
+          "the",
+          "ideas"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-39:i02:r1",
+          "text": "I take notes to remember the ideas."
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i02:r2",
+          "text": "We take notes to remember the ideas."
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i02:r3",
+          "text": "They take notes to remember the ideas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:i02:audio",
+          "transcript": "I take notes to remember the ideas."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-39:i02:r1",
+            "targetText": "I take notes to remember the ideas.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i02:r2",
+            "targetText": "We take notes to remember the ideas.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i02:r3",
+            "targetText": "They take notes to remember the ideas.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I take notes to remember the ideas.",
+              "uk": "У записі звучить I take notes to remember the ideas."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I take notes to remember the ideas.",
+              "uk": "У записі звучить I take notes to remember the ideas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-39:i03:r1",
+          "text": "to remember"
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i03:r2",
+          "text": "to remembering"
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i03:r3",
+          "text": "for remember"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I take notes ___ the ideas.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-39:i03:r1",
+            "text": "to remember"
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i03:r2",
+            "text": "to remembering"
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i03:r3",
+            "text": "for remember"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:word:set-a-reminder",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — set a reminder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:word:set-a-reminder:audio"
+      ],
+      "accessibilityLabel": "Картка слова — set a reminder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:word:set-a-reminder:audio",
+          "transcript": "set a reminder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-39:word:set-a-reminder:r1",
+            "targetText": "set a reminder",
+            "meaningByLocale": {
+              "ru": "установить напоминание.",
+              "uk": "установити нагадування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "set a reminder",
+          "definitionByLocale": {
+            "ru": "установить напоминание.",
+            "uk": "установити нагадування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я встановлюю нагадування, щоб не забути про свою зустріч».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я встановлюю нагадування, щоб не забути про свою зустріч».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I set a reminder to remember my appointment.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я устанавливаю напоминание, чтобы не забыть о своей встрече».",
+          "uk": "Скажіть: «Я встановлюю нагадування, щоб не забути про свою зустріч»."
+        },
+        "orderedTokens": [
+          "I",
+          "set",
+          "a",
+          "reminder",
+          "to",
+          "remember",
+          "my",
+          "appointment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-39:i05:r1",
+          "text": "I set a reminder to remember my appointment."
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i05:r2",
+          "text": "We set a reminder to remember our appointment."
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i05:r3",
+          "text": "They set a reminder to remember their appointment."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:i05:audio",
+          "transcript": "I set a reminder to remember my appointment."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-39:i05:r1",
+            "targetText": "I set a reminder to remember my appointment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i05:r2",
+            "targetText": "We set a reminder to remember our appointment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i05:r3",
+            "targetText": "They set a reminder to remember their appointment.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-39:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I set a reminder to remember my appointment.",
+              "uk": "У записі звучить I set a reminder to remember my appointment."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I set a reminder to remember my appointment.",
+              "uk": "У записі звучить I set a reminder to remember my appointment."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-39:i06:r1",
+          "text": "to remember"
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i06:r2",
+          "text": "to remembering"
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i06:r3",
+          "text": "for remember"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I set a reminder ___ my appointment.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-39:i06:r1",
+            "text": "to remember"
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i06:r2",
+            "text": "to remembering"
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i06:r3",
+            "text": "for remember"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-39:i06:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i06:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:word:keep-a-record",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — keep a record",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:word:keep-a-record:audio"
+      ],
+      "accessibilityLabel": "Картка слова — keep a record",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:word:keep-a-record:audio",
+          "transcript": "keep a record"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-39:word:keep-a-record:r1",
+            "targetText": "keep a record",
+            "meaningByLocale": {
+              "ru": "вести записи, сохранять сведения.",
+              "uk": "вести записи, зберігати відомості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep a record",
+          "definitionByLocale": {
+            "ru": "вести записи, сохранять сведения.",
+            "uk": "вести записи, зберігати відомості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я веду записи, щоб перевірити підсумкову суму».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я веду записи, щоб перевірити підсумкову суму».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I keep a record to check the total.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я веду записи, чтобы проверить итоговую сумму».",
+          "uk": "Скажіть: «Я веду записи, щоб перевірити підсумкову суму»."
+        },
+        "orderedTokens": [
+          "I",
+          "keep",
+          "a",
+          "record",
+          "to",
+          "check",
+          "the",
+          "total"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-39:i08:r1",
+          "text": "I keep a record to check the total."
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i08:r2",
+          "text": "We keep a record to check the total."
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i08:r3",
+          "text": "They keep a record to check the total."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:i08:audio",
+          "transcript": "I keep a record to check the total."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-39:i08:r1",
+            "targetText": "I keep a record to check the total.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i08:r2",
+            "targetText": "We keep a record to check the total.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i08:r3",
+            "targetText": "They keep a record to check the total.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I keep a record to check the total.",
+              "uk": "У записі звучить I keep a record to check the total."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I keep a record to check the total.",
+              "uk": "У записі звучить I keep a record to check the total."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-39:i09:r1",
+          "text": "to check"
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i09:r2",
+          "text": "to checking"
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i09:r3",
+          "text": "for check"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I keep a record ___ the total.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-39:i09:r1",
+            "text": "to check"
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i09:r2",
+            "text": "to checking"
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i09:r3",
+            "text": "for check"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:word:plan-ahead",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — plan ahead",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:word:plan-ahead:audio"
+      ],
+      "accessibilityLabel": "Картка слова — plan ahead",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:word:plan-ahead:audio",
+          "transcript": "plan ahead"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-39:word:plan-ahead:r1",
+            "targetText": "plan ahead",
+            "meaningByLocale": {
+              "ru": "планировать заранее.",
+              "uk": "планувати заздалегідь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plan ahead",
+          "definitionByLocale": {
+            "ru": "планировать заранее.",
+            "uk": "планувати заздалегідь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я планую заздалегідь, щоб не поспішати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я планую заздалегідь, щоб не поспішати».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I plan ahead to avoid rushing.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я планирую заранее, чтобы не спешить».",
+          "uk": "Скажіть: «Я планую заздалегідь, щоб не поспішати»."
+        },
+        "orderedTokens": [
+          "I",
+          "plan",
+          "ahead",
+          "to",
+          "avoid",
+          "rushing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-39:i11:r1",
+          "text": "I plan ahead to avoid rushing."
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i11:r2",
+          "text": "We plan ahead to avoid rushing."
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i11:r3",
+          "text": "They plan ahead to avoid rushing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:i11:audio",
+          "transcript": "I plan ahead to avoid rushing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-39:i11:r1",
+            "targetText": "I plan ahead to avoid rushing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i11:r2",
+            "targetText": "We plan ahead to avoid rushing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i11:r3",
+            "targetText": "They plan ahead to avoid rushing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I plan ahead to avoid rushing.",
+              "uk": "У записі звучить I plan ahead to avoid rushing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I plan ahead to avoid rushing.",
+              "uk": "У записі звучить I plan ahead to avoid rushing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-39:i12:r1",
+          "text": "to avoid"
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i12:r2",
+          "text": "to avoiding"
+        },
+        {
+          "responseId": "en:lesson-21:session-39:i12:r3",
+          "text": "for avoid"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I plan ahead ___ rushing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-39:i12:r1",
+            "text": "to avoid"
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i12:r2",
+            "text": "to avoiding"
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i12:r3",
+            "text": "for avoid"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-39:i12:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-39:i12:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-39:i13:p1",
+            "target": "take notes",
+            "meaningByLocale": {
+              "ru": "делать заметки",
+              "uk": "робити нотатки"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-39:i13:p2",
+            "target": "set a reminder",
+            "meaningByLocale": {
+              "ru": "установить напоминание",
+              "uk": "установити нагадування"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-39:i13:p3",
+            "target": "keep a record",
+            "meaningByLocale": {
+              "ru": "вести записи, сохранять сведения",
+              "uk": "вести записи, зберігати відомості"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-39:i13:p4",
+            "target": "plan ahead",
+            "meaningByLocale": {
+              "ru": "планировать заранее",
+              "uk": "планувати заздалегідь"
+            }
+          }
+        ],
+        "leftColumn": [
+          "take notes",
+          "set a reminder",
+          "keep a record",
+          "plan ahead"
+        ],
+        "rightColumn": [
+          "робити нотатки",
+          "установити нагадування",
+          "вести записи, зберігати відомості",
+          "планувати заздалегідь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть: «Я веду записи, щоб перевірити підсумкову суму»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:i16:audio"
+      ],
+      "accessibilityLabel": "Поясніть: «Я веду записи, щоб перевірити підсумкову суму»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:i16:audio",
+          "transcript": "I keep a record to check the total."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I keep a record to check the total.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-39:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть, навіщо плануєте заздалегідь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Поясніть, навіщо плануєте заздалегідь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-39:i17:audio",
+          "transcript": "I plan ahead to avoid rushing."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I plan ahead to avoid rushing.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f8c1fe97c034a72462f375bb91cad948993abd7ed255c738708dbe3e90c6c74a"
+}

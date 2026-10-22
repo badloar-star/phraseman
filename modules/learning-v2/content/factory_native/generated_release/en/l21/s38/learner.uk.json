@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-38:word:barbecue",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — barbecue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:word:barbecue:audio"
+      ],
+      "accessibilityLabel": "Картка слова — barbecue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:word:barbecue:audio",
+          "transcript": "barbecue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-38:word:barbecue:r1",
+            "targetText": "barbecue",
+            "meaningByLocale": {
+              "ru": "барбекю, встреча с едой на гриле.",
+              "uk": "барбекю, зустріч із їжею на грилі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barbecue",
+          "definitionByLocale": {
+            "ru": "барбекю, встреча с едой на гриле.",
+            "uk": "барбекю, зустріч із їжею на грилі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я планую барбекю, щоб побачитися з друзями».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я планую барбекю, щоб побачитися з друзями».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I plan a barbecue to see my friends.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я планирую барбекю, чтобы увидеться с друзьями».",
+          "uk": "Скажіть: «Я планую барбекю, щоб побачитися з друзями»."
+        },
+        "orderedTokens": [
+          "I",
+          "plan",
+          "a",
+          "barbecue",
+          "to",
+          "see",
+          "my",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-38:i02:r1",
+          "text": "I plan a barbecue to see my friends."
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i02:r2",
+          "text": "We plan a barbecue to see our friends."
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i02:r3",
+          "text": "They plan a barbecue to see their friends."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:i02:audio",
+          "transcript": "I plan a barbecue to see my friends."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-38:i02:r1",
+            "targetText": "I plan a barbecue to see my friends.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i02:r2",
+            "targetText": "We plan a barbecue to see our friends.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i02:r3",
+            "targetText": "They plan a barbecue to see their friends.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I plan a barbecue to see my friends.",
+              "uk": "У записі звучить I plan a barbecue to see my friends."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I plan a barbecue to see my friends.",
+              "uk": "У записі звучить I plan a barbecue to see my friends."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-38:i03:r1",
+          "text": "to see"
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i03:r2",
+          "text": "to seeing"
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i03:r3",
+          "text": "for see"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I plan a barbecue ___ my friends.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-38:i03:r1",
+            "text": "to see"
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i03:r2",
+            "text": "to seeing"
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i03:r3",
+            "text": "for see"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:word:guest-list",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — guest list",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:word:guest-list:audio"
+      ],
+      "accessibilityLabel": "Картка слова — guest list",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:word:guest-list:audio",
+          "transcript": "guest list"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-38:word:guest-list:r1",
+            "targetText": "guest list",
+            "meaningByLocale": {
+              "ru": "список гостей.",
+              "uk": "список гостей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "guest list",
+          "definitionByLocale": {
+            "ru": "список гостей.",
+            "uk": "список гостей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я складаю список гостей, щоб нікого не забути».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я складаю список гостей, щоб нікого не забути».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I write a guest list to remember everyone.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я составляю список гостей, чтобы никого не забыть».",
+          "uk": "Скажіть: «Я складаю список гостей, щоб нікого не забути»."
+        },
+        "orderedTokens": [
+          "I",
+          "write",
+          "a",
+          "guest",
+          "list",
+          "to",
+          "remember",
+          "everyone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-38:i05:r1",
+          "text": "I write a guest list to remember everyone."
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i05:r2",
+          "text": "We write a guest list to remember everyone."
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i05:r3",
+          "text": "They write a guest list to remember everyone."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:i05:audio",
+          "transcript": "I write a guest list to remember everyone."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-38:i05:r1",
+            "targetText": "I write a guest list to remember everyone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i05:r2",
+            "targetText": "We write a guest list to remember everyone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i05:r3",
+            "targetText": "They write a guest list to remember everyone.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-38:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I write a guest list to remember everyone.",
+              "uk": "У записі звучить I write a guest list to remember everyone."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I write a guest list to remember everyone.",
+              "uk": "У записі звучить I write a guest list to remember everyone."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-38:i06:r1",
+          "text": "to remember"
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i06:r2",
+          "text": "to remembering"
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i06:r3",
+          "text": "for remember"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I write a guest list ___ everyone.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-38:i06:r1",
+            "text": "to remember"
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i06:r2",
+            "text": "to remembering"
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i06:r3",
+            "text": "for remember"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-38:i06:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i06:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:word:party-game",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — party game",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:word:party-game:audio"
+      ],
+      "accessibilityLabel": "Картка слова — party game",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:word:party-game:audio",
+          "transcript": "party game"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-38:word:party-game:r1",
+            "targetText": "party game",
+            "meaningByLocale": {
+              "ru": "игра для компании.",
+              "uk": "гра для компанії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "party game",
+          "definitionByLocale": {
+            "ru": "игра для компании.",
+            "uk": "гра для компанії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я приношу гру для компанії, щоб допомогти людям розслабитися».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я приношу гру для компанії, щоб допомогти людям розслабитися».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I bring a party game to help people relax.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я приношу игру для компании, чтобы помочь людям расслабиться».",
+          "uk": "Скажіть: «Я приношу гру для компанії, щоб допомогти людям розслабитися»."
+        },
+        "orderedTokens": [
+          "I",
+          "bring",
+          "a",
+          "party",
+          "game",
+          "to",
+          "help",
+          "people",
+          "relax"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-38:i08:r1",
+          "text": "I bring a party game to help people relax."
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i08:r2",
+          "text": "We bring a party game to help people relax."
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i08:r3",
+          "text": "They bring a party game to help people relax."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:i08:audio",
+          "transcript": "I bring a party game to help people relax."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-38:i08:r1",
+            "targetText": "I bring a party game to help people relax.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i08:r2",
+            "targetText": "We bring a party game to help people relax.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i08:r3",
+            "targetText": "They bring a party game to help people relax.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I bring a party game to help people relax.",
+              "uk": "У записі звучить I bring a party game to help people relax."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I bring a party game to help people relax.",
+              "uk": "У записі звучить I bring a party game to help people relax."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-38:i09:r1",
+          "text": "to help"
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i09:r2",
+          "text": "to helping"
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i09:r3",
+          "text": "for help"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I bring a party game ___ people relax.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-38:i09:r1",
+            "text": "to help"
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i09:r2",
+            "text": "to helping"
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i09:r3",
+            "text": "for help"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-38:i09:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i09:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:word:reconnect",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reconnect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:word:reconnect:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reconnect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:word:reconnect:audio",
+          "transcript": "reconnect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-38:word:reconnect:r1",
+            "targetText": "reconnect",
+            "meaningByLocale": {
+              "ru": "возобновить общение.",
+              "uk": "відновити спілкування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reconnect",
+          "definitionByLocale": {
+            "ru": "возобновить общение.",
+            "uk": "відновити спілкування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я відновлюю спілкування зі старими друзями, щоб дізнатися їхні новини».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я відновлюю спілкування зі старими друзями, щоб дізнатися їхні новини».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I reconnect with old friends to hear their news.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я возобновляю общение со старыми друзьями, чтобы узнать их новости».",
+          "uk": "Скажіть: «Я відновлюю спілкування зі старими друзями, щоб дізнатися їхні новини»."
+        },
+        "orderedTokens": [
+          "I",
+          "reconnect",
+          "with",
+          "old",
+          "friends",
+          "to",
+          "hear",
+          "their",
+          "news"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-38:i11:r1",
+          "text": "I reconnect with old friends to hear their news."
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i11:r2",
+          "text": "We reconnect with old friends to hear their news."
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i11:r3",
+          "text": "They reconnect with old friends to hear their news."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:i11:audio",
+          "transcript": "I reconnect with old friends to hear their news."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-38:i11:r1",
+            "targetText": "I reconnect with old friends to hear their news.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i11:r2",
+            "targetText": "We reconnect with old friends to hear their news.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i11:r3",
+            "targetText": "They reconnect with old friends to hear their news.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-38:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I reconnect with old friends to hear their news.",
+              "uk": "У записі звучить I reconnect with old friends to hear their news."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I reconnect with old friends to hear their news.",
+              "uk": "У записі звучить I reconnect with old friends to hear their news."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-38:i12:r1",
+          "text": "to hear"
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i12:r2",
+          "text": "to hearing"
+        },
+        {
+          "responseId": "en:lesson-21:session-38:i12:r3",
+          "text": "for hear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I reconnect with old friends ___ their news.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-38:i12:r1",
+            "text": "to hear"
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i12:r2",
+            "text": "to hearing"
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i12:r3",
+            "text": "for hear"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-38:i12:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-38:i12:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-38:i13:p1",
+            "target": "barbecue",
+            "meaningByLocale": {
+              "ru": "барбекю, встреча с едой на гриле",
+              "uk": "барбекю, зустріч із їжею на грилі"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-38:i13:p2",
+            "target": "guest list",
+            "meaningByLocale": {
+              "ru": "список гостей",
+              "uk": "список гостей"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-38:i13:p3",
+            "target": "party game",
+            "meaningByLocale": {
+              "ru": "игра для компании",
+              "uk": "гра для компанії"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-38:i13:p4",
+            "target": "reconnect",
+            "meaningByLocale": {
+              "ru": "возобновить общение",
+              "uk": "відновити спілкування"
+            }
+          }
+        ],
+        "leftColumn": [
+          "barbecue",
+          "guest list",
+          "party game",
+          "reconnect"
+        ],
+        "rightColumn": [
+          "барбекю, зустріч із їжею на грилі",
+          "список гостей",
+          "гра для компанії",
+          "відновити спілкування"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть: «Я приношу гру для компанії, щоб допомогти людям розслабитися»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:i16:audio"
+      ],
+      "accessibilityLabel": "Поясніть: «Я приношу гру для компанії, щоб допомогти людям розслабитися»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:i16:audio",
+          "transcript": "I bring a party game to help people relax."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I bring a party game to help people relax.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-38:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть, навіщо відновлюєте спілкування зі старими друзями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Поясніть, навіщо відновлюєте спілкування зі старими друзями",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-38:i17:audio",
+          "transcript": "I reconnect with old friends to hear their news."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I reconnect with old friends to hear their news.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "108e0c432ebd3039c0c8c39d4f9754be4abfa6fdab6f1c8561ca935b2d9326ac"
+}

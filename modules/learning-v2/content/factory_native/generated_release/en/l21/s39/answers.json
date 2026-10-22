@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-39:word:take-notes",
+    "correctText": "take notes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i01",
+    "correctText": "I take notes to remember the ideas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i02",
+    "correctText": "I take notes to remember the ideas.",
+    "correctResponseId": "en:lesson-21:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i03",
+    "correctText": "to remember",
+    "correctResponseId": "en:lesson-21:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:word:set-a-reminder",
+    "correctText": "set a reminder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i04",
+    "correctText": "I set a reminder to remember my appointment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i05",
+    "correctText": "I set a reminder to remember my appointment.",
+    "correctResponseId": "en:lesson-21:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i06",
+    "correctText": "to remember",
+    "correctResponseId": "en:lesson-21:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:word:keep-a-record",
+    "correctText": "keep a record",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i07",
+    "correctText": "I keep a record to check the total.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i08",
+    "correctText": "I keep a record to check the total.",
+    "correctResponseId": "en:lesson-21:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i09",
+    "correctText": "to check",
+    "correctResponseId": "en:lesson-21:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:word:plan-ahead",
+    "correctText": "plan ahead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i10",
+    "correctText": "I plan ahead to avoid rushing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i11",
+    "correctText": "I plan ahead to avoid rushing.",
+    "correctResponseId": "en:lesson-21:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i12",
+    "correctText": "to avoid",
+    "correctResponseId": "en:lesson-21:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i13",
+    "correctText": "en:lesson-21:session-39:i13:p1=take notes\nen:lesson-21:session-39:i13:p2=set a reminder\nen:lesson-21:session-39:i13:p3=keep a record\nen:lesson-21:session-39:i13:p4=plan ahead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i16",
+    "correctText": "I keep a record to check the total.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-39:i17",
+    "correctText": "I plan ahead to avoid rushing.",
+    "correctResponseId": null
+  }
+]

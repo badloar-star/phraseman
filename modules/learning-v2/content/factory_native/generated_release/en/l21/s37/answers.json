@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-37:word:take-shelter",
+    "correctText": "take shelter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i01",
+    "correctText": "I go inside to take shelter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i02",
+    "correctText": "I go inside to take shelter.",
+    "correctResponseId": "en:lesson-21:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i03",
+    "correctText": "to take",
+    "correctResponseId": "en:lesson-21:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:word:keep-warm",
+    "correctText": "keep warm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i04",
+    "correctText": "I wear a coat to keep warm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i05",
+    "correctText": "I wear a coat to keep warm.",
+    "correctResponseId": "en:lesson-21:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i06",
+    "correctText": "to keep",
+    "correctResponseId": "en:lesson-21:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:word:keep-cool",
+    "correctText": "keep cool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i07",
+    "correctText": "I sit in the shade to keep cool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i08",
+    "correctText": "I sit in the shade to keep cool.",
+    "correctResponseId": "en:lesson-21:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i09",
+    "correctText": "to keep",
+    "correctResponseId": "en:lesson-21:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:word:stay-safe",
+    "correctText": "stay safe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i10",
+    "correctText": "I use the crossing to stay safe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i11",
+    "correctText": "I use the crossing to stay safe.",
+    "correctResponseId": "en:lesson-21:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i12",
+    "correctText": "to stay",
+    "correctResponseId": "en:lesson-21:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i13",
+    "correctText": "en:lesson-21:session-37:i13:p1=take shelter\nen:lesson-21:session-37:i13:p2=keep warm\nen:lesson-21:session-37:i13:p3=keep cool\nen:lesson-21:session-37:i13:p4=stay safe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i16",
+    "correctText": "I sit in the shade to keep cool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-37:i17",
+    "correctText": "I use the crossing to stay safe.",
+    "correctResponseId": null
+  }
+]

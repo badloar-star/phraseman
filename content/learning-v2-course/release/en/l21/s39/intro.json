@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Записать идеи",
+        "uk": "Записати ідеї"
+      },
+      "bodyByLocale": {
+        "ru": "Take notes — делать заметки, кратко записывать важное. Вы слушаете объяснение и записываете идеи, чтобы потом их вспомнить. В этом сочетании используется take. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Take notes — робити нотатки, коротко записувати важливе. Ви слухаєте пояснення й записуєте ідеї, щоб потім їх пригадати. У цьому сполученні вживається take. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-39:intro1:r1",
+              "text": "I take notes to remember the ideas."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro1:r2",
+              "text": "I take notes to remembering the ideas."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro1:r3",
+              "text": "I take notes for remember the ideas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-39:intro1:r1",
+              "text": "I take notes to remember the ideas."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro1:r2",
+              "text": "I take notes to remembering the ideas."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro1:r3",
+              "text": "I take notes for remember the ideas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Напомнить себе",
+        "uk": "Нагадати собі"
+      },
+      "bodyByLocale": {
+        "ru": "Set a reminder — установить напоминание. Вы делаете это, чтобы не забыть о встрече. Keep a record — вести записи или сохранять сведения: например, записывать расходы, чтобы видеть, сколько потрачено. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Set a reminder — установити нагадування. Ви робите це, щоб не забути про зустріч. Keep a record — вести записи або зберігати відомості: наприклад, записувати витрати, щоб бачити, скільки витрачено. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-39:intro2:r1",
+              "text": "I set a reminder to remember my appointment."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro2:r2",
+              "text": "I set a reminder to remembering my appointment."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro2:r3",
+              "text": "I set a reminder for remember my appointment."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-39:intro2:r1",
+              "text": "I set a reminder to remember my appointment."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro2:r2",
+              "text": "I set a reminder to remembering my appointment."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro2:r3",
+              "text": "I set a reminder for remember my appointment."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подумать заранее",
+        "uk": "Подумати заздалегідь"
+      },
+      "bodyByLocale": {
+        "ru": "Plan ahead — планировать заранее, до того, как придётся действовать. Вы продумываете день, чтобы потом не спешить. В avoid rushing остаётся знакомая форма -ing после avoid. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Plan ahead — планувати заздалегідь, до того, як доведеться діяти. Ви продумуєте день, щоб потім не поспішати. В avoid rushing залишається знайома форма -ing після avoid. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-39:intro3:r1",
+              "text": "I plan ahead to avoid rushing."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro3:r2",
+              "text": "I plan ahead to avoiding rushing."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro3:r3",
+              "text": "I plan ahead for avoid rushing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-39:intro3:r1",
+              "text": "I plan ahead to avoid rushing."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro3:r2",
+              "text": "I plan ahead to avoiding rushing."
+            },
+            {
+              "responseId": "en:lesson-21:session-39:intro3:r3",
+              "text": "I plan ahead for avoid rushing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2e6a2a38dcc4760c705d3bd1a4acd5836baefbb88f4e8a8a1433ab408512013b"
+}

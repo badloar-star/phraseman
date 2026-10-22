@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-40",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-40:word:compare-prices",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — compare prices",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:word:compare-prices:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — compare prices",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:word:compare-prices:audio",
+            "transcript": "compare prices"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:word:compare-prices:r1",
+              "targetText": "compare prices",
+              "meaningByLocale": {
+                "ru": "сравнивать цены.",
+                "uk": "порівнювати ціни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "compare prices",
+            "definitionByLocale": {
+              "ru": "сравнивать цены.",
+              "uk": "порівнювати ціни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я сравниваю цены, чтобы сэкономить деньги».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я сравниваю цены, чтобы сэкономить деньги».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I compare prices to save money.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я сравниваю цены, чтобы сэкономить деньги».",
+            "uk": "Скажіть: «Я порівнюю ціни, щоб заощадити гроші»."
+          },
+          "orderedTokens": [
+            "I",
+            "compare",
+            "prices",
+            "to",
+            "save",
+            "money"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i02:r1",
+            "text": "I compare prices to save money."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i02:r2",
+            "text": "We compare prices to save money."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i02:r3",
+            "text": "They compare prices to save money."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i02:audio",
+            "transcript": "I compare prices to save money."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:i02:r1",
+              "targetText": "I compare prices to save money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i02:r2",
+              "targetText": "We compare prices to save money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i02:r3",
+              "targetText": "They compare prices to save money.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I compare prices to save money.",
+                "uk": "У записі звучить I compare prices to save money."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I compare prices to save money.",
+                "uk": "У записі звучить I compare prices to save money."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите цель действия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i03:r1",
+            "text": "to save"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i03:r2",
+            "text": "to saving"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i03:r3",
+            "text": "for save"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите цель действия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I compare prices ___ money.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-40:i03:r1",
+              "text": "to save"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i03:r2",
+              "text": "to saving"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i03:r3",
+              "text": "for save"
+            }
+          ],
+          "testedDimension": "Выразите цель действия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:word:read-reviews",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — read reviews",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:word:read-reviews:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — read reviews",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:word:read-reviews:audio",
+            "transcript": "read reviews"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:word:read-reviews:r1",
+              "targetText": "read reviews",
+              "meaningByLocale": {
+                "ru": "читать отзывы.",
+                "uk": "читати відгуки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "read reviews",
+            "definitionByLocale": {
+              "ru": "читать отзывы.",
+              "uk": "читати відгуки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я читаю отзывы, чтобы выбрать отель».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я читаю отзывы, чтобы выбрать отель».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I read reviews to choose a hotel.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я читаю отзывы, чтобы выбрать отель».",
+            "uk": "Скажіть: «Я читаю відгуки, щоб вибрати готель»."
+          },
+          "orderedTokens": [
+            "I",
+            "read",
+            "reviews",
+            "to",
+            "choose",
+            "a",
+            "hotel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i05:r1",
+            "text": "I read reviews to choose a hotel."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i05:r2",
+            "text": "We read reviews to choose a hotel."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i05:r3",
+            "text": "They read reviews to choose a hotel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i05:audio",
+            "transcript": "I read reviews to choose a hotel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:i05:r1",
+              "targetText": "I read reviews to choose a hotel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i05:r2",
+              "targetText": "We read reviews to choose a hotel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i05:r3",
+              "targetText": "They read reviews to choose a hotel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I read reviews to choose a hotel.",
+                "uk": "У записі звучить I read reviews to choose a hotel."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I read reviews to choose a hotel.",
+                "uk": "У записі звучить I read reviews to choose a hotel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите цель действия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i06:r1",
+            "text": "to choose"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i06:r2",
+            "text": "to choosing"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i06:r3",
+            "text": "for choose"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите цель действия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I read reviews ___ a hotel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-40:i06:r1",
+              "text": "to choose"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i06:r2",
+              "text": "to choosing"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i06:r3",
+              "text": "for choose"
+            }
+          ],
+          "testedDimension": "Выразите цель действия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:word:check-availability",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — check availability",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:word:check-availability:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — check availability",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:word:check-availability:audio",
+            "transcript": "check availability"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:word:check-availability:r1",
+              "targetText": "check availability",
+              "meaningByLocale": {
+                "ru": "проверять наличие свободных мест.",
+                "uk": "перевіряти наявність вільних місць."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check availability",
+            "definitionByLocale": {
+              "ru": "проверять наличие свободных мест.",
+              "uk": "перевіряти наявність вільних місць."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я проверяю наличие свободных мест, чтобы спланировать визит».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я проверяю наличие свободных мест, чтобы спланировать визит».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I check availability to plan my visit.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я проверяю наличие свободных мест, чтобы спланировать визит».",
+            "uk": "Скажіть: «Я перевіряю наявність вільних місць, щоб спланувати візит»."
+          },
+          "orderedTokens": [
+            "I",
+            "check",
+            "availability",
+            "to",
+            "plan",
+            "my",
+            "visit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i08:r1",
+            "text": "I check availability to plan my visit."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i08:r2",
+            "text": "We check availability to plan our visit."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i08:r3",
+            "text": "They check availability to plan their visit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i08:audio",
+            "transcript": "I check availability to plan my visit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:i08:r1",
+              "targetText": "I check availability to plan my visit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i08:r2",
+              "targetText": "We check availability to plan our visit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i08:r3",
+              "targetText": "They check availability to plan their visit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I check availability to plan my visit.",
+                "uk": "У записі звучить I check availability to plan my visit."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I check availability to plan my visit.",
+                "uk": "У записі звучить I check availability to plan my visit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите цель действия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i09:r1",
+            "text": "to plan"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i09:r2",
+            "text": "to planning"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i09:r3",
+            "text": "for plan"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите цель действия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I check availability ___ my visit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-40:i09:r1",
+              "text": "to plan"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i09:r2",
+              "text": "to planning"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i09:r3",
+              "text": "for plan"
+            }
+          ],
+          "testedDimension": "Выразите цель действия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:word:make-a-booking",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — make a booking",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:word:make-a-booking:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — make a booking",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:word:make-a-booking:audio",
+            "transcript": "make a booking"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:word:make-a-booking:r1",
+              "targetText": "make a booking",
+              "meaningByLocale": {
+                "ru": "оформить бронирование.",
+                "uk": "оформити бронювання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make a booking",
+            "definitionByLocale": {
+              "ru": "оформить бронирование.",
+              "uk": "оформити бронювання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я оформляю бронирование, чтобы отпраздновать свой день рождения».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я оформляю бронирование, чтобы отпраздновать свой день рождения».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I make a booking to celebrate my birthday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я оформляю бронирование, чтобы отпраздновать свой день рождения».",
+            "uk": "Скажіть: «Я оформлюю бронювання, щоб відсвяткувати свій день народження»."
+          },
+          "orderedTokens": [
+            "I",
+            "make",
+            "a",
+            "booking",
+            "to",
+            "celebrate",
+            "my",
+            "birthday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i11:r1",
+            "text": "I make a booking to celebrate my birthday."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i11:r2",
+            "text": "We make a booking to celebrate our birthday."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i11:r3",
+            "text": "They make a booking to celebrate their birthday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i11:audio",
+            "transcript": "I make a booking to celebrate my birthday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:i11:r1",
+              "targetText": "I make a booking to celebrate my birthday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i11:r2",
+              "targetText": "We make a booking to celebrate our birthday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i11:r3",
+              "targetText": "They make a booking to celebrate their birthday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I make a booking to celebrate my birthday.",
+                "uk": "У записі звучить I make a booking to celebrate my birthday."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I make a booking to celebrate my birthday.",
+                "uk": "У записі звучить I make a booking to celebrate my birthday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите цель действия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i12:r1",
+            "text": "to celebrate"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i12:r2",
+            "text": "to celebrating"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i12:r3",
+            "text": "for celebrate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите цель действия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I make a booking ___ my birthday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-40:i12:r1",
+              "text": "to celebrate"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i12:r2",
+              "text": "to celebrating"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i12:r3",
+              "text": "for celebrate"
+            }
+          ],
+          "testedDimension": "Выразите цель действия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-40:i13:p1",
+              "target": "compare prices",
+              "meaningByLocale": {
+                "ru": "сравнивать цены",
+                "uk": "порівнювати ціни"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-40:i13:p2",
+              "target": "read reviews",
+              "meaningByLocale": {
+                "ru": "читать отзывы",
+                "uk": "читати відгуки"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-40:i13:p3",
+              "target": "check availability",
+              "meaningByLocale": {
+                "ru": "проверять наличие свободных мест",
+                "uk": "перевіряти наявність вільних місць"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-40:i13:p4",
+              "target": "make a booking",
+              "meaningByLocale": {
+                "ru": "оформить бронирование",
+                "uk": "оформити бронювання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "compare prices",
+            "read reviews",
+            "check availability",
+            "make a booking"
+          ],
+          "rightColumn": [
+            "сравнивать цены",
+            "читать отзывы",
+            "проверять наличие свободных мест",
+            "оформить бронирование"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: попросить проверить",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: попросить проверить",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: общение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: общение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Объясните: «Я проверяю наличие свободных мест, чтобы спланировать визит»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Объясните: «Я проверяю наличие свободных мест, чтобы спланировать визит»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i16:audio",
+            "transcript": "I check availability to plan my visit."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I check availability to plan my visit.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Объясните, зачем оформляете бронирование",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Объясните, зачем оформляете бронирование",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i17:audio",
+            "transcript": "I make a booking to celebrate my birthday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I make a booking to celebrate my birthday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-40:word:compare-prices",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — compare prices",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:word:compare-prices:audio"
+        ],
+        "accessibilityLabel": "Картка слова — compare prices",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:word:compare-prices:audio",
+            "transcript": "compare prices"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:word:compare-prices:r1",
+              "targetText": "compare prices",
+              "meaningByLocale": {
+                "ru": "сравнивать цены.",
+                "uk": "порівнювати ціни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "compare prices",
+            "definitionByLocale": {
+              "ru": "сравнивать цены.",
+              "uk": "порівнювати ціни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я порівнюю ціни, щоб заощадити гроші».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я порівнюю ціни, щоб заощадити гроші».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I compare prices to save money.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я сравниваю цены, чтобы сэкономить деньги».",
+            "uk": "Скажіть: «Я порівнюю ціни, щоб заощадити гроші»."
+          },
+          "orderedTokens": [
+            "I",
+            "compare",
+            "prices",
+            "to",
+            "save",
+            "money"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i02:r1",
+            "text": "I compare prices to save money."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i02:r2",
+            "text": "We compare prices to save money."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i02:r3",
+            "text": "They compare prices to save money."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i02:audio",
+            "transcript": "I compare prices to save money."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:i02:r1",
+              "targetText": "I compare prices to save money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i02:r2",
+              "targetText": "We compare prices to save money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i02:r3",
+              "targetText": "They compare prices to save money.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I compare prices to save money.",
+                "uk": "У записі звучить I compare prices to save money."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I compare prices to save money.",
+                "uk": "У записі звучить I compare prices to save money."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виразіть мету дії.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i03:r1",
+            "text": "to save"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i03:r2",
+            "text": "to saving"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i03:r3",
+            "text": "for save"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виразіть мету дії.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I compare prices ___ money.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-40:i03:r1",
+              "text": "to save"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i03:r2",
+              "text": "to saving"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i03:r3",
+              "text": "for save"
+            }
+          ],
+          "testedDimension": "Виразіть мету дії.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:word:read-reviews",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — read reviews",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:word:read-reviews:audio"
+        ],
+        "accessibilityLabel": "Картка слова — read reviews",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:word:read-reviews:audio",
+            "transcript": "read reviews"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:word:read-reviews:r1",
+              "targetText": "read reviews",
+              "meaningByLocale": {
+                "ru": "читать отзывы.",
+                "uk": "читати відгуки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "read reviews",
+            "definitionByLocale": {
+              "ru": "читать отзывы.",
+              "uk": "читати відгуки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я читаю відгуки, щоб вибрати готель».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я читаю відгуки, щоб вибрати готель».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I read reviews to choose a hotel.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я читаю отзывы, чтобы выбрать отель».",
+            "uk": "Скажіть: «Я читаю відгуки, щоб вибрати готель»."
+          },
+          "orderedTokens": [
+            "I",
+            "read",
+            "reviews",
+            "to",
+            "choose",
+            "a",
+            "hotel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i05:r1",
+            "text": "I read reviews to choose a hotel."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i05:r2",
+            "text": "We read reviews to choose a hotel."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i05:r3",
+            "text": "They read reviews to choose a hotel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i05:audio",
+            "transcript": "I read reviews to choose a hotel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:i05:r1",
+              "targetText": "I read reviews to choose a hotel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i05:r2",
+              "targetText": "We read reviews to choose a hotel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i05:r3",
+              "targetText": "They read reviews to choose a hotel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I read reviews to choose a hotel.",
+                "uk": "У записі звучить I read reviews to choose a hotel."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I read reviews to choose a hotel.",
+                "uk": "У записі звучить I read reviews to choose a hotel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виразіть мету дії.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i06:r1",
+            "text": "to choose"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i06:r2",
+            "text": "to choosing"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i06:r3",
+            "text": "for choose"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виразіть мету дії.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I read reviews ___ a hotel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-40:i06:r1",
+              "text": "to choose"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i06:r2",
+              "text": "to choosing"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i06:r3",
+              "text": "for choose"
+            }
+          ],
+          "testedDimension": "Виразіть мету дії.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:word:check-availability",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — check availability",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:word:check-availability:audio"
+        ],
+        "accessibilityLabel": "Картка слова — check availability",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:word:check-availability:audio",
+            "transcript": "check availability"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:word:check-availability:r1",
+              "targetText": "check availability",
+              "meaningByLocale": {
+                "ru": "проверять наличие свободных мест.",
+                "uk": "перевіряти наявність вільних місць."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check availability",
+            "definitionByLocale": {
+              "ru": "проверять наличие свободных мест.",
+              "uk": "перевіряти наявність вільних місць."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я перевіряю наявність вільних місць, щоб спланувати візит».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я перевіряю наявність вільних місць, щоб спланувати візит».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I check availability to plan my visit.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я проверяю наличие свободных мест, чтобы спланировать визит».",
+            "uk": "Скажіть: «Я перевіряю наявність вільних місць, щоб спланувати візит»."
+          },
+          "orderedTokens": [
+            "I",
+            "check",
+            "availability",
+            "to",
+            "plan",
+            "my",
+            "visit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i08:r1",
+            "text": "I check availability to plan my visit."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i08:r2",
+            "text": "We check availability to plan our visit."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i08:r3",
+            "text": "They check availability to plan their visit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i08:audio",
+            "transcript": "I check availability to plan my visit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:i08:r1",
+              "targetText": "I check availability to plan my visit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i08:r2",
+              "targetText": "We check availability to plan our visit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i08:r3",
+              "targetText": "They check availability to plan their visit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I check availability to plan my visit.",
+                "uk": "У записі звучить I check availability to plan my visit."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I check availability to plan my visit.",
+                "uk": "У записі звучить I check availability to plan my visit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виразіть мету дії.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i09:r1",
+            "text": "to plan"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i09:r2",
+            "text": "to planning"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i09:r3",
+            "text": "for plan"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виразіть мету дії.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I check availability ___ my visit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-40:i09:r1",
+              "text": "to plan"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i09:r2",
+              "text": "to planning"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i09:r3",
+              "text": "for plan"
+            }
+          ],
+          "testedDimension": "Виразіть мету дії.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:word:make-a-booking",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — make a booking",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:word:make-a-booking:audio"
+        ],
+        "accessibilityLabel": "Картка слова — make a booking",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:word:make-a-booking:audio",
+            "transcript": "make a booking"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:word:make-a-booking:r1",
+              "targetText": "make a booking",
+              "meaningByLocale": {
+                "ru": "оформить бронирование.",
+                "uk": "оформити бронювання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make a booking",
+            "definitionByLocale": {
+              "ru": "оформить бронирование.",
+              "uk": "оформити бронювання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я оформлюю бронювання, щоб відсвяткувати свій день народження».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я оформлюю бронювання, щоб відсвяткувати свій день народження».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I make a booking to celebrate my birthday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я оформляю бронирование, чтобы отпраздновать свой день рождения».",
+            "uk": "Скажіть: «Я оформлюю бронювання, щоб відсвяткувати свій день народження»."
+          },
+          "orderedTokens": [
+            "I",
+            "make",
+            "a",
+            "booking",
+            "to",
+            "celebrate",
+            "my",
+            "birthday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i11:r1",
+            "text": "I make a booking to celebrate my birthday."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i11:r2",
+            "text": "We make a booking to celebrate our birthday."
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i11:r3",
+            "text": "They make a booking to celebrate their birthday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i11:audio",
+            "transcript": "I make a booking to celebrate my birthday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-40:i11:r1",
+              "targetText": "I make a booking to celebrate my birthday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i11:r2",
+              "targetText": "We make a booking to celebrate our birthday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i11:r3",
+              "targetText": "They make a booking to celebrate their birthday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I make a booking to celebrate my birthday.",
+                "uk": "У записі звучить I make a booking to celebrate my birthday."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I make a booking to celebrate my birthday.",
+                "uk": "У записі звучить I make a booking to celebrate my birthday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виразіть мету дії.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-40:i12:r1",
+            "text": "to celebrate"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i12:r2",
+            "text": "to celebrating"
+          },
+          {
+            "responseId": "en:lesson-21:session-40:i12:r3",
+            "text": "for celebrate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виразіть мету дії.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I make a booking ___ my birthday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-40:i12:r1",
+              "text": "to celebrate"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i12:r2",
+              "text": "to celebrating"
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i12:r3",
+              "text": "for celebrate"
+            }
+          ],
+          "testedDimension": "Виразіть мету дії.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-40:i13:p1",
+              "target": "compare prices",
+              "meaningByLocale": {
+                "ru": "сравнивать цены",
+                "uk": "порівнювати ціни"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-40:i13:p2",
+              "target": "read reviews",
+              "meaningByLocale": {
+                "ru": "читать отзывы",
+                "uk": "читати відгуки"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-40:i13:p3",
+              "target": "check availability",
+              "meaningByLocale": {
+                "ru": "проверять наличие свободных мест",
+                "uk": "перевіряти наявність вільних місць"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-40:i13:p4",
+              "target": "make a booking",
+              "meaningByLocale": {
+                "ru": "оформить бронирование",
+                "uk": "оформити бронювання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "compare prices",
+            "read reviews",
+            "check availability",
+            "make a booking"
+          ],
+          "rightColumn": [
+            "порівнювати ціни",
+            "читати відгуки",
+            "перевіряти наявність вільних місць",
+            "оформити бронювання"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: попросити перевірити",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: попросити перевірити",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: спілкування",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: спілкування",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поясніть: «Я перевіряю наявність вільних місць, щоб спланувати візит»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Поясніть: «Я перевіряю наявність вільних місць, щоб спланувати візит»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i16:audio",
+            "transcript": "I check availability to plan my visit."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I check availability to plan my visit.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-40:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поясніть, навіщо оформлюєте бронювання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Поясніть, навіщо оформлюєте бронювання",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-40:i17:audio",
+            "transcript": "I make a booking to celebrate my birthday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I make a booking to celebrate my birthday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-40:word:compare-prices",
+      "correctText": "compare prices",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i01",
+      "correctText": "I compare prices to save money.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i02",
+      "correctText": "I compare prices to save money.",
+      "correctResponseId": "en:lesson-21:session-40:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i03",
+      "correctText": "to save",
+      "correctResponseId": "en:lesson-21:session-40:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:word:read-reviews",
+      "correctText": "read reviews",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i04",
+      "correctText": "I read reviews to choose a hotel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i05",
+      "correctText": "I read reviews to choose a hotel.",
+      "correctResponseId": "en:lesson-21:session-40:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i06",
+      "correctText": "to choose",
+      "correctResponseId": "en:lesson-21:session-40:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:word:check-availability",
+      "correctText": "check availability",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i07",
+      "correctText": "I check availability to plan my visit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i08",
+      "correctText": "I check availability to plan my visit.",
+      "correctResponseId": "en:lesson-21:session-40:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i09",
+      "correctText": "to plan",
+      "correctResponseId": "en:lesson-21:session-40:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:word:make-a-booking",
+      "correctText": "make a booking",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i10",
+      "correctText": "I make a booking to celebrate my birthday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i11",
+      "correctText": "I make a booking to celebrate my birthday.",
+      "correctResponseId": "en:lesson-21:session-40:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i12",
+      "correctText": "to celebrate",
+      "correctResponseId": "en:lesson-21:session-40:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i14",
+      "correctText": "I need you to look over the list.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i15",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i16",
+      "correctText": "I check availability to plan my visit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-40:i17",
+      "correctText": "I make a booking to celebrate my birthday.",
+      "correctResponseId": null
+    }
+  ]
+}

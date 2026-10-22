@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-38:word:barbecue",
+    "correctText": "barbecue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i01",
+    "correctText": "I plan a barbecue to see my friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i02",
+    "correctText": "I plan a barbecue to see my friends.",
+    "correctResponseId": "en:lesson-21:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i03",
+    "correctText": "to see",
+    "correctResponseId": "en:lesson-21:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:word:guest-list",
+    "correctText": "guest list",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i04",
+    "correctText": "I write a guest list to remember everyone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i05",
+    "correctText": "I write a guest list to remember everyone.",
+    "correctResponseId": "en:lesson-21:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i06",
+    "correctText": "to remember",
+    "correctResponseId": "en:lesson-21:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:word:party-game",
+    "correctText": "party game",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i07",
+    "correctText": "I bring a party game to help people relax.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i08",
+    "correctText": "I bring a party game to help people relax.",
+    "correctResponseId": "en:lesson-21:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i09",
+    "correctText": "to help",
+    "correctResponseId": "en:lesson-21:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:word:reconnect",
+    "correctText": "reconnect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i10",
+    "correctText": "I reconnect with old friends to hear their news.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i11",
+    "correctText": "I reconnect with old friends to hear their news.",
+    "correctResponseId": "en:lesson-21:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i12",
+    "correctText": "to hear",
+    "correctResponseId": "en:lesson-21:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i13",
+    "correctText": "en:lesson-21:session-38:i13:p1=barbecue\nen:lesson-21:session-38:i13:p2=guest list\nen:lesson-21:session-38:i13:p3=party game\nen:lesson-21:session-38:i13:p4=reconnect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i16",
+    "correctText": "I bring a party game to help people relax.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-38:i17",
+    "correctText": "I reconnect with old friends to hear their news.",
+    "correctResponseId": null
+  }
+]

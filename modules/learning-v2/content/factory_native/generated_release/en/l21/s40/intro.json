@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сравнить предложения",
+        "uk": "Порівняти пропозиції"
+      },
+      "bodyByLocale": {
+        "ru": "Compare prices — сравнивать цены на одинаковые или похожие предложения. Вы смотрите несколько вариантов, чтобы сэкономить деньги. Это цель сравнения, а не обещание результата. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Compare prices — порівнювати ціни на однакові або схожі пропозиції. Ви дивитеся кілька варіантів, щоб заощадити гроші. Це мета порівняння, а не обіцянка результату. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-40:intro1:r1",
+              "text": "I compare prices to save money."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro1:r2",
+              "text": "I compare prices to saving money."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro1:r3",
+              "text": "I compare prices for save money."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-40:intro1:r1",
+              "text": "I compare prices to save money."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro1:r2",
+              "text": "I compare prices to saving money."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro1:r3",
+              "text": "I compare prices for save money."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Прочитать отзывы",
+        "uk": "Прочитати відгуки"
+      },
+      "bodyByLocale": {
+        "ru": "Read reviews — читать отзывы людей, которые уже пользовались услугой. Вы читаете их, чтобы выбрать отель. Check availability — проверить, есть ли свободные места на нужную дату. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Read reviews — читати відгуки людей, які вже користувалися послугою. Ви читаєте їх, щоб вибрати готель. Check availability — перевірити, чи є вільні місця на потрібну дату. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-40:intro2:r1",
+              "text": "I read reviews to choose a hotel."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro2:r2",
+              "text": "I read reviews to choosing a hotel."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro2:r3",
+              "text": "I read reviews for choose a hotel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-40:intro2:r1",
+              "text": "I read reviews to choose a hotel."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro2:r2",
+              "text": "I read reviews to choosing a hotel."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro2:r3",
+              "text": "I read reviews for choose a hotel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Забронировать столик",
+        "uk": "Забронювати столик"
+      },
+      "bodyByLocale": {
+        "ru": "Make a booking — оформить бронирование. Вы бронируете столик в ресторане, чтобы отпраздновать день рождения. В сочетании используется make: make a booking. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Make a booking — оформити бронювання. Ви бронюєте столик у ресторані, щоб відсвяткувати день народження. У сполученні вживається make: make a booking. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-40:intro3:r1",
+              "text": "I make a booking to celebrate my birthday."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro3:r2",
+              "text": "I make a booking to celebrating my birthday."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro3:r3",
+              "text": "I make a booking for celebrate my birthday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-40:intro3:r1",
+              "text": "I make a booking to celebrate my birthday."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro3:r2",
+              "text": "I make a booking to celebrating my birthday."
+            },
+            {
+              "responseId": "en:lesson-21:session-40:intro3:r3",
+              "text": "I make a booking for celebrate my birthday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "379b8210e0dd5c60e67b03ed197f33cbaad65a7c7c6e5abb1b0358cfdb892792"
+}

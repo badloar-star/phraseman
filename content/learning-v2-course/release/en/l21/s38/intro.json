@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Встретиться на барбекю",
+        "uk": "Зустрітися на барбекю"
+      },
+      "bodyByLocale": {
+        "ru": "Barbecue здесь — встреча, на которой готовят еду на гриле и едят вместе. Вы планируете такую встречу, чтобы увидеться с друзьями. Это слово также может обозначать сам гриль, но здесь речь о событии. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Barbecue тут — зустріч, на якій готують їжу на грилі та їдять разом. Ви плануєте таку зустріч, щоб побачитися з друзями. Це слово також може позначати сам гриль, але тут ідеться про подію. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-38:intro1:r1",
+              "text": "I plan a barbecue to see my friends."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro1:r2",
+              "text": "I plan a barbecue to seeing my friends."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro1:r3",
+              "text": "I plan a barbecue for see my friends."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-38:intro1:r1",
+              "text": "I plan a barbecue to see my friends."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro1:r2",
+              "text": "I plan a barbecue to seeing my friends."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro1:r3",
+              "text": "I plan a barbecue for see my friends."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Записать гостей",
+        "uk": "Записати гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Guest list — список людей, которых вы приглашаете. Вы записываете имена, чтобы никого не забыть. Party game — игра для компании: вы приносите её, чтобы гостям было легче расслабиться. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Guest list — список людей, яких ви запрошуєте. Ви записуєте імена, щоб нікого не забути. Party game — гра для компанії: ви приносите її, щоб гостям було легше розслабитися. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-38:intro2:r1",
+              "text": "I write a guest list to remember everyone."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro2:r2",
+              "text": "I write a guest list to remembering everyone."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro2:r3",
+              "text": "I write a guest list for remember everyone."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-38:intro2:r1",
+              "text": "I write a guest list to remember everyone."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro2:r2",
+              "text": "I write a guest list to remembering everyone."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro2:r3",
+              "text": "I write a guest list for remember everyone."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Снова пообщаться",
+        "uk": "Знову поспілкуватися"
+      },
+      "bodyByLocale": {
+        "ru": "Reconnect with someone — возобновить общение с человеком после перерыва. Вы снова связываетесь со старыми друзьями, чтобы узнать, что у них нового. Здесь речь об отношениях между людьми. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Reconnect with someone — відновити спілкування з людиною після перерви. Ви знову звʼязуєтеся зі старими друзями, щоб дізнатися, що в них нового. Тут ідеться про стосунки між людьми. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-38:intro3:r1",
+              "text": "I reconnect with old friends to hear their news."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro3:r2",
+              "text": "I reconnect with old friends to hearing their news."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro3:r3",
+              "text": "I reconnect with old friends for hear their news."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-38:intro3:r1",
+              "text": "I reconnect with old friends to hear their news."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro3:r2",
+              "text": "I reconnect with old friends to hearing their news."
+            },
+            {
+              "responseId": "en:lesson-21:session-38:intro3:r3",
+              "text": "I reconnect with old friends for hear their news."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a9ed35b2f627d4c7f8376c23ab34e0a775ad77469f61a97a38e47fe2be390494"
+}

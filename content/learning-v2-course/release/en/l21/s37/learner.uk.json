@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-37:word:take-shelter",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take shelter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:word:take-shelter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take shelter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:word:take-shelter:audio",
+          "transcript": "take shelter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-37:word:take-shelter:r1",
+            "targetText": "take shelter",
+            "meaningByLocale": {
+              "ru": "укрыться от непогоды.",
+              "uk": "сховатися від негоди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take shelter",
+          "definitionByLocale": {
+            "ru": "укрыться от непогоды.",
+            "uk": "сховатися від негоди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я заходжу всередину, щоб сховатися від негоди».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я заходжу всередину, щоб сховатися від негоди».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I go inside to take shelter.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я захожу внутрь, чтобы укрыться от непогоды».",
+          "uk": "Скажіть: «Я заходжу всередину, щоб сховатися від негоди»."
+        },
+        "orderedTokens": [
+          "I",
+          "go",
+          "inside",
+          "to",
+          "take",
+          "shelter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-37:i02:r1",
+          "text": "I go inside to take shelter."
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i02:r2",
+          "text": "We go inside to take shelter."
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i02:r3",
+          "text": "They go inside to take shelter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:i02:audio",
+          "transcript": "I go inside to take shelter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-37:i02:r1",
+            "targetText": "I go inside to take shelter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i02:r2",
+            "targetText": "We go inside to take shelter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i02:r3",
+            "targetText": "They go inside to take shelter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I go inside to take shelter.",
+              "uk": "У записі звучить I go inside to take shelter."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I go inside to take shelter.",
+              "uk": "У записі звучить I go inside to take shelter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-37:i03:r1",
+          "text": "to take"
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i03:r2",
+          "text": "to taking"
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i03:r3",
+          "text": "for take"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I go inside ___ shelter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-37:i03:r1",
+            "text": "to take"
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i03:r2",
+            "text": "to taking"
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i03:r3",
+            "text": "for take"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:word:keep-warm",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — keep warm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:word:keep-warm:audio"
+      ],
+      "accessibilityLabel": "Картка слова — keep warm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:word:keep-warm:audio",
+          "transcript": "keep warm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-37:word:keep-warm:r1",
+            "targetText": "keep warm",
+            "meaningByLocale": {
+              "ru": "не мёрзнуть, сохранять тепло.",
+              "uk": "не мерзнути, зберігати тепло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep warm",
+          "definitionByLocale": {
+            "ru": "не мёрзнуть, сохранять тепло.",
+            "uk": "не мерзнути, зберігати тепло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я вдягаю пальто, щоб не мерзнути».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я вдягаю пальто, щоб не мерзнути».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wear a coat to keep warm.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я надеваю пальто, чтобы не мёрзнуть».",
+          "uk": "Скажіть: «Я вдягаю пальто, щоб не мерзнути»."
+        },
+        "orderedTokens": [
+          "I",
+          "wear",
+          "a",
+          "coat",
+          "to",
+          "keep",
+          "warm"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-37:i05:r1",
+          "text": "I wear a coat to keep warm."
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i05:r2",
+          "text": "We wear a coat to keep warm."
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i05:r3",
+          "text": "They wear a coat to keep warm."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:i05:audio",
+          "transcript": "I wear a coat to keep warm."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-37:i05:r1",
+            "targetText": "I wear a coat to keep warm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i05:r2",
+            "targetText": "We wear a coat to keep warm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i05:r3",
+            "targetText": "They wear a coat to keep warm.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wear a coat to keep warm.",
+              "uk": "У записі звучить I wear a coat to keep warm."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wear a coat to keep warm.",
+              "uk": "У записі звучить I wear a coat to keep warm."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-37:i06:r1",
+          "text": "to keep"
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i06:r2",
+          "text": "to keeping"
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i06:r3",
+          "text": "for keep"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I wear a coat ___ warm.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-37:i06:r1",
+            "text": "to keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i06:r2",
+            "text": "to keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i06:r3",
+            "text": "for keep"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-37:i06:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i06:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:word:keep-cool",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — keep cool",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:word:keep-cool:audio"
+      ],
+      "accessibilityLabel": "Картка слова — keep cool",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:word:keep-cool:audio",
+          "transcript": "keep cool"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-37:word:keep-cool:r1",
+            "targetText": "keep cool",
+            "meaningByLocale": {
+              "ru": "не перегреваться, оставаться в прохладе.",
+              "uk": "не перегріватися, залишатися в прохолоді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep cool",
+          "definitionByLocale": {
+            "ru": "не перегреваться, оставаться в прохладе.",
+            "uk": "не перегріватися, залишатися в прохолоді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я сиджу в затінку, щоб не перегріватися».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я сиджу в затінку, щоб не перегріватися».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I sit in the shade to keep cool.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я сижу в тени, чтобы не перегреваться».",
+          "uk": "Скажіть: «Я сиджу в затінку, щоб не перегріватися»."
+        },
+        "orderedTokens": [
+          "I",
+          "sit",
+          "in",
+          "the",
+          "shade",
+          "to",
+          "keep",
+          "cool"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-37:i08:r1",
+          "text": "I sit in the shade to keep cool."
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i08:r2",
+          "text": "We sit in the shade to keep cool."
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i08:r3",
+          "text": "They sit in the shade to keep cool."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:i08:audio",
+          "transcript": "I sit in the shade to keep cool."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-37:i08:r1",
+            "targetText": "I sit in the shade to keep cool.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i08:r2",
+            "targetText": "We sit in the shade to keep cool.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i08:r3",
+            "targetText": "They sit in the shade to keep cool.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I sit in the shade to keep cool.",
+              "uk": "У записі звучить I sit in the shade to keep cool."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I sit in the shade to keep cool.",
+              "uk": "У записі звучить I sit in the shade to keep cool."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-37:i09:r1",
+          "text": "to keep"
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i09:r2",
+          "text": "to keeping"
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i09:r3",
+          "text": "for keep"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I sit in the shade ___ cool.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-37:i09:r1",
+            "text": "to keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i09:r2",
+            "text": "to keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i09:r3",
+            "text": "for keep"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:word:stay-safe",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stay safe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:word:stay-safe:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stay safe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:word:stay-safe:audio",
+          "transcript": "stay safe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-37:word:stay-safe:r1",
+            "targetText": "stay safe",
+            "meaningByLocale": {
+              "ru": "оставаться в безопасности.",
+              "uk": "залишатися в безпеці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stay safe",
+          "definitionByLocale": {
+            "ru": "оставаться в безопасности.",
+            "uk": "залишатися в безпеці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я користуюся переходом, щоб залишатися в безпеці».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я користуюся переходом, щоб залишатися в безпеці».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I use the crossing to stay safe.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я пользуюсь переходом, чтобы оставаться в безопасности».",
+          "uk": "Скажіть: «Я користуюся переходом, щоб залишатися в безпеці»."
+        },
+        "orderedTokens": [
+          "I",
+          "use",
+          "the",
+          "crossing",
+          "to",
+          "stay",
+          "safe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-37:i11:r1",
+          "text": "I use the crossing to stay safe."
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i11:r2",
+          "text": "We use the crossing to stay safe."
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i11:r3",
+          "text": "They use the crossing to stay safe."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:i11:audio",
+          "transcript": "I use the crossing to stay safe."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-37:i11:r1",
+            "targetText": "I use the crossing to stay safe.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i11:r2",
+            "targetText": "We use the crossing to stay safe.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i11:r3",
+            "targetText": "They use the crossing to stay safe.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use the crossing to stay safe.",
+              "uk": "У записі звучить I use the crossing to stay safe."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use the crossing to stay safe.",
+              "uk": "У записі звучить I use the crossing to stay safe."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-37:i12:r1",
+          "text": "to stay"
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i12:r2",
+          "text": "to staying"
+        },
+        {
+          "responseId": "en:lesson-21:session-37:i12:r3",
+          "text": "for stay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I use the crossing ___ safe.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-37:i12:r1",
+            "text": "to stay"
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i12:r2",
+            "text": "to staying"
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i12:r3",
+            "text": "for stay"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-37:i13:p1",
+            "target": "take shelter",
+            "meaningByLocale": {
+              "ru": "укрыться от непогоды",
+              "uk": "сховатися від негоди"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-37:i13:p2",
+            "target": "keep warm",
+            "meaningByLocale": {
+              "ru": "не мёрзнуть, сохранять тепло",
+              "uk": "не мерзнути, зберігати тепло"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-37:i13:p3",
+            "target": "keep cool",
+            "meaningByLocale": {
+              "ru": "не перегреваться, оставаться в прохладе",
+              "uk": "не перегріватися, залишатися в прохолоді"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-37:i13:p4",
+            "target": "stay safe",
+            "meaningByLocale": {
+              "ru": "оставаться в безопасности",
+              "uk": "залишатися в безпеці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "take shelter",
+          "keep warm",
+          "keep cool",
+          "stay safe"
+        ],
+        "rightColumn": [
+          "сховатися від негоди",
+          "не мерзнути, зберігати тепло",
+          "не перегріватися, залишатися в прохолоді",
+          "залишатися в безпеці"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть: «Я сиджу в затінку, щоб не перегріватися»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:i16:audio"
+      ],
+      "accessibilityLabel": "Поясніть: «Я сиджу в затінку, щоб не перегріватися»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:i16:audio",
+          "transcript": "I sit in the shade to keep cool."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I sit in the shade to keep cool.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-37:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть, навіщо користуєтеся переходом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Поясніть, навіщо користуєтеся переходом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-37:i17:audio",
+          "transcript": "I use the crossing to stay safe."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I use the crossing to stay safe.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d9eba53e954880564fe91954312df2756422b07c0f209f96eda2d40210676f96"
+}

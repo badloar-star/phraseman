@@ -44,17 +44,19 @@ describe('Главная: 4 плитки с Пиком', () => {
   });
 
   // зачем (владелец 18.10 через координатора, вариант (в) «затухание справа»): плитки ровно прежнего размера (три на экран), справа затухание 24 dp цветом фона темы, касания сквозь
-  it('лента 4 плиток: ширина плитки = как у трёх в ряд, затухание справа 24 dp от токена bg, не ловит касания', () => {
+  it('лента 4 плиток: ширина плитки = как у трёх в ряд; затухания справа нет, край без подсветки (владелец 22.10)', () => {
     expect(tiles).toContain('const tileW = Math.floor((windowW - V2.screenPad * 2 - TILE_GAP * 2) / 3);');
     for (const windowW of [360, 393, 412]) {
       const tileW = Math.floor((windowW - 20 * 2 - 10 * 2) / 3);
       const oldW = (windowW - 20 * 2 - 10 * 2) / 3; // ширина ячейки flex: 1 в прежнем ряду из трёх
       expect(oldW - tileW).toBeLessThan(1);
     }
-    expect(tiles).toContain('const TILE_FADE_W = 24;');
-    expect(tiles).toMatch(/testID="home-v2-feature-tiles-fade"\s*\n\s*pointerEvents="none"/);
-    expect(tiles).toContain('colors={[colorWithAlpha(g.bg, 0), g.bg]}');
-    expect(tiles).toContain("fade: { position: 'absolute', top: 0, bottom: 0, right: 0, width: TILE_FADE_W },");
+    // зачем (владелец 22.10: «убери чёрную подсветку на горизонтальном скролле, где 4 кнопки»): затухание у края давало тёмную полосу — его нет;
+    // край Android без подсветки; строка [HOME-RIBBON] на показ ленты говорит, чем закрыты края
+    expect(tiles).not.toContain('home-v2-feature-tiles-fade');
+    expect(tiles).not.toContain('TILE_FADE_W');
+    expect(tiles).toContain('overScrollMode="never"');
+    expect(tiles).toContain("'[HOME-RIBBON] edges'");
   });
 
   // зачем (координатор 08:01, кадр 11886ef5b): свайп по ленте переключал вкладку — пейджер TabSlider забирал жест, Пик был недостижим

@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { PixelRatio, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 // зачем (координатор 08:01): лента — ScrollView из gesture-handler, чтобы её жест жил в одной арене с пейджером вкладок (TabSlider) и не отдавался ему
 import { ScrollView as GestureScrollView } from 'react-native-gesture-handler';
@@ -12,8 +12,6 @@ import { useHomePlateStyle } from './homePlate';
 import type { HomeFeatureTile } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { useShadowGlass } from '../../v2/ShadowSurface';
-import { LinearGradient } from '../../SafeLinearGradient';
-import { colorWithAlpha } from '../../v2/plateAlpha';
 import { useSpireHomePlace } from '../../../app/spire/spire_home_place';
 // зачем (координатор 18.10): подпись бейджа — из лёгкого модуля, а не из components/spire/moments (сторож запрещает; модуль моментов не нужен в холодном старте Главной)
 import { spirePlaceBadgeText } from './home_spire_place_badge';
@@ -85,6 +83,11 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
   const ribbonLock = useRibbonTabLock('feature_tiles');
   const tileW = Math.floor((windowW - V2.screenPad * 2 - TILE_GAP * 2) / 3);
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
+  // зачем (владелец 22.10: «убери чёрную подсветку на горизонтальном скролле»): одна строка на показ ленты — чем закрыты края и какая тень у плашек
+  useEffect(() => {
+    if (tiles.length === 4) console.log('[HOME-RIBBON] edges', JSON.stringify({ fade: 'нет (владелец 22.10)', overScrollMode: 'never', plateShadow: glass.boxShadow ?? null })); // guard-ok: одна строка на показ ленты
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: строка на показ ленты, не на каждую смену темы
+  }, [tiles.length]);
   // зачем (владелец 17.10, «Пик — кнопка-иконка»; эталон #four-tiles вариант (а)): 4 плитки — квадрат только с артом по центру, название ПОД плашкой.
   // На 360 dp внутри плашки ~72 dp название не помещается, а ужимать шрифт запрещено; длинное переносится, не обрезается.
   if (tiles.length === 4) {
@@ -95,6 +98,7 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
         horizontal
         nestedScrollEnabled
         showsHorizontalScrollIndicator={false}
+        overScrollMode="never"
         style={s.scrollerInner}
         contentContainerStyle={s.scrollRow}
         {...ribbonLock}
@@ -126,16 +130,8 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
           </V2Pressable>
         ))}
       </GestureScrollView>
-      {/* зачем (владелец 18.10 через координатора, вариант (в) «затухание справа»): мягкое затухание фона у правого края — видно, что лента продолжается.
-          Цвет — токен фона темы (bg), не литерал; касания проходят сквозь (pointerEvents none), размер плиток не меняется. */}
-      <LinearGradient
-        testID="home-v2-feature-tiles-fade"
-        pointerEvents="none"
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        colors={[colorWithAlpha(g.bg, 0), g.bg]}
-        style={s.fade}
-      />
+      {/* зачем (владелец 22.10: «убери чёрную подсветку на горизонтальном скролле»): затухания у правого края больше нет — сплошной bg поверх
+          полотна с пятнами давал тёмную полосу; что лента продолжается, видно по обрезанной четвёртой плитке */}
       </View>
     );
   }
@@ -187,7 +183,6 @@ function logTileLabel(kind: 'box' | 'lines', tile: HomeFeatureTile, lang: string
   }
 }
 
-const TILE_FADE_W = 24;
 const TILE_GAP = 10; // зачем: «Тень» 12.10 — между плашками ≥ 10, иначе тени слипаются
 
 const s = StyleSheet.create({
@@ -196,8 +191,6 @@ const s = StyleSheet.create({
   // горизонтальная лента: выходит за поля страницы (отрицательный margin) и возвращает их отступом внутри, чтобы плитки скроллились до края экрана
   scroller: { marginHorizontal: -V2.screenPad, flexGrow: 0 },
   scrollerInner: { flexGrow: 0 },
-  // затухание справа: ширина 24 dp по слову владельца, во всю высоту ленты (плашка + подпись)
-  fade: { position: 'absolute', top: 0, bottom: 0, right: 0, width: TILE_FADE_W },
   scrollRow: { flexDirection: 'row', gap: TILE_GAP, paddingHorizontal: V2.screenPad },
   tileSlot: { flex: 1 },
   // Квадрат от ширины ячейки — первый кадр сразу финальной геометрии, без замеров.

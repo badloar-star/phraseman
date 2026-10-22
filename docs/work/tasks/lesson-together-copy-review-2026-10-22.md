@@ -50,3 +50,11 @@ No architecture change.
 ## Rollback
 
 `git revert <коммит>`.
+
+## Дополнение: награда «вместе» раз в день на пару (координатор, 22.10)
+
+Награда теперь не чаще раза в день с каждым другом, а шторка обещала её без ограничений. В конец текста шторки
+`lessonInviteSheetBody` добавлено короткое уточнение на 9 языках: ru «С каждым другом — раз в день.», uk «З кожним
+другом — раз на день.», en «Once a day with each friend.», es «Una vez al día con cada amigo.», pt-BR «Uma vez por dia
+com cada amigo.», vi «Mỗi ngày một lần với mỗi người bạn.», id «Sekali sehari dengan tiap teman.», tr «Her arkadaşla
+günde bir kez.», pl «Raz dziennie z każdym znajomym.» Governance-ID: TG-DFCDE338E3FD.

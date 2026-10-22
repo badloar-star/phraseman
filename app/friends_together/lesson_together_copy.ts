@@ -20,18 +20,19 @@ export function lessonInviteSheetTitle(lang: Lang): string {
   return pick(lang, L('Позвать на занятие', 'Покликати на заняття', 'Invite to this session', 'Invitar a la sesión', 'Convidar para a sessão', 'Rủ học cùng', 'Ajak ke sesi', 'Oturuma çağır', 'Zaproś na zajęcia'));
 }
 
-/** «Урок 2 · Занятие 3 · Are you…?. Кто пройдёт его сегодня — получит награду «вместе», и ты тоже.» */
+/** «Урок 2 · Занятие 3 · Are you…?. Кто пройдёт его сегодня — получит награду «вместе», и ты тоже. С каждым другом — раз в день.»
+ * зачем: награда «вместе» не чаще раза в день на пару (8 · МОМЕНТЫ, координатор 22.10) — текст не обещает больше. */
 export function lessonInviteSheetBody(lang: Lang, lessonLine: string): string {
   return pick(lang, L(
-    `${lessonLine}. Кто пройдёт его сегодня — получит награду «вместе», и ты тоже.`,
-    `${lessonLine}. Хто пройде його сьогодні — отримає нагороду «разом», і ти теж.`,
-    `${lessonLine}. Whoever finishes it today gets the “together” reward — and so do you.`,
-    `${lessonLine}. Quien la termine hoy recibe el premio «juntos», y tú también.`,
-    `${lessonLine}. Quem concluir hoje ganha a recompensa “juntos” — e você também.`,
-    `${lessonLine}. Ai học xong hôm nay sẽ nhận thưởng “cùng nhau”, và bạn cũng vậy.`,
-    `${lessonLine}. Yang menyelesaikannya hari ini dapat hadiah “bersama”, kamu juga.`,
-    `${lessonLine}. Bugün bitiren “birlikte” ödülünü alır, sen de.`,
-    `${lessonLine}. Kto ukończy je dziś, dostanie nagrodę „razem” — ty też.`,
+    `${lessonLine}. Кто пройдёт его сегодня — получит награду «вместе», и ты тоже. С каждым другом — раз в день.`,
+    `${lessonLine}. Хто пройде його сьогодні — отримає нагороду «разом», і ти теж. З кожним другом — раз на день.`,
+    `${lessonLine}. Whoever finishes it today gets the “together” reward — and so do you. Once a day with each friend.`,
+    `${lessonLine}. Quien la termine hoy recibe el premio «juntos», y tú también. Una vez al día con cada amigo.`,
+    `${lessonLine}. Quem concluir hoje ganha a recompensa “juntos” — e você também. Uma vez por dia com cada amigo.`,
+    `${lessonLine}. Ai học xong hôm nay sẽ nhận thưởng “cùng nhau”, và bạn cũng vậy. Mỗi ngày một lần với mỗi người bạn.`,
+    `${lessonLine}. Yang menyelesaikannya hari ini dapat hadiah “bersama”, kamu juga. Sekali sehari dengan tiap teman.`,
+    `${lessonLine}. Bugün bitiren “birlikte” ödülünü alır, sen de. Her arkadaşla günde bir kez.`,
+    `${lessonLine}. Kto ukończy je dziś, dostanie nagrodę „razem” — ty też. Raz dziennie z każdym znajomym.`,
   ));
 }
 

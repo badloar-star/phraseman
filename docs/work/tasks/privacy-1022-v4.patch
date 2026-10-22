@@ -1,5 +1,5 @@
 diff --git a/legal/privacy_policy_en.json b/legal/privacy_policy_en.json
-index 5a87dd5..34ebc62 100644
+index 5a87dd5..909efb1 100644
 --- a/legal/privacy_policy_en.json
 +++ b/legal/privacy_policy_en.json
 @@ -1,7 +1,7 @@
@@ -11,6 +11,15 @@ index 5a87dd5..34ebc62 100644
    },
    {
      "heading": "1. Scope, controller, and acceptance",
+@@ -9,7 +9,7 @@
+   },
+   {
+     "heading": "2. Age and minors",
+-    "body": "Phraseman is intended for users aged 16 and over. During onboarding we ask you to confirm that you are 16 or over. We record only that confirmation as age-consent metadata; we do not ask for or store your date or year of birth. We do not knowingly process the personal data of children under 13.\n\nIf you are a parent or guardian and believe a child has provided personal data through the App, email support.phraseman@gmail.com with subject \"Parent Privacy Request\". We will review the request and delete or de-identify relevant account data unless we must retain limited records for legal, safety, fraud-prevention, moderation, transaction, or security reasons."
++    "body": "Phraseman is intended for users aged 16 and over. During onboarding we ask you to confirm that you are 16 or over. We record only that confirmation as age-consent metadata; we do not ask for or store your date or year of birth. We do not knowingly process the personal data of anyone under 16; if we learn that we have, we delete it.\n\nIf you are a parent or guardian and believe that someone under 16 has provided personal data through the App, email support.phraseman@gmail.com with subject \"Parent Privacy Request\". We will review the request and delete or de-identify relevant account data unless we must retain limited records for legal, safety, fraud-prevention, moderation, transaction, or security reasons."
+   },
+   {
+     "heading": "3. Data stored on your device",
 @@ -17,35 +17,35 @@
    },
    {
@@ -84,7 +93,7 @@ index 5a87dd5..34ebc62 100644
    {
      "heading": "18. Legal bases and purposes",
 -    "body": "Depending on your location, we process information on these bases:\n- Contract/performance of the App or requested service: account operation, progress sync, purchases, subscriptions, coins, leaderboards, social features, support, AI features you request, the requested website quiz plan, and requested features\n- Legitimate interests: security, fraud prevention, abuse prevention, debugging, aggregate website measurement, service reliability, moderation, management of historical feature records, AI cost control, AI safety, product improvement, legal defense, and business operations\n- Consent: AI-based mistake-explanation features in lessons, AI dialogs, website marketing emails, Meta Pixel where required, optional notifications, optional microphone/speech recognition permissions, optional Google/Apple sign-in where required, consent-based analytics where required, and child/parent consent where required\n- Legal obligations: tax, accounting, consumer protection, store compliance, dispute handling, copyright and rights complaints, law-enforcement requests, regulatory compliance, and sanctions/export compliance"
-+    "body": "Depending on your location, we process information on these bases:\n- Contract/performance of the App or requested service: account operation, progress sync, purchases, subscriptions, coins, leaderboards, social features, support, AI features you request, the requested website quiz plan, and requested features\n- Legitimate interests: security, fraud prevention, abuse prevention, debugging, aggregate website measurement, service reliability, moderation, management of historical feature records, AI cost control, AI safety, product improvement, legal defence, and business operations\n- Consent: AI-based mistake-explanation features in lessons (app versions earlier than 2.0.0), AI dialogues, website marketing emails, Meta Pixel where required, optional notifications, optional microphone/speech recognition permissions, optional Google/Apple sign-in where required, consent-based analytics where required, and child/parent consent where required\n- Legal obligations: tax, accounting, consumer protection, store compliance, dispute handling, copyright and rights complaints, law-enforcement requests, regulatory compliance, and sanctions/export compliance"
++    "body": "Depending on your location, we process information on these bases:\n- Contract/performance of the App or requested service: account operation, progress sync, purchases, subscriptions, coins, leaderboards, social features, support, AI features you request, the requested website quiz plan, and requested features\n- Legitimate interests: security, fraud prevention, abuse prevention, debugging, aggregate website measurement, service reliability, moderation, management of historical feature records, AI cost control, AI safety, product improvement, legal defence, and business operations\n- Consent: AI-based mistake-explanation features in lessons (app versions earlier than 2.0.0), AI dialogues, website marketing emails, Meta Pixel where required, optional notifications, optional microphone/speech recognition permissions, optional Google/Apple sign-in where required, and consent-based analytics where required\n- Legal obligations: tax, accounting, consumer protection, store compliance, dispute handling, copyright and rights complaints, law-enforcement requests, regulatory compliance, and sanctions/export compliance"
    },
    {
      "heading": "19. Retention",
@@ -112,7 +121,7 @@ index 5a87dd5..34ebc62 100644
    {
      "heading": "25. Changes",
 diff --git a/legal/privacy_policy_en_ios.json b/legal/privacy_policy_en_ios.json
-index e9554e6..b4cd919 100644
+index e9554e6..995ca54 100644
 --- a/legal/privacy_policy_en_ios.json
 +++ b/legal/privacy_policy_en_ios.json
 @@ -1,7 +1,7 @@
@@ -124,6 +133,15 @@ index e9554e6..b4cd919 100644
    },
    {
      "heading": "1. Scope, controller, and acceptance",
+@@ -9,7 +9,7 @@
+   },
+   {
+     "heading": "2. Age and minors",
+-    "body": "Phraseman is intended for users aged 16 and over. During onboarding we ask you to confirm that you are 16 or over. We record only that confirmation as age-consent metadata; we do not ask for or store your date or year of birth. We do not knowingly process the personal data of children under 13.\n\nIf you are a parent or guardian and believe a child has provided personal data through the App, email support.phraseman@gmail.com with subject \"Parent Privacy Request\". We will review the request and delete or de-identify relevant account data unless we must retain limited records for legal, safety, fraud-prevention, moderation, transaction, or security reasons."
++    "body": "Phraseman is intended for users aged 16 and over. During onboarding we ask you to confirm that you are 16 or over. We record only that confirmation as age-consent metadata; we do not ask for or store your date or year of birth. We do not knowingly process the personal data of anyone under 16; if we learn that we have, we delete it.\n\nIf you are a parent or guardian and believe that someone under 16 has provided personal data through the App, email support.phraseman@gmail.com with subject \"Parent Privacy Request\". We will review the request and delete or de-identify relevant account data unless we must retain limited records for legal, safety, fraud-prevention, moderation, transaction, or security reasons."
+   },
+   {
+     "heading": "3. Data stored on your device",
 @@ -17,35 +17,35 @@
    },
    {
@@ -197,7 +215,7 @@ index e9554e6..b4cd919 100644
    {
      "heading": "18. Legal bases and purposes",
 -    "body": "Depending on your location, we process information on these bases:\n- Contract/performance of the App or requested service: account operation, progress sync, purchases, subscriptions, coins, leaderboards, social features, support, AI features you request, the requested website quiz plan, and requested features\n- Legitimate interests: security, fraud prevention, abuse prevention, debugging, aggregate website measurement, service reliability, moderation, management of historical feature records, AI cost control, AI safety, product improvement, legal defense, and business operations\n- Consent: AI-based mistake-explanation features in lessons, AI dialogs, optional notifications, optional microphone/speech recognition permissions, optional Google/Apple sign-in where required, consent-based analytics where required, website marketing emails, the Meta Pixel where consent is required, and child/parent consent where required\n- Legal obligations: tax, accounting, consumer protection, App Store compliance, dispute handling, copyright and rights complaints, law-enforcement requests, regulatory compliance, and sanctions/export compliance"
-+    "body": "Depending on your location, we process information on these bases:\n- Contract/performance of the App or requested service: account operation, progress sync, purchases, subscriptions, coins, leaderboards, social features, support, AI features you request, the requested website quiz plan, and requested features\n- Legitimate interests: security, fraud prevention, abuse prevention, debugging, aggregate website measurement, service reliability, moderation, management of historical feature records, AI cost control, AI safety, product improvement, legal defence, and business operations\n- Consent: AI-based mistake-explanation features in lessons (app versions earlier than 2.0.0), AI dialogues, optional notifications, optional microphone/speech recognition permissions, optional Google/Apple sign-in where required, consent-based analytics where required, website marketing emails, the Meta Pixel where consent is required, and child/parent consent where required\n- Legal obligations: tax, accounting, consumer protection, App Store compliance, dispute handling, copyright and rights complaints, law-enforcement requests, regulatory compliance, and sanctions/export compliance"
++    "body": "Depending on your location, we process information on these bases:\n- Contract/performance of the App or requested service: account operation, progress sync, purchases, subscriptions, coins, leaderboards, social features, support, AI features you request, the requested website quiz plan, and requested features\n- Legitimate interests: security, fraud prevention, abuse prevention, debugging, aggregate website measurement, service reliability, moderation, management of historical feature records, AI cost control, AI safety, product improvement, legal defence, and business operations\n- Consent: AI-based mistake-explanation features in lessons (app versions earlier than 2.0.0), AI dialogues, optional notifications, optional microphone/speech recognition permissions, optional Google/Apple sign-in where required, consent-based analytics where required, website marketing emails, and the Meta Pixel where consent is required\n- Legal obligations: tax, accounting, consumer protection, App Store compliance, dispute handling, copyright and rights complaints, law-enforcement requests, regulatory compliance, and sanctions/export compliance"
    },
    {
      "heading": "19. Retention",
@@ -224,3 +242,39 @@ index e9554e6..b4cd919 100644
    },
    {
      "heading": "25. Changes",
+diff --git a/legal/terms_of_use_en.json b/legal/terms_of_use_en.json
+index 234527f..7603929 100644
+--- a/legal/terms_of_use_en.json
++++ b/legal/terms_of_use_en.json
+@@ -1,11 +1,11 @@
+ [
+   {
+     "heading": "Terms of Use - Phraseman by Knowly",
+-    "body": "Last updated: October 12, 2026\n\nThese Terms of Use (\"Terms\") govern your access to and use of Phraseman (the \"App\") and related services provided by Maksym Babiev, an individual trader trading as \"Knowly\" (\"Knowly\", \"we\", \"us\", or \"our\"), established at Ardagh, Ballymackerry, V42 P599, Ireland, contact support.phraseman@gmail.com. By downloading, installing, accessing, or using the App, you agree to these Terms and to the Privacy Policy. If you do not agree, do not use the App.\n\nIf you use the App on behalf of another person, including a child or minor, you confirm that you have authority to accept these Terms for that person and are responsible for that person's use."
++    "body": "Last updated: October 22, 2026\n\nThese Terms of Use (\"Terms\") govern your access to and use of Phraseman (the \"App\") and related services provided by Maksym Babiev, an individual trader trading as \"Knowly\" (\"Knowly\", \"we\", \"us\", or \"our\"), established at Ardagh, Ballymackerry, V42 P599, Ireland, contact support.phraseman@gmail.com. By downloading, installing, accessing, or using the App, you agree to these Terms and to the Privacy Policy. If you do not agree, do not use the App.\n\nIf you use the App on behalf of another person, you confirm that you have authority to accept these Terms for that person and are responsible for that person's use."
+   },
+   {
+     "heading": "1. Eligibility and minors",
+-    "body": "Phraseman is a general-audience educational app intended for users aged 16 and over. During onboarding we ask you to confirm that you are 16 or over. We record only that confirmation as age-consent metadata; we do not ask for or store your date or year of birth.\n\nWe do not knowingly allow children under 13 to use the App. If you are a parent or guardian and believe a child has provided personal data through the App, contact support.phraseman@gmail.com and we will take appropriate action."
++    "body": "Phraseman is a general-audience educational app intended for users aged 16 and over. During onboarding we ask you to confirm that you are 16 or over. We record only that confirmation as age-consent metadata; we do not ask for or store your date or year of birth.\n\nWe do not knowingly allow anyone under 16 to use the App. If you are a parent or guardian and believe that someone under 16 has provided personal data through the App, contact support.phraseman@gmail.com and we will take appropriate action."
+   },
+   {
+     "heading": "2. Limited license",
+diff --git a/legal/terms_of_use_en_ios.json b/legal/terms_of_use_en_ios.json
+index 6c418fc..8d2c702 100644
+--- a/legal/terms_of_use_en_ios.json
++++ b/legal/terms_of_use_en_ios.json
+@@ -1,11 +1,11 @@
+ [
+   {
+     "heading": "Terms of Use - Phraseman by Knowly",
+-    "body": "Last updated: October 12, 2026\n\nThese Terms of Use (\"Terms\") govern your access to and use of the Phraseman iOS app (the \"App\") and related services provided by Maksym Babiev, an individual trader trading as \"Knowly\" (\"Knowly\", \"we\", \"us\", or \"our\"), established at Ardagh, Ballymackerry, V42 P599, Ireland, contact support.phraseman@gmail.com. By downloading, installing, accessing, or using the App, you agree to these Terms and to the Privacy Policy. If you do not agree, do not use the App.\n\nIf you use the App on behalf of another person, including a child or minor, you confirm that you have authority to accept these Terms for that person and are responsible for that person's use."
++    "body": "Last updated: October 22, 2026\n\nThese Terms of Use (\"Terms\") govern your access to and use of the Phraseman iOS app (the \"App\") and related services provided by Maksym Babiev, an individual trader trading as \"Knowly\" (\"Knowly\", \"we\", \"us\", or \"our\"), established at Ardagh, Ballymackerry, V42 P599, Ireland, contact support.phraseman@gmail.com. By downloading, installing, accessing, or using the App, you agree to these Terms and to the Privacy Policy. If you do not agree, do not use the App.\n\nIf you use the App on behalf of another person, you confirm that you have authority to accept these Terms for that person and are responsible for that person's use."
+   },
+   {
+     "heading": "1. Eligibility and minors",
+-    "body": "Phraseman is a general-audience educational app intended for users aged 16 and over. During onboarding we ask you to confirm that you are 16 or over. We record only that confirmation as age-consent metadata; we do not ask for or store your date or year of birth.\n\nWe do not knowingly allow children under 13 to use the App. If you are a parent or guardian and believe a child has provided personal data through the App, contact support.phraseman@gmail.com and we will take appropriate action."
++    "body": "Phraseman is a general-audience educational app intended for users aged 16 and over. During onboarding we ask you to confirm that you are 16 or over. We record only that confirmation as age-consent metadata; we do not ask for or store your date or year of birth.\n\nWe do not knowingly allow anyone under 16 to use the App. If you are a parent or guardian and believe that someone under 16 has provided personal data through the App, contact support.phraseman@gmail.com and we will take appropriate action."
+   },
+   {
+     "heading": "2. Limited license",

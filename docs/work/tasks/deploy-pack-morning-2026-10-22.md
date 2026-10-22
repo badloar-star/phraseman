@@ -117,7 +117,7 @@
 
 ### Д2. Политика v4 — вычитка — `docs/work/tasks/privacy-1022-v4.patch` (НЕ применён; 9 · САЙТ, 22.10)
 
-Источник — вычитка английской политики v3 (список координатору 22.10), правки по его выбору. Сборщик патча: `C:/Temp/claude/privacy-1021/build_v4.py` (каждая замена с проверкой «ровно одно вхождение»). Меняются только `legal/privacy_policy_en.json` и `legal/privacy_policy_en_ios.json`; `git apply --check` на HEAD чисто.
+Источник — вычитка английской политики v3 (список координатору 22.10), правки по его выбору. Сборщик патча: `C:/Temp/claude/privacy-1021/build_v4.py` (каждая замена с проверкой «ровно одно вхождение»). Меняются `legal/privacy_policy_en.json`, `legal/privacy_policy_en_ios.json` и (с решением о возрасте) `legal/terms_of_use_en.json`, `legal/terms_of_use_en_ios.json`; `git apply --check` на HEAD чисто.
 
 **Что меняется (en и en_ios одинаково, кроме §9):**
 
@@ -135,21 +135,24 @@
 - **§18 и §16** — «mistake-explanation … (app versions earlier than 2.0.0)»; «AI dialogues, phrase explanations, mistake feedback (app versions earlier than 2.0.0)».
 - **Регистр:** «coin and energy balances», «Peak groups players».
 - **Британское написание по всему тексту:** favourites, recognised/recogniser, catalogue, reorganisation, personalise/personalisation, normalised, defence, behaviour, AI dialogues. **Исключение:** «cross-context behavioral advertising» оставлено как есть — это термин закона (CCPA).
-- **Не тронуто (решение владельца):** §2 — возраст 16+ против «children under 13».
+- **Возраст — решение владельца 22.10 «Везде 16+»** (через координатора). Политика §2: «We do not knowingly process the personal data of anyone under 16; if we learn that we have, we delete it.»; обращение родителей — «believe that someone under 16 has provided…»; из §18 (законные основания) убрано «child/parent consent where required» — согласия родителей мы не собираем. **Условия (en и ios) — тот же порог:** «We do not knowingly allow anyone under 16 to use the App…», убрано «including a child or minor» из фразы про пользование от имени другого человека; дата условий October 12 → **October 22, 2026**. Условия добавлены в патч, потому что иначе политика (16) и условия (13) противоречили бы друг другу — если условия трогать не надо, убрать из патча их два блока.
 
 **Вычитка iOS-версии:** отличается от основной только платформенными строками (App Store, iOS Keychain, APNs, ATT/IDFA, сроки хранения записей сайта расписаны подробнее). В ней было то же противоречие §9 — исправлено своим вариантом. Других ошибок нет. Замечание без правки: в iOS-версии остались абзацы про Android (системное распознавание речи, Whisper/Hugging Face) — для общего аккаунта на разных платформах это допустимо.
 
-**Прогон на копии** (`C:/Temp/claude/privacy-1021/sync4`, рабочее дерево не тронуто): патч → `node scripts/sync-legal-html.mjs` → меняются те же 10 файлов, что в Д. `app/legal` и `legal` совпадают байт в байт; дата в en и ios одна, она же во всех 6 HTML-копиях; на сайте есть новые фразы (365 days, 5 business days, shared streak, favourites, AI dialogues). `legal_document_liquid_glass_source_contract` + `legal_sync_idempotent_contract` — **18/18**. Фразы, на которые опираются `support_diagnostics_privacy_contract`, `aa_guest_honesty_contract`, `smart_reminder_wiring_contract`, `spire_old_names_guard`, на месте; ни один тест не ссылается на изменённые фразы.
+**Прогон на копии** (`C:/Temp/claude/privacy-1021/sync4`, рабочее дерево не тронуто): патч → `node scripts/sync-legal-html.mjs` → меняются **16 файлов**: 10 из Д плюс `legal/terms_of_use_en*.json`, `app/legal/terms_of_use_en*.json`, `knowly-www/legal/terms/index.html`, `terms.html`. Во всех копиях нет «under 13», «child or minor», «child/parent»; везде есть «under 16». `app/legal` и `legal` совпадают байт в байт; дата в en и ios одна, она же во всех 6 HTML-копиях; на сайте есть новые фразы (365 days, 5 business days, shared streak, favourites, AI dialogues). `legal_document_liquid_glass_source_contract` + `legal_sync_idempotent_contract` — **18/18**. Фразы, на которые опираются `support_diagnostics_privacy_contract`, `aa_guest_honesty_contract`, `smart_reminder_wiring_contract`, `spire_old_names_guard`, на месте; ни один тест не ссылается на изменённые фразы.
 
 **Применение (одним коммитом, выкладка — по «да» владельца в чате 9 · САЙТ):**
 
 1. `git apply docs/work/tasks/privacy-1022-v4.patch`
 2. `npm run legal:sync`
-3. В `tests/legal_document_liquid_glass_source_contract.test.mjs` (строки 67–68):
-   - `privacy_policy_en.json` → `f80eef46e759a7ca4bcdd44e289d79e8daa4396b889a609095d7c6762958907c`
-   - `privacy_policy_en_ios.json` → `c0f4f38ce3bbc2bbac95ac84a49e6e30b4ca6fa3f1f38941fb6c4183a79d1d5d`
+3. В `tests/legal_document_liquid_glass_source_contract.test.mjs` (строки 67–68 и 71–72):
+   - `privacy_policy_en.json` → `7d055c9fb07d174d2a962949585328e7cbffa8bb960a9a06c80255746bae306f`
+   - `privacy_policy_en_ios.json` → `c41b7b7a4ae0301a5fe4184342d62219fbb9ff93df0582bdbab83c7556d4989b`
+   - `terms_of_use_en.json` → `c32bf3c62fc17f20140089cce445a88f552f9ae272f4c8c4b0eb1697c53150a3`
+   - `terms_of_use_en_ios.json` → `2f9471c0d85d199ad13f2cfcf17e8df1c377762e7c394008fb8f66840cbec51c`
    (при другой дате хэши пересчитать.)
 4. Legal-тесты зелёные → коммит → `hosting:knowlywww` + `hosting:admin`. Копия в приложении — со следующей сборкой.
+5. **Для Ядра:** `functions/src/generated/support_repo_context.json` (контекст ИИ-ответов поддержки) содержит старые «under 13» и «child or minor» — пересобрать `functions/scripts/build_support_repo_context.js` перед ближайшей выкладкой функций, иначе поддержка будет отвечать по старым условиям.
 
 ## Что ещё лежит невыложенным в `functions/` (с 21.10, кроме групп выше)
 

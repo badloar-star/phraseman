@@ -15,7 +15,7 @@
  */
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedProps,
@@ -27,18 +27,20 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import Svg, { Circle } from "react-native-svg";
+import { LearningV2AudioReplayPressableV1 } from "./audio_replay_pressable_v1";
 import { useScaledTextStyles } from "../../../hooks/useLineScale";
 import { learningV2SessionCopy } from "../../../app/learning_v2_session_copy";
 
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Lv2Chip, Lv2Cta, Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
-import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
+import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import {
   LISTEN_BUILD_DICTATION_MOTION_V1 as MOTION,
   MODE_SPRING_MICRO_V1,
   MODE_SPRING_UI_V1,
+  learningV2RingFillMsForPhraseV1,
 } from "./mode_motion_tokens_v1";
 import { learningV2ModeAudioCopyV1, learningV2ModeCheckLabelV1 } from "./mode_copy_v1";
 
@@ -69,6 +71,7 @@ const RING_LEN = 2 * Math.PI * RING_RADIUS;
 
 function DictationRingButtonV1({
   playing,
+  fillMs,
   hasPlayedOnce,
   reducedMotion,
   disabled,
@@ -79,6 +82,7 @@ function DictationRingButtonV1({
   surface,
 }: {
   readonly playing: boolean;
+  readonly fillMs: number;
   readonly hasPlayedOnce: boolean;
   readonly reducedMotion: boolean;
   readonly disabled: boolean;
@@ -97,27 +101,26 @@ function DictationRingButtonV1({
       return;
     }
     progress.value = 0;
-    progress.value = withTiming(1, { duration: MOTION.ringFillMs, easing: Easing.linear });
-  }, [hasPlayedOnce, playing, progress, reducedMotion]);
+    progress.value = withTiming(1, { duration: fillMs, easing: Easing.linear });
+  }, [fillMs, hasPlayedOnce, playing, progress, reducedMotion]);
   const ringProps = useAnimatedProps(() => ({
     strokeDashoffset: RING_LEN * (1 - progress.value),
   }));
   return (
     <View style={[styles.ringWrap, compact && { width: 80, height: 80 }]}>
-      <Pressable
-        accessibilityRole="button"
+      <LearningV2AudioReplayPressableV1
         accessibilityLabel={accessibilityLabel}
         accessibilityState={{ disabled }}
+        contentStyle={[styles.ringBtn, compact && { width: 80, height: 80, borderRadius: 40 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
         disabled={disabled}
-        hitSlop={10}
-        onPress={() => {
-          void hapticLightImpact();
-          onPress();
-        }}
-        style={[styles.ringBtn, compact && { width: 80, height: 80, borderRadius: 40 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
+        onPress={onPress}
+        reducedMotion={reducedMotion}
       >
-        <Ionicons name={playing ? "volume-high" : "play"} size={44} color={accent} />
-      </Pressable>
+        {/* зачем (владелец 19.10): на всех заданиях большая кнопка — динамик и всегда нажимается для повтора озвучки */}
+          <Ionicons name="volume-high" size={44} color={accent} />
+      </LearningV2AudioReplayPressableV1>
+      {/* зачем (владелец 19.10 «большая круглая кнопка не нажимается»): на iOS корневой Svg игнорирует pointerEvents="none" и кольцо поверх кнопки съедало нажатие — оборачиваем в View, который точно пропускает касания */}
+      <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <Svg pointerEvents="none" width={compact ? 80 : 128} height={compact ? 80 : 128} viewBox={`0 0 ${RING_VIEW} ${RING_VIEW}`} style={StyleSheet.absoluteFill}>
         <Circle cx={RING_VIEW / 2} cy={RING_VIEW / 2} r={RING_RADIUS} stroke={track} strokeWidth={5} fill="none" />
         <AnimatedCircle
@@ -133,6 +136,7 @@ function DictationRingButtonV1({
           transform={`rotate(-90 ${RING_VIEW / 2} ${RING_VIEW / 2})`}
         />
       </Svg>
+      </View>
     </View>
   );
 }
@@ -261,7 +265,7 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
   }, [playing]);
 
   const handlePlay = () => {
-    if (!onPlayFullPhraseAudio || playing || loading) return;
+    if (!onPlayFullPhraseAudio) return;
     onPlayFullPhraseAudio();
   };
 
@@ -301,9 +305,10 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
       <View style={[sx.playRow, compact && { marginTop: 8 }]}>
       <DictationRingButtonV1
         playing={playing}
+        fillMs={learningV2RingFillMsForPhraseV1(modePayload?.family === "listen_build_dictation" ? modePayload.hiddenTargetPhrase : null)}
         hasPlayedOnce={hasPlayedOnce}
         reducedMotion={reducedMotion}
-        disabled={!onPlayFullPhraseAudio || loading}
+        disabled={!onPlayFullPhraseAudio}
         accessibilityLabel={hasPlayedOnce ? audioCopy.replay : audioCopy.play}
         onPress={handlePlay}
         accent={g.text}

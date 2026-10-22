@@ -17,7 +17,7 @@
 
 import React, { useEffect, useMemo, useRef } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -34,12 +34,14 @@ import { hapticSuccess } from "../../../hooks/use-haptics";
 import { useScaledTextStyles } from "../../../hooks/useLineScale";
 import { learningV2SessionCopy } from "../../../app/learning_v2_session_copy";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
+import { LearningV2AudioReplayPressableV1 } from "./audio_replay_pressable_v1";
 import {
   MODE_SPRING_MICRO_V1,
   MODE_SPRING_UI_V1,
   PHRASE_BUILDER_MOTION_V1 as MOTION,
 } from "./mode_motion_tokens_v1";
 import { learningV2ModeCheckLabelV1 } from "./mode_copy_v1";
+import { learningV2DistinctPhraseBuilderMeaningV1 } from "./phrase_builder_display_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 
@@ -177,6 +179,12 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
         .filter((entry): entry is (typeof options)[number] => entry !== undefined),
     [orderedResponseIds, options],
   );
+  const distinctLocalizedMeaning = learningV2DistinctPhraseBuilderMeaningV1(
+    prompt,
+    modePayload?.family === "phrase_builder"
+      ? modePayload.localizedMeaning[interfaceLocale]
+      : null,
+  );
 
   const announcedRef = useRef(false);
   useEffect(() => {
@@ -198,20 +206,19 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
     <View style={sx.root}>
       <Text style={[sx.taskLabel, { color: g.secondary }]}>{prompt}</Text>
       <View style={[sx.heroRow, compact && { marginTop: 6 }]}>
-        <Text style={[sx.hero, { color: g.text }]}>
-          {modePayload?.family === "phrase_builder"
-            ? modePayload.localizedMeaning[interfaceLocale]
-            : ""}
-        </Text>
+        {distinctLocalizedMeaning ? (
+          <Text style={[sx.hero, { color: g.text }]}>
+            {distinctLocalizedMeaning}
+          </Text>
+        ) : <View style={sx.heroSpacer} />}
         {onPlayFullPhraseAudio && (
-          <Pressable
-            accessibilityRole="button"
-            hitSlop={8}
+          <LearningV2AudioReplayPressableV1
+            contentStyle={[sx.audioBtn, { backgroundColor: g.opaqueControl }]}
             onPress={onPlayFullPhraseAudio}
-            style={[sx.audioBtn, { backgroundColor: g.opaqueControl }]}
+            reducedMotion={reducedMotion}
           >
             <Ionicons name="volume-high" size={18} color={g.text} />
-          </Pressable>
+          </LearningV2AudioReplayPressableV1>
         )}
       </View>
 
@@ -291,6 +298,7 @@ const styles = StyleSheet.create({
   // `.thero` margin-top 10.
   heroRow: { flexDirection: "row", alignItems: "flex-start", gap: 12, marginTop: 10 },
   hero: { flex: 1, fontSize: 28, lineHeight: 34, fontWeight: "700", letterSpacing: -0.3 },
+  heroSpacer: { flex: 1 },
   audioBtn: {
     width: 38,
     height: 38,

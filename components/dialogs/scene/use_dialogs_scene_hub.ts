@@ -8,7 +8,7 @@
 // «Диалог засчитан сегодня» (dayDone): источника на телефоне нет — вход null, состояние day_done не включается вслепую; причина пишется в журнал [DIALOGS-SCENE].
 // ready=false — каталога для сцены нет (язык без проверенных диалогов, пусто): хаб оставляет прежнюю шапку и карточку языка, сцену не рисует.
 // ═══════════════════════════════════════════════════════════════════════════
-import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { InteractionManager } from 'react-native';
 
 import { getAiDialogConsentState, hydrateAiDialogConsentFromStorage, isAiDialogConsentHydrated, subscribeAiDialogConsent } from '../../../app/ai_dialog_consent';
@@ -28,7 +28,7 @@ import { useMyCoinRank } from '../../../hooks/use_my_coin_rank';
 import { useLang } from '../../LangContext';
 import { usePremium } from '../../PremiumContext';
 import { useStudyTarget } from '../../StudyTargetContext';
-import { useHomeSceneOffline } from '../../home/v2/scene/use_home_scene_offline';
+import { useDialogsSceneOffline } from './use_dialogs_scene_offline';
 import { dialogueV2WorldHeadings } from '../DialogueV2CatalogueContainer';
 import { buildDialogsSceneHubModel, type DialogsSceneHubModel } from './dialogs_scene_hub_model';
 import type { DialogsSceneInput } from './dialogs_scene_state';
@@ -50,6 +50,8 @@ export type DialogsSceneHubData = Readonly<{
   resetDate: Date;
   /** Сколько раз в день Free отвечает голосом; null — доступ ещё не известен (число не рисуем) или у Plus. */
   voicePerDay: number | null;
+  /** «Повторить» в состоянии «нет сети»: перепроверить сеть и перечитать каталог (кэш окна 12 ч, тот же in-flight запрос). */
+  retry: () => Promise<void>;
 }>;
 
 const EMPTY_MODEL: DialogsSceneHubModel = Object.freeze({ doneCount: 0, totalCount: 0, next: null });
@@ -60,7 +62,8 @@ export function useDialogsSceneHub(): DialogsSceneHubData {
   const { accessResolved, hasPremiumAccess } = usePremium();
   const localCoinRank = useMyCoinRank();
   const quota = useDialogueHubQuota();
-  const offline = useHomeSceneOffline(true);
+  // зачем (аудит кнопок 22.10, F2): свой хук сети с журналом [DIALOGS-NET] и «Повторить»; «нет сети» — только isConnected === false
+  const { offline, retry: retryNet } = useDialogsSceneOffline(true);
   const voice = useVoiceDailyAllowance();
   const dayVersion = useSyncExternalStore(subscribeDialogueV2DoneToday, getDialogueV2DoneTodayVersion, getDialogueV2DoneTodayVersion);
   const consentState = useSyncExternalStore(subscribeAiDialogConsent, getAiDialogConsentState, getAiDialogConsentState);
@@ -100,6 +103,21 @@ export function useDialogsSceneHub(): DialogsSceneHubData {
     });
     return () => { alive = false; task.cancel(); };
   }, [studyTarget]);
+
+  const retry = useCallback(async (): Promise<void> => {
+    const offlineAfter = await retryNet();
+    if (!supportedTarget(studyTarget)) {
+      console.warn(LOG, 'retry:catalogue_skip', JSON.stringify({ reason: 'unsupported_target', studyTarget: String(studyTarget), offlineAfter })); // guard-ok: ранний выход называет причину
+      return;
+    }
+    try {
+      const fresh = await fetchReleasedDialogueV2Catalogue(studyTarget, { awaitRefresh: true });
+      console.log(LOG, 'retry:catalogue', JSON.stringify({ studyTarget, offlineAfter, gotEnvelope: fresh !== null })); // guard-ok: итог перечитывания по тапу «Повторить»
+      if (fresh) setEnvelope((prev) => (prev === fresh ? prev : fresh));
+    } catch (error: unknown) {
+      console.warn(LOG, 'retry:catalogue_failed', JSON.stringify({ studyTarget, offlineAfter, reason: error instanceof Error ? error.name : String(error) })); // guard-ok: причина отказа
+    }
+  }, [retryNet, studyTarget]);
 
   const model = useMemo<DialogsSceneHubModel | null>(() => {
     if (!supported || !envelope) return null;
@@ -143,5 +161,5 @@ export function useDialogsSceneHub(): DialogsSceneHubData {
 
   // голосовой лимит Free (3 в день): число только когда доступ известен и это не Plus; unknown/plus — без числа
   const voicePerDay = voice.kind === 'limited' ? FREE_DIALOG_VOICE_DAILY_LIMIT : null;
-  return { ready: model !== null, input, model: model ?? EMPTY_MODEL, quotaTotal: quota ? quota.total : REVENUE_MONTHLY_LIMITS.ai_dialog_replies, resetDate, voicePerDay };
+  return { ready: model !== null, input, model: model ?? EMPTY_MODEL, quotaTotal: quota ? quota.total : REVENUE_MONTHLY_LIMITS.ai_dialog_replies, resetDate, voicePerDay, retry };
 }

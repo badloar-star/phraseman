@@ -232,7 +232,7 @@ export function buildDialogsSceneCopy(input: DialogsSceneCopyInput): DialogsScen
     case 'offline':
       return {
         ...done, kicker: dialog ? dialogsSceneText(lang, 'continueIn', { world: dialog.world }) : dialogsSceneText(lang, 'dialogs'), title: dialogsSceneText(lang, 'offlineTitle'),
-        sub: dialogsSceneText(lang, 'offlineSub'), cta: dialogsSceneText(lang, 'offlineCta'), ctaIcon: 'reload', ctaDisabled: true,
+        sub: dialogsSceneText(lang, 'offlineSub'), cta: dialogsSceneText(lang, 'offlineCta'), ctaIcon: 'reload', ctaDisabled: false, // зачем (аудит кнопок 22.10, F2): «Повторить» нажимается всегда — перепроверяет сеть и каталог
         offlineLine: { bold: dialogsSceneText(lang, 'offlineBold'), rest: dialogsSceneText(lang, 'offlineRest') },
       };
     case 'limit': {

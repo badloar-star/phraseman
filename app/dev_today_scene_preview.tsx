@@ -7,8 +7,8 @@
 // Тема меняется ТОЛЬКО в памяти процесса (app/dev_appearance_override.ts); уходя с экрана, возвращаем прежнее.
 // В релизе маршрута нет: ENABLE_DEV_TOOLS && !IS_STORE_RELEASE, иначе уводим на Главную.
 // ═══════════════════════════════════════════════════════════
-import { Redirect, useLocalSearchParams } from 'expo-router';
-import React, { useEffect, useMemo } from 'react';
+import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { View } from 'react-native';
 
 import { triLang } from '../constants/i18n';
@@ -23,14 +23,14 @@ import {
   todayScenePreviewTasks,
   type TodayScenePreviewState,
 } from '../components/home/v2/today_scene/today_scene_preview_fixtures';
+import type { TodayTask } from '../components/home/v2/home_v2_types';
 import TodayActivityHistory from '../components/home/v2/TodayActivityHistory';
 import TodaySceneView from '../components/home/v2/today_scene/TodaySceneView';
 import { todaySceneDateLabel } from '../components/home/v2/today_scene/TodayScene';
 import { todayRingColors, useStreakColors } from '../components/streak/moments/use_streak_colors';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 import { getDevAppearance, setDevAppearance } from './dev_appearance_override';
-
-const noop = (): void => undefined;
+import { dismissToTabRoute, safeRouterBack } from './navigation_back';
 
 function Inner() {
   const params = useLocalSearchParams<{ state?: string; theme?: string }>();
@@ -47,6 +47,13 @@ function Inner() {
     return () => setDevAppearance(before);
   }, [wanted]);
 
+  const router = useRouter();
+  // зачем (аудит кнопок 22.10, F1: «ничего не нажимается»): кнопки превью ведут туда же, куда в настоящем экране «Сегодня» (app/today_tasks.tsx:119): вкладки — dismissTo, остальное — push
+  const openTask = useCallback((task: TodayTask) => {
+    console.log('[DEV-STATE] today_scene_preview task:open', JSON.stringify({ kind: task.kind, route: task.route })); // guard-ok: dev-маршрут, одна строка на тап
+    if (task.route.startsWith('/(tabs)')) dismissToTabRoute(router, task.route);
+    else router.push(task.route as never);
+  }, [router]);
   const tasks = useMemo(() => todayScenePreviewTasks(state), [state]);
   const input = useMemo(() => todayScenePreviewInput(state), [state]);
   const decision = useMemo(() => pickTodaySceneState(input), [input]);
@@ -73,9 +80,9 @@ function Inner() {
         tasks={tasks}
         ringColors={ringColors}
         fromProgress={[0, 0, 0]}
-        onBack={noop}
+        onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
         backLabel="Back"
-        onOpenTask={noop}
+        onOpenTask={openTask}
         history={<TodayActivityHistory dayKey="2026-10-21" tasks={tasks} />}
       />
     </View>

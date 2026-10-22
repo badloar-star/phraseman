@@ -55,8 +55,9 @@ function DialogsSceneHub({ fallback, onBack, backLabel }: Props) {
   const act = useCallback((state: DialogsSceneState, via: 'cta' | 'round') => {
     if (state === 'limit' || (via === 'round' && state === 'low')) { openPlus(); return; }
     if (state === 'offline') {
-      // «Повторить»: кэш каталога перечитывается сам при возврате на экран; здесь только подтверждаем тап в журнале
-      console.log(LOG, 'retry', JSON.stringify({ reason: 'offline_retry_tap', hasNext: next !== null })); // guard-ok: одна строка на тап
+      // зачем (аудит кнопок 22.10, F2): «Повторить» реально перепроверяет сеть (NetInfo.refresh) и перечитывает каталог; пока идёт проверка, повторный тап хук игнорирует с причиной в журнале
+      console.log(LOG, 'retry', JSON.stringify({ reason: 'offline_retry_tap', hasNext: next !== null, via })); // guard-ok: одна строка на тап
+      void hub.retry();
       return;
     }
     if (!next) {
@@ -64,7 +65,7 @@ function DialogsSceneHub({ fallback, onBack, backLabel }: Props) {
       return;
     }
     openBriefing(next.id);
-  }, [next, openBriefing, openPlus]);
+  }, [hub, next, openBriefing, openPlus]);
 
   const onCta = useCallback((state: DialogsSceneState) => act(state, 'cta'), [act]);
   const onRound = useCallback((state: DialogsSceneState) => act(state, 'round'), [act]);

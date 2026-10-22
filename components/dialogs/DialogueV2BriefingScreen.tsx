@@ -5,6 +5,8 @@ import { Image } from 'expo-image';
 import { RowDivider } from '../v2/RowDivider';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import { logMemCoin } from '../coins/mem_coin_probe';
 import EnergyBar from '../EnergyBar';
@@ -76,6 +78,9 @@ export function DialogueV2BriefingScreen({
   starting = false,
 }: DialogueV2BriefingScreenProps) {
   const glass = useDialogueGlass();
+  // зачем (Сверка 22.10: «назад» и «⚡5» наезжали на часы; правило владельца «верхняя сейф-зона — часть общей композиции»): отступ под часы — устойчивый inset (первый кадр уже финальный), а не SafeAreaView, который в первом кадре мог отдать 0;
+  // фон (V2Backdrop и glass.bg корня) идёт под строку статуса без полосы
+  const insets = useStableSafeAreaInsets();
   const startLabel = unlocked ? labels.start : labels.locked(rankRequired);
   const card = dialogueGlassCardStyle(glass);
 
@@ -83,7 +88,7 @@ export function DialogueV2BriefingScreen({
     <View style={[styles.fill, { backgroundColor: glass.bg }]} testID="dialogue-v2-briefing-screen">
       {/* зачем (Макеты d7cf7113d, dialogs-007/008, тон темы): в образце B1/B2 за брифингом — пятна Авроры (зелёное слева, фиолетовое справа), у экрана был ровный чёрный. Тот же статичный слой, что у хаба Карточек, кошелька и рангов; у тем без пятен слоя нет */}
       <V2Backdrop />
-      <SafeAreaView edges={['top']} style={styles.fill}>
+      <View style={[styles.fill, { paddingTop: insets.top }]} testID="dialogue-v2-briefing-safe-top">
         <View style={styles.top}>
           <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={labels.back} />
           {/* зачем (Сверка dialogs-007/008, координатор 12.10): в образце B1/B2 справа в шапке пилюля энергии «⚡ N» (диалог тратит энергию) — как в шапке сессии */}
@@ -124,7 +129,7 @@ export function DialogueV2BriefingScreen({
           </View>
 
         </ScrollView>
-      </SafeAreaView>
+      </View>
       <SafeAreaView edges={['bottom']} style={[styles.dock, { backgroundColor: glass.bg }]}>
         <DialogueGlassCta
           glass={glass}

@@ -11,8 +11,8 @@
 // настоящий экран согласия, в превью не рисуется.
 // В релизе маршрута нет: ENABLE_DEV_TOOLS && !IS_STORE_RELEASE, иначе уводим на Главную. Охраняет tests/dialogs_scene_preview_contract.test.ts.
 // ═══════════════════════════════════════════════════════════
-import { Redirect, useLocalSearchParams } from 'expo-router';
-import React, { useEffect, useMemo, useState } from 'react';
+import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import EnergyBar from '../components/EnergyBar';
@@ -36,8 +36,8 @@ import { V2IconButton } from '../components/v2/V2Kit';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { getDevAppearance, setDevAppearance } from './dev_appearance_override';
+import { safeRouterBack } from './navigation_back';
 
-const noop = (): void => undefined;
 const NARROW_WIDTH = 360;
 
 function Inner() {
@@ -61,6 +61,27 @@ function Inner() {
 
   const setup = useMemo(() => dialogsScenePreviewSetup(state, plus), [state, plus]);
   const cards = useMemo(() => dialogsScenePreviewCards(lang), [lang]);
+  const router = useRouter();
+  // зачем (аудит кнопок 22.10, F1: «ничего не нажимается»): кнопки превью ведут туда же, куда в настоящем хабе (DialogsSceneHub.act): карточка и «Начать» — брифинг диалога,
+  // лимит — premium_modal, «Повторить» в офлайне — «сеть вернулась» (состояние next); id диалога — из моков (настоящие id каталога)
+  const openBriefing = useCallback((scenarioId: string) => {
+    console.log('[DEV-STATE] dialogs_scene_preview briefing', JSON.stringify({ scenarioId })); // guard-ok: dev-маршрут, одна строка на тап
+    router.push({ pathname: '/dialogue_v2_briefing', params: { scenarioId } } as never);
+  }, [router]);
+  const nextId = useMemo(() => cards.find((c) => c.title === setup.dialog?.title)?.id ?? cards[0]?.id ?? 'social_01', [cards, setup.dialog]);
+  const act = useCallback((via: 'cta' | 'round') => {
+    if (state === 'limit' || (via === 'round' && state === 'low')) {
+      console.log('[DEV-STATE] dialogs_scene_preview premium', JSON.stringify({ state, via })); // guard-ok: dev-маршрут, одна строка на тап
+      router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dev_dialogs_scene_preview' } } as never);
+      return;
+    }
+    if (state === 'offline') {
+      console.log('[DEV-STATE] dialogs_scene_preview retry', JSON.stringify({ result: 'network_back_next' })); // guard-ok: dev-маршрут, одна строка на тап
+      router.setParams({ state: 'next' });
+      return;
+    }
+    openBriefing(nextId);
+  }, [state, router, openBriefing, nextId]);
   const plusRows = useMemo(() => [
     { icon: 'infinite' as const, label: dialogsSceneText(lang, 'plusRowDialogs') },
     { icon: 'mic' as const, label: dialogsSceneText(lang, 'plusRowVoice') },
@@ -86,10 +107,10 @@ function Inner() {
             resetDate={setup.resetDate}
             voicePerDay={DIALOGS_SCENE_PREVIEW_VOICE_PER_DAY}
             topInset={insets.top + 8}
-            topStart={<V2IconButton testID="dev-dialogs-scene-back" icon="chevron-back" accessibilityLabel="Back" onPress={noop} />}
+            topStart={<V2IconButton testID="dev-dialogs-scene-back" icon="chevron-back" accessibilityLabel="Back" onPress={() => safeRouterBack(router, '/(tabs)/home' as never)} />}
             topEnd={<EnergyBar size={30} glass solidBolt />}
-            onCta={noop}
-            onRound={noop}
+            onCta={() => act('cta')}
+            onRound={() => act('round')}
           />
           {state === 'limit'
             ? <DialogsScenePlusPanel rows={plusRows} />
@@ -101,7 +122,7 @@ function Inner() {
                 worldId={world}
                 onWorld={setWorld}
                 cards={cards}
-                onCard={noop}
+                onCard={openBriefing}
               />
             )}
           <View style={s.tail} />

@@ -13,13 +13,14 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Redirect, useLocalSearchParams } from 'expo-router';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
+import SpireAllMembers from '../components/spire/SpireAllMembers';
 import SpireClimbDock from '../components/spire/SpireClimbDock';
 import SpireScene from '../components/spire/scene/SpireScene';
 import { buildSpireSceneCopy, pickSpireSceneState, spireSceneRoom } from '../components/spire/scene/spire_scene_model';
@@ -32,6 +33,7 @@ import {
   spireScenePreviewSetup,
   type SpireScenePreviewState,
 } from '../components/spire/scene/spire_scene_preview_fixtures';
+import { spirePeopleCount } from '../components/spire/spire_plurals';
 import { spireText } from '../components/spire/spire_strings';
 import { spireFloorCoinsOf } from '../components/spire/spire_tower_model';
 import { LIQUID_GLASS_THEME_IDS, type LiquidGlassThemeId } from '../constants/liquidGlassThemePalette';
@@ -40,10 +42,10 @@ import { V2 } from '../constants/v2Style';
 import { SPIRE_CONFIG_DEFAULTS } from '../modules/spire/config_contract';
 import { spireTierName } from '../modules/spire/tier_names';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
+import { actionToastTri, emitAppEvent } from './events';
 import { getDevAppearance, getDevThemeChoice, setDevAppearance, setDevThemeChoice } from './dev_appearance_override';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
-const noop = (): void => undefined;
 const isThemeId = (value: unknown): value is LiquidGlassThemeId => typeof value === 'string' && (LIQUID_GLASS_THEME_IDS as readonly string[]).includes(value);
 /** Строка вкладок «Сообщества» над сценой (высота как у шапки раздела: 58). */
 const TABS_H = 58;
@@ -59,6 +61,7 @@ function Inner() {
   const appearanceParam = params.appearance ?? (params.theme === 'dark' || params.theme === 'light' ? params.theme : undefined);
   const wantedAppearance = appearanceParam === 'dark' || appearanceParam === 'light' ? appearanceParam : null;
   const [selected, setSelected] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   // тема и оформление ссылкой: в памяти процесса, на выходе возвращаем то, что было (без записи в хранилище и облако)
   useEffect(() => {
@@ -90,6 +93,19 @@ function Inner() {
     console.log(`[DEV-STATE] spire_scene_preview route requested=${requested} decided=${decision.state} reason=${decision.reason} offlineLine=${String(decision.offlineLine)} theme=${themeId ?? 'приложение'} appearance=${wantedAppearance ?? `${liquidGlassAppearance} (приложение)`} plus=${String(plus)} place=${String(room.myPlace)} toPromo=${String(room.placesToPromo)} input=${JSON.stringify(setup.input)}`); // guard-ok: dev-маршрут, в релизе не открывается (Redirect на Главную)
   }, [requested, decision, params.state, themeId, wantedAppearance, liquidGlassAppearance, plus, room, setup]);
 
+  // зачем (аудит кнопок 22.10, F1: «ничего не нажимается»): «Все участники» открывают тот же экран SpireAllMembers (как на настоящем Пике) на моковых участниках;
+  // «Играть» в превью игру не запускает — тост называет действие и состояние, чтобы тап не был немым
+  const openAll = useCallback(() => {
+    console.log('[DEV-STATE] spire_scene_preview open_all', JSON.stringify({ members: setup.members ? setup.members.length : null })); // guard-ok: dev-маршрут, одна строка на тап
+    setShowAll(true);
+  }, [setup.members]);
+  const climb = useCallback(() => {
+    console.log('[DEV-STATE] spire_scene_preview climb', JSON.stringify({ state: decision.state, plus })); // guard-ok: dev-маршрут, одна строка на тап
+    emitAppEvent('action_toast', actionToastTri('info', { ru: 'Превью: здесь начался бы подъём', uk: 'Превʼю: тут почався б підйом', en: 'Preview: the climb would start here', es: 'Vista previa: aquí empezaría la subida', 'pt-BR': 'Prévia: aqui começaria a subida', vi: 'Xem trước: tại đây sẽ bắt đầu leo', id: 'Pratinjau: di sini pendakian dimulai', tr: 'Önizleme: tırmanış burada başlardı', pl: 'Podgląd: tu zaczęłaby się wspinaczka' }));
+  }, [decision.state, plus]);
+  if (showAll && setup.members) {
+    return <View style={s.root}><SpireAllMembers lang={lang} members={setup.members} subtitle={`${tierName} · ${spirePeopleCount(lang, setup.members.length)}`} onBack={() => setShowAll(false)} rankBy="coins" /></View>;
+  }
   const tabs = [
     spireText(lang, 'title'),
     triLang(lang, { ru: 'Друзья', uk: 'Друзі', en: 'Friends', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi' }),
@@ -130,7 +146,7 @@ function Inner() {
             onSelect={setSelected}
             rivalsByFloor={setup.rivals}
             tier={SPIRE_SCENE_PREVIEW_TIER}
-            onOpenAll={noop}
+            onOpenAll={openAll}
             energyTime={SPIRE_SCENE_PREVIEW_ENERGY_TIME}
           />
           <View style={s.tail} />
@@ -142,7 +158,7 @@ function Inner() {
             busy={false}
             premium={plus}
             block={null}
-            onClimb={noop}
+            onClimb={climb}
             scene
             searching={decision.state === 'search'}
             previewEnergy={{ zero: !plus && setup.energy <= 0, time: SPIRE_SCENE_PREVIEW_ENERGY_TIME }}

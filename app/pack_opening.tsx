@@ -53,6 +53,7 @@ import SkeletonBlock from '../components/SkeletonShimmer';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { soundDirector } from '../modules/audio/sound_director';
 import { RowDivider } from '../components/v2/RowDivider';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, ScreenCloseButton } from '../components/v2/ScreenBackButton';
 
 const EXEMPT_COLOR_1 = '#fff'; // theme-exempt: белый текст на залитой кнопке цвета набора
 const EXEMPT_COLOR_2 = '#fff'; // theme-exempt: белый текст на залитой кнопке цвета набора
@@ -633,10 +634,9 @@ export default function PackOpeningScreen() {
       <Stack.Screen options={{ headerShown: false }} />
 
       {/* Заголовок */}
-      <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
-        <Pressable onPress={() => safeRouterBack(router, '/flashcards' as any)} hitSlop={12}>
-          <Ionicons name="close" size={26} color={t.textMuted} />
-        </Pressable>
+      {/* зачем (владелец 22.10, вариант В): ✕ — общий ScreenCloseButton слоем; в строке шапки — его место, заголовок по центру */}
+      <View style={[styles.header, { paddingTop: insets.top }]}>
+        <ScreenBackSlot />
         <View style={{ flex: 1, alignItems: 'center' }}>
           <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
             {title}
@@ -655,7 +655,7 @@ export default function PackOpeningScreen() {
             })}
           </Text>
         </View>
-        <View style={{ width: 26 }} />
+        <View style={{ width: SCREEN_BACK_SIZE }} />
       </View>
 
       {/* Прогрес-бар */}
@@ -792,6 +792,7 @@ export default function PackOpeningScreen() {
       </View>
 
         {showConfetti && <ConfettiBurst count={32} />}
+        <ScreenCloseButton screen="pack_opening" testID="pack-opening-close" onPress={() => safeRouterBack(router, '/flashcards' as any)} />
       </View>
     </ScreenGradient>
   );
@@ -803,7 +804,9 @@ export default function PackOpeningScreen() {
 const styles = StyleSheet.create({
   fillCenter: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 },
   header: {
-    paddingHorizontal: 16,
+    // зачем (закон «✕ в одном месте»): поля 20 — как у точки общей кнопки; строка не ниже её круга
+    paddingHorizontal: 20,
+    minHeight: SCREEN_BACK_SIZE,
     paddingBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',

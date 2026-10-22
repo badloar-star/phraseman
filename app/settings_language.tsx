@@ -19,6 +19,7 @@ import { isStudyTargetAllowedForUi, type StudyTarget } from './study_target';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { SettingsGlassEyebrow, SettingsGlassRow } from '../components/settings/SettingsGlassRows';
 import StudyLanguageSheet from '../components/settings/StudyLanguageSheet';
+import { ScreenBackSlot, ScreenCloseButton } from '../components/v2/ScreenBackButton';
 
 // зачем: паритет с макетом profile.html PRF-03 — внизу экрана языков блок «Язык изучения» с флагом текущего языка.
 const STUDY_NAME: Record<StudyTarget, string> = { en: 'English', es: 'Español', fr: 'Français', de: 'Deutsch', it: 'Italiano' };
@@ -87,19 +88,8 @@ export default function SettingsLanguage() {
         <ContentWrap>
           {/* зачем: паритет profile.html PRF-03 (13.10): поля экрана 20, круг «Закрыть» 42 со значком 21, разрядка заголовка −0.5 */}
           <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 40 }} scrollEventThrottle={16}>
-            <PressableHybrid
-              testID="settings-language-back"
-              accessibilityLabel={closeLabel}
-              onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
-              withHaptic={true}
-              withSound={false}
-              variant="icon"
-              hitSlop={{ top: 3, right: 3, bottom: 3, left: 3 }}
-              style={{ width: 42, height: 42, alignSelf: 'flex-start', marginTop: 3 }}
-              contentStyle={{ width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
-            >
-              <Ionicons name="close" size={21} color={glass.lightTint} />
-            </PressableHybrid>
+            {/* зачем (владелец 22.10, вариант В): сам ✕ — общий ScreenCloseButton слоем; здесь его место в начале прокрутки */}
+            <ScreenBackSlot />
             <Text maxFontSizeMultiplier={1.15} style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>{s.settings.lang}</Text>
             <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, marginTop: 7 }}>{subtitle}</Text>
             <View style={{ marginTop: 22, gap: 10 }}>
@@ -166,6 +156,7 @@ export default function SettingsLanguage() {
           </BouncyScrollView>
         </ContentWrap>
       </View>
+      <ScreenCloseButton screen="settings_language" testID="settings-language-back" accessibilityLabel={closeLabel} onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} />
       <StudyLanguageSheet
         visible={studySheetVisible}
         onClose={() => setStudySheetVisible(false)}

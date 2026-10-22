@@ -55,3 +55,22 @@ export function NavIcon({ name, size = 22, color, style }: NavIconProps) {
   if (isBackIconName(name)) return <BackGlyph size={size} color={color} style={style} />;
   return <Ionicons name={name} size={size} color={color} style={style as never} />;
 }
+
+/** Контур ✕ макета (kit.js `close`). Экспортируется для сторожа: контур не должен разъехаться с эталоном. */
+export const CLOSE_GLYPH_PATH = 'M6 6l12 12M18 6L6 18';
+
+/**
+ * Значок «закрыть» общей кнопки экрана — тот же контур, толщина и скругление, что у «назад».
+ *
+ * зачем (владелец 22.10, вариант В: «✕ оставить, но в одном месте»): крестик экрана — в той же точке и том же круге, что «назад»,
+ * меняется только знак; рисуется контуром макета, а не системным Ionicons другой толщины.
+ */
+function CloseGlyphBase({ size = 22, color, strokeWidth = 1.8, style }: BackGlyphProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={style} accessibilityElementsHidden importantForAccessibility="no">
+      <Path d={CLOSE_GLYPH_PATH} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+}
+
+export const CloseGlyph = memo(CloseGlyphBase);

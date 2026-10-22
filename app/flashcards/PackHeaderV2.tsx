@@ -17,7 +17,8 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { packCardsWord } from '../../components/packs/PackRow';
-import { PackBackBare, PackCta, PackGhostCta, PackRoundButton, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
+import { PackCta, PackGhostCta, PackRoundButton, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
+import { ScreenBackSlot } from '../../components/v2/ScreenBackButton';
 import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 
@@ -36,7 +37,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 const noop = (): void => undefined;
 
 /** Верхняя панель: «назад» без круга (30×42) и квадратная «⋮» 36 (`.rb.bare` + `.rb.sq`). */
-export const PackTopBar = memo(function PackTopBar({ lang, onBack, onMenu }: Readonly<{ lang: Lang; onBack: () => void; onMenu: () => void }>) {
+export const PackTopBar = memo(function PackTopBar({ lang, onMenu }: Readonly<{ lang: Lang; onBack: () => void; onMenu: () => void }>) {
   const g = useLv2Glass();
   const styles = useMemo(() => makeStyles(g), [g]);
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -64,7 +65,7 @@ export const PackTopBar = memo(function PackTopBar({ lang, onBack, onMenu }: Rea
   return (
     <View ref={wrapRef} collapsable={false} onLayout={(e) => logPosition(e.nativeEvent.layout.y, e.nativeEvent.layout.height)} style={styles.topWrap}>
       <PackTopBarRow
-        left={<PackBackBare g={g} testID="fc-collection-back" label={copy.back} onPress={onBack} />}
+        left={<ScreenBackSlot />} // зачем (закон «назад в одном месте»): кнопка — ScreenBackButton экрана коллекции
         right={<PackSquareButton g={g} testID="fc-pack-menu" label={copy.menu} onPress={onMenu} />}
       />
     </View>

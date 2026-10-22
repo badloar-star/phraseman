@@ -389,7 +389,6 @@ export default function PromoCodeEntryScreen() {
         <SectionSheetHeader
           title={L('Промокод', 'Промокод', 'Promo code', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')}
           onClose={() => safeRouterBack(router, closeFallback as any)}
-          closeVariant="flat" // зачем (координатор 12.10, overlays-campaigns-004): в образце promo-code-states крестик справа без плашки
         />
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <ScrollView decelerationRate="fast"

@@ -10,9 +10,9 @@ import React, { memo } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import SkeletonBlock from '../../components/SkeletonShimmer';
-import { PackBackBare, PackTopBarRow } from '../../components/packs/PackScreenKit';
-import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
-import { triLang, type Lang } from '../../constants/i18n';
+import { PackTopBarRow } from '../../components/packs/PackScreenKit';
+import { ScreenBackSlot } from '../../components/v2/ScreenBackButton';
+import type { Lang } from '../../constants/i18n';
 
 const SIDE = 20;
 const SKELETON_ROW_H = 118; // та же высота, что у плитки шага 0 в CommunityPackPreview — без прыжка при подмене
@@ -20,13 +20,11 @@ const SKELETON_ROWS = 4;
 
 export const COMMUNITY_PACK_PREVIEW_SKELETON_TEST_ID = 'pack-preview-resolving';
 
-export default memo(function CommunityPackPreviewSkeleton({ lang, onBack }: Readonly<{ lang: Lang; onBack: () => void }>) {
-  const g = useLv2Glass();
-  const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
+export default memo(function CommunityPackPreviewSkeleton(_props: Readonly<{ lang: Lang; onBack: () => void }>) {
   return (
     <View testID={COMMUNITY_PACK_PREVIEW_SKELETON_TEST_ID} style={styles.root}>
       <ScrollView decelerationRate="fast" scrollEnabled={false} contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <PackTopBarRow left={<PackBackBare g={g} testID="pack-preview-back" label={backLabel} onPress={onBack} />} />
+        <PackTopBarRow left={<ScreenBackSlot />} />{/* зачем (закон «назад в одном месте»): кнопка — ScreenBackButton экрана коллекции */}
         <View style={styles.title}><SkeletonBlock width="62%" height={34} borderRadius={10} /></View>
         <View style={styles.authorRow}>
           <SkeletonBlock width={23} height={23} borderRadius={12} />

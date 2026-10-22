@@ -1,0 +1,23 @@
+{
+  "//": "зачем (владелец 22.10, вариант В: «✕ оставить, но в одном месте»): файлы app/** со СВОИМ значком ✕ (Ionicons close). Полноэкранный ✕ экрана — только components/v2/ScreenCloseButton. В списке есть и законные ✕ шторок/окон и очистки поля — их разбирают волнами; список ТОЛЬКО уменьшается, новый файл со своим ✕ не проходит. Сторож: tests/screen_back_button_contract.test.ts",
+  "files": [
+    "app/(tabs)/home.tsx",
+    "app/(tabs)/lessons.tsx",
+    "app/achievements_screen.tsx",
+    "app/community_packs/PackCommentsSheet.tsx",
+    "app/community_packs/PackEditorV2.tsx",
+    "app/community_packs/ReportCommentModal.tsx",
+    "app/flashcards/CardsSessionResultV2.tsx",
+    "app/flashcards/CollectionHeaderV2.tsx",
+    "app/flashcards/DeckPickerSheet.tsx",
+    "app/flashcards/MyPacksV2.tsx",
+    "app/flashcards/PhraseCard.tsx",
+    "app/flashcards_swipe.tsx",
+    "app/learning-v2/chapter-exam.tsx",
+    "app/learning-v2/session/[id].tsx",
+    "app/learning_v2_direct_session_player_v1.tsx",
+    "app/learning_v2_modes_showcase_run/[family].tsx",
+    "app/mistakes_list.tsx",
+    "app/referral_access_ended_modal.tsx"
+  ]
+}

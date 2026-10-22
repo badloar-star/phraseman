@@ -16,7 +16,8 @@ import { KitCta, KitEmpty, KitSectionHead, KitSegment } from '../../components/c
 import { QuietEmptyState, QuietLeave } from '../../components/cards-grid/QuietEmptyState';
 import KitTouchable from '../../components/KitTouchable';
 import { useLv2Glass, type Lv2Glass } from '../../components/learning-v2/LearningV2Glass';
-import { BackButton, PanelDock } from '../../components/mistakes-panel/PanelKit';
+import { PanelDock } from '../../components/mistakes-panel/PanelKit';
+import { SCREEN_BACK_SIZE } from '../../components/v2/ScreenBackButton';
 import { nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useTheme } from '../../components/ThemeContext';
@@ -146,7 +147,8 @@ function TrainingSetupV2Inner(props: Props) {
     <View testID="fc-training-setup-v2" style={styles2.root}>
       <ScrollView contentContainerStyle={styles2.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
         <View style={styles2.top}>
-          <BackButton g={g} onPress={onBack} label={copy.back} />
+          {/* зачем (закон владельца 22.10 «назад везде в одном месте»): сама кнопка — ScreenBackButton экрана-хозяина; здесь её место в строке */}
+          <View style={styles2.backSlot} />
           {/* зачем (владелец 12.10, cards-027; п.83 «кнопка языка фильтрует наборы»): справа в верхнем ряду — чип языка наборов рядом с пилюлей остатка.
               Наборы одного языка — чип только показывает язык (без стрелки); нескольких — кнопка фильтра с меню. Токены темы; длинный код не сжимается (шрифт не ужимаем) — чип растёт по тексту,
               а ряд при нехватке места переносится, не режет. */}
@@ -298,7 +300,8 @@ const styles = StyleSheet.create({
 const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   scroll: { paddingHorizontal: 20, paddingBottom: 150 },
-  top: { minHeight: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  top: { minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  backSlot: { width: SCREEN_BACK_SIZE, height: SCREEN_BACK_SIZE },
   pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7 },
   topRight: { flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', flexWrap: 'wrap', gap: 8, flexShrink: 1 },
   pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700', fontVariant: ['tabular-nums'] },

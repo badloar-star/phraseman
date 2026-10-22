@@ -5,15 +5,15 @@
  * экран с плитками раз в секунду не перерисовывается.
  */
 import React, { memo, useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { FlowText } from '../text-integrity';
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LV2_TASK_LAYOUT, lv2TaskPlateStyle, lv2TaskTrackColor } from '../learning-v2/learning_v2_task_layout_tokens';
-import { hapticTap } from '../../hooks/use-haptics';
 import { DUEL_PHRASE_MAX_MS } from '../../app/friends_together/duel_core';
 import { duelClock } from '../../app/friends_together/duel_play_copy';
+import { ScreenBackSlot } from '../v2/ScreenBackButton';
 
 type TimerProps = Readonly<{ startedAtMs: number; frozenMs: number | null; label: string; textScale: number; g: Lv2Glass }>;
 
@@ -58,32 +58,15 @@ type Props = Readonly<{
   onClose: () => void;
 }>;
 
-/** Крестик экрана дуэли (`.mrb.t` / `.ldh .x` макета): круг 44 в тоне контрола, без тени; нажатие чуть сжимает круг. */
-export const DuelCloseButton = memo(function DuelCloseButton({ label, onPress }: Readonly<{ label: string; onPress: () => void }>) {
-  const g = useLv2Glass();
-  return (
-    <Pressable
-      testID="friend-duel-close"
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      hitSlop={6}
-      onPress={() => {
-        void hapticTap();
-        onPress();
-      }}
-      style={({ pressed }) => [styles.close, { backgroundColor: g.opaqueControl, transform: [{ scale: pressed ? 0.94 : 1 }] }]}
-    >
-      <Ionicons name="close" size={20} color={g.text} accessible={false} />
-    </Pressable>
-  );
-});
+// зачем (владелец 22.10, вариант В: «✕ в одном месте»): самодельный крестик дуэли снят — ✕ рисует общий ScreenCloseButton экрана,
+// а в строке полосы остаётся его место (ScreenBackSlot).
 
-function DuelPlayTopBar({ current, total, progressLabel, closeLabel, timeLabel, startedAtMs, frozenMs, textScale, onClose }: Props) {
+function DuelPlayTopBar({ current, total, progressLabel, timeLabel, startedAtMs, frozenMs, textScale }: Props) {
   const g = useLv2Glass();
   const fill = `${Math.max(0, Math.min(1, current / total)) * 100}%` as const;
   return (
     <View style={styles.bar}>
-      <DuelCloseButton label={closeLabel} onPress={onClose} />
+      <ScreenBackSlot />
       <View style={styles.middle} accessible accessibilityRole="progressbar" accessibilityLabel={progressLabel} accessibilityValue={{ min: 0, max: total, now: current }}>
         <View style={[styles.track, { backgroundColor: lv2TaskTrackColor(g) }]}>
           <View style={[styles.trackFill, { width: fill, backgroundColor: g.accent }]} />

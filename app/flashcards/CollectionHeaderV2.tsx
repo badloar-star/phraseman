@@ -12,7 +12,8 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
-import { BackButton, SheetRow, type PanelChip } from '../../components/mistakes-panel/PanelKit';
+import { SheetRow, type PanelChip } from '../../components/mistakes-panel/PanelKit';
+import { ScreenBackSlot } from '../../components/v2/ScreenBackButton';
 import { KitSegment } from '../../components/cards-grid/CardsKit';
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
 import { useTheme } from '../../components/ThemeContext';
@@ -70,7 +71,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 /** Верхняя панель: «назад» и квадратная кнопка меню; в режиме выбора — «Отмена» и счётчик. */
-export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, onMenu, selectionMode, selectedCount, selectionTotal, onExitSelection, limitLabel, limitIcon, onCreate, onSearch, searchOpen }: Readonly<{
+export const CollectionTopBar = memo(function CollectionTopBar({ lang, onMenu, selectionMode, selectedCount, selectionTotal, onExitSelection, limitLabel, limitIcon, onCreate, onSearch, searchOpen }: Readonly<{
   lang: Lang;
   onBack: () => void;
   onMenu: () => void;
@@ -104,7 +105,7 @@ export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, o
   }
   return (
     <View style={styles.top}>
-      <BackButton g={g} label={copy.back} onPress={onBack} />
+      <ScreenBackSlot />{/* зачем (закон «назад в одном месте»): кнопка — ScreenBackButton экрана коллекции */}
       <View style={styles.topRight}>
         {limitLabel ? (
           <View testID="fc-collection-limit" style={[styles.pill, { backgroundColor: g.hairlineSoft }]}>

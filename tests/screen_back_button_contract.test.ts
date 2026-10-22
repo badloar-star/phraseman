@@ -19,6 +19,8 @@ const OWN_BACK: ReadonlyArray<readonly [string, RegExp]> = [
   ['PracticeBackButton', /<PracticeBackButton\b/],
   ['DialogueGlassBackButton', /<DialogueGlassBackButton\b/],
   ['ResultsGlassBackButton', /<ResultsGlassBackButton\b/],
+  // 22.10: «назад» без круга из PackScreenKit (шапки наборов) — тоже своя кнопка, первоначальный список её не видел
+  ['PackBackBare', /<PackBackBare\b/],
   ['BackGlyph', /<BackGlyph\b/],
   ['icon-prop', /\bicon=["'](?:chevron|arrow)-back/],
   ['name-prop', /\bname=["'](?:chevron|arrow)-back/],
@@ -74,7 +76,7 @@ describe('кнопка «назад»: одна и в одном месте', ()
     expect(own.filter((rel) => !allowed.has(rel))).toEqual([]);
     // Переведённый файл обязан уйти из базы (иначе база не уменьшается и долг не виден).
     expect(baseline.files.filter((rel) => !own.includes(rel))).toEqual([]);
-    expect(baseline.files.length).toBeLessThanOrEqual(71); // потолок — только вниз (22.10: 80 → 71 — «Сегодня», теория, слова урока, Пик ×2, «Ошибки» ×3, хаб Сезона)
+    expect(baseline.files.length).toBeLessThanOrEqual(70); // потолок — только вниз (22.10: 80 → 70 — «Сегодня», теория, слова урока, Пик ×2, «Ошибки» ×3, хаб Сезона, настройка тренировки)
   });
 
   it('корень вкладки, открытый НЕ из нижнего меню, показывает общую «назад» (координатор 22.10: Пик с Главной)', () => {
@@ -106,6 +108,37 @@ describe('кнопка «назад»: одна и в одном месте', ()
     expect(step).toContain('<ScreenBackButton screen="spire_step"');
     // «Все участники» поверх Пика, а не вместо него — Пик под окном не размонтируется
     expect(read('components/spire/SpireHomeScreen.tsx')).toContain('{showAll && members ? <SpireAllMembers');
+  });
+
+  it('✕ «закрыть» — тот же компонент, та же точка и круг, знак ✕ контуром макета; системная «назад» = ✕ (владелец 22.10, вариант В)', () => {
+    expect(button).toContain('export const ScreenCloseButton = memo(function ScreenCloseButton(props: Props)');
+    expect(button).toContain('<ScreenBackButtonBase {...props} glyph="close" />');
+    expect(button).toContain("BackHandler.addEventListener('hardwareBackPress', () => { handlePress(); return true; })");
+    const kit = read('docs/design/v2-app/kit.js');
+    const glyphs = read('components/v2/BackGlyph.tsx');
+    const close = /export const CLOSE_GLYPH_PATH = '([^']+)'/.exec(glyphs)?.[1];
+    expect(close).toBeTruthy();
+    expect(kit).toContain(`close: '<path d="${close}"/>'`);
+    expect(read('components/v2/BackButton.tsx')).toContain("{glyph === 'close' ? <CloseGlyph size={22} color={g.text} /> : <BackGlyph size={22} color={g.text} />}");
+  });
+
+  it('свой значок ✕ на экранах app/** — только в базе config/screen_close_baseline.json; база только уменьшается', () => {
+    const baseline = JSON.parse(read('config/screen_close_baseline.json')) as { files: string[] };
+    const allowed = new Set(baseline.files);
+    const ownClose = /<Ionicons[^>]*name=["']close(-outline)?["']/;
+    const own = walk('app').filter((rel) => !isDevOnly(rel) && ownClose.test(read(rel)));
+    expect(own.filter((rel) => !allowed.has(rel))).toEqual([]);
+    expect(baseline.files.filter((rel) => !own.includes(rel))).toEqual([]);
+    expect(baseline.files.length).toBeLessThanOrEqual(18); // потолок 22.10 — только вниз
+    // переведённые на общий ✕ экраны (22.10)
+    for (const [rel, screen] of [
+      ['app/settings_language.tsx', 'settings_language'],
+      ['app/pack_opening.tsx', 'pack_opening'],
+      ['app/learning_v2_session_intro.tsx', 'learning_v2_intro'],
+      ['app/learning_v2_session_intro_check.tsx', 'learning_v2_intro_check'],
+      ['app/friends_duel.tsx', 'friends_duel_play'],
+      ['components/legal/LegalDocumentSheet.tsx', 'legal_document'],
+    ] as const) expect([rel, read(rel).includes(`<ScreenCloseButton screen="${screen}"`)]).toEqual([rel, true]);
   });
 
   it('экраны, взявшие ScreenBackButton, не держат рядом свою кнопку «назад»', () => {

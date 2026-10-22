@@ -30,6 +30,7 @@ import { useScreen } from '../hooks/use-screen';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import ScreenBackButton from '../components/v2/ScreenBackButton';
 import CommunityPackPreview from './flashcards/CommunityPackPreview';
 import PackOpenFailedView from './flashcards/PackOpenFailedView';
 import { setPendingTrainIntent } from './flashcards/train_intent';
@@ -2041,6 +2042,8 @@ export default function FlashcardsScreen() {
       ) : null}
 
     </View>
+    {/* зачем (закон владельца 22.10 «назад везде в одном месте»): одна кнопка на все шапки коллекции; в режиме выбора слева «Отмена» — без «назад» */}
+    {selectionMode ? null : <ScreenBackButton screen="flashcards_collection" testID="fc-collection-back" onPress={deeplinkCardsState === 'failed' ? leaveCollection : handleCollectionBack} />}
     {expandedData ? (
       <ExpandedCardV2
         card={expandedData}

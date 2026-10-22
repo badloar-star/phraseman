@@ -21,8 +21,8 @@ import Animated, {
 } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LEARNING_V2_OWNER_LAYOUT } from "../components/learning-v2/learningV2OwnerLayout";
-import { KitGlassLayer } from "../components/v2/KitLiquidGlass";
-import { nestedBoxShadow, plateBoxShadow } from "../components/v2/ShadowSurface";
+import { SCREEN_BACK_SIZE, ScreenBackSlot, ScreenCloseButton } from "../components/v2/ScreenBackButton";
+import { plateBoxShadow } from "../components/v2/ShadowSurface";
 
 import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
 import { useLang } from "../components/LangContext";
@@ -618,22 +618,8 @@ export default function LearningV2SessionIntro({
         edges={[]}
       >
         <View style={sx.header}>
-          <PressableHybrid
-            testID="learning-v2-intro-close"
-            variant="icon"
-            accessibilityLabel={copy.close}
-            hitSlop={10}
-            onPress={onBack}
-            style={sx.closeButton}
-            contentStyle={[
-              sx.closeButtonFace,
-              { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) },
-            ]}
-          >
-            {/* зачем (learning-v2.html `.shd .rb`; «Тень» 12.10): круг 42 — плашка с малой тенью без кромки, крестик 20. */}
-            <KitGlassLayer radius={21} />
-            <Ionicons name="close" size={20} color={g.text} />
-          </PressableHybrid>
+          {/* зачем (владелец 22.10, вариант В): ✕ — общий ScreenCloseButton слоем; здесь его место в строке шапки */}
+          <ScreenBackSlot />
 
           <View style={sx.stageMeta}>
             {/* зачем (Сверка df455f92d, кадр 12; координатор 15.10): подпись этапа переносилась по буквам («СМЫС»/«Л») — рядом с «1 / 3» и тремя плашками (сердца, энергия, монеты) ей не хватало ширины. Теперь метка не сжимается (flexShrink 0, ширина по содержимому), «N / 3» — отдельной строкой под ней; сжатие и обрезка текста запрещены сторожем, поэтому место берётся высотой, а не шириной. */}
@@ -893,6 +879,7 @@ export default function LearningV2SessionIntro({
           </Lv2Cta>
         </View>
       </SafeAreaView>
+      <ScreenCloseButton screen="learning_v2_intro" testID="learning-v2-intro-close" accessibilityLabel={copy.close} onPress={onBack} />
     </LinearGradient>
   );
 }
@@ -903,8 +890,8 @@ const styles = StyleSheet.create({
   // зачем (сверка с learning-v2.html, 05.10): `.shd` margin-top 8, gap 10, поля страницы --pad 20. Прежние поля 6/18
   // шли из настроек Atlas 12.09; по гейту владельца 04.10 эталон — макет 2.0.
   header: {
-    minHeight: 42,
-    marginTop: 8,
+    // зачем (закон «✕ в одном месте»): строка от безопасного верха и высотой с общую кнопку — этап и счёт по её центру
+    minHeight: SCREEN_BACK_SIZE,
     paddingHorizontal: 20,
     flexDirection: "row",
     alignItems: "center",

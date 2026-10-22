@@ -15,7 +15,8 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { packDeckLevel } from '../../components/packs/packDeckModel';
-import { PackBackBare, PackCta, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
+import { PackCta, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
+import { ScreenBackSlot } from '../../components/v2/ScreenBackButton';
 import { KitTouchable } from '../../components/KitTouchable';
 import { useTheme } from '../../components/ThemeContext';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
@@ -78,7 +79,7 @@ const stamp = (sec?: number): string => {
   return `${m}:${String(s).padStart(2, '0')}`;
 };
 
-function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, onMore, onSpeak, onOpenMoment, owned = false, onAdded, onRequestPurchase, cta = null, onTrain }: Props) {
+function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onMore, onSpeak, onOpenMoment, owned = false, onAdded, onRequestPurchase, cta = null, onTrain }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const g = useLv2Glass();
   const { theme } = useTheme();
@@ -127,7 +128,7 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
     <View testID="video-set-view" style={styles.root}>
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
         <PackTopBarRow
-          left={<PackBackBare g={g} testID="mp-back" label={copy.back} onPress={onBack} />}
+          left={<ScreenBackSlot />} // зачем (закон «назад в одном месте»): кнопка — ScreenBackButton экрана коллекции
           right={onMore ? <PackSquareButton g={g} testID="video-set-more" label={copy.menu} onPress={onMore} /> : undefined}
         />
 

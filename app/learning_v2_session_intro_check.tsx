@@ -20,6 +20,7 @@ import type { RequiredSessionTaskCompletionInputV3 } from '../modules/learning-v
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, ScreenCloseButton } from '../components/v2/ScreenBackButton';
 import { isShortScreen } from '../constants/layout-scale';
 import type { BoxShadowValue } from 'react-native';
 
@@ -188,17 +189,9 @@ export default function LearningV2SessionIntroCheck({
 
   return (
     <LinearGradient colors={['#10151D', '#151B26', '#0E1219']} style={styles.screen}>
-      <View style={[styles.top, { paddingTop: insets.top + 8 }]}>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={t.close}
-          hitSlop={10}
-          onPressIn={() => void hapticTap()}
-          onPress={onBack}
-          style={styles.iconButton}
-        >
-          <Ionicons name="close" size={24} color="#EAF0F6" />
-        </Pressable>
+      {/* зачем (владелец 22.10, вариант В): ✕ — общий ScreenCloseButton слоем; здесь его место в строке */}
+      <View style={[styles.top, { paddingTop: insets.top }]}>
+        <ScreenBackSlot />
         <View style={styles.progressTrack}><View style={[styles.progressFill, progressStyle]} /></View>
         <View accessible accessibilityLabel={t.counter(questionIndex + 1)} style={styles.counter}>
           <Text style={styles.counterText}>{questionIndex + 1}/3</Text>
@@ -324,6 +317,7 @@ export default function LearningV2SessionIntroCheck({
           <Ionicons name="arrow-forward" size={20} color="#07110A" />
         </Pressable>
       </View>
+      <ScreenCloseButton screen="learning_v2_intro_check" accessibilityLabel={t.close} onPress={onBack} />
     </LinearGradient>
   );
 }
@@ -334,7 +328,8 @@ const NESTED_SHADOW: BoxShadowValue[] = [{ offsetX: 0, offsetY: 6, blurRadius: 1
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: '#10151D' },
-  top: { paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10 },
+  // зачем (закон «✕ в одном месте»): поля 20 и высота строки — как у точки общей кнопки
+  top: { paddingHorizontal: 20, minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center', gap: 10 },
   iconButton: { width: 46, height: 46, borderRadius: 17, backgroundColor: '#202936', alignItems: 'center', justifyContent: 'center' },
   progressTrack: { flex: 1, height: 8, borderRadius: 8, backgroundColor: '#27313F', overflow: 'hidden' },
   progressFill: { height: '100%', borderRadius: 8, backgroundColor: '#F8C84E' },

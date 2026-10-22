@@ -156,6 +156,7 @@ function loadComponent({ fontSize = 'medium', uiScale = 1, themeId = 'graphite' 
     '../PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
     '../v2/ShadowSurface': { plateBoxShadow: () => [{ stub: 'plate' }], nestedBoxShadow: () => [{ stub: 'nested' }], PlateFill: 'PlateFill' },
     '../ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
+    '../v2/ScreenBackButton': { ScreenBackSlot: 'ScreenBackSlot', ScreenCloseButton: 'ScreenCloseButton' },
     '../ThemeContext': {
       FONT_SCALE: { small: 1, medium: 1.15, large: 1.3 },
       useTheme: () => ({
@@ -245,7 +246,11 @@ test('actual compact header keeps centered wrapping title and scoped silent acti
   assert.equal(title.props.numberOfLines, undefined);
   assert.equal(title.props.adjustsFontSizeToFit, undefined);
   assert.equal(title.props.maxFontSizeMultiplier, undefined);
-  for (const action of [close, external]) {
+  // 22.10 (владелец, вариант В: «✕ в одном месте»): ✕ — общий ScreenCloseButton (точка 20/48 от верха), его вид и вибрация — у общей
+  // кнопки; здесь — что это он и что он ведёт в onClose. Круг 42 остаётся у внешней ссылки.
+  assert.equal(close.type, 'ScreenCloseButton');
+  assert.equal(typeof close.props.onPress, 'function');
+  for (const action of [external]) {
     assert.equal(action.type, 'PressableHybrid');
     assert.deepEqual(action.props.hitSlop, 3);
     assert.equal(flattenStyle(action.props.contentStyle).width, 42);
@@ -253,11 +258,8 @@ test('actual compact header keeps centered wrapping title and scoped silent acti
     assert.equal(flattenStyle(action.props.contentStyle).borderRadius, 21);
     assert.equal(action.props.withSound, false);
   }
-  assert.equal(close.props.withHaptic, true, 'close retains its one wrapper haptic');
   assert.equal(external.props.withHaptic, false, 'external callback owns its one ordered haptic');
-  const closeIcon = visit(close).find(node => node.type === 'Ionicons');
   const externalIcon = visit(external).find(node => node.type === 'Ionicons');
-  assert.equal(closeIcon.props.size, 20);
   assert.equal(externalIcon.props.size, 19);
   assert.match(externalIcon.props.name, /open|arrow/);
 });

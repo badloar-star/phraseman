@@ -21,7 +21,10 @@ describe('просмотр набора сообщества: нет ложно�
   it('заготовки: «назад» работает сразу, чисел и названий нет, геометрия просмотра (плитка 118, боковой отступ 20)', () => {
     expect(skeleton).toContain('const SIDE = 20;');
     expect(skeleton).toContain('const SKELETON_ROW_H = 118;');
-    expect(skeleton).toContain('<PackBackBare g={g} testID="pack-preview-back" label={backLabel} onPress={onBack} />');
+    // 22.10 (закон владельца «назад везде в одном месте»): «назад» заготовки — общая ScreenBackButton экрана коллекции (работает сразу),
+    // в строке заготовки — её место
+    expect(skeleton).toContain('<PackTopBarRow left={<ScreenBackSlot />} />');
+    expect(screen).toContain('<ScreenBackButton screen="flashcards_collection"');
     expect(skeleton).not.toMatch(/cardCount|cards\.length|\{count\}/);
     expect(skeleton).toContain("export const COMMUNITY_PACK_PREVIEW_SKELETON_TEST_ID = 'pack-preview-resolving';");
   });

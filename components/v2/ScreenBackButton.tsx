@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
-import { View } from 'react-native';
-import { useRouter } from 'expo-router';
+import { BackHandler, View } from 'react-native';
+import { useFocusEffect, useRouter } from 'expo-router';
 
 import { safeRouterBack } from '../../app/navigation_back';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
@@ -33,6 +33,13 @@ export function screenBackTop(safeTop: number): number {
   return safeTop + SCREEN_BACK_TOP_OFFSET;
 }
 
+const SLOT_STYLE = { width: SCREEN_BACK_SIZE, height: SCREEN_BACK_SIZE } as const;
+
+/** Место под общую кнопку в строке шапки: сама кнопка — слой экрана, а заголовок и действия строки встают справа от неё. */
+export function ScreenBackSlot() {
+  return <View pointerEvents="none" style={SLOT_STYLE} />;
+}
+
 type Props = Readonly<{
   /** Короткий ключ экрана для журнала [BACK-BTN] (например `spire_week`). */
   screen: string;
@@ -47,7 +54,9 @@ type Props = Readonly<{
   accessibilityLabel?: string;
 }>;
 
-function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibilityLabel }: Props) {
+type BaseProps = Props & Readonly<{ glyph: 'back' | 'close' }>;
+
+function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibilityLabel, glyph }: BaseProps) {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const isTabPage = useIsTabPage();
@@ -59,6 +68,15 @@ function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibility
     if (onPress) { onPress(); return; }
     safeRouterBack(router, fallback);
   }, [fallback, onPress, router]);
+  // зачем (владелец 22.10: «аппаратная „назад“ на Android делает то же, что ✕»): пока экран в фокусе, системная «назад» зовёт тот же
+  // обработчик, что и ✕. Внутри Modal системная «назад» приходит в его onRequestClose — там хозяин окна передаёт тот же обработчик.
+  useFocusEffect(useCallback(() => {
+    if (glyph !== 'close') return undefined;
+    // зачем: подмены react-native в тестах экранов бывают без BackHandler — ✕ не должен ронять их рендер; на устройстве он есть всегда
+    if (typeof BackHandler?.addEventListener !== 'function') return undefined;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => { handlePress(); return true; });
+    return () => sub.remove();
+  }, [glyph, handlePress]));
   return (
     <View
       pointerEvents="box-none"
@@ -68,6 +86,7 @@ function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibility
         screen={screen}
         onPress={handlePress}
         size={SCREEN_BACK_SIZE}
+        glyph={glyph}
         testID={testID}
         accessibilityLabel={accessibilityLabel}
       />
@@ -75,8 +94,21 @@ function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibility
   );
 }
 
-const ScreenBackButton = memo(ScreenBackButtonBase);
+const ScreenBackButton = memo(function ScreenBackButton(props: Props) {
+  return <ScreenBackButtonBase {...props} glyph="back" />;
+});
 export default ScreenBackButton;
+
+/**
+ * ✕ «закрыть» экрана — в ТОЙ ЖЕ точке и том же круге, что «назад»; меняется только знак.
+ *
+ * зачем (владелец 22.10, вариант В: «✕ оставить, но в одном месте»): крестик остаётся там, где он по макетам (экран закрывается, а не
+ * «возвращается»), но рисуется только этим компонентом — никаких самодельных крестиков на полноэкранных экранах. Системная «назад»
+ * Android, пока экран в фокусе, делает то же, что ✕.
+ */
+export const ScreenCloseButton = memo(function ScreenCloseButton(props: Props) {
+  return <ScreenBackButtonBase {...props} glyph="close" />;
+});
 
 /**
  * Полноэкранный слой (Modal) внутри вкладки: отсчёт верха — снова от верха экрана.
@@ -85,6 +117,21 @@ export default ScreenBackButton;
  * контекст React проходит внутрь Modal, и без сброса кнопка внутри окна считала бы себя на странице вкладки (верх 0 или зона часов),
  * а окно начинается от верха экрана. Оборачивай содержимое такого окна.
  */
+/**
+ * Содержимое экрана уже стоит под безопасным верхом (SafeAreaView с верхним краем или paddingTop: insets.top у предка):
+ * кнопка внутри считает верх от этого содержимого, а не от края экрана — иначе отступ сложился бы дважды.
+ *
+ * зачем (закон владельца 22.10 «назад/✕ в одном месте»): у многих экранов SafeAreaView top обёрнут вокруг всего содержимого, и
+ * класть кнопку вне него неудобно (обработчик живёт внутри). Точка та же: безопасный верх + 0, слева 20.
+ */
+export function ScreenOriginBelowSafeTop({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <TabPageContext.Provider value>
+      <TabTopBleedContext.Provider value={0}>{children}</TabTopBleedContext.Provider>
+    </TabPageContext.Provider>
+  );
+}
+
 export function ScreenOriginReset({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <TabPageContext.Provider value={false}>

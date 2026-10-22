@@ -9,6 +9,7 @@ import MonthlyTrainingSessionIndicator from '../components/MonthlyTrainingSessio
 import { LinearGradient } from '../components/SafeLinearGradient';
 import ScreenGradient from '../components/ScreenGradient';
 import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
+import ScreenBackButton from '../components/v2/ScreenBackButton';
 import { useLang } from '../components/LangContext';
 import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
@@ -828,6 +829,8 @@ export default function FlashcardsTrainingSetupScreen() {
           />
         </ContentWrap>
       </View>
+      {/* зачем (закон владельца 22.10 «назад везде в одном месте»): общая кнопка слоем от верха экрана, вне отступов и ContentWrap */}
+      <ScreenBackButton screen="training_setup" testID="fc-training-setup-back" onPress={leave} />
       {mode && mode !== 'truefalse' ? <FeatureIntroEntry
         key={mode}
         id={`training_${mode}_first_visit`}

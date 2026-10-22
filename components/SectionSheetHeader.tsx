@@ -4,26 +4,21 @@
 //
 // зачем: разделы приложения открываются как модальная страница с выездом снизу
 // (см. app/section_sheet_navigation.ts), а у такой страницы грамматика шапки —
-// не «стрелка назад + заголовок слева», а заголовок по центру и тональная
-// кнопка-крестик справа (закрытие вниз). Высота фиксированная: первый кадр =
+// не «стрелка назад + заголовок слева», а заголовок по центру и ✕ (закрытие вниз).
+// 22.10 (владелец, вариант В: «✕ в одном месте, в той же точке, что стрелка: слева сверху»): прежний стандарт 12.10
+// «✕ справа» отменён — ✕ рисует общий ScreenCloseButton слева сверху, справа остаётся только аксессуар. Высота фиксированная: первый кадр =
 // финальная геометрия (Библия производительности, layout stability).
 // Разделение — тоном и hairline-линией снизу, без обводок контейнеров.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
 import { View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { FlowText } from './text-integrity/FlowText';
-import TapScale from './TapScale';
-// зачем (2026-08-16, motionVariant='hybrid'): единый пресс-стандарт гибрида
-// «Световод + Чекан» (constants/motionHybrid.ts → PRESS) для крестика/аксессуара
-// вместо TapScale. Дефолт остаётся 'classic' — вид не меняется без явного флага.
-import PressableHybrid from './PressableHybrid';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 
-import { noAndroidOutline } from '../constants/androidGlow';
 import { RowDivider } from './v2/RowDivider';
+import { ScreenCloseButton, ScreenOriginBelowSafeTop } from './v2/ScreenBackButton';
 /** Фиксированная высота контентной части шапки — без прыжков геометрии. */
 export const SECTION_SHEET_HEADER_HEIGHT = 56;
 
@@ -40,10 +35,6 @@ interface SectionSheetHeaderProps {
   /** Hairline-линия снизу (односторонний разделитель разрешён стилем владельца). */
   showDivider?: boolean;
   closeTestID?: string;
-  /** Гибрид «Световод + Чекан» для крестика (PressableHybrid variant="icon"). Дефолт — боевой 'classic'. */
-  motionVariant?: 'classic' | 'hybrid';
-  /** Крестик в тональном круге (по умолчанию, как referral-code-states) или плоский без плашки (как promo-code-states). */
-  closeVariant?: 'plate' | 'flat';
 }
 
 export default function SectionSheetHeader({
@@ -52,8 +43,6 @@ export default function SectionSheetHeader({
   accessory,
   showDivider = true,
   closeTestID,
-  motionVariant = 'classic',
-  closeVariant = 'plate',
 }: SectionSheetHeaderProps) {
   const { theme: t } = useTheme();
   const { lang } = useLang();
@@ -113,49 +102,13 @@ export default function SectionSheetHeader({
         }}
       >
         {accessory}
-        {motionVariant === 'hybrid' ? (
-          <PressableHybrid
-            accessibilityRole="button"
-            accessibilityLabel={closeLabel}
-            testID={closeTestID}
-            variant="icon"
-            onPress={onClose}
-            style={closeBtnStyle(t, closeVariant)}
-          >
-            <Ionicons name="close" size={20} color={t.textPrimary} />
-          </PressableHybrid>
-        ) : (
-          <TapScale
-            accessibilityRole="button"
-            accessibilityLabel={closeLabel}
-            testID={closeTestID}
-            onPress={onClose}
-            style={closeBtnStyle(t, closeVariant)}
-          >
-            <Ionicons name="close" size={20} color={t.textPrimary} />
-          </TapScale>
-        )}
       </View>
+      {/* зачем (владелец 22.10, вариант В): ✕ — общий ScreenCloseButton в общей точке (20/48 от безопасного верха). Шапка всегда первой
+          стоит под безопасным верхом хозяина (SafeAreaView) — поэтому кнопка считает верх от неё. Системная «назад» Android = ✕. */}
+      <ScreenOriginBelowSafeTop>
+        <ScreenCloseButton screen="section_sheet" testID={closeTestID} accessibilityLabel={closeLabel} onPress={onClose} />
+      </ScreenOriginBelowSafeTop>
     </View>
   );
 }
 
-/** Одинаковая геометрия крестика в classic/hybrid — меняется только прессабл-примитив. */
-function closeBtnStyle(t: ReturnType<typeof useTheme>['theme'], variant: 'plate' | 'flat' = 'plate') {
-  if (variant === 'flat') {
-    return { width: 40, height: 40, borderRadius: 20, alignItems: 'center' as const, justifyContent: 'center' as const, ...noAndroidOutline };
-  }
-  return {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: 'center' as const,
-    justifyContent: 'center' as const,
-    backgroundColor: t.bgSurface,
-    shadowColor: '#000', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
-    shadowOpacity: 0.24,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 },
-    ...noAndroidOutline,
-  };
-}

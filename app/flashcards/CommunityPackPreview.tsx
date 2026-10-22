@@ -25,7 +25,8 @@ import { useStudyTarget } from '../../components/StudyTargetContext';
 import { loadWordStrengthMap, strengthDotCount, strengthFor, type WordStrengthMap } from './word_strength';
 import { packDeckLevel } from '../../components/packs/packDeckModel';
 import { packCardsWord } from '../../components/packs/PackRow';
-import { PackBackBare, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
+import { PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
+import { ScreenBackSlot } from '../../components/v2/ScreenBackButton';
 import SkeletonBlock from '../../components/SkeletonShimmer';
 import { useTheme } from '../../components/ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -70,7 +71,7 @@ const SIDE = 20;
 const SKELETON_ROW_H = 118; // `.zg.s0 { grid-auto-rows: 118px }` — тот же размер, что у готовой плитки, без прыжка
 
 export default function CommunityPackPreview({
-  pack, cards, lang, cardContentLang, t, onBack, onMore, onAdded, onRequestPurchase, onOpenComments, onSpeak, cardsLoading = false,
+  pack, cards, lang, cardContentLang, t, onMore, onAdded, onRequestPurchase, onOpenComments, onSpeak, cardsLoading = false,
 }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
@@ -79,7 +80,6 @@ export default function CommunityPackPreview({
   const { width: screenW, height: screenH } = useWindowDimensions();
   const author = useCommunityAuthor(pack, lang);
   const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
-  const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
   const moreLabel = triLang(lang, { ru: 'Ещё', uk: 'Ще', en: 'More', es: 'Más', 'pt-BR': 'Mais', vi: 'Thêm', id: 'Lainnya', tr: 'Daha fazla', pl: 'Więcej' });
   const speakLabel = triLang(lang, { ru: 'Озвучить', uk: 'Озвучити', en: 'Listen', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Posłuchaj' });
   const commentsLabel = triLang(lang, { ru: 'Отклики', uk: 'Відгуки', en: 'Comments', es: 'Comentarios', 'pt-BR': 'Comentários', vi: 'Bình luận', id: 'Komentar', tr: 'Yorumlar', pl: 'Komentarze' });
@@ -207,7 +207,7 @@ export default function CommunityPackPreview({
         >
           <View>
           <PackTopBarRow
-            left={<PackBackBare g={g} testID="pack-preview-back" label={backLabel} onPress={onBack} />}
+            left={<ScreenBackSlot />} // зачем (закон «назад в одном месте»): кнопка — ScreenBackButton экрана коллекции
             right={<PackSquareButton g={g} testID="pack-preview-more" label={moreLabel} onPress={onMore} />}
           />
 

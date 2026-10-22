@@ -5,7 +5,7 @@ import PressableHybrid from '../PressableHybrid';
 import { useLv2Glass } from '../learning-v2/LearningV2Glass';
 import { noteBackTap } from '../../app/back_tap_probe';
 import { nestedBoxShadow } from './ShadowSurface';
-import BackGlyph from './BackGlyph';
+import BackGlyph, { CloseGlyph } from './BackGlyph';
 
 /**
  * Кнопка «назад» приложения — одна на экраны, где нужна круглая плашка.
@@ -24,9 +24,13 @@ type Props = Readonly<{
   accessibilityLabel?: string;
   testID?: string;
   size?: number;
+  /** Знак: стрелка «назад» или ✕ «закрыть» (владелец 22.10, вариант В: круг и место те же, меняется только знак). */
+  glyph?: 'back' | 'close';
 }>;
 
-function BackButtonBase({ onPress, screen, accessibilityLabel, testID, size = 44 }: Props) {
+const CLOSE_LABELS = { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' } as const;
+
+function BackButtonBase({ onPress, screen, accessibilityLabel, testID, size = 44, glyph = 'back' }: Props) {
   const { lang } = useLang();
   const g = useLv2Glass();
   const handlePress = useCallback(() => {
@@ -37,7 +41,7 @@ function BackButtonBase({ onPress, screen, accessibilityLabel, testID, size = 44
     <PressableHybrid
       testID={testID}
       accessibilityRole="button"
-      accessibilityLabel={accessibilityLabel ?? triLang(lang, BACK_LABELS)}
+      accessibilityLabel={accessibilityLabel ?? triLang(lang, glyph === 'close' ? CLOSE_LABELS : BACK_LABELS)}
       onPress={handlePress}
       variant="icon"
       hitSlop={6}
@@ -51,7 +55,7 @@ function BackButtonBase({ onPress, screen, accessibilityLabel, testID, size = 44
         boxShadow: nestedBoxShadow(g),
       }}
     >
-      <BackGlyph size={22} color={g.text} />
+      {glyph === 'close' ? <CloseGlyph size={22} color={g.text} /> : <BackGlyph size={22} color={g.text} />}
     </PressableHybrid>
   );
 }

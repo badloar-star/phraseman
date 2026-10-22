@@ -4,6 +4,7 @@ Governance-ID: TG-4A3363A21B3A
 Governance-ID: TG-673CA94C1E57
 Governance-ID: TG-629E00F2EA05
 Governance-ID: TG-361F0CF5B99D
+Governance-ID: TG-3F12C808BE0E
 Status: шаг 1 готов — компонент, сторож, база 80, инвентаризация; дальше волны
 Owner: 5 · ВХОД И АККАУНТ (координатор 22.10, закон владельца)
 
@@ -202,3 +203,31 @@ Owner: 5 · ВХОД И АККАУНТ (координатор 22.10, закон
   (CollectionHeaderV2, TrainingSetupV2) — следующая волна.
 - Вопрос координатору (открыт): экраны с ✕ «закрыть» (settings_language, promo, referrals, pack_opening, интро занятия,
   дуэль) — менять на «назад» или оставить ✕ по макетам.
+- Волна 6 — Карточки, часть 1: настройка тренировки (TrainingSetupV2 — место 48, кнопка у хозяина
+  flashcards_training_setup). База 71 → 70. Коллекция Карточек (flashcards_collection) — отдельной волной: 7 шапок со
+  своей «назад» (VideoSetView, CommunityPackPreview(+Skeleton), CollectionTopBar, PackTopBar, CollectionHeader,
+  PackOpenFailedView) → одна ScreenBackButton у корня, в режиме выбора — без «назад».
+- Решение владельца по ✕ (вариант В): ✕ остаётся там, где по макетам, но общим компонентом — та же точка и круг 48,
+  знак ✕; аппаратная «назад» = ✕; сторож распространяется на ✕. Порядок: Карточки → крестики.
+- Волна 7 — коллекция Карточек (готово в коде, прогон после тишины): 6 шапок (VideoSetView, CommunityPackPreview(+Skeleton),
+  PackTopBar, CollectionTopBar, CollectionHeader) — место `ScreenBackSlot`; одна ScreenBackButton у корня
+  flashcards_collection (в режиме выбора её нет, «Отмена»; при «набор не открылся» — leaveCollection). Сторож теперь
+  видит и `PackBackBare` (кнопка без круга шапок наборов) — в базу добавлены MyPacksV2 и flashcards_video_packs.
+- Крестик (вариант В): `CloseGlyph` (kit.js close), `BackButton glyph="close"`, `ScreenCloseButton` — та же точка и круг,
+  системная «назад» Android = ✕ (BackHandler на фокусе).
+- Крестики (готово в коде, прогон после тишины): settings_language, pack_opening, интро занятия и его проверка, дуэль
+  (сообщение/итог/игра; самодельный DuelCloseButton снят), документы LegalDocumentSheet (приватность/условия) — общий
+  ScreenCloseButton. Новое: `ScreenBackSlot` (место под кнопку в строке шапки), `ScreenOriginBelowSafeTop` (содержимое уже
+  под безопасным верхом — кнопка считает верх от него). Сторож: храповик своих ✕ в app/** (`config/screen_close_baseline.json`,
+  17 — там и законные ✕ шторок/очистки поля, разбирать волнами). Отложено: промокод/рефералы (SectionSheetHeader, ✕ справа
+  по стандарту 12.10 — вопрос координатору), редактор набора (PackEditorV2.tsx занят чужой правкой).
+- Промокод и рефералы (координатор 22.10: «новый закон отменяет стандарт 12.10 „✕ справа“»): SectionSheetHeader закрывается
+  общим ScreenCloseButton слева сверху (внутри ScreenOriginBelowSafeTop — шапка первой под безопасным верхом хозяина), справа
+  только аксессуар; варианты closeVariant/motionVariant и самодельный ✕ сняты. Сторож section_sheet_header_close_right
+  ЗАМЕНЁН на section_sheet_header_close_left (проверяет общий ✕ слева и аксессуар справа).
+- Проверки перед коммитом (тишина снята частично): 116 наборов тестов по затронутым файлам — свои падения исправлены
+  (сторож заготовки предпросмотра, храповик ✕ + витрина режимов в базе, ✕ устойчив к подмене react-native без BackHandler);
+  чужие: reachable_action_buttons (chapter-exam), flashcards_liquid_hub ×4 (isLiteModeOn не подменён, c0bfb85b7),
+  flashcards_saved_liquid ×2 (CollectionListView). Node-сторожа 15/15, срез типов 0.
+  tests/learning_v2_intro_reader_a.test.tsx в коммит НЕ вошёл: в файле чужие незакоммиченные правки; мои куски (подмена
+  ScreenBackButton, зона 48) остаются в рабочей копии; этот файл в набор запуска не входит.

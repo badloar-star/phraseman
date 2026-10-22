@@ -19,7 +19,8 @@ import { useLang } from '../components/LangContext';
 import { FlowText } from '../components/text-integrity';
 import { useFriendsGlass } from '../components/friends/FriendsGlassKit';
 import { useIsPlus } from '../components/plus/use_is_plus';
-import DuelPlayTopBar, { DuelCloseButton } from '../components/friends_together/DuelPlayTopBar';
+import DuelPlayTopBar from '../components/friends_together/DuelPlayTopBar';
+import { ScreenBackSlot, ScreenCloseButton, ScreenOriginBelowSafeTop } from '../components/v2/ScreenBackButton';
 import DuelPhraseBoard from '../components/friends_together/DuelPhraseBoard';
 import FriendDuelResultView, { type DuelPhraseRow } from '../components/friends_together/FriendDuelResultView';
 import FriendSheetButton from '../components/friends_together/FriendSheetButton';
@@ -88,8 +89,9 @@ function DuelMessage({ title, body, lang, onClose }: Readonly<{ title: string; b
   return (
     <View style={styles.page}>
       <View style={styles.resultHeader}>
-        <DuelCloseButton label={duelPlayCopy(lang, 'close')} onPress={onClose} />
+        <ScreenBackSlot />
       </View>
+      <ScreenCloseButton screen="friends_duel_message" testID="friend-duel-close" accessibilityLabel={duelPlayCopy(lang, 'close')} onPress={onClose} />
       <View style={styles.message}>
         <FlowText testID="friend-duel-message-title" provenance="authored" accessibilityRole="header" style={[styles.center, { color: glass.text, fontWeight: '700', fontSize: 22 * textScale, lineHeight: 28 * textScale }]}>
           {title}
@@ -242,8 +244,9 @@ function FriendsDuelScreen() {
     return (
       <View style={styles.page}>
         <View style={styles.resultHeader}>
-          <DuelCloseButton label={duelPlayCopy(lang, 'close')} onPress={close} />
+          <ScreenBackSlot />
         </View>
+        <ScreenCloseButton screen="friends_duel_result" testID="friend-duel-close" accessibilityLabel={duelPlayCopy(lang, 'close')} onPress={close} />
         <ScrollView style={styles.scroll} contentContainerStyle={styles.resultContent} showsVerticalScrollIndicator={false}>
           <FriendDuelResultView
             mode={summary.kind}
@@ -274,6 +277,7 @@ function FriendsDuelScreen() {
         textScale={textScale}
         onClose={close}
       />
+      <ScreenCloseButton screen="friends_duel_play" testID="friend-duel-close" accessibilityLabel={duelPlayCopy(lang, 'close')} onPress={close} />
       <ScrollView style={styles.scroll} contentContainerStyle={styles.playContent} showsVerticalScrollIndicator={false}>
         {play.phrase ? (
           <DuelPhraseBoard key={play.phrase.id} phrase={play.phrase} picked={state.picked} verdict={state.verdict} lang={lang} textScale={textScale} onAppend={play.append} onRemoveAt={play.removeAt} />
@@ -299,7 +303,10 @@ export default function FriendsDuelRoute() {
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
         <ContentWrap>
-          <FriendsDuelScreen />
+          {/* зачем (закон «✕ в одном месте»): содержимое уже под безопасным верхом — общий ✕ считает верх от него */}
+          <ScreenOriginBelowSafeTop>
+            <FriendsDuelScreen />
+          </ScreenOriginBelowSafeTop>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>
@@ -314,7 +321,7 @@ const styles = StyleSheet.create({
   // `.foot`: поля 12/20 (низ — безопасная зона + 12).
   footer: { paddingTop: 12, paddingBottom: 12 },
   // `.ldh`: от 48, отступ 2.
-  resultHeader: { minHeight: 48, marginTop: 2, flexDirection: 'row', alignItems: 'center' },
+  resultHeader: { minHeight: 48, flexDirection: 'row', alignItems: 'center' },
   resultContent: { paddingBottom: 24 },
   message: { flex: 1, justifyContent: 'center', paddingBottom: 48 },
   messageButton: { marginTop: 20 },

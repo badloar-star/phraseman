@@ -14,10 +14,12 @@ test('language settings use the approved liquid-glass scroll shell and geometry'
   assert.match(source, /useStableSafeAreaInsets\(\)/);
   for (const side of ['Top', 'Bottom', 'Left', 'Right']) assert.match(source, new RegExp(`padding${side}:\\s*insets\\.${side.toLowerCase()}`));
   const scrollStart = source.indexOf('<BouncyScrollView');
-  assert.ok(scrollStart >= 0 && source.indexOf('settings-language-back', scrollStart) >= 0, 'close control lives inside the scroll view');
-  // 11.10 (паритет profile.html PRF-03): круг «Закрыть» 42 со значком 21, заголовок с разрядкой −0.5.
-  assert.match(source, /width:\s*42,\s*height:\s*42/);
-  assert.match(source, /name="close"\s+size=\{21\}/);
+  assert.ok(scrollStart >= 0, 'scroll view');
+  // 22.10 (владелец, вариант В: «✕ оставить, но в одном месте»): ✕ — общий ScreenCloseButton слоем (точка 20/48 от верха), а не круг 42
+  // в прокрутке; в начале прокрутки — его место (ScreenBackSlot). Прежнее «круг 42 со значком 21» (PRF-03 11.10) снято законом владельца.
+  assert.ok(source.includes('<ScreenCloseButton screen="settings_language" testID="settings-language-back"'), 'close is the shared ScreenCloseButton');
+  assert.ok(source.indexOf('<ScreenBackSlot />', scrollStart) >= 0, 'its slot opens the scroll');
+  // заголовок с разрядкой −0.5 (PRF-03)
   assert.match(source, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*letterSpacing:\s*-0\.5,\s*marginTop:\s*10/);
   assert.match(source, /fontSize:\s*16,\s*lineHeight:\s*22,\s*marginTop:\s*7/);
   assert.match(source, /marginTop:\s*22/);
@@ -86,6 +88,7 @@ test('transpiled screen uses the release-aware registry and preserves row intera
     '../components/PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
     '../components/SafeLinearGradient': { __esModule: true, default: 'SafeLinearGradient' },
     '../components/ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
+    '../components/v2/ScreenBackButton': { ScreenBackSlot: 'ScreenBackSlot', ScreenCloseButton: 'ScreenCloseButton' },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },
     // D164 (вариант А): экран читает параметр chooseStudy=1 — открыть шторку «Язык изучения» сразу
     'expo-router': { useRouter: () => ({}), useLocalSearchParams: () => ({}) },
@@ -109,11 +112,11 @@ test('transpiled screen uses the release-aware registry and preserves row intera
   const tree = module.exports.default();
   const visit = node => Array.isArray(node) ? node.flatMap(visit) : node && typeof node === 'object' ? [node, ...visit(node.props?.children)] : [];
   const rows = visit(tree).filter(node => node.type === 'PressableHybrid' && node.props.testID?.startsWith('settings-language-row-'));
-  const close = visit(tree).find(node => node.type === 'PressableHybrid' && node.props.testID === 'settings-language-back');
+  const close = visit(tree).find(node => node.type === 'ScreenCloseButton' && node.props.testID === 'settings-language-back');
   assert.deepEqual(calls.visible, [true], 'the real registry provider receives the release flag');
   assert.equal(rows.length, 2);
-  assert.equal(close.props.withHaptic, true, 'the close control keeps its established haptic');
-  assert.equal(close.props.withSound, false, 'the close control remains silent');
+  // вжатие и вибрация — у общей кнопки (BackButton → PressableHybrid), здесь проверяем подпись и обработчик
+  assert.ok(close.props.accessibilityLabel, 'the close control is labelled');
   close.props.onPress();
   assert.equal(calls.back?.[1], '/(tabs)/settings', 'close preserves the settings fallback');
   assert.equal(rows[0].props.accessibilityState.selected, true);

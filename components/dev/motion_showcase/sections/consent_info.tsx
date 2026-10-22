@@ -46,7 +46,6 @@ function SectionSheetHeaderPreview({ hybrid }: { hybrid: boolean }) {
       title={cs('section_sheet_header_demo_title')}
       onClose={() => {}}
       showDivider
-      motionVariant={hybrid ? 'hybrid' : 'classic'}
     />
   );
 }

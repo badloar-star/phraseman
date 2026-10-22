@@ -8,6 +8,7 @@ import ContentWrap from '../ContentWrap';
 import PressableHybrid from '../PressableHybrid';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import ScreenGradient from '../ScreenGradient';
+import { ScreenBackSlot, ScreenCloseButton } from '../v2/ScreenBackButton';
 import { FONT_SCALE, useTheme } from '../ThemeContext';
 import { keepEmailsUnbroken } from './legal_text_format';
 
@@ -56,34 +57,13 @@ export default function LegalDocumentSheet({
             testID="legal-document-header"
             style={{
               minHeight: 48,
-              marginTop: 8,
               marginHorizontal: 20,
               flexDirection: 'row',
               alignItems: 'center',
             }}
           >
-            <PressableHybrid
-              testID="legal-document-close"
-              accessibilityLabel={closeAccessibilityLabel}
-              accessibilityRole="button"
-              hitSlop={3}
-              onPress={onClose}
-              variant="icon"
-              withHaptic={true}
-              withSound={false}
-              style={{ width: 42, height: 42, alignSelf: 'center' }}
-              contentStyle={{
-                width: 42,
-                height: 42,
-                borderRadius: 21,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: glass.opaqueControl,
-                boxShadow: nestedBoxShadow(glass), // зачем (стиль «Тень», владелец 12.10): кнопка без кромки — малая тень
-              }}
-            >
-              <Ionicons name="close" size={20} color={glass.lightTint} />
-            </PressableHybrid>
+            {/* зачем (владелец 22.10, вариант В): ✕ — общий ScreenCloseButton слоем; здесь его место в строке шапки */}
+            <ScreenBackSlot />
 
             <Text
               testID="legal-document-title"
@@ -194,6 +174,7 @@ export default function LegalDocumentSheet({
           </View>
         </ContentWrap>
       </View>
+      <ScreenCloseButton screen="legal_document" testID="legal-document-close" accessibilityLabel={closeAccessibilityLabel} onPress={onClose} />
     </ScreenGradient>
   );
 }

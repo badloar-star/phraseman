@@ -30,7 +30,8 @@ export const LEARNING_V2_OWNER_EN_TITLES_RU: readonly string[] = Object.freeze([
   "Could, may, be able to, разрешение",
   "Must, have to, should, mustn't",
   "Gerund / infinitive после глагола + object/reflexive pronouns, one/ones",
-  "Предлоги времени и места + фразовые глаголы (новый слот, решение владельца 03.09)",
+  // новый слот урока 22 — решение владельца 03.09 (служебная пометка, ученику не показывается; координатор 22.10)
+  "Предлоги времени и места + фразовые глаголы",
   "Present Perfect: опыт и результат",
   "Present Perfect: for/since, vs Past Simple",
   "Used to, past perfect, порядок событий",

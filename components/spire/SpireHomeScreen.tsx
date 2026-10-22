@@ -5,15 +5,18 @@
 // за двумя замками. Замок 1 — сегмент в «Сообществе» (app/spire_tab_flag.ts). Замок 2 —
 // этот экран: пока config.enabled из config/spire_v1 выключен, он показывает
 // «откроется чуть позже» и не читает ни локальную неделю, ни сервер.
-// Вся сеть игровой части (комната недели, пакет заданий, итог недели, друзья, досылка очереди) живёт в app/spire/use_spire_game.ts и открывается только через SpireLiveGate (оба замка разом). Этот файл — вёрстка и состояния экрана.
+// Вся сеть игровой части (комната недели, пакет заданий, итог недели, друзья, досылка
+// очереди) живёт в app/spire/use_spire_game.ts и открывается только через
+// SpireLiveGate (оба замка разом). Этот файл — вёрстка и состояния экрана.
 //
-// Firebase-экономия: конфиг — кэш 6 ч; комната — 1 чтение не чаще раза в 6 ч; пакет — 1 скачивание в неделю; итог недели — 1 чтение и только если играл. Локальная неделя — AsyncStorage, маркер двигается без сети (Optimistic UI).
+// Firebase-экономия: конфиг — кэш 6 ч; комната — 1 чтение не чаще раза в 6 ч; пакет —
+// 1 скачивание в неделю; итог недели — 1 чтение и только если играл. Локальная неделя —
+// AsyncStorage, маркер двигается без сети (Optimistic UI).
 //
 // СПЕРВА ЛОГИ: префикс [SPIRE] — вход, откуда данные, причина каждого раннего выхода.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getDevSpireWeekResultOverride } from '../../app/dev_spire_tier';
@@ -24,14 +27,14 @@ import { useSpireGame } from '../../app/spire/use_spire_game';
 import { peekSpireTourSeen, spireMarkTourSeen, spireReadTourSeen } from '../../app/spire/spire_local_store';
 import { DebugLogger } from '../../app/debug-logger';
 import { useTabNav } from '../../app/TabContext';
-import { V2, V2_TYPE } from '../../constants/v2Style';
+import { V2 } from '../../constants/v2Style';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useTabContentBottomPad, useTabPillTop } from '../../hooks/use-tab-content-bottom-pad';
 import type { SpireConfigDoc } from '../../modules/spire/config_contract';
 import type { SpireWeekLocal } from '../../modules/spire/report_queue';
 import { spireWeekStartMs } from '../../modules/spire/residents';
 import { spireTierName } from '../../modules/spire/tier_names';
-import SpireWeekSubtitle from './SpireWeekSubtitle';
+import SpireHomeTitle from './SpireHomeTitle';
 import EnergyBar from '../EnergyBar';
 import { useLang } from '../LangContext';
 import { usePremium } from '../PremiumContext';
@@ -62,11 +65,11 @@ import { useSpirePreview } from './spire_preview_context';
 import SpireScene from './scene/SpireScene'; import { useSpireSceneTop } from './scene/use_spire_scene_top';
 import type { SpireMemberRow } from './spire_room_types';
 import { useIsPlus } from '../plus/use_is_plus';
-import { spireText, spireTimeLeftText } from './spire_strings';
+import { spireTimeLeftText } from './spire_strings';
 import { spirePeopleCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
 import { SPIRE_FLOOR_COUNT, spireRivalsByFloor, spireTimeLeft } from './spire_tower_model';
-import { SPIRE_BETA_LANGS, asSpireLang, peekFirstFrameWeek, readCurrentLocalWeek } from './spire_home_week';
+import { asSpireLang, peekFirstFrameWeek, readCurrentLocalWeek } from './spire_home_week';
 
 const LOG = '[SPIRE]';
 const DASH = '—';
@@ -83,13 +86,15 @@ export default function SpireHomeScreen() {
   const realCoinRank = useMyCoinRank();
   const bottomPad = useTabContentBottomPad();
   const pillTop = useTabPillTop(); const dockBottom = pillTop + DOCK_PILL_GAP;
-  // зачем (координатор 11.10): DEV-превью на моках (/dev_spire_preview) подаёт сюда готовую модель; в боевом пути preview всегда null, и экран работает как раньше — конфиг, локальная неделя и игра из реальных источников.
+  // зачем (координатор 11.10): DEV-превью на моках (/dev_spire_preview) подаёт сюда готовую модель; в боевом пути preview всегда null,
+  // и экран работает как раньше — конфиг, локальная неделя и игра из реальных источников.
   const preview = useSpirePreview();
   const myCoinRank = preview ? preview.coinRank : realCoinRank;
   // зачем (владелец 21.10, реестр №6): моя строка в «Всех участниках» и на пьедестале — с кольцом, если у меня Plus (живой статус, не снимок комнаты)
   const myIsPlus = useIsPlus();
 
-  // Замок 2: null = конфиг ещё не прочитан (кэш), дальше решает config.enabled. зачем (аудит Optimistic UI Шпиля, 13.10): повторный заход не рисует пустой `spire-loading` — берём последний настоящий конфиг из памяти процесса; loadSpireConfig ниже освежает его фоном.
+  // Замок 2: null = конфиг ещё не прочитан (кэш), дальше решает config.enabled.
+  // зачем (аудит Optimistic UI Шпиля, 13.10): повторный заход не рисует пустой `spire-loading` — берём последний настоящий конфиг из памяти процесса; loadSpireConfig ниже освежает его фоном.
   const [config, setConfig] = useState<SpireConfigDoc | null>(() => preview?.config ?? peekSpireConfig()); const configQuietRetry = useSpireConfigQuietRetry(!preview, config, setConfig); // зачем (правило владельца 18.10): сбой чтения конфига — тихие повторы вместо «Нет интернета»
   const [week, setWeek] = useState<SpireWeekLocal | null>(() => preview?.week ?? peekFirstFrameWeek(studyTarget));
   const [selected, setSelected] = useState<number | null>(null);
@@ -115,7 +120,8 @@ export default function SpireHomeScreen() {
         DebugLogger.info('[SPIRE-FIRSTFRAME]', `первый кадр: ${config === null ? 'скелет SpireHomeSkeleton' : 'экран из памяти'}, конфиг пришёл через ${Date.now() - enteredAtMs} мс`);
         setConfig(next);
         if (next.enabled !== true) {
-          // зачем (владелец 11.10: «ШПИЛЬ НЕМЕДЛЕННО»): «выключен» может быть старым кэшем (6 ч) — один принудительный перечит config/spire_v1 (не чаще раза в 60 секунд); включён на сервере → открываем Шпиль сразу.
+          // зачем (владелец 11.10: «ШПИЛЬ НЕМЕДЛЕННО»): «выключен» может быть старым кэшем (6 ч) — один принудительный
+          // перечит config/spire_v1 (не чаще раза в 60 секунд); включён на сервере → открываем Шпиль сразу.
           void refreshSpireConfigIfLocked('spire_home', false).then((enabledNow) => {
             if (!alive || !enabledNow) return;
             DebugLogger.info(LOG, 'home: после перечита сервер включён — открываем Шпиль');
@@ -130,7 +136,8 @@ export default function SpireHomeScreen() {
     return () => { alive = false; };
   }, []);
 
-  // зачем (владелец 11.10 «Шпиль только ru/uk», п.76, координатор 15.10): вкладка закрыта замком по языку интерфейса, но прямой маршрут /spire и смена языка на открытом экране обходили его — открывались английские подписи с русскими заданиями. Теперь экран сам подчиняется тому же решению (SpireLockedState).
+  // зачем (владелец 11.10 «Шпиль только ru/uk», п.76, координатор 15.10): вкладка закрыта замком по языку интерфейса, но прямой маршрут /spire и смена языка
+  // на открытом экране обходили его — открывались английские подписи с русскими заданиями. Теперь экран сам подчиняется тому же решению (SpireLockedState).
   const langLock = spireScreenLangLock(lang);
   const unlocked = config !== null && config.enabled === true && !langLock.locked;
   const lastLangLockKeyRef = useRef<string | null>(null);
@@ -141,7 +148,8 @@ export default function SpireHomeScreen() {
     lastLangLockKeyRef.current = key;
     console.log('[SPIRE-GATE] screen', JSON.stringify({ lang: langLock.decision.lang, allowed: langLock.decision.allowed, reason: langLock.decision.reason, locked: langLock.locked, previous: before, preview: preview !== null, config: config === null ? 'not_read' : config.enabled === true ? 'enabled' : 'disabled', result: langLock.locked ? 'SpireLockedState' : 'screen_allowed' })); // guard-ok: решение по языку интерфейса, одна строка на смену
   }, [langLock.decision.lang, langLock.decision.allowed, langLock.decision.reason, langLock.locked, preview, config]);
-  // зачем (Макеты, spire-gap-018: за шторкой правил на кадре пустой чёрный фон; сперва логи): что реально рисует главный экран, когда шторка правил открыта/закрыта — по строке видно, отрисован ли экран за шторкой (unlocked/langLock/config/weekFloor) или показан замок/загрузка. Только dev, одна строка на смену.
+  // зачем (Макеты, spire-gap-018: за шторкой правил на кадре пустой чёрный фон; сперва логи): что реально рисует главный экран, когда шторка правил открыта/закрыта — по строке видно, отрисован ли экран за шторкой
+  // (unlocked/langLock/config/weekFloor) или показан замок/загрузка. Только dev, одна строка на смену.
   useEffect(() => {
     if (typeof __DEV__ === 'undefined' || !__DEV__) return;
     console.log('[SPIRE-RULES] home', JSON.stringify({ unlocked, langLocked: langLock.locked, lang, config: config === null ? 'not_read' : config.enabled === true ? 'enabled' : 'disabled', preview: preview !== null, weekFloor: week ? week.floor : null, tier: week ? week.tier : null, rendered: config === null ? 'spire-loading' : langLock.locked || !unlocked ? 'SpireLockedState' : 'home' })); // guard-ok: dev-журнал, что за шторкой правил
@@ -192,7 +200,8 @@ export default function SpireHomeScreen() {
     setFriendsRefreshing(true);
     void game.refreshFriends().finally(() => setFriendsRefreshing(false));
   }, [game]);
-  // зачем (Макеты spire-gap-008: подпись «Задания этой недели ещё готовятся» наезжала на ряд друзей): в макете запас под нижней панелью 120 dp, а с подписью над кнопкой (причина блокировки старта) — 150 dp (подпись 18 + отступ 10 + запас); без этого низ списка на конце прокрутки уходит под подпись.
+  // зачем (Макеты spire-gap-008: подпись «Задания этой недели ещё готовятся» наезжала на ряд друзей): в макете запас под нижней панелью 120 dp, а с подписью
+  // над кнопкой (причина блокировки старта) — 150 dp (подпись 18 + отступ 10 + запас); без этого низ списка на конце прокрутки уходит под подпись.
   const scrollTailPad = game.outcome ? 300 : game.startBlock ? 150 : 120;
   const tailNeeded = dockH > 0 ? Math.ceil(dockBottom + dockH + DOCK_GAP - bottomPad) : 0;
   const tailPad = Math.max(scrollTailPad, tailNeeded);
@@ -216,7 +225,8 @@ export default function SpireHomeScreen() {
       towerWillScrollTo: myFloor !== null ? `свой этаж ${myFloor}` : `низ башни (этажа нет; выбран ${shownFloor})`,
     });
   }, [preview, week, myFloor, selected, shownFloor, game.rows, game.tier, game.live, game.startBlock, game.session, game.pending, hasPremiumAccess]);
-  // зачем (координатор 13.10, сперва логи): ОДНА строка отвечает «перекрывает ли док последний блок на конце прокрутки»: endClearance = зазор между низом списка и верхом дока при полной прокрутке (paddingBottom − отступ дока снизу − высота дока); ≥ DOCK_GAP — чисто. Видны оба слагаемых запаса (макетный пол и вычисленный от дока), этаж и откуда значения.
+  // зачем (координатор 13.10, сперва логи): ОДНА строка отвечает «перекрывает ли док последний блок на конце прокрутки»: endClearance = зазор между низом списка и верхом дока при полной прокрутке
+  // (paddingBottom − отступ дока снизу − высота дока); ≥ DOCK_GAP — чисто. Видны оба слагаемых запаса (макетный пол и вычисленный от дока), этаж и откуда значения.
   useEffect(() => {
     logSpireLayout('clearance', {
       floor: shownFloor, myFloor, dockH: roundLayout(dockH), bottomPad: roundLayout(bottomPad), pillTop: roundLayout(pillTop), dockBottom: roundLayout(dockBottom), tailFloor: scrollTailPad, tailFromDock: tailNeeded, tailUsed: tailPad,
@@ -281,19 +291,7 @@ export default function SpireHomeScreen() {
       >
         {scene ? <View style={s.bleed}><SpireScene lang={lang} {...scene} rankBy={game.rankBy} myCoinRank={myCoinRank} myPlus={myIsPlus} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} rivalsByFloor={rivals} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} onTouchActive={towerTouch.onTouchActive} onOpenAll={openAll} headerTint={runtimeOwnerId === 'spire'} /></View> : <>
         <View style={[s.head, budget.headerThin ? thin.head : null]}>
-          <View style={s.headText}>
-            <View style={s.titleRow}>
-              <Text accessibilityRole="header" style={[s.title, budget.headerThin ? thin.title : null, { color: p.text }]}>{spireText(lang, 'title')}</Text>
-              {/* зачем (D77, владелец 30.09): пулы es/de/fr без проверки носителем — первые 2–4 недели
-                  с пометкой «бета» рядом с языком. Снять: убрать язык из SPIRE_BETA_LANGS. */}
-              {spireLang && SPIRE_BETA_LANGS.includes(spireLang) ? (
-                <View style={[s.betaPill, { backgroundColor: p.cardRaised }]} testID="spire-beta-pill">
-                  <Text style={[s.betaText, { color: p.textSecondary }]}>{triLang(lang, { ru: 'бета', uk: 'бета', en: 'beta', es: 'beta', 'pt-BR': 'beta', vi: 'beta', id: 'beta', tr: 'beta', pl: 'beta' })}</Text>
-                </View>
-              ) : null}
-            </View>
-            <SpireWeekSubtitle text={subtitle} tier={game.tier !== null ? (devWeekResult?.newTier ?? game.tier ?? week?.tier) : null} color={p.textSecondary} />
-          </View>
+          <SpireHomeTitle lang={lang} spireLang={spireLang} subtitle={subtitle} tier={game.tier !== null ? (devWeekResult?.newTier ?? game.tier ?? week?.tier) : null} titleStyle={budget.headerThin ? thin.title : null} />
           <SpireEnergyPill ownerActive={runtimeOwnerId === 'spire'} />
         </View>
         {/* зачем (решение владельца 13.10): блок «Комната недели» (пьедестал 1-2-3 + «Все участники · N») — самый верх экрана, сразу под заголовком, выше башни */}
@@ -383,11 +381,6 @@ const s = StyleSheet.create({
   root: { flex: 1 },
   content: { paddingHorizontal: V2.screenPad, paddingTop: 6 },
   head: { flexDirection: 'row', alignItems: 'flex-start', gap: 10, marginTop: 6 },
-  headText: { flex: 1, minWidth: 0 },
-  title: { ...V2_TYPE.largeTitle, letterSpacing: -0.5 },
-  titleRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  betaPill: { borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3 },
-  betaText: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 0.3 }, // зачем (аудит D145, 11.10): межстрочный ≥ 1.25× — шкала V2_TYPE 13/17
   note: { marginTop: 16, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
   noteText: { flex: 1, fontSize: 16, lineHeight: 21 },
   towerWrap: { marginTop: 18 },

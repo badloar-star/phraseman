@@ -8,6 +8,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { useSyncExternalStore } from 'react';
 
+import { SPIRE_SCENE_INK } from './spire_scene_palette';
+
 let tint: string | null = null;
 const listeners = new Set<() => void>();
 
@@ -34,4 +36,16 @@ function subscribe(listener: () => void): () => void {
 
 export function useSpireSceneHeaderTint(): string | null {
   return useSyncExternalStore(subscribe, peekSpireSceneHeaderTint, peekSpireSceneHeaderTint);
+}
+
+export type SpireSceneHeaderTone = Readonly<{ tint: string; text: string; muted: string }>;
+
+/**
+ * Тон шапки «Сообщества» над «Сценой» Пика; null — прежний вид шапки (флаг SPIRE_SCENE_V2_ENABLED выключен, вкладка не «Пик»
+ * или сцены на экране нет). зачем (координатор 22.10: «при выключенном флаге — побайтно прежний вид, плюс тест на это»): решение — чистая
+ * функция без react-native, её проверяет tests/spire_scene_contract.test.ts при любых входах.
+ */
+export function spireSceneHeaderTone(i: Readonly<{ enabled: boolean; onPeak: boolean; tint: string | null }>): SpireSceneHeaderTone | null {
+  if (!i.enabled || !i.onPeak || i.tint === null) return null;
+  return Object.freeze({ tint: i.tint, text: SPIRE_SCENE_INK.text, muted: SPIRE_SCENE_INK.muted });
 }

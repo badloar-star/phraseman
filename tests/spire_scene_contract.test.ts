@@ -1,10 +1,11 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 import {
   SPIRE_SCENE_EVE_MS, SPIRE_SCENE_V2_ENABLED, buildSpireSceneCopy, pickSpireSceneState, spireSceneLeft, spireSceneRoom, type SpireSceneInput,
 } from "../components/spire/scene/spire_scene_model";
 import { SPIRE_SCENE_PREVIEW_ROOM, SPIRE_SCENE_PREVIEW_STATES, isSpireScenePreviewState, spireScenePreviewSetup } from "../components/spire/scene/spire_scene_preview_fixtures";
+import { spireSceneHeaderTone } from "../components/spire/scene/spire_scene_header_tint";
 import { SPIRE_SCENE_STRINGS, spireScenePromoText } from "../components/spire/scene/spire_scene_strings";
 
 // зачем (владелец 22.10 выбрал Пик V2 «Пьедестал перед башней», эталон docs/design/v2-app/peak-scene-v2.html под замком 3ea39f80c):
@@ -123,12 +124,32 @@ async function main(): Promise<void> {
   assert.ok(screen.includes("headerTint={runtimeOwnerId === 'spire'}"), "шапку красит только видимый «Пик»");
   assert.ok(screen.includes("scene={scene !== null} searching={scene?.decision.state === 'search'}"), "кнопка в режиме «Сцены»");
   assert.ok(screen.split("\n").length <= 400, "экран Пика ≤ 400 строк");
+  assert.ok(screen.includes("<SpireHomeTitle ") && screen.includes("titleStyle={budget.headerThin ? thin.title : null}"), "заголовок вынесен в SpireHomeTitle, стиль тонкой шапки — из экрана");
+  assert.ok(!/\/\/ Вся сеть игровой части[^\n]*SpireLiveGate/.test(screen), "склеенные ради лимита комментарии возвращены");
   assert.ok(scene.includes("setSpireSceneHeaderTint(tokens.sceneTop)") && scene.includes("return () => setSpireSceneHeaderTint(null);"), "сцена кладёт и убирает цвет шапки");
+
+  // ── флаг выключен → шапка «Сообщества» побайтно прежняя: тон пустой при любых данных ──
+  for (const onPeak of [false, true]) {
+    for (const tint of [null, "#123456"]) assert.equal(spireSceneHeaderTone({ enabled: false, onPeak, tint }), null, `флаг выключен: onPeak=${onPeak} tint=${tint}`);
+  }
+  assert.equal(spireSceneHeaderTone({ enabled: true, onPeak: false, tint: "#123456" }), null, "не «Пик» — прежний вид");
+  assert.equal(spireSceneHeaderTone({ enabled: true, onPeak: true, tint: null }), null, "сцены на экране нет — прежний вид");
+  assert.deepEqual({ ...spireSceneHeaderTone({ enabled: true, onPeak: true, tint: "#123456" }) }, { tint: "#123456", text: "#FFFFFF", muted: "rgba(255,255,255,0.78)" });
+  const header = read("components/spire/scene/spire_scene_header.tsx");
+  assert.ok(header.includes("spireSceneHeaderTone({ enabled: SPIRE_SCENE_V2_ENABLED, onPeak, tint })"), "тон шапки — через флаг");
   const community = read("app/(tabs)/community.tsx");
-  assert.ok(community.includes("const peakScene = section === 'spire' && sceneTint !== null;"), "«Сообщество» красит шапку только на «Пике» со «Сценой»");
-  assert.ok(community.includes("peakScene ? <HomeSceneEnergy /> : null"), "справа — белая энергия");
+  assert.ok(community.includes("const peakHeader = useSpireSceneHeader(section === 'spire');"), "«Сообщество» берёт тон только для «Пика»");
+  assert.ok(community.includes("<View style={s.header}>{peakHeader.backdrop}"), "стиль шапки прежний, подложка — отдельным ребёнком");
+  assert.ok(community.includes("borderBottomColor: on ? (peakHeader.tone?.text ?? accentGfx.border) : 'transparent'"), "черта вкладки: без тона — прежний цвет");
+  assert.ok(community.includes("color: on ? (peakHeader.tone?.text ?? p.text) : (peakHeader.tone?.muted ?? p.textSecondary)"), "текст вкладок: без тона — прежние цвета");
+  assert.ok(community.includes("{section === 'packs' ? packsSlot?.right : peakHeader.right}"), "справа: без тона — пусто, как раньше");
+
+  // ── одна полоса под часами (HomeSceneStatusStrip), без второй копии ──
   const layout = read("app/(tabs)/_layout.tsx");
-  assert.ok(layout.includes("<SpireSceneStatusStrip height={insets.top} visible={visualIdx === communityLogicalIdx} />"), "полоса под часами — только на «Сообществе»");
+  assert.ok(layout.includes('<HomeSceneStatusStrip height={insets.top} scrollY={topFadeScroll?.scrollY} visible={visualIdx === communityLogicalIdx} source="spire" />'), "полоса под часами на «Сообществе» — та же HomeSceneStatusStrip");
+  assert.ok(!layout.includes("SpireSceneStatusStrip") && !existsSync("components/spire/scene/SpireSceneStatusStrip.tsx"), "второй копии полосы нет");
+  const strip = read("components/home/v2/scene/HomeSceneStatusStrip.tsx");
+  assert.ok(strip.includes("source === 'spire' ? (SPIRE_SCENE_V2_ENABLED ? spireTint : null) : homeTint"), "цвет Пика — только при флаге");
   assert.ok(!route.includes("headerTint"), "dev-вход не красит настоящую шапку");
 }
 

@@ -10,17 +10,28 @@
 import React, { memo } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 
+import { SPIRE_SCENE_V2_ENABLED } from '../../../spire/scene/spire_scene_flag';
+import { useSpireSceneHeaderTint } from '../../../spire/scene/spire_scene_header_tint';
 import { useHomeSceneStatusTint } from './home_scene_status_tint';
 
 const FADE_DISTANCE = 120;
 
-type Props = Readonly<{ height: number; scrollY?: Animated.Value; visible: boolean }>;
+type Props = Readonly<{
+  height: number;
+  scrollY?: Animated.Value;
+  visible: boolean;
+  /** Чей верхний цвет: «Сцены» Главной (по умолчанию) или «Сцены» Пика на вкладке «Сообщество» (только при SPIRE_SCENE_V2_ENABLED). */
+  source?: 'home' | 'spire';
+}>;
 
-function HomeSceneStatusStrip({ height, scrollY, visible }: Props) {
-  const tint = useHomeSceneStatusTint();
+function HomeSceneStatusStrip({ height, scrollY, visible, source = 'home' }: Props) {
+  const homeTint = useHomeSceneStatusTint();
+  const spireTint = useSpireSceneHeaderTint();
+  // зачем (Пик v2, координатор 22.10: «тем же механизмом, что HomeSceneStatusStrip, без второй копии»): одна полоса на Главной и на «Пике»
+  const tint = source === 'spire' ? (SPIRE_SCENE_V2_ENABLED ? spireTint : null) : homeTint;
   if (!visible || tint === null || height <= 0) return null;
   const opacity = scrollY ? scrollY.interpolate({ inputRange: [0, FADE_DISTANCE], outputRange: [1, 0], extrapolate: 'clamp' }) : 1;
-  return <Animated.View testID="home-scene-status-strip" pointerEvents="none" style={[s.strip, { height, backgroundColor: tint, opacity }]} />;
+  return <Animated.View testID={source === 'spire' ? 'spire-scene-status-strip' : 'home-scene-status-strip'} pointerEvents="none" style={[s.strip, { height, backgroundColor: tint, opacity }]} />;
 }
 
 export default memo(HomeSceneStatusStrip);

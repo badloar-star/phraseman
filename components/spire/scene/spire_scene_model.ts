@@ -13,13 +13,8 @@ import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from '../
 import { spireZonesFor } from '../spire_zones';
 import { spireScenePromoText, spireSceneText } from './spire_scene_strings';
 
-const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
-
-/**
- * зачем (координатор 22.10): Пик v2 в коде — в dev-сборке да, в релизе нет, пока владелец не посмотрит его на эмуляторе.
- * В релиз — заменить на true; совсем выключить — false (Пик рисует прежние заголовок, комнату, окно башни и карточку этажа).
- */
-export const SPIRE_SCENE_V2_ENABLED: boolean = IS_DEV;
+// зачем: выключатель живёт в крошечном spire_scene_flag.ts (его читает и полоса под часами на старте); здесь — для прежних импортов
+export { SPIRE_SCENE_V2_ENABLED } from './spire_scene_flag';
 
 export const SPIRE_SCENE_STATES = ['search', 'eve', 'zero', 'day'] as const;
 export type SpireSceneState = typeof SPIRE_SCENE_STATES[number];

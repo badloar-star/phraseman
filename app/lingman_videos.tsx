@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AppState, InteractionManager, Linking, Platform, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { AppState, InteractionManager, Linking, Platform, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import { useGlassAlert } from '../hooks/use-glass-alert'; // зачем: стеклянное окно вместо нативного Alert (overlays-runtime «video reminder»)
 import { FlashList, type FlashListRef } from '@shopify/flash-list';
@@ -46,6 +46,7 @@ import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import { useTopFadeScroll } from '../components/TopFadeScrollContext';
 import { V2 } from '../constants/v2Style';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
+import V2Pressable from '../components/v2/V2Pressable';
 import { DebugLogger } from './debug-logger';
 import { useVideoFavorites, useVideoSaveCounts } from '../hooks/use_video_favorites';
 import { actionToastTri, emitAppEvent } from './events';
@@ -775,7 +776,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     </ScrollView>
   );
   const savedRow = hasSavedRow ? (
-    <TouchableOpacity
+    // зачем (аудит 22.10, «V2Pressable на всех управляющих элементах»): строка «Сохранённые» — нажатие как у всех кнопок 2.0 (вдавливание + .86), а не TouchableOpacity .8;
+    // отступ сверху — на внешнем слое: onLayout измеряет саму строку (компенсация сдвига сетки считает SAVED_ROW_MARGIN отдельно)
+    <V2Pressable
       testID="video-saved-row"
       hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }} // зачем (аудит Видео 🟡, 15.10): строка 64 dp с отступами — зона нажатия чуть шире
       onLayout={(e) => {
@@ -785,10 +788,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         // зачем (Макеты R59, 15.10: закладка сдвигала сетку на ~220 px под пальцем): компенсируем и у верхнего края — строка появляется НАД экраном, сетка остаётся на месте
         if (prev === 0 && h > 0) homeListRef.current?.scrollToOffset({ offset: Math.max(0, scrollYRef.current) + h + SAVED_ROW_MARGIN, animated: false });
       }}
-      accessibilityRole="button"
       accessibilityLabel={copy.savedVideos}
-      activeOpacity={0.8}
+      scaleTo={0.98}
       onPress={() => router.push({ pathname: '/lingman_videos', params: { saved: '1' } } as never)}
+      outerStyle={styles.packsRowOuter}
       style={[styles.packsRow, { boxShadow: plateBoxShadow(g) }]}
     >
       {/* зачем (Тень 12.10): строка «Сохранённые» без кромки — заливка PlateFill и тень плашки */}
@@ -804,7 +807,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         })}</Text>
       </View>
       <Ionicons name="chevron-forward" size={20} color={g.secondary} />
-    </TouchableOpacity>
+    </V2Pressable>
   ) : null;
 
   return (
@@ -960,8 +963,8 @@ const styles = StyleSheet.create({
     gap: 14,
     paddingHorizontal: 14,
     paddingVertical: 12,
-    marginTop: 18,
   },
+  packsRowOuter: { marginTop: 18 },
   packsIcon: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   packsCopy: { flex: 1, minWidth: 0 },
   packsTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },

@@ -64,7 +64,9 @@ assert.match(hub, /primeFlashcardsCollectionCache\(studyTarget\)/);
 assert.match(hub, /catalogLoadState/);
 // зачем (приказ владельца 11.10 — вернуть хаб утра): экран рисует CardsHubV2 — кнопка тренировки 52 высотой, а загрузка каталога решается без спиннера
 const hubView = read('app/flashcards/CardsHubV2.tsx');
-assert.match(hubView, /cta: \{ marginTop: 14, minHeight: 52/);
+// зачем (аудит 22.10, V2Pressable): отступ 14 живёт на обёртке кнопки (ctaOuter), высота 52 — на самой кнопке
+assert.match(hubView, /ctaOuter: \{ marginTop: 14 \}/);
+assert.match(hubView, /cta: \{ minHeight: 52/);
 assert.match(hubView, /fc-cards-hub-train/);
 assert.match(hub, /trainButtonRef/);
 assert.match(hub, /AccessibilityInfo\.setAccessibilityFocus/);

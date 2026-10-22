@@ -11,7 +11,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
 import { CardsHubAnimProbe } from './CardsHubAnimProbe';
 import React, { memo, useEffect, useState, useSyncExternalStore } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
@@ -19,6 +19,7 @@ import { isDevAnimationsOff, subscribeDevAnimationsOff } from '../dev_animations
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import BackGlyph from '../../components/v2/BackGlyph';
+import V2Pressable from '../../components/v2/V2Pressable';
 
 export type CardsHubTile = Readonly<{
   id: 'saved' | 'mine' | 'video' | 'community';
@@ -156,10 +157,11 @@ function CardsHubV2Inner({
     <View style={styles.root} testID="fc-cards-hub-v2">
       {animProbe}
       <View style={[styles.topbar, fs > 1 && { height: undefined, minHeight: 44 }]}>
-        <Pressable testID="fc-cards-hub-back" accessibilityRole="button" accessibilityLabel={labels.back} onPress={onBack} hitSlop={8}
-          style={({ pressed }) => [styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
+        {/* зачем (аудит 22.10, «V2Pressable на всех управляющих элементах»): нажатие — как у всех кнопок 2.0 (вдавливание + .86), а не голый Pressable с opacity .82 */}
+        <V2Pressable testID="fc-cards-hub-back" accessibilityLabel={labels.back} onPress={onBack} hitSlop={8} scaleTo={0.94}
+          style={[styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
           <BackGlyph size={20} color={g.text} />
-        </Pressable>
+        </V2Pressable>
         <View style={styles.topRight}>
           {limitLabel ? (
             <View testID="fc-cards-hub-limit" style={[styles.pill, fs > 1 && { height: undefined, minHeight: 30, paddingVertical: 2 }, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
@@ -168,10 +170,10 @@ function CardsHubV2Inner({
               <Text style={[styles.pillText, { color: g.text, lineHeight: lh(20) }]}>{limitLabel}</Text>
             </View>
           ) : null}
-          <Pressable testID="fc-cards-hub-create-pack" accessibilityRole="button" accessibilityLabel={labels.create} onPress={onCreate} hitSlop={8}
-            style={({ pressed }) => [styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
+          <V2Pressable testID="fc-cards-hub-create-pack" accessibilityLabel={labels.create} onPress={onCreate} hitSlop={8} scaleTo={0.94}
+            style={[styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
             <Ionicons name="add" size={22} color={g.text} />
-          </Pressable>
+          </V2Pressable>
         </View>
       </View>
 
@@ -203,28 +205,28 @@ function CardsHubV2Inner({
       </View>
       )}
 
-      <Pressable ref={trainButtonRef} testID="fc-cards-hub-train" accessibilityRole="button" accessibilityLabel={fresh ? fresh.cta : labels.trainA11y} onPress={fresh ? fresh.onPress : onTrain}
-        style={({ pressed }) => [
+      {/* зачем: V2Pressable ref не отдаёт — trainButtonRef (цель полёта карточки) стоит на обёртке; отступ сверху на ней же, поэтому обёртка = границы самой кнопки */}
+      <View ref={trainButtonRef} collapsable={false} style={styles.ctaOuter}>
+      <V2Pressable testID="fc-cards-hub-train" accessibilityLabel={fresh ? fresh.cta : labels.trainA11y} onPress={fresh ? fresh.onPress : onTrain}
+        scaleTo={0.97}
+        style={[
           styles.cta,
           { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) },
           // зачем (hubLimitS): исчерпанный лимит — кнопка приглушена до .55, как в макете.
           !fresh && trainLocked ? styles.ctaLocked : null,
-          pressed && styles.pressed,
         ]}>
         <Text style={[styles.ctaText, { color: g.ctaFillInk, lineHeight: lh(22) }]}>{fresh ? fresh.cta : trainLabel}</Text>
         <View style={styles.ctaIcon}>
           <Ionicons name={!fresh && trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.ctaFillInk} />
         </View>
-      </Pressable>
+      </V2Pressable>
+      </View>
 
       <View style={styles.tiles}>
         {tiles.map((t) => (
-          <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.unit ? `${t.unit}: ` : ''}${t.count}`} onPress={t.onPress}
-            style={({ pressed }) => [
-              styles.tile,
-              { minHeight: tileH, boxShadow: plateBoxShadow(g) },
-              pressed && styles.pressed,
-            ]}>
+          <V2Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.unit ? `${t.unit}: ` : ''}${t.count}`} onPress={t.onPress}
+            scaleTo={0.97} outerStyle={[styles.tileOuter, { minHeight: tileH }]}
+            style={[styles.tile, { boxShadow: plateBoxShadow(g) }]}>
             {/* зачем (Тень 12.10): плитка — плашка (градиент 180° + тень), без фасок и кольца */}
             <PlateFill g={g} radius={26} />
             {/* зачем (R109, прямое слово владельца 17.10: «цифры будут СПРАВА от иконки, а не внизу»; эталон cards-section.shadow.html#hub): верхняя строка — иконка слева и число справа (22/28, 700, tabular-nums, по центру иконки), под ней только название. При загрузке на месте числа «…». */}
@@ -237,7 +239,7 @@ function CardsHubV2Inner({
             </View>
             {/* зачем ([LABEL-FIT] 18.10): название плитки при 360 dp и fontScale 1,0 шире 122 dp у ru «Сохранённые» (≈104 %), tr, vi, pl, pt-BR — раньше обрезалось многоточием; теперь переносится на 2 строки (плитка minHeight растёт), шрифт не ужимается */}
             <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 2}>{t.title}</Text>
-          </Pressable>
+          </V2Pressable>
         ))}
       </View>
     </View>
@@ -255,7 +257,6 @@ export default CardsHubV2;
 const styles = StyleSheet.create({
   scrollGrow: { flexGrow: 1, paddingBottom: 24 },
   root: { flex: 1, paddingHorizontal: 20 },
-  pressed: { opacity: 0.82 },
   topbar: { height: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   topRight: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
@@ -272,12 +273,14 @@ const styles = StyleSheet.create({
   topWordWrap: { textAlign: 'center' },
   topIpa: { marginTop: 8, fontSize: 16, lineHeight: 20, fontStyle: 'italic' },
   // зачем: текст кнопки не обрезается («осталось 28 и…» на эмуляторе) — меньше боковые поля и перенос строки вместо многоточия; кегль не ужимаем
-  cta: { marginTop: 14, minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingVertical: 8 },
+  ctaOuter: { marginTop: 14 },
+  cta: { minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingVertical: 8 },
   ctaLocked: { opacity: 0.55 },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   ctaIcon: { position: 'absolute', right: 12, top: 0, bottom: 0, justifyContent: 'center' },
   tiles: { marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
-  tile: { width: '48%', flexGrow: 1, minHeight: 150, borderRadius: 26, paddingHorizontal: 16, paddingVertical: 18, justifyContent: 'space-between' },
+  tileOuter: { width: '48%', flexGrow: 1 },
+  tile: { flex: 1, minHeight: 150, borderRadius: 26, paddingHorizontal: 16, paddingVertical: 18, justifyContent: 'space-between' },
   // hubNewS `.gl.pad`: 26 от подзаголовка, высота стопки (250 в макете), всё по центру.
   fresh: { marginTop: 26, borderRadius: 26, paddingHorizontal: 22, paddingVertical: 22, alignItems: 'center', justifyContent: 'center' },
   freshIcon: { width: 64, height: 64, borderRadius: 20, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },

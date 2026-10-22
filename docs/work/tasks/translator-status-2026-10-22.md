@@ -117,3 +117,10 @@ en/es/pt-BR «Those flowers are fresh.». Собранные json НЕ комм�
 learningV2SessionTitleForLocaleV1(lesson, session, locale), откат к русскому для ru/uk и к «Эпизод N». Подключает Learning V2.
 **ce081c88f** — хаб урока: «Все главы / Все уроки / Классический курс» на 8 языках влезают в плитку (≤ 2 строки, как ru
 «Классический курс» в макете), id метка «Дальше» → «Lanjut».
+
+## Дополнение: переименования и тексты «Друзей»
+
+**d434efbaa** — названия 3.45 «У прилавка» и 3.53 «Материал» на 8 языков (420ae2b01).
+**0cc795465** — сквозная вычитка «Друзей» за выключателем (friends-texts-sweep-2026-10-22.md): pair_copy, lesson_together_copy,
+duel_copy, duel_play_copy — без правок; lesson_invite_friend_copy — 3 правки (занятие tr «oturum», vi «Buổi»).
+На заметку: «Скажи по-английски» id — «Ucapkan» в дуэли, «Katakan» в заданиях.

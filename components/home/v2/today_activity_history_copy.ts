@@ -42,9 +42,9 @@ export function todayHistoryDayA11y(lang: Lang, dayKey: string, done: number, to
   const done3 = todayHistoryCount(lang, done, total);
   return tri(lang, {
     ru: `${todayHistoryDateLabel(lang, dayKey)}: завершено ${done3}`, uk: `${todayHistoryDateLabel(lang, dayKey)}: завершено ${done3}`,
-    en: `${todayHistoryDateLabel(lang, dayKey)}: ${done3} completed`, es: `${todayHistoryDateLabel(lang, dayKey)}: completado ${done3}`,
-    'pt-BR': `${todayHistoryDateLabel(lang, dayKey)}: concluído ${done3}`, vi: `${todayHistoryDateLabel(lang, dayKey)}: hoàn thành ${done3}`,
-    id: `${todayHistoryDateLabel(lang, dayKey)}: selesai ${done3}`, tr: `${todayHistoryDateLabel(lang, dayKey)}: tamamlandı ${done3}`, pl: `${todayHistoryDateLabel(lang, dayKey)}: ukończono ${done3}`,
+    en: `${todayHistoryDateLabel(lang, dayKey)}: ${done3} completed`, es: `${todayHistoryDateLabel(lang, dayKey)}: ${done3} completados`,
+    'pt-BR': `${todayHistoryDateLabel(lang, dayKey)}: ${done3} concluídos`, vi: `${todayHistoryDateLabel(lang, dayKey)}: hoàn thành ${done3}`,
+    id: `${todayHistoryDateLabel(lang, dayKey)}: selesai ${done3}`, tr: `${todayHistoryDateLabel(lang, dayKey)}: ${done3} tamamlandı`, pl: `${todayHistoryDateLabel(lang, dayKey)}: ukończono ${done3}`,
   });
 }
 

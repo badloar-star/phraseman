@@ -78,11 +78,6 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
         <Rect x="58%" y={96} width={HERO_W} height={HERO_H} fill="url(#dlgHalo)" opacity={p.artDim ? 0.45 : 1} />
       </Svg>
       {c.scrim ? <LinearGradient pointerEvents="none" colors={[alphaHex(c.scrim, 0), alphaHex(c.scrim, 0.62)]} style={s.scrim} /> : null}
-      {p.art ? (
-        <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={[s.hero, p.artDim ? s.heroDim : null]}>
-          <ThemedArtLayers source={p.art} accent={p.artAccent} style={s.heroImage} contentFit="contain" contentPosition="center" />
-        </Animated.View>
-      ) : null}
       <View style={[s.top, { paddingTop: p.topInset }]}>
         {p.topStart ?? null}
         {copy.quota ? (
@@ -94,7 +89,16 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
         <View style={s.flex} />
         {p.topEnd ?? null}
       </View>
-      <View style={s.flex} />
+      {/* зачем (Сверка 22.10, dg_side_4_first): настоящая 3D-картинка героя заходила на заголовок («й» уходил под облачко). Герой живёт в свободном месте
+          между шапкой и текстом сцены: слот занимает всё это место (но не больше HERO_H) и прижат к правому краю, картинка вписывается (contain) —
+          чем выше текст, тем меньше герой, и текстовую колонку на 360–430 dp он не пересекает. Геометрия — чистая раскладка, без замеров: первый кадр уже финальный. */}
+      <View style={s.heroSpace}>
+        {p.art ? (
+          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={[s.hero, p.artDim ? s.heroDim : null]}>
+            <ThemedArtLayers source={p.art} accent={p.artAccent} style={s.heroImage} contentFit="contain" contentPosition="right" />
+          </Animated.View>
+        ) : null}
+      </View>
       <View style={s.body}>
         {copy.offlineLine ? (
           <View testID="dialogs-scene-offline" accessibilityLiveRegion="polite" style={[s.offline, { backgroundColor: c.glass }]}>
@@ -153,9 +157,10 @@ const s = StyleSheet.create({
   stage: { minHeight: DIALOGS_SCENE_MIN_HEIGHT, borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden' },
   flex: { flex: 1 },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: '55%' },
-  hero: { position: 'absolute', right: 10, top: 96, width: HERO_W, height: HERO_H, opacity: 0.96 },
+  heroSpace: { flex: 1 },
+  hero: { position: 'absolute', right: 10, top: 0, bottom: 4, width: HERO_W, maxHeight: HERO_H, opacity: 0.96 },
   heroDim: { opacity: 0.55 },
-  heroImage: { width: HERO_W, height: HERO_H },
+  heroImage: { width: '100%', height: '100%' },
   top: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 20 },
   pill: { height: 36, paddingHorizontal: 12, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 6 },
   pillText: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },

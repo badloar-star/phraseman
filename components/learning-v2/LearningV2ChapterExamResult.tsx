@@ -23,7 +23,6 @@ import { CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../modules/learning-v2/exam/c
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { coinRankSourceForSize } from '../../app/coin_rank_table_v1';
 
-const WRONG_INK = '#B5651D'; // theme-exempt: зачёркнутый неверный ответ в разборе, эталон `.rv .you s` (как в шторке теории)
 const WHITE = '#FFFFFF'; // theme-exempt: значок на обложке главы, эталон `.minicard { color: #fff }`
 
 /** Ответ попытки для итога и разбора — живёт только в памяти экрана. */
@@ -167,7 +166,8 @@ export function LearningV2ChapterExamReviewView(p: ReviewProps) {
           {a.answerText ? (
             <Text style={[styles.rvYou, { color: g.text }]}>
               {`${learningV2ChapterExamResultCopy(p.lang, 'yourAnswer')} `}
-              <Text style={styles.strike}>{a.answerText}</Text>
+              {/* зачем (закон владельца 22.10: цвета только из текущей темы): неверный ответ — цвет ошибки темы, не фиксированный коричневый */}
+              <Text style={[styles.strike, { color: g.bad }]}>{a.answerText}</Text>
             </Text>
           ) : null}
           {a.correctAnswer ? <Text style={[styles.rvOk, { color: g.good }]}>{a.correctAnswer}</Text> : null}
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
   rvHeadText: { flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700' },
   rvQ: { marginTop: 6, fontSize: 16, lineHeight: 21 },
   rvYou: { marginTop: 10, fontSize: 16, lineHeight: 22 },
-  strike: { color: WRONG_INK, textDecorationLine: 'line-through' },
+  strike: { textDecorationLine: 'line-through' },
   rvOk: { marginTop: 4, fontSize: 16, lineHeight: 23, fontWeight: '700' },
   rvWhy: { marginTop: 6, fontSize: 16, lineHeight: 21 },
   rep: { alignSelf: 'flex-start', marginTop: 12, height: 40, paddingHorizontal: 16, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 8 },

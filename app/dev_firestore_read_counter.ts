@@ -201,6 +201,19 @@ export function logFsReadsReport(untilMs: number, label: string): void {
   for (const l of report.openListeners) log(`${LOG}   слушатель #${l.id} ${l.path} живёт ${l.aliveMs} мс, оплачено ${l.billedDocs}  ← ${l.caller}`);
 }
 
+/**
+ * зачем (№45, координатор 22.10: 98 тыс. чтений за день при 50 тыс. бесплатных): итог ВСЕЙ сессии, а не первых 60 с — кто и сколько
+ * документов прочёл с запуска; печатается при каждом уходе в фон, чтобы Сверка сняла «до / после» на типичной сессии.
+ */
+export function logReadsAuditSession(label: string): FsReadsReport {
+  const report = fsReadsReport(Number.MAX_SAFE_INTEGER);
+  const minutes = Math.max(1, Math.round((now() - bootMs) / 60_000));
+  log(`[READS-AUDIT] === ${label}: с запуска ${minutes} мин — оплачено документов ${report.billedDocs}, вызовов ${report.calls}, из кэша ${report.cacheHits}, слушателей открыто ${report.openListeners.length}`);
+  for (const row of report.byPath) log(`[READS-AUDIT]   ${row.docs} док / ${row.calls} выз  ${row.path}  ← ${row.callers}`);
+  for (const l of report.openListeners) log(`[READS-AUDIT]   слушатель #${l.id} ${l.path} живёт ${l.aliveMs} мс, оплачено ${l.billedDocs}  ← ${l.caller}`);
+  return report;
+}
+
 /** Только для тестов. */
 export function __resetFsReadsForTests(): void {
   events.length = 0;

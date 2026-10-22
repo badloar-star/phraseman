@@ -15,6 +15,16 @@ if (__DEV__) {
       for (const [ms, label] of [[10_000, 'старт 10 с'], [30_000, 'старт 30 с'], [60_000, 'первые 60 с']] as const) {
         setTimeout(() => counter.logFsReadsReport(ms, label), ms + 50);
       }
+      // зачем (№45): итог всей сессии при каждом уходе в фон — [READS-AUDIT], Сверка снимает «до / после»
+      /* eslint-disable-next-line @typescript-eslint/no-require-imports */
+      const { AppState } = require('react-native') as typeof import('react-native');
+      let backgrounds = 0;
+      AppState.addEventListener('change', (state) => {
+        if (state === 'active') { console.log(`[READS-AUDIT] возврат в приложение после ухода №${backgrounds}`); return; } // guard-ok: метка границы сессии
+        if (state !== 'background') return;
+        backgrounds += 1;
+        counter.logReadsAuditSession(`уход в фон №${backgrounds}`);
+      });
     }
   } catch (error) {
     console.warn(`[FS-READS] счётчик не установлен (${error instanceof Error ? error.message : String(error)})`); // guard-ok: причина пропуска

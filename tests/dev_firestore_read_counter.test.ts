@@ -6,6 +6,7 @@ import {
   fsPathTemplate,
   fsReadsReport,
   installFirestoreReadCounter,
+  logReadsAuditSession,
 } from '../app/dev_firestore_read_counter';
 
 type Snap = { metadata: { fromCache: boolean }; size?: number; docChanges?: () => unknown[] };
@@ -87,5 +88,22 @@ describe('[FS-READS] счётчик чтений Firestore (dev)', () => {
     const { FakeQuery, FakeDoc } = makeClasses();
     expect(installFirestoreReadCounter({ queryProto: FakeQuery.prototype as never, docProto: FakeDoc.prototype as never, logFn: () => undefined })).toBe(true);
     expect(installFirestoreReadCounter({ queryProto: FakeQuery.prototype as never, docProto: FakeDoc.prototype as never, logFn: () => undefined })).toBe(false);
+  });
+
+  // зачем (№45): итог всей сессии [READS-AUDIT] — и чтения после первых 60 с тоже, по путям, с минутами от запуска
+  it('[READS-AUDIT] считает всю сессию, а не только первые 60 с', async () => {
+    const { FakeQuery, FakeDoc } = makeClasses();
+    installFirestoreReadCounter({ queryProto: FakeQuery.prototype as never, docProto: FakeDoc.prototype as never, nowFn: () => t, logFn: (l) => lines.push(l) });
+    t = 1500;
+    await new FakeDoc('users/u1').get();
+    t = 1000 + 5 * 60_000;
+    const q = new FakeQuery('users/u1/friends');
+    q.snaps.push({ metadata: { fromCache: false }, size: 12 });
+    await q.get();
+    const report = logReadsAuditSession('уход в фон №1');
+    expect(report.billedDocs).toBe(13);
+    expect(lines.some((l) => l.startsWith('[READS-AUDIT] === уход в фон №1: с запуска 5 мин — оплачено документов 13, вызовов 2'))).toBe(true);
+    // вызывающий берётся из стека — в тесте это служебная функция движка, проверяем строку до стрелки
+    expect(lines.some((l) => l.startsWith('[READS-AUDIT]   12 док / 1 выз  users/{id}/friends  ← '))).toBe(true);
   });
 });

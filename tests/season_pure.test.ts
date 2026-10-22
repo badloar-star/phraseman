@@ -138,8 +138,15 @@ async function main(): Promise<void> {
   // сдвиг оттенка на урок — константа, а не число в формуле
   assert.equal(SEASON_LESSON_HUE_STEP_DEG, 37);
   assert.equal(seasonChapterHue(3, 2), (200 + 2 * SEASON_LESSON_HUE_STEP_DEG) % 360);
-  // действия экзамена спрятаны за флагом: пока логики экзамена нет — выключен
-  assert.equal(SEASON_CHAPTER_EXAM_ENABLED, false);
+  // зачем (координатор 22.10, красный season_pure_phase1): правда флага — карта экзамена видна в разработке и ВЫКЛЮЧЕНА в
+  // сторе до вердикта Сверки (season_flags.ts, 9c03c5bff); кнопка запуска выключена везде, пока Learning V2 не даст сигнал.
+  // Сторож держит ровно это: в сборке стора экзамена нет, а флаг считается из тех же двух условий.
+  const { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } = require("../app/config") as typeof import("../app/config");
+  assert.equal(SEASON_CHAPTER_EXAM_ENABLED, ENABLE_DEV_TOOLS && !IS_STORE_RELEASE);
+  if (IS_STORE_RELEASE) assert.equal(SEASON_CHAPTER_EXAM_ENABLED, false, "в сторе экзамен главы выключен до вердикта Сверки");
+  const flagsSource = require("node:fs").readFileSync(require("node:path").join(__dirname, "..", "components", "learning-v2", "season", "season_flags.ts"), "utf8") as string;
+  assert.ok(flagsSource.includes("export const SEASON_CHAPTER_EXAM_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE;"), "флаг экзамена — только «разработка и не стор»");
+  assert.ok(flagsSource.includes("export const SEASON_CHAPTER_EXAM_START_ENABLED = false as boolean;"), "кнопка запуска экзамена выключена до сигнала Learning V2");
 
   console.log("SEASON PURE (phase 1): PASS");
 }

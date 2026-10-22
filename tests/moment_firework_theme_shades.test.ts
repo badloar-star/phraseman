@@ -1,6 +1,10 @@
 // зачем (закон владельца 22.10 «ЦВЕТА ДОЛЖНЫ БЫТЬ СТРОГО ЦВЕТАМИ И ОТТЕНКАМИ ТЕКУЩЕЙ ТЕМЫ»; 4 · ТЕМЫ через координатора): искры фейерверка
-// моментов Пика — оттенки текущей темы: тон акцента темы (±50° с учётом сдвигов шагов), пять разных цветов, в светлых темах видны на фоне.
-// Не смысловые роли (золото, «хорошо», «инфо») с одинаковым во всех темах тоном.
+// моментов Пика — оттенки текущей темы: пять разных цветов, в светлых темах видны на фоне. Не смысловые роли (золото, «хорошо», «инфо»)
+// с одинаковым во всех темах тоном.
+// ЗАМОК ВЛАДЕЛЬЦА 22.10: «искры = оттенок темы, без сдвига тона» — тон каждой искры равен тону акцента (допуск — округление до 8 бит);
+// реестр docs/work/OWNER_LOCKS.md. Ослабить сторож — только по новому слову владельца.
+import * as fs from 'fs';
+import * as path from 'path';
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hueOfHex } from '../constants/liquidGlassPaletteRoles';
 import { momentFireworkColors } from '../components/spire/moments/moment_firework_colors';
@@ -19,8 +23,19 @@ const hueGap = (a: number, b: number): number => {
   return d > 180 ? 360 - d : d;
 };
 
+/** Округление OKLCH → #RRGGBB у бледных искр сдвигает измеренный тон на несколько градусов — это не «сдвиг тона» шага. */
+const HUE_TOLERANCE = 12;
+
 describe('momentFireworkColors', () => {
-  it('искры — оттенки тона акцента текущей темы, пять разных цветов (все темы, светлое и тёмное, «Акцент» и «Максимум»)', () => {
+  it('ЗАМОК ВЛАДЕЛЬЦА: шаги искр без сдвига тона — у шага только светлота и насыщенность', () => {
+    const src = fs.readFileSync(path.resolve(__dirname, '..', 'components', 'spire', 'moments', 'moment_firework_colors.ts'), 'utf8');
+    expect(src).toContain('ЗАМОК ВЛАДЕЛЬЦА 22.10: «искры = оттенок темы, без сдвига тона»');
+    // тон в преобразование уходит как есть; насыщенность только уменьшается до границы охвата (тон не уезжает при обрезке)
+    expect(src).toMatch(/oklchToHex\(lightness, gamutChroma\(lightness, chroma \* k, hue\), hue\)/);
+    expect(src).not.toMatch(/hueShift|hue \+ shift/);
+  });
+
+  it('искры — тон акцента текущей темы без сдвига, пять разных цветов (все темы, светлое и тёмное, «Акцент» и «Максимум»)', () => {
     const bad: string[] = [];
     for (const appearance of ['dark', 'light'] as const) {
       for (const level of ['accent', 'max'] as const) {
@@ -32,7 +47,7 @@ describe('momentFireworkColors', () => {
           for (const spark of sparks) {
             expect(spark).toMatch(/^#[0-9A-F]{6}$/u);
             const gap = hueGap(hueOfHex(spark), accentHue);
-            if (gap > 50) bad.push(`${id} ${appearance}/${level}: ${spark} в ${gap.toFixed(0)}° от тона темы`);
+            if (gap > HUE_TOLERANCE) bad.push(`${id} ${appearance}/${level}: ${spark} в ${gap.toFixed(1)}° от тона темы`);
           }
         }
       }

@@ -134,7 +134,9 @@ function RankUpStageFxBase({ t, width, height, cx, cy, coin, pro, fromRank, toRa
   const wave = coin + 6;
   const rays = 560;
   // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): белые части удара — ударная волна и вспышка обычной
-  // визитки — «чернила поверх картинок» темы (mediaInk). Тёплое золото света монеты (лучи, ореол, искры, кант) — металл ранга, ждёт решения координатора.
+  // визитки — «чернила поверх картинок» темы (mediaInk). Тёплое золото света монеты (лучи, ореол, искры, кант) — металл ранга.
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «металл рангов оставить» — монета рисуется ассетом ранга без перекраски, золото — металл; сторож
+  // tests/owner_locks_profile_card_metal.test.mjs, реестр docs/work/OWNER_LOCKS.md. Ослабить — только по новому слову владельца.
   const { mediaInk } = useShadowGlass();
   const waveInk = useMemo(() => colorWithAlpha(mediaInk, 0.85), [mediaInk]);
   const sparksIn = useMemo(() => (pro ? sparks(12, 150, 20) : []), [pro]);

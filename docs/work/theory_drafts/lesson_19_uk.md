@@ -26,7 +26,7 @@
 ## 02 · can — «можу, вмію» *(відкрито одразу)*
 
 **body**
-can + дія як у словнику: I can remove this stain. Can однакове для всіх — he can, she can, без -s. Не можу — cannot: We cannot talk in private. Після can ніколи не ставлять to.
+can + дія як у словнику: I can remove this stain. Can однакове для всіх — he can, she can, без -s. Не можу — cannot: We cannot talk in private — «ми не можемо поговорити наодинці». Після can ніколи не ставлять to.
 
 **formula**
 `хто` · `can / cannot` · `дія як у словнику`
@@ -137,7 +137,7 @@ Could I…? — ще одне чемне прохання: Could I pay in advanc
 ## 06 · be able to — «спроможний», «зможу»
 
 **body**
-am / is able to + дія — те саме «можу», тільки з am / is і to: I am able to cope with the stress. «Зможу» в майбутньому — will be able to: We will be able to achieve this goal. Will can не кажуть.
+am / is able to + дія — те саме «можу», тільки з am / is і to: I am able to cope with the stress — «я даю раду стресу». «Зможу» в майбутньому — will be able to: We will be able to achieve this goal — «ми зможемо досягти мети». Will can не кажуть.
 
 **formula**
 `зараз: am / is able to + дія` · `у майбутньому: will be able to + дія`

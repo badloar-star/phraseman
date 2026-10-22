@@ -57,7 +57,7 @@
 ## 03 · it і them — про речі
 
 **body**
-Про річ після дії кажуть it, про кілька — them: Could I unscrew it? Could I untangle them? Не its і не they — це інші слова.
+Про річ після дії кажуть it, про кілька — them: Could I unscrew it? («відкрутити») Could I untangle them? («розплутати») Не its і не they — це інші слова.
 
 **formula**
 `дія` · `it (одна річ) / them (кілька)`

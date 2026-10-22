@@ -56,7 +56,7 @@
 ## 03 · want, hope, plan + to
 
 **body**
-Після want (хочу), need (треба), hope (сподіваюся), plan, intend (збираюся), expect, promise, offer друга дія йде з to і в словниковій формі: I intend to stay here. Після to — без -ing і без -s.
+Після want (хочу), need (треба), hope (сподіваюся), plan (планую), intend (збираюся), expect (очікую), promise (обіцяю), offer (пропоную) друга дія йде з to і в словниковій формі: I intend to stay here. Після to — без -ing і без -s.
 
 **formula**
 `want / need / hope / plan / intend / promise` · `to` · `дія як у словнику`

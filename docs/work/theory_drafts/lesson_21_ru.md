@@ -65,7 +65,7 @@
 ## 03 · want, hope, plan + to
 
 **body**
-После want (хочу), need (нужно), hope (надеюсь), plan, intend (собираюсь), expect, promise, offer второе действие идёт с to и в словарной форме: I intend to stay here. После to — без -ing и без -s.
+После want (хочу), need (нужно), hope (надеюсь), plan (планирую), intend (собираюсь), expect (ожидаю), promise (обещаю), offer (предлагаю) второе действие идёт с to и в словарной форме: I intend to stay here. После to — без -ing и без -s.
 
 **formula**
 `want / need / hope / plan / intend / promise` · `to` · `действие как в словаре`

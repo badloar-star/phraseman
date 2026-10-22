@@ -65,7 +65,7 @@
 ## 03 · it и them — о вещах
 
 **body**
-О вещи после действия говорят it, о нескольких — them: Could I unscrew it? Could I untangle them? Не its и не they — это другие слова.
+О вещи после действия говорят it, о нескольких — them: Could I unscrew it? («открутить») Could I untangle them? («распутать») Не its и не they — это другие слова.
 
 **formula**
 `действие` · `it (одна вещь) / them (несколько)`

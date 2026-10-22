@@ -33,7 +33,7 @@
 ## 02 · can — «могу, умею» *(открыт сразу)*
 
 **body**
-can + действие как в словаре: I can remove this stain. Can одинаковое для всех — he can, she can, без -s. Не могу — cannot: We cannot talk in private. После can никогда не ставят to.
+can + действие как в словаре: I can remove this stain. Can одинаковое для всех — he can, she can, без -s. Не могу — cannot: We cannot talk in private — «мы не можем поговорить наедине». После can никогда не ставят to.
 
 **formula**
 `кто` · `can / cannot` · `действие как в словаре`
@@ -144,7 +144,7 @@ Could I…? — ещё одна вежливая просьба: Could I pay in 
 ## 06 · be able to — «в силах», «смогу»
 
 **body**
-am / is able to + действие — то же «могу», только с am / is и to: I am able to cope with the stress. «Смогу» в будущем — will be able to: We will be able to achieve this goal. Will can не говорят.
+am / is able to + действие — то же «могу», только с am / is и to: I am able to cope with the stress — «я справляюсь со стрессом». «Смогу» в будущем — will be able to: We will be able to achieve this goal — «мы сможем достичь цели». Will can не говорят.
 
 **formula**
 `сейчас: am / is able to + действие` · `в будущем: will be able to + действие`

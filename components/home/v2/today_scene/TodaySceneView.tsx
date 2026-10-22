@@ -28,12 +28,14 @@ import { homeSceneTokensForTheme } from '../scene/home_scene_tokens';
 import type { TodaySceneCopy } from './today_scene_copy';
 import type { TodaySceneDecision } from './today_scene_state';
 
-const STAGE_MIN_HEIGHT = 540;
-const HERO_SIZE = 200;
+/** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
+const STAGE_SCREEN_SHARE = 392 / 844;
+/** Кольца-герой варианта 2 (scenes-compact.html): 160 справа 8 сверху 96, ореол 168 у правого края на высоте героя — как в макете. */
+const HERO_SIZE = 160;
 /** Системный шрифт крупнее этого — кольца-герой встают в свободное место между шапкой и текстом (как HERO_BOUND_FONT_SCALE на Главной). */
 export const TODAY_HERO_BOUND_FONT_SCALE = 1.15;
-/** Панель «Задания дня» наезжает на сцену (.a-panel margin-top −38). */
-const PANEL_OVERLAP = 38;
+/** Панель «Задания дня» наезжает на сцену (вариант 2: −22). */
+const PANEL_OVERLAP = 22;
 const ROW_ICON: Readonly<Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']>> = {
   lesson: 'book-outline', dialog: 'chatbubbles-outline', cards: 'copy-outline', video: 'play-circle-outline', mistakes: 'alert-circle-outline', spire_steps: 'trending-up-outline',
 };
@@ -58,7 +60,9 @@ export type TodaySceneViewProps = Readonly<{
 const TodaySceneView = memo(function TodaySceneView({ title, history, decision, copy, tasks, ringColors, fromProgress, onBack, backLabel, onOpenTask }: TodaySceneViewProps) {
   // зачем (FONTSCALE2, 2 · ДИЗАЙН 22.10): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const s = useScaledTextStyles(baseStyles);
-  const { fontScale } = useWindowDimensions();
+  const { fontScale, height: windowH } = useWindowDimensions();
+  // зачем (владелец 22.10, вариант 2): сцена — 46 % экрана; на крупном шрифте растёт, а не режет текст
+  const stageH = Math.round(windowH * STAGE_SCREEN_SHARE);
   const heroBounded = fontScale > TODAY_HERO_BOUND_FONT_SCALE;
   const [slotH, setSlotH] = useState(0);
   // зачем: на крупном шрифте текст занимает больше места, 200×200 на абсолютных координатах заезжали под него — кольца вписываются во flex-слот уменьшением (масштаб ≤ 1), шрифт не трогаем
@@ -78,7 +82,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
   const ringTasks: readonly TodayRingsTask[] = tasks.map((task) => ({ progress: task.progress, target: task.target }));
   return (
     <ScrollView testID="today-scene" style={[s.root, { backgroundColor: p.bg }]} contentContainerStyle={s.content} showsVerticalScrollIndicator={false} bounces={false}>
-      <View testID="today-scene-stage" style={[s.stage, { minHeight: STAGE_MIN_HEIGHT }]}>
+      <View testID="today-scene-stage" style={[s.stage, { minHeight: stageH }]}>
         <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
         <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
           <Defs>
@@ -87,7 +91,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
               <Stop offset="1" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="0" />
             </RadialGradient>
             <RadialGradient id="todayHalo" cx="50%" cy="50%" r="50%">
-              <Stop offset="0" stopColor="#FFFFFF" stopOpacity="0.2" />
+              <Stop offset="0" stopColor="#FFFFFF" stopOpacity="0.22" />
               <Stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
             </RadialGradient>
             {evening ? (
@@ -98,10 +102,10 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
             ) : null}
           </Defs>
           <Rect x="0" y="0" width="100%" height="100%" fill="url(#todayLight)" />
-          <Rect x="52%" y={70} width={270} height={270} fill="url(#todayHalo)" />
-          {evening ? <Rect x={-40} y={STAGE_MIN_HEIGHT - 200} width={260} height={260} fill="url(#todayEmber)" /> : null}
+          <Rect x="57%" y={96} width={168} height={168} fill="url(#todayHalo)" />
+          {evening ? <Rect x={-40} y={stageH - 200} width={260} height={260} fill="url(#todayEmber)" /> : null}
         </Svg>
-        {/* герой — сами кольца дня; место занято с первого кадра (200 × 200), кольца докручиваются внутри */}
+        {/* герой — сами кольца дня; место занято с первого кадра (160 × 160), кольца докручиваются внутри */}
         {heroBounded ? null : (
           <View pointerEvents="none" testID="today-scene-rings" style={s.hero}>
             <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} />
@@ -184,22 +188,22 @@ export default TodaySceneView;
 const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   content: { paddingBottom: 40 },
-  stage: { borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden', justifyContent: 'space-between' },
-  hero: { position: 'absolute', right: 22, top: 104, width: 200, height: 200, alignItems: 'center', justifyContent: 'center' },
-  heroSlot: { flex: 1, minHeight: 0, alignItems: 'flex-end', paddingRight: 22 },
+  stage: { borderBottomLeftRadius: 32, borderBottomRightRadius: 32, overflow: 'hidden', justifyContent: 'space-between' },
+  hero: { position: 'absolute', right: 8, top: 96, width: HERO_SIZE, height: HERO_SIZE, alignItems: 'center', justifyContent: 'center' },
+  heroSlot: { flex: 1, minHeight: 0, alignItems: 'flex-end', paddingRight: 8 },
   heroBoundedBox: { width: HERO_SIZE, height: HERO_SIZE, alignItems: 'center', justifyContent: 'center', transformOrigin: 'right top' },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
   top: { paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 12 },
   heading: { flex: 1, color: '#FFFFFF', fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 },
   history: { marginTop: 14 },
-  body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 58 },
+  body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 44 },
   // зачем (D145, владелец: шрифты 16/13 главнее макета; как у Главной в bd1ba46cd): подписи сцены 13/17, крупные строки и кнопка 16/21, заголовок 34 без изменений
   kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17 },
-  title: { color: '#FFFFFF', fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.6, marginTop: 4, fontVariant: ['tabular-nums'] },
+  title: { color: '#FFFFFF', fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4, fontVariant: ['tabular-nums'] },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
   warm: { color: '#FFD9D0', /* аудит контраста 22.10: как на Главной, чуть светлее прежнего #FFD0C4 */ fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17, marginTop: 10 },
-  cta: { marginTop: 16, minHeight: 54, paddingVertical: 8, borderRadius: 27, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
+  cta: { marginTop: 16, minHeight: 50, paddingVertical: 8, borderRadius: 25, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
   ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   panel: { marginTop: -PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 28, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },
   panelHead: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginBottom: 2 },

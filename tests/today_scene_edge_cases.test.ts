@@ -8,7 +8,7 @@ describe('TodaySceneView: крайние случаи', () => {
     expect(src).toContain('useScaledTextStyles(baseStyles)');
   });
   it('кнопка: minHeight вместо height 54, название задания переносится', () => {
-    expect(src).toMatch(/cta: \{[^}]*minHeight: 54/);
+    expect(src).toMatch(/cta: \{[^}]*minHeight: 50/); // вариант 2 scenes-compact (владелец 22.10)
     expect(src).not.toMatch(/cta: \{[^}]*\bheight: 54/);
     expect(src).not.toMatch(/ctaText\}\s+numberOfLines/);
     expect(src).toContain('<Text style={s.ctaText}>');

@@ -33,7 +33,11 @@ describe('«Сегодня» в стиле «Сцена»: подключени�
     const view = readSource('components/home/v2/today_scene/TodaySceneView.tsx');
     expect(view).toContain('homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening)');
     expect(view).toContain('<TodayRingsSlot');
-    expect(view).toContain('size={200}');
+    expect(view).toContain('size={HERO_SIZE}'); // вариант 2 scenes-compact (владелец 22.10): кольца 160 справа 8 сверху 96
+    expect(view).toContain('const HERO_SIZE = 160;');
+    expect(view).toContain("hero: { position: 'absolute', right: 8, top: 96, width: HERO_SIZE, height: HERO_SIZE,");
+    expect(view).toContain('<Rect x="57%" y={96} width={168} height={168} fill="url(#todayHalo)" />');
+    expect(readSource('components/streak/moments/TodayRings.tsx')).toContain('160: Object.freeze({ size: 160, stroke: 12, gap: 4, coin: 54 }),');
     for (const line of view.split('\n')) {
       if (/border(Color|Width)/.test(line) && !/guard-ok|shadow-ok|hairlineWidth/.test(line)) throw new Error(`обводка без пометки: ${line.trim()}`);
     }

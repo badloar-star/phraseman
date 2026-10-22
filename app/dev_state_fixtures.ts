@@ -104,6 +104,8 @@ export type DevStateRequest = Readonly<{
   soundv2?: 'on' | 'off';
   /** Моменты вовлечения v3: v3 — включить на устройстве (вместо удалённого флага moments_v3), off — выключить, inherit — как в удалённом конфиге. */
   moments?: 'v3' | 'off' | 'inherit';
+  /** Лёгкий режим (только dev-сборки, координатор 22.10): auto — проверить авто-Lite (в dev он выключен: эмулятор Сверки — с тенями), on / off — принудительно. */
+  lite?: 'auto' | 'on' | 'off';
   /** Оформление light/dark ТОЛЬКО в памяти (хранилище не тронуто); clear — снять оверрайд. Для съёмки светлых образцов ссылкой. */
   appearance?: 'light' | 'dark' | 'clear';
   /** Тема Liquid Glass ТОЛЬКО в памяти (id из LIQUID_GLASS_THEME_IDS); clear — снять. Образец макетов — grad_aurora (Сверка chain7, 12.10). */
@@ -390,6 +392,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.spire = pick('spire', ['open', 'closed'] as const);
   request.soundv2 = pick('soundv2', ['on', 'off'] as const);
   request.moments = pick('moments', ['v3', 'off', 'inherit'] as const);
+  request.lite = pick('lite', ['auto', 'on', 'off'] as const);
   request.appearance = pick('appearance', ['light', 'dark', 'clear'] as const);
   // зачем (Сверка chain7 12.10): тема и оттенок образца (Аврора, полная насыщенность) выставляются ссылкой, а не руками в настройках
   const themeRaw = one(params.theme);
@@ -815,6 +818,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('moments', request.moments, async () => {
       const { setMomentsV3DevOverride } = await import('../components/streak/moments/use_moments_v3_flag');
       await setMomentsV3DevOverride(request.moments === 'inherit' ? null : request.moments === 'v3');
+    });
+  }
+  if (request.lite) {
+    // зачем (координатор 22.10): в dev-сборке авто-Lite выключен — проверить его или включить / выключить принудительно одной ссылкой
+    await step('lite', request.lite, async () => {
+      const { setLiteModeDevLink } = await import('./lite_mode');
+      setLiteModeDevLink(request.lite ?? null);
     });
   }
   if (request.soundv2) {

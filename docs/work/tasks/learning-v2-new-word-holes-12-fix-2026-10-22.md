@@ -44,3 +44,5 @@ Owner: Learning V2; решение координатора 22.10 (вариан�
 ## Rollback
 
 git revert коммита правки и пересборки.
+
+Governance-ID: TG-66B7F3B65A16

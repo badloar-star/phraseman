@@ -48,8 +48,14 @@ export type PendingDuel =
 const log = (line: string): void => { console.log(`[FRIENDS-DUEL] ${line}`); }; // guard-ok: журнал дуэли, одна строка на шаг
 const errText = (e: unknown): string => (e instanceof Error ? e.message : String((e as { message?: unknown })?.message ?? e));
 
+/**
+ * Ключ повтора хода, вызова и отказа. Сервер (1 · ЯДРО 22.10) берёт строку 16–80 символов [A-Za-z0-9_-]:
+ * `fdl_` + время (8 знаков base36) + `_` + 8 случайных — всегда 21 символ.
+ * зачем: случайная часть из Math.random бывает короче 8 знаков — без добивки ключ изредка выходил бы короче 16, сервер бы
+ * его отверг, а телефон досылал бы такой ход по кругу до конца суток.
+ */
 export function makeDuelRequestId(): string {
-  return `fdl_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+  return `fdl_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10).padEnd(8, '0')}`;
 }
 
 function errorHaystack(error: unknown): string {

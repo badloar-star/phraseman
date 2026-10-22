@@ -24,7 +24,7 @@ const mockSender: { current: { stableId: string; displayName?: string } | null }
 jest.mock('../app/friends_together/sender_identity', () => ({ prepareTogetherSender: () => Promise.resolve(mockSender.current) }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: () => Promise.resolve('me-1') }));
 
-import { flushPendingDuels, readPendingDuels, submitDuelChallenge, submitDuelDecline, submitDuelMove } from '../app/friends_together/duel_client';
+import { flushPendingDuels, makeDuelRequestId, readPendingDuels, submitDuelChallenge, submitDuelDecline, submitDuelMove } from '../app/friends_together/duel_client';
 
 const ok = (data: unknown) => () => Promise.resolve({ data });
 const fail = (code: string) => () => Promise.reject(Object.assign(new Error(code), { code: `functions/${code}` }));
@@ -36,6 +36,20 @@ beforeEach(() => {
   mockCalls.length = 0;
   for (const key of Object.keys(mockResponses)) delete mockResponses[key];
   mockSender.current = { stableId: 'me-1', displayName: 'Алекс' };
+});
+
+describe('ключ повтора', () => {
+  it('всегда в форме сервера (1 · ЯДРО 22.10): 16–80 символов [A-Za-z0-9_-], даже при короткой случайной части', () => {
+    const random = jest.spyOn(Math, 'random');
+    try {
+      for (const value of [0.5, 0.25, 0.123456789, 0.999999]) {
+        random.mockReturnValue(value);
+        expect(makeDuelRequestId()).toMatch(/^[A-Za-z0-9_-]{16,80}$/u);
+      }
+    } finally {
+      random.mockRestore();
+    }
+  });
 });
 
 describe('вызов со своим ходом', () => {

@@ -402,6 +402,8 @@ function AiCompanionSession() {
             accessibilityRole="button"
             accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
             onPress={onBack}
+            // зачем (аудит кнопок 22.10, C2): круг 40 — зона нажатия до 44
+            hitSlop={{ top: 2, bottom: 2, left: 2, right: 2 }}
             style={{
               width: 40,
               height: 40,

@@ -396,7 +396,7 @@ export default function LearningV2DictionaryV2({ words, lessons, studyTarget, of
                 <Text style={[styles.toastText, { color: g.ctaFillInk }]} numberOfLines={2}>
                   {toast.words.length === 1 ? copy.toastOne(toast.words[0]!) : copy.toastMany(toast.words.length)}
                 </Text>
-                <Pressable testID="learning-v2-dict-undo" accessibilityRole="button" onPress={undo} style={[styles.undo, { backgroundColor: lv2Alpha(g.ctaFillInk, 0.12) }]}>
+                <Pressable testID="learning-v2-dict-undo" accessibilityRole="button" onPress={undo} hitSlop={{ top: 2, bottom: 2, left: 2, right: 2 }} style={[styles.undo, { backgroundColor: lv2Alpha(g.ctaFillInk, 0.12) }]}>
                   <Text style={[styles.undoText, { color: g.ctaFillInk }]}>{copy.undo}</Text>
                 </Pressable>
               </View>

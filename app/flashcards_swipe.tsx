@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { describeDevCardsState, getDevAnswerTarget, getDevTrainGate, isDevCardsHeld } from './dev_cards_state';
-import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
+import { isAttemptsInputBlocked, isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -4006,7 +4006,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             />
           </View>
         ) : null}
-        {attempts.state.phase !== 'active' ? <View pointerEvents="auto" style={styles.attemptsInputBlocker} /> : null}
+        {/* зачем (аудит кнопок 22.10, A1): блокируем только фазы с выходом (восстановление / окно остановки), как на экране занятия; в 'ended' окна нет — экран был бы мёртв */}
+        {isAttemptsInputBlocked(attempts.state.phase) ? <View pointerEvents="auto" style={styles.attemptsInputBlocker} /> : null}
         {runeFlight.flight ? (
           <CoinRewardFlight key={runeFlight.flight.key} from={runeFlight.flight.from} to={runeFlight.flight.to} count={runeFlight.flight.count} onDone={runeFlight.clearFlight} />
         ) : null}
@@ -4371,7 +4372,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             </View>
           </>
         )}
-        {attempts.state.phase !== 'active' ? (
+        {isAttemptsInputBlocked(attempts.state.phase) ? (
           <View pointerEvents="auto" style={styles.attemptsInputBlocker} />
         ) : null}
         {runeFlight.flight && (

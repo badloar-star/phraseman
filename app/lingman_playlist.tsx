@@ -155,7 +155,7 @@ export default function LingmanPlaylistScreen() {
       <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <SafeAreaView testID="youtube-playlist-detail" style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
         <View style={styles.topbar}>
-          <TouchableOpacity accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => safeRouterBack(router, LINGMAN_BACK_FALLBACK as any)} style={[styles.back, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}><BackGlyph size={20} color={g.text} /></TouchableOpacity>
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => safeRouterBack(router, LINGMAN_BACK_FALLBACK as any)} hitSlop={{ top: 1, bottom: 1, left: 1, right: 1 }} style={[styles.back, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}><BackGlyph size={20} color={g.text} /></TouchableOpacity>
         </View>
         {view === 'slow' ? (
           <View testID="youtube-playlist-slow" style={styles.empty}>

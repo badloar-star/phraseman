@@ -61,6 +61,8 @@ export const VisibilitySegment = memo(function VisibilitySegment({ g, label, val
       accessibilityState={{ selected: on, disabled: !!disabled }}
       disabled={disabled}
       onPress={() => onChange(next)}
+      // зачем (аудит кнопок 22.10, C2): сегмент высотой 42 — по вертикали до 44; по бокам не расширяем, сегменты стоят вплотную
+      hitSlop={{ top: 1, bottom: 1 }}
       // зачем (Макеты cards-066, №35): выбранный сегмент «Только я / Для всех» — заливка главной кнопки темы (ctaFill/ctaInk, в «Спокойно» светлая как в образце), а не приглушённый accent
       style={[styles.seg, on && { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) }, disabled && styles.segDisabled]}>
       <Ionicons name={icon} size={16} color={on ? g.ctaFillInk : g.secondary} />

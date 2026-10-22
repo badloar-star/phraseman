@@ -18,9 +18,9 @@
  * Парный сторож на связку экранов (передан ли `hydrated`) —
  * tests/session_attempts_screen_wiring_gate.ts.
  */
-import { renderHook, waitFor } from '@testing-library/react-native';
+import { act, renderHook, waitFor } from '@testing-library/react-native';
 
-import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
+import { INPUT_LOCK_WATCHDOG_MS, useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 
 describe('автосброс попыток разблокирует экран', () => {
   test('без hydrated восстановление не запускается — так и выглядел зависший экран', async () => {
@@ -112,5 +112,86 @@ describe('автосброс попыток разблокирует экран'
     await new Promise((resolve) => { setTimeout(resolve, 50); });
     expect(restoreAttempts).not.toHaveBeenCalled();
     expect(forfeitSessionRunes).not.toHaveBeenCalled();
+  });
+});
+
+// зачем (аудит кнопок 22.10, A1: «если фаза застрянет, экран мёртв»): страховка [INPUT-LOCK] снимает зависшее
+// «ждём восстановления» сама и без платы; остановку без энергии не трогает — у неё своё окно с выходом.
+describe('страховка блокировки ввода [INPUT-LOCK]', () => {
+  beforeEach(() => { jest.useFakeTimers(); });
+  afterEach(() => { jest.useRealTimers(); });
+
+  test('восстановление не началось (нет hydrated) — через 8 с попытки возвращаются без платы', async () => {
+    const restoreAttempts = jest.fn();
+    const forfeitSessionRunes = jest.fn();
+    const onRestored = jest.fn();
+
+    await renderHook(() => useSessionAttemptAutoReset({
+      phase: 'awaiting_recovery',
+      restoreAttempts,
+      forfeitSessionRunes,
+      onRestored,
+    }));
+
+    await act(async () => { jest.advanceTimersByTime(INPUT_LOCK_WATCHDOG_MS - 1); });
+    expect(restoreAttempts).not.toHaveBeenCalled();
+    await act(async () => { jest.advanceTimersByTime(1); });
+    expect(restoreAttempts).toHaveBeenCalledTimes(1);
+    expect(onRestored).toHaveBeenCalledTimes(1);
+    expect(forfeitSessionRunes).not.toHaveBeenCalled();
+  });
+
+  test('сжигание монет повисло — страховка снимает блокировку, поздний ответ не открывает вопрос второй раз', async () => {
+    let finishForfeit: () => void = () => undefined;
+    const forfeitSessionRunes = jest.fn(() => new Promise<void>((resolve) => { finishForfeit = resolve; }));
+    const restoreAttempts = jest.fn();
+    const onRestored = jest.fn();
+
+    await renderHook(() => useSessionAttemptAutoReset({
+      phase: 'awaiting_recovery',
+      hydrated: true,
+      restoreAttempts,
+      forfeitSessionRunes,
+      onRestored,
+    }));
+
+    expect(forfeitSessionRunes).toHaveBeenCalledTimes(1);
+    await act(async () => { jest.advanceTimersByTime(INPUT_LOCK_WATCHDOG_MS); });
+    expect(restoreAttempts).toHaveBeenCalledTimes(1);
+    expect(onRestored).toHaveBeenCalledTimes(1);
+
+    await act(async () => { finishForfeit(); });
+    expect(restoreAttempts).toHaveBeenCalledTimes(1);
+    expect(onRestored).toHaveBeenCalledTimes(1);
+  });
+
+  test('блокировка снята вовремя — страховка молчит', async () => {
+    const restoreAttempts = jest.fn();
+    const onRestored = jest.fn();
+
+    const hook = await renderHook(
+      ({ phase }: { phase: 'awaiting_recovery' | 'active' }) => useSessionAttemptAutoReset({ phase, restoreAttempts, onRestored }),
+      { initialProps: { phase: 'awaiting_recovery' as 'awaiting_recovery' | 'active' } },
+    );
+    await hook.rerender({ phase: 'active' });
+    await act(async () => { jest.advanceTimersByTime(INPUT_LOCK_WATCHDOG_MS * 2); });
+    expect(restoreAttempts).not.toHaveBeenCalled();
+    expect(onRestored).not.toHaveBeenCalled();
+  });
+
+  test('остановку без энергии страховка не снимает — правило энергии не обходим', async () => {
+    const restoreAttempts = jest.fn();
+    const onRestored = jest.fn();
+
+    await renderHook(() => useSessionAttemptAutoReset({
+      phase: 'stopped_no_energy',
+      hydrated: true,
+      restoreAttempts,
+      onRestored,
+    }));
+
+    await act(async () => { jest.advanceTimersByTime(INPUT_LOCK_WATCHDOG_MS * 2); });
+    expect(restoreAttempts).not.toHaveBeenCalled();
+    expect(onRestored).not.toHaveBeenCalled();
   });
 });

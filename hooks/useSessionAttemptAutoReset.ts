@@ -2,6 +2,10 @@ import { useEffect, useRef } from 'react';
 
 import { DebugLogger } from '../app/debug-logger';
 import type { SessionAttemptsPhase } from '../app/session_attempts/session_attempts_domain';
+import { isAttemptsInputBlocked } from '../app/session_attempts/session_attempts_stop';
+
+/** Сколько ждём обычное восстановление попыток, прежде чем страховка снимет блокировку ввода сама. */
+export const INPUT_LOCK_WATCHDOG_MS = 8000;
 
 type Input = Readonly<{
   phase: SessionAttemptsPhase;
@@ -59,6 +63,45 @@ export function useSessionAttemptAutoReset({
 
   useEffect(() => () => { mountedRef.current = false; }, []);
 
+  const hydratedRef = useRef(hydrated);
+  hydratedRef.current = hydrated;
+  /** Номер текущей блокировки и номер уже снятой: страховка и обычный путь не восстанавливают одну блокировку дважды. */
+  const lockSeqRef = useRef(0);
+  const resolvedLockSeqRef = useRef(0);
+
+  // зачем (аудит кнопок 22.10, A1: «если фаза застрянет, экран мёртв»): карточки и занятие кладут поверх экрана
+  // блокировщик ввода, пока фаза не active. Обычный путь снятия — восстановление ниже; если оно не завершилось (чтение
+  // состояния не пришло, сжигание монет повисло), экран оставался мёртвым без единой строки в журнале. Теперь каждая
+  // блокировка пишется [INPUT-LOCK], а «ждём восстановления» дольше INPUT_LOCK_WATCHDOG_MS снимается само — без платы.
+  // Остановку без энергии не снимаем: у неё своё окно с выходом, правило энергии не обходим — только журнал.
+  // Эффект объявлен ДО эффекта восстановления: номер блокировки должен вырасти раньше, чем обычный путь его прочитает.
+  useEffect(() => {
+    if (!isAttemptsInputBlocked(phase)) return undefined;
+    lockSeqRef.current += 1;
+    const seq = lockSeqRef.current;
+    const startedAt = Date.now();
+    DebugLogger.info('[INPUT-LOCK]', `ввод заблокирован: phase=${phase} lock=${seq} hydrated=${String(hydratedRef.current)} handling=${String(handlingRef.current)}`);
+    const timer = setTimeout(() => {
+      const context = `phase=${phase} lock=${seq} hydrated=${String(hydratedRef.current)} handling=${String(handlingRef.current)} trusted=${String(callbacksRef.current.hydrationTrusted)}`;
+      if (phase !== 'awaiting_recovery') {
+        DebugLogger.warn('[INPUT-LOCK]', `блокировка держится ${INPUT_LOCK_WATCHDOG_MS} мс; ${context} — выход через окно остановки, энергию не обходим`);
+        return;
+      }
+      if (!mountedRef.current || resolvedLockSeqRef.current === seq) {
+        DebugLogger.info('[INPUT-LOCK]', `страховка не нужна: mounted=${String(mountedRef.current)} resolved=${resolvedLockSeqRef.current}; ${context}`);
+        return;
+      }
+      resolvedLockSeqRef.current = seq;
+      DebugLogger.warn('[INPUT-LOCK]', `страховка: восстановление не завершилось за ${INPUT_LOCK_WATCHDOG_MS} мс — возвращаем попытки без платы; ${context}`);
+      callbacksRef.current.restoreAttempts();
+      callbacksRef.current.onRestored?.();
+    }, INPUT_LOCK_WATCHDOG_MS);
+    return () => {
+      clearTimeout(timer);
+      DebugLogger.info('[INPUT-LOCK]', `блокировка снята или экран закрыт: phase было ${phase} lock=${seq} держалась ${Date.now() - startedAt} мс mounted=${String(mountedRef.current)}`);
+    };
+  }, [phase]);
+
   // зачем (владелец 11.10, режим энергии Б; ревью Ядра): остановка без энергии снята — Plus или энергия вернулась, хук Ядра сам вернул фазу
   // в 'active'. Экран обязан открыть ТОТ ЖЕ вопрос заново (onRestored), как после рунного спасения, но БЕЗ сжигания монет и без restoreAttempts:
   // в режиме Б сердечек и платы монетами нет. Один хук закрывает все экраны занятий.
@@ -87,6 +130,7 @@ export function useSessionAttemptAutoReset({
     handlingRef.current = true;
 
     const callbacks = callbacksRef.current;
+    const lockSeq = lockSeqRef.current;
     /**
      * @param burnRunes сжигать ли заработанное за сессию.
      *
@@ -109,6 +153,11 @@ export function useSessionAttemptAutoReset({
         DebugLogger.warn('[ATTEMPTS-RESET]', 'early return: экран размонтирован до restoreAttempts');
         return;
       }
+      if (resolvedLockSeqRef.current === lockSeq) {
+        DebugLogger.warn('[ATTEMPTS-RESET]', `early return: блокировку lock=${lockSeq} уже сняла страховка [INPUT-LOCK] — второй раз вопрос не открываем`);
+        return;
+      }
+      resolvedLockSeqRef.current = lockSeq;
       callbacks.restoreAttempts();
       callbacks.onRestored?.();
       DebugLogger.info('[ATTEMPTS-RESET]', `итог: попытки восстановлены, экран разблокирован (плата монетами сессии=${String(burnRunes)})`);

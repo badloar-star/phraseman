@@ -200,6 +200,9 @@ async function sendOne(item) {
         && String(report.resolution || '') !== 'confirmed_fixed') {
       throw new Error('report is not server-confirmed as fixed');
     }
+    // зачем (Ревизор 22.10, 🔴1): без награды inboxRev поднимаем только у существующего документа — удалённый аккаунт
+    // не воскрешаем (как adminReplyToReport). Чтение — до любых записей транзакции.
+    const recipientExists = bundleHasReward(item.rewardBundle) ? true : (await tx.get(userRef)).exists;
 
     tx.set(messageRef, {
       kind: 'report_reply',
@@ -244,9 +247,12 @@ async function sendOne(item) {
     // Подтверждённый репорт: двигаем счётчик титула И публичную проекцию борда
     // «Топ хелперов» в той же транзакции — чтобы рейтинг на борде и счётчик титула
     // никогда не разъезжались (зеркало functions/src/report_replies.ts).
+    // зачем (Ревизор 22.10, 🔴1; вопрос 27): запись в user_messages поднимает users/{uid}.inboxRev в той же транзакции —
+    // зеркало functions/src/report_replies.ts. Без этого клиент с копией личных сообщений не увидит ответ до 7 дней.
     if (bundleHasReward(item.rewardBundle)) {
       tx.set(userRef, {
         progress: { [HELPFUL_REPORTS_CONFIRMED_KEY]: admin.firestore.FieldValue.increment(1) },
+        inboxRev: admin.firestore.FieldValue.increment(1),
       }, { merge: true });
       tx.set(helperRef, {
         uid: item.uid,
@@ -255,6 +261,8 @@ async function sendOne(item) {
         updatedAtMs: nowMs,
         ...(helperProjection ?? {}),
       }, { merge: true });
+    } else if (recipientExists) {
+      tx.set(userRef, { inboxRev: admin.firestore.FieldValue.increment(1) }, { merge: true });
     }
 
     tx.set(reportRef, {

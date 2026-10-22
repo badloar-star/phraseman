@@ -74,7 +74,7 @@ describe('Сцена Диалогов: контракт подключения',
   });
   it('согласие только читается: ни хук, ни обёртка его не записывают', () => {
     for (const src of [hook, hub]) expect(src).not.toMatch(/setAiDialogConsent|recordAiDialogConsent/);
-    expect(hook).toMatch(/dayDone: null/);
+    expect(hook).toMatch(/dayDone: peekDialogueV2DoneToday()/);
   });
   it('действия обёртки: лимит — premium_modal, остальное — брифинг следующего диалога', () => {
     expect(hub).toMatch(/pathname: '\/premium_modal'/);

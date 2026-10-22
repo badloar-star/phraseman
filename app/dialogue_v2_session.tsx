@@ -29,6 +29,7 @@ import {
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
 import { rememberDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import { markDialogueV2Done } from './dialogue_v2_done_store';
+import { markDialogueV2DoneToday } from './dialogue_v2_day_mark';
 import { createDialogueEnergySettler, type DialogueEnergySettler } from './dialogue_v2_energy_settle';
 import { formatDialogObjectiveLabel } from '../components/dialogs/dialog_objective_label';
 import { resolveCurrentDialogueV2PreparedBotVoice } from './dialogue_v2_prepared_bot_voice_runtime';
@@ -773,6 +774,8 @@ function SessionContent() {
     // отметка мгновенная (память + хаб в тот же кадр), диск догоняет фоном. Остановка вручную или по лимиту прохождением не считается.
     if (endedBy === 'bot' && learnerTurns > 0 && supportedTarget(studyTarget)) {
       markDialogueV2Done(studyTarget, scenarioId);
+      // зачем (координатор 22.10, «Сцена» Диалогов): день с засчитанным диалогом — состояние day_done; локальная дата, без сети
+      markDialogueV2DoneToday();
     } else {
       console.log(`[DIALOG-DONE] summary → не засчитан scenarioId=${scenarioId} endedBy=${endedBy} learnerTurns=${learnerTurns} studyTarget=${String(studyTarget)}`); // guard-ok: ветвление называет причину
     }

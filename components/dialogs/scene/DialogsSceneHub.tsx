@@ -79,7 +79,7 @@ function DialogsSceneHub({ fallback, onBack, backLabel }: Props) {
         following={next ? next.info : null}
         quotaTotal={hub.quotaTotal}
         resetDate={hub.resetDate}
-        voicePerDay={null}
+        voicePerDay={hub.voicePerDay}
         personaId={next ? next.personaId : null}
         topInset={insets.top + 8}
         topStart={<V2IconButton testID="ai-dialog-home-back" icon="chevron-back" accessibilityLabel={backLabel} onPress={onBack} />}

@@ -65,7 +65,7 @@ export function buildGiftCancelRefundAlert(
 /**
  * Письмо покупателю «подарок отменён» — по-русски и по-английски (язык покупателя в заказе не хранится).
  * зачем (Ревизор 21.10): покупатель должен знать, что код погашен и деньги вернут вручную, и куда писать.
- * Срок возврата не обещаем, пока владелец его не назвал.
+ * Срок возврата — 5 рабочих дней (решение владельца 22.10).
  */
 export function buildGiftCancelEmail(order: Readonly<Record<string, unknown>>, support: string): { subject: string; text: string; html: string } {
   const plan = order.plan === 'monthly' ? 'monthly' : 'yearly';
@@ -74,21 +74,21 @@ export function buildGiftCancelEmail(order: Readonly<Record<string, unknown>>, s
   const subject = 'Подарок Phraseman отменён · Gift cancelled';
   const text = [
     `Подарок «${ru}» отменён. Код и ссылка больше не работают.`,
-    'Деньги вернём вручную на тот же способ оплаты и напишем, когда возврат будет оформлен.',
+    'Деньги вернём вручную на тот же способ оплаты в течение 5 рабочих дней и напишем, когда возврат будет оформлен.',
     `Вопросы — ${support}, пишите с этого адреса.`,
     '',
     `Your gift “${en}” has been cancelled. The code and link no longer work.`,
-    'We’ll refund you manually to the same payment method and let you know once the refund is issued.',
+    'We’ll refund you manually to the same payment method within 5 business days and let you know once the refund is issued.',
     `Questions — ${support}, write from this email address.`,
   ].join('\n');
   const html = [
     '<div style="background:#f6f3ea;padding:28px 12px;font-family:Arial,Helvetica,sans-serif">',
     '<div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:24px;padding:28px;color:#201c12">',
     '<h1 style="font-size:22px;margin:0 0 8px">Подарок отменён</h1>',
-    `<p style="margin:0;color:#4c4636">«${htmlEscape(ru)}» — код и ссылка больше не работают. Деньги вернём вручную на тот же способ оплаты и напишем, когда возврат будет оформлен.</p>`,
+    `<p style="margin:0;color:#4c4636">«${htmlEscape(ru)}» — код и ссылка больше не работают. Деньги вернём вручную на тот же способ оплаты в течение 5 рабочих дней и напишем, когда возврат будет оформлен.</p>`,
     `<p style="margin:12px 0 0;color:#4c4636">Вопросы — ${htmlEscape(support)}, пишите с этого адреса.</p>`,
     '<h2 style="font-size:18px;margin:24px 0 8px">Gift cancelled</h2>',
-    `<p style="margin:0;color:#4c4636">“${htmlEscape(en)}” — the code and link no longer work. We’ll refund you manually to the same payment method and let you know once the refund is issued.</p>`,
+    `<p style="margin:0;color:#4c4636">“${htmlEscape(en)}” — the code and link no longer work. We’ll refund you manually to the same payment method within 5 business days and let you know once the refund is issued.</p>`,
     `<p style="margin:12px 0 0;color:#4c4636">Questions — ${htmlEscape(support)}, write from this email address.</p>`,
     '</div></div>',
   ].join('');

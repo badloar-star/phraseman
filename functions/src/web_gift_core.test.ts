@@ -116,6 +116,9 @@ describe('buildGiftCancelEmail', () => {
     expect(text).toContain('вернём вручную');
     expect(text).toContain('refund you manually');
     expect(html).toContain('support.phraseman@gmail.com');
-    expect(text).not.toMatch(/\d+\s*(дн|day)/); // срок возврата не обещаем, пока владелец его не назвал
+    // срок возврата — решение владельца 22.10: 5 рабочих дней, на обоих языках и в HTML
+    expect(text).toContain('в течение 5 рабочих дней');
+    expect(text).toContain('within 5 business days');
+    expect(html).toContain('в течение 5 рабочих дней');
   });
 });

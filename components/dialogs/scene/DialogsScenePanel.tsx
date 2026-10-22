@@ -15,6 +15,7 @@ import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { useLv2Glass } from '../../learning-v2/LearningV2Glass';
 import V2Pressable from '../../v2/V2Pressable';
 import { DIALOGS_SCENE_PANEL_OVERLAP } from './DialogsSceneStage';
+import { contrastRatio } from './dialogs_scene_tokens';
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -61,6 +62,9 @@ function DialogCard({ card, onPress }: Readonly<{ card: DialogsSceneCardData; on
   const g = useLv2Glass();
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом
   const current = card.status === 'current';
+  // зачем (аудит контраста 22.10, координатор): галочка «пройдено» цветом ctaInk на зелёной заливке good давала 2,34–2,69:1 в 10 светлых градиентных темах (ctaInk там тёмный);
+  // берём из двух надёжных чернил (ctaInk темы или белый) тот, что контрастнее с good — знак ≥ 3:1 везде
+  const tickInk = contrastRatio(g.ctaInk, g.good) >= contrastRatio('#FFFFFF', g.good) ? g.ctaInk : '#FFFFFF'; // theme-exempt: запасные чернила галочки на заливке good
   return (
     <V2Pressable
       testID={`dialogs-scene-card-${card.id}`}
@@ -94,7 +98,7 @@ function DialogCard({ card, onPress }: Readonly<{ card: DialogsSceneCardData; on
         {card.status === 'locked' ? (
           <View style={[s.go, { backgroundColor: g.selected }]}><Ionicons name="lock-closed" size={16} color={g.secondary} /></View>
         ) : card.status === 'done' ? (
-          <View style={[s.ok, { backgroundColor: g.good }]}><Ionicons name="checkmark" size={15} color={g.ctaInk} /></View>
+          <View style={[s.ok, { backgroundColor: g.good }]}><Ionicons name="checkmark" size={15} color={tickInk} /></View>
         ) : (
           <>
             <View style={[s.go, { backgroundColor: current ? g.cta : g.selected }]}>

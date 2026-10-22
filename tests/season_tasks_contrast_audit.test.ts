@@ -103,3 +103,47 @@ describe('Задания №23: пары токенов (светлая и тё�
     expect(misses).toEqual([]);
   });
 });
+
+describe('Диалоги: панель, чипы тем и карточки (светлая и тёмная, 23 темы × 3 уровня; аудит 22.10)', () => {
+  const overA = (fg8: string, bg: string, forceAlpha?: number): string => {
+    const a = forceAlpha ?? (fg8.length >= 9 ? parseInt(fg8.slice(7, 9), 16) / 255 : 1);
+    return over(fg8.slice(0, 7), a, bg);
+  };
+  const rows: { pair: string; ratio: number; need: number; tag: string }[] = [];
+  for (const appearance of ['light', 'dark'] as const) {
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const level of ['calm', 'accent', 'max'] as const) {
+        const g = liquidGlassTokens(id, { level, appearance } as never);
+        const tag = `${appearance}/${id}/${level}`;
+        const push = (pair: string, ratio: number, need: number): void => { rows.push({ pair, ratio, need, tag }); };
+        const card = g.opaqueCard;
+        const ctl = g.opaqueControl;
+        push('панель: заголовок', contrastRatio(g.text, card), TEXT);
+        push('панель: счётчик', contrastRatio(g.secondary, card), TEXT);
+        push('чип выбранный: ctaInk на cta', contrastRatio(g.ctaInk, g.cta), TEXT);
+        push('чип обычный: текст', contrastRatio(g.text, ctl), TEXT);
+        for (const [name, bg] of [['обычная', ctl], ['текущая', overA(g.accentText, card, 0.16)]] as const) {
+          push(`карточка ${name}: название`, contrastRatio(g.text, bg), TEXT);
+          push(`карточка ${name}: мир и цели`, contrastRatio(g.secondary, bg), TEXT);
+          push(`карточка ${name}: буква аватара`, contrastRatio(g.text, overA(g.selected, bg)), TEXT);
+          push(`карточка ${name}: кольцо цели`, contrastRatio(g.accentText, bg), TEXT);
+          push(`карточка ${name}: значок замка`, contrastRatio(g.secondary, overA(g.selected, bg)), GRAPHIC);
+          push(`карточка ${name}: шеврон`, contrastRatio(g.text, overA(g.selected, bg)), GRAPHIC);
+        }
+        // галочка «пройдено»: чернила — лучшие из ctaInk темы и белого (как tickInk в DialogCard)
+        const tick = Math.max(contrastRatio(g.ctaInk, g.good), contrastRatio(WHITE, g.good));
+        push('карточка «пройдена»: галочка на заливке good', tick, GRAPHIC);
+      }
+    }
+  }
+
+  it('в панели «Диалоги» выбор чернил галочки сделан токеном, не голым ctaInk', () => {
+    const panel = readSource('components/dialogs/scene/DialogsScenePanel.tsx');
+    expect(panel).toContain("const tickInk = contrastRatio(g.ctaInk, g.good) >= contrastRatio('#FFFFFF', g.good) ? g.ctaInk : '#FFFFFF';");
+    expect(panel).toContain('color={tickInk}');
+  });
+  it('ни одна пара не ниже нормы', () => {
+    const misses = rows.filter((r) => r.ratio < r.need).map((r) => `${r.tag} · ${r.pair}: ${r.ratio.toFixed(2)} < ${r.need}`);
+    expect(misses).toEqual([]);
+  });
+});

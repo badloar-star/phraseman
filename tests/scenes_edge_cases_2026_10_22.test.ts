@@ -23,9 +23,9 @@ describe('сцены Главной и Диалогов: шрифт 1,3 и дл�
 
   it('Главная: кнопка и чипы — высота «от», подпись кнопки сжимается переносом, а не выходит за край', () => {
     const src = code(read('components/home/v2/scene/HomeSceneStage.tsx'));
-    expect(src).toMatch(/cta: \{ marginTop: 16, minHeight: 54, paddingVertical: 8,/);
+    expect(src).toMatch(/cta: \{ marginTop: 16, minHeight: 50, paddingVertical: 8,/); // вариант 2 scenes-compact (владелец 22.10)
     expect(src).toMatch(/ctaText: \{[^}]*flexShrink: 1, textAlign: 'center'/);
-    expect(src).toMatch(/chip: \{ minHeight: 36, paddingVertical: 4, maxWidth: '100%'/);
+    expect(src).toMatch(/chip: \{ minHeight: 34, paddingVertical: 4, maxWidth: '100%'/); // чипы 34/17/.16 (владелец 22.10)
     expect(src).toMatch(/chipText: \{[^}]*flexShrink: 1/);
     expect(src).not.toMatch(/cta: \{[^}]*\bheight: 54/);
   });
@@ -41,7 +41,7 @@ describe('сцены Главной и Диалогов: шрифт 1,3 и дл�
 
   it('Диалоги: кнопка, пилюля остатка, чипы миров и «Показать ещё» — высота «от»; длинные подписи ужимаются переносом', () => {
     const stage = code(read('components/dialogs/scene/DialogsSceneStage.tsx'));
-    expect(stage).toMatch(/cta: \{ minHeight: 54, paddingVertical: 8,/);
+    expect(stage).toMatch(/cta: \{ minHeight: 50, paddingVertical: 8,/); // вариант 2 scenes-compact (владелец 22.10)
     expect(stage).toMatch(/pill: \{ minHeight: 36, paddingVertical: 4,/);
     const panel = code(read('components/dialogs/scene/DialogsScenePanel.tsx'));
     expect(panel).toMatch(/chip: \{ minHeight: 34, paddingVertical: 4, maxWidth: '100%'/);

@@ -11,7 +11,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { memo } from 'react';
-import { StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
+import { StyleSheet, Text, useWindowDimensions, View, type ImageSourcePropType } from 'react-native';
 import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
@@ -25,12 +25,20 @@ import type { DialogsSceneState } from './dialogs_scene_state';
 import type { DialogsSceneColors } from './dialogs_scene_tokens';
 
 const LOG = '[DIALOGS-SCENE]';
-/** Высота сцены эталона (.sc 520); при крупном шрифте сцена растёт, а не режет текст. */
-export const DIALOGS_SCENE_MIN_HEIGHT = 520;
-/** Панель под сценой наезжает на неё (.dpanel margin-top −38). */
-export const DIALOGS_SCENE_PANEL_OVERLAP = 38;
-const HERO_W = 216;
-const HERO_H = 270;
+/** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
+export const DIALOGS_SCENE_SCREEN_SHARE = 392 / 844;
+/** Высота сцены варианта 2 на экране 844; при крупном шрифте сцена растёт, а не режет текст. */
+export const DIALOGS_SCENE_MIN_HEIGHT = 392;
+/** Панель под сценой наезжает на неё (вариант 2: `.after` margin-top −22). */
+export const DIALOGS_SCENE_PANEL_OVERLAP = 22;
+/** Герой варианта 2: 160 × 160, справа −14. */
+const HERO = 160;
+/** Герой начинается на 44 ниже верха шапки (пилюля 36 + зазор 8): эталон — шапка на 52, герой на 96. */
+const HERO_BELOW_TOP = 44;
+/** Колонка текста сцены: справа 150 от края (герой 160 с −14 не заходит на текст). */
+const TEXT_RIGHT = 150;
+/** Заголовок длиннее 20 знаков — на 4 кегля меньше, чтобы не заезжать на предмет справа (эталон: `long`). */
+const LONG_TITLE_CHARS = 20;
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 /** Десять фиксированных делений шкалы ответов; свои id — деления не пересортировываются. */
 const METER_SEGMENTS = ['m0', 'm1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9'] as const;
@@ -57,6 +65,10 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
   const { colors: c, copy, state } = p;
   const reduceMotion = useReducedMotion();
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом
+  // зачем (владелец 22.10, вариант 2): сцена — 46 % экрана вместе со строкой статуса; на крупном шрифте растёт вниз (minHeight)
+  const { height: windowH } = useWindowDimensions();
+  const stageH = Math.round(windowH * DIALOGS_SCENE_SCREEN_SHARE);
+  const smallTitle = copy.small || copy.title.length > LONG_TITLE_CHARS;
   const pressCta = () => {
     if (copy.ctaDisabled) { console.warn(LOG, 'cta:ignored', JSON.stringify({ reason: 'cta_disabled', state })); return; } // guard-ok: ранний выход называет причину
     console.log(LOG, 'cta', JSON.stringify({ state, label: copy.cta })); // guard-ok: одна строка на тап
@@ -67,7 +79,7 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
     p.onRound();
   };
   return (
-    <View testID={`dialogs-scene-${state}`} style={s.stage}>
+    <View testID={`dialogs-scene-${state}`} style={[s.stage, { minHeight: stageH }]}>
       <DialogsSceneBackdrop colors={c} idPrefix="dlgScene" />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
         <Defs>
@@ -77,9 +89,9 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
             <Stop offset="1" stopColor={c.halo} stopOpacity="0" />
           </RadialGradient>
         </Defs>
-        <Rect x="58%" y={96} width={HERO_W} height={HERO_H} fill="url(#dlgHalo)" opacity={p.artDim ? 0.45 : 1} />
+        <Rect x="57%" y={p.topInset + HERO_BELOW_TOP} width={Math.round(HERO * 1.05)} height={Math.round(HERO * 1.05)} fill="url(#dlgHalo)" opacity={p.artDim ? 0.45 : 1} />
       </Svg>
-      {c.scrim ? <LinearGradient pointerEvents="none" colors={[alphaHex(c.scrim, 0), alphaHex(c.scrim, 0.62)]} style={s.scrim} /> : null}
+      {c.scrim ? <LinearGradient pointerEvents="none" colors={[alphaHex(c.scrim, 0), alphaHex(c.scrim, 0.34)]} style={s.scrim} /> : null}
       <View style={[s.top, { paddingTop: p.topInset }]}>
         {p.topStart ?? null}
         {copy.quota ? (
@@ -91,16 +103,14 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
         <View style={s.flex} />
         {p.topEnd ?? null}
       </View>
-      {/* зачем (Сверка 22.10, dg_side_4_first): настоящая 3D-картинка героя заходила на заголовок («й» уходил под облачко). Герой живёт в свободном месте
-          между шапкой и текстом сцены: слот занимает всё это место (но не больше HERO_H) и прижат к правому краю, картинка вписывается (contain) —
-          чем выше текст, тем меньше герой, и текстовую колонку на 360–430 dp он не пересекает. Геометрия — чистая раскладка, без замеров: первый кадр уже финальный. */}
-      <View style={s.heroSpace}>
-        {p.art ? (
-          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={[s.hero, p.artDim ? s.heroDim : null]}>
-            <ThemedArtLayers source={p.art} accent={p.artAccent} style={s.heroImage} contentFit="contain" contentPosition="right" />
-          </Animated.View>
-        ) : null}
-      </View>
+      {/* зачем: пустой слот (flex 1) прижимает текст сцены к низу; герой лежит поверх сцены абсолютно (чистая раскладка, без замеров — первый кадр уже финальный) */}
+      <View style={s.heroSpace} />
+      {/* зачем (владелец 22.10, вариант 2 scenes-compact.html): герой 160 × 160, справа −14, на 44 ниже верха шапки — как в эталоне; текст держится в колонке слева (TEXT_RIGHT 150), поэтому герой его не пересекает */}
+      {p.art ? (
+        <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={[s.hero, { top: p.topInset + HERO_BELOW_TOP }, p.artDim ? s.heroDim : null]}>
+          <ThemedArtLayers source={p.art} accent={p.artAccent} style={s.heroImage} contentFit="contain" contentPosition="center" />
+        </Animated.View>
+      ) : null}
       <View style={s.body}>
         {copy.offlineLine ? (
           <View testID="dialogs-scene-offline" accessibilityLiveRegion="polite" style={[s.offline, { backgroundColor: c.glass }]}>
@@ -114,7 +124,7 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
             <Text testID="dialogs-scene-kicker" style={[s.kicker, { color: c.secondary }]}>{copy.kicker}</Text>
           </View>
         ) : null}
-        <Text testID="dialogs-scene-title" accessibilityRole="header" style={[copy.small ? s.titleSmall : s.title, { color: c.text }]}>{copy.title}</Text>
+        <Text testID="dialogs-scene-title" accessibilityRole="header" style={[smallTitle ? s.titleSmall : s.title, { color: c.text }]}>{copy.title}</Text>
         {copy.sub ? <Text testID="dialogs-scene-sub" style={[s.sub, { color: c.secondary }]}>{copy.sub}</Text> : null}
         {copy.meterUsed !== null ? (
           <View testID="dialogs-scene-meter" style={s.meter}>
@@ -136,10 +146,10 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
             accessibilityState={{ disabled: copy.ctaDisabled }}
             onPress={pressCta}
             scaleTo={0.97}
-            outerStyle={s.flex}
+            outerStyle={s.ctaOuter}
             style={[s.cta, { backgroundColor: c.cta }, copy.ctaDisabled ? s.ctaOff : null]}
           >
-            {copy.ctaIcon ? <Ionicons name={copy.ctaIcon} size={18} color={c.ctaInk} /> : null}
+            {copy.ctaIcon ? <Ionicons name={copy.ctaIcon} size={17} color={c.ctaInk} /> : null}
             <Text style={[s.ctaText, { color: c.ctaInk }]} numberOfLines={2}>{copy.cta}</Text>
           </V2Pressable>
           {copy.round ? (
@@ -155,38 +165,41 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
 }
 
 const baseStyles = StyleSheet.create({
-  // зачем: сцена во всю ширину, скругление только снизу — как .sc (0 0 36 36); minHeight, а не height — крупный шрифт растит сцену
-  stage: { minHeight: DIALOGS_SCENE_MIN_HEIGHT, borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden' },
+  // зачем (вариант 2 scenes-compact.html): сцена во всю ширину, скругление только снизу — `.sc` 0 0 32 32; minHeight (46 % экрана задаёт Stage), а не height — крупный шрифт растит сцену
+  stage: { minHeight: DIALOGS_SCENE_MIN_HEIGHT, borderBottomLeftRadius: 32, borderBottomRightRadius: 32, overflow: 'hidden' },
   flex: { flex: 1 },
-  scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: '55%' },
+  scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: '60%' },
   heroSpace: { flex: 1 },
-  hero: { position: 'absolute', right: 10, top: 0, bottom: 4, width: HERO_W, maxHeight: HERO_H, opacity: 0.96 },
+  hero: { position: 'absolute', right: -14, width: HERO, height: HERO, opacity: 0.96 },
   heroDim: { opacity: 0.55 },
   heroImage: { width: '100%', height: '100%' },
   top: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 20 },
   pill: { minHeight: 36, paddingVertical: 4, paddingHorizontal: 12, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 6 },
   pillText: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  // зачем: текст сцены у нижнего края (.sc-body bottom 56) — место под панель, которая наезжает на 38
-  body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 56 },
+  // зачем (вариант 2): `.sc-body` left 20, right 150, bottom 44 — текст у нижнего края в колонке слева от героя; панель наезжает на 22
+  body: { paddingLeft: 20, paddingRight: TEXT_RIGHT, paddingTop: 24, paddingBottom: 44 },
   offline: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 10, marginBottom: 14 },
   offlineText: { flex: 1, fontSize: 13, lineHeight: 17 },
   bold: { fontWeight: '700' },
   kickRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 6 },
   kicker: { fontSize: 13, lineHeight: 17, flexShrink: 1 },
-  title: { marginTop: 4, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.6 },
-  titleSmall: { marginTop: 4, fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.6 },
+  // вариант 2: заголовок 30/36, длинный (больше 20 знаков) — на 4 меньше: 26/32; spacing −.5, отступ 2
+  title: { marginTop: 2, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.5 },
+  titleSmall: { marginTop: 2, fontSize: 26, lineHeight: 32, fontWeight: '700', letterSpacing: -0.5 },
   sub: { marginTop: 8, fontSize: 16, lineHeight: 21 },
   meter: { flexDirection: 'row', gap: 4, marginTop: 12 },
   seg: { flex: 1, height: 6, borderRadius: 3 },
-  progRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginTop: 10 },
-  bar: { width: 72, height: 4, borderRadius: 2, overflow: 'hidden' },
+  progRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginTop: 8 },
+  bar: { width: 56, height: 4, borderRadius: 2, overflow: 'hidden' },
   barFill: { height: 4 },
   prog: { fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'] },
   ctaRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 16 },
-  cta: { minHeight: 54, paddingVertical: 8, borderRadius: 27, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  ctaOuter: { flexShrink: 1 },
+  // вариант 2: кнопка по размеру содержимого (`.btn` flex none, padding 0 24), высота 50
+  cta: { minHeight: 50, paddingVertical: 8, borderRadius: 25, paddingHorizontal: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ctaOff: { opacity: 0.45 },
   ctaText: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
-  round: { width: 54, height: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center' },
+  round: { width: 50, height: 50, borderRadius: 25, alignItems: 'center', justifyContent: 'center' },
 });
 
 export default memo(DialogsSceneStage);

@@ -50,7 +50,14 @@ export type Lv2TaskTokens = Readonly<{
   windowFill: string;
   /** п. 9: карточка слова — тёмный градиент 160° во всех темах. */
   wordCardGradient: Readonly<{ colors: readonly [string, string]; angleDeg: number }>;
+  /** Экзамен главы, шторка перед стартом: затемнение `.xdim` и тень `.xsh` (chapter-exam-flow.html). */
+  examScrim: string;
+  examSheetShadow: readonly BoxShadowValue[];
 }>;
+
+const EXAM_SHEET_SHADOW: readonly BoxShadowValue[] = [
+  { offsetX: 0, offsetY: -18, blurRadius: 40, spreadDistance: -18, color: 'rgba(0,0,0,0.5)' }, // theme-exempt: тень шторки экзамена, эталон `.xsh` — чёрная в обеих темах
+];
 
 const LIGHT_SHADOW: readonly BoxShadowValue[] = [
   { offsetX: 0, offsetY: 10, blurRadius: 26, spreadDistance: -14, color: 'rgba(51,51,87,0.30)' },
@@ -89,6 +96,9 @@ export function lv2TaskTokens(g: Lv2Glass): Lv2TaskTokens {
     ctaInk: g.opaqueCard,
     windowFill: g.opaqueCard,
     wordCardGradient: Object.freeze({ colors: ['#2A2B45', '#17182A'] as const, angleDeg: 160 }), // theme-exempt: карточка слова тёмная во всех темах (.nw .fc)
+    // зачем (координатор 22.10, ratchet цветов): затемнение под шторкой экзамена — токен, а не литерал в экране
+    examScrim: light ? 'rgba(23,24,30,0.38)' : 'rgba(0,0,0,0.45)', // theme-exempt: `.xdim` эталона: светлая rgba(23,24,30,.38), тёмная .45 чёрного
+    examSheetShadow: EXAM_SHEET_SHADOW,
   });
   cache.set(g, built);
   return built;

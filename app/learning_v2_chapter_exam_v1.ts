@@ -4,6 +4,7 @@
 // засчитываем пропущенные эпизоды главы в локальном прогрессе курса по порядку, без звёзд. Firebase не трогаем.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  chapterExamAvailabilityV1,
   chapterExamKeyV1,
   chapterExamSessionsToCreditV1,
   chapterSessionOrdinalsV1,
@@ -96,6 +97,44 @@ export function checkLearningV2ChapterExamAnswerV1(input: Readonly<{
   }
 }
 
+/**
+ * Правильный ответ для разбора ошибок — только после конца экзамена и только по ошибочному вопросу.
+ * зачем (владелец 22.10 через координатора: «правильный ответ в разборе показывать, как на макете; бери из вердикта проверки,
+ * капсулу целиком не раскрывать»): выбор из вариантов — тот вариант, который проверка принимает; сборка фразы — фраза из данных
+ * задания, и только если проверка её принимает. Иначе null — строку не рисуем, ничего не выдумываем.
+ */
+export function learningV2ChapterExamCorrectAnswerV1(input: Readonly<{
+  lessonOrdinal: number;
+  sessionOrdinal: number;
+  interactionId: string;
+  locale: 'ru' | 'uk';
+}>): string | null {
+  const session = materializeChapterSession(input.lessonOrdinal, input.sessionOrdinal, input.locale);
+  const interaction = session?.interactions.find((entry) => entry.interactionId === input.interactionId) ?? null;
+  if (!session || !interaction) {
+    console.warn(`${LOG} answer:no_interaction`, JSON.stringify({ interactionId: input.interactionId, hasSession: session !== null })); // guard-ok: ранний выход
+    return null;
+  }
+  const accepted = (response: V2LocalEvaluatorResponseV1): boolean => {
+    try {
+      return evaluateLearningV2CourseSessionInteractionV1(session.evaluatorCapsuleChild, interaction.interactionId, response).resultCode === 'provisional_correct';
+    } catch (error) {
+      console.warn(`${LOG} answer:check_failed`, JSON.stringify({ interactionId: interaction.interactionId, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
+      return false;
+    }
+  };
+  if (interaction.inputMode === 'single_choice') {
+    const option = interaction.responseOptions.find((o) => accepted({ kind: 'choice_token', value: o.responseId })) ?? null;
+    console.log(`${LOG} answer:choice`, JSON.stringify({ interactionId: interaction.interactionId, found: option !== null, options: interaction.responseOptions.length })); // guard-ok: ветка и значение
+    return option?.text ?? null;
+  }
+  const payload = interaction.modePayload;
+  const candidate = payload && 'orderedTokens' in payload ? payload.orderedTokens.join(' ') : null;
+  const ok = candidate !== null && accepted({ kind: 'text', value: candidate });
+  console.log(`${LOG} answer:ordered`, JSON.stringify({ interactionId: interaction.interactionId, family: interaction.family, hasCandidate: candidate !== null, accepted: ok })); // guard-ok: ветка и значение
+  return ok ? candidate : null;
+}
+
 /** Кандидаты в вопросы: все задания эпизодов главы из встроенного выпуска (английский курс; ru/uk), в виде плеера. */
 export function gatherLearningV2ChapterExamCandidatesV1(input: Readonly<{
   lessonOrdinal: number;
@@ -131,9 +170,22 @@ export async function prepareLearningV2ChapterExamV1(input: Readonly<{
   lessonOrdinal: number;
   chapterOrdinal: number;
   locale: 'ru' | 'uk';
-}>): Promise<Readonly<{ examKey: string; attempt: number; questions: readonly ChapterExamQuestionV1[] }> | null> {
+  /** Сейчас — для паузы после провала; по умолчанию Date.now(). */
+  nowMs?: number;
+}>): Promise<
+  | Readonly<{ kind: 'ready'; examKey: string; attempt: number; questions: readonly ChapterExamQuestionV1[] }>
+  | Readonly<{ kind: 'cooldown'; examKey: string; retryAtMs: number; minutesLeft: number }>
+  | null
+> {
   const examKey = chapterExamKeyV1(input);
   const records = await loadLearningV2ChapterExamRecordsV1(input.accountScopeHash);
+  // зачем (Ревизор 22.10): пауза час после провала проверяется здесь, а не только на карте — прямой маршрут или «назад/вперёд»
+  // иначе давали попытку раньше часа. Лог отказа оставить навсегда.
+  const gate = chapterExamAvailabilityV1({ record: records[examKey] ?? null, chapterReached: true, nowMs: input.nowMs ?? Date.now() });
+  if (gate.state === 'cooldown') {
+    console.warn(`${LOG} prepare:cooldown`, JSON.stringify({ examKey, retryAtMs: gate.retryAtMs, minutesLeft: gate.minutesLeft })); // guard-ok: ранний выход пишет причину
+    return Object.freeze({ kind: 'cooldown', examKey, retryAtMs: gate.retryAtMs, minutesLeft: gate.minutesLeft });
+  }
   const attempt = (records[examKey]?.attempts ?? 0) + 1;
   const questions = selectChapterExamQuestionsV1({
     examKey,
@@ -144,7 +196,7 @@ export async function prepareLearningV2ChapterExamV1(input: Readonly<{
     console.warn(`${LOG} prepare:no_exam`, JSON.stringify({ examKey, attempt })); // guard-ok: ранний выход пишет причину
     return null;
   }
-  return Object.freeze({ examKey, attempt, questions });
+  return Object.freeze({ kind: 'ready', examKey, attempt, questions });
 }
 
 /**
@@ -159,14 +211,17 @@ export async function finishLearningV2ChapterExamV1(input: Readonly<{
   chapterOrdinal: number;
   answers: readonly Readonly<{ interactionId: string; correct: boolean }>[];
   finishedAtMs: number;
-}>): Promise<Readonly<{ result: ChapterExamResultV1; record: ChapterExamRecordV1; creditedSessionIds: readonly string[] }>> {
+}>): Promise<Readonly<{ result: ChapterExamResultV1; record: ChapterExamRecordV1; creditedSessionIds: readonly string[]; firstPass: boolean }>> {
   const result = scoreChapterExamV1(input.answers);
   const records = await loadLearningV2ChapterExamRecordsV1(input.accountScopeHash);
-  const record = recordChapterExamAttemptV1(records[input.examKey] ?? null, { examKey: input.examKey, result, finishedAtMs: input.finishedAtMs });
+  const prior = records[input.examKey] ?? null;
+  // зачем (владелец 22.10): 40 монет — только за ПЕРВУЮ сдачу главы; пересдача уже сданной главы награды не даёт
+  const firstPass = result.passed && prior?.status !== 'passed';
+  const record = recordChapterExamAttemptV1(prior, { examKey: input.examKey, result, finishedAtMs: input.finishedAtMs });
   await saveLearningV2ChapterExamRecordV1(input.accountScopeHash, record);
   if (!result.passed) {
     console.log(`${LOG} finish:failed`, JSON.stringify({ examKey: input.examKey, correct: result.correct, retryAtMs: record.retryAtMs })); // guard-ok: ветка и значение
-    return Object.freeze({ result, record, creditedSessionIds: Object.freeze([]) });
+    return Object.freeze({ result, record, creditedSessionIds: Object.freeze([]), firstPass });
   }
   const creditedSessionIds: string[] = [];
   try {
@@ -186,8 +241,8 @@ export async function finishLearningV2ChapterExamV1(input: Readonly<{
     // зачем: прогресс — строгая цепочка; если до главы ещё не дошли подряд, зачёт откажет — экзамен всё равно сдан, причина в журнале
     console.warn(`${LOG} finish:credit_failed`, JSON.stringify({ examKey: input.examKey, credited: creditedSessionIds, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
   }
-  console.log(`${LOG} finish:passed`, JSON.stringify({ examKey: input.examKey, correct: result.correct, credited: creditedSessionIds })); // guard-ok: итог
-  return Object.freeze({ result, record, creditedSessionIds: Object.freeze(creditedSessionIds) });
+  console.log(`${LOG} finish:passed`, JSON.stringify({ examKey: input.examKey, correct: result.correct, credited: creditedSessionIds, firstPass })); // guard-ok: итог
+  return Object.freeze({ result, record, creditedSessionIds: Object.freeze(creditedSessionIds), firstPass });
 }
 
 /** Сданные главы урока — для карты «пройдена» и строки «Экзамен сдан · X из 12». */

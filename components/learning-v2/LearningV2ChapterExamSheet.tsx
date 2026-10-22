@@ -130,13 +130,13 @@ export default function LearningV2ChapterExamSheet({ visible, lessonOrdinal, cha
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
       <View style={styles.root}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityRole="button" accessibilityLabel={later}>
-          {/* `.xdim`: .45 чёрного; светлая тема — rgba(23,24,30,.38) */}
-          <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: g.isLight ? 'rgba(23,24,30,0.38)' : 'rgba(0,0,0,0.45)' }, dimStyle]} />
+          {/* `.xdim` — токен затемнения экзамена */}
+          <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: t.examScrim }, dimStyle]} />
         </Pressable>
         <Animated.View
           accessibilityViewIsModal
           testID="chapter-exam-sheet"
-          style={[styles.sheet, { backgroundColor: g.opaqueCard, paddingBottom: 40 + insets.bottom }, sheetStyle]}
+          style={[styles.sheet, { backgroundColor: g.opaqueCard, boxShadow: t.examSheetShadow as never, paddingBottom: 40 + insets.bottom }, sheetStyle]}
         >
           <View style={[styles.grab, { backgroundColor: t.controlSoft }]} />
           <View style={[styles.icon, { backgroundColor: lv2Alpha(g.accent, 0.22) }]}>
@@ -179,7 +179,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingTop: 12,
     paddingHorizontal: 22,
-    boxShadow: [{ offsetX: 0, offsetY: -18, blurRadius: 40, spreadDistance: -18, color: 'rgba(0,0,0,0.5)' }],
   },
   grab: { width: 42, height: 5, borderRadius: 3, alignSelf: 'center' },
   icon: { width: 64, height: 64, borderRadius: 18, marginTop: 22, alignSelf: 'center', alignItems: 'center', justifyContent: 'center' },

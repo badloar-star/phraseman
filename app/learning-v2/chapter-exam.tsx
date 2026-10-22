@@ -2,6 +2,7 @@
 // зачем (координатор 22.10, шаг 2): шапка «Экзамен · n / 12» с прогрессом и крестиком, тело — общий роутер режимов заданий (тот же,
 // что в занятии, схема №23), подвал с кнопкой «Проверить» / «Дальше». Одна попытка на вопрос, сердечек и разборов по ходу нет.
 // Вопросы и проверка — из встроенного выпуска курса (без сети). 1 энергия списывается при показе первого вопроса (Plus — бесплатно).
+// Шаг 3: после 12-го вопроса — итог «X из 12» и разбор ошибок (components/learning-v2/LearningV2ChapterExamResult.tsx).
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
@@ -17,6 +18,15 @@ import { useStudyTarget } from '../../components/StudyTargetContext';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { lv2TaskTokens } from '../../components/learning-v2/learning_v2_task_theme_tokens';
 import { learningV2ChapterExamCopy } from '../../components/learning-v2/learning_v2_chapter_exam_copy';
+import {
+  LearningV2ChapterExamResultView,
+  LearningV2ChapterExamReviewView,
+  type ChapterExamAnswerDetailV1,
+} from '../../components/learning-v2/LearningV2ChapterExamResult';
+import { learningV2ChapterExamResultCopy } from '../../components/learning-v2/learning_v2_chapter_exam_result_copy';
+import { launchLearningV2SessionByOrdinalsV1 } from '../learning_v2_home_continue_route';
+import { grantChapterExamCoinsV1 } from '../learning_v2_chapter_exam_reward_v1';
+import { splitLearningV2TaskPromptV1, type LearningV2TaskIconV1 } from '../../modules/learning-v2/runtime/task_prompt_parts_v1';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { safeRouterBack } from '../navigation_back';
 import { getStableId } from '../stable_id';
@@ -38,13 +48,26 @@ import type { LearningV2InterfaceLocale } from '../../modules/learning-v2/conten
 import {
   checkLearningV2ChapterExamAnswerV1,
   finishLearningV2ChapterExamV1,
+  learningV2ChapterExamCorrectAnswerV1,
   learningV2ChapterExamInteractionV1,
   prepareLearningV2ChapterExamV1,
 } from '../learning_v2_chapter_exam_v1';
 
 const LOG = '[CHAPTER-EXAM]';
 
-type Answer = Readonly<{ interactionId: string; correct: boolean }>;
+type Answer = ChapterExamAnswerDetailV1;
+type Outcome = Readonly<{ correct: number; passed: boolean; openedRange: Readonly<{ first: number; last: number }> | null }>;
+
+// Значок режима — как в теле заданий (LearningV2TaskBody, TASK_ICON).
+const TASK_ICON: Readonly<Record<LearningV2TaskIconV1, React.ComponentProps<typeof Ionicons>['name']>> = {
+  ear: 'ear', headset: 'headset', puzzle: 'extension-puzzle', create: 'create', swap: 'swap-horizontal', mic: 'mic',
+};
+
+/** Номера засчитанных эпизодов → «Эпизоды a–b тоже открыты»; ничего не засчитано — null. */
+function openedRangeOf(sessionIds: readonly string[]): Outcome['openedRange'] {
+  const ordinals = sessionIds.map((id) => Number(/session[:-]0*(\d+)/u.exec(id)?.[1])).filter((n) => Number.isFinite(n) && n > 0);
+  return ordinals.length > 0 ? { first: Math.min(...ordinals), last: Math.max(...ordinals) } : null;
+}
 type Prepared = Readonly<{ examKey: string; attempt: number; questions: readonly ChapterExamQuestionV1[]; scopeHash: string }>;
 
 export default function LearningV2ChapterExamScreen() {
@@ -67,7 +90,12 @@ function ChapterExamRun() {
   const { lang } = useLang();
   const locale: 'ru' | 'uk' = lang === 'uk' ? 'uk' : 'ru';
   const { isUnlimited, confirmActivityStart } = useEnergy();
+  const { studyTarget } = useStudyTarget();
+  const [outcome, setOutcome] = useState<Outcome | null>(null);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [reward, setReward] = useState<number | null>(null);
   const [prepared, setPrepared] = useState<Prepared | null>(null);
+  const [cooldownMinutes, setCooldownMinutes] = useState<number | null>(null);
   const [index, setIndex] = useState(0);
   const [noEnergy, setNoEnergy] = useState(false);
   const answersRef = useRef<Answer[]>([]);
@@ -92,8 +120,14 @@ function ChapterExamRun() {
         close('no_questions');
         return;
       }
+      if (exam.kind === 'cooldown') {
+        // зачем (Ревизор 22.10): пауза после провала — вопросов не даём, показываем, через сколько можно пересдать
+        console.warn(`${LOG} screen:cooldown`, JSON.stringify({ examKey: exam.examKey, minutesLeft: exam.minutesLeft })); // guard-ok: ранний выход
+        setCooldownMinutes(exam.minutesLeft);
+        return;
+      }
       console.log(`${LOG} screen:prepared`, JSON.stringify({ examKey: exam.examKey, attempt: exam.attempt, questions: exam.questions.map((q) => `${q.sessionOrdinal}:${q.family}`) })); // guard-ok: что подобрано
-      setPrepared({ ...exam, scopeHash });
+      setPrepared({ examKey: exam.examKey, attempt: exam.attempt, questions: exam.questions, scopeHash });
     })();
     return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: экзамен готовится один раз на вход
@@ -132,17 +166,68 @@ function ChapterExamRun() {
       examKey: prepared.examKey,
       lessonOrdinal,
       chapterOrdinal,
-      answers: answersRef.current,
+      answers: answersRef.current.map((a) => ({ interactionId: a.interactionId, correct: a.correct })),
       finishedAtMs: Date.now(),
     }).then((outcome) => {
       console.log(`${LOG} screen:finished`, JSON.stringify({ examKey: prepared.examKey, correct: outcome.result.correct, passed: outcome.result.passed, credited: outcome.creditedSessionIds.length })); // guard-ok: итог
-      // Шаг 3 (итог «X из 12») подключается следующим коммитом; до него экран возвращает на карту.
-      close(outcome.result.passed ? 'finished_passed' : 'finished_failed');
+      // зачем (владелец 22.10): правильный ответ — только после конца экзамена и только по ошибкам, из вердикта проверки
+      answersRef.current = answersRef.current.map((a) => (a.correct ? a : { ...a, correctAnswer: learningV2ChapterExamCorrectAnswerV1({ lessonOrdinal, sessionOrdinal: a.sessionOrdinal, interactionId: a.interactionId, locale }) }));
+      setOutcome({ correct: outcome.result.correct, passed: outcome.result.passed, openedRange: openedRangeOf(outcome.creditedSessionIds) });
+      // зачем (владелец 22.10): 40 монет за ПЕРВУЮ сдачу главы; плашка — только после подтверждения сервера (празднуем фактом)
+      if (outcome.firstPass) {
+        void grantChapterExamCoinsV1({ lessonOrdinal, chapterOrdinal }).then((granted) => {
+          console.log(`${LOG} reward`, JSON.stringify({ examKey: prepared.examKey, granted })); // guard-ok: показали плашку или нет
+          if (granted === 'credited') setReward(40);
+        });
+      }
     }, (error: unknown) => {
       console.warn(`${LOG} screen:finish_failed`, JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
       finishingRef.current = false;
     });
-  }, [chapterOrdinal, close, index, lessonOrdinal, prepared]);
+  }, [chapterOrdinal, close, index, lessonOrdinal, locale, prepared]);
+
+  const repeatEpisode = useCallback((sessionOrdinal: number) => {
+    console.log(`${LOG} review:repeat_episode`, JSON.stringify({ lessonOrdinal, sessionOrdinal })); // guard-ok: куда ведёт нажатие
+    void launchLearningV2SessionByOrdinalsV1({ lessonOrdinal, sessionOrdinal, from: 'chapter_exam_review', repeat: true }, { lang, studyTarget, push: (href) => router.push(href as never) });
+  }, [lang, lessonOrdinal, router, studyTarget]);
+
+  if (cooldownMinutes !== null) {
+    return (
+      <View style={[styles.screen, { backgroundColor: g.bg, paddingTop: insets.top }]}>
+        <View style={styles.top}>
+          <V2Pressable testID="chapter-exam-close" accessibilityLabel={learningV2ChapterExamCopy(lang, 'later')} onPress={() => close('cooldown_close')} style={[styles.close, { backgroundColor: g.opaqueCard, boxShadow: t.taskPlateShadow as never }]}>
+            <Ionicons name="close" size={22} color={g.text} />
+          </V2Pressable>
+        </View>
+        <View style={styles.cooldown} testID="chapter-exam-cooldown">
+          <Ionicons name="time-outline" size={42} color={g.secondary} />
+          <Text style={[styles.cooldownTitle, { color: g.text }]}>{learningV2ChapterExamCopy(lang, 'title', { n: chapterOrdinal })}</Text>
+          <Text style={[styles.cooldownText, { color: g.secondary }]}>{learningV2ChapterExamResultCopy(lang, 'retryIn', { m: cooldownMinutes })}</Text>
+        </View>
+      </View>
+    );
+  }
+  if (outcome && reviewOpen) {
+    return (
+      <View style={[styles.screen, { backgroundColor: g.bg }]}>
+        <LearningV2ChapterExamReviewView lang={lang} chapterOrdinal={chapterOrdinal} answers={answersRef.current} topInset={insets.top} bottomInset={insets.bottom} onBack={() => setReviewOpen(false)} onRepeatEpisode={repeatEpisode} />
+      </View>
+    );
+  }
+  if (outcome) {
+    return (
+      <View style={[styles.screen, { backgroundColor: g.bg, paddingTop: insets.top }]}>
+        {/* итог: в шапке только крестик, без прогресса (макет раздел 4) */}
+        <View style={styles.top}>
+          <V2Pressable testID="chapter-exam-close" accessibilityLabel={learningV2ChapterExamCopy(lang, 'later')} onPress={() => close('result_close')} style={[styles.close, { backgroundColor: g.opaqueCard, boxShadow: t.taskPlateShadow as never }]}>
+            <Ionicons name="close" size={22} color={g.text} />
+          </V2Pressable>
+        </View>
+        <LearningV2ChapterExamResultView lang={lang} lessonOrdinal={lessonOrdinal} chapterOrdinal={chapterOrdinal} correct={outcome.correct} passed={outcome.passed} openedRange={outcome.openedRange} reward={reward} answers={answersRef.current} bottomInset={insets.bottom}
+          onToChapter={(n) => close(`to_chapter_${n}`)} onReview={() => setReviewOpen(true)} />
+      </View>
+    );
+  }
 
   const question = prepared?.questions[index] ?? null;
   const progress = prepared ? (index + 1) / CHAPTER_EXAM_QUESTION_COUNT_V1 : 0;
@@ -162,6 +247,7 @@ function ChapterExamRun() {
       {question ? (
         <ChapterExamQuestion
           key={question.interactionId}
+          ordinal={index + 1}
           question={question}
           lessonOrdinal={lessonOrdinal}
           locale={locale}
@@ -177,6 +263,7 @@ function ChapterExamRun() {
 }
 
 type QuestionProps = Readonly<{
+  ordinal: number;
   question: ChapterExamQuestionV1;
   lessonOrdinal: number;
   locale: 'ru' | 'uk';
@@ -186,7 +273,7 @@ type QuestionProps = Readonly<{
   onNext: () => void;
 }>;
 
-function ChapterExamQuestion({ question, lessonOrdinal, locale, interfaceLocale, bottomInset, onAnswered, onNext }: QuestionProps) {
+function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, interfaceLocale, bottomInset, onAnswered, onNext }: QuestionProps) {
   const g = useLv2Glass();
   const t = lv2TaskTokens(g);
   const reducedMotion = useReducedMotion();
@@ -230,16 +317,28 @@ function ChapterExamQuestion({ question, lessonOrdinal, locale, interfaceLocale,
     if (!interaction || verdict) return;
     const correct = checkLearningV2ChapterExamAnswerV1({ lessonOrdinal, sessionOrdinal: question.sessionOrdinal, interactionId: interaction.interactionId, locale, response });
     setVerdict(correct ? 'correct' : 'wrong');
-    setFeedback(resolveLearningV2ModeFeedbackV1({
+    const fb = resolveLearningV2ModeFeedbackV1({
       interfaceLocale,
       modePayload: interaction.modePayload,
       outcome: correct ? 'correct' : 'wrong',
       selectedResponseId: response.kind === 'choice_token' ? response.value : null,
       orderedResponseIds: orderedIds,
-    }));
-    onAnswered({ interactionId: interaction.interactionId, correct });
+    });
+    // зачем (Ревизор 22.10): авторский разбор варианта обычно называет правильный ответ — посреди экзамена это подсказка.
+    // Роутеру — только вердикт «Верно / Неверно» без разбора (данные задания не передаём); разбор живёт в итоге.
+    setFeedback(resolveLearningV2ModeFeedbackV1({ interfaceLocale, modePayload: null, outcome: correct ? 'correct' : 'wrong', selectedResponseId: null, orderedResponseIds: [] }));
+    const parts = splitLearningV2TaskPromptV1({ family: interaction.family, prompt: interaction.prompt, interfaceLocale, modePayload: interaction.modePayload, interactionId: interaction.interactionId });
+    const answerText = response.kind === 'choice_token'
+      ? (options.find((o) => o.responseId === response.value)?.text ?? null)
+      : (typeof response.value === 'string' ? response.value : null);
+    onAnswered({
+      ordinal, interactionId: interaction.interactionId, sessionOrdinal: question.sessionOrdinal, correct,
+      taskName: parts.instruction, taskIcon: TASK_ICON[parts.icon], situation: parts.situation, answerText, correctAnswer: null,
+      // зачем: в разборе — только авторское объяснение из данных задания; общая фраза «Неверно» объяснением не считается
+      explanation: fb.authored ? fb.text : null,
+    });
     void (correct ? hapticSuccess() : hapticError());
-  }, [interaction, interfaceLocale, lessonOrdinal, locale, onAnswered, orderedIds, question.sessionOrdinal, verdict]);
+  }, [interaction, interfaceLocale, lessonOrdinal, locale, onAnswered, options, orderedIds, ordinal, question.sessionOrdinal, verdict]);
 
   if (!interaction || !interaction.modePayload) {
     // зачем: задание не собралось — экзамен не застревает: засчитываем как неверное и даём «Дальше» (причина в журнале)
@@ -302,7 +401,7 @@ function ChapterExamQuestion({ question, lessonOrdinal, locale, interfaceLocale,
           disabled={!answered && !canSubmit}
           onPress={() => {
             if (!answered) { evaluate(response); return; }
-            if (!interaction?.modePayload) onAnswered({ interactionId: question.interactionId, correct: false });
+            if (!interaction?.modePayload) onAnswered({ ordinal, interactionId: question.interactionId, sessionOrdinal: question.sessionOrdinal, correct: false, taskName: '', taskIcon: 'help-circle-outline', situation: null, answerText: null, correctAnswer: null, explanation: null });
             onNext();
           }}
           style={[styles.cta, { backgroundColor: t.ctaFill, opacity: answered || canSubmit ? 1 : 0.35 }]}
@@ -321,6 +420,9 @@ const styles = StyleSheet.create({
   top: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 54, marginTop: 2, paddingHorizontal: 20 },
   close: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   progressColumn: { flex: 1 },
+  cooldown: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20, paddingBottom: 80 },
+  cooldownTitle: { marginTop: 16, fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center' },
+  cooldownText: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   track: { height: 6, borderRadius: 3, overflow: 'hidden' },
   fill: { height: 6, borderRadius: 3 },
   progressText: { marginTop: 5, fontSize: 13, lineHeight: 17, fontWeight: '700' },

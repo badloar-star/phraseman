@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import React, { useMemo, useState, useCallback, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Animated, Easing } from 'react-native';
+import { View, Text, StyleSheet, Animated, Easing, type ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -119,6 +119,10 @@ interface Props {
   metrics?: TheoryMetrics;
   progressStorageKey?: string;
   onBack?: () => void;
+  /** Раздел, к которому прокрутить при открытии (теория Learning V2 из эпизода). Основной курс не передаёт. */
+  scrollToSection?: string;
+  /** id для «Сообщить об ошибке»; по умолчанию `lesson_theory_<урок>` основного курса. */
+  reportDataId?: string;
 }
 
 // ─── Утилиты ─────────────────────────────────────────────────────────────────
@@ -233,6 +237,8 @@ export default function TheoryLessonView({
   sections,
   progressStorageKey,
   onBack,
+  scrollToSection,
+  reportDataId,
 }: Props) {
   const { theme: t, themeMode, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -242,6 +248,19 @@ export default function TheoryLessonView({
   // зачем: акцент = светлая кнопка макета (glass.cta), а не цвет темы приложения.
   const accent = glass.cta;
   const seenHydratedRef = useRef(false);
+  // зачем (владелец 22.10: теория Learning V2 = 1:1 этот экран): из эпизода экран открывается на разделе текущей главы —
+  // прокручиваем к нему один раз, когда известны координаты карточки разделов и строки раздела.
+  const scrollRef = useRef<ScrollView>(null);
+  const wrapYRef = useRef<number | null>(null);
+  const sectionYRef = useRef<number | null>(null);
+  const scrolledRef = useRef(false);
+  const tryScrollToSection = useCallback(() => {
+    if (!scrollToSection || scrolledRef.current || wrapYRef.current === null || sectionYRef.current === null) return;
+    scrolledRef.current = true;
+    const y = Math.max(0, wrapYRef.current + sectionYRef.current - 8);
+    scrollRef.current?.scrollTo({ y, animated: false });
+    console.log('[V2-THEORY] scroll_to_section', JSON.stringify({ lesson: lessonId, section: scrollToSection, y })); // guard-ok: одна строка на открытие
+  }, [lessonId, scrollToSection]);
 
   const sectionNums = useMemo(() => sections.map((section) => section.num), [sections]);
   const sectionNumsKey = sectionNums.join('|');
@@ -647,13 +666,13 @@ export default function TheoryLessonView({
             <ReportErrorButton
               variant="icon-flag"
               screen="lesson_theory"
-              dataId={`lesson_theory_${lessonId}`}
+              dataId={reportDataId ?? `lesson_theory_${lessonId}`}
               dataText={title}
             />
           </View>
         </View>
 
-        <BouncyScrollView decelerationRate="fast"
+        <BouncyScrollView ref={scrollRef} decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={[
             styles.scrollContent,
@@ -688,17 +707,22 @@ export default function TheoryLessonView({
               styles.sectionsWrap,
               { backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) },
             ]}
+            onLayout={scrollToSection ? (e) => { wrapYRef.current = e.nativeEvent.layout.y; tryScrollToSection(); } : undefined}
           >
             {sections.map((section, i) => (
-              <AccordionSection
+              <View
                 key={section.num}
-                section={section}
-                index={i}
-                total={sections.length}
-                open={openSet.has(section.num)}
-                onToggle={() => toggleSection(section.num)}
-                renderBlock={renderBlock}
-              />
+                onLayout={scrollToSection === section.num ? (e) => { sectionYRef.current = e.nativeEvent.layout.y; tryScrollToSection(); } : undefined}
+              >
+                <AccordionSection
+                  section={section}
+                  index={i}
+                  total={sections.length}
+                  open={openSet.has(section.num)}
+                  onToggle={() => toggleSection(section.num)}
+                  renderBlock={renderBlock}
+                />
+              </View>
             ))}
           </View>
 

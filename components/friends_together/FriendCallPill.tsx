@@ -56,7 +56,7 @@ function FriendCallPill({ glass, textScale, state, friendName, onCall, testID }:
       contentStyle={[styles.pillContent, { backgroundColor: look.fill }]}
     >
       {look.icon ? <Ionicons name={look.icon} size={16} color={look.ink} accessible={false} /> : null}
-      <FlowText testID="friend-call-pill-label" provenance="authored" style={{ flexShrink: 1, textAlign: 'center', color: look.ink, fontSize: 15 * textScale, lineHeight: 20 * textScale, fontWeight: '700' }}>
+      <FlowText testID="friend-call-pill-label" provenance="authored" style={{ flexShrink: 1, textAlign: 'center', color: look.ink, fontSize: 16 * textScale, lineHeight: 21 * textScale, fontWeight: '700' }}>
         {look.label}
       </FlowText>
     </PressableHybrid>

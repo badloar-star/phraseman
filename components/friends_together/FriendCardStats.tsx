@@ -41,5 +41,5 @@ const styles = StyleSheet.create({
   cell: { flex: 1, minWidth: 0, borderRadius: 16, paddingVertical: 10, paddingHorizontal: 4, alignItems: 'center' },
   value: { fontSize: 20, lineHeight: 24, fontWeight: '700', textAlign: 'center', fontVariant: ['tabular-nums'] },
   // зачем (макет `.vstat small`): подпись под числом — короткая, приглушённая; 62 % — как в макете
-  label: { fontSize: 12, lineHeight: 16, textAlign: 'center', opacity: 0.62 }, // guard-ok: подпись числа в ячейке статистики (макет 2.0 `.vstat`), не расшифровка названия
+  label: { fontSize: 13, lineHeight: 17, textAlign: 'center', opacity: 0.62 }, // guard-ok: подпись числа в ячейке статистики (макет 2.0 `.vstat`), не расшифровка названия
 });

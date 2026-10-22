@@ -41,7 +41,7 @@ function PairFlameInline({ glass, textScale, view, testID }: Readonly<{ glass: F
   return (
     <View testID={testID ?? `pair-flame-${tone}`} style={styles.row} accessible={false} importantForAccessibility="no-hide-descendants">
       <Ionicons name="flame" size={15 * textScale} color={iconColor} style={tone === 'on' ? null : { opacity: tone === 'dim' ? 0.55 : 0.35 }} accessible={false} />
-      <FlowText testID="pair-flame-value" provenance="authored" style={{ color: tone === 'on' ? glass.text : glass.secondary, fontSize: 14 * textScale, lineHeight: 18 * textScale, fontWeight: '700', fontVariant: ['tabular-nums'] }}>
+      <FlowText testID="pair-flame-value" provenance="authored" style={{ color: tone === 'on' ? glass.text : glass.secondary, fontSize: 13 * textScale, lineHeight: 17 * textScale, fontWeight: '700', fontVariant: ['tabular-nums'] }}>
         {value}
       </FlowText>
     </View>

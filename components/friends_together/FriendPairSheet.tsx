@@ -88,7 +88,7 @@ function WeekStrip({ week, glass, letters, textScale }: Readonly<{ week: readonl
               {half ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.weekHalf, { backgroundColor: glass.accentGraphic }]} /> : null}
               {both ? <Ionicons name="checkmark" size={16} color={checkColor} accessible={false} /> : null}
             </View>
-            <FlowText testID={`friend-pair-week-letter-${index}`} provenance="authored" style={{ color: glass.secondary, fontSize: 12 * textScale, lineHeight: 14 * textScale, fontWeight: '700' }}>
+            <FlowText testID={`friend-pair-week-letter-${index}`} provenance="authored" style={{ color: glass.secondary, fontSize: 13 * textScale, lineHeight: 17 * textScale, fontWeight: '700' }}>
               {letters[index] ?? ''}
             </FlowText>
           </View>
@@ -144,7 +144,7 @@ function FriendPairSheet({
           <View style={styles.header}>
             <FriendsCoin coinRank={coinRank} name={friendName} size={44} glass={glass} plus={isPlus} />
             <View style={styles.headerText}>
-              <FlowText testID="friend-pair-sheet-name" provenance="user" accessibilityRole="header" style={{ color: glass.text, fontSize: 18 * textScale, lineHeight: 23 * textScale, fontWeight: '700' }}>
+              <FlowText testID="friend-pair-sheet-name" provenance="user" accessibilityRole="header" style={{ color: glass.text, fontSize: 20 * textScale, lineHeight: 26 * textScale, fontWeight: '700' }}>
                 {friendName}
               </FlowText>
               {statusLine ? (
@@ -174,7 +174,7 @@ function FriendPairSheet({
                 >
                   <Ionicons name={broken ? 'flame-outline' : 'flame'} size={26} color={flameColor(glass, pair)} accessible={false} />
                   <FlowText testID="friend-pair-sheet-streak-value" provenance="authored" style={{ color: glass.text, fontSize: 32 * textScale, lineHeight: 36 * textScale, fontWeight: '700' }}>{broken ? 0 : pair.streak}</FlowText>
-                  <FlowText testID="friend-pair-sheet-streak-label" provenance="authored" style={[styles.streakLabel, { color: glass.secondary, fontSize: 14 * textScale, lineHeight: 19 * textScale }]}>
+                  <FlowText testID="friend-pair-sheet-streak-label" provenance="authored" style={[styles.streakLabel, { color: glass.secondary, fontSize: 13 * textScale, lineHeight: 17 * textScale }]}>
                     {broken ? pairCopy(lang, 'pairBroken') : pairStreakDaysLabel(lang, pair.streak)}
                   </FlowText>
                   {pair.best > 0 ? (

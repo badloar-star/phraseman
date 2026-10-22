@@ -36,7 +36,7 @@ import type { LearningV2InterfaceLocale } from "../content/generator_course_cont
 // зачем (координатор 22.10): подпись кнопки «послушать вариант» была только по-русски.
 const LISTEN_LABEL_V1: Readonly<Record<string, (label: string) => string>> = {
   ru: (l) => `Слушать ${l}`, uk: (l) => `Слухати ${l}`, en: (l) => `Listen to ${l}`, es: (l) => `Escuchar ${l}`,
-  "pt-BR": (l) => `Ouvir ${l}`, vi: (l) => `Nghe ${l}`, id: (l) => `Dengarkan ${l}`, tr: (l) => `${l} dinle`, pl: (l) => `Posłuchaj ${l}`,
+  "pt-BR": (l) => `Ouvir ${l}`, vi: (l) => `Nghe ${l}`, id: (l) => `Dengarkan ${l}`, tr: (l) => `Dinle: ${l}`, pl: (l) => `Posłuchaj ${l}`,
 };
 const listenLabelV1 = (locale: LearningV2InterfaceLocale | string, label: string) => (LISTEN_LABEL_V1[locale] ?? LISTEN_LABEL_V1.en)(label);
 

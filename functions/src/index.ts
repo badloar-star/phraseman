@@ -450,7 +450,7 @@ export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
     await cleanupExpiredAppMessages();
     // зачем (координатор 22.10): заявки «Акция с видео» без почты и без resolvedUid уходят через 90 дней после конца
     // акции. До даты отсечки — 0 чтений. Отдельного планировщика не заводим.
-    await cleanupUnlinkedVideoPromoEntries().catch((error) => {
+    await cleanupUnlinkedVideoPromoEntries().catch((error: unknown) => {
       console.error('[VIDEO-PROMO-RETENTION] failed', error instanceof Error ? error.message : String(error));
     });
   }));

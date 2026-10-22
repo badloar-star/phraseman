@@ -1,7 +1,8 @@
 // зачем (владелец 21.10 ~23:40, Главная A «Сцена»; таблица приоритетов home-scene-states.html): сторож выбора героя сцены,
 // контраста белого текста на сцене в любой теме и текстов состояний — чтобы правка одного правила не сдвинула остальные.
 import { HOME_SCENE_HERO, HOME_SCENE_STATES, minutesUntilMidnight, pickHomeSceneState, type HomeSceneInput } from '../components/home/v2/scene/home_scene_state';
-import { HOME_SCENE_MIN_WHITE_CONTRAST, homeSceneTokens, whiteContrastOn } from '../components/home/v2/scene/home_scene_tokens';
+import { HOME_SCENE_MIN_WHITE_CONTRAST, homeSceneTokensForTheme, whiteContrastOn } from '../components/home/v2/scene/home_scene_tokens';
+import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 import { buildHomeSceneCopy, type HomeSceneCopyInput } from '../components/home/v2/scene/home_scene_copy';
 import { homeSceneAllReleasedDone, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from '../components/home/v2/scene/home_scene_inputs';
 
@@ -48,14 +49,15 @@ describe('Сцена Главной: таблица приоритетов ге�
 });
 
 describe('Сцена Главной: белый текст читается в любой теме', () => {
-  it.each(['#FFFFFF', '#F2F1F6', '#7EF0C8', '#F0C551', '#5B49D6', '#000000', 'rgba(1,2,3,.5)'])('акцент %s → белый ≥ 4,5:1 сверху и снизу', (accent) => {
-    const t = homeSceneTokens(accent);
-    expect(whiteContrastOn(t.sceneTop)).toBeGreaterThanOrEqual(HOME_SCENE_MIN_WHITE_CONTRAST);
-    expect(whiteContrastOn(t.sceneBottom)).toBeGreaterThanOrEqual(HOME_SCENE_MIN_WHITE_CONTRAST);
-  });
-  it('вечерние цвета тёмные', () => {
-    const t = homeSceneTokens('#FFFFFF', true);
-    expect(whiteContrastOn(t.sceneTop)).toBeGreaterThanOrEqual(HOME_SCENE_MIN_WHITE_CONTRAST);
+  // зачем (22.10): цвета сцены — homeSceneTokensForTheme (эталон, уровень «Максимум»); прежняя homeSceneTokens(accent) удалена
+  it.each([...LIQUID_GLASS_THEME_IDS])('тема %s → белый ≥ 4,5:1 сверху и снизу, днём и вечером, в обоих оформлениях', (id) => {
+    for (const ap of ['dark', 'light'] as const) {
+      for (const evening of [false, true]) {
+        const t = homeSceneTokensForTheme(id, ap, evening);
+        expect(whiteContrastOn(t.sceneTop)).toBeGreaterThanOrEqual(HOME_SCENE_MIN_WHITE_CONTRAST);
+        expect(whiteContrastOn(t.sceneBottom)).toBeGreaterThanOrEqual(HOME_SCENE_MIN_WHITE_CONTRAST);
+      }
+    }
   });
 });
 

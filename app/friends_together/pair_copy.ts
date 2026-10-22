@@ -55,7 +55,6 @@ export const PAIR_COPY = {
   openCard: L('Открыть визитку', 'Відкрити візитку', 'Open profile card', 'Abrir tarjeta', 'Abrir cartão', 'Mở danh thiếp', 'Buka kartu profil', 'Kartı aç', 'Otwórz wizytówkę'),
   menu: L('Меню друга', 'Меню друга', 'Friend menu', 'Menú del amigo', 'Menu do amigo', 'Menu bạn bè', 'Menu teman', 'Arkadaş menüsü', 'Menu znajomego'),
   pairBroken: L('серия вдвоём прервалась', 'серія вдвох перервалася', 'your streak together ended', 'la racha juntos se cortó', 'a sequência juntos acabou', 'chuỗi cùng nhau đã đứt', 'rangkaian bersama terputus', 'birlikte serin bozuldu', 'wspólna seria przerwana'),
-  offlineSaved: L('Нет сети · список сохранён', 'Немає мережі · список збережено', 'Offline · saved list', 'Sin conexión · lista guardada', 'Sem conexão · lista salva', 'Ngoại tuyến · danh sách đã lưu', 'Offline · daftar tersimpan', 'Çevrimdışı · kayıtlı liste', 'Offline · zapisana lista'),
   great: L('Отлично', 'Чудово', 'Great', 'Genial', 'Ótimo', 'Tuyệt vời', 'Mantap', 'Harika', 'Świetnie'),
 } as const;
 

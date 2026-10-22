@@ -111,7 +111,7 @@
 ## 05 · too і enough — «занадто» і «достатньо»
 
 **body**
-too — «занадто», заважає: This cabin bag is too big. enough — «достатньо», підходить: This checked bag is light enough. Українською «достатньо» стоїть перед ознакою, а англійською enough — після.
+too — «занадто», заважає: This cabin bag is too big — «ручна поклажа завелика». enough — «достатньо», підходить: This checked bag is light enough — «багаж достатньо легкий». Українською «достатньо» стоїть перед ознакою, а англійською enough — після.
 
 **formula**
 `заважає: too + ознака` · `підходить: ознака + enough`

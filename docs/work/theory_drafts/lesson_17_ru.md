@@ -33,7 +33,7 @@
 ## 02 · Штучное и сплошное *(открыт сразу)*
 
 **body**
-Одни вещи считают по штукам: a bookend, two ottomans — перед одной штукой a или an, после two — -s. Другие — сплошная масса или общее слово: crockery (посуда), gravel (гравий), housework. Перед ними нет a, и -s они не получают.
+Одни вещи считают по штукам: a bookend («подставка для книг»), two ottomans («два пуфа») — перед одной штукой a или an, после two — -s. Другие — сплошная масса или общее слово: crockery (посуда), gravel (гравий), housework. Перед ними нет a, и -s они не получают.
 
 **formula**
 `одна штука: a / an + вещь` · `несколько: two + вещь + s` · `сплошное: без a и без -s`
@@ -63,7 +63,7 @@
 ## 03 · many или much — «сколько?»
 
 **body**
-Штуки — many: How many pecans? Сплошное — much: How much polenta? С «не» тоже: We don't have much semolina — «манки у нас немного». Перед many и much a не ставят.
+Штуки — many: How many pecans («орехи пекан»)? Сплошное — much: How much polenta («полента»)? С «не» тоже: We don't have much semolina — «манки у нас немного». Перед many и much a не ставят.
 
 **formula**
 `штуки: How many + вещь + s?` · `сплошное: How much + вещь?`

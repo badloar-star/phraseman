@@ -117,7 +117,7 @@
 ## 05 · too и enough — «слишком» и «достаточно»
 
 **body**
-too — «слишком», мешает: This cabin bag is too big. enough — «достаточно», подходит: This checked bag is light enough. Порядок разный: too стоит перед признаком, enough — после.
+too — «слишком», мешает: This cabin bag is too big — «ручная кладь слишком большая». enough — «достаточно», подходит: This checked bag is light enough — «багаж достаточно лёгкий». Порядок разный: too стоит перед признаком, enough — после.
 
 **formula**
 `мешает: too + признак` · `подходит: признак + enough`

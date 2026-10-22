@@ -11,17 +11,16 @@ import { StyleSheet, View } from 'react-native';
 
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import { useTheme } from '../../ThemeContext';
-import { useLv2Glass } from '../../learning-v2/LearningV2Glass';
 import DialogsSceneBackdrop from './DialogsSceneBackdrop';
 import { resolveDialogsSceneArt } from './dialogs_scene_art';
-import { dialogsSceneColors } from './dialogs_scene_tokens';
+import { useDialogsSceneTheme } from './use_dialogs_scene_theme';
 
 const CORNER = 70;
 
 function DialogsConsentTop({ children }: Readonly<{ children: React.ReactNode }>) {
-  const g = useLv2Glass();
+  // зачем (владелец 22.10): подложка листа — те же токены уровня «Максимум», что у сцены хаба; ползунок яркости её не меняет
+  const { colors } = useDialogsSceneTheme();
   const { liquidGlassAppearance } = useTheme();
-  const colors = useMemo(() => dialogsSceneColors(g), [g]);
   const art = useMemo(() => resolveDialogsSceneArt('consent', liquidGlassAppearance), [liquidGlassAppearance]);
   return (
     <View testID="dialogs-consent-top" style={s.top}>

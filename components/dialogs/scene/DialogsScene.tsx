@@ -10,12 +10,12 @@ import React, { memo, useEffect, useMemo, useRef } from 'react';
 
 import type { Lang } from '../../../constants/i18n';
 import { useTheme } from '../../ThemeContext';
-import { useLv2Glass } from '../../learning-v2/LearningV2Glass';
 import DialogsSceneStage from './DialogsSceneStage';
 import { resolveDialogsSceneArt } from './dialogs_scene_art';
 import { buildDialogsSceneCopy, type DialogsSceneDialogInfo } from './dialogs_scene_copy';
 import { pickDialogsSceneState, type DialogsSceneInput, type DialogsSceneState } from './dialogs_scene_state';
-import { dialogsSceneColors, dialogsSceneContrast, DIALOGS_SCENE_MIN_TEXT_CONTRAST } from './dialogs_scene_tokens';
+import { dialogsSceneContrast, DIALOGS_SCENE_MIN_TEXT_CONTRAST } from './dialogs_scene_tokens';
+import { useDialogsSceneTheme } from './use_dialogs_scene_theme';
 
 const LOG = '[DIALOGS-SCENE]';
 
@@ -39,14 +39,14 @@ export type DialogsSceneProps = Readonly<{
 }>;
 
 function DialogsScene(p: DialogsSceneProps) {
-  const g = useLv2Glass();
+  // зачем (владелец 22.10): сцена всегда на токенах уровня «Максимум» — одна точка use_dialogs_scene_theme, ползунок яркости сцену не меняет
+  const { tokens: sceneTokens, colors } = useDialogsSceneTheme();
   const { liquidGlassAppearance } = useTheme();
   const { consent, offline, plus, quotaRemaining, doneCount, totalCount, dayDone } = p.input;
   const decision = useMemo(
     () => pickDialogsSceneState({ consent, offline, plus, quotaRemaining, doneCount, totalCount, dayDone }),
     [consent, offline, plus, quotaRemaining, doneCount, totalCount, dayDone],
   );
-  const colors = useMemo(() => dialogsSceneColors(g), [g]);
   const art = useMemo(() => resolveDialogsSceneArt(decision.state, liquidGlassAppearance, p.personaId ?? null), [decision.state, liquidGlassAppearance, p.personaId]);
   const copy = useMemo(() => buildDialogsSceneCopy({
     lang: p.lang, state: decision.state, plus, dialog: p.dialog, following: p.following, quotaRemaining, quotaTotal: p.quotaTotal,
@@ -61,10 +61,10 @@ function DialogsScene(p: DialogsSceneProps) {
     console.log(LOG, 'decision', JSON.stringify({ state: decision.state, reason: decision.reason, input: p.input, dialog: p.dialog ? p.dialog.title : null })); // guard-ok: одна строка на смену решения
   }, [decision, p.dialog, p.input]);
   useEffect(() => {
-    const c = dialogsSceneContrast(g, colors);
+    const c = dialogsSceneContrast(sceneTokens, colors);
     const low = c.text < DIALOGS_SCENE_MIN_TEXT_CONTRAST || c.secondary < DIALOGS_SCENE_MIN_TEXT_CONTRAST;
     console.log(LOG, 'art', JSON.stringify({ state: decision.state, name: art.name, origin: art.origin, kind: art.kind, tone: liquidGlassAppearance, hasBase: art.base !== null, contrast: { text: Number(c.text.toFixed(2)), secondary: Number(c.secondary.toFixed(2)), seam: Number(c.seam.toFixed(2)) }, belowMin: low })); // guard-ok: смена картинки или темы
-  }, [art, colors, decision.state, g, liquidGlassAppearance]);
+  }, [art, colors, decision.state, sceneTokens, liquidGlassAppearance]);
 
   return (
     <DialogsSceneStage

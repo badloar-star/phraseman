@@ -9,6 +9,7 @@
 // текста на сцене (страж: tests/dialogs_scene_tokens.test.ts проходит все темы × оформления). Яркость считает relativeLuminance из блока 3 · МАКЕТЫ
 // (components/home/v2/scene/home_scene_tokens.ts) — не копия.
 // ═══════════════════════════════════════════════════════════════════════════
+import { liquidGlassTokens, type GlassTokens } from '../../../constants/liquidGlassThemePalette';
 import { alphaHex, mixHex } from '../../../constants/v2Style';
 import { relativeLuminance } from '../../home/v2/scene/home_scene_tokens';
 
@@ -55,6 +56,17 @@ export type DialogsSceneColors = Readonly<{
   textZone: string;
   isLight: boolean;
 }>;
+
+/**
+ * Уровень темы, токенами которого рисуется сцена «Диалогов» (эталон dialogs-scene-states.html снят на нём).
+ * зачем (владелец 22.10: «Сцена всегда как в макете»): сцена берёт этот уровень при любом положении ползунка яркости; ползунок меняет остальной фон.
+ */
+export const DIALOGS_SCENE_THEME_LEVEL = 'max' as const;
+
+/** Токены выбранной темы и оформления для сцены — всегда уровня DIALOGS_SCENE_THEME_LEVEL (как homeSceneTokensForTheme у Главной). */
+export function dialogsSceneTokensForTheme(themeId: string, appearance: 'dark' | 'light'): GlassTokens {
+  return liquidGlassTokens(themeId, { level: DIALOGS_SCENE_THEME_LEVEL, appearance });
+}
 
 /** Минимальный контраст обычного текста (WCAG AA). */
 export const DIALOGS_SCENE_MIN_TEXT_CONTRAST = 4.5;

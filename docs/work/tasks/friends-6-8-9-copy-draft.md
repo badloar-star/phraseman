@@ -134,3 +134,27 @@ Owner: «10 · ПЕРЕВОДЧИК» (поручение координатор
 2. `youAreFirst`: оставить род или взять безличную форму.
 3. Склонения: `factStreakDays`, `factLessons`, `lineFloorsUp`, `friendsAnsweredCount` (ru, uk, pl).
 4. Даты и дни недели — через `Intl`, не таблицей.
+
+## Идея 8 · добавка 22.10 (вопрос о значении, по просьбе 8 · МОМЕНТЫ)
+
+В контенте фразы дня нет английских вариантов-ловушек, только квест «что значит идиома». Поэтому вопрос карточки — про
+значение. Без рода. ⚑ Имя без падежа: варианты «Ответ от {name}» и «дать пять {name}» требуют родительного и дательного
+падежа в ru, uk и pl («от Ирины», «Ирине») — для любого имени их не собрать. Поэтому `{name}:` стоит перед двоеточием,
+а в `tryHighFive` имени нет (его и так видно на монете).
+
+| ключ | ru | uk | en | es | pt-BR | vi | id | tr | pl |
+|---|---|---|---|---|---|---|---|---|---|
+| phraseQuestionMeaning | Что значит «{phrase}»? | Що означає «{phrase}»? | What does “{phrase}” mean? | ¿Qué significa «{phrase}»? | O que significa “{phrase}”? | “{phrase}” nghĩa là gì? | Apa arti “{phrase}”? | “{phrase}” ne anlama geliyor? | Co znaczy „{phrase}”? |
+| friendsAnsweredOne | {name}: ответ откроется после твоего | {name}: відповідь відкриється після твоєї | {name}: see the answer after yours | {name}: verás su respuesta tras la tuya | {name}: a resposta aparece depois da sua | {name}: xem câu trả lời sau khi bạn trả lời | {name}: jawabannya terbuka setelah jawabanmu | {name}: cevabı seninkinden sonra açılır | {name}: odpowiedź zobaczysz po swojej |
+| friendsAnsweredMany | Уже ответили: {n} · ответы откроются после твоего | Вже відповіли: {n} · відповіді відкриються після твоєї | Answered: {n} · see them after yours | Ya respondieron: {n} · las verás tras la tuya | Já responderam: {n} · aparecem depois da sua | Đã trả lời: {n} · xem sau khi bạn trả lời | Sudah menjawab: {n} · terbuka setelah jawabanmu | Cevaplayan: {n} · seninkinden sonra açılır | Już odpowiedzieli: {n} · zobaczysz po swojej |
+| firstFriend | Пока никто из друзей не ответил — их ответы появятся здесь до полуночи | Поки ніхто з друзів не відповів — їхні відповіді з’являться тут до півночі | None of your friends has answered yet — their answers will show here until midnight | Aún no ha respondido ningún amigo: sus respuestas aparecerán aquí hasta medianoche | Nenhum amigo respondeu ainda — as respostas aparecem aqui até a meia-noite | Chưa có bạn nào trả lời — câu trả lời sẽ hiện ở đây đến nửa đêm | Belum ada teman yang menjawab — jawaban mereka muncul di sini sampai tengah malam | Henüz hiçbir arkadaşın cevap vermedi — cevapları gece yarısına kadar burada görünür | Nikt ze znajomych jeszcze nie odpowiedział — ich odpowiedzi pojawią się tu do północy |
+| tryHighFive | Можно дать пять за попытку | Можна дати п’ять за спробу | You can give a high five for trying | Puedes chocar los cinco por el intento | Dá para mandar um toque pela tentativa | Có thể đập tay khích lệ cho lần thử | Kamu bisa memberi tos untuk usahanya | Denemesi için çak yapabilirsin | Możesz przybić piątkę za próbę |
+
+Примечания:
+- `friendsAnsweredMany` — с двоеточием перед числом, чтобы не склонять «друг / друга / друзей» и глагол
+  («ответил / ответили»). Число справа от двоеточия читается одинаково при любом `{n}`; формы 1 / 2–4 / 5+ не нужны.
+  Для одного друга — `friendsAnsweredOne`.
+- `phraseQuestionMeaning` — так же, как подпись «Что значит» в `DailyPhraseCard.tsx`. Кавычки — по правилам языка:
+  «» в ru, uk, es; “” в en, pt-BR, vi, id, tr; „” в pl.
+- Заменяют прежние `phraseQuestion` (перевод фразы), `friendsAnsweredLocked`, `friendsAnsweredCount` и `youAreFirst`.
+  Прежние строки оставлены выше для истории.

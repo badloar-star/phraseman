@@ -312,7 +312,7 @@ function render(manifestRows) {
     const lesson = `l${String(row.lessonOrdinal).padStart(2, "0")}`;
     const session = `s${String(row.sessionOrdinal).padStart(2, "0")}`;
     const moduleBase = `./generated_release/en/${lesson}/${session}`;
-    return `  Object.freeze({\n` +
+    return `  Object.freeze<LearningV2FactoryNativeManifestRowV1>({\n` +
       `    lessonOrdinal: ${row.lessonOrdinal}, sessionOrdinal: ${row.sessionOrdinal},\n` +
       `    sourceFingerprint: ${JSON.stringify(row.sourceFingerprint)},\n` +
       `    introCorrectChoiceIndexes: Object.freeze(${JSON.stringify(row.introCorrectChoiceIndexes)}),\n` +
@@ -341,11 +341,11 @@ function render(manifestRows) {
     `  readonly practiceTitlesByAuthoredLocale: Readonly<Record<"ru" | "uk", readonly Readonly<{ ordinal: number; title: string }>[]>>;\n` +
     `  readonly loadIntro: () => unknown; readonly loadLearner: (locale: "ru" | "uk") => unknown; readonly loadAnswers: () => unknown; readonly loadAuxiliary?: () => unknown;\n` +
     `}\n` +
-    `export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifestRowV1[] = Object.freeze([\n${entries.join("\n")}\n]);\n`;
+    `export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifestRowV1[] = Object.freeze<LearningV2FactoryNativeManifestRowV1[]>([\n${entries.join("\n")}\n]);\n`;
 }
 
 function renderCatalog(manifestRows) {
-  const entries = manifestRows.map((row) => `  Object.freeze({
+  const entries = manifestRows.map((row) => `  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: ${row.lessonOrdinal}, sessionOrdinal: ${row.sessionOrdinal},
     sourceFingerprint: ${JSON.stringify(row.sourceFingerprint)},
     newWordCount: ${row.newWordCount},
@@ -360,7 +360,7 @@ function renderCatalog(manifestRows) {
     `  readonly learningOutcomeByAuthoredLocale: Readonly<Record<"ru" | "uk", string>>;\n` +
     `  readonly lessonTitleByAuthoredLocale: Readonly<Record<"ru" | "uk", string>>;\n` +
     `}\n` +
-    `export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCatalogRowV1[] = Object.freeze([\n${entries.join("\n")}\n]);\n`;
+    `export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCatalogRowV1[] = Object.freeze<LearningV2FactoryNativeCatalogRowV1[]>([\n${entries.join("\n")}\n]);\n`;
 }
 
 const manifestRows = rows(PREFIX_COUNT);
@@ -380,7 +380,7 @@ const renderedCatalogOutput = renderCatalog(manifestRows);
 function replaceSessionRow(current, rendered) {
   const row = manifestRows[0];
   if (!row || manifestRows.length !== 1) throw new Error(`session missing: ${SESSION}`);
-  const pattern = new RegExp(`^  Object\\.freeze\\(\\{\\r?\\n    lessonOrdinal: ${row.lessonOrdinal}, sessionOrdinal: ${row.sessionOrdinal},[\\s\\S]*?^  \\}\\),`, "m");
+  const pattern = new RegExp(`^  Object\\.freeze(?:<\\w+>)?\\(\\{\\r?\\n    lessonOrdinal: ${row.lessonOrdinal}, sessionOrdinal: ${row.sessionOrdinal},[\\s\\S]*?^  \\}\\),`, "m");
   const replacement = rendered.match(pattern)?.[0];
   if (!replacement || !pattern.test(current)) throw new Error(`session not in native catalog: ${SESSION}`);
   return current.replace(pattern, () => replacement);
@@ -388,7 +388,7 @@ function replaceSessionRow(current, rendered) {
 // Блоки строк каталога по координате: «  Object.freeze({\n    lessonOrdinal: L, sessionOrdinal: S, … \n  }),».
 function rowBlocks(text) {
   const blocks = new Map();
-  const pattern = /^  Object\.freeze\(\{\r?\n    lessonOrdinal: (\d+), sessionOrdinal: (\d+),[\s\S]*?^  \}\),/gmu;
+  const pattern = /^  Object\.freeze(?:<\w+>)?\(\{\r?\n    lessonOrdinal: (\d+), sessionOrdinal: (\d+),[\s\S]*?^  \}\),/gmu;
   for (const match of text.matchAll(pattern)) blocks.set(`${match[1]}/${match[2]}`, match[0]);
   return blocks;
 }
@@ -405,7 +405,11 @@ function extendOutput(current, rendered) {
     const [lb, sb] = b.split("/").map(Number);
     return la - lb || sa - sb;
   });
-  const head = rendered.slice(0, rendered.indexOf("Object.freeze([\n") + "Object.freeze([\n".length);
+  // зачем (TS2590 после 8b6d88169): у внешнего Object.freeze явный тип элемента — иначе TypeScript выводит объединение
+  // типов всех сотен строк и падает «union type too complex». Голову файла ищем и по старой, и по новой записи.
+  const headMatch = /Object\.freeze(?:<[A-Za-z0-9]+\[\]>)?\(\[\n/u.exec(rendered);
+  if (!headMatch) throw new Error("array head not found in rendered output");
+  const head = rendered.slice(0, headMatch.index + headMatch[0].length);
   return `${head}${ordered.map((key) => fresh.get(key) ?? kept.get(key)).join("\n")}\n]);\n`;
 }
 const output = EXTEND ? extendOutput(read(OUTPUT), renderedOutput) : SESSION ? replaceSessionRow(read(OUTPUT), renderedOutput) : PREFIX_COUNT === null

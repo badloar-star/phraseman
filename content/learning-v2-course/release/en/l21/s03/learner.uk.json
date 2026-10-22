@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-03:word:summary",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — summary",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:word:summary:audio"
+      ],
+      "accessibilityLabel": "Картка слова — summary",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:word:summary:audio",
+          "transcript": "summary"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-03:word:summary:r1",
+            "targetText": "summary",
+            "meaningByLocale": {
+              "ru": "краткое изложение, резюме содержания.",
+              "uk": "короткий виклад, підсумок змісту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "summary",
+          "definitionByLocale": {
+            "ru": "краткое изложение, резюме содержания.",
+            "uk": "короткий виклад, підсумок змісту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must finish: «Мені потрібно закінчити писати короткий виклад».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must finish: «Мені потрібно закінчити писати короткий виклад».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I must finish writing the summary.",
+        "localizedMeaning": {
+          "ru": "Скажите с must finish: «Мне нужно закончить писать краткое изложение».",
+          "uk": "Скажіть із must finish: «Мені потрібно закінчити писати короткий виклад»."
+        },
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "writing",
+          "the",
+          "summary"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-03:i02:r1",
+          "text": "I must finish writing the summary."
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i02:r2",
+          "text": "We must finish writing the summary."
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i02:r3",
+          "text": "I should finish writing the summary."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:i02:audio",
+          "transcript": "I must finish writing the summary."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-03:i02:r1",
+            "targetText": "I must finish writing the summary.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i02:r2",
+            "targetText": "We must finish writing the summary.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i02:r3",
+            "targetText": "I should finish writing the summary.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must finish writing the summary.",
+              "uk": "У записі звучить I must finish writing the summary."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must finish writing the summary.",
+              "uk": "У записі звучить I must finish writing the summary."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про завершення справи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-03:i03:r1",
+          "text": "writing"
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i03:r2",
+          "text": "write"
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i03:r3",
+          "text": "to write"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про завершення справи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о завершении дела.",
+          "uk": "Доповніть фразу про завершення справи."
+        },
+        "gappedTargetPhrase": "I must finish ___ the summary.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-03:i03:r1",
+            "text": "writing"
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i03:r2",
+            "text": "write"
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i03:r3",
+            "text": "to write"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про завершення справи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про завершення справи.",
+            "feedbackByLocale": {
+              "ru": "После finish нужна форма на -ing.",
+              "uk": "Після finish потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про завершення справи.",
+            "feedbackByLocale": {
+              "ru": "После finish не используем to + глагол.",
+              "uk": "Після finish не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:word:description",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — description",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:word:description:audio"
+      ],
+      "accessibilityLabel": "Картка слова — description",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:word:description:audio",
+          "transcript": "description"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-03:word:description:r1",
+            "targetText": "description",
+            "meaningByLocale": {
+              "ru": "описание.",
+              "uk": "опис."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "description",
+          "definitionByLocale": {
+            "ru": "описание.",
+            "uk": "опис."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must finish: «Мені потрібно закінчити читати опис».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must finish: «Мені потрібно закінчити читати опис».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I must finish reading the description.",
+        "localizedMeaning": {
+          "ru": "Скажите с must finish: «Мне нужно закончить читать описание».",
+          "uk": "Скажіть із must finish: «Мені потрібно закінчити читати опис»."
+        },
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "reading",
+          "the",
+          "description"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-03:i05:r1",
+          "text": "I must finish reading the description."
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i05:r2",
+          "text": "We must finish reading the description."
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i05:r3",
+          "text": "I should finish reading the description."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:i05:audio",
+          "transcript": "I must finish reading the description."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-03:i05:r1",
+            "targetText": "I must finish reading the description.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i05:r2",
+            "targetText": "We must finish reading the description.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i05:r3",
+            "targetText": "I should finish reading the description.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must finish reading the description.",
+              "uk": "У записі звучить I must finish reading the description."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must finish reading the description.",
+              "uk": "У записі звучить I must finish reading the description."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про завершення справи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-03:i06:r1",
+          "text": "reading"
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i06:r2",
+          "text": "read"
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i06:r3",
+          "text": "to read"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про завершення справи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о завершении дела.",
+          "uk": "Доповніть фразу про завершення справи."
+        },
+        "gappedTargetPhrase": "I must finish ___ the description.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-03:i06:r1",
+            "text": "reading"
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i06:r2",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i06:r3",
+            "text": "to read"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про завершення справи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про завершення справи.",
+            "feedbackByLocale": {
+              "ru": "После finish нужна форма на -ing.",
+              "uk": "Після finish потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про завершення справи.",
+            "feedbackByLocale": {
+              "ru": "После finish не используем to + глагол.",
+              "uk": "Після finish не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:word:questionnaire",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — questionnaire",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:word:questionnaire:audio"
+      ],
+      "accessibilityLabel": "Картка слова — questionnaire",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:word:questionnaire:audio",
+          "transcript": "questionnaire"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-03:word:questionnaire:r1",
+            "targetText": "questionnaire",
+            "meaningByLocale": {
+              "ru": "анкета, опросный лист.",
+              "uk": "анкета, опитувальник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "questionnaire",
+          "definitionByLocale": {
+            "ru": "анкета, опросный лист.",
+            "uk": "анкета, опитувальник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must finish: «Мені потрібно закінчити заповнювати анкету».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must finish: «Мені потрібно закінчити заповнювати анкету».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I must finish filling in the questionnaire.",
+        "localizedMeaning": {
+          "ru": "Скажите с must finish: «Мне нужно закончить заполнять анкету».",
+          "uk": "Скажіть із must finish: «Мені потрібно закінчити заповнювати анкету»."
+        },
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "filling",
+          "in",
+          "the",
+          "questionnaire"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-03:i08:r1",
+          "text": "I must finish filling in the questionnaire."
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i08:r2",
+          "text": "We must finish filling in the questionnaire."
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i08:r3",
+          "text": "I should finish filling in the questionnaire."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:i08:audio",
+          "transcript": "I must finish filling in the questionnaire."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-03:i08:r1",
+            "targetText": "I must finish filling in the questionnaire.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i08:r2",
+            "targetText": "We must finish filling in the questionnaire.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i08:r3",
+            "targetText": "I should finish filling in the questionnaire.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must finish filling in the questionnaire.",
+              "uk": "У записі звучить I must finish filling in the questionnaire."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must finish filling in the questionnaire.",
+              "uk": "У записі звучить I must finish filling in the questionnaire."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про завершення справи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-03:i09:r1",
+          "text": "filling"
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i09:r2",
+          "text": "fill"
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i09:r3",
+          "text": "to fill"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про завершення справи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о завершении дела.",
+          "uk": "Доповніть фразу про завершення справи."
+        },
+        "gappedTargetPhrase": "I must finish ___ in the questionnaire.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-03:i09:r1",
+            "text": "filling"
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i09:r2",
+            "text": "fill"
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i09:r3",
+            "text": "to fill"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про завершення справи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про завершення справи.",
+            "feedbackByLocale": {
+              "ru": "После finish нужна форма на -ing.",
+              "uk": "Після finish потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про завершення справи.",
+            "feedbackByLocale": {
+              "ru": "После finish не используем to + глагол.",
+              "uk": "Після finish не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:word:presentation",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — presentation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:word:presentation:audio"
+      ],
+      "accessibilityLabel": "Картка слова — presentation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:word:presentation:audio",
+          "transcript": "presentation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-03:word:presentation:r1",
+            "targetText": "presentation",
+            "meaningByLocale": {
+              "ru": "презентация, выступление с представлением информации.",
+              "uk": "презентація, виступ із представленням інформації."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "presentation",
+          "definitionByLocale": {
+            "ru": "презентация, выступление с представлением информации.",
+            "uk": "презентація, виступ із представленням інформації."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must finish: «Мені потрібно закінчити готувати презентацію».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must finish: «Мені потрібно закінчити готувати презентацію».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I must finish preparing the presentation.",
+        "localizedMeaning": {
+          "ru": "Скажите с must finish: «Мне нужно закончить готовить презентацию».",
+          "uk": "Скажіть із must finish: «Мені потрібно закінчити готувати презентацію»."
+        },
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "preparing",
+          "the",
+          "presentation"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-03:i11:r1",
+          "text": "I must finish preparing the presentation."
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i11:r2",
+          "text": "We must finish preparing the presentation."
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i11:r3",
+          "text": "I should finish preparing the presentation."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:i11:audio",
+          "transcript": "I must finish preparing the presentation."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-03:i11:r1",
+            "targetText": "I must finish preparing the presentation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i11:r2",
+            "targetText": "We must finish preparing the presentation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i11:r3",
+            "targetText": "I should finish preparing the presentation.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must finish preparing the presentation.",
+              "uk": "У записі звучить I must finish preparing the presentation."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must finish preparing the presentation.",
+              "uk": "У записі звучить I must finish preparing the presentation."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про завершення справи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-03:i12:r1",
+          "text": "preparing"
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i12:r2",
+          "text": "prepare"
+        },
+        {
+          "responseId": "en:lesson-21:session-03:i12:r3",
+          "text": "to prepare"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про завершення справи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о завершении дела.",
+          "uk": "Доповніть фразу про завершення справи."
+        },
+        "gappedTargetPhrase": "I must finish ___ the presentation.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-03:i12:r1",
+            "text": "preparing"
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i12:r2",
+            "text": "prepare"
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i12:r3",
+            "text": "to prepare"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про завершення справи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про завершення справи.",
+            "feedbackByLocale": {
+              "ru": "После finish нужна форма на -ing.",
+              "uk": "Після finish потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про завершення справи.",
+            "feedbackByLocale": {
+              "ru": "После finish не используем to + глагол.",
+              "uk": "Після finish не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-03:i13:p1",
+            "target": "summary",
+            "meaningByLocale": {
+              "ru": "краткое изложение, резюме содержания",
+              "uk": "короткий виклад, підсумок змісту"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-03:i13:p2",
+            "target": "description",
+            "meaningByLocale": {
+              "ru": "описание",
+              "uk": "опис"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-03:i13:p3",
+            "target": "questionnaire",
+            "meaningByLocale": {
+              "ru": "анкета, опросный лист",
+              "uk": "анкета, опитувальник"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-03:i13:p4",
+            "target": "presentation",
+            "meaningByLocale": {
+              "ru": "презентация, выступление с представлением информации",
+              "uk": "презентація, виступ із представленням інформації"
+            }
+          }
+        ],
+        "leftColumn": [
+          "summary",
+          "description",
+          "questionnaire",
+          "presentation"
+        ],
+        "rightColumn": [
+          "короткий виклад, підсумок змісту",
+          "опис",
+          "анкета, опитувальник",
+          "презентація, виступ із представленням інформації"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:i14:audio",
+          "transcript": "You must not ignore the rules."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You must not ignore the rules.",
+        "orderedTokens": [
+          "You",
+          "must",
+          "not",
+          "ignore",
+          "the",
+          "rules"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: необхідність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: необхідність",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вам потрібно закінчити заповнювати анкету",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вам потрібно закінчити заповнювати анкету",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:i16:audio",
+          "transcript": "I must finish filling in the questionnaire."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I must finish filling in the questionnaire.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вам потрібно закінчити готувати презентацію",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вам потрібно закінчити готувати презентацію",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-03:i17:audio",
+          "transcript": "I must finish preparing the presentation."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I must finish preparing the presentation.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "14f55d73df2d933e542cf04dcc3fb7b1e92306571801984a746485dd11bf61d1"
+}

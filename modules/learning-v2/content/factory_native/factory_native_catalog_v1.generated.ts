@@ -7847,4 +7847,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 20","uk":"Англійська · Урок 20"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 1,
+    sourceFingerprint: "d6cc6c7f7e8004fe6369905ac053b9c632dc8ed82a119cd19890ac20e6add5e5",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"enjoy + gerund (-ing)","uk":"enjoy + gerund (-ing)"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 2,
+    sourceFingerprint: "2435eeb9695438962d16322a6dae5f0f77a5500ec8fa3eac50f05848b71d6c82",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"enjoy + gerund (-ing)","uk":"enjoy + gerund (-ing)"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 3,
+    sourceFingerprint: "e06a3f0813aa1be0120f90c232f714244e904a1941d0ee7450f80d4ff0b91423",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"finish + gerund (-ing)","uk":"finish + gerund (-ing)"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 4,
+    sourceFingerprint: "07fba023484a3e44eaed4b5031e72bfe15f839739bd00ef925e90e7c1232f0a7",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"avoid + gerund (-ing)","uk":"avoid + gerund (-ing)"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
 ]);

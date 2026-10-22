@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "finish + gerund (-ing)",
+    "uk": "finish + gerund (-ing)"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Закончить краткое изложение",
+        "uk": "Закінчити короткий виклад"
+      },
+      "bodyByLocale": {
+        "ru": "Summary — краткое изложение главного. Вы прочитали статью и пишете несколько предложений о её содержании. Работу нужно закончить до занятия, и вы объясняете, почему пока не можете выйти. После finish («закончить») действие выражаем формой на -ing: finish writing. Здесь must finish означает «мне нужно закончить»: после must стоит начальная форма finish, а после finish — writing. Не ставим to перед writing.",
+        "uk": "Summary — короткий виклад головного. Ви прочитали статтю й пишете кілька речень про її зміст. Роботу потрібно закінчити до заняття, і ви пояснюєте, чому поки не можете вийти. Після finish («закінчити») дію виражаємо формою на -ing: finish writing. Тут must finish означає «мені потрібно закінчити»: після must стоїть початкова форма finish, а після finish — writing. Не ставимо to перед writing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-03:intro1:r1",
+              "text": "I must finish writing the summary."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro1:r2",
+              "text": "I must finish to write the summary."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro1:r3",
+              "text": "I must finish write the summary."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-03:intro1:r1",
+              "text": "I must finish writing the summary."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro1:r2",
+              "text": "I must finish to write the summary."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro1:r3",
+              "text": "I must finish write the summary."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дочитать описание",
+        "uk": "Дочитати опис"
+      },
+      "bodyByLocale": {
+        "ru": "Description — описание. Вы дочитываете описание квартиры перед тем, как договориться о просмотре. Questionnaire — анкета с вопросами: вы заполняете её перед началом курса. Fill in the questionnaire — заполнить анкету; fill → filling с двумя l, как в исходном fill. После finish («закончить») действие выражаем формой на -ing: finish writing. Здесь must finish означает «мне нужно закончить»: после must стоит начальная форма finish, а после finish — writing. Не ставим to перед writing.",
+        "uk": "Description — опис. Ви дочитуєте опис квартири перед тим, як домовитися про перегляд. Questionnaire — анкета із запитаннями: ви заповнюєте її перед початком курсу. Fill in the questionnaire — заповнити анкету; fill → filling із двома l, як у початковому fill. Після finish («закінчити») дію виражаємо формою на -ing: finish writing. Тут must finish означає «мені потрібно закінчити»: після must стоїть початкова форма finish, а після finish — writing. Не ставимо to перед writing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-03:intro2:r1",
+              "text": "I must finish reading the description."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro2:r2",
+              "text": "I must finish to read the description."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro2:r3",
+              "text": "I must finish read the description."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-03:intro2:r1",
+              "text": "I must finish reading the description."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro2:r2",
+              "text": "I must finish to read the description."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro2:r3",
+              "text": "I must finish read the description."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подготовить выступление",
+        "uk": "Підготувати виступ"
+      },
+      "bodyByLocale": {
+        "ru": "Presentation — выступление, в котором вы представляете информацию слушателям, часто с иллюстрациями. Завтра вы рассказываете группе о поездке, а сегодня нужно закончить подготовку. Prepare → preparing: конечная немая e исчезает. После finish («закончить») действие выражаем формой на -ing: finish writing. Здесь must finish означает «мне нужно закончить»: после must стоит начальная форма finish, а после finish — writing. Не ставим to перед writing.",
+        "uk": "Presentation — виступ, у якому ви представляєте інформацію слухачам, часто з ілюстраціями. Завтра ви розповідаєте групі про поїздку, а сьогодні потрібно закінчити підготовку. Prepare → preparing: кінцева німа e зникає. Після finish («закінчити») дію виражаємо формою на -ing: finish writing. Тут must finish означає «мені потрібно закінчити»: після must стоїть початкова форма finish, а після finish — writing. Не ставимо to перед writing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-03:intro3:r1",
+              "text": "I must finish preparing the presentation."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro3:r2",
+              "text": "I must finish to prepare the presentation."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro3:r3",
+              "text": "I must finish prepare the presentation."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-03:intro3:r1",
+              "text": "I must finish preparing the presentation."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro3:r2",
+              "text": "I must finish to prepare the presentation."
+            },
+            {
+              "responseId": "en:lesson-21:session-03:intro3:r3",
+              "text": "I must finish prepare the presentation."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0f83732b99488737dfefd30c88786c54950f254cf743c2d7e9a5cad8bd686135"
+}

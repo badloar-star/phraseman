@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-04:word:conflict",
+    "correctText": "conflict",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i01",
+    "correctText": "I avoid causing conflict.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i02",
+    "correctText": "I avoid causing conflict.",
+    "correctResponseId": "en:lesson-21:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i03",
+    "correctText": "causing",
+    "correctResponseId": "en:lesson-21:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:word:distraction",
+    "correctText": "distraction",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i04",
+    "correctText": "I avoid creating a distraction.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i05",
+    "correctText": "I avoid creating a distraction.",
+    "correctResponseId": "en:lesson-21:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i06",
+    "correctText": "creating",
+    "correctResponseId": "en:lesson-21:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:word:temptation",
+    "correctText": "temptation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i07",
+    "correctText": "I avoid giving in to temptation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i08",
+    "correctText": "I avoid giving in to temptation.",
+    "correctResponseId": "en:lesson-21:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i09",
+    "correctText": "giving",
+    "correctResponseId": "en:lesson-21:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:word:fuss",
+    "correctText": "fuss",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i10",
+    "correctText": "I avoid making a fuss.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i11",
+    "correctText": "I avoid making a fuss.",
+    "correctResponseId": "en:lesson-21:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i12",
+    "correctText": "making",
+    "correctResponseId": "en:lesson-21:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i13",
+    "correctText": "en:lesson-21:session-04:i13:p1=conflict\nen:lesson-21:session-04:i13:p2=distraction\nen:lesson-21:session-04:i13:p3=temptation\nen:lesson-21:session-04:i13:p4=fuss",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i14",
+    "correctText": "You must not ignore the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i16",
+    "correctText": "I avoid giving in to temptation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-04:i17",
+    "correctText": "I avoid making a fuss.",
+    "correctResponseId": null
+  }
+]

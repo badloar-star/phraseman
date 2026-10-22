@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-02:word:decorate",
+    "correctText": "decorate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i01",
+    "correctText": "I can decorate my home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i02",
+    "correctText": "I enjoy decorating my home.",
+    "correctResponseId": "en:lesson-21:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i03",
+    "correctText": "decorating",
+    "correctResponseId": "en:lesson-21:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:word:experiment",
+    "correctText": "experiment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i04",
+    "correctText": "I can experiment with recipes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i05",
+    "correctText": "I enjoy experimenting with recipes.",
+    "correctResponseId": "en:lesson-21:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i06",
+    "correctText": "experimenting",
+    "correctResponseId": "en:lesson-21:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:word:brew",
+    "correctText": "brew",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i07",
+    "correctText": "I can brew coffee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i08",
+    "correctText": "I enjoy brewing coffee.",
+    "correctResponseId": "en:lesson-21:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i09",
+    "correctText": "brewing",
+    "correctResponseId": "en:lesson-21:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:word:sunbathe",
+    "correctText": "sunbathe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i10",
+    "correctText": "I can sunbathe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i11",
+    "correctText": "I enjoy sunbathing.",
+    "correctResponseId": "en:lesson-21:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i12",
+    "correctText": "sunbathing",
+    "correctResponseId": "en:lesson-21:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i13",
+    "correctText": "en:lesson-21:session-02:i13:p1=decorate\nen:lesson-21:session-02:i13:p2=experiment\nen:lesson-21:session-02:i13:p3=brew\nen:lesson-21:session-02:i13:p4=sunbathe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i14",
+    "correctText": "You must not ignore the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i16",
+    "correctText": "I enjoy brewing coffee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-02:i17",
+    "correctText": "I enjoy sunbathing.",
+    "correctResponseId": null
+  }
+]

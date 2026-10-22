@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "enjoy + gerund (-ing)",
+    "uk": "enjoy + gerund (-ing)"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Украсить дом",
+        "uk": "Прикрасити дім"
+      },
+      "bodyByLocale": {
+        "ru": "Decorate — украшать. Перед праздником вам нравится делать дом уютнее: расставлять цветы и вешать украшения. После enjoy («получать удовольствие, любить что-то делать») действие называем формой на -ing: enjoy decorating. Это не Present Continuous: am/is/are здесь не нужны. To перед вторым глаголом тоже не ставим. У decorate и sunbathe конечная немая e исчезает перед -ing; к experiment и brew просто добавляем -ing.",
+        "uk": "Decorate — прикрашати. Перед святом вам подобається робити дім затишнішим: розставляти квіти й вішати прикраси. Після enjoy («отримувати задоволення, любити щось робити») дію називаємо формою на -ing: enjoy decorating. Це не Present Continuous: am/is/are тут не потрібні. To перед другим дієсловом теж не ставимо. У decorate і sunbathe кінцева німа e зникає перед -ing; до experiment і brew просто додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-02:intro1:r1",
+              "text": "I enjoy decorating my home."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro1:r2",
+              "text": "I enjoy to decorate my home."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro1:r3",
+              "text": "I enjoy decorate my home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-02:intro1:r1",
+              "text": "I enjoy decorating my home."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro1:r2",
+              "text": "I enjoy to decorate my home."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro1:r3",
+              "text": "I enjoy decorate my home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пробовать рецепты",
+        "uk": "Пробувати рецепти"
+      },
+      "bodyByLocale": {
+        "ru": "Experiment — пробовать разные способы и смотреть, что получится. Вам нравится менять знакомые рецепты: например, добавлять другие овощи. Brew — заваривать чай или готовить кофе с помощью горячей воды; вы любите сам процесс приготовления кофе утром. После enjoy («получать удовольствие, любить что-то делать») действие называем формой на -ing: enjoy decorating. Это не Present Continuous: am/is/are здесь не нужны. To перед вторым глаголом тоже не ставим. У decorate и sunbathe конечная немая e исчезает перед -ing; к experiment и brew просто добавляем -ing.",
+        "uk": "Experiment — пробувати різні способи й дивитися, що вийде. Вам подобається змінювати знайомі рецепти: наприклад, додавати інші овочі. Brew — заварювати чай або готувати каву за допомогою гарячої води; ви любите сам процес приготування кави вранці. Після enjoy («отримувати задоволення, любити щось робити») дію називаємо формою на -ing: enjoy decorating. Це не Present Continuous: am/is/are тут не потрібні. To перед другим дієсловом теж не ставимо. У decorate і sunbathe кінцева німа e зникає перед -ing; до experiment і brew просто додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-02:intro2:r1",
+              "text": "I enjoy experimenting with recipes."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro2:r2",
+              "text": "I enjoy to experiment with recipes."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro2:r3",
+              "text": "I enjoy experiment with recipes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-02:intro2:r1",
+              "text": "I enjoy experimenting with recipes."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro2:r2",
+              "text": "I enjoy to experiment with recipes."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro2:r3",
+              "text": "I enjoy experiment with recipes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отдыхать на пляже",
+        "uk": "Відпочивати на пляжі"
+      },
+      "bodyByLocale": {
+        "ru": "Sunbathe — загорать: отдыхать на солнце. Вы рассказываете, что вам нравится делать на пляже. Sunbathing — одно слово; перед -ing конечная e исчезает. После enjoy («получать удовольствие, любить что-то делать») действие называем формой на -ing: enjoy decorating. Это не Present Continuous: am/is/are здесь не нужны. To перед вторым глаголом тоже не ставим. У decorate и sunbathe конечная немая e исчезает перед -ing; к experiment и brew просто добавляем -ing.",
+        "uk": "Sunbathe — засмагати: відпочивати на сонці. Ви розповідаєте, що вам подобається робити на пляжі. Sunbathing — одне слово; перед -ing кінцева e зникає. Після enjoy («отримувати задоволення, любити щось робити») дію називаємо формою на -ing: enjoy decorating. Це не Present Continuous: am/is/are тут не потрібні. To перед другим дієсловом теж не ставимо. У decorate і sunbathe кінцева німа e зникає перед -ing; до experiment і brew просто додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-02:intro3:r1",
+              "text": "I enjoy sunbathing."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro3:r2",
+              "text": "I enjoy to sunbathe."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro3:r3",
+              "text": "I enjoy sunbathe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-02:intro3:r1",
+              "text": "I enjoy sunbathing."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro3:r2",
+              "text": "I enjoy to sunbathe."
+            },
+            {
+              "responseId": "en:lesson-21:session-02:intro3:r3",
+              "text": "I enjoy sunbathe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "92876e54534a0985a3b2b40b6da5bb16271842443ffa7dd0bdf36252ceab3a33"
+}

@@ -1,0 +1,2315 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-02",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-02:word:decorate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — decorate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:word:decorate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — decorate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:word:decorate:audio",
+            "transcript": "decorate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:word:decorate:r1",
+              "targetText": "decorate",
+              "meaningByLocale": {
+                "ru": "украшать.",
+                "uk": "прикрашати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "decorate",
+            "definitionByLocale": {
+              "ru": "украшать.",
+              "uk": "прикрашати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу украшать свой дом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу украшать свой дом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can decorate my home.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу украшать свой дом».",
+            "uk": "Скажіть із can: «Я можу прикрашати свій дім»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "decorate",
+            "my",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i02:r1",
+            "text": "I enjoy decorating my home."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i02:r2",
+            "text": "We enjoy decorating my home."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i02:r3",
+            "text": "I enjoyed decorating my home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i02:audio",
+            "transcript": "I enjoy decorating my home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:i02:r1",
+              "targetText": "I enjoy decorating my home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i02:r2",
+              "targetText": "We enjoy decorating my home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i02:r3",
+              "targetText": "I enjoyed decorating my home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy decorating my home.",
+                "uk": "У записі звучить I enjoy decorating my home."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy decorating my home.",
+                "uk": "У записі звучить I enjoy decorating my home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о любимом занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i03:r1",
+            "text": "decorating"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i03:r2",
+            "text": "decorate"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i03:r3",
+            "text": "to decorate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о любимом занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о любимом занятии.",
+            "uk": "Доповніть фразу про улюблене заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ my home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-02:i03:r1",
+              "text": "decorating"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i03:r2",
+              "text": "decorate"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i03:r3",
+              "text": "to decorate"
+            }
+          ],
+          "testedDimension": "Дополните фразу о любимом занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о любимом занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о любимом занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:word:experiment",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — experiment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:word:experiment:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — experiment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:word:experiment:audio",
+            "transcript": "experiment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:word:experiment:r1",
+              "targetText": "experiment",
+              "meaningByLocale": {
+                "ru": "экспериментировать, пробовать новые способы.",
+                "uk": "експериментувати, пробувати нові способи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "experiment",
+            "definitionByLocale": {
+              "ru": "экспериментировать, пробовать новые способы.",
+              "uk": "експериментувати, пробувати нові способи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу экспериментировать с рецептами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу экспериментировать с рецептами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can experiment with recipes.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу экспериментировать с рецептами».",
+            "uk": "Скажіть із can: «Я можу експериментувати з рецептами»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "experiment",
+            "with",
+            "recipes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i05:r1",
+            "text": "I enjoy experimenting with recipes."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i05:r2",
+            "text": "We enjoy experimenting with recipes."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i05:r3",
+            "text": "I enjoyed experimenting with recipes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i05:audio",
+            "transcript": "I enjoy experimenting with recipes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:i05:r1",
+              "targetText": "I enjoy experimenting with recipes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i05:r2",
+              "targetText": "We enjoy experimenting with recipes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i05:r3",
+              "targetText": "I enjoyed experimenting with recipes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy experimenting with recipes.",
+                "uk": "У записі звучить I enjoy experimenting with recipes."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy experimenting with recipes.",
+                "uk": "У записі звучить I enjoy experimenting with recipes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о любимом занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i06:r1",
+            "text": "experimenting"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i06:r2",
+            "text": "experiment"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i06:r3",
+            "text": "to experiment"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о любимом занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о любимом занятии.",
+            "uk": "Доповніть фразу про улюблене заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ with recipes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-02:i06:r1",
+              "text": "experimenting"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i06:r2",
+              "text": "experiment"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i06:r3",
+              "text": "to experiment"
+            }
+          ],
+          "testedDimension": "Дополните фразу о любимом занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о любимом занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о любимом занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:word:brew",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brew",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:word:brew:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brew",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:word:brew:audio",
+            "transcript": "brew"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:word:brew:r1",
+              "targetText": "brew",
+              "meaningByLocale": {
+                "ru": "заваривать чай, готовить кофе.",
+                "uk": "заварювати чай, готувати каву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brew",
+            "definitionByLocale": {
+              "ru": "заваривать чай, готовить кофе.",
+              "uk": "заварювати чай, готувати каву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу готовить кофе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу готовить кофе».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can brew coffee.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу готовить кофе».",
+            "uk": "Скажіть із can: «Я можу готувати каву»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "brew",
+            "coffee"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i08:r1",
+            "text": "I enjoy brewing coffee."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i08:r2",
+            "text": "We enjoy brewing coffee."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i08:r3",
+            "text": "I enjoyed brewing coffee."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i08:audio",
+            "transcript": "I enjoy brewing coffee."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:i08:r1",
+              "targetText": "I enjoy brewing coffee.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i08:r2",
+              "targetText": "We enjoy brewing coffee.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i08:r3",
+              "targetText": "I enjoyed brewing coffee.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy brewing coffee.",
+                "uk": "У записі звучить I enjoy brewing coffee."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy brewing coffee.",
+                "uk": "У записі звучить I enjoy brewing coffee."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о любимом занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i09:r1",
+            "text": "brewing"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i09:r2",
+            "text": "brew"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i09:r3",
+            "text": "to brew"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о любимом занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о любимом занятии.",
+            "uk": "Доповніть фразу про улюблене заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ coffee.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-02:i09:r1",
+              "text": "brewing"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i09:r2",
+              "text": "brew"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i09:r3",
+              "text": "to brew"
+            }
+          ],
+          "testedDimension": "Дополните фразу о любимом занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о любимом занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о любимом занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:word:sunbathe",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sunbathe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:word:sunbathe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sunbathe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:word:sunbathe:audio",
+            "transcript": "sunbathe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:word:sunbathe:r1",
+              "targetText": "sunbathe",
+              "meaningByLocale": {
+                "ru": "загорать.",
+                "uk": "засмагати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sunbathe",
+            "definitionByLocale": {
+              "ru": "загорать.",
+              "uk": "засмагати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу загорать».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу загорать».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can sunbathe.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу загорать».",
+            "uk": "Скажіть із can: «Я можу засмагати»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "sunbathe"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i11:r1",
+            "text": "I enjoy sunbathing."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i11:r2",
+            "text": "We enjoy sunbathing."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i11:r3",
+            "text": "I enjoyed sunbathing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i11:audio",
+            "transcript": "I enjoy sunbathing."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:i11:r1",
+              "targetText": "I enjoy sunbathing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i11:r2",
+              "targetText": "We enjoy sunbathing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i11:r3",
+              "targetText": "I enjoyed sunbathing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy sunbathing.",
+                "uk": "У записі звучить I enjoy sunbathing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy sunbathing.",
+                "uk": "У записі звучить I enjoy sunbathing."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о любимом занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i12:r1",
+            "text": "sunbathing"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i12:r2",
+            "text": "sunbathe"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i12:r3",
+            "text": "to sunbathe"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о любимом занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о любимом занятии.",
+            "uk": "Доповніть фразу про улюблене заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-02:i12:r1",
+              "text": "sunbathing"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i12:r2",
+              "text": "sunbathe"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i12:r3",
+              "text": "to sunbathe"
+            }
+          ],
+          "testedDimension": "Дополните фразу о любимом занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о любимом занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о любимом занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-02:i13:p1",
+              "target": "decorate",
+              "meaningByLocale": {
+                "ru": "украшать",
+                "uk": "прикрашати"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-02:i13:p2",
+              "target": "experiment",
+              "meaningByLocale": {
+                "ru": "экспериментировать, пробовать новые способы",
+                "uk": "експериментувати, пробувати нові способи"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-02:i13:p3",
+              "target": "brew",
+              "meaningByLocale": {
+                "ru": "заваривать чай, готовить кофе",
+                "uk": "заварювати чай, готувати каву"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-02:i13:p4",
+              "target": "sunbathe",
+              "meaningByLocale": {
+                "ru": "загорать",
+                "uk": "засмагати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "decorate",
+            "experiment",
+            "brew",
+            "sunbathe"
+          ],
+          "rightColumn": [
+            "украшать",
+            "экспериментировать, пробовать новые способы",
+            "заваривать чай, готовить кофе",
+            "загорать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i14:audio",
+            "transcript": "You must not ignore the rules."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You must not ignore the rules.",
+          "orderedTokens": [
+            "You",
+            "must",
+            "not",
+            "ignore",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вам нравится готовить кофе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вам нравится готовить кофе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i16:audio",
+            "transcript": "I enjoy brewing coffee."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy brewing coffee.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вам нравится загорать",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вам нравится загорать",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i17:audio",
+            "transcript": "I enjoy sunbathing."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy sunbathing.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-02:word:decorate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — decorate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:word:decorate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — decorate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:word:decorate:audio",
+            "transcript": "decorate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:word:decorate:r1",
+              "targetText": "decorate",
+              "meaningByLocale": {
+                "ru": "украшать.",
+                "uk": "прикрашати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "decorate",
+            "definitionByLocale": {
+              "ru": "украшать.",
+              "uk": "прикрашати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу прикрашати свій дім».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу прикрашати свій дім».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can decorate my home.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу украшать свой дом».",
+            "uk": "Скажіть із can: «Я можу прикрашати свій дім»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "decorate",
+            "my",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i02:r1",
+            "text": "I enjoy decorating my home."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i02:r2",
+            "text": "We enjoy decorating my home."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i02:r3",
+            "text": "I enjoyed decorating my home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i02:audio",
+            "transcript": "I enjoy decorating my home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:i02:r1",
+              "targetText": "I enjoy decorating my home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i02:r2",
+              "targetText": "We enjoy decorating my home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i02:r3",
+              "targetText": "I enjoyed decorating my home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy decorating my home.",
+                "uk": "У записі звучить I enjoy decorating my home."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy decorating my home.",
+                "uk": "У записі звучить I enjoy decorating my home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про улюблене заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i03:r1",
+            "text": "decorating"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i03:r2",
+            "text": "decorate"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i03:r3",
+            "text": "to decorate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про улюблене заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о любимом занятии.",
+            "uk": "Доповніть фразу про улюблене заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ my home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-02:i03:r1",
+              "text": "decorating"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i03:r2",
+              "text": "decorate"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i03:r3",
+              "text": "to decorate"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про улюблене заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про улюблене заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про улюблене заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:word:experiment",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — experiment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:word:experiment:audio"
+        ],
+        "accessibilityLabel": "Картка слова — experiment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:word:experiment:audio",
+            "transcript": "experiment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:word:experiment:r1",
+              "targetText": "experiment",
+              "meaningByLocale": {
+                "ru": "экспериментировать, пробовать новые способы.",
+                "uk": "експериментувати, пробувати нові способи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "experiment",
+            "definitionByLocale": {
+              "ru": "экспериментировать, пробовать новые способы.",
+              "uk": "експериментувати, пробувати нові способи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу експериментувати з рецептами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу експериментувати з рецептами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can experiment with recipes.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу экспериментировать с рецептами».",
+            "uk": "Скажіть із can: «Я можу експериментувати з рецептами»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "experiment",
+            "with",
+            "recipes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i05:r1",
+            "text": "I enjoy experimenting with recipes."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i05:r2",
+            "text": "We enjoy experimenting with recipes."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i05:r3",
+            "text": "I enjoyed experimenting with recipes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i05:audio",
+            "transcript": "I enjoy experimenting with recipes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:i05:r1",
+              "targetText": "I enjoy experimenting with recipes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i05:r2",
+              "targetText": "We enjoy experimenting with recipes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i05:r3",
+              "targetText": "I enjoyed experimenting with recipes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy experimenting with recipes.",
+                "uk": "У записі звучить I enjoy experimenting with recipes."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy experimenting with recipes.",
+                "uk": "У записі звучить I enjoy experimenting with recipes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про улюблене заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i06:r1",
+            "text": "experimenting"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i06:r2",
+            "text": "experiment"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i06:r3",
+            "text": "to experiment"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про улюблене заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о любимом занятии.",
+            "uk": "Доповніть фразу про улюблене заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ with recipes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-02:i06:r1",
+              "text": "experimenting"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i06:r2",
+              "text": "experiment"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i06:r3",
+              "text": "to experiment"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про улюблене заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про улюблене заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про улюблене заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:word:brew",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brew",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:word:brew:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brew",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:word:brew:audio",
+            "transcript": "brew"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:word:brew:r1",
+              "targetText": "brew",
+              "meaningByLocale": {
+                "ru": "заваривать чай, готовить кофе.",
+                "uk": "заварювати чай, готувати каву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brew",
+            "definitionByLocale": {
+              "ru": "заваривать чай, готовить кофе.",
+              "uk": "заварювати чай, готувати каву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу готувати каву».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу готувати каву».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can brew coffee.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу готовить кофе».",
+            "uk": "Скажіть із can: «Я можу готувати каву»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "brew",
+            "coffee"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i08:r1",
+            "text": "I enjoy brewing coffee."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i08:r2",
+            "text": "We enjoy brewing coffee."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i08:r3",
+            "text": "I enjoyed brewing coffee."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i08:audio",
+            "transcript": "I enjoy brewing coffee."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:i08:r1",
+              "targetText": "I enjoy brewing coffee.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i08:r2",
+              "targetText": "We enjoy brewing coffee.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i08:r3",
+              "targetText": "I enjoyed brewing coffee.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy brewing coffee.",
+                "uk": "У записі звучить I enjoy brewing coffee."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy brewing coffee.",
+                "uk": "У записі звучить I enjoy brewing coffee."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про улюблене заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i09:r1",
+            "text": "brewing"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i09:r2",
+            "text": "brew"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i09:r3",
+            "text": "to brew"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про улюблене заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о любимом занятии.",
+            "uk": "Доповніть фразу про улюблене заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ coffee.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-02:i09:r1",
+              "text": "brewing"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i09:r2",
+              "text": "brew"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i09:r3",
+              "text": "to brew"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про улюблене заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про улюблене заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про улюблене заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:word:sunbathe",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sunbathe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:word:sunbathe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sunbathe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:word:sunbathe:audio",
+            "transcript": "sunbathe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:word:sunbathe:r1",
+              "targetText": "sunbathe",
+              "meaningByLocale": {
+                "ru": "загорать.",
+                "uk": "засмагати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sunbathe",
+            "definitionByLocale": {
+              "ru": "загорать.",
+              "uk": "засмагати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу засмагати».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу засмагати».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can sunbathe.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу загорать».",
+            "uk": "Скажіть із can: «Я можу засмагати»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "sunbathe"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i11:r1",
+            "text": "I enjoy sunbathing."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i11:r2",
+            "text": "We enjoy sunbathing."
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i11:r3",
+            "text": "I enjoyed sunbathing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i11:audio",
+            "transcript": "I enjoy sunbathing."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-02:i11:r1",
+              "targetText": "I enjoy sunbathing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i11:r2",
+              "targetText": "We enjoy sunbathing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i11:r3",
+              "targetText": "I enjoyed sunbathing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy sunbathing.",
+                "uk": "У записі звучить I enjoy sunbathing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy sunbathing.",
+                "uk": "У записі звучить I enjoy sunbathing."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про улюблене заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-02:i12:r1",
+            "text": "sunbathing"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i12:r2",
+            "text": "sunbathe"
+          },
+          {
+            "responseId": "en:lesson-21:session-02:i12:r3",
+            "text": "to sunbathe"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про улюблене заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о любимом занятии.",
+            "uk": "Доповніть фразу про улюблене заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-02:i12:r1",
+              "text": "sunbathing"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i12:r2",
+              "text": "sunbathe"
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i12:r3",
+              "text": "to sunbathe"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про улюблене заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-02:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про улюблене заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-02:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про улюблене заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-02:i13:p1",
+              "target": "decorate",
+              "meaningByLocale": {
+                "ru": "украшать",
+                "uk": "прикрашати"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-02:i13:p2",
+              "target": "experiment",
+              "meaningByLocale": {
+                "ru": "экспериментировать, пробовать новые способы",
+                "uk": "експериментувати, пробувати нові способи"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-02:i13:p3",
+              "target": "brew",
+              "meaningByLocale": {
+                "ru": "заваривать чай, готовить кофе",
+                "uk": "заварювати чай, готувати каву"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-02:i13:p4",
+              "target": "sunbathe",
+              "meaningByLocale": {
+                "ru": "загорать",
+                "uk": "засмагати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "decorate",
+            "experiment",
+            "brew",
+            "sunbathe"
+          ],
+          "rightColumn": [
+            "прикрашати",
+            "експериментувати, пробувати нові способи",
+            "заварювати чай, готувати каву",
+            "засмагати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i14:audio",
+            "transcript": "You must not ignore the rules."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You must not ignore the rules.",
+          "orderedTokens": [
+            "You",
+            "must",
+            "not",
+            "ignore",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вам подобається готувати каву",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вам подобається готувати каву",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i16:audio",
+            "transcript": "I enjoy brewing coffee."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy brewing coffee.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-02:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вам подобається засмагати",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вам подобається засмагати",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-02:i17:audio",
+            "transcript": "I enjoy sunbathing."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy sunbathing.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-02:word:decorate",
+      "correctText": "decorate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i01",
+      "correctText": "I can decorate my home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i02",
+      "correctText": "I enjoy decorating my home.",
+      "correctResponseId": "en:lesson-21:session-02:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i03",
+      "correctText": "decorating",
+      "correctResponseId": "en:lesson-21:session-02:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:word:experiment",
+      "correctText": "experiment",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i04",
+      "correctText": "I can experiment with recipes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i05",
+      "correctText": "I enjoy experimenting with recipes.",
+      "correctResponseId": "en:lesson-21:session-02:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i06",
+      "correctText": "experimenting",
+      "correctResponseId": "en:lesson-21:session-02:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:word:brew",
+      "correctText": "brew",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i07",
+      "correctText": "I can brew coffee.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i08",
+      "correctText": "I enjoy brewing coffee.",
+      "correctResponseId": "en:lesson-21:session-02:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i09",
+      "correctText": "brewing",
+      "correctResponseId": "en:lesson-21:session-02:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:word:sunbathe",
+      "correctText": "sunbathe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i10",
+      "correctText": "I can sunbathe.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i11",
+      "correctText": "I enjoy sunbathing.",
+      "correctResponseId": "en:lesson-21:session-02:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i12",
+      "correctText": "sunbathing",
+      "correctResponseId": "en:lesson-21:session-02:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i14",
+      "correctText": "You must not ignore the rules.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i16",
+      "correctText": "I enjoy brewing coffee.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-02:i17",
+      "correctText": "I enjoy sunbathing.",
+      "correctResponseId": null
+    }
+  ]
+}

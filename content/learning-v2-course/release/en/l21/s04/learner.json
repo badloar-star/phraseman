@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-04:word:conflict",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — conflict",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:word:conflict:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — conflict",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:word:conflict:audio",
+          "transcript": "conflict"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-04:word:conflict:r1",
+            "targetText": "conflict",
+            "meaningByLocale": {
+              "ru": "конфликт, столкновение интересов.",
+              "uk": "конфлікт, зіткнення інтересів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "conflict",
+          "definitionByLocale": {
+            "ru": "конфликт, столкновение интересов.",
+            "uk": "конфлікт, зіткнення інтересів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с avoid: «Я стараюсь не провоцировать конфликт».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с avoid: «Я стараюсь не провоцировать конфликт».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I avoid causing conflict.",
+        "localizedMeaning": {
+          "ru": "Скажите с avoid: «Я стараюсь не провоцировать конфликт».",
+          "uk": "Скажіть із avoid: «Я намагаюся не провокувати конфлікт»."
+        },
+        "orderedTokens": [
+          "I",
+          "avoid",
+          "causing",
+          "conflict"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-04:i02:r1",
+          "text": "I avoid causing conflict."
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i02:r2",
+          "text": "We avoid causing conflict."
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i02:r3",
+          "text": "I avoided causing conflict."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:i02:audio",
+          "transcript": "I avoid causing conflict."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-04:i02:r1",
+            "targetText": "I avoid causing conflict.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i02:r2",
+            "targetText": "We avoid causing conflict.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i02:r3",
+            "targetText": "I avoided causing conflict.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I avoid causing conflict.",
+              "uk": "У записі звучить I avoid causing conflict."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I avoid causing conflict.",
+              "uk": "У записі звучить I avoid causing conflict."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поставьте действие после avoid.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-04:i03:r1",
+          "text": "causing"
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i03:r2",
+          "text": "cause"
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i03:r3",
+          "text": "to cause"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поставьте действие после avoid.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Поставьте действие после avoid.",
+          "uk": "Поставте дію після avoid."
+        },
+        "gappedTargetPhrase": "I avoid ___ conflict.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-04:i03:r1",
+            "text": "causing"
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i03:r2",
+            "text": "cause"
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i03:r3",
+            "text": "to cause"
+          }
+        ],
+        "testedDimension": "Поставьте действие после avoid.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Поставьте действие после avoid.",
+            "feedbackByLocale": {
+              "ru": "После avoid нужна форма на -ing.",
+              "uk": "Після avoid потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Поставьте действие после avoid.",
+            "feedbackByLocale": {
+              "ru": "После avoid не используем to + глагол.",
+              "uk": "Після avoid не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:word:distraction",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — distraction",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:word:distraction:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — distraction",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:word:distraction:audio",
+          "transcript": "distraction"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-04:word:distraction:r1",
+            "targetText": "distraction",
+            "meaningByLocale": {
+              "ru": "то, что отвлекает.",
+              "uk": "те, що відволікає."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "distraction",
+          "definitionByLocale": {
+            "ru": "то, что отвлекает.",
+            "uk": "те, що відволікає."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с avoid: «Я стараюсь не отвлекать других».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с avoid: «Я стараюсь не отвлекать других».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I avoid creating a distraction.",
+        "localizedMeaning": {
+          "ru": "Скажите с avoid: «Я стараюсь не отвлекать других».",
+          "uk": "Скажіть із avoid: «Я намагаюся не відволікати інших»."
+        },
+        "orderedTokens": [
+          "I",
+          "avoid",
+          "creating",
+          "a",
+          "distraction"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-04:i05:r1",
+          "text": "I avoid creating a distraction."
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i05:r2",
+          "text": "We avoid creating a distraction."
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i05:r3",
+          "text": "I avoided creating a distraction."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:i05:audio",
+          "transcript": "I avoid creating a distraction."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-04:i05:r1",
+            "targetText": "I avoid creating a distraction.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i05:r2",
+            "targetText": "We avoid creating a distraction.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i05:r3",
+            "targetText": "I avoided creating a distraction.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I avoid creating a distraction.",
+              "uk": "У записі звучить I avoid creating a distraction."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I avoid creating a distraction.",
+              "uk": "У записі звучить I avoid creating a distraction."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поставьте действие после avoid.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-04:i06:r1",
+          "text": "creating"
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i06:r2",
+          "text": "create"
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i06:r3",
+          "text": "to create"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поставьте действие после avoid.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Поставьте действие после avoid.",
+          "uk": "Поставте дію після avoid."
+        },
+        "gappedTargetPhrase": "I avoid ___ a distraction.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-04:i06:r1",
+            "text": "creating"
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i06:r2",
+            "text": "create"
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i06:r3",
+            "text": "to create"
+          }
+        ],
+        "testedDimension": "Поставьте действие после avoid.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-04:i06:r2",
+            "correct": false,
+            "testedDimension": "Поставьте действие после avoid.",
+            "feedbackByLocale": {
+              "ru": "После avoid нужна форма на -ing.",
+              "uk": "Після avoid потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i06:r3",
+            "correct": false,
+            "testedDimension": "Поставьте действие после avoid.",
+            "feedbackByLocale": {
+              "ru": "После avoid не используем to + глагол.",
+              "uk": "Після avoid не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:word:temptation",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — temptation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:word:temptation:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — temptation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:word:temptation:audio",
+          "transcript": "temptation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-04:word:temptation:r1",
+            "targetText": "temptation",
+            "meaningByLocale": {
+              "ru": "искушение, соблазн.",
+              "uk": "спокуса."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "temptation",
+          "definitionByLocale": {
+            "ru": "искушение, соблазн.",
+            "uk": "спокуса."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с avoid: «Я стараюсь не поддаваться искушению».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с avoid: «Я стараюсь не поддаваться искушению».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I avoid giving in to temptation.",
+        "localizedMeaning": {
+          "ru": "Скажите с avoid: «Я стараюсь не поддаваться искушению».",
+          "uk": "Скажіть із avoid: «Я намагаюся не піддаватися спокусі»."
+        },
+        "orderedTokens": [
+          "I",
+          "avoid",
+          "giving",
+          "in",
+          "to",
+          "temptation"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-04:i08:r1",
+          "text": "I avoid giving in to temptation."
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i08:r2",
+          "text": "We avoid giving in to temptation."
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i08:r3",
+          "text": "I avoided giving in to temptation."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:i08:audio",
+          "transcript": "I avoid giving in to temptation."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-04:i08:r1",
+            "targetText": "I avoid giving in to temptation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i08:r2",
+            "targetText": "We avoid giving in to temptation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i08:r3",
+            "targetText": "I avoided giving in to temptation.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I avoid giving in to temptation.",
+              "uk": "У записі звучить I avoid giving in to temptation."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I avoid giving in to temptation.",
+              "uk": "У записі звучить I avoid giving in to temptation."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поставьте действие после avoid.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-04:i09:r1",
+          "text": "giving"
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i09:r2",
+          "text": "give"
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i09:r3",
+          "text": "to give"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поставьте действие после avoid.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Поставьте действие после avoid.",
+          "uk": "Поставте дію після avoid."
+        },
+        "gappedTargetPhrase": "I avoid ___ in to temptation.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-04:i09:r1",
+            "text": "giving"
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i09:r2",
+            "text": "give"
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i09:r3",
+            "text": "to give"
+          }
+        ],
+        "testedDimension": "Поставьте действие после avoid.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Поставьте действие после avoid.",
+            "feedbackByLocale": {
+              "ru": "После avoid нужна форма на -ing.",
+              "uk": "Після avoid потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Поставьте действие после avoid.",
+            "feedbackByLocale": {
+              "ru": "После avoid не используем to + глагол.",
+              "uk": "Після avoid не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:word:fuss",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fuss",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:word:fuss:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fuss",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:word:fuss:audio",
+          "transcript": "fuss"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-04:word:fuss:r1",
+            "targetText": "fuss",
+            "meaningByLocale": {
+              "ru": "лишняя суета, шумное беспокойство из-за мелочей.",
+              "uk": "зайва метушня, галасливе хвилювання через дрібниці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fuss",
+          "definitionByLocale": {
+            "ru": "лишняя суета, шумное беспокойство из-за мелочей.",
+            "uk": "зайва метушня, галасливе хвилювання через дрібниці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с avoid: «Я стараюсь не поднимать шума из-за мелочей».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с avoid: «Я стараюсь не поднимать шума из-за мелочей».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I avoid making a fuss.",
+        "localizedMeaning": {
+          "ru": "Скажите с avoid: «Я стараюсь не поднимать шума из-за мелочей».",
+          "uk": "Скажіть із avoid: «Я намагаюся не здіймати галасу через дрібниці»."
+        },
+        "orderedTokens": [
+          "I",
+          "avoid",
+          "making",
+          "a",
+          "fuss"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-04:i11:r1",
+          "text": "I avoid making a fuss."
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i11:r2",
+          "text": "We avoid making a fuss."
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i11:r3",
+          "text": "I avoided making a fuss."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:i11:audio",
+          "transcript": "I avoid making a fuss."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-04:i11:r1",
+            "targetText": "I avoid making a fuss.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i11:r2",
+            "targetText": "We avoid making a fuss.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i11:r3",
+            "targetText": "I avoided making a fuss.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-04:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I avoid making a fuss.",
+              "uk": "У записі звучить I avoid making a fuss."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I avoid making a fuss.",
+              "uk": "У записі звучить I avoid making a fuss."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поставьте действие после avoid.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-04:i12:r1",
+          "text": "making"
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i12:r2",
+          "text": "make"
+        },
+        {
+          "responseId": "en:lesson-21:session-04:i12:r3",
+          "text": "to make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поставьте действие после avoid.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Поставьте действие после avoid.",
+          "uk": "Поставте дію після avoid."
+        },
+        "gappedTargetPhrase": "I avoid ___ a fuss.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-04:i12:r1",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i12:r2",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i12:r3",
+            "text": "to make"
+          }
+        ],
+        "testedDimension": "Поставьте действие после avoid.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-04:i12:r2",
+            "correct": false,
+            "testedDimension": "Поставьте действие после avoid.",
+            "feedbackByLocale": {
+              "ru": "После avoid нужна форма на -ing.",
+              "uk": "Після avoid потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-04:i12:r3",
+            "correct": false,
+            "testedDimension": "Поставьте действие после avoid.",
+            "feedbackByLocale": {
+              "ru": "После avoid не используем to + глагол.",
+              "uk": "Після avoid не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-04:i13:p1",
+            "target": "conflict",
+            "meaningByLocale": {
+              "ru": "конфликт, столкновение интересов",
+              "uk": "конфлікт, зіткнення інтересів"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-04:i13:p2",
+            "target": "distraction",
+            "meaningByLocale": {
+              "ru": "то, что отвлекает",
+              "uk": "те, що відволікає"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-04:i13:p3",
+            "target": "temptation",
+            "meaningByLocale": {
+              "ru": "искушение, соблазн",
+              "uk": "спокуса"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-04:i13:p4",
+            "target": "fuss",
+            "meaningByLocale": {
+              "ru": "лишняя суета, шумное беспокойство из-за мелочей",
+              "uk": "зайва метушня, галасливе хвилювання через дрібниці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "conflict",
+          "distraction",
+          "temptation",
+          "fuss"
+        ],
+        "rightColumn": [
+          "конфликт, столкновение интересов",
+          "то, что отвлекает",
+          "искушение, соблазн",
+          "лишняя суета, шумное беспокойство из-за мелочей"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:i14:audio",
+          "transcript": "You must not ignore the rules."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You must not ignore the rules.",
+        "orderedTokens": [
+          "You",
+          "must",
+          "not",
+          "ignore",
+          "the",
+          "rules"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: необходимость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: необходимость",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вы стараетесь не поддаваться искушению",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вы стараетесь не поддаваться искушению",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:i16:audio",
+          "transcript": "I avoid giving in to temptation."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I avoid giving in to temptation.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вы стараетесь не поднимать шума из-за мелочей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вы стараетесь не поднимать шума из-за мелочей",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-04:i17:audio",
+          "transcript": "I avoid making a fuss."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I avoid making a fuss.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fb4412454d072c631bdc076d7a5ca71517cbc44bcae93ad77b47eb9c93006402"
+}

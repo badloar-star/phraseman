@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-03:intro1:r2": {
+          "ru": "После finish нужна форма на -ing, а не to + глагол.",
+          "uk": "Після finish потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-03:intro1:r3": {
+          "ru": "После finish действие выражаем формой на -ing.",
+          "uk": "Після finish дію виражаємо формою на -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-03:intro2:r2": {
+          "ru": "После finish нужна форма на -ing, а не to + глагол.",
+          "uk": "Після finish потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-03:intro2:r3": {
+          "ru": "После finish действие выражаем формой на -ing.",
+          "uk": "Після finish дію виражаємо формою на -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-03:intro3:r2": {
+          "ru": "После finish нужна форма на -ing, а не to + глагол.",
+          "uk": "Після finish потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-03:intro3:r3": {
+          "ru": "После finish действие выражаем формой на -ing.",
+          "uk": "Після finish дію виражаємо формою на -ing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ba10001b0a00dc68a4020376979b9d44565da284921e49d9064cd90a6d3680c4"
+}

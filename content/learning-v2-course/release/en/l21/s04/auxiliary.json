@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-04:intro1:r2": {
+          "ru": "После avoid нужна форма на -ing, а не to + глагол.",
+          "uk": "Після avoid потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-04:intro1:r3": {
+          "ru": "После avoid действие выражаем формой на -ing.",
+          "uk": "Після avoid дію виражаємо формою на -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-04:intro2:r2": {
+          "ru": "После avoid нужна форма на -ing, а не to + глагол.",
+          "uk": "Після avoid потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-04:intro2:r3": {
+          "ru": "После avoid действие выражаем формой на -ing.",
+          "uk": "Після avoid дію виражаємо формою на -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-04:intro3:r2": {
+          "ru": "После avoid нужна форма на -ing, а не to + глагол.",
+          "uk": "Після avoid потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-04:intro3:r3": {
+          "ru": "После avoid действие выражаем формой на -ing.",
+          "uk": "Після avoid дію виражаємо формою на -ing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9fb3eb2b7d3ae417b8ea1bc5d1eb48bd26b356ca04e8b21b06597f9e23216b52"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-01:intro1:r2": {
+          "ru": "После enjoy нужна форма на -ing, а не to + глагол.",
+          "uk": "Після enjoy потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-01:intro1:r3": {
+          "ru": "После enjoy действие выражаем формой на -ing.",
+          "uk": "Після enjoy дію виражаємо формою на -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-01:intro2:r2": {
+          "ru": "После enjoy нужна форма на -ing, а не to + глагол.",
+          "uk": "Після enjoy потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-01:intro2:r3": {
+          "ru": "После enjoy действие выражаем формой на -ing.",
+          "uk": "Після enjoy дію виражаємо формою на -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-01:intro3:r2": {
+          "ru": "После enjoy нужна форма на -ing, а не to + глагол.",
+          "uk": "Після enjoy потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-01:intro3:r3": {
+          "ru": "После enjoy действие выражаем формой на -ing.",
+          "uk": "Після enjoy дію виражаємо формою на -ing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "98ed3d8a126a604387107ab49e07f88cb9fd01dce78e4838c65570a32f4c37ef"
+}

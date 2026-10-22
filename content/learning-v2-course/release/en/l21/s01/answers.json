@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-01:word:explore",
+    "correctText": "explore",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i01",
+    "correctText": "I can explore new places.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i02",
+    "correctText": "I enjoy exploring new places.",
+    "correctResponseId": "en:lesson-21:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i03",
+    "correctText": "exploring",
+    "correctResponseId": "en:lesson-21:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:word:browse",
+    "correctText": "browse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i04",
+    "correctText": "I can browse in bookshops.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i05",
+    "correctText": "I enjoy browsing in bookshops.",
+    "correctResponseId": "en:lesson-21:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i06",
+    "correctText": "browsing",
+    "correctResponseId": "en:lesson-21:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:word:socialise",
+    "correctText": "socialise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i07",
+    "correctText": "I can socialise with friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i08",
+    "correctText": "I enjoy socialising with friends.",
+    "correctResponseId": "en:lesson-21:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i09",
+    "correctText": "socialising",
+    "correctResponseId": "en:lesson-21:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:word:rearrange",
+    "correctText": "rearrange",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i10",
+    "correctText": "I can rearrange furniture.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i11",
+    "correctText": "I enjoy rearranging furniture.",
+    "correctResponseId": "en:lesson-21:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i12",
+    "correctText": "rearranging",
+    "correctResponseId": "en:lesson-21:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i13",
+    "correctText": "en:lesson-21:session-01:i13:p1=explore\nen:lesson-21:session-01:i13:p2=browse\nen:lesson-21:session-01:i13:p3=socialise\nen:lesson-21:session-01:i13:p4=rearrange",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i14",
+    "correctText": "You must not ignore the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i16",
+    "correctText": "I enjoy socialising with friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-01:i17",
+    "correctText": "I enjoy rearranging furniture.",
+    "correctResponseId": null
+  }
+]

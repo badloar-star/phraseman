@@ -72,7 +72,7 @@ function flameColor(glass: FriendsGlass, pair: PairStreakView): string {
 
 function WeekStrip({ week, glass, letters, textScale }: Readonly<{ week: readonly PairWeekDay[]; glass: FriendsGlass; letters: readonly string[]; textScale: number }>) {
   const checkColor = buttonForegroundForBackground(glass.accentGraphic);
-  const todayRing: BoxShadowValue[] = [{ offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 2, color: withAlpha(glass.text, '4D'), inset: true }];
+  const todayRing: BoxShadowValue[] = [{ offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 2, color: withAlpha(glass.text, '4D'), inset: true }]; // shadow-ok: кольцо «сегодня» в полосе недели — индикатор дня, как в календаре, не обводка контейнера (макет friends-full.html .wk .d.today)
   return (
     <View style={styles.week} accessible={false} importantForAccessibility="no-hide-descendants">
       {week.map((day, index) => {

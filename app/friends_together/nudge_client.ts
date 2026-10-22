@@ -24,6 +24,7 @@ import {
   splitNudgeQueue,
   subscribeNetworkBack,
 } from './nudge_queue';
+import { maskUid } from '../diagnostic_mask'; // зачем (координатор 21.10): в журнале метка друга, а не uid целиком
 import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const REGION = 'us-central1';
@@ -167,7 +168,7 @@ async function sendOnce(sender: TogetherSenderIdentity, uid: string, requestId: 
     return { ok: true };
   } catch (error) {
     const reason = classifyNudgeError(error);
-    log(`nudge:callable_error friend=${uid} requestId=${requestId} reason=${reason} raw="${String((error as { message?: unknown })?.message ?? error).slice(0, 160)}"`);
+    log(`nudge:callable_error friend=${maskUid(uid)} requestId=${requestId} reason=${reason} raw="${String((error as { message?: unknown })?.message ?? error).slice(0, 160)}"`);
     return { ok: false, reason };
   }
 }
@@ -190,11 +191,11 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
     return { ok: false, reason: 'not_friends' };
   }
   if (inFlight.has(uid)) {
-    log(`nudge:skip reason=in_flight friend=${uid}`);
+    log(`nudge:skip reason=in_flight friend=${maskUid(uid)}`);
     return { ok: false, reason: 'network' }; // тап уже в полёте — тихо игнорируем повтор
   }
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
-    log(`nudge:skip reason=cloud_off expoGo=${IS_EXPO_GO} cloudSync=${CLOUD_SYNC_ENABLED} friend=${uid}`);
+    log(`nudge:skip reason=cloud_off expoGo=${IS_EXPO_GO} cloudSync=${CLOUD_SYNC_ENABLED} friend=${maskUid(uid)}`);
     return { ok: false, reason: 'network' };
   }
 
@@ -204,7 +205,7 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
     const dayKey = _memoryDayKey;
     if (_memoryMap[uid]) {
       const queued = isNudgeQueued(uid, dayKey);
-      log(`nudge:skip reason=already_today friend=${uid} queued=${queued}`);
+      log(`nudge:skip reason=already_today friend=${maskUid(uid)} queued=${queued}`);
       return queued ? { ok: true, queued: true } : { ok: true }; // уже позвали сегодня — идемпотентно ok
     }
     const key = retryKey(dayKey, uid);
@@ -223,7 +224,7 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
     //    и отмечать нечего (аудит 2026-08-17: сервер требует stableId и имя для пуша).
     const sender = await prepareTogetherSender();
     if (!sender) {
-      log(`nudge:skip reason=no_sender_identity friend=${uid}`);
+      log(`nudge:skip reason=no_sender_identity friend=${maskUid(uid)}`);
       return { ok: false, reason: 'network' };
     }
 
@@ -237,7 +238,7 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
     // Успех или окончательный ответ сервера — номер израсходован, следующий зов получит новый.
     const { [key]: _spent, ...restIds } = retryRequestIds;
     retryRequestIds = !result.ok && isRetryableNudgeError(result.reason) ? { ...restIds, [key]: requestId } : restIds;
-    log(`nudge:result friend=${uid} requestId=${requestId} ok=${result.ok}${result.ok ? '' : ` reason=${result.reason}`}`);
+    log(`nudge:result friend=${maskUid(uid)} requestId=${requestId} ok=${result.ok}${result.ok ? '' : ` reason=${result.reason}`}`);
     return result;
   } finally {
     inFlight.delete(uid);
@@ -259,7 +260,7 @@ function notifyOutcome(outcome: QueuedNudgeOutcome): void {
     try {
       listener(outcome);
     } catch (e) {
-      console.warn(`[FRIENDS-1] nudge:outcome listener failed friend=${outcome.friendUid}: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: catch называет причину
+      console.warn(`[FRIENDS-1] nudge:outcome listener failed friend=${maskUid(outcome.friendUid)}: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: catch называет причину
     }
   });
 }
@@ -315,7 +316,7 @@ async function runFlush(trigger: string): Promise<void> {
   const { due, stale } = splitNudgeQueue(queue, _memoryDayKey);
   for (const entry of stale) {
     await removeQueuedNudge(entry.friendUid);
-    log(`nudge:flush drop reason=stale_day friend=${entry.friendUid} day=${entry.dayKey} today=${_memoryDayKey}`);
+    log(`nudge:flush drop reason=stale_day friend=${maskUid(entry.friendUid)} day=${entry.dayKey} today=${_memoryDayKey}`);
   }
   if (due.length === 0) {
     stopQueueFlusher();
@@ -335,19 +336,19 @@ async function runFlush(trigger: string): Promise<void> {
 
 async function flushEntry(sender: TogetherSenderIdentity, uid: string, requestId: string, dayKey: string): Promise<void> {
   if (inFlight.has(uid)) {
-    log(`nudge:flush skip reason=in_flight friend=${uid}`);
+    log(`nudge:flush skip reason=in_flight friend=${maskUid(uid)}`);
     return;
   }
   inFlight.add(uid);
   try {
     const result = await sendWithRetry(sender, uid, requestId);
     if (!result.ok && isRetryableNudgeError(result.reason)) {
-      log(`nudge:flush keep reason=network friend=${uid} requestId=${requestId}`);
+      log(`nudge:flush keep reason=network friend=${maskUid(uid)} requestId=${requestId}`);
       return;
     }
     await removeQueuedNudge(uid);
     if (!result.ok) await unmarkNudged(dayKey, uid);
-    log(`nudge:flush sent friend=${uid} requestId=${requestId} ok=${result.ok}${result.ok ? '' : ` reason=${result.reason}`}`);
+    log(`nudge:flush sent friend=${maskUid(uid)} requestId=${requestId} ok=${result.ok}${result.ok ? '' : ` reason=${result.reason}`}`);
     notifyOutcome({ friendUid: uid, result });
   } finally {
     inFlight.delete(uid);

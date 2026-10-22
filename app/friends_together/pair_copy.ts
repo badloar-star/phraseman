@@ -25,10 +25,11 @@ export function pairRowSubline(lang: Lang, state: PairFlameState): string | null
   switch (state) {
     case 'both_today':
       return pick(lang, L('Оба занимались сегодня', 'Обоє займалися сьогодні', 'You both studied today', 'Hoy estudiaron los dos', 'Vocês dois estudaram hoje', 'Cả hai đã học hôm nay', 'Kalian berdua belajar hari ini', 'Bugün ikiniz de çalıştınız', 'Oboje dziś się uczyliście'));
+    // зачем (Переводчик 21.10, docs/work/tasks/friends-pair-copy-review-2026-10-21.md): род друга неизвестен — безличная форма вместо «занимался(ась)»
     case 'friend_pending':
-      return pick(lang, L('Ещё не занимался(ась)', 'Ще не займався(лась)', 'Hasn’t studied yet', 'Aún no ha estudiado', 'Ainda não estudou', 'Chưa học hôm nay', 'Belum belajar', 'Henüz çalışmadı', 'Jeszcze się nie uczył(a)'));
+      return pick(lang, L('Сегодня ещё без занятия', 'Сьогодні ще без заняття', 'Hasn’t studied yet', 'Aún no ha estudiado', 'Ainda não estudou', 'Chưa học hôm nay', 'Belum belajar', 'Henüz çalışmadı', 'Dziś jeszcze bez nauki'));
     case 'me_pending':
-      return pick(lang, L('Уже занимался(ась) · ждёт тебя', 'Уже займався(лась) · чекає на тебе', 'Already studied · waiting for you', 'Ya estudió · te espera', 'Já estudou · espera você', 'Đã học · đang chờ bạn', 'Sudah belajar · menunggumu', 'Çalıştı · seni bekliyor', 'Już się uczył(a) · czeka na ciebie'));
+      return pick(lang, L('Занятие сделано · ждёт тебя', 'Заняття зроблено · чекає на тебе', 'Already studied · waiting for you', 'Ya estudió · te espera', 'Já estudou · espera você', 'Đã học · đang chờ bạn', 'Sudah belajar · menunggumu', 'Çalıştı · seni bekliyor', 'Nauka zrobiona · czeka na ciebie'));
     case 'none_today':
       return pick(lang, L('Сегодня ещё никто из вас', 'Сьогодні ще ніхто з вас', 'Neither of you yet today', 'Hoy todavía ninguno', 'Nenhum de vocês ainda hoje', 'Hôm nay chưa ai học', 'Hari ini belum ada yang belajar', 'Bugün henüz ikiniz de değil', 'Dziś jeszcze nikt z was'));
     case 'broken':
@@ -39,17 +40,18 @@ export function pairRowSubline(lang: Lang, state: PairFlameState): string | null
 }
 
 export const PAIR_COPY = {
-  call: L('Позвать', 'Покликати', 'Call', 'Llamar', 'Chamar', 'Gọi', 'Ajak', 'Çağır', 'Zawołaj'),
-  // зачем (макет «Состояния кнопки»: «Позвал», «Уже звал»): тот же голос, что у тостов вкладки «Друзья» («Позвал Марка», «Сегодня уже звал»)
-  called: L('Позвал', 'Покликав', 'Called', 'Llamado', 'Chamado', 'Đã gọi', 'Diajak', 'Çağrıldı', 'Zawołałeś'),
-  alreadyCalled: L('Уже звал', 'Вже кликав', 'Called today', 'Ya llamaste', 'Já chamou', 'Đã gọi hôm nay', 'Sudah diajak', 'Bugün çağırdın', 'Już wołałeś'),
+  // зачем (Переводчик 21.10): en/es/vi «Call / Llamar / Gọi» читаются как телефонный звонок — «позвать» = Nudge / Avisar / Rủ
+  call: L('Позвать', 'Покликати', 'Nudge', 'Avisar', 'Chamar', 'Rủ', 'Ajak', 'Çağır', 'Zawołaj'),
+  // зачем (Переводчик 21.10, «без рода»): кнопка без рода зовущего — «Позвали», «Уже звали» (макет «Позвал» — отклонение для «Сверки»)
+  called: L('Позвали', 'Покликали', 'Nudged', 'Avisado', 'Chamado', 'Đã rủ', 'Diajak', 'Çağrıldı', 'Zawołano'),
+  alreadyCalled: L('Уже звали', 'Вже кликали', 'Nudged today', 'Ya avisado', 'Já chamado', 'Đã rủ hôm nay', 'Sudah diajak', 'Bugün çağrıldı', 'Już wołano'),
   quietHours: L('Тихие часы', 'Тихі години', 'Quiet hours', 'Horas de silencio', 'Horário silencioso', 'Giờ yên tĩnh', 'Jam tenang', 'Sessiz saatler', 'Ciche godziny'),
   queued: L('В очереди', 'У черзі', 'Queued', 'En cola', 'Na fila', 'Đang chờ', 'Dalam antrean', 'Sırada', 'W kolejce'),
   waitsYou: L('Ждёт тебя', 'Чекає на тебе', 'Waiting for you', 'Te espera', 'Espera você', 'Đang chờ bạn', 'Menunggumu', 'Seni bekliyor', 'Czeka na ciebie'),
-  callToStudy: L('Позвать заниматься', 'Покликати займатися', 'Call to study', 'Llamar a estudiar', 'Chamar para estudar', 'Gọi cùng học', 'Ajak belajar', 'Çalışmaya çağır', 'Zawołaj do nauki'),
-  callRestart: L('Позвать · начать заново', 'Покликати · почати знову', 'Call · start again', 'Llamar · empezar de nuevo', 'Chamar · começar de novo', 'Gọi · bắt đầu lại', 'Ajak · mulai lagi', 'Çağır · yeniden başla', 'Zawołaj · zacznij od nowa'),
+  callToStudy: L('Позвать заниматься', 'Покликати займатися', 'Nudge to study', 'Invitar a estudiar', 'Chamar para estudar', 'Rủ cùng học', 'Ajak belajar', 'Çalışmaya çağır', 'Zawołaj do nauki'),
+  callRestart: L('Позвать · начать заново', 'Покликати · почати знову', 'Nudge · start again', 'Avisar · empezar de nuevo', 'Chamar · começar de novo', 'Rủ · bắt đầu lại', 'Ajak · mulai lagi', 'Çağır · yeniden başla', 'Zawołaj · zacznij od nowa'),
   highFive: L('Дать пять', 'Дати п’ять', 'High five', 'Chocar los cinco', 'Toca aqui', 'Đập tay', 'Beri tos', 'Çak', 'Przybij piątkę'),
-  highFived: L('Пять отправлено', 'П’ять відправлено', 'High five sent', 'Choca esos cinco enviado', 'Toca aqui enviado', 'Đã đập tay', 'Tos terkirim', 'Çak gönderildi', 'Piątka wysłana'),
+  highFived: L('Пять отправлено', 'П’ять відправлено', 'High five sent', 'Choque de manos enviado', 'Toque enviado', 'Đã đập tay', 'Tos terkirim', 'Çak gönderildi', 'Piątka wysłana'),
   openCard: L('Открыть визитку', 'Відкрити візитку', 'Open profile card', 'Abrir tarjeta', 'Abrir cartão', 'Mở danh thiếp', 'Buka kartu profil', 'Kartı aç', 'Otwórz wizytówkę'),
   menu: L('Меню друга', 'Меню друга', 'Friend menu', 'Menú del amigo', 'Menu do amigo', 'Menu bạn bè', 'Menu teman', 'Arkadaş menüsü', 'Menu znajomego'),
   pairBroken: L('серия вдвоём прервалась', 'серія вдвох перервалася', 'your streak together ended', 'la racha juntos se cortó', 'a sequência juntos acabou', 'chuỗi cùng nhau đã đứt', 'rangkaian bersama terputus', 'birlikte serin bozuldu', 'wspólna seria przerwana'),
@@ -80,8 +82,8 @@ export function pairHomeTitle(lang: Lang, friendName: string): string {
 /** Подзаголовок той же строки: «Уже занимался(ась) · 3 дня подряд». */
 export function pairHomeSub(lang: Lang, streak: number): string {
   return pick(lang, L(
-    `Уже занимался(ась) · ${streak} ${slavic(streak, 'день', 'дня', 'дней')} подряд`, `Уже займався(лась) · ${streak} ${slavic(streak, 'день', 'дні', 'днів')} поспіль`, `Already studied · ${streak} ${streak === 1 ? 'day' : 'days'} in a row`,
-    `Ya estudió · ${streak} ${streak === 1 ? 'día' : 'días'} seguidos`, `Já estudou · ${streak} ${streak === 1 ? 'dia' : 'dias'} seguidos`, `Đã học · ${streak} ngày liên tiếp`, `Sudah belajar · ${streak} hari berturut-turut`, `Çalıştı · ${streak} gün üst üste`, `Już się uczył(a) · ${streak} ${streak === 1 ? 'dzień' : 'dni'} z rzędu`,
+    `Занятие сделано · ${streak} ${slavic(streak, 'день', 'дня', 'дней')} подряд`, `Заняття зроблено · ${streak} ${slavic(streak, 'день', 'дні', 'днів')} поспіль`, `Already studied · ${streak} ${streak === 1 ? 'day' : 'days'} in a row`,
+    `Ya estudió · ${streak} ${streak === 1 ? 'día' : 'días'} seguidos`, `Já estudou · ${streak} ${streak === 1 ? 'dia' : 'dias'} seguidos`, `Đã học · ${streak} ngày liên tiếp`, `Sudah belajar · ${streak} hari berturut-turut`, `Çalıştı · ${streak} gün üst üste`, `Nauka zrobiona · ${streak} ${streak === 1 ? 'dzień' : 'dni'} z rzędu`,
   ));
 }
 
@@ -95,12 +97,13 @@ export function pairDoneTitle(lang: Lang, streak: number): string {
 
 /** Финал занятия, первый ряд: «Ирина тоже сегодня занималась» (род неизвестен — «(ась)»). */
 export function pairDoneFriendAlsoToday(lang: Lang, friendName: string): string {
-  return pick(lang, L(`${friendName} тоже сегодня занимался(ась)`, `${friendName} теж сьогодні займався(лась)`, `${friendName} studied today too`, `${friendName} también estudió hoy`, `${friendName} também estudou hoje`, `${friendName} cũng đã học hôm nay`, `${friendName} juga belajar hari ini`, `${friendName} da bugün çalıştı`, `${friendName} też dziś się uczył(a)`));
+  // зачем (Переводчик 21.10, «без рода»): черновик ru/uk/pl в том же духе — отдан Переводчику на сверку
+  return pick(lang, L(`${friendName}: занятие сегодня тоже сделано`, `${friendName}: заняття сьогодні теж зроблено`, `${friendName} studied today too`, `${friendName} también estudió hoy`, `${friendName} também estudou hoje`, `${friendName} cũng đã học hôm nay`, `${friendName} juga belajar hari ini`, `${friendName} da bugün çalıştı`, `${friendName}: dziś też nauka zrobiona`));
 }
 
 /** Финал занятия, второй ряд: «Марк ещё не занимался(ась)». */
 export function pairDoneFriendPending(lang: Lang, friendName: string): string {
-  return pick(lang, L(`${friendName} ещё не занимался(ась)`, `${friendName} ще не займався(лась)`, `${friendName} hasn’t studied yet`, `${friendName} aún no ha estudiado`, `${friendName} ainda não estudou`, `${friendName} chưa học hôm nay`, `${friendName} belum belajar`, `${friendName} henüz çalışmadı`, `${friendName} jeszcze się nie uczył(a)`));
+  return pick(lang, L(`${friendName}: сегодня ещё без занятия`, `${friendName}: сьогодні ще без заняття`, `${friendName} hasn’t studied yet`, `${friendName} aún no ha estudiado`, `${friendName} ainda não estudou`, `${friendName} chưa học hôm nay`, `${friendName} belum belajar`, `${friendName} henüz çalışmadı`, `${friendName}: dziś jeszcze bez nauki`));
 }
 
 /** Веха серии вдвоём: «Серия вдвоём — 30 дней». */
@@ -134,6 +137,24 @@ function pairMilestoneFlameLine(lang: Lang, n: number): string | null {
   return null;
 }
 
+/**
+ * Тост «Позвать» без сети (макет «Нет сети»: «Позовём Марка, как только будет сеть») — все 9 языков сразу, как ждёт action_toast.
+ * Имя без склонения («{Имя}: позовём…») — падеж имени не вывести; черновик ru — на сверку Переводчику.
+ */
+export function pairQueuedToast(friendName: string): Readonly<{ ru: string; uk: string; en: string; es: string; ptBr: string; vi: string; id: string; tr: string; pl: string }> {
+  return {
+    ru: `${friendName}: позовём, как только будет сеть`,
+    uk: `${friendName}: покличемо, щойно буде мережа`,
+    en: `${friendName}: we’ll nudge as soon as you’re online`,
+    es: `${friendName}: avisaremos en cuanto haya conexión`,
+    ptBr: `${friendName}: vamos chamar assim que houver conexão`,
+    vi: `${friendName}: sẽ rủ ngay khi có mạng`,
+    id: `${friendName}: akan diajak begitu ada jaringan`,
+    tr: `${friendName}: bağlantı gelince çağrılacak`,
+    pl: `${friendName}: zawołamy, gdy tylko będzie sieć`,
+  };
+}
+
 /** Строка окна приглашения: «Серия вдвоём · 7 дней». */
 export function pairInviteLine(lang: Lang, n: number): string {
   return pairDoneTitle(lang, n);
@@ -146,7 +167,7 @@ export function weekdayLetters(lang: Lang): readonly string[] {
     case 'uk': return ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'];
     case 'en': return ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
     case 'es': return ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'];
-    case 'pt-BR': return ['Se', 'Te', 'Qa', 'Qi', 'Sx', 'Sá', 'Do'];
+    case 'pt-BR': return ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']; // зачем (Переводчик 21.10): так сокращают в Бразилии
     case 'vi': return ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
     case 'id': return ['Sn', 'Sl', 'Rb', 'Km', 'Jm', 'Sb', 'Mg'];
     case 'tr': return ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz'];

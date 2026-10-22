@@ -7,6 +7,7 @@
  * Отправку ведёт nudge_client.flushNudgeQueue; здесь только хранение и сеть.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { maskUid } from '../diagnostic_mask';
 
 export const NUDGE_QUEUE_KEY = 'friends_nudge_queue_v1';
 /** Сервер пускает не больше 5 зовов в день от одного человека — копить больше незачем. */
@@ -57,7 +58,7 @@ export async function enqueueNudge(entry: QueuedNudge): Promise<void> {
   const queue = await readNudgeQueue();
   const next = [...queue.filter((e) => e.friendUid !== entry.friendUid), entry].slice(-NUDGE_QUEUE_MAX);
   await writeNudgeQueue(next);
-  console.log(`[FRIENDS-1] nudge:queued friend=${entry.friendUid} requestId=${entry.requestId} day=${entry.dayKey} size=${next.length}`); // guard-ok: одна строка на зов
+  console.log(`[FRIENDS-1] nudge:queued friend=${maskUid(entry.friendUid)} requestId=${entry.requestId} day=${entry.dayKey} size=${next.length}`); // guard-ok: одна строка на зов
 }
 
 export async function removeQueuedNudge(friendUid: string): Promise<void> {

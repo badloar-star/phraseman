@@ -11,6 +11,7 @@ import { useFocusEffect } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import type { TodayTask } from '../components/home/v2/home_v2_types';
 import { getLocalDayKey } from '../app/local_date';
+import { maskUid } from '../app/diagnostic_mask';
 import { FRIENDS_TOGETHER_UI_ENABLED, useFriendsTogetherEnabled } from '../app/friends_together/together_config';
 import { primeFriendsTogetherSnapshot, readMyActiveDays, recomputePairWithMyDays } from '../app/friends_together/together_store';
 import { pickHomePair, type PairCandidate } from '../app/friends_together/pair_today';
@@ -35,7 +36,7 @@ async function pickFromSnapshot(): Promise<Picked | null> {
     return view && pair.name ? [{ friendUid: pair.friendUid, name: pair.name, view }] : [];
   });
   const best = pickHomePair(candidates);
-  log(`home:pair_row friends=${Object.keys(snapshot.pairs).length} named=${candidates.length} picked=${best ? `${best.friendUid}:${best.view.streak}` : 'none'} snapshotAgeMin=${Math.round((Date.now() - snapshot.updatedAtMs) / 60000)} myDays=${myDays ? 'yes' : 'no'}`);
+  log(`home:pair_row friends=${Object.keys(snapshot.pairs).length} named=${candidates.length} picked=${best ? `${maskUid(best.friendUid)}:${best.view.streak}` : 'none'} snapshotAgeMin=${Math.round((Date.now() - snapshot.updatedAtMs) / 60000)} myDays=${myDays ? 'yes' : 'no'}`);
   return best ? { friendUid: best.friendUid, name: best.name, streak: best.view.streak } : null;
 }
 
@@ -79,10 +80,10 @@ export function useHomeFriendPairRow(tasks: readonly TodayTask[], onOpenTask: (t
         const { tasks: list, onOpenTask: open } = latest.current;
         const target = list.find((task) => task.kind === 'lesson') ?? list.find((task) => !task.done) ?? list[0] ?? null;
         if (!target) {
-          log(`home:pair_row tap → no_today_task friend=${picked.friendUid}`);
+          log(`home:pair_row tap → no_today_task friend=${maskUid(picked.friendUid)}`);
           return;
         }
-        log(`home:pair_row tap → task=${target.kind} friend=${picked.friendUid} streak=${picked.streak}`);
+        log(`home:pair_row tap → task=${target.kind} friend=${maskUid(picked.friendUid)} streak=${picked.streak}`);
         open(target);
       },
     };

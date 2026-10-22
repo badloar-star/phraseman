@@ -139,9 +139,9 @@ describe('FriendListRow «Серия вдвоём» (идея 1, макет frie
 
     // огонь скрыт от диктора как картинка — ищем со скрытыми элементами; серию диктор слышит в подписи зоны «детали»
     expect(screen.getByTestId('friend-row-flame-friend-1', { includeHiddenElements: true })).toBeTruthy();
-    expect(screen.getByText('Ещё не занимался(ась)')).toBeTruthy();
+    expect(screen.getByText('Сегодня ещё без занятия')).toBeTruthy();
     expect(screen.queryByTestId('friend-row-relationship-friend-1', { includeHiddenElements: true })).toBeNull();
-    expect(screen.getByTestId('friend-row-body-friend-1').props.accessibilityLabel).toBe('Открыть детали дружбы с Друг. 7 дней подряд вдвоём. Ещё не занимался(ась)');
+    expect(screen.getByTestId('friend-row-body-friend-1').props.accessibilityLabel).toBe('Открыть детали дружбы с Друг. 7 дней подряд вдвоём. Сегодня ещё без занятия');
   });
 
   it('keeps the old «N days together» line when the pair has no streak', async () => {

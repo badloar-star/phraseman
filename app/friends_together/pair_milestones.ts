@@ -6,6 +6,7 @@
  * Firestore не трогаем. Запас 3 дня: если в день вехи приложение не открывали, праздник догонит, но не через месяц.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { maskUid } from '../diagnostic_mask';
 
 import { PAIR_STREAK_MILESTONES, type PairStreakView } from './pair_streak';
 import type { PairCandidate } from './pair_today';
@@ -65,9 +66,9 @@ export async function takePairMilestone<T extends PairCandidate>(
       await AsyncStorage.setItem(`${SEEN_KEY}::${scope}`, JSON.stringify(next));
     } catch (e) {
       // зачем: без отметки окно может показаться ещё раз — лучше повтор праздника, чем молча потерять веху
-      console.warn(`[FRIENDS-1] milestone:seen write failed friend=${candidate.friendUid} milestone=${milestone}: ${errText(e)}`); // guard-ok: catch называет причину
+      console.warn(`[FRIENDS-1] milestone:seen write failed friend=${maskUid(candidate.friendUid)} milestone=${milestone}: ${errText(e)}`); // guard-ok: catch называет причину
     }
-    console.log(`[FRIENDS-1] milestone:due friend=${candidate.friendUid} milestone=${milestone} streak=${candidate.view.streak}`); // guard-ok: одна строка на веху
+    console.log(`[FRIENDS-1] milestone:due friend=${maskUid(candidate.friendUid)} milestone=${milestone} streak=${candidate.view.streak}`); // guard-ok: одна строка на веху
     return { candidate, milestone };
   }
   return null;

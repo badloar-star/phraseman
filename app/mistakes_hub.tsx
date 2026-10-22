@@ -11,7 +11,8 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
-import { BackButton, FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRing, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
+import ScreenBackButton, { SCREEN_BACK_SIZE } from '../components/v2/ScreenBackButton';
+import { FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRing, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import { mpColors, themePair, mixDark } from '../components/mistakes-panel/panelPaint';
 import { MISTAKE_GROUPS, mistakeGroupLabel, mistakeGroupOf, type MistakeGroupFilter } from '../components/mistakes-panel/mistakeGroups';
@@ -375,7 +376,7 @@ export default function MistakesHubScreen() {
           showsVerticalScrollIndicator={false}
           refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={onPullRefresh} />} decelerationRate="fast"
         >
-          <View style={styles.topbar}><BackButton g={g} label={copy.back} onPress={goBack} /></View>
+          <View style={styles.topbar} />
           <ScreenTitle g={g} text={copy.title} />
           {body}
         </ScrollView>
@@ -405,6 +406,8 @@ export default function MistakesHubScreen() {
           </View>
         </PanelSheet>
       </SafeAreaView>
+      {/* зачем (закон владельца 22.10 «назад везде в одном месте»): общая кнопка слоем от верха экрана, не уезжает с прокруткой */}
+      <ScreenBackButton screen="mistakes_hub" testID="mistakes-hub-back" accessibilityLabel={copy.back} onPress={goBack} />
       {/* зачем (аудит R48): платная сессия при нехватке энергии — шторка вместо молчаливого закрытия тренировки; попытка дня цела */}
       <NoEnergyModal variant="learn" visible={gate.noEnergy} activity="mistake_practice" onBeforeOpenPremium={gate.dismissNoEnergy} onClose={gate.dismissNoEnergy} />
     </ScreenGradient>
@@ -415,7 +418,8 @@ const baseStyles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
   // зачем: нижний отступ под панель-кнопку (52 + поля), чтобы последняя строка не уходила под неё.
   content: { paddingHorizontal: 20, paddingBottom: 140 },
-  topbar: { minHeight: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center' },
+  // зачем (закон «назад в одном месте»): место под общую кнопку — строка её высоты от безопасного верха
+  topbar: { minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center' },
   percent: { fontSize: 60, lineHeight: 62, fontWeight: '800', letterSpacing: -1.5 },
   percentLabel: { marginTop: 2, fontSize: 16, lineHeight: 21 },
   legend: { marginTop: 14, flexDirection: 'row', justifyContent: 'center', gap: 22 },

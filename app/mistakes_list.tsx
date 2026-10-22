@@ -14,7 +14,8 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass, type Lv2Glass } from '../components/learning-v2/LearningV2Glass';
-import { BackButton, FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRow, ScreenTitle, SheetRow, glassButtonFill, type PanelChip } from '../components/mistakes-panel/PanelKit';
+import ScreenBackButton, { SCREEN_BACK_SIZE } from '../components/v2/ScreenBackButton';
+import { FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRow, ScreenTitle, SheetRow, glassButtonFill, type PanelChip } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { MISTAKE_GROUPS, mistakeGroupLabel, mistakeGroupOf, type MistakeGroupFilter } from '../components/mistakes-panel/mistakeGroups';
@@ -262,7 +263,7 @@ export default function MistakesListScreen() {
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} onScroll={onScroll} scrollEventThrottle={64} keyboardShouldPersistTaps="handled" decelerationRate="fast">
           {searching ? (
             <View style={styles.topbar}>
-              <BackButton g={g} label={copy.back} onPress={closeSearch} />
+              <View style={styles.backSlot} />
               <View style={[styles.field, { backgroundColor: g.hairlineSoft }]}>
                 <Ionicons name="search" size={20} color={g.secondary} />
                 <TextInput
@@ -284,7 +285,7 @@ export default function MistakesListScreen() {
             </View>
           ) : (
             <View style={styles.topbar}>
-              <BackButton g={g} label={copy.back} onPress={goBack} />
+              <View style={styles.backSlot} />
               <View style={styles.topActions}>
                 <Pressable testID="mistakes-list-search-open" accessibilityRole="button" accessibilityLabel={copy.search} hitSlop={8} onPress={() => { hapticTap(); setSearching(true); }} style={({ pressed }) => [styles.round, { backgroundColor: g.buttonFill }, pressed && styles.pressed]}>
                   <Ionicons name="search" size={20} color={g.text} />
@@ -340,6 +341,8 @@ export default function MistakesListScreen() {
           <PanelDock><PanelCta g={g} testID="mistakes-list-start" label={`${copy.practice} ${readyInGroup}`} onPress={startPractice} /></PanelDock>
         ) : null}
       </SafeAreaView>
+      {/* зачем (закон владельца 22.10 «назад везде в одном месте»): общая кнопка слоем от верха экрана, не уезжает с прокруткой */}
+      <ScreenBackButton screen="mistakes_list" testID="mistakes-list-back" accessibilityLabel={copy.back} onPress={searching ? closeSearch : goBack} />
       <PanelSheet visible={menuOpen} onClose={closeMenu} testID="mistakes-list-sheet">
         <SheetRow g={g} testID="mistakes-list-clear-all" icon="trash-outline" title={clearCopy.menu} danger onPress={askClear} />
       </PanelSheet>
@@ -362,7 +365,9 @@ export default function MistakesListScreen() {
 const baseStyles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: 20, paddingBottom: 140 },
-  topbar: { minHeight: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  // зачем (закон «назад в одном месте»): строка высотой с общую кнопку, слева её место
+  topbar: { minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  backSlot: { width: SCREEN_BACK_SIZE, height: SCREEN_BACK_SIZE },
   pressed: { opacity: 0.82 },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   topActions: { flexDirection: 'row', alignItems: 'center', gap: 10 },

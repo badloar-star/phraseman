@@ -14,7 +14,8 @@ import ScreenGradient from '../components/ScreenGradient';
 import V2DeadEnd from '../components/v2/V2DeadEnd';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass, type Lv2Glass } from '../components/learning-v2/LearningV2Glass';
-import { BackButton, glassButtonFill, Panel, PanelCta, PanelDock, SheetRow } from '../components/mistakes-panel/PanelKit';
+import ScreenBackButton, { SCREEN_BACK_SIZE } from '../components/v2/ScreenBackButton';
+import { glassButtonFill, Panel, PanelCta, PanelDock, SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import { mpColors, mixDark, themePair } from '../components/mistakes-panel/panelPaint';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -219,13 +220,13 @@ export default function MistakeDetailScreen() {
       <SafeAreaView style={styles.safe} edges={['left', 'right']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} decelerationRate="fast">
           {!shown ? (
-            <View style={[styles.plain, { paddingTop: insets.top + 8 }]}>
-              <View style={styles.topbar}><BackButton g={g} label={copy.back} onPress={goBack} /></View>
+            <View style={[styles.plain, { paddingTop: insets.top }]}>
+              <View style={styles.topbar} />
               {/* зачем (координатор 15.10): тупик «Эта ошибка больше не отслеживается» — основная кнопка «К ошибкам» на всю ширину в общем виде тупиковых экранов, а не одна стрелка */}
             </View>
           ) : (
             <>
-              <View style={[styles.hero, { paddingTop: insets.top + 18 }]}>
+              <View style={[styles.hero, { paddingTop: insets.top }]}>
                 <LinearGradient
                   pointerEvents="none"
                   colors={[mixDark(accentA, g.deepBase, 0.55), mixDark(accentB, g.deepBaseAlt, 0.38)]}
@@ -234,7 +235,7 @@ export default function MistakeDetailScreen() {
                   style={StyleSheet.absoluteFill}
                 />
                 <View style={styles.heroBar}>
-                  <BackButton g={g} label={copy.back} onPress={goBack} />
+                  <View style={styles.backSlot} />
                   {loaded && detail.status === 'active' ? (
                     <Pressable testID="mistake-detail-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={() => { hapticTap(); setMenuOpen(true); }} style={({ pressed }) => [styles.round, { backgroundColor: glassButtonFill(g) }, pressed && styles.pressed]}>
                       <Ionicons name="ellipsis-horizontal" size={20} color={g.text} />
@@ -348,6 +349,8 @@ ${detail.meaning}` : ''}`}
           {REPORT_ERROR_ENABLED ? <SheetRow g={g} testID="mistake-detail-report" icon="flag-outline" title={copy.report} onPress={() => { setMenuOpen(false); reportOpenRef.current?.(); }} /> : null}
           <SheetRow g={g} testID="mistake-detail-remove" icon="trash-outline" title={copy.remove} danger onPress={() => hide('removed')} />
         </PanelSheet>
+        {/* зачем (закон владельца 22.10 «назад везде в одном месте»): общая кнопка слоем от верха экрана, не уезжает с прокруткой */}
+        <ScreenBackButton screen="mistake_detail" testID="mistake-detail-back" accessibilityLabel={copy.back} onPress={goBack} />
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -358,11 +361,13 @@ const baseStyles = StyleSheet.create({
   content: { paddingBottom: 140 },
   pressed: { opacity: 0.82 },
   plain: { paddingHorizontal: 20 },
-  topbar: { minHeight: 44, flexDirection: 'row', alignItems: 'center' },
+  topbar: { minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center' },
   missingWrap: { marginTop: 40 },
   hero: { paddingHorizontal: 24, paddingBottom: 28, borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden' },
   heroEdge: { borderBottomLeftRadius: 36, borderBottomRightRadius: 36 },
-  heroBar: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  // зачем (закон «назад в одном месте»): строка героя от безопасного верха и высотой с общую кнопку — «⋯» справа по её центру
+  heroBar: { minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  backSlot: { width: SCREEN_BACK_SIZE, height: SCREEN_BACK_SIZE },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   phrase: { marginTop: 14, fontSize: 42, lineHeight: 46, fontWeight: '700', letterSpacing: -1 },
   meaning: { marginTop: 6, fontSize: 20, lineHeight: 24 },

@@ -43,6 +43,18 @@ const DEFAULT_HINTS = Object.freeze({
   'functions/src/auth_merge.ts': Object.freeze(['winner.ref', 'loser.ref']),
 });
 
+/**
+ * Сборщики патча корня: функция из другого файла возвращает объект с вычисляемыми именами полей,
+ * и писатель кладёт его в патч через `...сборщик(...)`. Через границу файла перепись этого не видит.
+ * Здесь имя функции → её файл → имена (или префиксы шаблона) полей, которые она кладёт.
+ * Протухание строгое, как у подсказок: в файле обязаны встречаться `function <имя>(` и каждый
+ * префикс, иначе staleHints. Вызов сборщика, которого нет в таблице, остаётся unresolved (красный).
+ */
+const DEFAULT_PATCH_BUILDERS = Object.freeze({
+  // зачем: вопрос 27 (5755b2f94) — flashcardPagesRev_<язык> в патче синка cloud_sync.ts (ревизия страниц карточек).
+  buildFlashcardPagesRevPatch: Object.freeze({ file: 'app/flashcard_pages_rev.ts', keys: Object.freeze(['flashcardPagesRev_']) }),
+});
+
 /** Имена параметров/полей, которые в коде обозначают ссылку на users/{id}. */
 const LOOSE_REF = /^(user|stableUser|freshUser|displacedUser|userDoc)Ref$/;
 const NOT_PASS_THROUGH = new Set(['set', 'update', 'create', 'get', 'doc', 'collection', 'setDoc', 'updateDoc', 'getDoc',
@@ -86,7 +98,7 @@ function readRepoSources(repo, roots = DEFAULT_ROOTS) {
   return sources;
 }
 
-function createEngine(ts, hints) {
+function createEngine(ts, hints, patchBuilders) {
   const strVal = (n) => (n && (ts.isStringLiteral(n) || ts.isNoSubstitutionTemplateLiteral(n)) ? n.text : null);
   const unwrap = (node) => {
     let n = node;
@@ -389,6 +401,11 @@ function createEngine(ts, hints) {
         const known = b && b.kind === 'ret' ? (retPropKeys.get(b.fn) || new Map()).get(n.name.text) : undefined;
         if (known) { res.keys.push(...[...known].map((key) => key.split('.')[0])); return res; }
       }
+      if (ts.isCallExpression(n) && ts.isIdentifier(n.expression)
+        && Object.prototype.hasOwnProperty.call(patchBuilders, n.expression.text)) {
+        res.keys.push(...patchBuilders[n.expression.text].keys);
+        return res;
+      }
       res.unresolved.push(textOf(n, 80));
       return res;
     }
@@ -642,6 +659,7 @@ function buildRootFieldCensus(options = {}) {
   // зачем: typescript берётся из корня репозитория (devDependency), а не из functions/.
   const ts = options.typescript || require('typescript');
   const hints = options.hints || DEFAULT_HINTS;
+  const patchBuilders = options.patchBuilders || DEFAULT_PATCH_BUILDERS;
   const repo = options.repo || path.resolve(__dirname, '..');
   const raw = options.sources || readRepoSources(repo, options.roots || DEFAULT_ROOTS);
   const sources = raw
@@ -650,7 +668,7 @@ function buildRootFieldCensus(options = {}) {
       const kind = /\.(tsx|jsx)$/.test(source.rel) ? ts.ScriptKind.TSX : /\.ts$/.test(source.rel) ? ts.ScriptKind.TS : ts.ScriptKind.JS;
       return { rel: source.rel, text: source.text, sf: ts.createSourceFile(source.rel, source.text, ts.ScriptTarget.Latest, true, kind) };
     });
-  const engine = createEngine(ts, hints);
+  const engine = createEngine(ts, hints, patchBuilders);
   for (const source of sources) engine.collectGlobalStrings(source.sf);
   // Помощники и сквозные функции объявляются в других файлах — обходим до неподвижной точки.
   let last = -1;
@@ -682,11 +700,20 @@ function buildRootFieldCensus(options = {}) {
       if (text === undefined && !options.sources) staleHints.push(`${rel}: файл не найден`);
     }
   }
+  for (const [name, builder] of Object.entries(patchBuilders)) {
+    const text = byName.get(builder.file);
+    if (text === undefined) {
+      if (!options.sources) staleHints.push(`${builder.file}: файл сборщика ${name} не найден`);
+      continue;
+    }
+    if (!text.includes(`function ${name}(`)) staleHints.push(`${builder.file}: нет function ${name}(`);
+    for (const key of builder.keys) if (!text.includes(key)) staleHints.push(`${builder.file}: ${name} больше не кладёт ${key}`);
+  }
   const sorted = Object.fromEntries([...fields.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)));
   return { fields: sorted, unresolved: [...new Set(unresolved)], staleHints, scannedFiles: raw.length };
 }
 
-module.exports = { buildRootFieldCensus, readRepoSources, DEFAULT_ROOTS, DEFAULT_HINTS };
+module.exports = { buildRootFieldCensus, readRepoSources, DEFAULT_ROOTS, DEFAULT_HINTS, DEFAULT_PATCH_BUILDERS };
 
 if (require.main === module) {
   const census = buildRootFieldCensus();

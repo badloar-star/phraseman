@@ -5,7 +5,8 @@ export type FriendSheetSession<T extends { uid: string }> = {
 };
 
 export type FriendSheetPendingAction<T extends { uid: string }> = {
-  kind: 'delete' | 'duel' | 'block';
+  // зачем ('profile', идея 1): «Открыть визитку» из меню «⋯» шторки 2.0 — визитка открывается после закрытия шторки, окна не наслаиваются
+  kind: 'delete' | 'duel' | 'block' | 'profile';
   profile: T;
 };
 

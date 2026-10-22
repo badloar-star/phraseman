@@ -90,6 +90,8 @@ function compileModal() {
       };
     }
     if (id.endsWith('/LangContext')) return { useLang: () => ({ lang: 'ru' }) };
+    // зачем (идея 1, 21.10): строка «Серия вдвоём · N дней» в окне приглашения — текст из pair_copy
+    if (id.endsWith('/pair_copy')) return { pairInviteLine: (_lang, n) => `Серия вдвоём · ${n} дней` };
     if (id.endsWith('/i18n')) return { triLang: (lang, copy) => copy[lang] };
     if (id.endsWith('/liquidGlassThemePalette')) {
       return {

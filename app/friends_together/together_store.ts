@@ -21,6 +21,7 @@ import {
   type ActiveDays,
 } from './together_days';
 import { computePairStreak, type PairStreakView } from './pair_streak';
+import { isPlusProfile } from '../../components/plus/plus_ring_spec';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -276,7 +277,8 @@ export async function refreshFriendsTogether(
       friendActiveDays,
       name: profile.displayName,
       coinRank: profile.coinRank ?? null,
-      isPlus: profile.isPremium || profile.isVip,
+      // зачем (правило Ядра cbdecef56 / 49677b5c4): кольцо Plus — по isPlus + plusUntilMs, как во вкладке; вводный доступ не считается
+      isPlus: isPlusProfile(profile),
     };
   }
 

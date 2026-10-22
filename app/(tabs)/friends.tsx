@@ -139,7 +139,7 @@ import {
 } from '../referrals_cache';
 // «Вместе» (friends_together) — ядро уже построено и протестировано отдельно
 // (app/friends_together/*), здесь только UI-слой за флагом.
-import { useFriendsTogetherEnabled } from '../friends_together/together_config';
+import { FRIENDS_TOGETHER_UI_ENABLED, useFriendsTogetherEnabled } from '../friends_together/together_config';
 import {
   getFriendsTogetherSnapshot,
   primeFriendsTogetherSnapshot,
@@ -147,10 +147,13 @@ import {
   type FriendsTogetherSnapshot,
   type FriendTogetherPairState,
 } from '../friends_together/together_store';
-import { nudgeFriend, isNudgedToday, primeNudgedTodayCache, type NudgeErrorReason } from '../friends_together/nudge_client';
+import { nudgeFriend, isNudgedToday, isNudgeQueuedToday, primeNudgedTodayCache, subscribeQueuedNudgeOutcomes, type NudgeErrorReason } from '../friends_together/nudge_client';
 import { LEVEL_NAMES, nextThreshold } from '../friends_together/together_days';
+import { pairQueuedToast, pairRowSubline } from '../friends_together/pair_copy';
 import FriendListRow from '../../components/friends_together/FriendListRow';
 import FriendTogetherSheet from '../../components/friends_together/FriendTogetherSheet';
+import FriendPairSheet from '../../components/friends_together/FriendPairSheet';
+import type { FriendCallState } from '../../components/friends_together/FriendCallPill';
 import {
   createFriendSheetSession,
   completeFriendSheetSession,
@@ -870,6 +873,8 @@ export default function FriendsTabScreen() {
 
   const [optimisticNudgedUids, setOptimisticNudgedUids] = useState<Set<string>>(() => new Set());
   const [nudgedTick, setNudgedTick] = useState(0);
+  // зачем (идея 1, макет «Состояния кнопки»): окончательный ответ сервера на «Позвать» — «Тихие часы» / «Уже звали» на кнопке до конца сессии
+  const [nudgeVerdicts, setNudgeVerdicts] = useState<Readonly<Record<string, 'quiet' | 'limit'>>>({});
 
   // DEV-only: боты «Вместе» — сквозная ручная проверка без реальных друзей и без
   // единого чтения/записи Firestore (owner, 2026-08-17). Полностью выпадает из
@@ -877,8 +882,8 @@ export default function FriendsTabScreen() {
   const [devBotsSheetOpen, setDevBotsSheetOpen] = useState(false);
   const [devBotsState, setDevBotsState] = useState<DevBotsState>({ bots: [] });
   const devBots = devBotsState.bots;
-  // «Вместе» отключён в текущем релизном контуре.
-  const friendsTogetherUiEnabled = false;
+  // «Вместе» отключён в текущем релизном контуре — один выключатель на вкладку, Главную и финал занятия (together_config).
+  const friendsTogetherUiEnabled = FRIENDS_TOGETHER_UI_ENABLED;
   const friendMarkersByUid = useMemo(() => {
     const grouped = new Map<string, FriendSocialEvent[]>();
     for (const event of friendEvents) grouped.set(event.actorStableUid, [...(grouped.get(event.actorStableUid) ?? []), event]);
@@ -1035,11 +1040,29 @@ export default function FriendsTabScreen() {
           return next;
         });
       }
+      if (FRIENDS_TOGETHER_UI_ENABLED) {
+        // зачем (идея 1, макет «Состояния кнопки»): тихие часы и лимиты — окончательный ответ, кнопка показывает его, а не снова «Позвать»
+        const verdict = result.reason === 'quiet_hours'
+          ? 'quiet'
+          : result.reason === 'daily_limit' || result.reason === 'sender_limit' || result.reason === 'receiver_limit' ? 'limit' : null;
+        if (verdict) setNudgeVerdicts((current) => ({ ...current, [friendUid]: verdict }));
+      }
       const texts = NUDGE_ERROR_TEXT[result.reason];
       emitAppEvent('action_toast', {
         type: 'error',
         messageRu: texts.ru, messageUk: texts.uk, messageEn: texts.en, messageEs: texts.es, messagePtBr: texts.ptBr,
         messageVi: texts.vi, messageId: texts.id, messageTr: texts.tr, messagePl: texts.pl,
+      });
+      return;
+    }
+    if (FRIENDS_TOGETHER_UI_ENABLED && result.queued) {
+      // зачем (макет «Нет сети»): зов ждёт сети — честный тост вместо «Позвал», кнопка «В очереди»
+      console.log(`[NUDGE] tap → queued offline friend=${friendUid.slice(0, 6)}`); // guard-ok: одна строка на тап
+      const queued = pairQueuedToast(friendName);
+      emitAppEvent('action_toast', {
+        type: 'info',
+        messageRu: queued.ru, messageUk: queued.uk, messageEn: queued.en, messageEs: queued.es, messagePtBr: queued.ptBr,
+        messageVi: queued.vi, messageId: queued.id, messageTr: queued.tr, messagePl: queued.pl,
       });
       return;
     }
@@ -2257,8 +2280,9 @@ export default function FriendsTabScreen() {
     // из шторки друга остаётся только удаление.
     if (action.kind === 'delete') handleDeleteConfirm(action.profile.uid, action.profile.name);
     else if (action.kind === 'block') handleBlockConfirm(action.profile.uid, action.profile.name);
+    else if (action.kind === 'profile') openProfile(action.profile);
     else if (__DEV__) console.warn('[D83-ARENA-RETIRED] friend sheet duel action ignored', { kind: action.kind });
-  }, [handleBlockConfirm, handleDeleteConfirm, modalWedgeActive, pendingTogetherSheetAction, togetherSheetSession]);
+  }, [handleBlockConfirm, handleDeleteConfirm, modalWedgeActive, openProfile, pendingTogetherSheetAction, togetherSheetSession]);
 
   // ── Derived ────────────────────────────────────────────────────────────────
 
@@ -2404,6 +2428,45 @@ export default function FriendsTabScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [friendsTogetherUiEnabled, friendsTogetherPolicy.config.levelThresholds, togetherSnapshot, nudgedTick, optimisticNudgedUids, handleNudgeFriend, devBots, handleDevNudge]);
 
+  // «Серия вдвоём» (идея 1): состояние кнопки «Позвать» на друга — одна карта за снимок/тик, строки FlashList читают готовое.
+  // зачем (макет «Состояния кнопки»): Позвать → Позвали (сразу, до ответа) → Уже звали / Тихие часы / В очереди.
+  const callStateByUid = useMemo<Readonly<Record<string, FriendCallState>>>(() => {
+    if (!friendsTogetherUiEnabled) return {};
+    void nudgedTick; // зачем: isNudgedToday()/isNudgeQueuedToday() синхронны над памятью модуля — тик форсирует пересборку
+    const out: Record<string, FriendCallState> = {};
+    for (const pair of Object.values(togetherSnapshot?.pairs ?? {}) as FriendTogetherPairState[]) {
+      const uid = pair.friendUid;
+      out[uid] = nudgeVerdicts[uid]
+        ?? (isNudgeQueuedToday(uid) ? 'queued' : optimisticNudgedUids.has(uid) || isNudgedToday(uid) ? 'called' : 'idle');
+    }
+    return out;
+  }, [friendsTogetherUiEnabled, togetherSnapshot, nudgedTick, optimisticNudgedUids, nudgeVerdicts]);
+
+  // Стабильная ссылка для строк (как openFriendSheetByUid): строка подставляет свой uid, имя берём из свежего списка.
+  const callFriendByUid = useCallback((friendUid: string) => {
+    const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
+    if (!profile) {
+      console.log(`[NUDGE] row call → skipped no_profile friend=${friendUid.slice(0, 6)}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    void handleNudgeFriend(friendUid, profile.name);
+  }, [handleNudgeFriend]);
+
+  // Зов из очереди (без сети) ушёл или получил отказ — кнопка и отметка догоняют сразу, без перезахода во вкладку.
+  useEffect(() => subscribeQueuedNudgeOutcomes(({ friendUid, result }) => {
+    setNudgedTick((n) => n + 1);
+    if (result.ok) return;
+    setOptimisticNudgedUids((current) => {
+      if (!current.has(friendUid)) return current;
+      const next = new Set(current);
+      next.delete(friendUid);
+      return next;
+    });
+    if (FRIENDS_TOGETHER_UI_ENABLED && (result.reason === 'quiet_hours' || result.reason === 'daily_limit' || result.reason === 'sender_limit' || result.reason === 'receiver_limit')) {
+      setNudgeVerdicts((current) => ({ ...current, [friendUid]: result.reason === 'quiet_hours' ? 'quiet' : 'limit' }));
+    }
+  }), []);
+
   // ── Render ─────────────────────────────────────────────────────────────────
 
   // D3: вместо общего ScrollView каждый таб — собственный FlashList (виртуализация,
@@ -2546,6 +2609,12 @@ export default function FriendsTabScreen() {
           renderItem={({ item: profile, index: i }: { item: FriendProfile; index: number }) => { // guard-ok: FlashList не memo-сравнивает renderItem; стабильны колбэки внутри (onOpenProfile={openProfileByUid} и т.д., аудит 2026-08-22)
             const together = togetherByUid[profile.uid];
             const event = friendMarkersByUid.get(profile.uid) ?? null;
+            // «Серия вдвоём» (идея 1): огонь пары из снимка (та же ссылка до обновления — memo строки не ломается);
+            // «Позвать» справа — только когда звать есть смысл: друг ещё не занимался или сегодня никто
+            const pairView = friendsTogetherUiEnabled ? (togetherSnapshot?.pairs[profile.uid]?.pair ?? null) : null;
+            const rowCallState = pairView && (pairView.state === 'friend_pending' || pairView.state === 'none_today')
+              ? (callStateByUid[profile.uid] ?? 'idle')
+              : null;
             return (
               <Reanimated.View entering={FadeInDown.delay(Math.min(i, 10) * 40).duration(320)}>
                 <FriendListRow
@@ -2558,6 +2627,9 @@ export default function FriendsTabScreen() {
                   onOpenDetails={openFriendSheetByUid}
                   event={event}
                   onOpenEvent={event ? openFriendEventByUid : undefined}
+                  pair={pairView}
+                  callState={rowCallState}
+                  onCall={callFriendByUid}
                 />
               </Reanimated.View>
             );
@@ -2644,6 +2716,38 @@ export default function FriendsTabScreen() {
             incomingNudge: rowTogether?.incomingNudge ?? false,
           }
           : null;
+        if (friendsTogetherUiEnabled && !devBot) {
+          // зачем (владелец 21.10, макет friends-full.html#hub): шторка друга 2.0 — огонь, неделя пары, «Позвать», «Дать пять», меню «⋯».
+          // Удалить/заблокировать — те же отложенные действия, что у прежней шторки (срабатывают после закрытия).
+          const pairView = togetherSnapshot?.pairs[friendUid]?.pair ?? null;
+          // зачем: ветка только для настоящего друга — профиль без типа «бот» (монета, кольцо Plus)
+          const pairProfile = resolveFriendSheetProfile(sheetSession, sortedFriends);
+          return (
+            <FriendPairSheet
+              visible={sheetSession.visible}
+              onClose={() => setTogetherSheetSession(current => hideFriendSheetSession(current, friendUid))}
+              onDismissed={() => setTogetherSheetSession(current => completeFriendSheetSession(current, friendUid))}
+              friendName={pairProfile.name}
+              coinRank={pairProfile.coinRank ?? null}
+              isPlus={isPlusProfile(pairProfile)}
+              statusLine={pairView ? (pairRowSubline(lang, pairView.state) ?? '') : ''}
+              pair={pairView}
+              call={{ state: callStateByUid[friendUid] ?? 'idle', onCall: () => { void handleNudgeFriend(friendUid, pairProfile.name); } }}
+              activities={[]}
+              highFived={highFivedUids.has(friendUid)}
+              onHighFive={() => { void handleHighFive(pairProfile); }}
+              onOpenCard={() => setPendingTogetherSheetAction(current => queueFirstFriendSheetAction(current, { kind: 'profile', profile: pairProfile }))}
+              onDelete={(requestDismiss) => {
+                setPendingTogetherSheetAction(current => queueFirstFriendSheetAction(current, { kind: 'delete', profile: pairProfile }));
+                requestDismiss();
+              }}
+              onBlock={!FRIEND_BLOCK_UI_ENABLED ? null : (requestDismiss) => {
+                setPendingTogetherSheetAction(current => queueFirstFriendSheetAction(current, { kind: 'block', profile: pairProfile }));
+                requestDismiss();
+              }}
+            />
+          );
+        }
         return (
           <FriendTogetherSheet
             visible={sheetSession.visible}
@@ -2685,6 +2789,8 @@ export default function FriendsTabScreen() {
       <FriendStudyInviteModal
         visible={studyInvite !== null}
         friendCoinRank={studyInvite?.friendCoinRank ?? null}
+        // зачем (идея 1, макет friendSide): «Серия вдвоём · N дней» — из снимка «Вместе» на телефоне; без выключателя строки нет
+        pairStreak={friendsTogetherUiEnabled && studyInvite ? (togetherSnapshot?.pairs[studyInvite.event.actorStableUid]?.pair?.streak ?? null) : null}
         onStart={() => {
           if (studyInvite) acknowledgeFriendEvent(studyInvite.event);
           setStudyInvite(null);

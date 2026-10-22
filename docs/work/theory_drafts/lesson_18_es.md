@@ -113,7 +113,7 @@ Si no hay diferencia — «tan fuerte como el tuyo» —, la palabra va entre do
 ## 05 · too y enough — «demasiado» y «suficiente»
 
 **body**
-too — «demasiado», estorba: This cabin bag is too big. enough — «suficiente», sirve: This checked bag is light enough. En español «suficientemente» va antes de la palabra; en inglés enough va después.
+too — «demasiado», estorba: This cabin bag («equipaje de mano») is too big. enough — «suficiente», sirve: This checked bag («maleta facturada») is light enough. En español «suficientemente» va antes de la palabra; en inglés enough va después.
 
 **formula**
 `estorba: too + palabra` · `sirve: palabra + enough`

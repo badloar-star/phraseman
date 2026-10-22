@@ -111,7 +111,7 @@ Nếu không khác nhau — «đậm như của bạn» — từ chỉ tính ch�
 ## 05 · too và enough — «quá» và «đủ»
 
 **body**
-too — «quá», gây cản trở: This cabin bag is too big. enough — «đủ», vừa ý: This checked bag is light enough. Tiếng Việt nói «đủ nhẹ», tiếng Anh đặt enough sau: light enough.
+too — «quá», gây cản trở: This cabin bag («hành lý xách tay») is too big. enough — «đủ», vừa ý: This checked bag («hành lý ký gửi») is light enough. Tiếng Việt nói «đủ nhẹ», tiếng Anh đặt enough sau: light enough.
 
 **formula**
 `cản trở: too + tính chất` · `vừa ý: tính chất + enough`

@@ -113,7 +113,7 @@ Fark yoksa — «seninki kadar sert» — sıfat iki as arasına girer: as stron
 ## 05 · too ve enough — «fazla» ve «yeterince»
 
 **body**
-too — «fazla», engel olur: This cabin bag is too big. enough — «yeterince», uygun: This checked bag is light enough. Türkçede «yeterince» sıfattan önce gelir, İngilizcede enough sıfattan sonra.
+too — «fazla», engel olur: This cabin bag («kabin bavulu») is too big. enough — «yeterince», uygun: This checked bag («bagaj bavulu») is light enough. Türkçede «yeterince» sıfattan önce gelir, İngilizcede enough sıfattan sonra.
 
 **formula**
 `engel: too + sıfat` · `uygun: sıfat + enough`

@@ -27,7 +27,7 @@ Bài này về những gì bạn có thể và biết làm: «tôi tẩy đượ
 ## 02 · can — «có thể, biết» *(mở sẵn)*
 
 **body**
-can + hành động như trong từ điển: I can remove this stain. Can giống nhau cho mọi người: he can, she can, không thêm -s. Không thể — cannot: We cannot talk in private. Sau can không bao giờ có to.
+can + hành động như trong từ điển: I can remove this stain. Can giống nhau cho mọi người: he can, she can, không thêm -s. Không thể — cannot: We cannot talk in private — «không thể nói chuyện riêng». Sau can không bao giờ có to.
 
 **formula**
 `ai` · `can / cannot` · `hành động như trong từ điển`
@@ -138,7 +138,7 @@ Could I…? — một lời xin lịch sự khác: Could I pay in advance? — �
 ## 06 · be able to — «có khả năng», «sẽ làm được»
 
 **body**
-am / is able to + hành động — cũng là «có thể», nhưng có am / is và to: I am able to cope with the stress. «Sẽ làm được» — will be able to: We will be able to achieve this goal. Không nói will can.
+am / is able to + hành động — cũng là «có thể», nhưng có am / is và to: I am able to cope with the stress — «tôi chịu được căng thẳng». «Sẽ làm được» — will be able to: We will be able to achieve this goal — «sẽ đạt được mục tiêu». Không nói will can.
 
 **formula**
 `bây giờ: am / is able to + hành động` · `tương lai: will be able to + hành động`

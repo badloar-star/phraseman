@@ -27,7 +27,7 @@ Bu ders yapabildiklerinle ilgili: «bu lekeyi çıkarabilirim», «on yaşında 
 ## 02 · can — «-ebilirim» *(baştan açık)*
 
 **body**
-can + sözlükteki hâliyle eylem: I can remove this stain. Türkçedeki ek kişiye göre değişir, can değişmez: he can, she can, -s yok. Yapamam — cannot: We cannot talk in private. can'den sonra asla to gelmez.
+can + sözlükteki hâliyle eylem: I can remove this stain. Türkçedeki ek kişiye göre değişir, can değişmez: he can, she can, -s yok. Yapamam — cannot: We cannot talk in private — «baş başa konuşamayız». can'den sonra asla to gelmez.
 
 **formula**
 `kim` · `can / cannot` · `sözlükteki hâliyle eylem`
@@ -138,7 +138,7 @@ Could I…? da kibar bir rica: Could I pay in advance? — «peşin ödeyebilir 
 ## 06 · be able to — «-ebiliyorum», «-ebileceğim»
 
 **body**
-am / is able to + eylem — yine «yapabilirim», ama am / is ve to ile: I am able to cope with the stress. Gelecekte «-ebileceğim» — will be able to: We will be able to achieve this goal. will can denmez.
+am / is able to + eylem — yine «yapabilirim», ama am / is ve to ile: I am able to cope with the stress — «stresle başa çıkabiliyorum». Gelecekte «-ebileceğim» — will be able to: We will be able to achieve this goal — «hedefe ulaşabileceğiz». will can denmez.
 
 **formula**
 `şimdi: am / is able to + eylem` · `gelecekte: will be able to + eylem`

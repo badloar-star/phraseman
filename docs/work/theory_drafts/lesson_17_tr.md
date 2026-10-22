@@ -27,7 +27,7 @@ Bu ders miktarlarla ilgili: «kaç ceviz lazım?», «biraz boş vaktimiz var»,
 ## 02 · Sayılan ve sayılmayan *(baştan açık)*
 
 **body**
-Bazı şeyler tane tane sayılır: a bookend, two ottomans — bir tane için a ya da an, two'dan sonra -s. Türkçede «iki puf» deriz ama İngilizcede sayıdan sonra -s şart. Crockery, gravel, housework gibi sayılmayanlar a ve -s almaz.
+Bazı şeyler tane tane sayılır: a bookend («kitap desteği»), two ottomans («iki puf») — bir tane için a ya da an, two'dan sonra -s. Türkçede «iki puf» deriz ama İngilizcede sayıdan sonra -s şart. Crockery, gravel, housework gibi sayılmayanlar a ve -s almaz.
 
 **formula**
 `bir tane: a / an + şey` · `birkaç: two + şey + s` · `sayılmayan: a yok, -s yok`
@@ -57,7 +57,7 @@ Bazı şeyler tane tane sayılır: a bookend, two ottomans — bir tane için a 
 ## 03 · many mi, much mı — «kaç / ne kadar?»
 
 **body**
-Türkçedeki ayrım burada işe yarar: «kaç» — many, «ne kadar» — much. How many pecans? How much polenta? Olumsuzda da: We don't have much semolina — «pek irmiğimiz yok». many ve much'tan önce a gelmez.
+Türkçedeki ayrım burada işe yarar: «kaç» — many, «ne kadar» — much. How many pecans («pekan cevizi»)? How much polenta («mısır lapası»)? Olumsuzda da: We don't have much semolina — «pek irmiğimiz yok». many ve much'tan önce a gelmez.
 
 **formula**
 `kaç: How many + şey + s?` · `ne kadar: How much + şey?`

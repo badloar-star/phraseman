@@ -28,7 +28,7 @@ Esta lição é sobre quantidades: «quantas nozes a gente precisa?», «temos u
 ## 02 · O que se conta e o que não *(aberta de início)*
 
 **body**
-Algumas coisas se contam por unidade: a bookend, two ottomans — a ou an para uma, -s depois de two. Outras são uma massa ou uma palavra de conjunto: crockery (louça), gravel (cascalho), housework. Essas não levam a nem -s.
+Algumas coisas se contam por unidade: a bookend («aparador de livros»), two ottomans («dois pufes») — a ou an para uma, -s depois de two. Outras são uma massa ou uma palavra de conjunto: crockery (louça), gravel (cascalho), housework. Essas não levam a nem -s.
 
 **formula**
 `uma unidade: a / an + coisa` · `várias: two + coisa + s` · `massa: sem a e sem -s`
@@ -58,7 +58,7 @@ Algumas coisas se contam por unidade: a bookend, two ottomans — a ou an para u
 ## 03 · many ou much — «quanto?»
 
 **body**
-Em português «quantos / quanto» só muda a terminação; em inglês são duas palavras. O que se conta: many — How many pecans? O que não: much — How much polenta? Com «não» também: We don't have much semolina. Nunca a antes de many ou much.
+Em português «quantos / quanto» só muda a terminação; em inglês são duas palavras. O que se conta: many — How many pecans («nozes-pecã»)? O que não: much — How much polenta? Com «não» também: We don't have much semolina. Nunca a antes de many ou much.
 
 **formula**
 `se conta: How many + coisa + s?` · `massa: How much + coisa?`

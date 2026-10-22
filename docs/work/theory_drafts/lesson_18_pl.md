@@ -111,7 +111,7 @@ Jeśli różnicy nie ma — «tak samo mocna jak twoja» — cechę stawia się 
 ## 05 · too i enough — «za» i «wystarczająco»
 
 **body**
-too — «za», przeszkadza: This cabin bag is too big. enough — «wystarczająco», pasuje: This checked bag is light enough. Po polsku «wystarczająco» stoi przed cechą, a po angielsku enough — po niej.
+too — «za», przeszkadza: This cabin bag («bagaż podręczny») is too big. enough — «wystarczająco», pasuje: This checked bag («bagaż rejestrowany») is light enough. Po polsku «wystarczająco» stoi przed cechą, a po angielsku enough — po niej.
 
 **formula**
 `przeszkadza: too + cecha` · `pasuje: cecha + enough`

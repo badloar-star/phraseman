@@ -113,7 +113,7 @@ Kalau tidak ada bedanya — «sekuat punyamu» — kata sifat diletakkan di anta
 ## 05 · too dan enough — «terlalu» dan «cukup»
 
 **body**
-too — «terlalu», mengganggu: This cabin bag is too big. enough — «cukup», pas: This checked bag is light enough. Bahasa Indonesia bilang «cukup ringan», bahasa Inggris menaruh enough di belakang: light enough.
+too — «terlalu», mengganggu: This cabin bag («bagasi kabin») is too big. enough — «cukup», pas: This checked bag («bagasi tercatat») is light enough. Bahasa Indonesia bilang «cukup ringan», bahasa Inggris menaruh enough di belakang: light enough.
 
 **formula**
 `mengganggu: too + kata sifat` · `pas: kata sifat + enough`

@@ -26,7 +26,7 @@ Ta lekcja jest o tym, co możesz i umiesz: «mogę usunąć tę plamę», «w wi
 ## 02 · can — «mogę, umiem» *(otwarta od razu)*
 
 **body**
-can + czynność jak w słowniku: I can remove this stain. Can jest takie samo dla wszystkich — he can, she can, bez -s. Nie mogę — cannot: We cannot talk in private. Po can nigdy nie ma to.
+can + czynność jak w słowniku: I can remove this stain. Can jest takie samo dla wszystkich — he can, she can, bez -s. Nie mogę — cannot: We cannot talk in private — «nie możemy pogadać na osobności». Po can nigdy nie ma to.
 
 **formula**
 `kto` · `can / cannot` · `czynność jak w słowniku`
@@ -137,7 +137,7 @@ Could I…? — kolejna uprzejma prośba: Could I pay in advance? — «czy mog�
 ## 06 · be able to — «jestem w stanie», «będę w stanie»
 
 **body**
-am / is able to + czynność — to samo «mogę», tylko z am / is i to: I am able to cope with the stress. «Będę mógł» — will be able to: We will be able to achieve this goal. Will can nie istnieje.
+am / is able to + czynność — to samo «mogę», tylko z am / is i to: I am able to cope with the stress — «radzę sobie ze stresem». «Będę mógł» — will be able to: We will be able to achieve this goal — «osiągniemy ten cel». Will can nie istnieje.
 
 **formula**
 `teraz: am / is able to + czynność` · `w przyszłości: will be able to + czynność`

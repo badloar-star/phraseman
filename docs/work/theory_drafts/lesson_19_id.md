@@ -27,7 +27,7 @@ Pelajaran ini tentang apa yang bisa kamu lakukan: «aku bisa menghilangkan noda 
 ## 02 · can — «bisa» *(terbuka sejak awal)*
 
 **body**
-can + kata kerja seperti di kamus: I can remove this stain. Can sama untuk semua: he can, she can, tanpa -s. Tidak bisa — cannot: We cannot talk in private. Setelah can tidak pernah ada to.
+can + kata kerja seperti di kamus: I can remove this stain. Can sama untuk semua: he can, she can, tanpa -s. Tidak bisa — cannot: We cannot talk in private — «tidak bisa bicara berdua». Setelah can tidak pernah ada to.
 
 **formula**
 `siapa` · `can / cannot` · `kata kerja seperti di kamus`
@@ -138,7 +138,7 @@ Could I…? — permintaan sopan lainnya: Could I pay in advance? — «boleh ak
 ## 06 · be able to — «mampu», «akan bisa»
 
 **body**
-am / is able to + kata kerja — juga «bisa», tapi dengan am / is dan to: I am able to cope with the stress. «Akan bisa» — will be able to: We will be able to achieve this goal. Jangan will can.
+am / is able to + kata kerja — juga «bisa», tapi dengan am / is dan to: I am able to cope with the stress — «aku bisa atasi stres». «Akan bisa» — will be able to: We will be able to achieve this goal — «akan mencapai tujuan». Jangan will can.
 
 **formula**
 `sekarang: am / is able to + kata kerja` · `nanti: will be able to + kata kerja`

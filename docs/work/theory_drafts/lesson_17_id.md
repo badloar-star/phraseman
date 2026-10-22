@@ -27,7 +27,7 @@ Pelajaran ini tentang jumlah: «perlu berapa kacang pekan?», «kami punya sedik
 ## 02 · Bisa dihitung dan tidak *(terbuka sejak awal)*
 
 **body**
-Ada benda yang dihitung satu per satu: a bookend, two ottomans — untuk satu pakai a atau an, setelah two tambah -s. Bahasa Indonesia bilang «dua puf» tanpa perubahan, bahasa Inggris wajib -s. Crockery, gravel, housework tidak dihitung: tanpa a dan -s.
+Ada benda yang dihitung satu per satu: a bookend («penyangga buku»), two ottomans («dua puf») — untuk satu pakai a atau an, setelah two tambah -s. Bahasa Indonesia bilang «dua puf» tanpa perubahan, bahasa Inggris wajib -s. Crockery, gravel, housework tidak dihitung: tanpa a dan -s.
 
 **formula**
 `satu: a / an + benda` · `beberapa: two + benda + s` · `tidak dihitung: tanpa a dan -s`
@@ -57,7 +57,7 @@ Ada benda yang dihitung satu per satu: a bookend, two ottomans — untuk satu pa
 ## 03 · many atau much — «berapa?»
 
 **body**
-Bahasa Indonesia cukup «berapa», bahasa Inggris punya dua. Bisa dihitung — many: How many pecans? Tidak bisa — much: How much polenta? Dengan «tidak» juga: We don't have much semolina. Sebelum many dan much tidak ada a.
+Bahasa Indonesia cukup «berapa», bahasa Inggris punya dua. Bisa dihitung — many: How many pecans («kacang pekan»)? Tidak bisa — much: How much polenta («bubur jagung»)? Dengan «tidak» juga: We don't have much semolina. Sebelum many dan much tidak ada a.
 
 **formula**
 `dihitung: How many + benda + s?` · `tidak dihitung: How much + benda?`

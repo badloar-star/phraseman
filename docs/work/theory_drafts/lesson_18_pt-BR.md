@@ -113,7 +113,7 @@ Se não há diferença — «tão forte quanto o seu» —, a palavra fica entre
 ## 05 · too e enough — «demais» e «o suficiente»
 
 **body**
-too — «demais», atrapalha: This cabin bag is too big. enough — «o suficiente», serve: This checked bag is light enough. Aqui o inglês é como o português: «leve o suficiente» — enough depois da palavra. Já too vem antes.
+too — «demais», atrapalha: This cabin bag («bagagem de mão») is too big. enough — «o suficiente», serve: This checked bag («mala despachada») is light enough. Aqui o inglês é como o português: «leve o suficiente» — enough depois da palavra. Já too vem antes.
 
 **formula**
 `atrapalha: too + palavra` · `serve: palavra + enough`

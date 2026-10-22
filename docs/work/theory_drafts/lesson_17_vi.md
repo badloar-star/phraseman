@@ -27,7 +27,7 @@ Bài này nói về số lượng: «cần bao nhiêu hạt hồ đào?», «ch�
 ## 02 · Đếm được và không đếm được *(mở sẵn)*
 
 **body**
-Có thứ đếm từng cái: a bookend, two ottomans — một cái thì a hoặc an, sau two thì thêm -s. Tiếng Việt nói «hai cái pouf» không đổi gì, tiếng Anh phải có -s. Crockery, gravel, housework không đếm được: không a, không -s.
+Có thứ đếm từng cái: a bookend («cái chặn sách»), two ottomans («hai cái pouf») — một cái thì a hoặc an, sau two thì thêm -s. Tiếng Việt nói «hai cái pouf» không đổi gì, tiếng Anh phải có -s. Crockery, gravel, housework không đếm được: không a, không -s.
 
 **formula**
 `một cái: a / an + đồ vật` · `nhiều cái: two + đồ vật + s` · `không đếm được: không a, không -s`
@@ -57,7 +57,7 @@ Có thứ đếm từng cái: a bookend, two ottomans — một cái thì a ho�
 ## 03 · many hay much — «bao nhiêu?»
 
 **body**
-Tiếng Việt chỉ có «bao nhiêu», tiếng Anh có hai. Đếm được — many: How many pecans? Không đếm được — much: How much polenta? Câu có «không» cũng vậy: We don't have much semolina. Trước many và much không có a.
+Tiếng Việt chỉ có «bao nhiêu», tiếng Anh có hai. Đếm được — many: How many pecans («hồ đào»)? Không đếm được — much: How much polenta («cháo bột ngô»)? Câu có «không» cũng vậy: We don't have much semolina. Trước many và much không có a.
 
 **formula**
 `đếm được: How many + đồ vật + s?` · `không đếm được: How much + thứ?`

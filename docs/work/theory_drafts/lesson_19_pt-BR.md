@@ -27,7 +27,7 @@ Esta lição é sobre o que você pode e sabe fazer: «consigo tirar essa mancha
 ## 02 · can — «posso, sei» *(aberta de início)*
 
 **body**
-can + ação como no dicionário: I can remove this stain. Can é igual para todos: he can, she can, sem -s. Não posso: cannot — We cannot talk in private. Depois de can nunca vem to.
+can + ação como no dicionário: I can remove this stain. Can é igual para todos: he can, she can, sem -s. Não posso: cannot — We cannot talk in private — «não podemos conversar a sós». Depois de can nunca vem to.
 
 **formula**
 `quem` · `can / cannot` · `ação como no dicionário`
@@ -138,7 +138,7 @@ Could I…? é outro pedido educado: Could I pay in advance? — «eu poderia pa
 ## 06 · be able to — «sou capaz», «vou conseguir»
 
 **body**
-am / is able to + ação é o mesmo «posso», só que com am / is e to: I am able to cope with the stress. «Vou conseguir» é will be able to: We will be able to achieve this goal. Will can não existe.
+am / is able to + ação é o mesmo «posso», só que com am / is e to: I am able to cope with the stress — «dou conta do estresse». «Vou conseguir» é will be able to: We will be able to achieve this goal — «vamos alcançar a meta». Will can não existe.
 
 **formula**
 `agora: am / is able to + ação` · `no futuro: will be able to + ação`

@@ -27,7 +27,7 @@ Ta lekcja jest o ilościach: «ile orzechów potrzebujemy?», «mamy trochę wol
 ## 02 · Na sztuki i niepoliczalne *(otwarta od razu)*
 
 **body**
-Jedne rzeczy liczy się na sztuki: a bookend, two ottomans — przed jedną sztuką a lub an, po two — -s. Inne to masa albo słowo zbiorcze: crockery (naczynia), gravel (żwir), housework. Przed nimi nie ma a i nie dostają -s.
+Jedne rzeczy liczy się na sztuki: a bookend («podpórka do książek»), two ottomans («dwa pufy») — przed jedną sztuką a lub an, po two — -s. Inne to masa albo słowo zbiorcze: crockery (naczynia), gravel (żwir), housework. Przed nimi nie ma a i nie dostają -s.
 
 **formula**
 `jedna sztuka: a / an + rzecz` · `kilka: two + rzecz + s` · `masa: bez a i bez -s`
@@ -57,7 +57,7 @@ Jedne rzeczy liczy się na sztuki: a bookend, two ottomans — przed jedną sztu
 ## 03 · many czy much — «ile?»
 
 **body**
-Polskie «ile» jest jedno, angielskie są dwa. Sztuki — many: How many pecans? Masa — much: How much polenta? Z «nie» też: We don't have much semolina — «kaszy manny mamy niewiele». Przed many i much nie ma a.
+Polskie «ile» jest jedno, angielskie są dwa. Sztuki — many: How many pecans («orzechy pekan»)? Masa — much: How much polenta? Z «nie» też: We don't have much semolina — «kaszy manny mamy niewiele». Przed many i much nie ma a.
 
 **formula**
 `sztuki: How many + rzecz + s?` · `masa: How much + rzecz?`

@@ -27,7 +27,7 @@ This lesson is about amounts: how many nuts you need, a little free time you hav
 ## 02 · Things you count and things you don't *(open from the start)*
 
 **body**
-Some things you count one by one: a bookend, two ottomans — a or an for one, -s after two. Others are a mass or a group word: crockery, gravel, housework. They take no a and no -s.
+Some things you count one by one: a bookend (holds books upright), two ottomans (soft footstools) — a or an for one, -s after two. Others are a mass or a group word: crockery, gravel, housework. They take no a and no -s.
 
 **formula**
 `one: a / an + thing` · `more: two + thing + s` · `mass: no a, no -s`
@@ -57,7 +57,7 @@ Some things you count one by one: a bookend, two ottomans — a or an for one, -
 ## 03 · many or much — “how many? how much?”
 
 **body**
-Things you count — many: How many pecans? Things you don't — much: How much polenta? With not too: We don't have much semolina. Never put a before many or much.
+Things you count — many: How many pecans (nuts)? Things you don't — much: How much polenta (cornmeal)? With not too: We don't have much semolina. Never put a before many or much.
 
 **formula**
 `count: How many + thing + s?` · `mass: How much + thing?`

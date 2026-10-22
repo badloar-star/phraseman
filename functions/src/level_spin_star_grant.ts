@@ -45,6 +45,8 @@ const STAR_AMOUNTS = Object.freeze({
   // Зеркала на клиенте: modules/phone-state/domains/economy.ts и
   // app/level_spin_star_grants.ts. Крупнейший номинал компенсации Q12.
   stars_2000: 2_000,
+  // зачем: «Урок вместе» +2 (владелец 22.10, А1); форму источника проверяет coin_wallet_policy (только lessontogether_).
+  stars_2: 2,
 } as const);
 const REQUEST_ID = /^[A-Za-z0-9_-]{16,80}$/;
 const DELIVERY_TOKEN = /^[A-Za-z0-9_-]{16,96}$/;

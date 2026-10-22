@@ -32,6 +32,8 @@ const STAR_CREDIT_AMOUNTS = Object.freeze({
   // v7 (2026-08-29): джекпот рун каталога спина. Зеркала: app/level_spin_star_grants.ts
   // и functions/src/level_spin_star_grant.ts — правь все три в одном коммите.
   stars_2000: 2_000,
+  // зачем: «Урок вместе» +2 (владелец 22.10, А1). Зеркала: app/level_spin_star_grants.ts и functions/src/level_spin_star_grant.ts.
+  stars_2: 2,
 } as const);
 const STAR_REQUEST_ID = /^[A-Za-z0-9_-]{16,80}$/;
 const STAR_DELIVERY_TOKEN = /^[A-Za-z0-9_-]{16,96}$/;

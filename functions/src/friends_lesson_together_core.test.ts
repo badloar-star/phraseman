@@ -1,8 +1,8 @@
 import {
-  judgeLessonClaim,
+  isLessonDayKey,
   lessonInviteId,
   lessonPairKey,
-  lessonTogetherOpId,
+  lessonTogetherWalletRequestId,
   localDayKey,
   nextLocalMidnightMs,
   parseLessonInviteInput,
@@ -32,28 +32,26 @@ describe('lesson together core', () => {
     expect(tzOffsetOrDefault(99_999, 180)).toBe(180);
   });
 
-  test('anti-farm: A→B and B→A on the same day share one pair-day key; next day is a new key', () => {
+  test('anti-farm by key (phone decides): A→B and B→A on the same day share one wallet key; next day is a new key', () => {
     const pairAB = lessonPairKey('uid-a', 'uid-b');
     const pairBA = lessonPairKey('uid-b', 'uid-a');
     expect(pairAB).toBe(pairBA);
-    expect(lessonTogetherOpId(pairAB, '2026-10-22', 'uid-a')).toBe(lessonTogetherOpId(pairBA, '2026-10-22', 'uid-a'));
-    expect(lessonTogetherOpId(pairAB, '2026-10-23', 'uid-a')).not.toBe(lessonTogetherOpId(pairAB, '2026-10-22', 'uid-a'));
-    // OP_ID_RE журнала: одно двоеточие, хвост ≤ 96.
-    expect(lessonTogetherOpId(pairAB, '2026-10-22', 'uid-a')).toMatch(/^[a-z0-9_]{1,32}:[A-Za-z0-9_.-]{1,96}$/);
+    expect(lessonTogetherWalletRequestId(pairAB, '2026-10-22', 'uid-a')).toBe(lessonTogetherWalletRequestId(pairBA, '2026-10-22', 'uid-a'));
+    expect(lessonTogetherWalletRequestId(pairAB, '2026-10-23', 'uid-a')).not.toBe(lessonTogetherWalletRequestId(pairAB, '2026-10-22', 'uid-a'));
+    expect(lessonTogetherWalletRequestId(pairAB, '2026-10-22', 'uid-b')).not.toBe(lessonTogetherWalletRequestId(pairAB, '2026-10-22', 'uid-a'));
+    // кошелёк принимает ровно lessontogether_<40 hex>, REQUEST_ID callable — 16..80 знаков
+    expect(lessonTogetherWalletRequestId(pairAB, '2026-10-22', 'uid-a')).toMatch(/^lessontogether_[0-9a-f]{40}$/);
+  });
+
+  test('day key from the friend phone: YYYY-MM-DD only', () => {
+    expect(isLessonDayKey('2026-10-22')).toBe(true);
+    expect(isLessonDayKey('2026-10-22T00')).toBe(false);
+    expect(isLessonDayKey(20261022)).toBe(false);
   });
 
   test('invite id is deterministic per request and friend', () => {
     expect(lessonInviteId('flt_req_000000001', 'b')).toBe(lessonInviteId('flt_req_000000001', 'b'));
     expect(lessonInviteId('flt_req_000000001', 'b')).not.toBe(lessonInviteId('flt_req_000000001', 'c'));
     expect(lessonInviteId('flt_req_000000001', 'b')).toMatch(/^fli_[a-f0-9]{32}$/);
-  });
-
-  test('claim verdict: same lesson and session, awarded inside [invite created, friend midnight]; language may differ', () => {
-    const invite = { lessonOrdinal: 2, sessionOrdinal: 7, createdAtMs: 1_000, expiresAtMs: 5_000 };
-    expect(judgeLessonClaim(invite, null)).toEqual({ ok: false, reason: 'not_completed' });
-    expect(judgeLessonClaim(invite, { lessonOrdinal: 2, sessionOrdinal: 7, studyTarget: 'es', awardedAtMs: 3_000 })).toEqual({ ok: true });
-    expect(judgeLessonClaim(invite, { lessonOrdinal: 2, sessionOrdinal: 8, studyTarget: 'en', awardedAtMs: 3_000 })).toEqual({ ok: false, reason: 'wrong_session' });
-    expect(judgeLessonClaim(invite, { lessonOrdinal: 2, sessionOrdinal: 7, studyTarget: 'en', awardedAtMs: 999 })).toEqual({ ok: false, reason: 'outside_window' });
-    expect(judgeLessonClaim(invite, { lessonOrdinal: 2, sessionOrdinal: 7, studyTarget: 'en', awardedAtMs: 5_001 })).toEqual({ ok: false, reason: 'outside_window' });
   });
 });

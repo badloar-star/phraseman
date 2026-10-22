@@ -36,6 +36,9 @@ const KNOWN_GUARDS = [
   'tests/season_owner_locks_2026_10_22.test.ts',
   'tests/learning_v2_dictionary_visibility_contract.test.ts',
   'tests/learning_v2_map_dictionary_integration_v1_gate.ts',
+  // 1 · ЯДРО 22.10: «сервер для сохранения, а не решений» и «История остаётся, имя скрыто»
+  'functions/src/owner_lock_server_stores_friends.test.ts',
+  'functions/src/account_delete_friend_duels.test.ts',
 ];
 
 // Любой способ выключить тест по тексту файла: jest (skip/x*/todo/only) и node:test ({ skip }, { todo }, t.skip()).

@@ -161,10 +161,9 @@ export type StarOpReason =
   | 'account_merge_out' | 'account_merge_in'
   // зачем (D195, владелец 15.10): старые бонусы (опыт, жемчуг, вращения) → монеты один раз; grant — подарок за старое,
   // не заработок: не двигает earnedTotal и очки лиги (legacy_bonus_convert.ts).
-  | 'legacy_bonus'
-  // зачем (владелец 21.10, «Урок вместе»): +2 обоим за занятие, пройденное по приглашению друга, раз в день на пару.
-  // grant, НЕ earn: earn двигал бы starsWeekEarned → место в Пике; награда за компанию, не за учёбу.
-  | 'friends_lesson_together';
+  // зачем (закон владельца 22.10): «Урок вместе» +2 начисляет телефон через кошелёк (level_spin_grant, ключ lessontogether_);
+  // прежняя серверная причина friends_lesson_together в облако не выходила и снята.
+  | 'legacy_bonus';
 
 export type StarOpClass = 'earn' | 'grant' | 'spend';
 
@@ -201,7 +200,6 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   account_merge_out: 'spend',
   account_merge_in: 'grant',
   legacy_bonus: 'grant',
-  friends_lesson_together: 'grant',
 });
 
 /**
@@ -265,7 +263,6 @@ export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Obj
   // обязан попасть в сумму разреза (иначе bySource разойдётся с grantedTotal).
   account_merge_in: 'other',
   legacy_bonus: 'other',
-  friends_lesson_together: 'friends',
   account_merge_out: 'other',
 });
 

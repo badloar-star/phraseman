@@ -1,13 +1,15 @@
 /**
  * «Урок вместе» — callable сервера (docs/work/tasks/lesson-together-server-2026-10-22.md).
  *
- *  - friendsLessonInvite         — позвать до 3 друзей на это же занятие (3 приглашения на занятие в день).
- *  - friendsLessonTogetherClaim  — друг прошёл занятие до своей полуночи → обоим +2 монеты, раз в день на пару.
+ *  - friendsLessonInvite        — позвать до 3 друзей на это же занятие (3 приглашения на занятие в день).
+ *  - friendsLessonTogetherMark  — телефон друга сообщает «прошёл по приглашению»; сервер хранит отметку и зовёт пригласившего.
  *
- * Поправки Ядра к контракту: личность — только из auth, имя — из public_profiles; номера урока и занятия для награды
- * берутся из засчитанного занятия друга (Learning V2), а не из запроса. Монеты — stars_ledger, причина
- * friends_lesson_together, класс grant (не двигает неделю и место в Пике).
- * Firebase-экономия: приглашение лежит у адресата (claim читает свою подколлекцию), без where и плановых функций.
+ * ЗАМОК ВЛАДЕЛЬЦА 22.10: «сервер для сохранения, а не решений… монеты и всё остальное выдаётся телефоном… сервер
+ * сохраняет для синхронизации, чтобы не потерялось». Сервер НЕ сверяет занятие и НЕ начисляет монеты: оба телефона
+ * сами начисляют себе +2 через кошелёк (ключ lessonTogetherWalletRequestId — раз в день на пару). Здесь — только
+ * целостность хранения: личность из auth, приглашение адресовано вызывающему, повтор = тот же ответ.
+ * Лимит «3 приглашения на занятие в день» остаётся: он защищает ДРУГОГО человека от потока пушей (как friendsNudge, Б3).
+ * Firebase-экономия: приглашение лежит у адресата (отметка читает свою подколлекцию), без where и плановых функций.
  */
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall, type CallableRequest } from 'firebase-functions/v2/https';
@@ -15,9 +17,6 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { sendExpoPush } from './expo_push';
-import { arenaSeasonWindow } from './arena_v2_core';
-import { getWeekKey } from './progress_events';
-import { beginStarLedgerTransactionAttempt, commitStarOperations, prepareStarOperations } from './stars_ledger';
 import {
   FRIENDS_TOGETHER_DEFAULTS,
   type FriendsTogetherConfig,
@@ -27,12 +26,8 @@ import {
 import {
   LESSON_INVITE_PER_LESSON_PER_DAY,
   LESSON_TOGETHER_COINS,
-  type LessonCompletionFact,
-  judgeLessonClaim,
+  isLessonDayKey,
   lessonInviteId,
-  lessonPairKey,
-  lessonTogetherOpId,
-  localDayKey,
   nextLocalMidnightMs,
   parseLessonInviteInput,
   tzOffsetOrDefault,
@@ -41,7 +36,6 @@ import {
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
 const LOG = '[LESSON-TOGETHER]';
-const RULE_VERSION = 1;
 
 const uidTag = (uid: string): string => (uid ? uid.slice(0, 6) : '-');
 
@@ -221,138 +215,81 @@ export async function handleFriendsLessonInvite(request: CallableRequest): Promi
 
 export const friendsLessonInvite = onCall(CALLABLE_BASE, handleFriendsLessonInvite);
 
-/* ----------------------------------- claim ----------------------------------- */
+/* ------------------------------------ mark ------------------------------------ */
 
 /**
- * Засчитанное занятие друга — помощник Learning V2 (их зона, согласование через координатора).
- * Читает только внутри транзакции; null — занятия с таким mutationId у этого аккаунта нет.
+ * Телефон друга после своего засчитанного занятия (и своего +2 через кошелёк) отмечает приглашение «выполнено».
+ * dayKey — его местный день: пригласивший считает тем же днём общий ключ кошелька (раз в день на пару).
+ * Отказы только целостные: нет приглашения или оно адресовано не вызывающему. Повтор — тот же ответ, без второго пуша.
  */
-export type LessonCompletionReader = (
-  tx: admin.firestore.Transaction,
-  db: admin.firestore.Firestore,
-  args: Readonly<{ authUid: string; stableUid: string; mutationId: string }>,
-) => Promise<LessonCompletionFact | null>;
+export async function handleFriendsLessonTogetherMark(request: CallableRequest): Promise<Record<string, unknown>> {
+  if (!request.auth?.uid) reject('unauthenticated', 'auth_required');
+  const db = admin.firestore();
+  const stableUid = await resolveStableUidForAuth(db, request.auth.uid, String(request.data?.stableId ?? '').trim() || undefined);
+  const inviteId = String(request.data?.inviteId ?? '').trim();
+  const dayKey = request.data?.dayKey;
+  const ctx = { by: uidTag(stableUid), inviteId, dayKey: isLessonDayKey(dayKey) ? dayKey : null };
+  console.log(`${LOG} mark:enter ${JSON.stringify(ctx)}`);
+  if (!/^fli_[a-f0-9]{32}$/.test(inviteId) || !isLessonDayKey(dayKey)) reject('invalid-argument', 'invalid_mark', ctx);
+  const { enabled, config } = await resolveConfig(db);
+  if (!enabled) reject('failed-precondition', 'disabled', ctx);
 
-/** Пока Learning V2 не отдал помощник — честный отказ, монет нет (claim не выкладывается без подключения). */
-export const notWiredLessonCompletionReader: LessonCompletionReader = async () => {
-  console.warn(`${LOG} claim:reject reason=completion_reader_not_wired`);
-  throw new HttpsError('failed-precondition', 'completion_reader_not_wired');
-};
+  const now = Date.now();
+  const inviteRef = db.collection('users').doc(stableUid).collection('friend_lesson_invites').doc(inviteId);
 
-export function createFriendsLessonTogetherClaimHandler(readCompletion: LessonCompletionReader) {
-  return async (request: CallableRequest): Promise<Record<string, unknown>> => {
-    if (!request.auth?.uid) reject('unauthenticated', 'auth_required');
-    const authUid = request.auth.uid;
-    const db = admin.firestore();
-    const stableUid = await resolveStableUidForAuth(db, authUid, String(request.data?.stableId ?? '').trim() || undefined);
-    const inviteId = String(request.data?.inviteId ?? '').trim();
-    const mutationId = String(request.data?.mutationId ?? '').trim();
-    const ctx = { by: uidTag(stableUid), inviteId };
-    console.log(`${LOG} claim:enter ${JSON.stringify(ctx)}`);
-    if (!/^fli_[a-f0-9]{32}$/.test(inviteId) || !mutationId || mutationId.length > 200) reject('invalid-argument', 'invalid_claim', ctx);
-    const { enabled, config } = await resolveConfig(db);
-    if (!enabled) reject('failed-precondition', 'disabled', ctx);
-
-    const now = Date.now();
-    const inviteRef = db.collection('users').doc(stableUid).collection('friend_lesson_invites').doc(inviteId);
-
-    const result = await db.runTransaction(async (tx) => {
-      // зачем: Admin SDK повторяет колбэк с тем же tx после конкуренции — без сброса повтор упал бы на star_ledger_double_prepare.
-      beginStarLedgerTransactionAttempt(tx);
-      const inviteSnap = await tx.get(inviteRef);
-      const invite = inviteSnap.data();
-      if (!inviteSnap.exists || invite?.toUid !== stableUid) reject('permission-denied', 'not_invited', ctx);
-      if (invite?.status !== 'open') reject('failed-precondition', 'already_claimed', { ...ctx, status: invite?.status });
-      const inviterUid = String(invite?.fromUid ?? '');
-      const fact = await readCompletion(tx, db, { authUid, stableUid, mutationId });
-      const verdict = judgeLessonClaim({
-        lessonOrdinal: Number(invite?.lessonOrdinal), sessionOrdinal: Number(invite?.sessionOrdinal),
-        createdAtMs: Number(invite?.createdAtMs), expiresAtMs: Number(invite?.expiresAtMs),
-      }, fact);
-      if (!verdict.ok) {
-        const reason = verdict.reason === 'not_completed' && now > Number(invite?.expiresAtMs) ? 'expired' : 'not_completed';
-        reject('failed-precondition', reason, { ...ctx, verdict: verdict.reason, factLesson: fact?.lessonOrdinal ?? null, factSession: fact?.sessionOrdinal ?? null });
-      }
-      const awardedAtMs = fact!.awardedAtMs;
-      const [mySnap, inviterSnap, inviterProfile, myProfile] = await Promise.all([
-        tx.get(db.collection('users').doc(stableUid)),
-        tx.get(db.collection('users').doc(inviterUid)),
-        tx.get(db.collection('public_profiles').doc(inviterUid)),
-        tx.get(db.collection('public_profiles').doc(stableUid)),
-      ]);
-      const tz = tzOffsetOrDefault(friendsPushPrefs(mySnap.data()).tz, config.nudgeDefaultTzOffsetMinutes);
-      const dayKey = localDayKey(awardedAtMs, tz);
-      const pairKey = lessonPairKey(stableUid, inviterUid);
-      const rewardDayRef = db.collection('friend_pairs').doc(pairKey).collection('lesson_together_days').doc(dayKey);
-      const rewardDaySnap = await tx.get(rewardDayRef);
-      const inviterName = displayName(inviterProfile.data());
-      if (rewardDaySnap.exists) {
-        // Пара уже получила +2 за этот день: приглашение закрываем без монет и без уведомления (защита от фарма).
-        tx.set(inviteRef, { status: 'claimed_no_reward', claimedAtMs: now }, { merge: true });
-        console.log(`${LOG} claim:pair_day_already_rewarded ${JSON.stringify({ ...ctx, dayKey })}`);
-        return { response: { ok: false, reason: 'already_claimed', coins: 0, inviterName }, push: null };
-      }
-      if (!inviterSnap.exists) reject('not-found', 'inviter_not_found', ctx);
-
-      const ledgerCtx = {
-        nowMs: now,
-        activeSeasonId: arenaSeasonWindow(now).seasonId,
-        weekKeyNow: getWeekKey(new Date(now).toISOString().slice(0, 10)),
-        authUid,
-        deviceId: null,
-      };
-      const op = (uid: string) => ({
-        opId: lessonTogetherOpId(pairKey, dayKey, uid),
-        delta: LESSON_TOGETHER_COINS,
-        reason: 'friends_lesson_together' as const,
-        sourceKind: 'friends_lesson_together',
-        sourceId: inviteId,
-        ruleVersion: RULE_VERSION,
-        earnedAtMs: awardedAtMs,
-        meta: { pairKey, dayKey, uid, inviteId },
-      });
-      // Обе подготовки — до любой записи (фаза чтений журнала).
-      const preparedMine = await prepareStarOperations(tx, db, stableUid, mySnap, [op(stableUid)], ledgerCtx);
-      const preparedInviter = await prepareStarOperations(tx, db, inviterUid, inviterSnap, [op(inviterUid)], ledgerCtx);
-      const outcomes = [preparedMine.outcomes[0], preparedInviter.outcomes[0]];
-      if (outcomes.some((outcome) => outcome?.status === 'rejected')) {
-        reject('failed-precondition', 'ledger_rejected', { ...ctx, codes: outcomes.map((outcome) => outcome?.errorCode ?? null) });
-      }
-      const mine = commitStarOperations(tx, preparedMine);
-      const theirs = commitStarOperations(tx, preparedInviter);
-      tx.set(rewardDayRef, { pairKey, dayKey, inviteId, rewardedAtMs: now, coinsEach: LESSON_TOGETHER_COINS });
-      tx.set(inviteRef, { status: 'claimed', claimedAtMs: now, awardedAtMs }, { merge: true });
-      const eventId = `friend_lesson_together_${inviteId}`;
-      const myName = displayName(myProfile.data());
-      tx.set(userNotificationRef(db, inviterUid, eventId), buildUserNotification({
-        type: 'friend_nudge',
-        fromUid: stableUid,
-        fromName: myName,
-        text: `+${LESSON_TOGETHER_COINS} за занятие вместе`,
-        nav: {
-          kind: 'friend_event', action: 'lesson_together', actorStableUid: stableUid, eventId, inviteId,
-          coins: LESSON_TOGETHER_COINS, lessonOrdinal: Number(invite?.lessonOrdinal), sessionOrdinal: Number(invite?.sessionOrdinal),
-        },
-      }, now));
-      console.log(`${LOG} claim:rewarded ${JSON.stringify({ ...ctx, dayKey, mineBalance: mine.balance, inviterBalance: theirs.balance })}`);
-      const inviterPrefs = friendsPushPrefs(inviterSnap.data());
-      const inviterTz = tzOffsetOrDefault(inviterPrefs.tz, config.nudgeDefaultTzOffsetMinutes);
-      const quiet = isQuietHours(now, inviterTz, config.nudgeQuietStartHour, config.nudgeQuietEndHour, config.nudgeDefaultTzOffsetMinutes);
-      const token = typeof inviterSnap.data()?.expoPushToken === 'string' ? inviterSnap.data()!.expoPushToken as string : '';
-      return {
-        response: { ok: true, coins: LESSON_TOGETHER_COINS, inviterName },
-        push: inviterPrefs.enabled !== false && !quiet && token ? { token, eventId } : null,
-      };
-    });
-
-    if (result.push) {
-      void sendExpoPush(result.push.token, 'Занятие вместе', `+${LESSON_TOGETHER_COINS} монеты вам обоим`,
-        { type: 'friend_nudge', eventId: result.push.eventId, actorStableUid: stableUid, nav: 'friends' })
-        .then((transport) => { if (transport !== 'sent') console.warn(`${LOG} claim:push_${transport}`); })
-        .catch((error: unknown) => console.warn(`${LOG} claim:push_threw ${error instanceof Error ? error.name : typeof error}`));
+  const result = await db.runTransaction(async (tx) => {
+    const inviteSnap = await tx.get(inviteRef);
+    const invite = inviteSnap.data();
+    if (!inviteSnap.exists || invite?.toUid !== stableUid) reject('permission-denied', 'not_invited', ctx);
+    const inviterUid = String(invite?.fromUid ?? '');
+    const [inviterSnap, inviterProfile, myProfile] = await Promise.all([
+      tx.get(db.collection('users').doc(inviterUid)),
+      tx.get(db.collection('public_profiles').doc(inviterUid)),
+      tx.get(db.collection('public_profiles').doc(stableUid)),
+    ]);
+    const inviterName = displayName(inviterProfile.data());
+    if (invite?.status === 'done') {
+      console.log(`${LOG} mark:replay ${JSON.stringify({ ...ctx, storedDayKey: invite?.dayKey ?? null })}`);
+      return { response: { ok: true, replay: true, coins: LESSON_TOGETHER_COINS, inviterName, dayKey: String(invite?.dayKey ?? dayKey) }, push: null };
     }
-    return result.response;
-  };
+    tx.set(inviteRef, { status: 'done', doneAtMs: now, dayKey }, { merge: true });
+    const eventId = `friend_lesson_together_${inviteId}`;
+    if (!inviterSnap.exists) {
+      // зачем: пригласивший удалил аккаунт — отметку храним, но уведомление-сироту в чужой несуществующий документ не пишем.
+      console.warn(`${LOG} mark:inviter_missing ${JSON.stringify({ ...ctx, inviter: uidTag(inviterUid) })}`);
+      return { response: { ok: true, replay: false, coins: LESSON_TOGETHER_COINS, inviterName, dayKey }, push: null };
+    }
+    tx.set(userNotificationRef(db, inviterUid, eventId), buildUserNotification({
+      type: 'friend_nudge',
+      fromUid: stableUid,
+      fromName: displayName(myProfile.data()),
+      text: `+${LESSON_TOGETHER_COINS} за занятие вместе`,
+      nav: {
+        kind: 'friend_event', action: 'lesson_together', actorStableUid: stableUid, eventId, inviteId, dayKey,
+        coins: LESSON_TOGETHER_COINS, lessonOrdinal: Number(invite?.lessonOrdinal), sessionOrdinal: Number(invite?.sessionOrdinal),
+      },
+    }, now));
+    console.log(`${LOG} mark:stored ${JSON.stringify({ ...ctx, inviter: uidTag(inviterUid), inviterExists: inviterSnap.exists })}`);
+    const inviterPrefs = friendsPushPrefs(inviterSnap.data());
+    const inviterTz = tzOffsetOrDefault(inviterPrefs.tz, config.nudgeDefaultTzOffsetMinutes);
+    const quiet = isQuietHours(now, inviterTz, config.nudgeQuietStartHour, config.nudgeQuietEndHour, config.nudgeDefaultTzOffsetMinutes);
+    const token = typeof inviterSnap.data()?.expoPushToken === 'string' ? inviterSnap.data()!.expoPushToken as string : '';
+    if (!(inviterPrefs.enabled !== false && !quiet && token)) {
+      console.log(`${LOG} mark:push_skipped ${JSON.stringify({ ...ctx, quiet, enabled: inviterPrefs.enabled !== false, token: Boolean(token) })}`);
+    }
+    return {
+      response: { ok: true, replay: false, coins: LESSON_TOGETHER_COINS, inviterName, dayKey },
+      push: inviterPrefs.enabled !== false && !quiet && token ? { token, eventId } : null,
+    };
+  });
+
+  if (result.push) {
+    void sendExpoPush(result.push.token, 'Занятие вместе', `+${LESSON_TOGETHER_COINS} монеты вам обоим`,
+      { type: 'friend_nudge', eventId: result.push.eventId, actorStableUid: stableUid, nav: 'friends' })
+      .then((transport) => { if (transport !== 'sent') console.warn(`${LOG} mark:push_${transport}`); })
+      .catch((error: unknown) => console.warn(`${LOG} mark:push_threw ${error instanceof Error ? error.name : typeof error}`));
+  }
+  return result.response;
 }
 
-export const friendsLessonTogetherClaim = onCall(CALLABLE_BASE, createFriendsLessonTogetherClaimHandler(notWiredLessonCompletionReader));
+export const friendsLessonTogetherMark = onCall(CALLABLE_BASE, handleFriendsLessonTogetherMark);

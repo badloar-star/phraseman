@@ -2,7 +2,8 @@
  * «Урок вместе» — чистые правила сервера (docs/work/tasks/lesson-together-server-2026-10-22.md).
  *
  * зачем (владелец 21.10): после занятия зовёшь до 3 друзей на это же занятие; друг проходит его до своей полуночи →
- * обоим +2 монеты. Условие владельца: «+2 не чаще 1 раза в день на пару, только сервер» — ключ награды пара + день друга.
+ * обоим +2 монеты, не чаще раза в день на пару. Закон владельца 22.10 («сервер для сохранения, а не решений») переносит
+ * решение и начисление на телефоны: сервер хранит приглашение и отметку «выполнено», монеты идут через кошелёк по ключу ниже.
  */
 import { createHash } from 'node:crypto';
 
@@ -78,36 +79,16 @@ export function lessonInviteId(requestId: string, friendUid: string): string {
 }
 
 /**
- * opId начисления. OP_ID_RE журнала — одно двоеточие, хвост ≤96, поэтому хешируем: `lesson_together:<48 hex>`.
- * Исходные pairKey, dayKey и uid кладём в поля операции (meta) — журнал читаем без хеша.
+ * Ключ операции кошелька «Урок вместе» (requestId для levelSpinStarGrant): `lessontogether_<40 hex>`.
+ * ЗАМОК ВЛАДЕЛЬЦА 22.10: «сервер для сохранения, а не решений… монеты… выдаёт телефон». Раз в день на пару решает
+ * сам ключ: пара по возрастанию + день друга + свой uid. Второе приглашение той же пары в тот же день даёт тот же ключ,
+ * и кошелёк отвечает повтором. Телефон считает ключ ТОЙ ЖЕ формулой (клиент 8 · МОМЕНТЫ).
  */
-export function lessonTogetherOpId(pairKey: string, dayKey: string, uid: string): string {
-  return `lesson_together:${createHash('sha256').update(`${pairKey}|${dayKey}|${uid}`).digest('hex').slice(0, 48)}`;
+export function lessonTogetherWalletRequestId(pairKey: string, dayKey: string, uid: string): string {
+  return `lessontogether_${createHash('sha256').update(`${pairKey}|${dayKey}|${uid}`).digest('hex').slice(0, 40)}`;
 }
 
-/** Засчитанное занятие друга, как его отдаёт Learning V2 (помощник — их зона). */
-export type LessonCompletionFact = Readonly<{
-  lessonOrdinal: number;
-  sessionOrdinal: number;
-  studyTarget: string;
-  awardedAtMs: number;
-}>;
-
-export type LessonClaimVerdict =
-  | Readonly<{ ok: true }>
-  | Readonly<{ ok: false; reason: 'not_completed' | 'wrong_session' | 'outside_window' }>;
-
-/** Занятие засчитано, то самое, и в окне [создание приглашения, полночь друга]. Язык пары может отличаться. */
-export function judgeLessonClaim(
-  invite: Readonly<{ lessonOrdinal: number; sessionOrdinal: number; createdAtMs: number; expiresAtMs: number }>,
-  fact: LessonCompletionFact | null,
-): LessonClaimVerdict {
-  if (!fact) return { ok: false, reason: 'not_completed' };
-  if (fact.lessonOrdinal !== invite.lessonOrdinal || fact.sessionOrdinal !== invite.sessionOrdinal) {
-    return { ok: false, reason: 'wrong_session' };
-  }
-  if (fact.awardedAtMs < invite.createdAtMs || fact.awardedAtMs > invite.expiresAtMs) {
-    return { ok: false, reason: 'outside_window' };
-  }
-  return { ok: true };
+/** День друга, который телефон друга кладёт в отметку «выполнено»: YYYY-MM-DD. */
+export function isLessonDayKey(value: unknown): value is string {
+  return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);
 }

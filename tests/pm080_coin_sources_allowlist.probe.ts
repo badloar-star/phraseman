@@ -35,8 +35,6 @@ const APPROVED_REASONS: Readonly<Record<string, readonly [Status, string]>> = {
   account_merge_in: ['active', '8T: перенос баланса при слиянии аккаунтов (не источник, пара с account_merge_out)'],
   // зачем: D195 (владелец 15.10) — старые бонусы (опыт, жемчуг, вращения) → монеты один раз на человека, только серверные поля
   legacy_bonus: ['active', 'D195: конвертация старых бонусов (functions/src/legacy_bonus_convert.ts), один раз, потолок 6000'],
-  // зачем: «Урок вместе» (условие владельца «+2 не чаще 1 раза в день на пару, только сервер»); ECONOMY.md — координатор, 0273fc93e
-  friends_lesson_together: ['active', '№43-М, владелец 21.10: «Урок вместе» +2 обоим, раз в день на пару, только сервер (friendsLessonTogetherClaim), grant'],
   // историческое: писателей в коде нет, причина остаётся в типе для чтения старых журналов
   arena_match: ['retired_history', 'Арена удалена (D54/D74/D83)'],
   arena_mastery: ['retired_history', 'Арена удалена'],
@@ -79,6 +77,9 @@ const APPROVED_WALLET_PREFIXES: Record<string, string> = {
   report: 'D109: награда за жалобу (report_reward_)',
   dailyjourney: 'D49: «Сегодня» (dailyjourney_)',
   chapterexam: 'владелец 22.10 «Начислять +40 монет»: экзамен главы Learning V2, 20+20, потолок 120 (ECONOMY.md 0273fc93e)',
+  // зачем: кнопка владельца 22.10 «А1 — строка lesson_together: да» (закон «сервер хранит, телефон решает»): «Урок вместе» +2
+  // начисляет телефон по ключу lessontogether_<40 hex>; серверная причина friends_lesson_together снята.
+  lessontogether: 'владелец 22.10, А1: «Урок вместе» +2, телефон решает (раз в день на пару — общий ключ), сервер хранит',
 };
 const prefixes = [...new Set([...policy.matchAll(/(?:\/\^|['"`]\^|startsWith\(\s*['"`])([a-z][a-z0-9]*)_/g)].map((m) => m[1]))].sort();
 for (const prefix of prefixes) {
@@ -102,6 +103,8 @@ const APPROVED_ENQUEUE_CALLERS = new Set([
   // зачем: владелец 22.10 «Начислять +40 монет» за первую сдачу экзамена главы Learning V2 — 20+20, потолок 120, ключ chapterexam_
   // (ECONOMY.md, координатор 0273fc93e)
   'app/learning_v2_chapter_exam_reward_v1.ts',
+  // зачем: «Урок вместе» +2 (кнопка владельца 22.10, А1) — клиент 8 · МОМЕНТЫ ставит начисление в очередь кошелька сам
+  'app/friends_together/lesson_together_claim.ts',
 ]);
 const walk = (dir: string, out: string[] = []): string[] => {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {

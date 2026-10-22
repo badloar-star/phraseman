@@ -56,6 +56,8 @@ const STAR_AMOUNTS = Object.freeze({
   // v7 (2026-08-29): джекпот рун из спина. Зеркала: modules/phone-state/domains/
   // economy.ts (STAR_CREDIT_AMOUNTS) и functions/src/level_spin_star_grant.ts.
   stars_2000: 2_000,
+  // зачем: «Урок вместе» +2 (владелец 22.10, А1) — телефон начисляет сам через кошелёк. Зеркала — все три в одном коммите.
+  stars_2: 2,
 } as const);
 
 /**

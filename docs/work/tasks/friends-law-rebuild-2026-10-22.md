@@ -9,6 +9,10 @@ Owner: Ядро (сервер, кошелёк); 8 · МОМЕНТЫ (клиен�
 
 «Урок вместе» и «Дуэль» работают без серверных решений о том, что получит человек. Сервер только хранит идемпотентно и проверяет целостность (кто пишет, тот ли адресат, форма записи). Помощник засчитывания Learning V2 (168afbc21) НЕ подключается.
 
+## Scope
+
+Сервер и кошелёк: `functions/src/friends_lesson_together*.ts`, `functions/src/friends_duel*.ts`, `functions/src/coin_wallet_policy.ts`, `functions/src/level_spin_star_grant.ts`, `functions/src/stars_ledger.ts`, `functions/src/index.ts`, `functions/src/account_delete.ts` + новый `functions/src/account_delete_friend_duels.ts` (замок «История остаётся, имя скрыто»), зеркала номинала `app/level_spin_star_grants.ts` и `modules/phone-state/domains/economy.ts`, проба `tests/pm080_coin_sources_allowlist.probe.ts`, сторожа замков и `docs/work/OWNER_LOCKS.md`. Клиент «Друзей» (`app/friends_together/*`) — НЕ в объёме, это 8 · МОМЕНТЫ.
+
 ## Architecture
 
 ### «Урок вместе»
@@ -43,6 +47,27 @@ Owner: Ядро (сервер, кошелёк); 8 · МОМЕНТЫ (клиен�
 
 Тесты core и callable на поддельной базе: отметка «выполнено» (повтор, чужое приглашение, истекло), кошелёк `lessontogether_` (replay, форма), ходы дуэли без вердикта, сторожа замков. Полная проверка типов functions после правки index.ts.
 
+## Исполнение, сервер и кошелёк (координатор 22.10: раскладка подтверждена)
+
+Governance-ID: TG-73C128DB475A
+
+- `coin_wallet_policy.ts`: источник `lesson_together` (префикс `lessontogether_<40 hex>`), только base, gameplay, `stars_2`, сумма 2. Дневной счётчик — только пометка в журнале (`limits_flag`), отказа нет (закон).
+- Номинал `stars_2` в трёх зеркалах: `functions/src/level_spin_star_grant.ts`, `app/level_spin_star_grants.ts`, `modules/phone-state/domains/economy.ts`.
+- `friends_lesson_together*.ts`: удалить claim (серверная сверка занятия) и добавить `friendsLessonTogetherMark` (хранит «выполнено», шлёт уведомление пригласившему).
+- `stars_ledger.ts`: причина `friends_lesson_together` удаляется (не выходила в облако). Проба PM-080 приводится к новому составу: префикс кошелька `lessontogether`; разрешённый вызывающий очереди — `app/friends_together/lesson_together_claim.ts` (клиент Моментов).
+- Дуэль: ответ на ход несёт оба хода; вердикт считают телефоны.
+- Лимит приглашений и вызовов «3 в день» на сервере пока ОСТАВЛЕН: это защита другого человека от потока пушей (как Б3 `friendsNudge`). Вопрос координатору.
+- Замок «сервер хранит, телефон решает»: сторож `functions/src/owner_lock_server_stores_friends.test.ts` + строка в `docs/work/OWNER_LOCKS.md`.
+
 ## Rollback
 
 Функции «Друзей» не выложены; флаг клиента `FRIENDS_TOGETHER_UI_ENABLED=false`. Откат — откат коммитов. Выкладка только по «да» владельца после Ревизора, вместе с «Итогом недели друга» (e8f50a9bc).
+
+Governance-ID: TG-BF01655217CE
+
+- Замок владельца 22.10 (кнопка): «Друг удалил аккаунт. Что видно в ваших общих дуэлях?» → «История остаётся, имя скрыто». Удаление аккаунта не стирает общие дуэли, а обезличивает удалённого: результаты остаются у друга, вместо ника и аватара — «Удалённый игрок».
+
+Governance-ID: TG-60DC06F5C63E
+Governance-ID: TG-40DB3E521C95
+
+- Ревизор 22.10: строка 40 OWNER_LOCKS «сервер для сохранения, а не решений» → сторож functions/src/owner_lock_server_stores_friends.test.ts; пути обоих сторожей Ядра — в KNOWN_GUARDS tests/owner_locks_registry.test.cjs (только свои хунки).

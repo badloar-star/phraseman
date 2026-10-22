@@ -42,6 +42,7 @@ import {
 import { createFirestoreAccountsV2DeletionDeps } from './accounts_v2_deletion/pipeline_firestore';
 import { purgeAccountAuthorityForLegacyIdentities } from './account_authority/account_authority_purge';
 import { swallowed } from './swallowed_error';
+import { anonymizeFriendDuelsForDeletedPlayer } from './account_delete_friend_duels';
 import { spireLadderMemberKey } from './spire_finalize_core';
 
 const REGION = 'us-central1';
@@ -225,6 +226,7 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'premium_dialog_billing', field: 'authUid', values: 'auth' },
   { collection: 'spire_task_report_reservations', field: 'stableUid', values: 'stable' },
   { collection: 'friend_pairs', field: 'uids', values: 'stable', op: 'array-contains' },
+  // зачем: страховка после шага friend_duels_anonymize (замок «История остаётся, имя скрыто») — стирает всё, что не обезличено.
   // зачем («Дуэль на 5 фраз», 22.10): дуэль хранит uid и ходы обоих игроков — стираем вместе с аккаунтом любого из них.
   { collection: 'friend_duels', field: 'uids', values: 'stable', op: 'array-contains' },
   // Free-form feedback can contain personal data. Both the stable product
@@ -1977,6 +1979,11 @@ export async function executeAccountDeletion(
     });
     await runDeleteStage(ctx, stats, 'arena_season_entries', async () => {
       for (const identity of identities) await deleteArenaSeasonEntries(db, identity, authUid, ctx, stats);
+    });
+    // ЗАМОК ВЛАДЕЛЬЦА 22.10: «Друг удалил аккаунт. Что видно в ваших общих дуэлях?» → «История остаётся, имя скрыто».
+    // зачем: ДО field_matches/collection_group_matches — те стирают friend_duels и уведомления удалённого целиком.
+    await runDeleteStage(ctx, stats, 'friend_duels_anonymize', async () => {
+      for (const identity of identities) await anonymizeFriendDuelsForDeletedPlayer(db, identity, stats);
     });
     await runDeleteStage(ctx, stats, 'field_matches', async () => {
       for (const identity of identities) {

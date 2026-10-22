@@ -127,7 +127,7 @@ function AiDialogHomeBody() {
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }} edges={scene ? ['left', 'right', 'bottom'] : undefined}>
-        <DialogsTabContent headerSlot={headerSlot} quotaInHeader />
+        <DialogsTabContent headerSlot={headerSlot} quotaInHeader sceneCatalogue={scene} />
       </SafeAreaView>
     </ScreenGradient>
   );

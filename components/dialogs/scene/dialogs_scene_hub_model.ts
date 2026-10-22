@@ -7,7 +7,8 @@
 // Собеседник и цели — подробности внутри карточки диалога («выбирается ДИАЛОГ, а не собеседник»), на сцене они только в строке «с Милой».
 // ═══════════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../../constants/i18n';
-import { dialogsSceneWhoName, type DialogsSceneDialogInfo } from './dialogs_scene_copy';
+import type { DialogsSceneCardData } from './DialogsScenePanel';
+import { dialogsSceneGoalsLabel, dialogsSceneText, dialogsSceneWhoName, type DialogsSceneDialogInfo } from './dialogs_scene_copy';
 
 export type DialogsSceneHubItem = Readonly<{
   id: string;
@@ -66,4 +67,43 @@ export function buildDialogsSceneHubModel(args: Readonly<{
       },
     },
   };
+}
+
+export type DialogsSceneCatalogueItem = DialogsSceneHubItem & Readonly<{ rankRequired: number }>;
+
+/**
+ * Карточки панели под сценой из строк каталога (эталон dialogs-scene-concepts.html v2): мир, название, «N целей · первая: …», собеседник внутри.
+ * зачем (координатор 22.10: «без новых чтений: тот же источник каталога»): только строки проекции и снимок текстов; закрытый по рангу диалог — со своей строкой «Откроется на ранге N».
+ */
+export function buildDialogsSceneCards(args: Readonly<{
+  lang: Lang;
+  items: readonly DialogsSceneCatalogueItem[];
+  worldTitle: (worldId: string) => string;
+  worldIcon: (worldId: string) => DialogsSceneCardData['worldIcon'];
+  uiCopy: (scenarioId: string) => DialogsSceneHubUiCopy | null;
+  lockedAtRank: (rank: number) => string;
+}>): readonly DialogsSceneCardData[] {
+  const [before = '', after = ''] = dialogsSceneText(args.lang, 'withWho', { who: '\u0000' }).split('\u0000');
+  return args.items.map((item) => {
+    const ui = args.uiCopy(item.id);
+    const personaKey = ui ? (Object.keys(ui.personas)[0] ?? null) : null;
+    const name = ui && personaKey ? dialogsSceneWhoName(args.lang, ui.personas[personaKey].displayName) : '';
+    const goalTexts = ui ? Object.values(ui.objectiveLabels) : [];
+    const goalsLine = goalTexts.length > 0 ? `${dialogsSceneGoalsLabel(args.lang, goalTexts.length)} · ${dialogsSceneText(args.lang, 'firstGoal', { goal: goalTexts[0] })}` : '';
+    return {
+      id: item.id,
+      worldId: item.worldId,
+      world: args.worldTitle(item.worldId),
+      worldIcon: args.worldIcon(item.worldId),
+      title: item.title,
+      goalsLine,
+      lockLine: item.status === 'locked' ? args.lockedAtRank(item.rankRequired) : null,
+      initials: name ? [name.charAt(0).toUpperCase()] : [],
+      whoBefore: name ? before : '',
+      whoName: name,
+      whoAfter: name ? after : '',
+      status: item.status === 'done' ? 'done' : item.status === 'locked' ? 'locked' : 'new',
+      ring: null,
+    } satisfies DialogsSceneCardData;
+  });
 }

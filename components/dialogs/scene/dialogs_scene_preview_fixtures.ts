@@ -91,7 +91,7 @@ export function dialogsScenePreviewCards(lang: Lang): readonly DialogsSceneCardD
     const d = D[id];
     const w = WORLD[d.world];
     return {
-      id: d.id, world: w.label, worldIcon: w.icon, title: d.title,
+      id: d.id, worldId: d.world, lockLine: null, world: w.label, worldIcon: w.icon, title: d.title,
       goalsLine: `${dialogsSceneGoalsLabel(lang, d.goals)} · ${dialogsSceneText(lang, 'firstGoal', { goal: d.first })}`,
       initials: [d.initial], whoBefore: before, whoName: d.whoInstrumental, whoAfter: after, status, ring,
     };

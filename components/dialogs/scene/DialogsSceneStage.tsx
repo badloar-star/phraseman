@@ -121,6 +121,7 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
             {copy.prog ? <Text testID="dialogs-scene-prog" style={[s.prog, { color: c.secondary }]}>{copy.prog}</Text> : null}
           </View>
         ) : null}
+        {copy.cta !== null ? (
         <View style={s.ctaRow}>
           <V2Pressable
             testID="dialogs-scene-cta"
@@ -141,6 +142,7 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
             </V2Pressable>
           ) : null}
         </View>
+        ) : null}
       </View>
     </View>
   );

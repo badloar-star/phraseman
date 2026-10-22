@@ -109,6 +109,8 @@ interface DialogsTabContentProps {
   headerSlot?: React.ReactNode;
   /** Хост сам рисует пилюлю остатка «N/30» в шапке (экран диалогов, макет hubHead). */
   quotaInHeader?: boolean;
+  /** «Сцена» Диалогов за флагом: карточки диалогов вместо секций-категорий (пробрасывается в контейнер каталога). */
+  sceneCatalogue?: boolean;
   bottomPadding?: number;
   topPadding?: number;
   onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
@@ -135,6 +137,7 @@ function dialogLockedLabel(scenario: DialogScenario, lang: Lang): string {
 export default function DialogsTabContent({
   headerSlot,
   quotaInHeader = false,
+  sceneCatalogue = false,
   bottomPadding = 34,
   topPadding = 0,
   onScroll,
@@ -181,6 +184,7 @@ export default function DialogsTabContent({
       <View style={{ paddingHorizontal: V2.screenPad }}>
         <DialogueV2CatalogueContainer
           showQuotaRow={!quotaInHeader}
+          sceneCatalogue={sceneCatalogue}
           onPressItem={onPressCatalogueItem}
         />
       </View>

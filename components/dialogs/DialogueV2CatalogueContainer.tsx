@@ -32,6 +32,7 @@ import {
 import { DialogueV2PlusTools } from './DialogueV2PlusTools';
 import { HubHeaderCollapsible } from './hub_header_collapse';
 import { DialogueV2CatalogueSkeleton } from './DialogueV2CatalogueSkeleton';
+import DialogsSceneCatalogue from './scene/DialogsSceneCatalogue';
 import { isDevDialogLanguageGateHeld } from '../../app/dev_dialog_state';
 import { getDialogueV2DoneVersion, hydrateDialogueV2DoneIds, peekDialogueV2DoneIds, subscribeDialogueV2Done } from '../../app/dialogue_v2_done_store';
 import {
@@ -104,13 +105,15 @@ export type DialogueV2CatalogueContainerProps = Readonly<{
   onPressItem: (item: DialogueV2CatalogueLearnerItem) => void;
   /** Макет hubHead: на экране диалогов пилюля «N/30» в шапке — строку над каталогом не дублируем. */
   showQuotaRow?: boolean;
+  /** зачем (координатор 22.10, «Сцена» Диалогов за флагом): вместо секций-категорий — карточки диалогов с фильтром миров из той же проекции. */
+  sceneCatalogue?: boolean;
 }>;
 
 /**
  * Owns only the V2 learner catalogue loading boundary. The callable response
  * is revalidated before rendering and no legacy dialog surface is involved.
  */
-function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: DialogueV2CatalogueContainerProps) {
+function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true, sceneCatalogue = false }: DialogueV2CatalogueContainerProps) {
   // ВРЕМЕННО (координатор 13.10, RUN hub_collapse после R12; убрать после проверки Сверкой): счётчик рендеров — при раскрытии/закрытии категории Container не должен перерисовываться (n не растёт). Только dev.
   const hubRenderCountRef = useRef(0);
   hubRenderCountRef.current += 1;
@@ -342,12 +345,16 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
   return (
     <>
       {plusTools}
-      <DialogueV2CatalogueSection
-        worlds={projection.worlds}
-        items={localizedItems}
-        labels={copy}
-        onPressItem={onPressItem}
-      />
+      {sceneCatalogue ? (
+        <DialogsSceneCatalogue worlds={projection.worlds} items={localizedItems} lockedAtRank={copy.lockedAtRank} onPressItem={onPressItem} />
+      ) : (
+        <DialogueV2CatalogueSection
+          worlds={projection.worlds}
+          items={localizedItems}
+          labels={copy}
+          onPressItem={onPressItem}
+        />
+      )}
       {freeTier && quotaRemaining !== 0 && localizedItems.some((item) => item.status === 'locked') ? (
         <DialogueV2HubLockedNote title={hubCopy.lockedNoteTitle} text={hubCopy.lockedNoteText} />
       ) : null}

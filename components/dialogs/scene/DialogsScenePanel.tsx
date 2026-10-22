@@ -17,15 +17,19 @@ import { DIALOGS_SCENE_PANEL_OVERLAP } from './DialogsSceneStage';
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
-export type DialogsSceneCardStatus = 'new' | 'current' | 'done';
+export type DialogsSceneCardStatus = 'new' | 'current' | 'done' | 'locked';
 
 export type DialogsSceneCardData = Readonly<{
   id: string;
+  /** Мир карточки — по нему работает фильтр миров. */
+  worldId: string;
   world: string;
   worldIcon: IonName;
   title: string;
-  /** Строка целей: «6 целей · первая: поздороваться». */
+  /** Строка целей: «6 целей · первая: поздороваться»; пустая — снимка целей нет, строку не рисуем. */
   goalsLine: string;
+  /** Закрытый диалог: «Откроется на ранге 3» вместо строки целей; у остальных null. */
+  lockLine: string | null;
   /** Собеседники внутри карточки: инициалы кружков и подпись «с Мариной». */
   initials: readonly string[];
   /** Подпись «с Мариной» тремя кусками: слово до имени, имя (жирным), слово после (в турецком «Marina ile»). */
@@ -46,6 +50,10 @@ export type DialogsScenePanelProps = Readonly<{
   onWorld: (id: string) => void;
   cards: readonly DialogsSceneCardData[];
   onCard: (id: string) => void;
+  /** «Показать ещё · N» под карточками; null — всё показано. */
+  more?: Readonly<{ label: string; onPress: () => void }> | null;
+  /** Панель внутри ленты (под плашками хаба): без наезда на сцену и боковых полей. */
+  inset?: boolean;
 }>;
 
 function DialogCard({ card, onPress }: Readonly<{ card: DialogsSceneCardData; onPress: () => void }>) {
@@ -58,7 +66,7 @@ function DialogCard({ card, onPress }: Readonly<{ card: DialogsSceneCardData; on
       accessibilityLabel={`${card.title}, ${card.whoBefore}${card.whoName}${card.whoAfter}`}
       onPress={onPress}
       scaleTo={0.98}
-      style={[s.card, { backgroundColor: current ? alphaHex(g.accentText, 0.16) : g.opaqueControl }]}
+      style={[s.card, { backgroundColor: current ? alphaHex(g.accentText, 0.16) : g.opaqueControl }, card.status === 'locked' ? s.cardLocked : null]}
     >
       <View style={s.cardMain}>
         <View style={s.worldRow}>
@@ -66,7 +74,8 @@ function DialogCard({ card, onPress }: Readonly<{ card: DialogsSceneCardData; on
           <Text style={[s.world, { color: g.secondary }]}>{card.world}</Text>
         </View>
         <Text style={[s.cardTitle, { color: g.text }]}>{card.title}</Text>
-        <Text style={[s.small, { color: g.secondary }]}>{card.goalsLine}</Text>
+        {card.lockLine ? <Text style={[s.small, { color: g.secondary }]}>{card.lockLine}</Text> : card.goalsLine ? <Text style={[s.small, { color: g.secondary }]}>{card.goalsLine}</Text> : null}
+        {card.whoName ? (
         <View style={s.whoRow}>
           <View style={s.avatars}>
             {card.initials.map((ch, i) => (
@@ -77,9 +86,12 @@ function DialogCard({ card, onPress }: Readonly<{ card: DialogsSceneCardData; on
           </View>
           <Text style={[s.small, { color: g.secondary, flexShrink: 1 }]} numberOfLines={2}>{card.whoBefore}<Text style={[s.bold, { color: g.text }]}>{card.whoName}</Text>{card.whoAfter}</Text>
         </View>
+        ) : null}
       </View>
       <View style={s.end}>
-        {card.status === 'done' ? (
+        {card.status === 'locked' ? (
+          <View style={[s.go, { backgroundColor: g.selected }]}><Ionicons name="lock-closed" size={16} color={g.secondary} /></View>
+        ) : card.status === 'done' ? (
           <View style={[s.ok, { backgroundColor: g.good }]}><Ionicons name="checkmark" size={15} color={g.ctaInk} /></View>
         ) : (
           <>
@@ -114,7 +126,7 @@ export const DialogsScenePlusPanel = memo(function DialogsScenePlusPanel({ rows 
 function DialogsScenePanel(p: DialogsScenePanelProps) {
   const g = useLv2Glass();
   return (
-    <View testID="dialogs-scene-panel" style={[s.panel, { backgroundColor: g.opaqueCard, boxShadow: `0 26px 50px -22px ${g.isLight ? g.shadowTint : 'rgba(0,0,0,0.62)'}` /* theme-exempt: тень панели тёмного оформления, эталон --shc */ }]}>
+    <View testID="dialogs-scene-panel" style={[s.panel, p.inset ? s.panelInset : null, { backgroundColor: g.opaqueCard, boxShadow: `0 26px 50px -22px ${g.isLight ? g.shadowTint : 'rgba(0,0,0,0.62)'}` /* theme-exempt: тень панели тёмного оформления, эталон --shc */ }]}>
       <View style={s.head}>
         <Text accessibilityRole="header" style={[s.headTitle, { color: g.text }]}>{p.title}</Text>
         <Text style={[s.headCount, { color: g.secondary }]}>{p.count}</Text>
@@ -133,6 +145,11 @@ function DialogsScenePanel(p: DialogsScenePanelProps) {
       <View style={s.cards}>
         {p.cards.map((card) => <DialogCard key={card.id} card={card} onPress={() => p.onCard(card.id)} />)}
       </View>
+      {p.more ? (
+        <V2Pressable testID="dialogs-scene-more" accessibilityRole="button" onPress={p.more.onPress} scaleTo={0.97} style={[s.more, { backgroundColor: g.opaqueControl }]}>
+          <Text style={[s.chipText, { color: g.text }]}>{p.more.label}</Text>
+        </V2Pressable>
+      ) : null}
     </View>
   );
 }
@@ -140,6 +157,9 @@ function DialogsScenePanel(p: DialogsScenePanelProps) {
 const s = StyleSheet.create({
   // зачем: панель наезжает на сцену (.dpanel margin −38 16 0) и лежит выше неё
   panel: { zIndex: 3, marginTop: -DIALOGS_SCENE_PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 28, padding: 16 },
+  panelInset: { marginTop: 16, marginHorizontal: 0 },
+  cardLocked: { opacity: 0.62 },
+  more: { height: 44, borderRadius: 22, marginTop: 12, alignItems: 'center', justifyContent: 'center' },
   head: { flexDirection: 'row', alignItems: 'baseline', gap: 8 },
   headTitle: { fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
   headCount: { marginLeft: 'auto', fontSize: 16, lineHeight: 21, fontVariant: ['tabular-nums'] },

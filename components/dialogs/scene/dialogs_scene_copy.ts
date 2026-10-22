@@ -45,6 +45,10 @@ export const DIALOGS_SCENE_COPY = {
   plusRowDialogs: ['Диалоги без лимита', 'Діалоги без ліміту', 'Unlimited dialogues', 'Diálogos sin límite', 'Diálogos sem limite', 'Hội thoại không giới hạn', 'Dialog tanpa batas', 'Sınırsız diyalog', 'Dialogi bez limitu'],
   plusRowVoice: ['Голосом без лимита', 'Голосом без ліміту', 'Unlimited voice replies', 'Por voz sin límite', 'Por voz sem limite', 'Nói bằng giọng không giới hạn', 'Suara tanpa batas', 'Sınırsız sesli yanıt', 'Głosem bez limitu'],
   plusRowLessons: ['Уроки без энергии', 'Уроки без енергії', 'Lessons without energy', 'Lecciones sin energía', 'Lições sem energia', 'Bài học không cần năng lượng', 'Pelajaran tanpa energi', 'Enerjisiz dersler', 'Lekcje bez energii'],
+  allWorlds: ['Все', 'Усі', 'All', 'Todos', 'Todos', 'Tất cả', 'Semua', 'Tümü', 'Wszystkie'],
+  showMore: ['Показать ещё', 'Показати ще', 'Show more', 'Mostrar más', 'Mostrar mais', 'Xem thêm', 'Tampilkan lebih banyak', 'Daha fazla göster', 'Pokaż więcej'],
+  noOpenTitle: ['Пока всё открытое пройдено', 'Поки все відкрите пройдено', 'Everything unlocked is done', 'Todo lo desbloqueado está hecho', 'Tudo o que está liberado foi concluído', 'Đã xong mọi hội thoại đang mở', 'Semua yang terbuka sudah selesai', 'Açık olan her şey tamamlandı', 'Wszystko, co odblokowane, ukończone'],
+  noOpenSub: ['Следующие диалоги откроются с новым рангом.', 'Наступні діалоги відкриються з новим рангом.', 'The next dialogues open with a new rank.', 'Los siguientes diálogos se abren con un nuevo rango.', 'Os próximos diálogos abrem com um novo nível.', 'Hội thoại tiếp theo sẽ mở khi bạn lên hạng mới.', 'Dialog berikutnya terbuka dengan peringkat baru.', 'Sonraki diyaloglar yeni rütbeyle açılır.', 'Kolejne dialogi odblokują się z nową rangą.'],
   voiceA11y: ['Сказать голосом', 'Сказати голосом', 'Speak', 'Hablar', 'Falar', 'Nói bằng giọng', 'Bicara', 'Sesle söyle', 'Powiedz głosem'],
 } as const satisfies Record<string, Nine>;
 
@@ -183,7 +187,8 @@ export type DialogsSceneCopy = Readonly<{
   bar: number | null;
   /** Шкала ответов: сколько из 10 делений закрашено; null — шкалы нет. */
   meterUsed: number | null;
-  cta: string;
+  /** Подпись главной кнопки; null — кнопки нет (нечего открывать: честное состояние, а не «Начать» в пустоту). */
+  cta: string | null;
   ctaIcon: IonName | null;
   ctaDisabled: boolean;
   /** Круглая кнопка рядом с главной; null — нет. */
@@ -216,6 +221,11 @@ export function buildDialogsSceneCopy(input: DialogsSceneCopyInput): DialogsScen
     : input.quotaRemaining === null ? null : { label: dialogsSceneText(lang, 'ofPair', { k: input.quotaRemaining, n: input.quotaTotal }), unlimited: false };
   const done = { ...BASE, quota };
   const voice = input.voicePerDay !== null ? ` · ${dialogsSceneText(lang, 'limitVoice', { voice: input.voicePerDay })}` : '';
+  // зачем (координатор 22.10): следующий — первый ОТКРЫТЫЙ непройденный диалог. Если его нет (всё открытое пройдено, остальное закрыто по рангу),
+  // кнопка «Начать/Продолжить» вела бы в пустоту или в закрытый диалог — рисуем честный текст без кнопки.
+  if ((state === 'first' || state === 'low' || state === 'next') && dialog === null) {
+    return { ...done, title: dialogsSceneText(lang, 'noOpenTitle'), sub: dialogsSceneText(lang, 'noOpenSub'), cta: null, ctaIcon: null };
+  }
   switch (state) {
     case 'consent':
       return { ...done, kicker: dialogsSceneText(lang, 'dialogs'), kickerIcon: 'chatbubbles-outline', title: dialogsSceneText(lang, 'consentTitle'), sub: dialogsSceneText(lang, 'consentSub'), cta: dialogsSceneText(lang, 'consentCta'), ctaIcon: null };
@@ -255,7 +265,7 @@ export function buildDialogsSceneCopy(input: DialogsSceneCopyInput): DialogsScen
       const f = input.following;
       return {
         ...done, kicker: `${task} · 1/1`, kickerIcon: 'checkmark-circle', title: dialogsSceneText(lang, 'dayDoneTitle'),
-        prog: f ? (f.who ? dialogsSceneText(lang, 'dayDoneNext', { title: f.title, with: withWhoLabel(lang, f.who) }) : f.title) : null, cta: dialogsSceneText(lang, 'dayDoneCta'),
+        prog: f ? (f.who ? dialogsSceneText(lang, 'dayDoneNext', { title: f.title, with: withWhoLabel(lang, f.who) }) : f.title) : null, cta: f ? dialogsSceneText(lang, 'dayDoneCta') : null, ctaIcon: f ? 'play' : null,
       };
     }
     case 'next': {

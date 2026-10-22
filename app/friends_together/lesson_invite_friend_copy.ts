@@ -14,7 +14,7 @@ const pick = (lang: Lang, copy: L9): string => triLang(lang, copy);
 
 /** «Алекс зовёт на занятие». */
 export function lessonInviteFriendTitle(lang: Lang, name: string): string {
-  return pick(lang, L(`${name} зовёт на занятие`, `${name} кличе на заняття`, `${name} invites you to a session`, `${name} te invita a una sesión`, `${name} te convida para uma sessão`, `${name} rủ bạn học cùng`, `${name} mengajakmu ke sesi`, `${name} seni derse çağırıyor`, `${name} zaprasza cię na zajęcia`));
+  return pick(lang, L(`${name} зовёт на занятие`, `${name} кличе на заняття`, `${name} invites you to a session`, `${name} te invita a una sesión`, `${name} te convida para uma sessão`, `${name} rủ bạn học cùng`, `${name} mengajakmu ke sesi`, `${name} seni oturuma çağırıyor`, `${name} zaprasza cię na zajęcia`));
 }
 
 /** «Урок 2 · Занятие 3. Пройди сегодня — до полуночи.» */
@@ -27,7 +27,7 @@ export function lessonInviteFriendBody(lang: Lang, lessonOrdinal: number, sessio
     `Lesson ${l} · Session ${s}. Finish it today, before midnight.`,
     `Lección ${l} · Sesión ${s}. Hazla hoy, antes de medianoche.`,
     `Lição ${l} · Sessão ${s}. Conclua hoje, antes da meia-noite.`,
-    `Bài ${l} · Phần ${s}. Học xong hôm nay, trước nửa đêm.`,
+    `Bài ${l} · Buổi ${s}. Học xong hôm nay, trước nửa đêm.`,
     `Pelajaran ${l} · Sesi ${s}. Selesaikan hari ini, sebelum tengah malam.`,
     `${l}. ders · ${s}. oturum. Bugün gece yarısından önce bitir.`,
     `Lekcja ${l} · Zajęcia ${s}. Ukończ dziś, przed północą.`,
@@ -60,7 +60,7 @@ export function lessonTogetherClaimToast(name: string, coins: number): Readonly<
     ptBr: `${who}sessão juntos · +${coins} para cada um`,
     vi: `${who}học cùng nhau · +${coins} mỗi người`,
     id: `${who}sesi bersama · +${coins} masing-masing`,
-    tr: `${who}birlikte ders · her birine +${coins}`,
+    tr: `${who}birlikte oturum · her birine +${coins}`,
     pl: `${who}zajęcia razem · +${coins} dla każdego`,
   };
 }

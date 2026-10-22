@@ -53,7 +53,10 @@ describe('кнопка «назад»: одна и в одном месте', ()
 
   it('кнопка стоит абсолютным слоем от устойчивого безопасного верха, вид — общая BackButton, своих стилей не принимает', () => {
     expect(button).toContain('useStableSafeAreaInsets()');
-    expect(button).toMatch(/position: 'absolute', top: screenBackTop\(insets\.top\), left: SCREEN_BACK_LEFT/);
+    expect(button).toMatch(/position: 'absolute', top: screenBackTop\(safeTop\), left: SCREEN_BACK_LEFT/);
+    // экран стека — от верха экрана; страница вкладки — от страницы (под отступом оболочки или своя зона часов у полноэкранной)
+    expect(button).toContain('const safeTop = isTabPage ? tabBleed : insets.top;');
+    expect(read('app/TabSlider.tsx')).toContain('<TabPageContext.Provider value>');
     expect(button).toContain('<BackButton');
     expect(button).toContain('size={SCREEN_BACK_SIZE}');
     expect(button).toContain('safeRouterBack(router, fallback)');
@@ -71,7 +74,7 @@ describe('кнопка «назад»: одна и в одном месте', ()
     expect(own.filter((rel) => !allowed.has(rel))).toEqual([]);
     // Переведённый файл обязан уйти из базы (иначе база не уменьшается и долг не виден).
     expect(baseline.files.filter((rel) => !own.includes(rel))).toEqual([]);
-    expect(baseline.files.length).toBeLessThanOrEqual(80); // потолок 22.10 — только вниз
+    expect(baseline.files.length).toBeLessThanOrEqual(78); // потолок — только вниз (22.10: 80 → 78 — «Сегодня», теория)
   });
 
   it('экраны, взявшие ScreenBackButton, не держат рядом свою кнопку «назад»', () => {

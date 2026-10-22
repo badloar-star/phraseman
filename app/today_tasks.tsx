@@ -30,7 +30,7 @@ import { dismissToTabRoute, safeRouterBack } from './navigation_back';
 import { noteBackDecision, noteBackStep } from './back_tap_probe';
 import { filterTodayTasksForTarget } from './today_task_surface_filter';
 import { peekTodayRingFrom, readTodayRingFrom, rememberTodayRingSeen, type TodayRingProgress } from './today_ring_seen';
-import BackButton from '../components/v2/BackButton';
+import ScreenBackButton, { SCREEN_BACK_SIZE } from '../components/v2/ScreenBackButton';
 import TodayScene from '../components/home/v2/today_scene/TodayScene';
 import { TODAY_SCENE_V2_ENABLED } from '../components/home/v2/today_scene/today_scene_flag';
 import type { TodayScenePollRow } from '../components/home/v2/today_scene/TodaySceneView';
@@ -197,13 +197,8 @@ export default function TodayTasksScreen() {
     <View testID="today-tasks-screen" style={[s.root, { backgroundColor: p.bg }]}>
       <SafeAreaView style={s.root} edges={['top']}>
         <View style={s.header}>
-          {/* зачем (Темы 17.10): круг «назад» на opaqueControl сливался со страницей (1,00 на светлых, 1,25 на тёмных при пороге 1,5) — общая кнопка BackButton на buttonFill (≥ 1,71) */}
-          <BackButton
-            testID="today-tasks-back"
-            screen="today_tasks"
-            onPress={() => { noteBackDecision('today_tasks → home'); safeRouterBack(router, '/(tabs)/home' as never); }} // зачем ([BACK-BTN] 18.10): после tap — решение, «прибыли» пишет Главная на фокусе
-            accessibilityLabel={backLabel}
-          />
+          {/* зачем (закон владельца 22.10: «назад везде в одном месте»): сама кнопка — общая ScreenBackButton слоем поверх экрана; здесь её место в строке, чтобы заголовок стоял справа от неё */}
+          <View style={s.backSlot} />
           <Text accessibilityRole="header" numberOfLines={1} style={[s.title, { color: p.text }]}>{title}</Text>
         </View>
         <ScrollView contentContainerStyle={s.content} decelerationRate="fast">
@@ -220,6 +215,12 @@ export default function TodayTasksScreen() {
           <TodayActivityHistory dayKey={todayTasks.dayKey} tasks={tasks} />
         </ScrollView>
       </SafeAreaView>
+      <ScreenBackButton
+        testID="today-tasks-back"
+        screen="today_tasks"
+        onPress={() => { noteBackDecision('today_tasks → home'); safeRouterBack(router, '/(tabs)/home' as never); }} // зачем ([BACK-BTN] 18.10): после тапа — решение «назад» в журнал, вкладка Главной как запасной путь
+        accessibilityLabel={backLabel}
+      />
       {pollSheet}
     </View>
   );
@@ -227,7 +228,9 @@ export default function TodayTasksScreen() {
 
 const s = StyleSheet.create({
   root: { flex: 1 },
-  header: { height: 60, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center', gap: V2.gap },
+  // зачем (закон «назад в одном месте»): строка шапки высотой с кнопку — заголовок по её центру (как .topbar макета: кнопка .rb.l 48)
+  header: { height: SCREEN_BACK_SIZE, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center', gap: V2.gap },
+  backSlot: { width: SCREEN_BACK_SIZE, height: SCREEN_BACK_SIZE },
   // зачем (макет Б, сверка Макетов 837f89983 п.3): заголовок экрана «Сегодня» 28/34 (общий V2_TYPE.title — 24/30), вес и трекинг — общие
   title: { flex: 1, ...V2_TYPE.title, fontSize: 28, lineHeight: 34 },
   content: { paddingHorizontal: V2.screenPad - 6, paddingTop: 8, paddingBottom: 32, gap: 8 },

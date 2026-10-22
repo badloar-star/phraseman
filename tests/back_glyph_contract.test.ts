@@ -59,7 +59,8 @@ describe('значок «назад»: один контур — как в ма�
     expect(btn).toContain('<BackGlyph size={22} color={g.text} />');
     // Темы 17.10: круг на p.control сливался со страницей (1,00 на светлых, 1,25 на тёмных при пороге 1,5)
     const today = read('app/today_tasks.tsx');
-    expect(today).toContain('<BackButton');
+    // 22.10 (закон владельца «назад в одном месте»): «Сегодня» берёт общую ScreenBackButton — внутри неё та же BackButton
+    expect(today).toContain('<ScreenBackButton');
     expect(today).toContain('testID="today-tasks-back"');
     expect(today).not.toContain('backgroundColor: p.control');
   });

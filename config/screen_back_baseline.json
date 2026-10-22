@@ -50,7 +50,6 @@
     "app/streak_stats.tsx",
     "app/support_report.tsx",
     "app/survey_screen.tsx",
-    "app/today_tasks.tsx",
     "app/year_activity.tsx",
     "components/ActivityHeatmap365.tsx",
     "components/AiDialogBriefingScreen.tsx",
@@ -78,7 +77,6 @@
     "components/streak/StreakStagesModal.tsx",
     "components/survey/SurveyRewardPanel.tsx",
     "components/survey/SurveySheetModal.tsx",
-    "components/theory/TheoryLessonView.tsx",
     "components/v2/V2Kit.tsx",
     "components/youtube/YoutubeChannelHeader.tsx"
   ]

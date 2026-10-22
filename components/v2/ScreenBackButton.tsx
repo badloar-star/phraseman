@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 
 import { safeRouterBack } from '../../app/navigation_back';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { useIsTabPage, useTabTopBleedInset } from '../tab_top_bleed';
 import BackButton from './BackButton';
 
 /**
@@ -49,6 +50,11 @@ type Props = Readonly<{
 function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibilityLabel }: Props) {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
+  const isTabPage = useIsTabPage();
+  const tabBleed = useTabTopBleedInset();
+  // зачем: экран стека начинается от верха экрана → безопасный верх = insets.top; страница вкладки уже под отступом оболочки → 0,
+  // а полноэкранная страница вкладки рисуется от верха → её зона часов (tabBleed). Иначе на вкладках отступ сложился бы дважды.
+  const safeTop = isTabPage ? tabBleed : insets.top;
   const handlePress = useCallback(() => {
     if (onPress) { onPress(); return; }
     safeRouterBack(router, fallback);
@@ -56,7 +62,7 @@ function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibility
   return (
     <View
       pointerEvents="box-none"
-      style={{ position: 'absolute', top: screenBackTop(insets.top), left: SCREEN_BACK_LEFT, zIndex: 40 }}
+      style={{ position: 'absolute', top: screenBackTop(safeTop), left: SCREEN_BACK_LEFT, zIndex: 40 }}
     >
       <BackButton
         screen={screen}

@@ -12,7 +12,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useScreen } from '../hooks/use-screen';
-import { TabTopBleedContext } from '../components/tab_top_bleed';
+import { TabPageContext, TabTopBleedContext } from '../components/tab_top_bleed';
 import { tabSwipeLocked } from './tabSwipeLock';
 
 const TAB_SWIPE_ACTIVE_OFFSET_X = 22;
@@ -185,7 +185,7 @@ export default function TabSlider({
                 accessibilityElementsHidden={i !== activeIndex}
                 importantForAccessibility={i === activeIndex ? 'auto' : 'no-hide-descendants'}
               >
-                <TabTopBleedContext.Provider value={fullBleed ? pageTopInset : 0}>{child}</TabTopBleedContext.Provider>
+                <TabPageContext.Provider value><TabTopBleedContext.Provider value={fullBleed ? pageTopInset : 0}>{child}</TabTopBleedContext.Provider></TabPageContext.Provider>
               </View>
             );
           })}

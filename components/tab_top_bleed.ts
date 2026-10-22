@@ -12,3 +12,11 @@ export const TabTopBleedContext = createContext<number>(0);
 export function useTabTopBleedInset(): number {
   return useContext(TabTopBleedContext);
 }
+
+// зачем (закон владельца 22.10: «кнопка назад везде в одном месте»): 0 выше значит и «страница под отступом оболочки», и «экран вне
+// вкладок» — абсолютному слою (ScreenBackButton) их нужно различать: экран стека начинается от верха экрана, страница вкладки — нет.
+export const TabPageContext = createContext<boolean>(false);
+
+export function useIsTabPage(): boolean {
+  return useContext(TabPageContext);
+}

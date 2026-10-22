@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-52:word:repay",
+    "correctText": "repay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i01",
+    "correctText": "I need to repay you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i02",
+    "correctText": "I need to repay you.",
+    "correctResponseId": "en:lesson-21:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i03",
+    "correctText": "to repay",
+    "correctResponseId": "en:lesson-21:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:word:overpay",
+    "correctText": "overpay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i04",
+    "correctText": "I do not want to overpay.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i05",
+    "correctText": "I do not want to overpay.",
+    "correctResponseId": "en:lesson-21:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i06",
+    "correctText": "to overpay",
+    "correctResponseId": "en:lesson-21:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:word:split-the-cost",
+    "correctText": "split the cost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i07",
+    "correctText": "I want to split the cost with you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i08",
+    "correctText": "I want to split the cost with you.",
+    "correctResponseId": "en:lesson-21:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i09",
+    "correctText": "to split",
+    "correctResponseId": "en:lesson-21:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:word:pay-my-share",
+    "correctText": "pay my share",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i10",
+    "correctText": "I need to pay my share.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i11",
+    "correctText": "I need to pay my share.",
+    "correctResponseId": "en:lesson-21:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i12",
+    "correctText": "to pay",
+    "correctResponseId": "en:lesson-21:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i13",
+    "correctText": "en:lesson-21:session-52:i13:p1=repay\nen:lesson-21:session-52:i13:p2=overpay\nen:lesson-21:session-52:i13:p3=split the cost\nen:lesson-21:session-52:i13:p4=pay my share",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i16",
+    "correctText": "I want to repay you today.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-52:i17",
+    "correctText": "I want to pay my share now.",
+    "correctResponseId": null
+  }
+]

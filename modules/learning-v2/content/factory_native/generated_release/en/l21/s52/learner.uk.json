@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-52:word:repay",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — repay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:word:repay:audio"
+      ],
+      "accessibilityLabel": "Картка слова — repay",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:word:repay:audio",
+          "transcript": "repay"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-52:word:repay:r1",
+            "targetText": "repay",
+            "meaningByLocale": {
+              "ru": "вернуть долг.",
+              "uk": "повернути борг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "repay",
+          "definitionByLocale": {
+            "ru": "вернуть долг.",
+            "uk": "повернути борг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібно повернути тобі борг».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібно повернути тобі борг».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need to repay you.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно вернуть тебе долг».",
+          "uk": "Скажіть: «Мені потрібно повернути тобі борг»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "repay",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-52:i02:r1",
+          "text": "I need to repay you."
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i02:r2",
+          "text": "We need to repay you."
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i02:r3",
+          "text": "They need to repay you."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:i02:audio",
+          "transcript": "I need to repay you."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-52:i02:r1",
+            "targetText": "I need to repay you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i02:r2",
+            "targetText": "We need to repay you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i02:r3",
+            "targetText": "They need to repay you.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to repay you.",
+              "uk": "У записі звучить I need to repay you."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to repay you.",
+              "uk": "У записі звучить I need to repay you."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-52:i03:r1",
+          "text": "to repay"
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i03:r2",
+          "text": "to repaying"
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i03:r3",
+          "text": "for repay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I need ___ you.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-52:i03:r1",
+            "text": "to repay"
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i03:r2",
+            "text": "to repaying"
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i03:r3",
+            "text": "for repay"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:word:overpay",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — overpay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:word:overpay:audio"
+      ],
+      "accessibilityLabel": "Картка слова — overpay",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:word:overpay:audio",
+          "transcript": "overpay"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-52:word:overpay:r1",
+            "targetText": "overpay",
+            "meaningByLocale": {
+              "ru": "переплатить.",
+              "uk": "переплатити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overpay",
+          "definitionByLocale": {
+            "ru": "переплатить.",
+            "uk": "переплатити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу переплатити».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу переплатити».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to overpay.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу переплатить».",
+          "uk": "Скажіть: «Я не хочу переплатити»."
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "overpay"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-52:i05:r1",
+          "text": "I do not want to overpay."
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i05:r2",
+          "text": "We do not want to overpay."
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i05:r3",
+          "text": "They do not want to overpay."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:i05:audio",
+          "transcript": "I do not want to overpay."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-52:i05:r1",
+            "targetText": "I do not want to overpay.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i05:r2",
+            "targetText": "We do not want to overpay.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i05:r3",
+            "targetText": "They do not want to overpay.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to overpay.",
+              "uk": "У записі звучить I do not want to overpay."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to overpay.",
+              "uk": "У записі звучить I do not want to overpay."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-52:i06:r1",
+          "text": "to overpay"
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i06:r2",
+          "text": "to overpaying"
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i06:r3",
+          "text": "for overpay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I do not want ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-52:i06:r1",
+            "text": "to overpay"
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i06:r2",
+            "text": "to overpaying"
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i06:r3",
+            "text": "for overpay"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:word:split-the-cost",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — split the cost",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:word:split-the-cost:audio"
+      ],
+      "accessibilityLabel": "Картка слова — split the cost",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:word:split-the-cost:audio",
+          "transcript": "split the cost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-52:word:split-the-cost:r1",
+            "targetText": "split the cost",
+            "meaningByLocale": {
+              "ru": "разделить расходы.",
+              "uk": "розділити витрати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "split the cost",
+          "definitionByLocale": {
+            "ru": "разделить расходы.",
+            "uk": "розділити витрати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу розділити з тобою витрати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу розділити з тобою витрати».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to split the cost with you.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу разделить с тобой расходы».",
+          "uk": "Скажіть: «Я хочу розділити з тобою витрати»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "split",
+          "the",
+          "cost",
+          "with",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-52:i08:r1",
+          "text": "I want to split the cost with you."
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i08:r2",
+          "text": "We want to split the cost with you."
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i08:r3",
+          "text": "They want to split the cost with you."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:i08:audio",
+          "transcript": "I want to split the cost with you."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-52:i08:r1",
+            "targetText": "I want to split the cost with you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i08:r2",
+            "targetText": "We want to split the cost with you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i08:r3",
+            "targetText": "They want to split the cost with you.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to split the cost with you.",
+              "uk": "У записі звучить I want to split the cost with you."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to split the cost with you.",
+              "uk": "У записі звучить I want to split the cost with you."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-52:i09:r1",
+          "text": "to split"
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i09:r2",
+          "text": "to splitting"
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i09:r3",
+          "text": "for split"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ the cost with you.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-52:i09:r1",
+            "text": "to split"
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i09:r2",
+            "text": "to splitting"
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i09:r3",
+            "text": "for split"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:word:pay-my-share",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pay my share",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:word:pay-my-share:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pay my share",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:word:pay-my-share:audio",
+          "transcript": "pay my share"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-52:word:pay-my-share:r1",
+            "targetText": "pay my share",
+            "meaningByLocale": {
+              "ru": "заплатить свою долю.",
+              "uk": "заплатити свою частку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pay my share",
+          "definitionByLocale": {
+            "ru": "заплатить свою долю.",
+            "uk": "заплатити свою частку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібно заплатити свою частку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібно заплатити свою частку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need to pay my share.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно заплатить свою долю».",
+          "uk": "Скажіть: «Мені потрібно заплатити свою частку»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "pay",
+          "my",
+          "share"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-52:i11:r1",
+          "text": "I need to pay my share."
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i11:r2",
+          "text": "We need to pay our share."
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i11:r3",
+          "text": "They need to pay their share."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:i11:audio",
+          "transcript": "I need to pay my share."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-52:i11:r1",
+            "targetText": "I need to pay my share.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i11:r2",
+            "targetText": "We need to pay our share.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i11:r3",
+            "targetText": "They need to pay their share.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to pay my share.",
+              "uk": "У записі звучить I need to pay my share."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to pay my share.",
+              "uk": "У записі звучить I need to pay my share."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-52:i12:r1",
+          "text": "to pay"
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i12:r2",
+          "text": "to paying"
+        },
+        {
+          "responseId": "en:lesson-21:session-52:i12:r3",
+          "text": "for pay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I need ___ my share.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-52:i12:r1",
+            "text": "to pay"
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i12:r2",
+            "text": "to paying"
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i12:r3",
+            "text": "for pay"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-52:i13:p1",
+            "target": "repay",
+            "meaningByLocale": {
+              "ru": "вернуть долг",
+              "uk": "повернути борг"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-52:i13:p2",
+            "target": "overpay",
+            "meaningByLocale": {
+              "ru": "переплатить",
+              "uk": "переплатити"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-52:i13:p3",
+            "target": "split the cost",
+            "meaningByLocale": {
+              "ru": "разделить расходы",
+              "uk": "розділити витрати"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-52:i13:p4",
+            "target": "pay my share",
+            "meaningByLocale": {
+              "ru": "заплатить свою долю",
+              "uk": "заплатити свою частку"
+            }
+          }
+        ],
+        "leftColumn": [
+          "repay",
+          "overpay",
+          "split the cost",
+          "pay my share"
+        ],
+        "rightColumn": [
+          "повернути борг",
+          "переплатити",
+          "розділити витрати",
+          "заплатити свою частку"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я хочу повернути тобі борг сьогодні»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я хочу повернути тобі борг сьогодні»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:i16:audio",
+          "transcript": "I want to repay you today."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to repay you today.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-52:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я хочу заплатити свою частку зараз»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я хочу заплатити свою частку зараз»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-52:i17:audio",
+          "transcript": "I want to pay my share now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to pay my share now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aec6c2729b28f5d68342431bbafe0544799713fc1fee4a4897db1e6b4301926f"
+}

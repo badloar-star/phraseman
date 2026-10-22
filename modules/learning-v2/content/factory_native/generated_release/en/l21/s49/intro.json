@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "want / need + to-infinitive",
+    "uk": "want / need + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Застегнуть пальто",
+        "uk": "Застебнути пальто"
+      },
+      "bodyByLocale": {
+        "ru": "Button up — застегнуть одежду на пуговицы. Это противоположность знакомого unbutton — расстегнуть пуговицы. Для молнии уже есть другое выражение: zip up. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Button up — застебнути одяг на ґудзики. Це протилежність знайомого unbutton — розстебнути ґудзики. Для блискавки вже є інший вираз: zip up. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-49:intro1:r1",
+              "text": "I need to button up my coat."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro1:r2",
+              "text": "I need to buttoning up my coat."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro1:r3",
+              "text": "I need for button up my coat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-49:intro1:r1",
+              "text": "I need to button up my coat."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro1:r2",
+              "text": "I need to buttoning up my coat."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro1:r3",
+              "text": "I need for button up my coat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одеться тепло",
+        "uk": "Вдягнутися тепло"
+      },
+      "bodyByLocale": {
+        "ru": "Dress warmly — тепло одеться. Wear layers — надеть несколько слоёв одежды, например футболку, свитер и куртку. Layers здесь — слои одежды. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Dress warmly — тепло вдягнутися. Wear layers — надягнути кілька шарів одягу, наприклад футболку, светр і куртку. Layers тут — шари одягу. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-49:intro2:r1",
+              "text": "I want to dress warmly."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro2:r2",
+              "text": "I want to dressing warmly."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro2:r3",
+              "text": "I want for dress warmly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-49:intro2:r1",
+              "text": "I want to dress warmly."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro2:r2",
+              "text": "I want to dressing warmly."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro2:r3",
+              "text": "I want for dress warmly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Переодеться",
+        "uk": "Переодягнутися"
+      },
+      "bodyByLocale": {
+        "ru": "Change into — переодеться в другую одежду. После into называем, во что переодеваемся: change into dry clothes — переодеться в сухую одежду. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Change into — переодягнутися в інший одяг. Після into називаємо, у що переодягаємося: change into dry clothes — переодягнутися в сухий одяг. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-49:intro3:r1",
+              "text": "I need to change into dry clothes."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro3:r2",
+              "text": "I need to changing into dry clothes."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro3:r3",
+              "text": "I need for change into dry clothes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-49:intro3:r1",
+              "text": "I need to change into dry clothes."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro3:r2",
+              "text": "I need to changing into dry clothes."
+            },
+            {
+              "responseId": "en:lesson-21:session-49:intro3:r3",
+              "text": "I need for change into dry clothes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5d71c2b1ab48fbbbfd985670ef84d685f9a1840cafe059c9318e5f9b169794f6"
+}

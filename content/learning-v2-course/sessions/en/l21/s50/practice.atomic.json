@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-50",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-50:word:take-a-day-off",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — take a day off",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:word:take-a-day-off:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — take a day off",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:word:take-a-day-off:audio",
+            "transcript": "take a day off"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:word:take-a-day-off:r1",
+              "targetText": "take a day off",
+              "meaningByLocale": {
+                "ru": "взять выходной.",
+                "uk": "взяти вихідний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take a day off",
+            "definitionByLocale": {
+              "ru": "взять выходной.",
+              "uk": "взяти вихідний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу взять выходной».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу взять выходной».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to take a day off.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу взять выходной».",
+            "uk": "Скажіть: «Я хочу взяти вихідний»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "take",
+            "a",
+            "day",
+            "off"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i02:r1",
+            "text": "I want to take a day off."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i02:r2",
+            "text": "We want to take a day off."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i02:r3",
+            "text": "They want to take a day off."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i02:audio",
+            "transcript": "I want to take a day off."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:i02:r1",
+              "targetText": "I want to take a day off.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i02:r2",
+              "targetText": "We want to take a day off.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i02:r3",
+              "targetText": "They want to take a day off.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to take a day off.",
+                "uk": "У записі звучить I want to take a day off."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to take a day off.",
+                "uk": "У записі звучить I want to take a day off."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i03:r1",
+            "text": "to take"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i03:r2",
+            "text": "to taking"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i03:r3",
+            "text": "for take"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ a day off.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-50:i03:r1",
+              "text": "to take"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i03:r2",
+              "text": "to taking"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i03:r3",
+              "text": "for take"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:word:work-overtime",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — work overtime",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:word:work-overtime:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — work overtime",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:word:work-overtime:audio",
+            "transcript": "work overtime"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:word:work-overtime:r1",
+              "targetText": "work overtime",
+              "meaningByLocale": {
+                "ru": "работать сверхурочно.",
+                "uk": "працювати понаднормово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "work overtime",
+            "definitionByLocale": {
+              "ru": "работать сверхурочно.",
+              "uk": "працювати понаднормово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я не хочу работать сверхурочно сегодня вечером».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я не хочу работать сверхурочно сегодня вечером».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not want to work overtime tonight.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я не хочу работать сверхурочно сегодня вечером».",
+            "uk": "Скажіть: «Я не хочу працювати понаднормово сьогодні ввечері»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "want",
+            "to",
+            "work",
+            "overtime",
+            "tonight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i05:r1",
+            "text": "I do not want to work overtime tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i05:r2",
+            "text": "We do not want to work overtime tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i05:r3",
+            "text": "They do not want to work overtime tonight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i05:audio",
+            "transcript": "I do not want to work overtime tonight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:i05:r1",
+              "targetText": "I do not want to work overtime tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i05:r2",
+              "targetText": "We do not want to work overtime tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i05:r3",
+              "targetText": "They do not want to work overtime tonight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to work overtime tonight.",
+                "uk": "У записі звучить I do not want to work overtime tonight."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to work overtime tonight.",
+                "uk": "У записі звучить I do not want to work overtime tonight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i06:r1",
+            "text": "to work"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i06:r2",
+            "text": "to working"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i06:r3",
+            "text": "for work"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I do not want ___ overtime tonight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-50:i06:r1",
+              "text": "to work"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i06:r2",
+              "text": "to working"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i06:r3",
+              "text": "for work"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:word:call-in-sick",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — call in sick",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:word:call-in-sick:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — call in sick",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:word:call-in-sick:audio",
+            "transcript": "call in sick"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:word:call-in-sick:r1",
+              "targetText": "call in sick",
+              "meaningByLocale": {
+                "ru": "сообщить на работу о болезни.",
+                "uk": "повідомити на роботу про хворобу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "call in sick",
+            "definitionByLocale": {
+              "ru": "сообщить на работу о болезни.",
+              "uk": "повідомити на роботу про хворобу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мне нужно сообщить на работу, что я заболел».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мне нужно сообщить на работу, что я заболел».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need to call in sick.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно сообщить на работу, что я заболел».",
+            "uk": "Скажіть: «Мені потрібно повідомити на роботу, що я захворів»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "to",
+            "call",
+            "in",
+            "sick"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i08:r1",
+            "text": "I need to call in sick."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i08:r2",
+            "text": "We need to call in sick."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i08:r3",
+            "text": "They need to call in sick."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i08:audio",
+            "transcript": "I need to call in sick."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:i08:r1",
+              "targetText": "I need to call in sick.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i08:r2",
+              "targetText": "We need to call in sick.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i08:r3",
+              "targetText": "They need to call in sick.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to call in sick.",
+                "uk": "У записі звучить I need to call in sick."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to call in sick.",
+                "uk": "У записі звучить I need to call in sick."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i09:r1",
+            "text": "to call"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i09:r2",
+            "text": "to calling"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i09:r3",
+            "text": "for call"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I need ___ in sick.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-50:i09:r1",
+              "text": "to call"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i09:r2",
+              "text": "to calling"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i09:r3",
+              "text": "for call"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:word:swap-shifts",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — swap shifts",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:word:swap-shifts:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — swap shifts",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:word:swap-shifts:audio",
+            "transcript": "swap shifts"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:word:swap-shifts:r1",
+              "targetText": "swap shifts",
+              "meaningByLocale": {
+                "ru": "поменяться сменами.",
+                "uk": "помінятися змінами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swap shifts",
+            "definitionByLocale": {
+              "ru": "поменяться сменами.",
+              "uk": "помінятися змінами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу поменяться с тобой сменами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу поменяться с тобой сменами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to swap shifts with you.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу поменяться с тобой сменами».",
+            "uk": "Скажіть: «Я хочу помінятися з тобою змінами»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "swap",
+            "shifts",
+            "with",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i11:r1",
+            "text": "I want to swap shifts with you."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i11:r2",
+            "text": "We want to swap shifts with you."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i11:r3",
+            "text": "They want to swap shifts with you."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i11:audio",
+            "transcript": "I want to swap shifts with you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:i11:r1",
+              "targetText": "I want to swap shifts with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i11:r2",
+              "targetText": "We want to swap shifts with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i11:r3",
+              "targetText": "They want to swap shifts with you.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to swap shifts with you.",
+                "uk": "У записі звучить I want to swap shifts with you."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to swap shifts with you.",
+                "uk": "У записі звучить I want to swap shifts with you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i12:r1",
+            "text": "to swap"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i12:r2",
+            "text": "to swapping"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i12:r3",
+            "text": "for swap"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ shifts with you.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-50:i12:r1",
+              "text": "to swap"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i12:r2",
+              "text": "to swapping"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i12:r3",
+              "text": "for swap"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-50:i13:p1",
+              "target": "take a day off",
+              "meaningByLocale": {
+                "ru": "взять выходной",
+                "uk": "взяти вихідний"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-50:i13:p2",
+              "target": "work overtime",
+              "meaningByLocale": {
+                "ru": "работать сверхурочно",
+                "uk": "працювати понаднормово"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-50:i13:p3",
+              "target": "call in sick",
+              "meaningByLocale": {
+                "ru": "сообщить на работу о болезни",
+                "uk": "повідомити на роботу про хворобу"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-50:i13:p4",
+              "target": "swap shifts",
+              "meaningByLocale": {
+                "ru": "поменяться сменами",
+                "uk": "помінятися змінами"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take a day off",
+            "work overtime",
+            "call in sick",
+            "swap shifts"
+          ],
+          "rightColumn": [
+            "взять выходной",
+            "работать сверхурочно",
+            "сообщить на работу о болезни",
+            "поменяться сменами"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: попросить проверить",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: попросить проверить",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: общение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: общение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мне нужно взять выходной»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мне нужно взять выходной»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i16:audio",
+            "transcript": "I need to take a day off."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to take a day off.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я хочу поменяться сменами с Анной»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я хочу поменяться сменами с Анной»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i17:audio",
+            "transcript": "I want to swap shifts with Anna."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to swap shifts with Anna.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-50:word:take-a-day-off",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — take a day off",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:word:take-a-day-off:audio"
+        ],
+        "accessibilityLabel": "Картка слова — take a day off",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:word:take-a-day-off:audio",
+            "transcript": "take a day off"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:word:take-a-day-off:r1",
+              "targetText": "take a day off",
+              "meaningByLocale": {
+                "ru": "взять выходной.",
+                "uk": "взяти вихідний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take a day off",
+            "definitionByLocale": {
+              "ru": "взять выходной.",
+              "uk": "взяти вихідний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу взяти вихідний».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу взяти вихідний».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to take a day off.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу взять выходной».",
+            "uk": "Скажіть: «Я хочу взяти вихідний»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "take",
+            "a",
+            "day",
+            "off"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i02:r1",
+            "text": "I want to take a day off."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i02:r2",
+            "text": "We want to take a day off."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i02:r3",
+            "text": "They want to take a day off."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i02:audio",
+            "transcript": "I want to take a day off."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:i02:r1",
+              "targetText": "I want to take a day off.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i02:r2",
+              "targetText": "We want to take a day off.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i02:r3",
+              "targetText": "They want to take a day off.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to take a day off.",
+                "uk": "У записі звучить I want to take a day off."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to take a day off.",
+                "uk": "У записі звучить I want to take a day off."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i03:r1",
+            "text": "to take"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i03:r2",
+            "text": "to taking"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i03:r3",
+            "text": "for take"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ a day off.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-50:i03:r1",
+              "text": "to take"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i03:r2",
+              "text": "to taking"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i03:r3",
+              "text": "for take"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:word:work-overtime",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — work overtime",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:word:work-overtime:audio"
+        ],
+        "accessibilityLabel": "Картка слова — work overtime",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:word:work-overtime:audio",
+            "transcript": "work overtime"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:word:work-overtime:r1",
+              "targetText": "work overtime",
+              "meaningByLocale": {
+                "ru": "работать сверхурочно.",
+                "uk": "працювати понаднормово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "work overtime",
+            "definitionByLocale": {
+              "ru": "работать сверхурочно.",
+              "uk": "працювати понаднормово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я не хочу працювати понаднормово сьогодні ввечері».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я не хочу працювати понаднормово сьогодні ввечері».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not want to work overtime tonight.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я не хочу работать сверхурочно сегодня вечером».",
+            "uk": "Скажіть: «Я не хочу працювати понаднормово сьогодні ввечері»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "want",
+            "to",
+            "work",
+            "overtime",
+            "tonight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i05:r1",
+            "text": "I do not want to work overtime tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i05:r2",
+            "text": "We do not want to work overtime tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i05:r3",
+            "text": "They do not want to work overtime tonight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i05:audio",
+            "transcript": "I do not want to work overtime tonight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:i05:r1",
+              "targetText": "I do not want to work overtime tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i05:r2",
+              "targetText": "We do not want to work overtime tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i05:r3",
+              "targetText": "They do not want to work overtime tonight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to work overtime tonight.",
+                "uk": "У записі звучить I do not want to work overtime tonight."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to work overtime tonight.",
+                "uk": "У записі звучить I do not want to work overtime tonight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i06:r1",
+            "text": "to work"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i06:r2",
+            "text": "to working"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i06:r3",
+            "text": "for work"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I do not want ___ overtime tonight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-50:i06:r1",
+              "text": "to work"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i06:r2",
+              "text": "to working"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i06:r3",
+              "text": "for work"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:word:call-in-sick",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — call in sick",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:word:call-in-sick:audio"
+        ],
+        "accessibilityLabel": "Картка слова — call in sick",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:word:call-in-sick:audio",
+            "transcript": "call in sick"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:word:call-in-sick:r1",
+              "targetText": "call in sick",
+              "meaningByLocale": {
+                "ru": "сообщить на работу о болезни.",
+                "uk": "повідомити на роботу про хворобу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "call in sick",
+            "definitionByLocale": {
+              "ru": "сообщить на работу о болезни.",
+              "uk": "повідомити на роботу про хворобу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Мені потрібно повідомити на роботу, що я захворів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Мені потрібно повідомити на роботу, що я захворів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need to call in sick.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно сообщить на работу, что я заболел».",
+            "uk": "Скажіть: «Мені потрібно повідомити на роботу, що я захворів»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "to",
+            "call",
+            "in",
+            "sick"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i08:r1",
+            "text": "I need to call in sick."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i08:r2",
+            "text": "We need to call in sick."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i08:r3",
+            "text": "They need to call in sick."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i08:audio",
+            "transcript": "I need to call in sick."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:i08:r1",
+              "targetText": "I need to call in sick.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i08:r2",
+              "targetText": "We need to call in sick.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i08:r3",
+              "targetText": "They need to call in sick.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to call in sick.",
+                "uk": "У записі звучить I need to call in sick."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to call in sick.",
+                "uk": "У записі звучить I need to call in sick."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i09:r1",
+            "text": "to call"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i09:r2",
+            "text": "to calling"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i09:r3",
+            "text": "for call"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I need ___ in sick.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-50:i09:r1",
+              "text": "to call"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i09:r2",
+              "text": "to calling"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i09:r3",
+              "text": "for call"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:word:swap-shifts",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — swap shifts",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:word:swap-shifts:audio"
+        ],
+        "accessibilityLabel": "Картка слова — swap shifts",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:word:swap-shifts:audio",
+            "transcript": "swap shifts"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:word:swap-shifts:r1",
+              "targetText": "swap shifts",
+              "meaningByLocale": {
+                "ru": "поменяться сменами.",
+                "uk": "помінятися змінами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swap shifts",
+            "definitionByLocale": {
+              "ru": "поменяться сменами.",
+              "uk": "помінятися змінами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу помінятися з тобою змінами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу помінятися з тобою змінами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to swap shifts with you.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу поменяться с тобой сменами».",
+            "uk": "Скажіть: «Я хочу помінятися з тобою змінами»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "swap",
+            "shifts",
+            "with",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i11:r1",
+            "text": "I want to swap shifts with you."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i11:r2",
+            "text": "We want to swap shifts with you."
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i11:r3",
+            "text": "They want to swap shifts with you."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i11:audio",
+            "transcript": "I want to swap shifts with you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-50:i11:r1",
+              "targetText": "I want to swap shifts with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i11:r2",
+              "targetText": "We want to swap shifts with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i11:r3",
+              "targetText": "They want to swap shifts with you.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to swap shifts with you.",
+                "uk": "У записі звучить I want to swap shifts with you."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to swap shifts with you.",
+                "uk": "У записі звучить I want to swap shifts with you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-50:i12:r1",
+            "text": "to swap"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i12:r2",
+            "text": "to swapping"
+          },
+          {
+            "responseId": "en:lesson-21:session-50:i12:r3",
+            "text": "for swap"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ shifts with you.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-50:i12:r1",
+              "text": "to swap"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i12:r2",
+              "text": "to swapping"
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i12:r3",
+              "text": "for swap"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-50:i13:p1",
+              "target": "take a day off",
+              "meaningByLocale": {
+                "ru": "взять выходной",
+                "uk": "взяти вихідний"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-50:i13:p2",
+              "target": "work overtime",
+              "meaningByLocale": {
+                "ru": "работать сверхурочно",
+                "uk": "працювати понаднормово"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-50:i13:p3",
+              "target": "call in sick",
+              "meaningByLocale": {
+                "ru": "сообщить на работу о болезни",
+                "uk": "повідомити на роботу про хворобу"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-50:i13:p4",
+              "target": "swap shifts",
+              "meaningByLocale": {
+                "ru": "поменяться сменами",
+                "uk": "помінятися змінами"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take a day off",
+            "work overtime",
+            "call in sick",
+            "swap shifts"
+          ],
+          "rightColumn": [
+            "взяти вихідний",
+            "працювати понаднормово",
+            "повідомити на роботу про хворобу",
+            "помінятися змінами"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: попросити перевірити",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: попросити перевірити",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: спілкування",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: спілкування",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Мені потрібно взяти вихідний»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Мені потрібно взяти вихідний»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i16:audio",
+            "transcript": "I need to take a day off."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to take a day off.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-50:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я хочу помінятися змінами з Анною»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я хочу помінятися змінами з Анною»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-50:i17:audio",
+            "transcript": "I want to swap shifts with Anna."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to swap shifts with Anna.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-50:word:take-a-day-off",
+      "correctText": "take a day off",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i01",
+      "correctText": "I want to take a day off.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i02",
+      "correctText": "I want to take a day off.",
+      "correctResponseId": "en:lesson-21:session-50:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i03",
+      "correctText": "to take",
+      "correctResponseId": "en:lesson-21:session-50:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:word:work-overtime",
+      "correctText": "work overtime",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i04",
+      "correctText": "I do not want to work overtime tonight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i05",
+      "correctText": "I do not want to work overtime tonight.",
+      "correctResponseId": "en:lesson-21:session-50:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i06",
+      "correctText": "to work",
+      "correctResponseId": "en:lesson-21:session-50:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:word:call-in-sick",
+      "correctText": "call in sick",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i07",
+      "correctText": "I need to call in sick.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i08",
+      "correctText": "I need to call in sick.",
+      "correctResponseId": "en:lesson-21:session-50:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i09",
+      "correctText": "to call",
+      "correctResponseId": "en:lesson-21:session-50:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:word:swap-shifts",
+      "correctText": "swap shifts",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i10",
+      "correctText": "I want to swap shifts with you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i11",
+      "correctText": "I want to swap shifts with you.",
+      "correctResponseId": "en:lesson-21:session-50:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i12",
+      "correctText": "to swap",
+      "correctResponseId": "en:lesson-21:session-50:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i14",
+      "correctText": "I need you to look over the list.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i15",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i16",
+      "correctText": "I need to take a day off.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-50:i17",
+      "correctText": "I want to swap shifts with Anna.",
+      "correctResponseId": null
+    }
+  ]
+}

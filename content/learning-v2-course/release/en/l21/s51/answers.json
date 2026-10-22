@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-51:word:make-a-start",
+    "correctText": "make a start",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i01",
+    "correctText": "I want to make a start now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i02",
+    "correctText": "I want to make a start now.",
+    "correctResponseId": "en:lesson-21:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i03",
+    "correctText": "to make",
+    "correctResponseId": "en:lesson-21:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:word:run-out-of-time",
+    "correctText": "run out of time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i04",
+    "correctText": "I do not want to run out of time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i05",
+    "correctText": "I do not want to run out of time.",
+    "correctResponseId": "en:lesson-21:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i06",
+    "correctText": "to run",
+    "correctResponseId": "en:lesson-21:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:word:meet-a-deadline",
+    "correctText": "meet a deadline",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i07",
+    "correctText": "I need to meet a deadline.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i08",
+    "correctText": "I need to meet a deadline.",
+    "correctResponseId": "en:lesson-21:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i09",
+    "correctText": "to meet",
+    "correctResponseId": "en:lesson-21:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:word:get-it-over-with",
+    "correctText": "get it over with",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i10",
+    "correctText": "I want to get it over with.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i11",
+    "correctText": "I want to get it over with.",
+    "correctResponseId": "en:lesson-21:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i12",
+    "correctText": "to get",
+    "correctResponseId": "en:lesson-21:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i13",
+    "correctText": "en:lesson-21:session-51:i13:p1=make a start\nen:lesson-21:session-51:i13:p2=run out of time\nen:lesson-21:session-51:i13:p3=meet a deadline\nen:lesson-21:session-51:i13:p4=get it over with",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i16",
+    "correctText": "I need to make a start now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-51:i17",
+    "correctText": "I want to meet a deadline.",
+    "correctResponseId": null
+  }
+]

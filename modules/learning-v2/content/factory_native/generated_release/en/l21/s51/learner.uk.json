@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-51:word:make-a-start",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — make a start",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:word:make-a-start:audio"
+      ],
+      "accessibilityLabel": "Картка слова — make a start",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:word:make-a-start:audio",
+          "transcript": "make a start"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-51:word:make-a-start:r1",
+            "targetText": "make a start",
+            "meaningByLocale": {
+              "ru": "начать дело.",
+              "uk": "розпочати справу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make a start",
+          "definitionByLocale": {
+            "ru": "начать дело.",
+            "uk": "розпочати справу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу взятися до справи зараз».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу взятися до справи зараз».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to make a start now.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу приступить к делу сейчас».",
+          "uk": "Скажіть: «Я хочу взятися до справи зараз»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "make",
+          "a",
+          "start",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-51:i02:r1",
+          "text": "I want to make a start now."
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i02:r2",
+          "text": "We want to make a start now."
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i02:r3",
+          "text": "They want to make a start now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:i02:audio",
+          "transcript": "I want to make a start now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-51:i02:r1",
+            "targetText": "I want to make a start now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i02:r2",
+            "targetText": "We want to make a start now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i02:r3",
+            "targetText": "They want to make a start now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to make a start now.",
+              "uk": "У записі звучить I want to make a start now."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to make a start now.",
+              "uk": "У записі звучить I want to make a start now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-51:i03:r1",
+          "text": "to make"
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i03:r2",
+          "text": "to making"
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i03:r3",
+          "text": "for make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ a start now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-51:i03:r1",
+            "text": "to make"
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i03:r2",
+            "text": "to making"
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i03:r3",
+            "text": "for make"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:word:run-out-of-time",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — run out of time",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:word:run-out-of-time:audio"
+      ],
+      "accessibilityLabel": "Картка слова — run out of time",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:word:run-out-of-time:audio",
+          "transcript": "run out of time"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-51:word:run-out-of-time:r1",
+            "targetText": "run out of time",
+            "meaningByLocale": {
+              "ru": "не успеть из-за нехватки времени.",
+              "uk": "не встигнути через брак часу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "run out of time",
+          "definitionByLocale": {
+            "ru": "не успеть из-за нехватки времени.",
+            "uk": "не встигнути через брак часу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу залишитися без часу на завершення справи».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу залишитися без часу на завершення справи».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to run out of time.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу оказаться без времени на завершение дела».",
+          "uk": "Скажіть: «Я не хочу залишитися без часу на завершення справи»."
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "run",
+          "out",
+          "of",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-51:i05:r1",
+          "text": "I do not want to run out of time."
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i05:r2",
+          "text": "We do not want to run out of time."
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i05:r3",
+          "text": "They do not want to run out of time."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:i05:audio",
+          "transcript": "I do not want to run out of time."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-51:i05:r1",
+            "targetText": "I do not want to run out of time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i05:r2",
+            "targetText": "We do not want to run out of time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i05:r3",
+            "targetText": "They do not want to run out of time.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-51:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to run out of time.",
+              "uk": "У записі звучить I do not want to run out of time."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to run out of time.",
+              "uk": "У записі звучить I do not want to run out of time."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-51:i06:r1",
+          "text": "to run"
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i06:r2",
+          "text": "to running"
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i06:r3",
+          "text": "for run"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I do not want ___ out of time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-51:i06:r1",
+            "text": "to run"
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i06:r2",
+            "text": "to running"
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i06:r3",
+            "text": "for run"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:word:meet-a-deadline",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — meet a deadline",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:word:meet-a-deadline:audio"
+      ],
+      "accessibilityLabel": "Картка слова — meet a deadline",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:word:meet-a-deadline:audio",
+          "transcript": "meet a deadline"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-51:word:meet-a-deadline:r1",
+            "targetText": "meet a deadline",
+            "meaningByLocale": {
+              "ru": "уложиться в срок.",
+              "uk": "вкластися в термін."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "meet a deadline",
+          "definitionByLocale": {
+            "ru": "уложиться в срок.",
+            "uk": "вкластися в термін."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібно вкластися в термін».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібно вкластися в термін».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need to meet a deadline.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно уложиться в срок».",
+          "uk": "Скажіть: «Мені потрібно вкластися в термін»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "meet",
+          "a",
+          "deadline"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-51:i08:r1",
+          "text": "I need to meet a deadline."
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i08:r2",
+          "text": "We need to meet a deadline."
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i08:r3",
+          "text": "They need to meet a deadline."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:i08:audio",
+          "transcript": "I need to meet a deadline."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-51:i08:r1",
+            "targetText": "I need to meet a deadline.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i08:r2",
+            "targetText": "We need to meet a deadline.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i08:r3",
+            "targetText": "They need to meet a deadline.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to meet a deadline.",
+              "uk": "У записі звучить I need to meet a deadline."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to meet a deadline.",
+              "uk": "У записі звучить I need to meet a deadline."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-51:i09:r1",
+          "text": "to meet"
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i09:r2",
+          "text": "to meeting"
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i09:r3",
+          "text": "for meet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I need ___ a deadline.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-51:i09:r1",
+            "text": "to meet"
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i09:r2",
+            "text": "to meeting"
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i09:r3",
+            "text": "for meet"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:word:get-it-over-with",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — get it over with",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:word:get-it-over-with:audio"
+      ],
+      "accessibilityLabel": "Картка слова — get it over with",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:word:get-it-over-with:audio",
+          "transcript": "get it over with"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-51:word:get-it-over-with:r1",
+            "targetText": "get it over with",
+            "meaningByLocale": {
+              "ru": "скорее закончить неприятное дело.",
+              "uk": "швидше завершити неприємну справу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get it over with",
+          "definitionByLocale": {
+            "ru": "скорее закончить неприятное дело.",
+            "uk": "швидше завершити неприємну справу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу швидше завершити цю неприємну справу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу швидше завершити цю неприємну справу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to get it over with.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу скорее закончить это неприятное дело».",
+          "uk": "Скажіть: «Я хочу швидше завершити цю неприємну справу»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "get",
+          "it",
+          "over",
+          "with"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-51:i11:r1",
+          "text": "I want to get it over with."
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i11:r2",
+          "text": "We want to get it over with."
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i11:r3",
+          "text": "They want to get it over with."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:i11:audio",
+          "transcript": "I want to get it over with."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-51:i11:r1",
+            "targetText": "I want to get it over with.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i11:r2",
+            "targetText": "We want to get it over with.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i11:r3",
+            "targetText": "They want to get it over with.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to get it over with.",
+              "uk": "У записі звучить I want to get it over with."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to get it over with.",
+              "uk": "У записі звучить I want to get it over with."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-51:i12:r1",
+          "text": "to get"
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i12:r2",
+          "text": "to getting"
+        },
+        {
+          "responseId": "en:lesson-21:session-51:i12:r3",
+          "text": "for get"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ it over with.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-51:i12:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i12:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i12:r3",
+            "text": "for get"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-51:i13:p1",
+            "target": "make a start",
+            "meaningByLocale": {
+              "ru": "начать дело",
+              "uk": "розпочати справу"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-51:i13:p2",
+            "target": "run out of time",
+            "meaningByLocale": {
+              "ru": "не успеть из-за нехватки времени",
+              "uk": "не встигнути через брак часу"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-51:i13:p3",
+            "target": "meet a deadline",
+            "meaningByLocale": {
+              "ru": "уложиться в срок",
+              "uk": "вкластися в термін"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-51:i13:p4",
+            "target": "get it over with",
+            "meaningByLocale": {
+              "ru": "скорее закончить неприятное дело",
+              "uk": "швидше завершити неприємну справу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "make a start",
+          "run out of time",
+          "meet a deadline",
+          "get it over with"
+        ],
+        "rightColumn": [
+          "розпочати справу",
+          "не встигнути через брак часу",
+          "вкластися в термін",
+          "швидше завершити неприємну справу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Мені потрібно взятися до справи зараз»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Мені потрібно взятися до справи зараз»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:i16:audio",
+          "transcript": "I need to make a start now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to make a start now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-51:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я хочу вкластися в термін»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я хочу вкластися в термін»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-51:i17:audio",
+          "transcript": "I want to meet a deadline."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to meet a deadline.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "22ddaf5e7e8be3c594ea755c6eaf7ed050b4a18fdbaceee879cbc2e58e084a02"
+}

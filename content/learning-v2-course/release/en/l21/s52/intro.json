@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "want / need + to-infinitive",
+    "uk": "want / need + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вернуть долг",
+        "uk": "Повернути борг"
+      },
+      "bodyByLocale": {
+        "ru": "Repay — вернуть долг: отдать деньги тому, у кого вы их одолжили. Repay you — вернуть долг тебе или вам. В этом примере вы возвращаете знакомому взятые у него деньги. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Repay — повернути борг: віддати гроші тому, у кого ви їх позичили. Repay you — повернути борг тобі або вам. У цьому прикладі ви повертаєте знайомому взяті в нього гроші. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-52:intro1:r1",
+              "text": "I need to repay you."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro1:r2",
+              "text": "I need to repaying you."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro1:r3",
+              "text": "I need for repay you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-52:intro1:r1",
+              "text": "I need to repay you."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro1:r2",
+              "text": "I need to repaying you."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro1:r3",
+              "text": "I need for repay you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Разделить расходы",
+        "uk": "Розділити витрати"
+      },
+      "bodyByLocale": {
+        "ru": "Overpay — переплатить, заплатить слишком много. Это действие покупателя. Знакомое overcharge описывает другую сторону: продавец просит с покупателя слишком много. Split the cost — разделить общие расходы между людьми. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Overpay — переплатити, заплатити забагато. Це дія покупця. Знайоме overcharge описує інший бік: продавець просить із покупця забагато. Split the cost — розділити спільні витрати між людьми. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-52:intro2:r1",
+              "text": "I do not want to overpay."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro2:r2",
+              "text": "I do not want to overpaying."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro2:r3",
+              "text": "I do not want for overpay."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-52:intro2:r1",
+              "text": "I do not want to overpay."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro2:r2",
+              "text": "I do not want to overpaying."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro2:r3",
+              "text": "I do not want for overpay."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Заплатить свою долю",
+        "uk": "Заплатити свою частку"
+      },
+      "bodyByLocale": {
+        "ru": "Pay my share — заплатить свою долю общей суммы. Например, вы с другом купили продукты для общего ужина. My относится к говорящему; our share — наша доля, their share — их доля. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Pay my share — заплатити свою частку спільної суми. Наприклад, ви з другом купили продукти для спільної вечері. My стосується мовця; our share — наша частка, their share — їхня частка. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-52:intro3:r1",
+              "text": "I need to pay my share."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro3:r2",
+              "text": "I need to paying my share."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro3:r3",
+              "text": "I need for pay my share."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-52:intro3:r1",
+              "text": "I need to pay my share."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro3:r2",
+              "text": "I need to paying my share."
+            },
+            {
+              "responseId": "en:lesson-21:session-52:intro3:r3",
+              "text": "I need for pay my share."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7128dafa3cd8809bf371307d39faac9fd821e01aa7955a566ca5a7a937e7a18d"
+}

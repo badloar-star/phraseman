@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-49",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-49:word:button-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — button up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:word:button-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — button up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:word:button-up:audio",
+            "transcript": "button up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:word:button-up:r1",
+              "targetText": "button up",
+              "meaningByLocale": {
+                "ru": "застегнуть на пуговицы.",
+                "uk": "застебнути на ґудзики."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "button up",
+            "definitionByLocale": {
+              "ru": "застегнуть на пуговицы.",
+              "uk": "застебнути на ґудзики."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мне нужно застегнуть пальто на пуговицы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мне нужно застегнуть пальто на пуговицы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need to button up my coat.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно застегнуть пальто на пуговицы».",
+            "uk": "Скажіть: «Мені потрібно застебнути пальто на ґудзики»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "to",
+            "button",
+            "up",
+            "my",
+            "coat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i02:r1",
+            "text": "I need to button up my coat."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i02:r2",
+            "text": "We need to button up our coat."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i02:r3",
+            "text": "They need to button up their coat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i02:audio",
+            "transcript": "I need to button up my coat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:i02:r1",
+              "targetText": "I need to button up my coat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i02:r2",
+              "targetText": "We need to button up our coat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i02:r3",
+              "targetText": "They need to button up their coat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to button up my coat.",
+                "uk": "У записі звучить I need to button up my coat."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to button up my coat.",
+                "uk": "У записі звучить I need to button up my coat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i03:r1",
+            "text": "to button"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i03:r2",
+            "text": "to buttoning"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i03:r3",
+            "text": "for button"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I need ___ up my coat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-49:i03:r1",
+              "text": "to button"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i03:r2",
+              "text": "to buttoning"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i03:r3",
+              "text": "for button"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:word:dress-warmly",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dress warmly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:word:dress-warmly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dress warmly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:word:dress-warmly:audio",
+            "transcript": "dress warmly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:word:dress-warmly:r1",
+              "targetText": "dress warmly",
+              "meaningByLocale": {
+                "ru": "тепло одеться.",
+                "uk": "тепло вдягнутися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dress warmly",
+            "definitionByLocale": {
+              "ru": "тепло одеться.",
+              "uk": "тепло вдягнутися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу тепло одеться».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу тепло одеться».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to dress warmly.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу тепло одеться».",
+            "uk": "Скажіть: «Я хочу тепло вдягнутися»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "dress",
+            "warmly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i05:r1",
+            "text": "I want to dress warmly."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i05:r2",
+            "text": "We want to dress warmly."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i05:r3",
+            "text": "They want to dress warmly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i05:audio",
+            "transcript": "I want to dress warmly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:i05:r1",
+              "targetText": "I want to dress warmly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i05:r2",
+              "targetText": "We want to dress warmly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i05:r3",
+              "targetText": "They want to dress warmly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to dress warmly.",
+                "uk": "У записі звучить I want to dress warmly."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to dress warmly.",
+                "uk": "У записі звучить I want to dress warmly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i06:r1",
+            "text": "to dress"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i06:r2",
+            "text": "to dressing"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i06:r3",
+            "text": "for dress"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ warmly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-49:i06:r1",
+              "text": "to dress"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i06:r2",
+              "text": "to dressing"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i06:r3",
+              "text": "for dress"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:word:wear-layers",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wear layers",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:word:wear-layers:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wear layers",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:word:wear-layers:audio",
+            "transcript": "wear layers"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:word:wear-layers:r1",
+              "targetText": "wear layers",
+              "meaningByLocale": {
+                "ru": "одеваться в несколько слоёв.",
+                "uk": "вдягатися в кілька шарів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wear layers",
+            "definitionByLocale": {
+              "ru": "одеваться в несколько слоёв.",
+              "uk": "вдягатися в кілька шарів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Сегодня я хочу одеться в несколько слоёв».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Сегодня я хочу одеться в несколько слоёв».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to wear layers today.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Сегодня я хочу одеться в несколько слоёв».",
+            "uk": "Скажіть: «Сьогодні я хочу вдягнутися в кілька шарів»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "wear",
+            "layers",
+            "today"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i08:r1",
+            "text": "I want to wear layers today."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i08:r2",
+            "text": "We want to wear layers today."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i08:r3",
+            "text": "They want to wear layers today."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i08:audio",
+            "transcript": "I want to wear layers today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:i08:r1",
+              "targetText": "I want to wear layers today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i08:r2",
+              "targetText": "We want to wear layers today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i08:r3",
+              "targetText": "They want to wear layers today.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to wear layers today.",
+                "uk": "У записі звучить I want to wear layers today."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to wear layers today.",
+                "uk": "У записі звучить I want to wear layers today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i09:r1",
+            "text": "to wear"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i09:r2",
+            "text": "to wearing"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i09:r3",
+            "text": "for wear"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ layers today.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-49:i09:r1",
+              "text": "to wear"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i09:r2",
+              "text": "to wearing"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i09:r3",
+              "text": "for wear"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:word:change-into",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — change into",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:word:change-into:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — change into",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:word:change-into:audio",
+            "transcript": "change into"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:word:change-into:r1",
+              "targetText": "change into",
+              "meaningByLocale": {
+                "ru": "переодеться в другую одежду.",
+                "uk": "переодягнутися в інший одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "change into",
+            "definitionByLocale": {
+              "ru": "переодеться в другую одежду.",
+              "uk": "переодягнутися в інший одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мне нужно переодеться в сухую одежду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мне нужно переодеться в сухую одежду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need to change into dry clothes.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно переодеться в сухую одежду».",
+            "uk": "Скажіть: «Мені потрібно переодягнутися в сухий одяг»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "to",
+            "change",
+            "into",
+            "dry",
+            "clothes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i11:r1",
+            "text": "I need to change into dry clothes."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i11:r2",
+            "text": "We need to change into dry clothes."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i11:r3",
+            "text": "They need to change into dry clothes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i11:audio",
+            "transcript": "I need to change into dry clothes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:i11:r1",
+              "targetText": "I need to change into dry clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i11:r2",
+              "targetText": "We need to change into dry clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i11:r3",
+              "targetText": "They need to change into dry clothes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to change into dry clothes.",
+                "uk": "У записі звучить I need to change into dry clothes."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to change into dry clothes.",
+                "uk": "У записі звучить I need to change into dry clothes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i12:r1",
+            "text": "to change"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i12:r2",
+            "text": "to changing"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i12:r3",
+            "text": "for change"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I need ___ into dry clothes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-49:i12:r1",
+              "text": "to change"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i12:r2",
+              "text": "to changing"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i12:r3",
+              "text": "for change"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-49:i13:p1",
+              "target": "button up",
+              "meaningByLocale": {
+                "ru": "застегнуть на пуговицы",
+                "uk": "застебнути на ґудзики"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-49:i13:p2",
+              "target": "dress warmly",
+              "meaningByLocale": {
+                "ru": "тепло одеться",
+                "uk": "тепло вдягнутися"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-49:i13:p3",
+              "target": "wear layers",
+              "meaningByLocale": {
+                "ru": "одеваться в несколько слоёв",
+                "uk": "вдягатися в кілька шарів"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-49:i13:p4",
+              "target": "change into",
+              "meaningByLocale": {
+                "ru": "переодеться в другую одежду",
+                "uk": "переодягнутися в інший одяг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "button up",
+            "dress warmly",
+            "wear layers",
+            "change into"
+          ],
+          "rightColumn": [
+            "застегнуть на пуговицы",
+            "тепло одеться",
+            "одеваться в несколько слоёв",
+            "переодеться в другую одежду"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: попросить проверить",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: попросить проверить",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: общение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: общение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мне нужно тепло одеться»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мне нужно тепло одеться»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i16:audio",
+            "transcript": "I need to dress warmly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to dress warmly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я хочу переодеться в сухую одежду»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я хочу переодеться в сухую одежду»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i17:audio",
+            "transcript": "I want to change into dry clothes."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to change into dry clothes.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-49:word:button-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — button up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:word:button-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — button up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:word:button-up:audio",
+            "transcript": "button up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:word:button-up:r1",
+              "targetText": "button up",
+              "meaningByLocale": {
+                "ru": "застегнуть на пуговицы.",
+                "uk": "застебнути на ґудзики."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "button up",
+            "definitionByLocale": {
+              "ru": "застегнуть на пуговицы.",
+              "uk": "застебнути на ґудзики."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Мені потрібно застебнути пальто на ґудзики».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Мені потрібно застебнути пальто на ґудзики».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need to button up my coat.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно застегнуть пальто на пуговицы».",
+            "uk": "Скажіть: «Мені потрібно застебнути пальто на ґудзики»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "to",
+            "button",
+            "up",
+            "my",
+            "coat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i02:r1",
+            "text": "I need to button up my coat."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i02:r2",
+            "text": "We need to button up our coat."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i02:r3",
+            "text": "They need to button up their coat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i02:audio",
+            "transcript": "I need to button up my coat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:i02:r1",
+              "targetText": "I need to button up my coat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i02:r2",
+              "targetText": "We need to button up our coat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i02:r3",
+              "targetText": "They need to button up their coat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to button up my coat.",
+                "uk": "У записі звучить I need to button up my coat."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to button up my coat.",
+                "uk": "У записі звучить I need to button up my coat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i03:r1",
+            "text": "to button"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i03:r2",
+            "text": "to buttoning"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i03:r3",
+            "text": "for button"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I need ___ up my coat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-49:i03:r1",
+              "text": "to button"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i03:r2",
+              "text": "to buttoning"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i03:r3",
+              "text": "for button"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:word:dress-warmly",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dress warmly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:word:dress-warmly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dress warmly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:word:dress-warmly:audio",
+            "transcript": "dress warmly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:word:dress-warmly:r1",
+              "targetText": "dress warmly",
+              "meaningByLocale": {
+                "ru": "тепло одеться.",
+                "uk": "тепло вдягнутися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dress warmly",
+            "definitionByLocale": {
+              "ru": "тепло одеться.",
+              "uk": "тепло вдягнутися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу тепло вдягнутися».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу тепло вдягнутися».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to dress warmly.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу тепло одеться».",
+            "uk": "Скажіть: «Я хочу тепло вдягнутися»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "dress",
+            "warmly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i05:r1",
+            "text": "I want to dress warmly."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i05:r2",
+            "text": "We want to dress warmly."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i05:r3",
+            "text": "They want to dress warmly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i05:audio",
+            "transcript": "I want to dress warmly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:i05:r1",
+              "targetText": "I want to dress warmly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i05:r2",
+              "targetText": "We want to dress warmly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i05:r3",
+              "targetText": "They want to dress warmly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to dress warmly.",
+                "uk": "У записі звучить I want to dress warmly."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to dress warmly.",
+                "uk": "У записі звучить I want to dress warmly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i06:r1",
+            "text": "to dress"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i06:r2",
+            "text": "to dressing"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i06:r3",
+            "text": "for dress"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ warmly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-49:i06:r1",
+              "text": "to dress"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i06:r2",
+              "text": "to dressing"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i06:r3",
+              "text": "for dress"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:word:wear-layers",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wear layers",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:word:wear-layers:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wear layers",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:word:wear-layers:audio",
+            "transcript": "wear layers"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:word:wear-layers:r1",
+              "targetText": "wear layers",
+              "meaningByLocale": {
+                "ru": "одеваться в несколько слоёв.",
+                "uk": "вдягатися в кілька шарів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wear layers",
+            "definitionByLocale": {
+              "ru": "одеваться в несколько слоёв.",
+              "uk": "вдягатися в кілька шарів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Сьогодні я хочу вдягнутися в кілька шарів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Сьогодні я хочу вдягнутися в кілька шарів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to wear layers today.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Сегодня я хочу одеться в несколько слоёв».",
+            "uk": "Скажіть: «Сьогодні я хочу вдягнутися в кілька шарів»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "wear",
+            "layers",
+            "today"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i08:r1",
+            "text": "I want to wear layers today."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i08:r2",
+            "text": "We want to wear layers today."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i08:r3",
+            "text": "They want to wear layers today."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i08:audio",
+            "transcript": "I want to wear layers today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:i08:r1",
+              "targetText": "I want to wear layers today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i08:r2",
+              "targetText": "We want to wear layers today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i08:r3",
+              "targetText": "They want to wear layers today.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to wear layers today.",
+                "uk": "У записі звучить I want to wear layers today."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to wear layers today.",
+                "uk": "У записі звучить I want to wear layers today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i09:r1",
+            "text": "to wear"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i09:r2",
+            "text": "to wearing"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i09:r3",
+            "text": "for wear"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ layers today.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-49:i09:r1",
+              "text": "to wear"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i09:r2",
+              "text": "to wearing"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i09:r3",
+              "text": "for wear"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:word:change-into",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — change into",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:word:change-into:audio"
+        ],
+        "accessibilityLabel": "Картка слова — change into",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:word:change-into:audio",
+            "transcript": "change into"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:word:change-into:r1",
+              "targetText": "change into",
+              "meaningByLocale": {
+                "ru": "переодеться в другую одежду.",
+                "uk": "переодягнутися в інший одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "change into",
+            "definitionByLocale": {
+              "ru": "переодеться в другую одежду.",
+              "uk": "переодягнутися в інший одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Мені потрібно переодягнутися в сухий одяг».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Мені потрібно переодягнутися в сухий одяг».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need to change into dry clothes.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно переодеться в сухую одежду».",
+            "uk": "Скажіть: «Мені потрібно переодягнутися в сухий одяг»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "to",
+            "change",
+            "into",
+            "dry",
+            "clothes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i11:r1",
+            "text": "I need to change into dry clothes."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i11:r2",
+            "text": "We need to change into dry clothes."
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i11:r3",
+            "text": "They need to change into dry clothes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i11:audio",
+            "transcript": "I need to change into dry clothes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-49:i11:r1",
+              "targetText": "I need to change into dry clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i11:r2",
+              "targetText": "We need to change into dry clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i11:r3",
+              "targetText": "They need to change into dry clothes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to change into dry clothes.",
+                "uk": "У записі звучить I need to change into dry clothes."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to change into dry clothes.",
+                "uk": "У записі звучить I need to change into dry clothes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-49:i12:r1",
+            "text": "to change"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i12:r2",
+            "text": "to changing"
+          },
+          {
+            "responseId": "en:lesson-21:session-49:i12:r3",
+            "text": "for change"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I need ___ into dry clothes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-49:i12:r1",
+              "text": "to change"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i12:r2",
+              "text": "to changing"
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i12:r3",
+              "text": "for change"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-49:i13:p1",
+              "target": "button up",
+              "meaningByLocale": {
+                "ru": "застегнуть на пуговицы",
+                "uk": "застебнути на ґудзики"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-49:i13:p2",
+              "target": "dress warmly",
+              "meaningByLocale": {
+                "ru": "тепло одеться",
+                "uk": "тепло вдягнутися"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-49:i13:p3",
+              "target": "wear layers",
+              "meaningByLocale": {
+                "ru": "одеваться в несколько слоёв",
+                "uk": "вдягатися в кілька шарів"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-49:i13:p4",
+              "target": "change into",
+              "meaningByLocale": {
+                "ru": "переодеться в другую одежду",
+                "uk": "переодягнутися в інший одяг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "button up",
+            "dress warmly",
+            "wear layers",
+            "change into"
+          ],
+          "rightColumn": [
+            "застебнути на ґудзики",
+            "тепло вдягнутися",
+            "вдягатися в кілька шарів",
+            "переодягнутися в інший одяг"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: попросити перевірити",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: попросити перевірити",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: спілкування",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: спілкування",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Мені потрібно тепло вдягнутися»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Мені потрібно тепло вдягнутися»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i16:audio",
+            "transcript": "I need to dress warmly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to dress warmly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-49:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я хочу переодягнутися в сухий одяг»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я хочу переодягнутися в сухий одяг»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-49:i17:audio",
+            "transcript": "I want to change into dry clothes."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to change into dry clothes.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-49:word:button-up",
+      "correctText": "button up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i01",
+      "correctText": "I need to button up my coat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i02",
+      "correctText": "I need to button up my coat.",
+      "correctResponseId": "en:lesson-21:session-49:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i03",
+      "correctText": "to button",
+      "correctResponseId": "en:lesson-21:session-49:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:word:dress-warmly",
+      "correctText": "dress warmly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i04",
+      "correctText": "I want to dress warmly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i05",
+      "correctText": "I want to dress warmly.",
+      "correctResponseId": "en:lesson-21:session-49:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i06",
+      "correctText": "to dress",
+      "correctResponseId": "en:lesson-21:session-49:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:word:wear-layers",
+      "correctText": "wear layers",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i07",
+      "correctText": "I want to wear layers today.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i08",
+      "correctText": "I want to wear layers today.",
+      "correctResponseId": "en:lesson-21:session-49:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i09",
+      "correctText": "to wear",
+      "correctResponseId": "en:lesson-21:session-49:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:word:change-into",
+      "correctText": "change into",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i10",
+      "correctText": "I need to change into dry clothes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i11",
+      "correctText": "I need to change into dry clothes.",
+      "correctResponseId": "en:lesson-21:session-49:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i12",
+      "correctText": "to change",
+      "correctResponseId": "en:lesson-21:session-49:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i14",
+      "correctText": "I need you to look over the list.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i15",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i16",
+      "correctText": "I need to dress warmly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-49:i17",
+      "correctText": "I want to change into dry clothes.",
+      "correctResponseId": null
+    }
+  ]
+}

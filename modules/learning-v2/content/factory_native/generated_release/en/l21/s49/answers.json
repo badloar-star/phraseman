@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-49:word:button-up",
+    "correctText": "button up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i01",
+    "correctText": "I need to button up my coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i02",
+    "correctText": "I need to button up my coat.",
+    "correctResponseId": "en:lesson-21:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i03",
+    "correctText": "to button",
+    "correctResponseId": "en:lesson-21:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:word:dress-warmly",
+    "correctText": "dress warmly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i04",
+    "correctText": "I want to dress warmly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i05",
+    "correctText": "I want to dress warmly.",
+    "correctResponseId": "en:lesson-21:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i06",
+    "correctText": "to dress",
+    "correctResponseId": "en:lesson-21:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:word:wear-layers",
+    "correctText": "wear layers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i07",
+    "correctText": "I want to wear layers today.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i08",
+    "correctText": "I want to wear layers today.",
+    "correctResponseId": "en:lesson-21:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i09",
+    "correctText": "to wear",
+    "correctResponseId": "en:lesson-21:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:word:change-into",
+    "correctText": "change into",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i10",
+    "correctText": "I need to change into dry clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i11",
+    "correctText": "I need to change into dry clothes.",
+    "correctResponseId": "en:lesson-21:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i12",
+    "correctText": "to change",
+    "correctResponseId": "en:lesson-21:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i13",
+    "correctText": "en:lesson-21:session-49:i13:p1=button up\nen:lesson-21:session-49:i13:p2=dress warmly\nen:lesson-21:session-49:i13:p3=wear layers\nen:lesson-21:session-49:i13:p4=change into",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i16",
+    "correctText": "I need to dress warmly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-49:i17",
+    "correctText": "I want to change into dry clothes.",
+    "correctResponseId": null
+  }
+]

@@ -138,6 +138,9 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
     return { kicker: [seasonEpisodeLabel(lang, selectedCard.sessionOrdinal), ep.taskLine].filter(Boolean).join(', '), title: ep.title };
   }, [lang, props, selectedCard]);
 
+  // зачем (владелец 22.10: последний выбранный эталон — scenes-compact.html «Обучение · Сезон», вариант 2; координатор): на полноэкранной обложке чипы «Слова» и «Теория» стоят ВНУТРИ обложки под кнопкой, внизу остаётся только «Вся глава»
+  const tall = props.topBleed !== undefined && props.topBleed > 0;
+  const longTitle = props.lessonTitle.length > 20;
   const primaryLabel = props.newcomer
     ? seasonText(lang, 'startEpisode', { n: currentEpisode?.sessionOrdinal ?? 1 })
     : seasonText(lang, 'continueEpisode', { n: currentEpisode?.sessionOrdinal ?? 1 });
@@ -160,7 +163,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         </View>
         <View style={[styles.heroBody, props.topBleed && props.topBleed > 0 ? styles.heroBodyTall : null]}>
           <Text style={styles.kicker}>{kicker}</Text>
-          <Text accessibilityRole="header" style={styles.heroTitle}>{props.lessonTitle}</Text>
+          <Text accessibilityRole="header" style={[styles.heroTitle, tall && longTitle ? styles.heroTitleLong : null]}>{props.lessonTitle}</Text>
           <Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={primaryLabel} onPress={() => currentEpisode && props.onPrimary(currentEpisode)} style={styles.primary} testID="season-primary">
             <Ionicons name="play" size={18} color={BTN_INK} />
             <Text style={styles.primaryText}>{primaryLabel}</Text>
@@ -174,6 +177,12 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
             <View style={styles.resume}>
               <View style={styles.bar}><View style={[styles.barFill, { width: `${Math.round((currentEpisode ? props.episodeInfo(currentEpisode).progress ?? 0 : 0) * 100)}%` }]} /></View>
               <Text style={styles.resumeText} numberOfLines={2}>{props.resumeLine}</Text>
+            </View>
+          ) : null}
+          {tall ? (
+            <View style={styles.heroChips}>
+              <HeroChip icon="albums-outline" label={seasonText(lang, 'words')} onPress={props.onWords} testID="season-words" />
+              <HeroChip icon="book-outline" label={seasonText(lang, 'theory')} onPress={props.onTheory} testID="season-theory" />
             </View>
           ) : null}
         </View>
@@ -211,10 +220,20 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         {selectedChapter ? (
           <ActionChip icon="copy-outline" label={seasonText(lang, 'wholeChapter')} onPress={props.onWholeChapter} testID="season-whole-chapter" />
         ) : null}
-        <ActionChip icon="albums-outline" label={seasonText(lang, 'words')} onPress={props.onWords} testID="season-words" />
-        <ActionChip icon="book-outline" label={seasonText(lang, 'theory')} onPress={props.onTheory} testID="season-theory" />
+        {tall ? null : <ActionChip icon="albums-outline" label={seasonText(lang, 'words')} onPress={props.onWords} testID="season-words" />}
+        {tall ? null : <ActionChip icon="book-outline" label={seasonText(lang, 'theory')} onPress={props.onTheory} testID="season-theory" />}
       </View>
     </ScrollView>
+  );
+}
+
+/** Чип на обложке (белый на градиенте, стеклянная подложка): «Слова», «Теория». */
+function HeroChip({ icon, label, onPress, testID }: Readonly<{ icon: IonName; label: string; onPress: () => void; testID: string }>) {
+  return (
+    <Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={label} onPress={onPress} testID={testID} style={({ pressed }) => [styles.heroChip, { opacity: pressed ? 0.72 : 1 }]}>
+      <Ionicons name={icon} size={16} color={WHITE} />
+      <Text style={styles.heroChipText}>{label}</Text>
+    </Pressable>
   );
 }
 
@@ -233,6 +252,10 @@ const styles = StyleSheet.create({
   hero: { height: 380, borderBottomLeftRadius: 34, borderBottomRightRadius: 34, overflow: 'hidden' },
   // зачем (владелец 22.10: высота сцен 46 % для всех; scenes-compact.html «Обучение · Сезон», вариант 2): 392 dp вместе с зоной часов, фон от верха экрана
   heroBodyTall: { bottom: 44 },
+  heroTitleLong: { fontSize: 26, lineHeight: 32 },
+  heroChips: { marginTop: 12, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  heroChip: { height: 34, paddingHorizontal: 12, borderRadius: 17, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },
+  heroChipText: { fontSize: 13, lineHeight: 17, fontWeight: '600', color: WHITE },
   heroTall: { height: 392, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   heroGlyph: { position: 'absolute', right: -54, top: 64, transform: [{ rotate: '-8deg' }] },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 320 },

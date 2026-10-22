@@ -70,3 +70,13 @@ describe('Сезон: обложка 46 % от самого верха (влад
     expect(view).toContain('heroBodyTall: { bottom: 44 }');
   });
 });
+
+describe('Сезон: чипы «Слова / Теория» внутри обложки (scenes-compact, вариант 2)', () => {
+  const view2 = readSource('components/learning-v2/season/SeasonCourseView.tsx');
+  it('на полноэкранной обложке чипы под кнопкой, внизу остаётся только «Вся глава»', () => {
+    expect(view2).toContain('const tall = props.topBleed !== undefined && props.topBleed > 0;');
+    expect(view2).toContain('<HeroChip icon="albums-outline"');
+    expect(view2).toContain('{tall ? null : <ActionChip icon="albums-outline"');
+    expect(view2).toMatch(/heroChip: \{ height: 34, paddingHorizontal: 12, borderRadius: 17/);
+  });
+});

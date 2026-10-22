@@ -236,3 +236,62 @@ test('malformed or self-inconsistent composites never reach the source check', (
   expect(() => parseLevelSpinStarComposite({ ...exact, requestFingerprint: 'a'.repeat(64) }))
     .toThrow('level_spin_star_fingerprint_invalid');
 });
+
+// зачем (владелец 22.10 через координатора): 40 монет за первую сдачу экзамена главы Learning V2 — две операции stars_20,
+// урок и глава только из курса, сумма зашита на сервере, повтор не начисляет второй раз.
+describe('chapter exam source (chapterexam_l<УУ>_c<Г>_<1|2>)', () => {
+  const exam = (requestId: string, over: Over = {}) => composite({ requestId, giftId: 'stars_20', promotionEligibility: 'gameplay', ...over });
+
+  test('both parts credit 40 coins in total and count against the chapter exam day limit', async () => {
+    const world = makeDb();
+    expect(classifyCoinWalletSource('chapterexam_l01_c2_1')).toEqual({ source: 'chapter_exam', subSource: 'exam_pass' });
+    await credit(world, exam('chapterexam_l01_c2_1'));
+    const second = await credit(world, exam('chapterexam_l01_c2_2'));
+    expect(second.starsBalance).toBe(COIN_WALLET_LIMITS.chapterExamCoinsPerChapter);
+    const user = world.docs.get('users/account-a') as Record<string, any>;
+    expect(user.coinWalletLimitsV1).toMatchObject({ chapterExamDayKey: '2026-09-28', chapterExamDayCoins: 40 });
+  });
+
+  test('a repeat of the same part returns the prior result and never credits twice', async () => {
+    const world = makeDb();
+    const first = await credit(world, exam('chapterexam_l03_c7_1'));
+    const again = await credit(world, exam('chapterexam_l03_c7_1'));
+    expect(again).toMatchObject({ replayed: true, starsBalance: 20, starsSeq: first.starsSeq });
+  });
+
+  test.each([
+    ['lesson outside the course', 'chapterexam_l33_c1_1'],
+    ['lesson zero', 'chapterexam_l00_c1_1'],
+    ['chapter outside the lesson', 'chapterexam_l01_c8_1'],
+    ['chapter zero', 'chapterexam_l01_c0_1'],
+  ])('number not in the course is rejected: %s', async (_name, requestId) => {
+    await expect(credit(makeDb(), exam(requestId)))
+      .rejects.toMatchObject({ code: 'invalid-argument', message: 'coin_wallet_source_shape_invalid' });
+  });
+
+  test.each([
+    ['third part', 'chapterexam_l01_c1_3'],
+    ['made-up format', 'chapterexam_lesson1_chapter1'],
+    ['foreign prefix', 'chapterexamx_l01_c1_1'],
+  ])('a request id outside the format is a foreign source: %s', async (_name, requestId) => {
+    await expect(credit(makeDb(), exam(requestId)))
+      .rejects.toMatchObject({ code: 'permission-denied', message: 'coin_wallet_source_not_allowed' });
+  });
+
+  test.each([
+    ['amount other than 20 per part (stars_50)', { giftId: 'stars_50' as const }],
+    ['amount other than 20 per part (stars_10)', { giftId: 'stars_10' as const }],
+    ['premium lane', { lane: 'premium' as const }],
+    ['compensation instead of gameplay', { promotionEligibility: 'excluded_compensation' as const }],
+  ])('a shape other than 2 × 20 is rejected: %s', async (_name, over) => {
+    await expect(credit(makeDb(), exam('chapterexam_l01_c1_1', over))).rejects.toMatchObject({ code: 'invalid-argument' });
+  });
+
+  test('day limit: 14 chapters a day, the rest waits for the next UTC day', () => {
+    const full = { ...EMPTY_COIN_WALLET_LIMITS, chapterExamDayKey: '2026-09-28', chapterExamDayCoins: COIN_WALLET_LIMITS.chapterExamMaxPerDay };
+    const op = { requestId: 'chapterexam_l05_c1_1', lane: 'base' as const, giftId: 'stars_20', amount: 20, promotionEligibility: 'gameplay' as const };
+    const cls = classifyCoinWalletSource(op.requestId);
+    expect(() => applyCoinWalletLimits(full, op, cls, MONDAY, 0)).toThrow('coin_wallet_daily_limit_reached');
+    expect(applyCoinWalletLimits(full, op, cls, MONDAY + 86_400_000, 0).chapterExamDayCoins).toBe(20);
+  });
+});

@@ -1,4 +1,8 @@
 import { HttpsError } from 'firebase-functions/v2/https';
+import {
+  LEARNING_V2_COURSE_LESSON_COUNT_V1,
+  LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
+} from '../../modules/learning-v2/content/course_topology_v1';
 
 /**
  * Политика серверного кошелька монет (Q13, владелец 01.10).
@@ -13,6 +17,8 @@ import { HttpsError } from 'firebase-functions/v2/https';
  * (поля «источник» в контракте нет, и клиент мы не меняем):
  *   - `report_reward_<messageId>`        — награда за жалобу (D109, Q4);
  *   - `dailyjourney_<hash32>_<n>`        — монеты блока «Сегодня» (D49, modules/today-tasks).
+ *   - `chapterexam_l<УУ>_c<Г>_<1|2>`     — 40 монет за ПЕРВУЮ сдачу экзамена главы Learning V2 (владелец 22.10):
+ *     две операции по 20 (номинала 40 в кошельке нет), сумма зашита здесь, урок и глава — только из курса.
  *     зачем: префикс унаследован от удалённого «Дневного пути» и НЕ переименован —
  *     совместимость с уже выданными ключами и задеплоенным белым списком;
  *     переименование источника — только отдельным решением владельца;
@@ -24,8 +30,8 @@ import { HttpsError } from 'firebase-functions/v2/https';
  * без них выдуманный клиентом ключ не мог бы напечатать до 30 000 монет за жизнь.
  */
 
-export type CoinWalletSource = 'report_reward' | 'daily_journey';
-export type CoinWalletSubSource = 'report' | 'journey_runes';
+export type CoinWalletSource = 'report_reward' | 'daily_journey' | 'chapter_exam';
+export type CoinWalletSubSource = 'report' | 'journey_runes' | 'exam_pass';
 
 export type CoinWalletOperationShape = Readonly<{
   requestId: string;
@@ -40,9 +46,13 @@ export type CoinWalletClassification = Readonly<{
   subSource: CoinWalletSubSource;
 }>;
 
+/** `chapterexam_l01_c2_1`: урок двумя цифрами, глава одной, часть 1 или 2 (две части по 20 = 40 монет). */
+const CHAPTER_EXAM_REQUEST_RE = /^chapterexam_l(\d{2})_c(\d)_([12])$/;
+
 const SOURCE_PATTERNS: readonly (readonly [RegExp, CoinWalletClassification])[] = Object.freeze([
   [/^report_reward_[A-Za-z0-9_-]{1,66}$/, Object.freeze({ source: 'report_reward', subSource: 'report' })],
   [/^dailyjourney_[A-Za-z0-9]{32}_\d{1,3}$/, Object.freeze({ source: 'daily_journey', subSource: 'journey_runes' })],
+  [CHAPTER_EXAM_REQUEST_RE, Object.freeze({ source: 'chapter_exam', subSource: 'exam_pass' })],
 ] as const);
 
 /**
@@ -74,6 +84,13 @@ export const COIN_WALLET_LIMITS = Object.freeze({
   journeyMaxPerOperation: 2_000,
   /** Один день пути в сутки: не больше самой крупной награды дня с удвоением. */
   journeyMaxPerDay: 2_000,
+  /**
+   * Экзамен главы (владелец 22.10): 40 монет за главу — ровно две операции stars_20. Сумма задаётся здесь, не клиентом.
+   * Сутки: 14 глав (560) — выше реального темпа (экзамен стоит энергию); лишнее остаётся в очереди клиента до следующих суток.
+   */
+  chapterExamGiftId: 'stars_20',
+  chapterExamCoinsPerChapter: 40,
+  chapterExamMaxPerDay: 560,
 });
 
 /** Счётчики лимитов — поле users/{uid}.coinWalletLimitsV1 (клиенту запрещено правилами). */
@@ -83,6 +100,8 @@ export type CoinWalletLimitsState = Readonly<{
   reportDayCoins: number;
   journeyDayKey: string;
   journeyDayCoins: number;
+  chapterExamDayKey: string;
+  chapterExamDayCoins: number;
 }>;
 
 export const COIN_WALLET_LIMITS_FIELD = 'coinWalletLimitsV1' as const;
@@ -93,6 +112,8 @@ export const EMPTY_COIN_WALLET_LIMITS: CoinWalletLimitsState = Object.freeze({
   reportDayCoins: 0,
   journeyDayKey: '',
   journeyDayCoins: 0,
+  chapterExamDayKey: '',
+  chapterExamDayCoins: 0,
 });
 
 function nonNegativeInt(value: unknown): number {
@@ -109,6 +130,8 @@ export function normalizeCoinWalletLimits(raw: unknown): CoinWalletLimitsState {
     reportDayCoins: nonNegativeInt(value.reportDayCoins),
     journeyDayKey: typeof value.journeyDayKey === 'string' ? value.journeyDayKey : '',
     journeyDayCoins: nonNegativeInt(value.journeyDayCoins),
+    chapterExamDayKey: typeof value.chapterExamDayKey === 'string' ? value.chapterExamDayKey : '',
+    chapterExamDayCoins: nonNegativeInt(value.chapterExamDayCoins),
   });
 }
 
@@ -135,7 +158,7 @@ export function classifyCoinWalletSource(requestId: string): CoinWalletClassific
   }
   return reject('permission-denied', 'coin_wallet_source_not_allowed', {
     requestIdPrefix: requestId.slice(0, 16),
-    note: 'not report_reward_/dailyjourney_ (spins, quests, gift compensation g2c* and others are retired, D148)',
+    note: 'not report_reward_/dailyjourney_/chapterexam_ (spins, quests, gift compensation g2c* and others are retired, D148)',
   });
 }
 
@@ -149,6 +172,29 @@ function assertReportShape(operation: CoinWalletOperationShape, fields: Record<s
   }
   if (operation.amount > COIN_WALLET_LIMITS.reportMaxPerReward) {
     reject('invalid-argument', 'coin_wallet_amount_over_limit', { ...fields, limit: COIN_WALLET_LIMITS.reportMaxPerReward });
+  }
+}
+
+/**
+ * Экзамен главы: урок 1..32 и глава 1..7 — по топологии курса (выдуманные номера — отказ), только stars_20, gameplay.
+ * Повтор той же части — прежний результат по номеру операции (идемпотентность callable), поэтому глава даёт не больше 40.
+ */
+function assertChapterExamShape(operation: CoinWalletOperationShape, fields: Record<string, unknown>): void {
+  const match = CHAPTER_EXAM_REQUEST_RE.exec(operation.requestId);
+  const lesson = match ? Number(match[1]) : NaN;
+  const chapter = match ? Number(match[2]) : NaN;
+  if (!Number.isInteger(lesson) || lesson < 1 || lesson > LEARNING_V2_COURSE_LESSON_COUNT_V1
+    || !Number.isInteger(chapter) || chapter < 1 || chapter > LEARNING_V2_LESSON_CHAPTER_COUNT_V1) {
+    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'chapter_exam_not_in_course', lesson, chapter });
+  }
+  if (operation.promotionEligibility !== 'gameplay') {
+    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'chapter_exam_requires_gameplay' });
+  }
+  if (operation.giftId !== COIN_WALLET_LIMITS.chapterExamGiftId) {
+    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'chapter_exam_gift_must_be_stars_20' });
+  }
+  if (operation.amount * 2 !== COIN_WALLET_LIMITS.chapterExamCoinsPerChapter) {
+    reject('invalid-argument', 'coin_wallet_amount_over_limit', { ...fields, why: 'chapter_exam_amount_must_be_half_of_40' });
   }
 }
 
@@ -184,6 +230,8 @@ export function assertCoinWalletOperationShape(
     assertReportShape(operation, fields);
   } else if (operation.lane !== 'base') {
     reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'only_report_uses_premium_lane' });
+  } else if (classification.source === 'chapter_exam') {
+    assertChapterExamShape(operation, fields);
   } else {
     assertJourneyShape(operation, fields);
   }
@@ -232,6 +280,14 @@ export function applyCoinWalletLimits(
     log('limits_ok', { ...fields, used, after: used + operation.amount });
     return Object.freeze({ ...state, journeyDayKey: dayKey, journeyDayCoins: used + operation.amount });
   }
-  // зачем: сюда доходит только daily_journey и report_reward (обработан выше); третьего источника нет.
+  if (classification.source === 'chapter_exam') {
+    const used = state.chapterExamDayKey === dayKey ? state.chapterExamDayCoins : 0;
+    if (used + operation.amount > COIN_WALLET_LIMITS.chapterExamMaxPerDay) {
+      reject('resource-exhausted', 'coin_wallet_daily_limit_reached', { ...fields, used, limit: COIN_WALLET_LIMITS.chapterExamMaxPerDay });
+    }
+    log('limits_ok', { ...fields, used, after: used + operation.amount });
+    return Object.freeze({ ...state, chapterExamDayKey: dayKey, chapterExamDayCoins: used + operation.amount });
+  }
+  // зачем: сюда доходят только известные источники (обработаны выше); неизвестный — отказ.
   return reject('permission-denied', 'coin_wallet_source_not_allowed', { ...fields, note: 'no limits table for source' });
 }

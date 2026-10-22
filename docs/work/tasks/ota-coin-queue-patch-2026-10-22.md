@@ -62,3 +62,21 @@ Governance-ID: TG-11FE9216BDCB
 ## Rollback
 
 `eas update:rollback` (или повторная публикация прежнего бандла) на канале production. Сервер не затронут.
+
+## Путь (1) «Ручная проверка» вместо штатного гейта (владелец кнопкой, 22.10)
+
+Governance-ID: TG-4EC8FDD4E1F8
+
+Выбор пути — НЕ «да» на выпуск. `eas update` — только после ✅ Ревизора, ✅ Сверки и отдельного «да» владельца.
+Протокол проверок в снимке `C:\Temp\claude\ota_patch_108b37562`:
+- [x] карточка `.release-card.md` (Type fix, Allowed — 5 файлов, Forbidden — остальное, Risk, Manual tests, runtimeVersion);
+- [ ] lint на 5 файлах — после тишины;
+- [ ] `release:keys` и `learning-v2:release-parity-gate` — после тишины;
+- [x] тесты монет в снимке — 12 наборов, 133/133;
+- [ ] полная проверка типов снимка — только по команде координатора (эмулятор в ANR).
+
+## Scope
+
+- В заплатке: код сборки 142 (108b37562) + 7b804a37e, f21e44d4c, 683888948, 92897af3f, только на файлах `app/level_spin_star_grants.ts`, `app/phone_state_economy_bridge.ts`, `app/events.ts` и двух тестах.
+- В снимке, вне репозитория: карточка `.release-card.md` (Type fix, Allowed, Forbidden, Risk, Manual tests, runtimeVersion) вместо приехавшей из архива карточки 1.6.23.
+- Не в объёме: `app.json`, нативные сборки, сторы, функции, правила, всё остальное после 108b37562.

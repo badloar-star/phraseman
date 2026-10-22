@@ -43,6 +43,7 @@ import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import { useLineScale, useScaledTextStyles } from "../../../hooks/useLineScale";
 import type { Lang } from "../../../constants/i18n";
 import { LearningV2TaskTitle } from "../../../components/learning-v2/LearningV2TaskChrome";
+import { lv2TaskTokens } from "../../../components/learning-v2/learning_v2_task_theme_tokens";
 import { LEARNING_V2_TASK_TITLE_ICONS, learningV2TaskTitle } from "../../../components/learning-v2/learning_v2_task_titles";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { learningV2ModeSpeedMatchCopyV1 } from "./mode_copy_v1";
@@ -343,7 +344,8 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
         icon={LEARNING_V2_TASK_TITLE_ICONS.match_pairs}
         title={learningV2TaskTitle(interfaceLocale as Lang, "match_pairs")}
         testID="learning-v2-speed-match-title"
-        trailing={round.timerEnabled ? <View style={[sx.timerPill, { backgroundColor: g.opaqueControl }]}>
+        // зачем (владелец 22.10, 1:1): `.timer { background: var(--ctl) }` — заливка таймера = токен controlSoft макета, а не общий opaqueControl
+        trailing={round.timerEnabled ? <View style={[sx.timerPill, { backgroundColor: lv2TaskTokens(g).controlSoft }]}>
           <Ionicons name="time-outline" size={16} color={timerLow ? g.bad : g.text} />
           <Text style={[sx.timerText, { color: timerLow ? g.bad : g.text }]}>
             {secondsLeft}{copy.secondsSuffix}

@@ -7875,4 +7875,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"avoid + gerund (-ing)","uk":"avoid + gerund (-ing)"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 5,
+    sourceFingerprint: "3bf6e801c6a756e8e1d5b1577ca3146727e730a06a087f398c975d984199ffc4",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"do not mind + gerund (-ing)","uk":"do not mind + gerund (-ing)"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 6,
+    sourceFingerprint: "e284c28b5d911a17161674d2fc46d98edfebdbe2101caa8f7dd7ccec15898b6f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"enjoy + gerund (-ing)","uk":"enjoy + gerund (-ing)"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 7,
+    sourceFingerprint: "4a023bf8da15c8447845843cf12ae44226f5f4bf01da5e2e398339a3bf46a1cb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"enjoy + gerund (-ing)","uk":"enjoy + gerund (-ing)"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 8,
+    sourceFingerprint: "c33e3153025a9810e6053bddfb0141727369c76cb06ab9791e9ada77582f90c7",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"enjoy + gerund (-ing)","uk":"enjoy + gerund (-ing)"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
 ]);

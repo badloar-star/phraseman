@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-07",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-07:word:comedy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — comedy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:word:comedy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — comedy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:word:comedy:audio",
+            "transcript": "comedy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:word:comedy:r1",
+              "targetText": "comedy",
+              "meaningByLocale": {
+                "ru": "комедия.",
+                "uk": "комедія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "comedy",
+            "definitionByLocale": {
+              "ru": "комедия.",
+              "uk": "комедія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с enjoy: «Мне нравится смотреть комедии».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с enjoy: «Мне нравится смотреть комедии».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy watching comedy.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится смотреть комедии».",
+            "uk": "Скажіть із enjoy: «Мені подобається дивитися комедії»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "watching",
+            "comedy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i02:r1",
+            "text": "I enjoy watching comedy."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i02:r2",
+            "text": "We enjoy watching comedy."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i02:r3",
+            "text": "I enjoyed watching comedy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i02:audio",
+            "transcript": "I enjoy watching comedy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:i02:r1",
+              "targetText": "I enjoy watching comedy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i02:r2",
+              "targetText": "We enjoy watching comedy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i02:r3",
+              "targetText": "I enjoyed watching comedy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching comedy.",
+                "uk": "У записі звучить I enjoy watching comedy."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching comedy.",
+                "uk": "У записі звучить I enjoy watching comedy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i03:r1",
+            "text": "watching"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i03:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i03:r3",
+            "text": "to watch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ comedy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-07:i03:r1",
+              "text": "watching"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i03:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i03:r3",
+              "text": "to watch"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:word:drama",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — drama",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:word:drama:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — drama",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:word:drama:audio",
+            "transcript": "drama"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:word:drama:r1",
+              "targetText": "drama",
+              "meaningByLocale": {
+                "ru": "драма, серьёзный фильм или пьеса.",
+                "uk": "драма, серйозний фільм або пʼєса."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drama",
+            "definitionByLocale": {
+              "ru": "драма, серьёзный фильм или пьеса.",
+              "uk": "драма, серйозний фільм або пʼєса."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с enjoy: «Мне нравится смотреть хорошую драму».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с enjoy: «Мне нравится смотреть хорошую драму».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy watching a good drama.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится смотреть хорошую драму».",
+            "uk": "Скажіть із enjoy: «Мені подобається дивитися хорошу драму»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "watching",
+            "a",
+            "good",
+            "drama"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i05:r1",
+            "text": "I enjoy watching a good drama."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i05:r2",
+            "text": "We enjoy watching a good drama."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i05:r3",
+            "text": "I enjoyed watching a good drama."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i05:audio",
+            "transcript": "I enjoy watching a good drama."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:i05:r1",
+              "targetText": "I enjoy watching a good drama.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i05:r2",
+              "targetText": "We enjoy watching a good drama.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i05:r3",
+              "targetText": "I enjoyed watching a good drama.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching a good drama.",
+                "uk": "У записі звучить I enjoy watching a good drama."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching a good drama.",
+                "uk": "У записі звучить I enjoy watching a good drama."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i06:r1",
+            "text": "watching"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i06:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i06:r3",
+            "text": "to watch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ a good drama.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-07:i06:r1",
+              "text": "watching"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i06:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i06:r3",
+              "text": "to watch"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:word:thriller",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — thriller",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:word:thriller:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — thriller",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:word:thriller:audio",
+            "transcript": "thriller"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:word:thriller:r1",
+              "targetText": "thriller",
+              "meaningByLocale": {
+                "ru": "триллер, напряжённая история с опасностью и интригой.",
+                "uk": "трилер, напружена історія з небезпекою та інтригою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thriller",
+            "definitionByLocale": {
+              "ru": "триллер, напряжённая история с опасностью и интригой.",
+              "uk": "трилер, напружена історія з небезпекою та інтригою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с enjoy: «Мне нравится читать хороший триллер».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с enjoy: «Мне нравится читать хороший триллер».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy reading a good thriller.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится читать хороший триллер».",
+            "uk": "Скажіть із enjoy: «Мені подобається читати хороший трилер»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "reading",
+            "a",
+            "good",
+            "thriller"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i08:r1",
+            "text": "I enjoy reading a good thriller."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i08:r2",
+            "text": "We enjoy reading a good thriller."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i08:r3",
+            "text": "I enjoyed reading a good thriller."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i08:audio",
+            "transcript": "I enjoy reading a good thriller."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:i08:r1",
+              "targetText": "I enjoy reading a good thriller.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i08:r2",
+              "targetText": "We enjoy reading a good thriller.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i08:r3",
+              "targetText": "I enjoyed reading a good thriller.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy reading a good thriller.",
+                "uk": "У записі звучить I enjoy reading a good thriller."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy reading a good thriller.",
+                "uk": "У записі звучить I enjoy reading a good thriller."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i09:r1",
+            "text": "reading"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i09:r2",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i09:r3",
+            "text": "to read"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ a good thriller.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-07:i09:r1",
+              "text": "reading"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i09:r2",
+              "text": "read"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i09:r3",
+              "text": "to read"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:word:documentary",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — documentary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:word:documentary:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — documentary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:word:documentary:audio",
+            "transcript": "documentary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:word:documentary:r1",
+              "targetText": "documentary",
+              "meaningByLocale": {
+                "ru": "документальный фильм.",
+                "uk": "документальний фільм."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "documentary",
+            "definitionByLocale": {
+              "ru": "документальный фильм.",
+              "uk": "документальний фільм."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с enjoy: «Мне нравится смотреть документальный фильм о природе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с enjoy: «Мне нравится смотреть документальный фильм о природе».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy watching a documentary about nature.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится смотреть документальный фильм о природе».",
+            "uk": "Скажіть із enjoy: «Мені подобається дивитися документальний фільм про природу»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "watching",
+            "a",
+            "documentary",
+            "about",
+            "nature"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i11:r1",
+            "text": "I enjoy watching a documentary about nature."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i11:r2",
+            "text": "We enjoy watching a documentary about nature."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i11:r3",
+            "text": "I enjoyed watching a documentary about nature."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i11:audio",
+            "transcript": "I enjoy watching a documentary about nature."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:i11:r1",
+              "targetText": "I enjoy watching a documentary about nature.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i11:r2",
+              "targetText": "We enjoy watching a documentary about nature.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i11:r3",
+              "targetText": "I enjoyed watching a documentary about nature.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching a documentary about nature.",
+                "uk": "У записі звучить I enjoy watching a documentary about nature."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching a documentary about nature.",
+                "uk": "У записі звучить I enjoy watching a documentary about nature."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i12:r1",
+            "text": "watching"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i12:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i12:r3",
+            "text": "to watch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ a documentary about nature.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-07:i12:r1",
+              "text": "watching"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i12:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i12:r3",
+              "text": "to watch"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-07:i13:p1",
+              "target": "comedy",
+              "meaningByLocale": {
+                "ru": "комедия",
+                "uk": "комедія"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-07:i13:p2",
+              "target": "drama",
+              "meaningByLocale": {
+                "ru": "драма, серьёзный фильм или пьеса",
+                "uk": "драма, серйозний фільм або пʼєса"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-07:i13:p3",
+              "target": "thriller",
+              "meaningByLocale": {
+                "ru": "триллер, напряжённая история с опасностью и интригой",
+                "uk": "трилер, напружена історія з небезпекою та інтригою"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-07:i13:p4",
+              "target": "documentary",
+              "meaningByLocale": {
+                "ru": "документальный фильм",
+                "uk": "документальний фільм"
+              }
+            }
+          ],
+          "leftColumn": [
+            "comedy",
+            "drama",
+            "thriller",
+            "documentary"
+          ],
+          "rightColumn": [
+            "комедия",
+            "драма, серьёзный фильм или пьеса",
+            "триллер, напряжённая история с опасностью и интригой",
+            "документальный фильм"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i14:audio",
+            "transcript": "You must not ignore the rules."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You must not ignore the rules.",
+          "orderedTokens": [
+            "You",
+            "must",
+            "not",
+            "ignore",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вам нравится читать хороший триллер",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вам нравится читать хороший триллер",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i16:audio",
+            "transcript": "I enjoy reading a good thriller."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy reading a good thriller.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вам нравится смотреть документальный фильм о природе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вам нравится смотреть документальный фильм о природе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i17:audio",
+            "transcript": "I enjoy watching a documentary about nature."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy watching a documentary about nature.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-07:word:comedy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — comedy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:word:comedy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — comedy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:word:comedy:audio",
+            "transcript": "comedy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:word:comedy:r1",
+              "targetText": "comedy",
+              "meaningByLocale": {
+                "ru": "комедия.",
+                "uk": "комедія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "comedy",
+            "definitionByLocale": {
+              "ru": "комедия.",
+              "uk": "комедія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із enjoy: «Мені подобається дивитися комедії».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із enjoy: «Мені подобається дивитися комедії».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy watching comedy.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится смотреть комедии».",
+            "uk": "Скажіть із enjoy: «Мені подобається дивитися комедії»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "watching",
+            "comedy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i02:r1",
+            "text": "I enjoy watching comedy."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i02:r2",
+            "text": "We enjoy watching comedy."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i02:r3",
+            "text": "I enjoyed watching comedy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i02:audio",
+            "transcript": "I enjoy watching comedy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:i02:r1",
+              "targetText": "I enjoy watching comedy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i02:r2",
+              "targetText": "We enjoy watching comedy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i02:r3",
+              "targetText": "I enjoyed watching comedy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching comedy.",
+                "uk": "У записі звучить I enjoy watching comedy."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching comedy.",
+                "uk": "У записі звучить I enjoy watching comedy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i03:r1",
+            "text": "watching"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i03:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i03:r3",
+            "text": "to watch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ comedy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-07:i03:r1",
+              "text": "watching"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i03:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i03:r3",
+              "text": "to watch"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:word:drama",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — drama",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:word:drama:audio"
+        ],
+        "accessibilityLabel": "Картка слова — drama",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:word:drama:audio",
+            "transcript": "drama"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:word:drama:r1",
+              "targetText": "drama",
+              "meaningByLocale": {
+                "ru": "драма, серьёзный фильм или пьеса.",
+                "uk": "драма, серйозний фільм або пʼєса."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drama",
+            "definitionByLocale": {
+              "ru": "драма, серьёзный фильм или пьеса.",
+              "uk": "драма, серйозний фільм або пʼєса."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із enjoy: «Мені подобається дивитися хорошу драму».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із enjoy: «Мені подобається дивитися хорошу драму».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy watching a good drama.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится смотреть хорошую драму».",
+            "uk": "Скажіть із enjoy: «Мені подобається дивитися хорошу драму»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "watching",
+            "a",
+            "good",
+            "drama"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i05:r1",
+            "text": "I enjoy watching a good drama."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i05:r2",
+            "text": "We enjoy watching a good drama."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i05:r3",
+            "text": "I enjoyed watching a good drama."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i05:audio",
+            "transcript": "I enjoy watching a good drama."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:i05:r1",
+              "targetText": "I enjoy watching a good drama.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i05:r2",
+              "targetText": "We enjoy watching a good drama.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i05:r3",
+              "targetText": "I enjoyed watching a good drama.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching a good drama.",
+                "uk": "У записі звучить I enjoy watching a good drama."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching a good drama.",
+                "uk": "У записі звучить I enjoy watching a good drama."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i06:r1",
+            "text": "watching"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i06:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i06:r3",
+            "text": "to watch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ a good drama.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-07:i06:r1",
+              "text": "watching"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i06:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i06:r3",
+              "text": "to watch"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:word:thriller",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — thriller",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:word:thriller:audio"
+        ],
+        "accessibilityLabel": "Картка слова — thriller",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:word:thriller:audio",
+            "transcript": "thriller"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:word:thriller:r1",
+              "targetText": "thriller",
+              "meaningByLocale": {
+                "ru": "триллер, напряжённая история с опасностью и интригой.",
+                "uk": "трилер, напружена історія з небезпекою та інтригою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thriller",
+            "definitionByLocale": {
+              "ru": "триллер, напряжённая история с опасностью и интригой.",
+              "uk": "трилер, напружена історія з небезпекою та інтригою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із enjoy: «Мені подобається читати хороший трилер».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із enjoy: «Мені подобається читати хороший трилер».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy reading a good thriller.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится читать хороший триллер».",
+            "uk": "Скажіть із enjoy: «Мені подобається читати хороший трилер»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "reading",
+            "a",
+            "good",
+            "thriller"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i08:r1",
+            "text": "I enjoy reading a good thriller."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i08:r2",
+            "text": "We enjoy reading a good thriller."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i08:r3",
+            "text": "I enjoyed reading a good thriller."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i08:audio",
+            "transcript": "I enjoy reading a good thriller."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:i08:r1",
+              "targetText": "I enjoy reading a good thriller.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i08:r2",
+              "targetText": "We enjoy reading a good thriller.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i08:r3",
+              "targetText": "I enjoyed reading a good thriller.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy reading a good thriller.",
+                "uk": "У записі звучить I enjoy reading a good thriller."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy reading a good thriller.",
+                "uk": "У записі звучить I enjoy reading a good thriller."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i09:r1",
+            "text": "reading"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i09:r2",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i09:r3",
+            "text": "to read"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ a good thriller.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-07:i09:r1",
+              "text": "reading"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i09:r2",
+              "text": "read"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i09:r3",
+              "text": "to read"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:word:documentary",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — documentary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:word:documentary:audio"
+        ],
+        "accessibilityLabel": "Картка слова — documentary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:word:documentary:audio",
+            "transcript": "documentary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:word:documentary:r1",
+              "targetText": "documentary",
+              "meaningByLocale": {
+                "ru": "документальный фильм.",
+                "uk": "документальний фільм."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "documentary",
+            "definitionByLocale": {
+              "ru": "документальный фильм.",
+              "uk": "документальний фільм."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із enjoy: «Мені подобається дивитися документальний фільм про природу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із enjoy: «Мені подобається дивитися документальний фільм про природу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy watching a documentary about nature.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится смотреть документальный фильм о природе».",
+            "uk": "Скажіть із enjoy: «Мені подобається дивитися документальний фільм про природу»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "watching",
+            "a",
+            "documentary",
+            "about",
+            "nature"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i11:r1",
+            "text": "I enjoy watching a documentary about nature."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i11:r2",
+            "text": "We enjoy watching a documentary about nature."
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i11:r3",
+            "text": "I enjoyed watching a documentary about nature."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i11:audio",
+            "transcript": "I enjoy watching a documentary about nature."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-07:i11:r1",
+              "targetText": "I enjoy watching a documentary about nature.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i11:r2",
+              "targetText": "We enjoy watching a documentary about nature.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i11:r3",
+              "targetText": "I enjoyed watching a documentary about nature.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching a documentary about nature.",
+                "uk": "У записі звучить I enjoy watching a documentary about nature."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy watching a documentary about nature.",
+                "uk": "У записі звучить I enjoy watching a documentary about nature."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-07:i12:r1",
+            "text": "watching"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i12:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-21:session-07:i12:r3",
+            "text": "to watch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ a documentary about nature.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-07:i12:r1",
+              "text": "watching"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i12:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i12:r3",
+              "text": "to watch"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-07:i13:p1",
+              "target": "comedy",
+              "meaningByLocale": {
+                "ru": "комедия",
+                "uk": "комедія"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-07:i13:p2",
+              "target": "drama",
+              "meaningByLocale": {
+                "ru": "драма, серьёзный фильм или пьеса",
+                "uk": "драма, серйозний фільм або пʼєса"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-07:i13:p3",
+              "target": "thriller",
+              "meaningByLocale": {
+                "ru": "триллер, напряжённая история с опасностью и интригой",
+                "uk": "трилер, напружена історія з небезпекою та інтригою"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-07:i13:p4",
+              "target": "documentary",
+              "meaningByLocale": {
+                "ru": "документальный фильм",
+                "uk": "документальний фільм"
+              }
+            }
+          ],
+          "leftColumn": [
+            "comedy",
+            "drama",
+            "thriller",
+            "documentary"
+          ],
+          "rightColumn": [
+            "комедія",
+            "драма, серйозний фільм або пʼєса",
+            "трилер, напружена історія з небезпекою та інтригою",
+            "документальний фільм"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i14:audio",
+            "transcript": "You must not ignore the rules."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You must not ignore the rules.",
+          "orderedTokens": [
+            "You",
+            "must",
+            "not",
+            "ignore",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вам подобається читати хороший трилер",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вам подобається читати хороший трилер",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i16:audio",
+            "transcript": "I enjoy reading a good thriller."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy reading a good thriller.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-07:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вам подобається дивитися документальний фільм про природу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вам подобається дивитися документальний фільм про природу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-07:i17:audio",
+            "transcript": "I enjoy watching a documentary about nature."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy watching a documentary about nature.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-07:word:comedy",
+      "correctText": "comedy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i01",
+      "correctText": "I enjoy watching comedy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i02",
+      "correctText": "I enjoy watching comedy.",
+      "correctResponseId": "en:lesson-21:session-07:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i03",
+      "correctText": "watching",
+      "correctResponseId": "en:lesson-21:session-07:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:word:drama",
+      "correctText": "drama",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i04",
+      "correctText": "I enjoy watching a good drama.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i05",
+      "correctText": "I enjoy watching a good drama.",
+      "correctResponseId": "en:lesson-21:session-07:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i06",
+      "correctText": "watching",
+      "correctResponseId": "en:lesson-21:session-07:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:word:thriller",
+      "correctText": "thriller",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i07",
+      "correctText": "I enjoy reading a good thriller.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i08",
+      "correctText": "I enjoy reading a good thriller.",
+      "correctResponseId": "en:lesson-21:session-07:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i09",
+      "correctText": "reading",
+      "correctResponseId": "en:lesson-21:session-07:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:word:documentary",
+      "correctText": "documentary",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i10",
+      "correctText": "I enjoy watching a documentary about nature.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i11",
+      "correctText": "I enjoy watching a documentary about nature.",
+      "correctResponseId": "en:lesson-21:session-07:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i12",
+      "correctText": "watching",
+      "correctResponseId": "en:lesson-21:session-07:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i14",
+      "correctText": "You must not ignore the rules.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i16",
+      "correctText": "I enjoy reading a good thriller.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-07:i17",
+      "correctText": "I enjoy watching a documentary about nature.",
+      "correctResponseId": null
+    }
+  ]
+}

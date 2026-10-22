@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-07:word:comedy",
+    "correctText": "comedy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i01",
+    "correctText": "I enjoy watching comedy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i02",
+    "correctText": "I enjoy watching comedy.",
+    "correctResponseId": "en:lesson-21:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i03",
+    "correctText": "watching",
+    "correctResponseId": "en:lesson-21:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:word:drama",
+    "correctText": "drama",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i04",
+    "correctText": "I enjoy watching a good drama.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i05",
+    "correctText": "I enjoy watching a good drama.",
+    "correctResponseId": "en:lesson-21:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i06",
+    "correctText": "watching",
+    "correctResponseId": "en:lesson-21:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:word:thriller",
+    "correctText": "thriller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i07",
+    "correctText": "I enjoy reading a good thriller.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i08",
+    "correctText": "I enjoy reading a good thriller.",
+    "correctResponseId": "en:lesson-21:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i09",
+    "correctText": "reading",
+    "correctResponseId": "en:lesson-21:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:word:documentary",
+    "correctText": "documentary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i10",
+    "correctText": "I enjoy watching a documentary about nature.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i11",
+    "correctText": "I enjoy watching a documentary about nature.",
+    "correctResponseId": "en:lesson-21:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i12",
+    "correctText": "watching",
+    "correctResponseId": "en:lesson-21:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i13",
+    "correctText": "en:lesson-21:session-07:i13:p1=comedy\nen:lesson-21:session-07:i13:p2=drama\nen:lesson-21:session-07:i13:p3=thriller\nen:lesson-21:session-07:i13:p4=documentary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i14",
+    "correctText": "You must not ignore the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i16",
+    "correctText": "I enjoy reading a good thriller.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-07:i17",
+    "correctText": "I enjoy watching a documentary about nature.",
+    "correctResponseId": null
+  }
+]

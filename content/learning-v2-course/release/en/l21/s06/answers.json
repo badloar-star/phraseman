@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-06:word:culture",
+    "correctText": "culture",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i01",
+    "correctText": "I enjoy learning about local culture.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i02",
+    "correctText": "I enjoy learning about local culture.",
+    "correctResponseId": "en:lesson-21:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i03",
+    "correctText": "learning",
+    "correctResponseId": "en:lesson-21:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:word:celebration",
+    "correctText": "celebration",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i04",
+    "correctText": "I enjoy planning a celebration.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i05",
+    "correctText": "I enjoy planning a celebration.",
+    "correctResponseId": "en:lesson-21:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i06",
+    "correctText": "planning",
+    "correctResponseId": "en:lesson-21:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:word:lifestyle",
+    "correctText": "lifestyle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i07",
+    "correctText": "I enjoy having an active lifestyle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i08",
+    "correctText": "I enjoy having an active lifestyle.",
+    "correctResponseId": "en:lesson-21:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i09",
+    "correctText": "having",
+    "correctResponseId": "en:lesson-21:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:word:tradition",
+    "correctText": "tradition",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i10",
+    "correctText": "I enjoy keeping this tradition.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i11",
+    "correctText": "I enjoy keeping this tradition.",
+    "correctResponseId": "en:lesson-21:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i12",
+    "correctText": "keeping",
+    "correctResponseId": "en:lesson-21:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i13",
+    "correctText": "en:lesson-21:session-06:i13:p1=culture\nen:lesson-21:session-06:i13:p2=celebration\nen:lesson-21:session-06:i13:p3=lifestyle\nen:lesson-21:session-06:i13:p4=tradition",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i14",
+    "correctText": "You must not ignore the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i16",
+    "correctText": "I enjoy having an active lifestyle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-06:i17",
+    "correctText": "I enjoy keeping this tradition.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "enjoy + gerund (-ing)",
+    "uk": "enjoy + gerund (-ing)"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заводить друзей",
+        "uk": "Заводити друзів"
+      },
+      "bodyByLocale": {
+        "ru": "Make friends — заводить друзей, подружиться. Вы недавно переехали и рассказываете, что вам нравится находить новых друзей. После enjoy говорим making friends. После enjoy меняется первый глагол выражения: make friends → making friends, get to know → getting to know. Остальные слова сохраняем. У make и take конечная e исчезает, а в getting буква t удваивается.",
+        "uk": "Make friends — заводити друзів, потоваришувати. Ви нещодавно переїхали й розповідаєте, що вам подобається знаходити нових друзів. Після enjoy кажемо making friends. Після enjoy змінюється перше дієслово виразу: make friends → making friends, get to know → getting to know. Решту слів зберігаємо. У make і take кінцева e зникає, а в getting літера t подвоюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-08:intro1:r1",
+              "text": "I enjoy making friends."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro1:r2",
+              "text": "I enjoy to make friends."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro1:r3",
+              "text": "I enjoy make friends."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-08:intro1:r1",
+              "text": "I enjoy making friends."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro1:r2",
+              "text": "I enjoy to make friends."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro1:r3",
+              "text": "I enjoy make friends."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Узнавать людей ближе",
+        "uk": "Ближче знайомитися з людьми"
+      },
+      "bodyByLocale": {
+        "ru": "Get to know — узнавать человека ближе, постепенно знакомиться с его характером и интересами. Это процесс, а не просто первая встреча. Keep you company — составить тебе компанию: друг не хочет сидеть один, а вам приятно проводить с ним время. Вместо you можно назвать другого человека: keep a friend company. После enjoy меняется первый глагол выражения: make friends → making friends, get to know → getting to know. Остальные слова сохраняем. У make и take конечная e исчезает, а в getting буква t удваивается.",
+        "uk": "Get to know — дізнаватися більше про людину, поступово знайомитися з її характером та інтересами. Це процес, а не просто перша зустріч. Keep you company — скласти тобі компанію: друг не хоче сидіти сам, а вам приємно проводити з ним час. Замість you можна назвати іншу людину: keep a friend company. Після enjoy змінюється перше дієслово виразу: make friends → making friends, get to know → getting to know. Решту слів зберігаємо. У make і take кінцева e зникає, а в getting літера t подвоюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-08:intro2:r1",
+              "text": "I enjoy getting to know new people."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro2:r2",
+              "text": "I enjoy to get to know new people."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro2:r3",
+              "text": "I enjoy get to know new people."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-08:intro2:r1",
+              "text": "I enjoy getting to know new people."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro2:r2",
+              "text": "I enjoy to get to know new people."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro2:r3",
+              "text": "I enjoy get to know new people."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спокойно отдыхать",
+        "uk": "Спокійно відпочивати"
+      },
+      "bodyByLocale": {
+        "ru": "Take it easy — отдыхать без напряжения, не торопиться. В выходной вам нравится ничего не планировать и спокойно отдыхать. Здесь it — часть устойчивого выражения, переводить его отдельно не нужно. После enjoy меняется первый глагол выражения: make friends → making friends, get to know → getting to know. Остальные слова сохраняем. У make и take конечная e исчезает, а в getting буква t удваивается.",
+        "uk": "Take it easy — відпочивати без напруження, не поспішати. У вихідний вам подобається нічого не планувати й спокійно відпочивати. Тут it — частина сталого виразу, перекладати його окремо не потрібно. Після enjoy змінюється перше дієслово виразу: make friends → making friends, get to know → getting to know. Решту слів зберігаємо. У make і take кінцева e зникає, а в getting літера t подвоюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-08:intro3:r1",
+              "text": "I enjoy taking it easy."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro3:r2",
+              "text": "I enjoy to take it easy."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro3:r3",
+              "text": "I enjoy take it easy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-08:intro3:r1",
+              "text": "I enjoy taking it easy."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro3:r2",
+              "text": "I enjoy to take it easy."
+            },
+            {
+              "responseId": "en:lesson-21:session-08:intro3:r3",
+              "text": "I enjoy take it easy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b6b8cbb59eb1a0a13af4609da80cf78692d1c8a65bb84607e0c439b8445198a0"
+}

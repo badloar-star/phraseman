@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "enjoy + gerund (-ing)",
+    "uk": "enjoy + gerund (-ing)"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Посмеяться над комедией",
+        "uk": "Посміятися з комедії"
+      },
+      "bodyByLocale": {
+        "ru": "Comedy — комедия. Вы рассказываете, что любите смешные фильмы. В watching comedy слово comedy обозначает жанр в целом, поэтому перед ним нет a. После enjoy ставим действие на -ing: enjoy watching, enjoy reading. Здесь watching — смотреть фильм, reading — читать книгу. To перед вторым глаголом не нужно.",
+        "uk": "Comedy — комедія. Ви розповідаєте, що любите смішні фільми. У watching comedy слово comedy позначає жанр загалом, тому перед ним немає a. Після enjoy ставимо дію на -ing: enjoy watching, enjoy reading. Тут watching — дивитися фільм, reading — читати книжку. To перед другим дієсловом не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-07:intro1:r1",
+              "text": "I enjoy watching comedy."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro1:r2",
+              "text": "I enjoy to watch comedy."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro1:r3",
+              "text": "I enjoy watch comedy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-07:intro1:r1",
+              "text": "I enjoy watching comedy."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro1:r2",
+              "text": "I enjoy to watch comedy."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro1:r3",
+              "text": "I enjoy watch comedy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Серьёзная или напряжённая история",
+        "uk": "Серйозна або напружена історія"
+      },
+      "bodyByLocale": {
+        "ru": "Drama — драма, серьёзная история о людях и их отношениях; здесь это фильм. Thriller — триллер: напряжённая история, в которой хочется узнать, что произойдёт дальше. Триллер бывает фильмом или книгой; в нашей фразе речь о чтении. После enjoy ставим действие на -ing: enjoy watching, enjoy reading. Здесь watching — смотреть фильм, reading — читать книгу. To перед вторым глаголом не нужно.",
+        "uk": "Drama — драма, серйозна історія про людей та їхні стосунки; тут це фільм. Thriller — трилер: напружена історія, у якій хочеться дізнатися, що станеться далі. Трилер буває фільмом або книжкою; у нашій фразі йдеться про читання. Після enjoy ставимо дію на -ing: enjoy watching, enjoy reading. Тут watching — дивитися фільм, reading — читати книжку. To перед другим дієсловом не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-07:intro2:r1",
+              "text": "I enjoy watching a good drama."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro2:r2",
+              "text": "I enjoy to watch a good drama."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro2:r3",
+              "text": "I enjoy watch a good drama."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-07:intro2:r1",
+              "text": "I enjoy watching a good drama."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro2:r2",
+              "text": "I enjoy to watch a good drama."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro2:r3",
+              "text": "I enjoy watch a good drama."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнать о природе",
+        "uk": "Дізнатися про природу"
+      },
+      "bodyByLocale": {
+        "ru": "Documentary — документальный фильм о реальных событиях, людях или явлениях. Вам нравятся фильмы о природе: о животных, растениях и местах, где они живут. A documentary about nature — документальный фильм о природе. После enjoy ставим действие на -ing: enjoy watching, enjoy reading. Здесь watching — смотреть фильм, reading — читать книгу. To перед вторым глаголом не нужно.",
+        "uk": "Documentary — документальний фільм про реальні події, людей або явища. Вам подобаються фільми про природу: про тварин, рослини та місця, де вони живуть. A documentary about nature — документальний фільм про природу. Після enjoy ставимо дію на -ing: enjoy watching, enjoy reading. Тут watching — дивитися фільм, reading — читати книжку. To перед другим дієсловом не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-07:intro3:r1",
+              "text": "I enjoy watching a documentary about nature."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro3:r2",
+              "text": "I enjoy to watch a documentary about nature."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro3:r3",
+              "text": "I enjoy watch a documentary about nature."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-07:intro3:r1",
+              "text": "I enjoy watching a documentary about nature."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro3:r2",
+              "text": "I enjoy to watch a documentary about nature."
+            },
+            {
+              "responseId": "en:lesson-21:session-07:intro3:r3",
+              "text": "I enjoy watch a documentary about nature."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2e4fe3c18c48e02c7beb91c1783d1a2971a47d6a50c37e5de7d08b0926df4ab8"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "enjoy + gerund (-ing)",
+    "uk": "enjoy + gerund (-ing)"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнавать о местной культуре",
+        "uk": "Дізнаватися про місцеву культуру"
+      },
+      "bodyByLocale": {
+        "ru": "Culture — культура: повседневный уклад, обычаи и искусство людей. В поездке вам нравится узнавать, как живут местные жители и какие праздники отмечают. Learn about local culture — узнавать о местной культуре. После enjoy действие называем формой на -ing: enjoy learning. Plan → planning: конечная n удваивается; have → having: конечная немая e исчезает. В этих фразах мы рассказываем, что нам нравится делать.",
+        "uk": "Culture — культура: повсякденний уклад, звичаї та мистецтво людей. У поїздці вам подобається дізнаватися, як живуть місцеві мешканці та які свята відзначають. Learn about local culture — дізнаватися про місцеву культуру. Після enjoy дію називаємо формою на -ing: enjoy learning. Plan → planning: кінцева n подвоюється; have → having: кінцева німа e зникає. У цих фразах ми розповідаємо, що нам подобається робити."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-06:intro1:r1",
+              "text": "I enjoy learning about local culture."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro1:r2",
+              "text": "I enjoy to learn about local culture."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro1:r3",
+              "text": "I enjoy learn about local culture."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-06:intro1:r1",
+              "text": "I enjoy learning about local culture."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro1:r2",
+              "text": "I enjoy to learn about local culture."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro1:r3",
+              "text": "I enjoy learn about local culture."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Планировать праздник",
+        "uk": "Планувати свято"
+      },
+      "bodyByLocale": {
+        "ru": "Celebration — празднование или торжество. Вам нравится продумывать семейный праздник: место встречи, еду и приглашения. Lifestyle — образ жизни: привычки и занятия в целом. Вы много гуляете и двигаетесь, и вам нравится такой активный образ жизни. После enjoy действие называем формой на -ing: enjoy learning. Plan → planning: конечная n удваивается; have → having: конечная немая e исчезает. В этих фразах мы рассказываем, что нам нравится делать.",
+        "uk": "Celebration — святкування або урочистість. Вам подобається продумувати сімейне свято: місце зустрічі, їжу та запрошення. Lifestyle — спосіб життя: звички й заняття загалом. Ви багато гуляєте й рухаєтеся, і вам подобається такий активний спосіб життя. Після enjoy дію називаємо формою на -ing: enjoy learning. Plan → planning: кінцева n подвоюється; have → having: кінцева німа e зникає. У цих фразах ми розповідаємо, що нам подобається робити."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-06:intro2:r1",
+              "text": "I enjoy planning a celebration."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro2:r2",
+              "text": "I enjoy to plan a celebration."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro2:r3",
+              "text": "I enjoy plan a celebration."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-06:intro2:r1",
+              "text": "I enjoy planning a celebration."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro2:r2",
+              "text": "I enjoy to plan a celebration."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro2:r3",
+              "text": "I enjoy plan a celebration."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сохранять семейную традицию",
+        "uk": "Зберігати сімейну традицію"
+      },
+      "bodyByLocale": {
+        "ru": "Tradition — традиция, обычай, который сохраняют со временем. Каждое лето ваша семья собирается на общий обед, и вы любите поддерживать этот обычай. Keep this tradition — сохранять эту традицию. После enjoy действие называем формой на -ing: enjoy learning. Plan → planning: конечная n удваивается; have → having: конечная немая e исчезает. В этих фразах мы рассказываем, что нам нравится делать.",
+        "uk": "Tradition — традиція, звичай, який зберігають із часом. Щоліта ваша родина збирається на спільний обід, і ви любите підтримувати цей звичай. Keep this tradition — зберігати цю традицію. Після enjoy дію називаємо формою на -ing: enjoy learning. Plan → planning: кінцева n подвоюється; have → having: кінцева німа e зникає. У цих фразах ми розповідаємо, що нам подобається робити."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-06:intro3:r1",
+              "text": "I enjoy keeping this tradition."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro3:r2",
+              "text": "I enjoy to keep this tradition."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro3:r3",
+              "text": "I enjoy keep this tradition."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-06:intro3:r1",
+              "text": "I enjoy keeping this tradition."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro3:r2",
+              "text": "I enjoy to keep this tradition."
+            },
+            {
+              "responseId": "en:lesson-21:session-06:intro3:r3",
+              "text": "I enjoy keep this tradition."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "41f32d4f8b2034e2df5c7908af93997d58891ce403f0a72dc86ae891517317e6"
+}

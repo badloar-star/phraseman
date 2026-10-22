@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-08",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-08:word:make-friends",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — make friends",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:word:make-friends:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — make friends",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:word:make-friends:audio",
+            "transcript": "make friends"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:word:make-friends:r1",
+              "targetText": "make friends",
+              "meaningByLocale": {
+                "ru": "заводить друзей.",
+                "uk": "заводити друзів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make friends",
+            "definitionByLocale": {
+              "ru": "заводить друзей.",
+              "uk": "заводити друзів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу заводить друзей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу заводить друзей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can make friends.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу заводить друзей».",
+            "uk": "Скажіть із can: «Я можу заводити друзів»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "make",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i02:r1",
+            "text": "I enjoy making friends."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i02:r2",
+            "text": "We enjoy making friends."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i02:r3",
+            "text": "I enjoyed making friends."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i02:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:i02:r1",
+              "targetText": "I enjoy making friends.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i02:r2",
+              "targetText": "We enjoy making friends.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i02:r3",
+              "targetText": "I enjoyed making friends.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy making friends.",
+                "uk": "У записі звучить I enjoy making friends."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy making friends.",
+                "uk": "У записі звучить I enjoy making friends."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i03:r1",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i03:r2",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i03:r3",
+            "text": "to make"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ friends.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-08:i03:r1",
+              "text": "making"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i03:r2",
+              "text": "make"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i03:r3",
+              "text": "to make"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:word:get-to-know",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — get to know",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:word:get-to-know:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — get to know",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:word:get-to-know:audio",
+            "transcript": "get to know"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:word:get-to-know:r1",
+              "targetText": "get to know",
+              "meaningByLocale": {
+                "ru": "узнавать ближе, знакомиться постепенно.",
+                "uk": "дізнаватися більше про когось, знайомитися поступово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get to know",
+            "definitionByLocale": {
+              "ru": "узнавать ближе, знакомиться постепенно.",
+              "uk": "дізнаватися більше про когось, знайомитися поступово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу узнавать новых людей ближе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу узнавать новых людей ближе».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can get to know new people.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу узнавать новых людей ближе».",
+            "uk": "Скажіть із can: «Я можу ближче знайомитися з новими людьми»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "get",
+            "to",
+            "know",
+            "new",
+            "people"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i05:r1",
+            "text": "I enjoy getting to know new people."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i05:r2",
+            "text": "We enjoy getting to know new people."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i05:r3",
+            "text": "I enjoyed getting to know new people."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i05:audio",
+            "transcript": "I enjoy getting to know new people."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:i05:r1",
+              "targetText": "I enjoy getting to know new people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i05:r2",
+              "targetText": "We enjoy getting to know new people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i05:r3",
+              "targetText": "I enjoyed getting to know new people.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy getting to know new people.",
+                "uk": "У записі звучить I enjoy getting to know new people."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy getting to know new people.",
+                "uk": "У записі звучить I enjoy getting to know new people."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i06:r1",
+            "text": "getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i06:r2",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i06:r3",
+            "text": "to get"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ to know new people.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-08:i06:r1",
+              "text": "getting"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i06:r2",
+              "text": "get"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i06:r3",
+              "text": "to get"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:word:keep-you-company",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — keep you company",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:word:keep-you-company:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — keep you company",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:word:keep-you-company:audio",
+            "transcript": "keep you company"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:word:keep-you-company:r1",
+              "targetText": "keep you company",
+              "meaningByLocale": {
+                "ru": "составить тебе компанию.",
+                "uk": "скласти тобі компанію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keep you company",
+            "definitionByLocale": {
+              "ru": "составить тебе компанию.",
+              "uk": "скласти тобі компанію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу составлять тебе компанию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу составлять тебе компанию».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can keep you company.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу составлять тебе компанию».",
+            "uk": "Скажіть із can: «Я можу складати тобі компанію»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "keep",
+            "you",
+            "company"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i08:r1",
+            "text": "I enjoy keeping you company."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i08:r2",
+            "text": "We enjoy keeping you company."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i08:r3",
+            "text": "I enjoyed keeping you company."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i08:audio",
+            "transcript": "I enjoy keeping you company."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:i08:r1",
+              "targetText": "I enjoy keeping you company.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i08:r2",
+              "targetText": "We enjoy keeping you company.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i08:r3",
+              "targetText": "I enjoyed keeping you company.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy keeping you company.",
+                "uk": "У записі звучить I enjoy keeping you company."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy keeping you company.",
+                "uk": "У записі звучить I enjoy keeping you company."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i09:r1",
+            "text": "keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i09:r2",
+            "text": "keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i09:r3",
+            "text": "to keep"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ you company.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-08:i09:r1",
+              "text": "keeping"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i09:r2",
+              "text": "keep"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i09:r3",
+              "text": "to keep"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:word:take-it-easy",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — take it easy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:word:take-it-easy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — take it easy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:word:take-it-easy:audio",
+            "transcript": "take it easy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:word:take-it-easy:r1",
+              "targetText": "take it easy",
+              "meaningByLocale": {
+                "ru": "отдыхать, не напрягаться.",
+                "uk": "відпочивати, не напружуватися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take it easy",
+            "definitionByLocale": {
+              "ru": "отдыхать, не напрягаться.",
+              "uk": "відпочивати, не напружуватися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу спокойно отдыхать».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу спокойно отдыхать».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can take it easy.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу спокойно отдыхать».",
+            "uk": "Скажіть із can: «Я можу спокійно відпочивати»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "take",
+            "it",
+            "easy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i11:r1",
+            "text": "I enjoy taking it easy."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i11:r2",
+            "text": "We enjoy taking it easy."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i11:r3",
+            "text": "I enjoyed taking it easy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i11:audio",
+            "transcript": "I enjoy taking it easy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:i11:r1",
+              "targetText": "I enjoy taking it easy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i11:r2",
+              "targetText": "We enjoy taking it easy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i11:r3",
+              "targetText": "I enjoyed taking it easy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy taking it easy.",
+                "uk": "У записі звучить I enjoy taking it easy."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy taking it easy.",
+                "uk": "У записі звучить I enjoy taking it easy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i12:r1",
+            "text": "taking"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i12:r2",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i12:r3",
+            "text": "to take"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ it easy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-08:i12:r1",
+              "text": "taking"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i12:r2",
+              "text": "take"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i12:r3",
+              "text": "to take"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-08:i13:p1",
+              "target": "make friends",
+              "meaningByLocale": {
+                "ru": "заводить друзей",
+                "uk": "заводити друзів"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-08:i13:p2",
+              "target": "get to know",
+              "meaningByLocale": {
+                "ru": "узнавать ближе, знакомиться постепенно",
+                "uk": "дізнаватися більше про когось, знайомитися поступово"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-08:i13:p3",
+              "target": "keep you company",
+              "meaningByLocale": {
+                "ru": "составить тебе компанию",
+                "uk": "скласти тобі компанію"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-08:i13:p4",
+              "target": "take it easy",
+              "meaningByLocale": {
+                "ru": "отдыхать, не напрягаться",
+                "uk": "відпочивати, не напружуватися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "make friends",
+            "get to know",
+            "keep you company",
+            "take it easy"
+          ],
+          "rightColumn": [
+            "заводить друзей",
+            "узнавать ближе, знакомиться постепенно",
+            "составить тебе компанию",
+            "отдыхать, не напрягаться"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i14:audio",
+            "transcript": "You must not ignore the rules."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You must not ignore the rules.",
+          "orderedTokens": [
+            "You",
+            "must",
+            "not",
+            "ignore",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Обратитесь к другу: «Мне нравится составлять тебе компанию»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Обратитесь к другу: «Мне нравится составлять тебе компанию»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i16:audio",
+            "transcript": "I enjoy keeping you company."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy keeping you company.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вам нравится спокойно отдыхать",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вам нравится спокойно отдыхать",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i17:audio",
+            "transcript": "I enjoy taking it easy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy taking it easy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-08:word:make-friends",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — make friends",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:word:make-friends:audio"
+        ],
+        "accessibilityLabel": "Картка слова — make friends",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:word:make-friends:audio",
+            "transcript": "make friends"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:word:make-friends:r1",
+              "targetText": "make friends",
+              "meaningByLocale": {
+                "ru": "заводить друзей.",
+                "uk": "заводити друзів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make friends",
+            "definitionByLocale": {
+              "ru": "заводить друзей.",
+              "uk": "заводити друзів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу заводити друзів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу заводити друзів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can make friends.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу заводить друзей».",
+            "uk": "Скажіть із can: «Я можу заводити друзів»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "make",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i02:r1",
+            "text": "I enjoy making friends."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i02:r2",
+            "text": "We enjoy making friends."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i02:r3",
+            "text": "I enjoyed making friends."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i02:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:i02:r1",
+              "targetText": "I enjoy making friends.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i02:r2",
+              "targetText": "We enjoy making friends.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i02:r3",
+              "targetText": "I enjoyed making friends.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy making friends.",
+                "uk": "У записі звучить I enjoy making friends."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy making friends.",
+                "uk": "У записі звучить I enjoy making friends."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i03:r1",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i03:r2",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i03:r3",
+            "text": "to make"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ friends.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-08:i03:r1",
+              "text": "making"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i03:r2",
+              "text": "make"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i03:r3",
+              "text": "to make"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:word:get-to-know",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — get to know",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:word:get-to-know:audio"
+        ],
+        "accessibilityLabel": "Картка слова — get to know",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:word:get-to-know:audio",
+            "transcript": "get to know"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:word:get-to-know:r1",
+              "targetText": "get to know",
+              "meaningByLocale": {
+                "ru": "узнавать ближе, знакомиться постепенно.",
+                "uk": "дізнаватися більше про когось, знайомитися поступово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get to know",
+            "definitionByLocale": {
+              "ru": "узнавать ближе, знакомиться постепенно.",
+              "uk": "дізнаватися більше про когось, знайомитися поступово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу ближче знайомитися з новими людьми».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу ближче знайомитися з новими людьми».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can get to know new people.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу узнавать новых людей ближе».",
+            "uk": "Скажіть із can: «Я можу ближче знайомитися з новими людьми»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "get",
+            "to",
+            "know",
+            "new",
+            "people"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i05:r1",
+            "text": "I enjoy getting to know new people."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i05:r2",
+            "text": "We enjoy getting to know new people."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i05:r3",
+            "text": "I enjoyed getting to know new people."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i05:audio",
+            "transcript": "I enjoy getting to know new people."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:i05:r1",
+              "targetText": "I enjoy getting to know new people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i05:r2",
+              "targetText": "We enjoy getting to know new people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i05:r3",
+              "targetText": "I enjoyed getting to know new people.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy getting to know new people.",
+                "uk": "У записі звучить I enjoy getting to know new people."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy getting to know new people.",
+                "uk": "У записі звучить I enjoy getting to know new people."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i06:r1",
+            "text": "getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i06:r2",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i06:r3",
+            "text": "to get"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ to know new people.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-08:i06:r1",
+              "text": "getting"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i06:r2",
+              "text": "get"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i06:r3",
+              "text": "to get"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:word:keep-you-company",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — keep you company",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:word:keep-you-company:audio"
+        ],
+        "accessibilityLabel": "Картка слова — keep you company",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:word:keep-you-company:audio",
+            "transcript": "keep you company"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:word:keep-you-company:r1",
+              "targetText": "keep you company",
+              "meaningByLocale": {
+                "ru": "составить тебе компанию.",
+                "uk": "скласти тобі компанію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keep you company",
+            "definitionByLocale": {
+              "ru": "составить тебе компанию.",
+              "uk": "скласти тобі компанію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу складати тобі компанію».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу складати тобі компанію».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can keep you company.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу составлять тебе компанию».",
+            "uk": "Скажіть із can: «Я можу складати тобі компанію»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "keep",
+            "you",
+            "company"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i08:r1",
+            "text": "I enjoy keeping you company."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i08:r2",
+            "text": "We enjoy keeping you company."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i08:r3",
+            "text": "I enjoyed keeping you company."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i08:audio",
+            "transcript": "I enjoy keeping you company."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:i08:r1",
+              "targetText": "I enjoy keeping you company.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i08:r2",
+              "targetText": "We enjoy keeping you company.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i08:r3",
+              "targetText": "I enjoyed keeping you company.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy keeping you company.",
+                "uk": "У записі звучить I enjoy keeping you company."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy keeping you company.",
+                "uk": "У записі звучить I enjoy keeping you company."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i09:r1",
+            "text": "keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i09:r2",
+            "text": "keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i09:r3",
+            "text": "to keep"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ you company.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-08:i09:r1",
+              "text": "keeping"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i09:r2",
+              "text": "keep"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i09:r3",
+              "text": "to keep"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:word:take-it-easy",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — take it easy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:word:take-it-easy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — take it easy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:word:take-it-easy:audio",
+            "transcript": "take it easy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:word:take-it-easy:r1",
+              "targetText": "take it easy",
+              "meaningByLocale": {
+                "ru": "отдыхать, не напрягаться.",
+                "uk": "відпочивати, не напружуватися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take it easy",
+            "definitionByLocale": {
+              "ru": "отдыхать, не напрягаться.",
+              "uk": "відпочивати, не напружуватися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу спокійно відпочивати».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу спокійно відпочивати».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can take it easy.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу спокойно отдыхать».",
+            "uk": "Скажіть із can: «Я можу спокійно відпочивати»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "take",
+            "it",
+            "easy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i11:r1",
+            "text": "I enjoy taking it easy."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i11:r2",
+            "text": "We enjoy taking it easy."
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i11:r3",
+            "text": "I enjoyed taking it easy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i11:audio",
+            "transcript": "I enjoy taking it easy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-08:i11:r1",
+              "targetText": "I enjoy taking it easy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i11:r2",
+              "targetText": "We enjoy taking it easy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i11:r3",
+              "targetText": "I enjoyed taking it easy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy taking it easy.",
+                "uk": "У записі звучить I enjoy taking it easy."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy taking it easy.",
+                "uk": "У записі звучить I enjoy taking it easy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-08:i12:r1",
+            "text": "taking"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i12:r2",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-21:session-08:i12:r3",
+            "text": "to take"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ it easy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-08:i12:r1",
+              "text": "taking"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i12:r2",
+              "text": "take"
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i12:r3",
+              "text": "to take"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-08:i13:p1",
+              "target": "make friends",
+              "meaningByLocale": {
+                "ru": "заводить друзей",
+                "uk": "заводити друзів"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-08:i13:p2",
+              "target": "get to know",
+              "meaningByLocale": {
+                "ru": "узнавать ближе, знакомиться постепенно",
+                "uk": "дізнаватися більше про когось, знайомитися поступово"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-08:i13:p3",
+              "target": "keep you company",
+              "meaningByLocale": {
+                "ru": "составить тебе компанию",
+                "uk": "скласти тобі компанію"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-08:i13:p4",
+              "target": "take it easy",
+              "meaningByLocale": {
+                "ru": "отдыхать, не напрягаться",
+                "uk": "відпочивати, не напружуватися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "make friends",
+            "get to know",
+            "keep you company",
+            "take it easy"
+          ],
+          "rightColumn": [
+            "заводити друзів",
+            "дізнаватися більше про когось, знайомитися поступово",
+            "скласти тобі компанію",
+            "відпочивати, не напружуватися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i14:audio",
+            "transcript": "You must not ignore the rules."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You must not ignore the rules.",
+          "orderedTokens": [
+            "You",
+            "must",
+            "not",
+            "ignore",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Зверніться до друга: «Мені подобається складати тобі компанію»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Зверніться до друга: «Мені подобається складати тобі компанію»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i16:audio",
+            "transcript": "I enjoy keeping you company."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy keeping you company.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вам подобається спокійно відпочивати",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вам подобається спокійно відпочивати",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-08:i17:audio",
+            "transcript": "I enjoy taking it easy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy taking it easy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-08:word:make-friends",
+      "correctText": "make friends",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i01",
+      "correctText": "I can make friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i02",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": "en:lesson-21:session-08:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i03",
+      "correctText": "making",
+      "correctResponseId": "en:lesson-21:session-08:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:word:get-to-know",
+      "correctText": "get to know",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i04",
+      "correctText": "I can get to know new people.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i05",
+      "correctText": "I enjoy getting to know new people.",
+      "correctResponseId": "en:lesson-21:session-08:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i06",
+      "correctText": "getting",
+      "correctResponseId": "en:lesson-21:session-08:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:word:keep-you-company",
+      "correctText": "keep you company",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i07",
+      "correctText": "I can keep you company.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i08",
+      "correctText": "I enjoy keeping you company.",
+      "correctResponseId": "en:lesson-21:session-08:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i09",
+      "correctText": "keeping",
+      "correctResponseId": "en:lesson-21:session-08:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:word:take-it-easy",
+      "correctText": "take it easy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i10",
+      "correctText": "I can take it easy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i11",
+      "correctText": "I enjoy taking it easy.",
+      "correctResponseId": "en:lesson-21:session-08:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i12",
+      "correctText": "taking",
+      "correctResponseId": "en:lesson-21:session-08:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i14",
+      "correctText": "You must not ignore the rules.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i16",
+      "correctText": "I enjoy keeping you company.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-08:i17",
+      "correctText": "I enjoy taking it easy.",
+      "correctResponseId": null
+    }
+  ]
+}

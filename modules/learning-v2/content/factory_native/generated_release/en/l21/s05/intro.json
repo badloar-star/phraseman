@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "do not mind + gerund (-ing)",
+    "uk": "do not mind + gerund (-ing)"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выслушать замечания",
+        "uk": "Вислухати зауваження"
+      },
+      "bodyByLocale": {
+        "ru": "Criticism — критика: замечания о том, что можно улучшить. Вы показываете другу свою работу и готовы спокойно выслушать замечания. Receive criticism — получать критику в свой адрес. I do not mind + -ing означает «я не против что-то делать», «меня это не беспокоит». В разговоре do not обычно сокращают до don’t. После mind действие выражаем формой на -ing, без to. Это согласие, а не утверждение, что занятие обязательно нравится.",
+        "uk": "Criticism — критика: зауваження про те, що можна поліпшити. Ви показуєте другові свою роботу й готові спокійно вислухати зауваження. Receive criticism — отримувати критику на свою адресу. I do not mind + -ing означає «я не проти щось робити», «мене це не турбує». У розмові do not зазвичай скорочують до don’t. Після mind дію виражаємо формою на -ing, без to. Це згода, а не твердження, що заняття обовʼязково подобається."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-05:intro1:r1",
+              "text": "I do not mind receiving criticism."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro1:r2",
+              "text": "I do not mind to receive criticism."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro1:r3",
+              "text": "I do not mind receive criticism."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-05:intro1:r1",
+              "text": "I do not mind receiving criticism."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro1:r2",
+              "text": "I do not mind to receive criticism."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro1:r3",
+              "text": "I do not mind receive criticism."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обсудить проблему",
+        "uk": "Обговорити проблему"
+      },
+      "bodyByLocale": {
+        "ru": "Complaint — жалоба на проблему. Вы организовали общую поездку и готовы выслушать участника, которому что-то не понравилось. Disagreement — разногласие: люди по-разному смотрят на вопрос. Вы согласны спокойно обсудить разницу во мнениях. I do not mind + -ing означает «я не против что-то делать», «меня это не беспокоит». В разговоре do not обычно сокращают до don’t. После mind действие выражаем формой на -ing, без to. Это согласие, а не утверждение, что занятие обязательно нравится.",
+        "uk": "Complaint — скарга на проблему. Ви організували спільну поїздку й готові вислухати учасника, якому щось не сподобалося. Disagreement — розбіжність у поглядах: люди по-різному дивляться на питання. Ви згодні спокійно обговорити різницю в думках. I do not mind + -ing означає «я не проти щось робити», «мене це не турбує». У розмові do not зазвичай скорочують до don’t. Після mind дію виражаємо формою на -ing, без to. Це згода, а не твердження, що заняття обовʼязково подобається."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-05:intro2:r1",
+              "text": "I do not mind hearing a complaint."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro2:r2",
+              "text": "I do not mind to hear a complaint."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro2:r3",
+              "text": "I do not mind hear a complaint."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-05:intro2:r1",
+              "text": "I do not mind hearing a complaint."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro2:r2",
+              "text": "I do not mind to hear a complaint."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro2:r3",
+              "text": "I do not mind hear a complaint."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Начать снова",
+        "uk": "Почати знову"
+      },
+      "bodyByLocale": {
+        "ru": "Interruption — ситуация, когда речь или дело прервали. Например, кто-то вошёл и задал вопрос во время вашего объяснения. Вы не возражаете против того, чтобы начать объяснение заново. After an interruption — после того, как вас прервали. I do not mind + -ing означает «я не против что-то делать», «меня это не беспокоит». В разговоре do not обычно сокращают до don’t. После mind действие выражаем формой на -ing, без to. Это согласие, а не утверждение, что занятие обязательно нравится.",
+        "uk": "Interruption — ситуація, коли мовлення або справу перервали. Наприклад, хтось увійшов і поставив запитання під час вашого пояснення. Ви не заперечуєте проти того, щоб почати пояснення заново. After an interruption — після того, як вас перервали. I do not mind + -ing означає «я не проти щось робити», «мене це не турбує». У розмові do not зазвичай скорочують до don’t. Після mind дію виражаємо формою на -ing, без to. Це згода, а не твердження, що заняття обовʼязково подобається."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-05:intro3:r1",
+              "text": "I do not mind starting again after an interruption."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro3:r2",
+              "text": "I do not mind to start again after an interruption."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro3:r3",
+              "text": "I do not mind start again after an interruption."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-05:intro3:r1",
+              "text": "I do not mind starting again after an interruption."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro3:r2",
+              "text": "I do not mind to start again after an interruption."
+            },
+            {
+              "responseId": "en:lesson-21:session-05:intro3:r3",
+              "text": "I do not mind start again after an interruption."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "101ea19bb39b83cfa0609fa8f49f67a904b143e61ed1b72f82a8a3f9a39a2df8"
+}

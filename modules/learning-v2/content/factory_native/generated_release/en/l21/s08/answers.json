@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-08:word:make-friends",
+    "correctText": "make friends",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i01",
+    "correctText": "I can make friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i02",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": "en:lesson-21:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i03",
+    "correctText": "making",
+    "correctResponseId": "en:lesson-21:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:word:get-to-know",
+    "correctText": "get to know",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i04",
+    "correctText": "I can get to know new people.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i05",
+    "correctText": "I enjoy getting to know new people.",
+    "correctResponseId": "en:lesson-21:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i06",
+    "correctText": "getting",
+    "correctResponseId": "en:lesson-21:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:word:keep-you-company",
+    "correctText": "keep you company",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i07",
+    "correctText": "I can keep you company.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i08",
+    "correctText": "I enjoy keeping you company.",
+    "correctResponseId": "en:lesson-21:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i09",
+    "correctText": "keeping",
+    "correctResponseId": "en:lesson-21:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:word:take-it-easy",
+    "correctText": "take it easy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i10",
+    "correctText": "I can take it easy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i11",
+    "correctText": "I enjoy taking it easy.",
+    "correctResponseId": "en:lesson-21:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i12",
+    "correctText": "taking",
+    "correctResponseId": "en:lesson-21:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i13",
+    "correctText": "en:lesson-21:session-08:i13:p1=make friends\nen:lesson-21:session-08:i13:p2=get to know\nen:lesson-21:session-08:i13:p3=keep you company\nen:lesson-21:session-08:i13:p4=take it easy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i14",
+    "correctText": "You must not ignore the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i16",
+    "correctText": "I enjoy keeping you company.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-08:i17",
+    "correctText": "I enjoy taking it easy.",
+    "correctResponseId": null
+  }
+]

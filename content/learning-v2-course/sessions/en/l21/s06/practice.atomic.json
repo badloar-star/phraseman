@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-06",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-06:word:culture",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — culture",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:word:culture:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — culture",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:word:culture:audio",
+            "transcript": "culture"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:word:culture:r1",
+              "targetText": "culture",
+              "meaningByLocale": {
+                "ru": "культура, уклад и обычаи людей.",
+                "uk": "культура, уклад і звичаї людей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "culture",
+            "definitionByLocale": {
+              "ru": "культура, уклад и обычаи людей.",
+              "uk": "культура, уклад і звичаї людей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с enjoy: «Мне нравится узнавать о местной культуре».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с enjoy: «Мне нравится узнавать о местной культуре».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy learning about local culture.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится узнавать о местной культуре».",
+            "uk": "Скажіть із enjoy: «Мені подобається дізнаватися про місцеву культуру»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "learning",
+            "about",
+            "local",
+            "culture"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i02:r1",
+            "text": "I enjoy learning about local culture."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i02:r2",
+            "text": "We enjoy learning about local culture."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i02:r3",
+            "text": "I enjoyed learning about local culture."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i02:audio",
+            "transcript": "I enjoy learning about local culture."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:i02:r1",
+              "targetText": "I enjoy learning about local culture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i02:r2",
+              "targetText": "We enjoy learning about local culture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i02:r3",
+              "targetText": "I enjoyed learning about local culture.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy learning about local culture.",
+                "uk": "У записі звучить I enjoy learning about local culture."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy learning about local culture.",
+                "uk": "У записі звучить I enjoy learning about local culture."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i03:r1",
+            "text": "learning"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i03:r2",
+            "text": "learn"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i03:r3",
+            "text": "to learn"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ about local culture.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-06:i03:r1",
+              "text": "learning"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i03:r2",
+              "text": "learn"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i03:r3",
+              "text": "to learn"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:word:celebration",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — celebration",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:word:celebration:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — celebration",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:word:celebration:audio",
+            "transcript": "celebration"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:word:celebration:r1",
+              "targetText": "celebration",
+              "meaningByLocale": {
+                "ru": "празднование, торжество.",
+                "uk": "святкування, урочистість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "celebration",
+            "definitionByLocale": {
+              "ru": "празднование, торжество.",
+              "uk": "святкування, урочистість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с enjoy: «Мне нравится планировать празднование».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с enjoy: «Мне нравится планировать празднование».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy planning a celebration.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится планировать празднование».",
+            "uk": "Скажіть із enjoy: «Мені подобається планувати святкування»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "planning",
+            "a",
+            "celebration"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i05:r1",
+            "text": "I enjoy planning a celebration."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i05:r2",
+            "text": "We enjoy planning a celebration."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i05:r3",
+            "text": "I enjoyed planning a celebration."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i05:audio",
+            "transcript": "I enjoy planning a celebration."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:i05:r1",
+              "targetText": "I enjoy planning a celebration.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i05:r2",
+              "targetText": "We enjoy planning a celebration.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i05:r3",
+              "targetText": "I enjoyed planning a celebration.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy planning a celebration.",
+                "uk": "У записі звучить I enjoy planning a celebration."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy planning a celebration.",
+                "uk": "У записі звучить I enjoy planning a celebration."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i06:r1",
+            "text": "planning"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i06:r2",
+            "text": "plan"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i06:r3",
+            "text": "to plan"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ a celebration.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-06:i06:r1",
+              "text": "planning"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i06:r2",
+              "text": "plan"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i06:r3",
+              "text": "to plan"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:word:lifestyle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lifestyle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:word:lifestyle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lifestyle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:word:lifestyle:audio",
+            "transcript": "lifestyle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:word:lifestyle:r1",
+              "targetText": "lifestyle",
+              "meaningByLocale": {
+                "ru": "образ жизни.",
+                "uk": "спосіб життя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lifestyle",
+            "definitionByLocale": {
+              "ru": "образ жизни.",
+              "uk": "спосіб життя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с enjoy: «Мне нравится вести активный образ жизни».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с enjoy: «Мне нравится вести активный образ жизни».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy having an active lifestyle.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится вести активный образ жизни».",
+            "uk": "Скажіть із enjoy: «Мені подобається вести активний спосіб життя»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "having",
+            "an",
+            "active",
+            "lifestyle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i08:r1",
+            "text": "I enjoy having an active lifestyle."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i08:r2",
+            "text": "We enjoy having an active lifestyle."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i08:r3",
+            "text": "I enjoyed having an active lifestyle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i08:audio",
+            "transcript": "I enjoy having an active lifestyle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:i08:r1",
+              "targetText": "I enjoy having an active lifestyle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i08:r2",
+              "targetText": "We enjoy having an active lifestyle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i08:r3",
+              "targetText": "I enjoyed having an active lifestyle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy having an active lifestyle.",
+                "uk": "У записі звучить I enjoy having an active lifestyle."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy having an active lifestyle.",
+                "uk": "У записі звучить I enjoy having an active lifestyle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i09:r1",
+            "text": "having"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i09:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i09:r3",
+            "text": "to have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ an active lifestyle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-06:i09:r1",
+              "text": "having"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i09:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i09:r3",
+              "text": "to have"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:word:tradition",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tradition",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:word:tradition:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tradition",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:word:tradition:audio",
+            "transcript": "tradition"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:word:tradition:r1",
+              "targetText": "tradition",
+              "meaningByLocale": {
+                "ru": "традиция.",
+                "uk": "традиція."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tradition",
+            "definitionByLocale": {
+              "ru": "традиция.",
+              "uk": "традиція."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с enjoy: «Мне нравится сохранять эту традицию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с enjoy: «Мне нравится сохранять эту традицию».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy keeping this tradition.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится сохранять эту традицию».",
+            "uk": "Скажіть із enjoy: «Мені подобається зберігати цю традицію»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "keeping",
+            "this",
+            "tradition"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i11:r1",
+            "text": "I enjoy keeping this tradition."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i11:r2",
+            "text": "We enjoy keeping this tradition."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i11:r3",
+            "text": "I enjoyed keeping this tradition."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i11:audio",
+            "transcript": "I enjoy keeping this tradition."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:i11:r1",
+              "targetText": "I enjoy keeping this tradition.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i11:r2",
+              "targetText": "We enjoy keeping this tradition.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i11:r3",
+              "targetText": "I enjoyed keeping this tradition.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy keeping this tradition.",
+                "uk": "У записі звучить I enjoy keeping this tradition."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy keeping this tradition.",
+                "uk": "У записі звучить I enjoy keeping this tradition."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о приятном занятии.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i12:r1",
+            "text": "keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i12:r2",
+            "text": "keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i12:r3",
+            "text": "to keep"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о приятном занятии.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ this tradition.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-06:i12:r1",
+              "text": "keeping"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i12:r2",
+              "text": "keep"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i12:r3",
+              "text": "to keep"
+            }
+          ],
+          "testedDimension": "Дополните фразу о приятном занятии.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о приятном занятии.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-06:i13:p1",
+              "target": "culture",
+              "meaningByLocale": {
+                "ru": "культура, уклад и обычаи людей",
+                "uk": "культура, уклад і звичаї людей"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-06:i13:p2",
+              "target": "celebration",
+              "meaningByLocale": {
+                "ru": "празднование, торжество",
+                "uk": "святкування, урочистість"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-06:i13:p3",
+              "target": "lifestyle",
+              "meaningByLocale": {
+                "ru": "образ жизни",
+                "uk": "спосіб життя"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-06:i13:p4",
+              "target": "tradition",
+              "meaningByLocale": {
+                "ru": "традиция",
+                "uk": "традиція"
+              }
+            }
+          ],
+          "leftColumn": [
+            "culture",
+            "celebration",
+            "lifestyle",
+            "tradition"
+          ],
+          "rightColumn": [
+            "культура, уклад и обычаи людей",
+            "празднование, торжество",
+            "образ жизни",
+            "традиция"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i14:audio",
+            "transcript": "You must not ignore the rules."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You must not ignore the rules.",
+          "orderedTokens": [
+            "You",
+            "must",
+            "not",
+            "ignore",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вам нравится активный образ жизни",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вам нравится активный образ жизни",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i16:audio",
+            "transcript": "I enjoy having an active lifestyle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy having an active lifestyle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вам нравится сохранять эту традицию",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вам нравится сохранять эту традицию",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i17:audio",
+            "transcript": "I enjoy keeping this tradition."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy keeping this tradition.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-06:word:culture",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — culture",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:word:culture:audio"
+        ],
+        "accessibilityLabel": "Картка слова — culture",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:word:culture:audio",
+            "transcript": "culture"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:word:culture:r1",
+              "targetText": "culture",
+              "meaningByLocale": {
+                "ru": "культура, уклад и обычаи людей.",
+                "uk": "культура, уклад і звичаї людей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "culture",
+            "definitionByLocale": {
+              "ru": "культура, уклад и обычаи людей.",
+              "uk": "культура, уклад і звичаї людей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із enjoy: «Мені подобається дізнаватися про місцеву культуру».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із enjoy: «Мені подобається дізнаватися про місцеву культуру».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy learning about local culture.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится узнавать о местной культуре».",
+            "uk": "Скажіть із enjoy: «Мені подобається дізнаватися про місцеву культуру»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "learning",
+            "about",
+            "local",
+            "culture"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i02:r1",
+            "text": "I enjoy learning about local culture."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i02:r2",
+            "text": "We enjoy learning about local culture."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i02:r3",
+            "text": "I enjoyed learning about local culture."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i02:audio",
+            "transcript": "I enjoy learning about local culture."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:i02:r1",
+              "targetText": "I enjoy learning about local culture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i02:r2",
+              "targetText": "We enjoy learning about local culture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i02:r3",
+              "targetText": "I enjoyed learning about local culture.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy learning about local culture.",
+                "uk": "У записі звучить I enjoy learning about local culture."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy learning about local culture.",
+                "uk": "У записі звучить I enjoy learning about local culture."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i03:r1",
+            "text": "learning"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i03:r2",
+            "text": "learn"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i03:r3",
+            "text": "to learn"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ about local culture.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-06:i03:r1",
+              "text": "learning"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i03:r2",
+              "text": "learn"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i03:r3",
+              "text": "to learn"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:word:celebration",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — celebration",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:word:celebration:audio"
+        ],
+        "accessibilityLabel": "Картка слова — celebration",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:word:celebration:audio",
+            "transcript": "celebration"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:word:celebration:r1",
+              "targetText": "celebration",
+              "meaningByLocale": {
+                "ru": "празднование, торжество.",
+                "uk": "святкування, урочистість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "celebration",
+            "definitionByLocale": {
+              "ru": "празднование, торжество.",
+              "uk": "святкування, урочистість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із enjoy: «Мені подобається планувати святкування».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із enjoy: «Мені подобається планувати святкування».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy planning a celebration.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится планировать празднование».",
+            "uk": "Скажіть із enjoy: «Мені подобається планувати святкування»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "planning",
+            "a",
+            "celebration"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i05:r1",
+            "text": "I enjoy planning a celebration."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i05:r2",
+            "text": "We enjoy planning a celebration."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i05:r3",
+            "text": "I enjoyed planning a celebration."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i05:audio",
+            "transcript": "I enjoy planning a celebration."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:i05:r1",
+              "targetText": "I enjoy planning a celebration.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i05:r2",
+              "targetText": "We enjoy planning a celebration.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i05:r3",
+              "targetText": "I enjoyed planning a celebration.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy planning a celebration.",
+                "uk": "У записі звучить I enjoy planning a celebration."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy planning a celebration.",
+                "uk": "У записі звучить I enjoy planning a celebration."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i06:r1",
+            "text": "planning"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i06:r2",
+            "text": "plan"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i06:r3",
+            "text": "to plan"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ a celebration.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-06:i06:r1",
+              "text": "planning"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i06:r2",
+              "text": "plan"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i06:r3",
+              "text": "to plan"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:word:lifestyle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lifestyle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:word:lifestyle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lifestyle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:word:lifestyle:audio",
+            "transcript": "lifestyle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:word:lifestyle:r1",
+              "targetText": "lifestyle",
+              "meaningByLocale": {
+                "ru": "образ жизни.",
+                "uk": "спосіб життя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lifestyle",
+            "definitionByLocale": {
+              "ru": "образ жизни.",
+              "uk": "спосіб життя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із enjoy: «Мені подобається вести активний спосіб життя».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із enjoy: «Мені подобається вести активний спосіб життя».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy having an active lifestyle.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится вести активный образ жизни».",
+            "uk": "Скажіть із enjoy: «Мені подобається вести активний спосіб життя»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "having",
+            "an",
+            "active",
+            "lifestyle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i08:r1",
+            "text": "I enjoy having an active lifestyle."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i08:r2",
+            "text": "We enjoy having an active lifestyle."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i08:r3",
+            "text": "I enjoyed having an active lifestyle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i08:audio",
+            "transcript": "I enjoy having an active lifestyle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:i08:r1",
+              "targetText": "I enjoy having an active lifestyle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i08:r2",
+              "targetText": "We enjoy having an active lifestyle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i08:r3",
+              "targetText": "I enjoyed having an active lifestyle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy having an active lifestyle.",
+                "uk": "У записі звучить I enjoy having an active lifestyle."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy having an active lifestyle.",
+                "uk": "У записі звучить I enjoy having an active lifestyle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i09:r1",
+            "text": "having"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i09:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i09:r3",
+            "text": "to have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ an active lifestyle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-06:i09:r1",
+              "text": "having"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i09:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i09:r3",
+              "text": "to have"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:word:tradition",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tradition",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:word:tradition:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tradition",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:word:tradition:audio",
+            "transcript": "tradition"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:word:tradition:r1",
+              "targetText": "tradition",
+              "meaningByLocale": {
+                "ru": "традиция.",
+                "uk": "традиція."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tradition",
+            "definitionByLocale": {
+              "ru": "традиция.",
+              "uk": "традиція."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із enjoy: «Мені подобається зберігати цю традицію».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із enjoy: «Мені подобається зберігати цю традицію».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoy keeping this tradition.",
+          "localizedMeaning": {
+            "ru": "Скажите с enjoy: «Мне нравится сохранять эту традицию».",
+            "uk": "Скажіть із enjoy: «Мені подобається зберігати цю традицію»."
+          },
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "keeping",
+            "this",
+            "tradition"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i11:r1",
+            "text": "I enjoy keeping this tradition."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i11:r2",
+            "text": "We enjoy keeping this tradition."
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i11:r3",
+            "text": "I enjoyed keeping this tradition."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i11:audio",
+            "transcript": "I enjoy keeping this tradition."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-06:i11:r1",
+              "targetText": "I enjoy keeping this tradition.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i11:r2",
+              "targetText": "We enjoy keeping this tradition.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i11:r3",
+              "targetText": "I enjoyed keeping this tradition.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy keeping this tradition.",
+                "uk": "У записі звучить I enjoy keeping this tradition."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I enjoy keeping this tradition.",
+                "uk": "У записі звучить I enjoy keeping this tradition."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про приємне заняття.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-06:i12:r1",
+            "text": "keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i12:r2",
+            "text": "keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-06:i12:r3",
+            "text": "to keep"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про приємне заняття.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о приятном занятии.",
+            "uk": "Доповніть фразу про приємне заняття."
+          },
+          "gappedTargetPhrase": "I enjoy ___ this tradition.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-06:i12:r1",
+              "text": "keeping"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i12:r2",
+              "text": "keep"
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i12:r3",
+              "text": "to keep"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про приємне заняття.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-06:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy нужна форма на -ing.",
+                "uk": "Після enjoy потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-06:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про приємне заняття.",
+              "feedbackByLocale": {
+                "ru": "После enjoy не используем to + глагол.",
+                "uk": "Після enjoy не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-06:i13:p1",
+              "target": "culture",
+              "meaningByLocale": {
+                "ru": "культура, уклад и обычаи людей",
+                "uk": "культура, уклад і звичаї людей"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-06:i13:p2",
+              "target": "celebration",
+              "meaningByLocale": {
+                "ru": "празднование, торжество",
+                "uk": "святкування, урочистість"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-06:i13:p3",
+              "target": "lifestyle",
+              "meaningByLocale": {
+                "ru": "образ жизни",
+                "uk": "спосіб життя"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-06:i13:p4",
+              "target": "tradition",
+              "meaningByLocale": {
+                "ru": "традиция",
+                "uk": "традиція"
+              }
+            }
+          ],
+          "leftColumn": [
+            "culture",
+            "celebration",
+            "lifestyle",
+            "tradition"
+          ],
+          "rightColumn": [
+            "культура, уклад і звичаї людей",
+            "святкування, урочистість",
+            "спосіб життя",
+            "традиція"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i14:audio",
+            "transcript": "You must not ignore the rules."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You must not ignore the rules.",
+          "orderedTokens": [
+            "You",
+            "must",
+            "not",
+            "ignore",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вам подобається активний спосіб життя",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вам подобається активний спосіб життя",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i16:audio",
+            "transcript": "I enjoy having an active lifestyle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy having an active lifestyle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-06:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вам подобається зберігати цю традицію",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вам подобається зберігати цю традицію",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-06:i17:audio",
+            "transcript": "I enjoy keeping this tradition."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I enjoy keeping this tradition.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-06:word:culture",
+      "correctText": "culture",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i01",
+      "correctText": "I enjoy learning about local culture.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i02",
+      "correctText": "I enjoy learning about local culture.",
+      "correctResponseId": "en:lesson-21:session-06:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i03",
+      "correctText": "learning",
+      "correctResponseId": "en:lesson-21:session-06:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:word:celebration",
+      "correctText": "celebration",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i04",
+      "correctText": "I enjoy planning a celebration.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i05",
+      "correctText": "I enjoy planning a celebration.",
+      "correctResponseId": "en:lesson-21:session-06:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i06",
+      "correctText": "planning",
+      "correctResponseId": "en:lesson-21:session-06:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:word:lifestyle",
+      "correctText": "lifestyle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i07",
+      "correctText": "I enjoy having an active lifestyle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i08",
+      "correctText": "I enjoy having an active lifestyle.",
+      "correctResponseId": "en:lesson-21:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i09",
+      "correctText": "having",
+      "correctResponseId": "en:lesson-21:session-06:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:word:tradition",
+      "correctText": "tradition",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i10",
+      "correctText": "I enjoy keeping this tradition.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i11",
+      "correctText": "I enjoy keeping this tradition.",
+      "correctResponseId": "en:lesson-21:session-06:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i12",
+      "correctText": "keeping",
+      "correctResponseId": "en:lesson-21:session-06:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i14",
+      "correctText": "You must not ignore the rules.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i16",
+      "correctText": "I enjoy having an active lifestyle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-06:i17",
+      "correctText": "I enjoy keeping this tradition.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-05",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-05:word:criticism",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — criticism",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:word:criticism:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — criticism",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:word:criticism:audio",
+            "transcript": "criticism"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:word:criticism:r1",
+              "targetText": "criticism",
+              "meaningByLocale": {
+                "ru": "критика.",
+                "uk": "критика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "criticism",
+            "definitionByLocale": {
+              "ru": "критика.",
+              "uk": "критика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с do not mind: «Я не против выслушивать критику».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с do not mind: «Я не против выслушивать критику».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not mind receiving criticism.",
+          "localizedMeaning": {
+            "ru": "Скажите с do not mind: «Я не против выслушивать критику».",
+            "uk": "Скажіть із do not mind: «Я не проти вислуховувати критику»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "mind",
+            "receiving",
+            "criticism"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i02:r1",
+            "text": "I do not mind receiving criticism."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i02:r2",
+            "text": "We do not mind receiving criticism."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i02:r3",
+            "text": "I did not mind receiving criticism."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i02:audio",
+            "transcript": "I do not mind receiving criticism."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:i02:r1",
+              "targetText": "I do not mind receiving criticism.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i02:r2",
+              "targetText": "We do not mind receiving criticism.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i02:r3",
+              "targetText": "I did not mind receiving criticism.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind receiving criticism.",
+                "uk": "У записі звучить I do not mind receiving criticism."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind receiving criticism.",
+                "uk": "У записі звучить I do not mind receiving criticism."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поставьте действие после mind.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i03:r1",
+            "text": "receiving"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i03:r2",
+            "text": "receive"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i03:r3",
+            "text": "to receive"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поставьте действие после mind.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Поставьте действие после mind.",
+            "uk": "Поставте дію після mind."
+          },
+          "gappedTargetPhrase": "I do not mind ___ criticism.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-05:i03:r1",
+              "text": "receiving"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i03:r2",
+              "text": "receive"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i03:r3",
+              "text": "to receive"
+            }
+          ],
+          "testedDimension": "Поставьте действие после mind.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Поставьте действие после mind.",
+              "feedbackByLocale": {
+                "ru": "После mind нужна форма на -ing.",
+                "uk": "Після mind потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Поставьте действие после mind.",
+              "feedbackByLocale": {
+                "ru": "После mind не используем to + глагол.",
+                "uk": "Після mind не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:word:complaint",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — complaint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:word:complaint:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — complaint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:word:complaint:audio",
+            "transcript": "complaint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:word:complaint:r1",
+              "targetText": "complaint",
+              "meaningByLocale": {
+                "ru": "жалоба.",
+                "uk": "скарга."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "complaint",
+            "definitionByLocale": {
+              "ru": "жалоба.",
+              "uk": "скарга."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с do not mind: «Я не против выслушать жалобу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с do not mind: «Я не против выслушать жалобу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not mind hearing a complaint.",
+          "localizedMeaning": {
+            "ru": "Скажите с do not mind: «Я не против выслушать жалобу».",
+            "uk": "Скажіть із do not mind: «Я не проти вислухати скаргу»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "mind",
+            "hearing",
+            "a",
+            "complaint"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i05:r1",
+            "text": "I do not mind hearing a complaint."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i05:r2",
+            "text": "We do not mind hearing a complaint."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i05:r3",
+            "text": "I did not mind hearing a complaint."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i05:audio",
+            "transcript": "I do not mind hearing a complaint."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:i05:r1",
+              "targetText": "I do not mind hearing a complaint.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i05:r2",
+              "targetText": "We do not mind hearing a complaint.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i05:r3",
+              "targetText": "I did not mind hearing a complaint.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind hearing a complaint.",
+                "uk": "У записі звучить I do not mind hearing a complaint."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind hearing a complaint.",
+                "uk": "У записі звучить I do not mind hearing a complaint."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поставьте действие после mind.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i06:r1",
+            "text": "hearing"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i06:r2",
+            "text": "hear"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i06:r3",
+            "text": "to hear"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поставьте действие после mind.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Поставьте действие после mind.",
+            "uk": "Поставте дію після mind."
+          },
+          "gappedTargetPhrase": "I do not mind ___ a complaint.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-05:i06:r1",
+              "text": "hearing"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i06:r2",
+              "text": "hear"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i06:r3",
+              "text": "to hear"
+            }
+          ],
+          "testedDimension": "Поставьте действие после mind.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Поставьте действие после mind.",
+              "feedbackByLocale": {
+                "ru": "После mind нужна форма на -ing.",
+                "uk": "Після mind потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Поставьте действие после mind.",
+              "feedbackByLocale": {
+                "ru": "После mind не используем to + глагол.",
+                "uk": "Після mind не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:word:disagreement",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — disagreement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:word:disagreement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — disagreement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:word:disagreement:audio",
+            "transcript": "disagreement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:word:disagreement:r1",
+              "targetText": "disagreement",
+              "meaningByLocale": {
+                "ru": "разногласие.",
+                "uk": "розбіжність у поглядах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "disagreement",
+            "definitionByLocale": {
+              "ru": "разногласие.",
+              "uk": "розбіжність у поглядах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с do not mind: «Я не против обсудить разногласие».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с do not mind: «Я не против обсудить разногласие».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not mind discussing a disagreement.",
+          "localizedMeaning": {
+            "ru": "Скажите с do not mind: «Я не против обсудить разногласие».",
+            "uk": "Скажіть із do not mind: «Я не проти обговорити розбіжність у поглядах»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "mind",
+            "discussing",
+            "a",
+            "disagreement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i08:r1",
+            "text": "I do not mind discussing a disagreement."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i08:r2",
+            "text": "We do not mind discussing a disagreement."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i08:r3",
+            "text": "I did not mind discussing a disagreement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i08:audio",
+            "transcript": "I do not mind discussing a disagreement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:i08:r1",
+              "targetText": "I do not mind discussing a disagreement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i08:r2",
+              "targetText": "We do not mind discussing a disagreement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i08:r3",
+              "targetText": "I did not mind discussing a disagreement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind discussing a disagreement.",
+                "uk": "У записі звучить I do not mind discussing a disagreement."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind discussing a disagreement.",
+                "uk": "У записі звучить I do not mind discussing a disagreement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поставьте действие после mind.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i09:r1",
+            "text": "discussing"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i09:r2",
+            "text": "discuss"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i09:r3",
+            "text": "to discuss"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поставьте действие после mind.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Поставьте действие после mind.",
+            "uk": "Поставте дію після mind."
+          },
+          "gappedTargetPhrase": "I do not mind ___ a disagreement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-05:i09:r1",
+              "text": "discussing"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i09:r2",
+              "text": "discuss"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i09:r3",
+              "text": "to discuss"
+            }
+          ],
+          "testedDimension": "Поставьте действие после mind.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Поставьте действие после mind.",
+              "feedbackByLocale": {
+                "ru": "После mind нужна форма на -ing.",
+                "uk": "Після mind потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Поставьте действие после mind.",
+              "feedbackByLocale": {
+                "ru": "После mind не используем to + глагол.",
+                "uk": "Після mind не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:word:interruption",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — interruption",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:word:interruption:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — interruption",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:word:interruption:audio",
+            "transcript": "interruption"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:word:interruption:r1",
+              "targetText": "interruption",
+              "meaningByLocale": {
+                "ru": "перерыв из-за вмешательства, помеха разговору.",
+                "uk": "переривання через втручання, завада розмові."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "interruption",
+            "definitionByLocale": {
+              "ru": "перерыв из-за вмешательства, помеха разговору.",
+              "uk": "переривання через втручання, завада розмові."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с do not mind: «Я не против начать снова после того, как нас прервали».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с do not mind: «Я не против начать снова после того, как нас прервали».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not mind starting again after an interruption.",
+          "localizedMeaning": {
+            "ru": "Скажите с do not mind: «Я не против начать снова после того, как нас прервали».",
+            "uk": "Скажіть із do not mind: «Я не проти почати знову після того, як нас перервали»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "mind",
+            "starting",
+            "again",
+            "after",
+            "an",
+            "interruption"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i11:r1",
+            "text": "I do not mind starting again after an interruption."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i11:r2",
+            "text": "We do not mind starting again after an interruption."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i11:r3",
+            "text": "I did not mind starting again after an interruption."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i11:audio",
+            "transcript": "I do not mind starting again after an interruption."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:i11:r1",
+              "targetText": "I do not mind starting again after an interruption.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i11:r2",
+              "targetText": "We do not mind starting again after an interruption.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i11:r3",
+              "targetText": "I did not mind starting again after an interruption.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind starting again after an interruption.",
+                "uk": "У записі звучить I do not mind starting again after an interruption."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind starting again after an interruption.",
+                "uk": "У записі звучить I do not mind starting again after an interruption."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поставьте действие после mind.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i12:r1",
+            "text": "starting"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i12:r2",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i12:r3",
+            "text": "to start"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поставьте действие после mind.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Поставьте действие после mind.",
+            "uk": "Поставте дію після mind."
+          },
+          "gappedTargetPhrase": "I do not mind ___ again after an interruption.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-05:i12:r1",
+              "text": "starting"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i12:r2",
+              "text": "start"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i12:r3",
+              "text": "to start"
+            }
+          ],
+          "testedDimension": "Поставьте действие после mind.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Поставьте действие после mind.",
+              "feedbackByLocale": {
+                "ru": "После mind нужна форма на -ing.",
+                "uk": "Після mind потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Поставьте действие после mind.",
+              "feedbackByLocale": {
+                "ru": "После mind не используем to + глагол.",
+                "uk": "Після mind не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-05:i13:p1",
+              "target": "criticism",
+              "meaningByLocale": {
+                "ru": "критика",
+                "uk": "критика"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-05:i13:p2",
+              "target": "complaint",
+              "meaningByLocale": {
+                "ru": "жалоба",
+                "uk": "скарга"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-05:i13:p3",
+              "target": "disagreement",
+              "meaningByLocale": {
+                "ru": "разногласие",
+                "uk": "розбіжність у поглядах"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-05:i13:p4",
+              "target": "interruption",
+              "meaningByLocale": {
+                "ru": "перерыв из-за вмешательства, помеха разговору",
+                "uk": "переривання через втручання, завада розмові"
+              }
+            }
+          ],
+          "leftColumn": [
+            "criticism",
+            "complaint",
+            "disagreement",
+            "interruption"
+          ],
+          "rightColumn": [
+            "критика",
+            "жалоба",
+            "разногласие",
+            "перерыв из-за вмешательства, помеха разговору"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i14:audio",
+            "transcript": "You must not ignore the rules."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You must not ignore the rules.",
+          "orderedTokens": [
+            "You",
+            "must",
+            "not",
+            "ignore",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы не против обсудить разногласие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы не против обсудить разногласие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i16:audio",
+            "transcript": "I do not mind discussing a disagreement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I do not mind discussing a disagreement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы не против начать снова после помехи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы не против начать снова после помехи",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i17:audio",
+            "transcript": "I do not mind starting again after an interruption."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I do not mind starting again after an interruption.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-05:word:criticism",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — criticism",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:word:criticism:audio"
+        ],
+        "accessibilityLabel": "Картка слова — criticism",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:word:criticism:audio",
+            "transcript": "criticism"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:word:criticism:r1",
+              "targetText": "criticism",
+              "meaningByLocale": {
+                "ru": "критика.",
+                "uk": "критика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "criticism",
+            "definitionByLocale": {
+              "ru": "критика.",
+              "uk": "критика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із do not mind: «Я не проти вислуховувати критику».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із do not mind: «Я не проти вислуховувати критику».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not mind receiving criticism.",
+          "localizedMeaning": {
+            "ru": "Скажите с do not mind: «Я не против выслушивать критику».",
+            "uk": "Скажіть із do not mind: «Я не проти вислуховувати критику»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "mind",
+            "receiving",
+            "criticism"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i02:r1",
+            "text": "I do not mind receiving criticism."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i02:r2",
+            "text": "We do not mind receiving criticism."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i02:r3",
+            "text": "I did not mind receiving criticism."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i02:audio",
+            "transcript": "I do not mind receiving criticism."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:i02:r1",
+              "targetText": "I do not mind receiving criticism.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i02:r2",
+              "targetText": "We do not mind receiving criticism.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i02:r3",
+              "targetText": "I did not mind receiving criticism.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind receiving criticism.",
+                "uk": "У записі звучить I do not mind receiving criticism."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind receiving criticism.",
+                "uk": "У записі звучить I do not mind receiving criticism."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поставте дію після mind.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i03:r1",
+            "text": "receiving"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i03:r2",
+            "text": "receive"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i03:r3",
+            "text": "to receive"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поставте дію після mind.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Поставьте действие после mind.",
+            "uk": "Поставте дію після mind."
+          },
+          "gappedTargetPhrase": "I do not mind ___ criticism.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-05:i03:r1",
+              "text": "receiving"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i03:r2",
+              "text": "receive"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i03:r3",
+              "text": "to receive"
+            }
+          ],
+          "testedDimension": "Поставте дію після mind.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Поставте дію після mind.",
+              "feedbackByLocale": {
+                "ru": "После mind нужна форма на -ing.",
+                "uk": "Після mind потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Поставте дію після mind.",
+              "feedbackByLocale": {
+                "ru": "После mind не используем to + глагол.",
+                "uk": "Після mind не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:word:complaint",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — complaint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:word:complaint:audio"
+        ],
+        "accessibilityLabel": "Картка слова — complaint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:word:complaint:audio",
+            "transcript": "complaint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:word:complaint:r1",
+              "targetText": "complaint",
+              "meaningByLocale": {
+                "ru": "жалоба.",
+                "uk": "скарга."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "complaint",
+            "definitionByLocale": {
+              "ru": "жалоба.",
+              "uk": "скарга."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із do not mind: «Я не проти вислухати скаргу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із do not mind: «Я не проти вислухати скаргу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not mind hearing a complaint.",
+          "localizedMeaning": {
+            "ru": "Скажите с do not mind: «Я не против выслушать жалобу».",
+            "uk": "Скажіть із do not mind: «Я не проти вислухати скаргу»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "mind",
+            "hearing",
+            "a",
+            "complaint"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i05:r1",
+            "text": "I do not mind hearing a complaint."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i05:r2",
+            "text": "We do not mind hearing a complaint."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i05:r3",
+            "text": "I did not mind hearing a complaint."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i05:audio",
+            "transcript": "I do not mind hearing a complaint."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:i05:r1",
+              "targetText": "I do not mind hearing a complaint.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i05:r2",
+              "targetText": "We do not mind hearing a complaint.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i05:r3",
+              "targetText": "I did not mind hearing a complaint.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind hearing a complaint.",
+                "uk": "У записі звучить I do not mind hearing a complaint."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind hearing a complaint.",
+                "uk": "У записі звучить I do not mind hearing a complaint."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поставте дію після mind.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i06:r1",
+            "text": "hearing"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i06:r2",
+            "text": "hear"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i06:r3",
+            "text": "to hear"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поставте дію після mind.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Поставьте действие после mind.",
+            "uk": "Поставте дію після mind."
+          },
+          "gappedTargetPhrase": "I do not mind ___ a complaint.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-05:i06:r1",
+              "text": "hearing"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i06:r2",
+              "text": "hear"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i06:r3",
+              "text": "to hear"
+            }
+          ],
+          "testedDimension": "Поставте дію після mind.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Поставте дію після mind.",
+              "feedbackByLocale": {
+                "ru": "После mind нужна форма на -ing.",
+                "uk": "Після mind потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Поставте дію після mind.",
+              "feedbackByLocale": {
+                "ru": "После mind не используем to + глагол.",
+                "uk": "Після mind не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:word:disagreement",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — disagreement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:word:disagreement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — disagreement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:word:disagreement:audio",
+            "transcript": "disagreement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:word:disagreement:r1",
+              "targetText": "disagreement",
+              "meaningByLocale": {
+                "ru": "разногласие.",
+                "uk": "розбіжність у поглядах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "disagreement",
+            "definitionByLocale": {
+              "ru": "разногласие.",
+              "uk": "розбіжність у поглядах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із do not mind: «Я не проти обговорити розбіжність у поглядах».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із do not mind: «Я не проти обговорити розбіжність у поглядах».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not mind discussing a disagreement.",
+          "localizedMeaning": {
+            "ru": "Скажите с do not mind: «Я не против обсудить разногласие».",
+            "uk": "Скажіть із do not mind: «Я не проти обговорити розбіжність у поглядах»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "mind",
+            "discussing",
+            "a",
+            "disagreement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i08:r1",
+            "text": "I do not mind discussing a disagreement."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i08:r2",
+            "text": "We do not mind discussing a disagreement."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i08:r3",
+            "text": "I did not mind discussing a disagreement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i08:audio",
+            "transcript": "I do not mind discussing a disagreement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:i08:r1",
+              "targetText": "I do not mind discussing a disagreement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i08:r2",
+              "targetText": "We do not mind discussing a disagreement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i08:r3",
+              "targetText": "I did not mind discussing a disagreement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind discussing a disagreement.",
+                "uk": "У записі звучить I do not mind discussing a disagreement."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind discussing a disagreement.",
+                "uk": "У записі звучить I do not mind discussing a disagreement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поставте дію після mind.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i09:r1",
+            "text": "discussing"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i09:r2",
+            "text": "discuss"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i09:r3",
+            "text": "to discuss"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поставте дію після mind.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Поставьте действие после mind.",
+            "uk": "Поставте дію після mind."
+          },
+          "gappedTargetPhrase": "I do not mind ___ a disagreement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-05:i09:r1",
+              "text": "discussing"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i09:r2",
+              "text": "discuss"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i09:r3",
+              "text": "to discuss"
+            }
+          ],
+          "testedDimension": "Поставте дію після mind.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Поставте дію після mind.",
+              "feedbackByLocale": {
+                "ru": "После mind нужна форма на -ing.",
+                "uk": "Після mind потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Поставте дію після mind.",
+              "feedbackByLocale": {
+                "ru": "После mind не используем to + глагол.",
+                "uk": "Після mind не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:word:interruption",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — interruption",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:word:interruption:audio"
+        ],
+        "accessibilityLabel": "Картка слова — interruption",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:word:interruption:audio",
+            "transcript": "interruption"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:word:interruption:r1",
+              "targetText": "interruption",
+              "meaningByLocale": {
+                "ru": "перерыв из-за вмешательства, помеха разговору.",
+                "uk": "переривання через втручання, завада розмові."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "interruption",
+            "definitionByLocale": {
+              "ru": "перерыв из-за вмешательства, помеха разговору.",
+              "uk": "переривання через втручання, завада розмові."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із do not mind: «Я не проти почати знову після того, як нас перервали».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із do not mind: «Я не проти почати знову після того, як нас перервали».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not mind starting again after an interruption.",
+          "localizedMeaning": {
+            "ru": "Скажите с do not mind: «Я не против начать снова после того, как нас прервали».",
+            "uk": "Скажіть із do not mind: «Я не проти почати знову після того, як нас перервали»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "mind",
+            "starting",
+            "again",
+            "after",
+            "an",
+            "interruption"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i11:r1",
+            "text": "I do not mind starting again after an interruption."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i11:r2",
+            "text": "We do not mind starting again after an interruption."
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i11:r3",
+            "text": "I did not mind starting again after an interruption."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i11:audio",
+            "transcript": "I do not mind starting again after an interruption."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-05:i11:r1",
+              "targetText": "I do not mind starting again after an interruption.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i11:r2",
+              "targetText": "We do not mind starting again after an interruption.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i11:r3",
+              "targetText": "I did not mind starting again after an interruption.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind starting again after an interruption.",
+                "uk": "У записі звучить I do not mind starting again after an interruption."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not mind starting again after an interruption.",
+                "uk": "У записі звучить I do not mind starting again after an interruption."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поставте дію після mind.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-05:i12:r1",
+            "text": "starting"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i12:r2",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-21:session-05:i12:r3",
+            "text": "to start"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поставте дію після mind.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Поставьте действие после mind.",
+            "uk": "Поставте дію після mind."
+          },
+          "gappedTargetPhrase": "I do not mind ___ again after an interruption.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-05:i12:r1",
+              "text": "starting"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i12:r2",
+              "text": "start"
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i12:r3",
+              "text": "to start"
+            }
+          ],
+          "testedDimension": "Поставте дію після mind.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Поставте дію після mind.",
+              "feedbackByLocale": {
+                "ru": "После mind нужна форма на -ing.",
+                "uk": "Після mind потрібна форма на -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Поставте дію після mind.",
+              "feedbackByLocale": {
+                "ru": "После mind не используем to + глагол.",
+                "uk": "Після mind не використовуємо to + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-05:i13:p1",
+              "target": "criticism",
+              "meaningByLocale": {
+                "ru": "критика",
+                "uk": "критика"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-05:i13:p2",
+              "target": "complaint",
+              "meaningByLocale": {
+                "ru": "жалоба",
+                "uk": "скарга"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-05:i13:p3",
+              "target": "disagreement",
+              "meaningByLocale": {
+                "ru": "разногласие",
+                "uk": "розбіжність у поглядах"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-05:i13:p4",
+              "target": "interruption",
+              "meaningByLocale": {
+                "ru": "перерыв из-за вмешательства, помеха разговору",
+                "uk": "переривання через втручання, завада розмові"
+              }
+            }
+          ],
+          "leftColumn": [
+            "criticism",
+            "complaint",
+            "disagreement",
+            "interruption"
+          ],
+          "rightColumn": [
+            "критика",
+            "скарга",
+            "розбіжність у поглядах",
+            "переривання через втручання, завада розмові"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i14:audio",
+            "transcript": "You must not ignore the rules."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You must not ignore the rules.",
+          "orderedTokens": [
+            "You",
+            "must",
+            "not",
+            "ignore",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви не проти обговорити розбіжність у поглядах",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви не проти обговорити розбіжність у поглядах",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i16:audio",
+            "transcript": "I do not mind discussing a disagreement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I do not mind discussing a disagreement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви не проти почати знову після переривання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви не проти почати знову після переривання",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-05:i17:audio",
+            "transcript": "I do not mind starting again after an interruption."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I do not mind starting again after an interruption.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-05:word:criticism",
+      "correctText": "criticism",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i01",
+      "correctText": "I do not mind receiving criticism.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i02",
+      "correctText": "I do not mind receiving criticism.",
+      "correctResponseId": "en:lesson-21:session-05:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i03",
+      "correctText": "receiving",
+      "correctResponseId": "en:lesson-21:session-05:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:word:complaint",
+      "correctText": "complaint",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i04",
+      "correctText": "I do not mind hearing a complaint.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i05",
+      "correctText": "I do not mind hearing a complaint.",
+      "correctResponseId": "en:lesson-21:session-05:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i06",
+      "correctText": "hearing",
+      "correctResponseId": "en:lesson-21:session-05:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:word:disagreement",
+      "correctText": "disagreement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i07",
+      "correctText": "I do not mind discussing a disagreement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i08",
+      "correctText": "I do not mind discussing a disagreement.",
+      "correctResponseId": "en:lesson-21:session-05:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i09",
+      "correctText": "discussing",
+      "correctResponseId": "en:lesson-21:session-05:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:word:interruption",
+      "correctText": "interruption",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i10",
+      "correctText": "I do not mind starting again after an interruption.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i11",
+      "correctText": "I do not mind starting again after an interruption.",
+      "correctResponseId": "en:lesson-21:session-05:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i12",
+      "correctText": "starting",
+      "correctResponseId": "en:lesson-21:session-05:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i14",
+      "correctText": "You must not ignore the rules.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i16",
+      "correctText": "I do not mind discussing a disagreement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:i17",
+      "correctText": "I do not mind starting again after an interruption.",
+      "correctResponseId": null
+    }
+  ]
+}

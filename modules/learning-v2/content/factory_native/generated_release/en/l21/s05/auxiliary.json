@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-05:intro1:r2": {
+          "ru": "После mind нужна форма на -ing, а не to + глагол.",
+          "uk": "Після mind потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-05:intro1:r3": {
+          "ru": "После mind действие выражаем формой на -ing.",
+          "uk": "Після mind дію виражаємо формою на -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-05:intro2:r2": {
+          "ru": "После mind нужна форма на -ing, а не to + глагол.",
+          "uk": "Після mind потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-05:intro2:r3": {
+          "ru": "После mind действие выражаем формой на -ing.",
+          "uk": "Після mind дію виражаємо формою на -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-05:intro3:r2": {
+          "ru": "После mind нужна форма на -ing, а не to + глагол.",
+          "uk": "Після mind потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-05:intro3:r3": {
+          "ru": "После mind действие выражаем формой на -ing.",
+          "uk": "Після mind дію виражаємо формою на -ing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f1374cdd1041f5aaeebc7dc7a6db0e0c816cc89bed4d30935cc00eeebc3f9399"
+}

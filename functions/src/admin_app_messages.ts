@@ -458,6 +458,9 @@ export const adminSendPersonalAppMessage = onCall(
         rollbackReference: messageRef.id, timestamp: new Date().toISOString(),
       });
       tx.create(messageRef, input.document);
+      // зачем (вопрос 27, пакет 38d250352, правило Ревизора 3.159): каждая серверная запись в user_messages поднимает
+      // users/{uid}.inboxRev в той же транзакции — клиент перечитывает личные сообщения только при росте счётчика.
+      tx.set(userRef, { inboxRev: admin.firestore.FieldValue.increment(1) }, { merge: true });
       tx.create(auditRef, { ...audit, operationId: input.idempotencyKey, recipientUid: input.uid });
       tx.create(operationRef, {
         operationId: input.idempotencyKey,

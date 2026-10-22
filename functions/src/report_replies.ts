@@ -472,9 +472,12 @@ export const adminReplyToReport = onCall(
       // подтверждение состоялось независимо от того, заберёт ли юзер награду).
       // В той же транзакции обновляем публичную проекцию борда «Топ хелперов»,
       // чтобы рейтинг на борде и счётчик титула никогда не разъезжались.
+      // зачем (вопрос 27, пакет 38d250352, правило Ревизора 3.159): запись в user_messages поднимает users/{uid}.inboxRev
+      // в той же транзакции. При награде — в ту же запись userRef (одно срабатывание триггера usersWriteRouter).
       if (bundleHasReward(reward.rewardBundle)) {
         tx.set(userRef, {
           progress: { [HELPFUL_REPORTS_CONFIRMED_KEY]: admin.firestore.FieldValue.increment(1) },
+          inboxRev: admin.firestore.FieldValue.increment(1),
         }, { merge: true });
         tx.set(helperRef, {
           uid,
@@ -483,6 +486,9 @@ export const adminReplyToReport = onCall(
           updatedAtMs: nowMs,
           ...helperProjection,
         }, { merge: true });
+      } else if (userProfileSnap.exists) {
+        // Документа нет (аккаунт удалён) — не создаём его ради счётчика: удалённый аккаунт не воскрешаем.
+        tx.set(userRef, { inboxRev: admin.firestore.FieldValue.increment(1) }, { merge: true });
       }
 
       tx.set(reportRef, {
@@ -554,6 +560,8 @@ export const claimReportReward = onCall(
       }
 
       tx.update(messageRef, { claimed: true, claimedAtMs: nowMs });
+      // зачем (вопрос 27, правило Ревизора 3.159): «получено» меняет user_messages — другие устройства увидят это при росте inboxRev.
+      tx.set(userRef, { inboxRev: admin.firestore.FieldValue.increment(1) }, { merge: true });
       if (notificationSnap.exists) {
         tx.update(notificationRef, {
           'reportReply.claimed': true,

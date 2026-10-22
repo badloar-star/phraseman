@@ -228,7 +228,10 @@ function assertLessonTogetherShape(operation: CoinWalletOperationShape, fields: 
 }
 
 function assertJourneyShape(operation: CoinWalletOperationShape, fields: Record<string, unknown>): void {
-  if (operation.promotionEligibility !== 'gameplay') {
+  // зачем (кнопка владельца 22.10 «Да, выложить»): старые операции «Дневного пути» ставились в очередь ДО появления
+  // promotionEligibility — у них поля нет. После заплатки очереди (OTA 22.10) такая пришла и получила отказ, человек терял
+  // законные монеты. Нет поля → считаем gameplay; явное excluded_compensation — по-прежнему отказ; потолок 2000 остаётся.
+  if (operation.promotionEligibility !== 'gameplay' && operation.promotionEligibility !== undefined) {
     reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'journey_requires_gameplay' });
   }
   if (!(COIN_WALLET_LIMITS.journeyRuneGiftIds as readonly string[]).includes(operation.giftId)) {

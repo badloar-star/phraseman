@@ -140,6 +140,11 @@ function rule(
 
 // ─── progress.* (сырой ключ без области цели) ──────────────────────────────
 const PROGRESS_RULES: readonly InventoryRule[] = [
+  // зачем (координатор 22.10, решение 3): прогресс курса Learning V2 — число непрерывного начала и маски «пройдено/открыто»
+  // (владелец 21.10 №8/№10). Курс уже живёт в хранилище 2.0 — переносить нечего; без правила оба ключа давали
+  // hold unknown_field и перенос OD21 встал бы у каждого ученика курса.
+  rule('p.learning_v2_course', 'progress', { exact: ['learning_v2_course_progress_sync_v1', 'learning_v2_course_masks_sync_v1'] },
+    'keep_in_place', 'kept_in_v2_store', ['OD20'], 'Прогресс курса Learning V2 (число и маски) — остаётся на месте, перенос не блокирует.'),
   // carry — домены Account V2
   rule('p.lesson_best', 'progress', { pattern: /^lesson(\d{1,4})_best_score$/ }, 'carry', 'lesson_best_result', [],
     'Лучший результат урока (0–5). passed = score ≥ 2 — СТАРЫЙ порог открытия (40%): D121 «уже открытые уроки не закрываются». '

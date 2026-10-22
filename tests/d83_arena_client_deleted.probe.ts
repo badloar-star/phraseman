@@ -54,8 +54,9 @@ function walk(dir: string): string[] {
 const clientFiles = ['app', 'components', 'hooks', 'modules', 'constants', 'lib', 'shared']
   .flatMap((dir) => walk(path.join(ROOT, dir)));
 assert.ok(clientFiles.length > 500, `обход клиента подозрительно мал: ${clientFiles.length}`);
-const allowedArenaImport = /(?:modules\/arena\/(?:answer_check|contract|sound_catalog|target_registry)|\.\.?\/arena\/(?:answer_check|contract|target_registry)|hooks\/use_arena_sound|\.\/sound_catalog|\.\/contract|\.\/target_registry|\.\/sections\/screens_arena_social)$/u;
+const allowedArenaImport = /(?:modules\/arena\/(?:answer_check|contract|sound_catalog|target_registry)|\.\.?\/arena\/(?:answer_check|contract|target_registry)|hooks\/use_arena_sound|\.\/sound_catalog|\.\/contract|\.\/target_registry|\.\/sections\/screens_arena_social|assets\/images\/v2art\/(?:dark|light)\/intro_arena\.webp)$/u;
 // screens_arena_social — раздел dev-витрины (турниры, рефералы); пункты Арены из него сняты.
+// intro_arena.webp — картинка-иллюстрация в реестре тематического арта (плитка «Шпиль» временно берёт её), не код Арены; уйдёт вместе с заменой арта.
 const badImports: string[] = [];
 const badRoutes: string[] = [];
 for (const file of clientFiles) {

@@ -49,5 +49,21 @@ export function lessonInviteFriendFacts(lang: Lang, minutes: number | undefined,
   return facts;
 }
 
+/** Тост после награды «вместе»: «Алекс: занятие вместе · +2 каждому». Имя перед двоеточием — не склоняем. */
+export function lessonTogetherClaimToast(name: string, coins: number): Readonly<{ ru: string; uk: string; en: string; es: string; ptBr: string; vi: string; id: string; tr: string; pl: string }> {
+  const who = name ? `${name}: ` : '';
+  return {
+    ru: `${who}занятие вместе · +${coins} каждому`,
+    uk: `${who}заняття разом · +${coins} кожному`,
+    en: `${who}session together · +${coins} each`,
+    es: `${who}sesión juntos · +${coins} cada uno`,
+    ptBr: `${who}sessão juntos · +${coins} para cada um`,
+    vi: `${who}học cùng nhau · +${coins} mỗi người`,
+    id: `${who}sesi bersama · +${coins} masing-masing`,
+    tr: `${who}birlikte ders · her birine +${coins}`,
+    pl: `${who}zajęcia razem · +${coins} dla każdego`,
+  };
+}
+
 /* expo-router route shim */
 export default function __RouteShim() { return null; }

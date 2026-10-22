@@ -157,6 +157,9 @@ import FriendPairMilestoneHost from '../../components/friends_together/FriendPai
 import FriendsOfflineStrip from '../../components/friends_together/FriendsOfflineStrip';
 import { useFriendsOffline } from '../../hooks/use_friends_offline';
 import { noteFriendsListServerSnapshot } from '../friends_together/friends_list_sync';
+import { rememberAcceptedLessonInvite, startLessonTogetherClaimer } from '../friends_together/lesson_together_claim';
+import { launchLearningV2SessionByOrdinalsV1 } from '../learning_v2_home_continue_route';
+import { useStudyTarget } from '../../components/StudyTargetContext';
 import type { FriendCallState } from '../../components/friends_together/FriendCallPill';
 import {
   createFriendSheetSession,
@@ -858,6 +861,7 @@ export default function FriendsTabScreen() {
   const tabContentBottomPad = useTabContentBottomPad();
   const { theme: t } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const socialParams = useLocalSearchParams<{ focusFriend?: string; socialEventId?: string }>();
   const { runtimeOwnerId } = useTabNav();
@@ -892,6 +896,8 @@ export default function FriendsTabScreen() {
   const friendsTogetherUiEnabled = FRIENDS_TOGETHER_UI_ENABLED;
   // зачем (идея 1, макет «Нет сети»): полоса «Нет сети · список сохранён в …»; NetInfo слушаем, только пока вкладка на экране
   const friendsOffline = useFriendsOffline(friendsRuntimeActive && friendsTogetherUiEnabled);
+  // зачем (идея 2): вкладка монтируется на старте — слушатель засчитываний для награды «вместе» живёт с запуска приложения
+  useEffect(() => { if (friendsTogetherUiEnabled) startLessonTogetherClaimer(); }, [friendsTogetherUiEnabled]);
   const friendMarkersByUid = useMemo(() => {
     const grouped = new Map<string, FriendSocialEvent[]>();
     for (const event of friendEvents) grouped.set(event.actorStableUid, [...(grouped.get(event.actorStableUid) ?? []), event]);
@@ -2837,6 +2843,23 @@ export default function FriendsTabScreen() {
         pairStreak={friendsTogetherUiEnabled && studyInvite ? (togetherSnapshot?.pairs[studyInvite.event.actorStableUid]?.pair?.streak ?? null) : null}
         lesson={friendsTogetherUiEnabled && studyInvite?.event.kind === 'lesson_invite' ? (studyInvite.event.lesson ?? null) : null}
         friendName={studyInvite?.friendName}
+        // зачем (идея 2): «Начать занятие» по приглашению — запомнить его до засчитывания и открыть то же занятие в своём курсе
+        onStartLesson={friendsTogetherUiEnabled && studyInvite?.event.lesson ? () => {
+          const invite = studyInvite;
+          const lesson = invite.event.lesson;
+          acknowledgeFriendEvent(invite.event);
+          setStudyInvite(null);
+          if (!lesson) {
+            console.log('[FRIENDS-2] lesson_invite:start skip reason=no_lesson'); // guard-ok: ранний выход называет причину
+            return;
+          }
+          startLessonTogetherClaimer();
+          if (invite.event.inviteId) {
+            void rememberAcceptedLessonInvite({ inviteId: invite.event.inviteId, lessonOrdinal: lesson.lessonOrdinal, sessionOrdinal: lesson.sessionOrdinal, expiresAtMs: invite.event.expiresAtMs ?? null, inviterName: invite.friendName, acceptedAtMs: Date.now() });
+          }
+          launchLearningV2SessionByOrdinalsV1({ lessonOrdinal: lesson.lessonOrdinal, sessionOrdinal: lesson.sessionOrdinal, from: 'friend_lesson_invite' }, { lang, studyTarget, push: (href) => router.push(href as never) })
+            .catch((e: unknown) => console.warn(`[FRIENDS-2] lesson_invite:launch failed → вкладка уроков: ${e instanceof Error ? e.message : String(e)}`)); // guard-ok: catch называет причину
+        } : undefined}
         onStart={() => {
           if (studyInvite) acknowledgeFriendEvent(studyInvite.event);
           setStudyInvite(null);

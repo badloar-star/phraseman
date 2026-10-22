@@ -22,6 +22,8 @@ type Props = {
   /** «Урок вместе» (идея 2): приглашение на конкретное занятие — заголовок с именем, занятие и срок, факты отправителя. */
   lesson?: FriendLessonInviteInfo | null;
   friendName?: string;
+  /** Приглашение на занятие: открыть то же занятие (запуск по номерам). Нет — обычный onStart. */
+  onStartLesson?: () => void;
   onStart: () => void;
   onDecline: () => void;
 };
@@ -29,7 +31,7 @@ type Props = {
 /** С какой серии окно называет её — так же, как текст пуша (PAIR_STREAK_PUSH_MIN сервера). */
 const INVITE_PAIR_STREAK_MIN = 2;
 
-function FriendStudyInviteModal({ visible, friendCoinRank = null, pairStreak = null, lesson = null, friendName, onStart, onDecline }: Props) {
+function FriendStudyInviteModal({ visible, friendCoinRank = null, pairStreak = null, lesson = null, friendName, onStartLesson, onStart, onDecline }: Props) {
   const { fontSize, liquidGlassThemeId, uiScale } = useTheme();
   const { lang } = useLang();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -97,10 +99,10 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, pairStreak = n
         <DuoPressable
           testID="friend-study-start"
           accessibilityLabel={L('Начать занятие', 'Почати заняття', 'Start the lesson', 'Empezar lección', 'Começar lição', 'Bắt đầu bài học', 'Mulai pelajaran', 'Derse başla', 'Zacznij lekcję')}
-          // зачем (идея 2, v1): своё занятие с теми же номерами — вкладка уроков; прямой запуск по номерам ждёт помощника Learning V2
+          // зачем (идея 2): своё занятие с теми же номерами — прямой запуск (Learning V2, по номерам); без него — вкладка уроков
           onPress={lesson ? () => {
-            console.log(`[FRIENDS-2] lesson_invite:start lesson=${lesson.lessonOrdinal} session=${lesson.sessionOrdinal} → lessons tab`); // guard-ok: одна строка на тап
-            onStart();
+            console.log(`[FRIENDS-2] lesson_invite:start lesson=${lesson.lessonOrdinal} session=${lesson.sessionOrdinal} → ${onStartLesson ? 'launch' : 'lessons tab'}`); // guard-ok: одна строка на тап
+            (onStartLesson ?? onStart)();
           } : onStart}
           wrapStyle={styles.primaryWrap}
           gradientColors={[glass.lightTint, glass.cta, glass.cta]}

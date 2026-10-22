@@ -1,6 +1,7 @@
 import React, { forwardRef, useCallback, useEffect, useMemo } from 'react';
 import {
   ScrollView,
+  View,
   Platform,
   useWindowDimensions,
   type ScrollViewProps,
@@ -262,9 +263,12 @@ export function useBouncy({
       if (!isAndroid) {
         return <Animated.View style={[{ flex: 1 }, style]}>{scrollChild}</Animated.View>;
       }
+      // зачем (Сверка 22.10, Console Error «Invalid prop `collapsable` supplied to `React.Fragment`» при открытии списка «Обучение»): GestureDetector клонирует своего ребёнка с `collapsable={false}`;
+      // если ребёнок — Фрагмент (обёртка <>…</>), React ругается. Фрагмент кладём в обычный View, который проп принимает; вид и раскладка те же (flex: 1)
+      const detectorChild = isFragment ? <View style={{ flex: 1 }}>{scrollChild}</View> : scrollChild;
       return (
         <Animated.View style={[{ flex: 1 }, style]}>
-          <GestureDetector gesture={scrollGesture}>{scrollChild}</GestureDetector>
+          <GestureDetector gesture={scrollGesture}>{detectorChild}</GestureDetector>
         </Animated.View>
       );
     },

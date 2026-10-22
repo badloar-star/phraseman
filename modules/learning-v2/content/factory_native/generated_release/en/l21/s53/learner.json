@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-53:word:no-entry",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — no entry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:word:no-entry:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — no entry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:word:no-entry:audio",
+          "transcript": "no entry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-53:word:no-entry:r1",
+            "targetText": "no entry",
+            "meaningByLocale": {
+              "ru": "вход запрещён.",
+              "uk": "вхід заборонено."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "no entry",
+          "definitionByLocale": {
+            "ru": "вход запрещён.",
+            "uk": "вхід заборонено."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Табличка «Вход запрещён» означает, что входить нельзя».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Табличка «Вход запрещён» означает, что входить нельзя».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The no entry sign means you mustn't enter.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Табличка «Вход запрещён» означает, что входить нельзя».",
+          "uk": "Скажіть: «Табличка «Вхід заборонено» означає, що входити не можна»."
+        },
+        "orderedTokens": [
+          "The",
+          "no",
+          "entry",
+          "sign",
+          "means",
+          "you",
+          "mustn't",
+          "enter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-53:i02:r1",
+          "text": "The no entry sign means you mustn't enter."
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i02:r2",
+          "text": "The no entry sign means you must enter."
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i02:r3",
+          "text": "The no entry sign means you can enter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:i02:audio",
+          "transcript": "The no entry sign means you mustn't enter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-53:i02:r1",
+            "targetText": "The no entry sign means you mustn't enter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i02:r2",
+            "targetText": "The no entry sign means you must enter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i02:r3",
+            "targetText": "The no entry sign means you can enter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The no entry sign means you mustn't enter.",
+              "uk": "У записі звучить The no entry sign means you mustn't enter."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The no entry sign means you mustn't enter.",
+              "uk": "У записі звучить The no entry sign means you mustn't enter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после mustn’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-53:i03:r1",
+          "text": "enter"
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i03:r2",
+          "text": "to enter"
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i03:r3",
+          "text": "entering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после mustn’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после mustn’t.",
+          "uk": "Виберіть форму після mustn’t."
+        },
+        "gappedTargetPhrase": "The no entry sign means you mustn't ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-53:i03:r1",
+            "text": "enter"
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i03:r2",
+            "text": "to enter"
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i03:r3",
+            "text": "entering"
+          }
+        ],
+        "testedDimension": "Выберите форму после mustn’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после mustn’t.",
+            "feedbackByLocale": {
+              "ru": "После mustn’t не нужно to.",
+              "uk": "Після mustn’t не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после mustn’t.",
+            "feedbackByLocale": {
+              "ru": "После mustn’t не нужна форма с -ing.",
+              "uk": "Після mustn’t не потрібна форма з -ing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:word:no-smoking",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — no smoking",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:word:no-smoking:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — no smoking",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:word:no-smoking:audio",
+          "transcript": "no smoking"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-53:word:no-smoking:r1",
+            "targetText": "no smoking",
+            "meaningByLocale": {
+              "ru": "курить запрещено.",
+              "uk": "курити заборонено."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "no smoking",
+          "definitionByLocale": {
+            "ru": "курить запрещено.",
+            "uk": "курити заборонено."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Табличка «Курить запрещено» означает, что курить нельзя».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Табличка «Курить запрещено» означает, что курить нельзя».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The no smoking sign means you mustn't smoke.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Табличка «Курить запрещено» означает, что курить нельзя».",
+          "uk": "Скажіть: «Табличка «Курити заборонено» означає, що курити не можна»."
+        },
+        "orderedTokens": [
+          "The",
+          "no",
+          "smoking",
+          "sign",
+          "means",
+          "you",
+          "mustn't",
+          "smoke"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-53:i05:r1",
+          "text": "The no smoking sign means you mustn't smoke."
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i05:r2",
+          "text": "The no smoking sign means you must smoke."
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i05:r3",
+          "text": "The no smoking sign means you can smoke."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:i05:audio",
+          "transcript": "The no smoking sign means you mustn't smoke."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-53:i05:r1",
+            "targetText": "The no smoking sign means you mustn't smoke.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i05:r2",
+            "targetText": "The no smoking sign means you must smoke.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i05:r3",
+            "targetText": "The no smoking sign means you can smoke.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The no smoking sign means you mustn't smoke.",
+              "uk": "У записі звучить The no smoking sign means you mustn't smoke."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The no smoking sign means you mustn't smoke.",
+              "uk": "У записі звучить The no smoking sign means you mustn't smoke."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после mustn’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-53:i06:r1",
+          "text": "smoke"
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i06:r2",
+          "text": "to smoke"
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i06:r3",
+          "text": "smoking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после mustn’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после mustn’t.",
+          "uk": "Виберіть форму після mustn’t."
+        },
+        "gappedTargetPhrase": "The no smoking sign means you mustn't ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-53:i06:r1",
+            "text": "smoke"
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i06:r2",
+            "text": "to smoke"
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i06:r3",
+            "text": "smoking"
+          }
+        ],
+        "testedDimension": "Выберите форму после mustn’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после mustn’t.",
+            "feedbackByLocale": {
+              "ru": "После mustn’t не нужно to.",
+              "uk": "Після mustn’t не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после mustn’t.",
+            "feedbackByLocale": {
+              "ru": "После mustn’t не нужна форма с -ing.",
+              "uk": "Після mustn’t не потрібна форма з -ing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:word:no-parking",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — no parking",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:word:no-parking:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — no parking",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:word:no-parking:audio",
+          "transcript": "no parking"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-53:word:no-parking:r1",
+            "targetText": "no parking",
+            "meaningByLocale": {
+              "ru": "парковка запрещена.",
+              "uk": "паркування заборонене."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "no parking",
+          "definitionByLocale": {
+            "ru": "парковка запрещена.",
+            "uk": "паркування заборонене."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Табличка «Парковка запрещена» означает, что здесь нельзя парковаться».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Табличка «Парковка запрещена» означает, что здесь нельзя парковаться».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The no parking sign means you mustn't park here.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Табличка «Парковка запрещена» означает, что здесь нельзя парковаться».",
+          "uk": "Скажіть: «Табличка «Паркування заборонене» означає, що тут не можна паркуватися»."
+        },
+        "orderedTokens": [
+          "The",
+          "no",
+          "parking",
+          "sign",
+          "means",
+          "you",
+          "mustn't",
+          "park",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-53:i08:r1",
+          "text": "The no parking sign means you mustn't park here."
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i08:r2",
+          "text": "The no parking sign means you must park here."
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i08:r3",
+          "text": "The no parking sign means you can park here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:i08:audio",
+          "transcript": "The no parking sign means you mustn't park here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-53:i08:r1",
+            "targetText": "The no parking sign means you mustn't park here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i08:r2",
+            "targetText": "The no parking sign means you must park here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i08:r3",
+            "targetText": "The no parking sign means you can park here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The no parking sign means you mustn't park here.",
+              "uk": "У записі звучить The no parking sign means you mustn't park here."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The no parking sign means you mustn't park here.",
+              "uk": "У записі звучить The no parking sign means you mustn't park here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после mustn’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-53:i09:r1",
+          "text": "park"
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i09:r2",
+          "text": "to park"
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i09:r3",
+          "text": "parking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после mustn’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после mustn’t.",
+          "uk": "Виберіть форму після mustn’t."
+        },
+        "gappedTargetPhrase": "The no parking sign means you mustn't ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-53:i09:r1",
+            "text": "park"
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i09:r2",
+            "text": "to park"
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i09:r3",
+            "text": "parking"
+          }
+        ],
+        "testedDimension": "Выберите форму после mustn’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после mustn’t.",
+            "feedbackByLocale": {
+              "ru": "После mustn’t не нужно to.",
+              "uk": "Після mustn’t не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после mustn’t.",
+            "feedbackByLocale": {
+              "ru": "После mustn’t не нужна форма с -ing.",
+              "uk": "Після mustn’t не потрібна форма з -ing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:word:staff-only",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — staff only",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:word:staff-only:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — staff only",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:word:staff-only:audio",
+          "transcript": "staff only"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-53:word:staff-only:r1",
+            "targetText": "staff only",
+            "meaningByLocale": {
+              "ru": "только для сотрудников.",
+              "uk": "лише для працівників."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "staff only",
+          "definitionByLocale": {
+            "ru": "только для сотрудников.",
+            "uk": "лише для працівників."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Табличка «Только для сотрудников» означает, что посетителям входить нельзя».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Табличка «Только для сотрудников» означает, что посетителям входить нельзя».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The staff only sign means visitors mustn't enter.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Табличка «Только для сотрудников» означает, что посетителям входить нельзя».",
+          "uk": "Скажіть: «Табличка «Лише для працівників» означає, що відвідувачам входити не можна»."
+        },
+        "orderedTokens": [
+          "The",
+          "staff",
+          "only",
+          "sign",
+          "means",
+          "visitors",
+          "mustn't",
+          "enter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-53:i11:r1",
+          "text": "The staff only sign means visitors mustn't enter."
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i11:r2",
+          "text": "The staff only sign means visitors must enter."
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i11:r3",
+          "text": "The staff only sign means visitors can enter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:i11:audio",
+          "transcript": "The staff only sign means visitors mustn't enter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-53:i11:r1",
+            "targetText": "The staff only sign means visitors mustn't enter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i11:r2",
+            "targetText": "The staff only sign means visitors must enter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i11:r3",
+            "targetText": "The staff only sign means visitors can enter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The staff only sign means visitors mustn't enter.",
+              "uk": "У записі звучить The staff only sign means visitors mustn't enter."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The staff only sign means visitors mustn't enter.",
+              "uk": "У записі звучить The staff only sign means visitors mustn't enter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после mustn’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-53:i12:r1",
+          "text": "enter"
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i12:r2",
+          "text": "to enter"
+        },
+        {
+          "responseId": "en:lesson-21:session-53:i12:r3",
+          "text": "entering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после mustn’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после mustn’t.",
+          "uk": "Виберіть форму після mustn’t."
+        },
+        "gappedTargetPhrase": "The staff only sign means visitors mustn't ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-53:i12:r1",
+            "text": "enter"
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i12:r2",
+            "text": "to enter"
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i12:r3",
+            "text": "entering"
+          }
+        ],
+        "testedDimension": "Выберите форму после mustn’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после mustn’t.",
+            "feedbackByLocale": {
+              "ru": "После mustn’t не нужно to.",
+              "uk": "Після mustn’t не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после mustn’t.",
+            "feedbackByLocale": {
+              "ru": "После mustn’t не нужна форма с -ing.",
+              "uk": "Після mustn’t не потрібна форма з -ing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините надписи с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините надписи с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-53:i13:p1",
+            "target": "no entry",
+            "meaningByLocale": {
+              "ru": "вход запрещён",
+              "uk": "вхід заборонено"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-53:i13:p2",
+            "target": "no smoking",
+            "meaningByLocale": {
+              "ru": "курить запрещено",
+              "uk": "курити заборонено"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-53:i13:p3",
+            "target": "no parking",
+            "meaningByLocale": {
+              "ru": "парковка запрещена",
+              "uk": "паркування заборонене"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-53:i13:p4",
+            "target": "staff only",
+            "meaningByLocale": {
+              "ru": "только для сотрудников",
+              "uk": "лише для працівників"
+            }
+          }
+        ],
+        "leftColumn": [
+          "no entry",
+          "no smoking",
+          "no parking",
+          "staff only"
+        ],
+        "rightColumn": [
+          "вход запрещён",
+          "курить запрещено",
+          "парковка запрещена",
+          "только для сотрудников"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: рабочий день",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: рабочий день",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:i14:audio",
+          "transcript": "I need to take a day off."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need to take a day off.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "take",
+          "a",
+          "day",
+          "off"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: покупка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: покупка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:i15:audio",
+          "transcript": "I want to pay my share now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to pay my share now.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "pay",
+          "my",
+          "share",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Здесь нельзя курить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Здесь нельзя курить»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:i16:audio",
+          "transcript": "You mustn't smoke here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You mustn't smoke here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Посетителям нельзя входить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Посетителям нельзя входить»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-53:i17:audio",
+          "transcript": "Visitors mustn't enter."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Visitors mustn't enter.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "607759f3e3f4f311a9b832634888f5daa1127743c33a36423b7b14d9db51b9fb"
+}

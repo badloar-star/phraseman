@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "want / need + to-infinitive",
+    "uk": "want / need + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не выйти из себя",
+        "uk": "Не вийти із себе"
+      },
+      "bodyByLocale": {
+        "ru": "Lose my temper — выйти из себя, перестать сдерживать злость. О себе говорим my temper, о группе с собой — our tempers. В примере человек хочет сохранить спокойствие. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Lose my temper — вийти із себе, перестати стримувати злість. Про себе кажемо my temper, про групу разом із собою — our tempers. У прикладі людина хоче зберегти спокій. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-55:intro1:r1",
+              "text": "I do not want to lose my temper."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro1:r2",
+              "text": "I do not want to losing my temper."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro1:r3",
+              "text": "I do not want for lose my temper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-55:intro1:r1",
+              "text": "I do not want to lose my temper."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro1:r2",
+              "text": "I do not want to losing my temper."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro1:r3",
+              "text": "I do not want for lose my temper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Говорить спокойнее",
+        "uk": "Говорити спокійніше"
+      },
+      "bodyByLocale": {
+        "ru": "Raise my voice — повысить голос, начать говорить громче, часто из-за раздражения. Keep my voice down — говорить потише, чтобы не мешать другим. Это не полное молчание. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Raise my voice — підвищити голос, почати говорити голосніше, часто через роздратування. Keep my voice down — говорити тихіше, щоб не заважати іншим. Це не повне мовчання. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-55:intro2:r1",
+              "text": "I do not want to raise my voice."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro2:r2",
+              "text": "I do not want to raising my voice."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro2:r3",
+              "text": "I do not want for raise my voice."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-55:intro2:r1",
+              "text": "I do not want to raise my voice."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro2:r2",
+              "text": "I do not want to raising my voice."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro2:r3",
+              "text": "I do not want for raise my voice."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сменить тему",
+        "uk": "Змінити тему"
+      },
+      "bodyByLocale": {
+        "ru": "Change the subject — сменить тему разговора. Subject здесь — тема, которую обсуждают. Так можно перейти от неприятного разговора к другой теме. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Change the subject — змінити тему розмови. Subject тут — тема, яку обговорюють. Так можна перейти від неприємної розмови до іншої теми. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-55:intro3:r1",
+              "text": "I want to change the subject."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro3:r2",
+              "text": "I want to changing the subject."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro3:r3",
+              "text": "I want for change the subject."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-55:intro3:r1",
+              "text": "I want to change the subject."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro3:r2",
+              "text": "I want to changing the subject."
+            },
+            {
+              "responseId": "en:lesson-21:session-55:intro3:r3",
+              "text": "I want for change the subject."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ae6ef3e0871982209a2d0dbfe468e6c196267f221c6a7209d03f3a407cccc9a3"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "want + to-infinitive; want + person + to-infinitive",
+    "uk": "want + to-infinitive; want + person + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рассказать шутку",
+        "uk": "Розповісти жарт"
+      },
+      "bodyByLocale": {
+        "ru": "Tell a joke — рассказать шутку. В этом выражении используем tell, не say. Вы собираетесь рассказать короткую смешную историю друзьям. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Tell a joke — розповісти жарт. У цьому виразі використовуємо tell, не say. Ви збираєтеся розповісти коротку смішну історію друзям. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-56:intro1:r1",
+              "text": "I want to tell a joke."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro1:r2",
+              "text": "I want to telling a joke."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro1:r3",
+              "text": "I want for tell a joke."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-56:intro1:r1",
+              "text": "I want to tell a joke."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro1:r2",
+              "text": "I want to telling a joke."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro1:r3",
+              "text": "I want for tell a joke."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Хорошо провести время",
+        "uk": "Гарно провести час"
+      },
+      "bodyByLocale": {
+        "ru": "Make you laugh — рассмешить тебя или вас. Учим выражение целиком. Enjoy yourself — хорошо провести время; здесь обращаемся к одному другу. В I want you to enjoy yourself отдыхает друг, а не говорящий. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Make you laugh — розсмішити тебе або вас. Вчимо вираз цілком. Enjoy yourself — гарно провести час; тут звертаємося до одного друга. У I want you to enjoy yourself відпочиває друг, а не мовець. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-56:intro2:r1",
+              "text": "I want to make you laugh."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro2:r2",
+              "text": "I want to making you laugh."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro2:r3",
+              "text": "I want for make you laugh."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-56:intro2:r1",
+              "text": "I want to make you laugh."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro2:r2",
+              "text": "I want to making you laugh."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro2:r3",
+              "text": "I want for make you laugh."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поздравить друга",
+        "uk": "Привітати друга"
+      },
+      "bodyByLocale": {
+        "ru": "Raise a glass — поднять бокал, произнося тост. Raise a glass to Anna — поднять бокал за Анну. Речь о поздравлении; напиток может быть безалкогольным. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Raise a glass — підняти келих, виголошуючи тост. Raise a glass to Anna — підняти келих за Анну. Йдеться про привітання; напій може бути безалкогольним. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-56:intro3:r1",
+              "text": "I want to raise a glass to Anna."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro3:r2",
+              "text": "I want to raising a glass to Anna."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro3:r3",
+              "text": "I want for raise a glass to Anna."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-56:intro3:r1",
+              "text": "I want to raise a glass to Anna."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro3:r2",
+              "text": "I want to raising a glass to Anna."
+            },
+            {
+              "responseId": "en:lesson-21:session-56:intro3:r3",
+              "text": "I want for raise a glass to Anna."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d3fab7663c02fb9430e51987ade058b95652653713b8f758781c4fe95d105d12"
+}

@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-56:word:tell-a-joke",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tell a joke",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:word:tell-a-joke:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tell a joke",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:word:tell-a-joke:audio",
+          "transcript": "tell a joke"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-56:word:tell-a-joke:r1",
+            "targetText": "tell a joke",
+            "meaningByLocale": {
+              "ru": "рассказать шутку.",
+              "uk": "розповісти жарт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tell a joke",
+          "definitionByLocale": {
+            "ru": "рассказать шутку.",
+            "uk": "розповісти жарт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу розповісти жарт».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу розповісти жарт».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to tell a joke.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу рассказать шутку».",
+          "uk": "Скажіть: «Я хочу розповісти жарт»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "tell",
+          "a",
+          "joke"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-56:i02:r1",
+          "text": "I want to tell a joke."
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i02:r2",
+          "text": "We want to tell a joke."
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i02:r3",
+          "text": "They want to tell a joke."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:i02:audio",
+          "transcript": "I want to tell a joke."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-56:i02:r1",
+            "targetText": "I want to tell a joke.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i02:r2",
+            "targetText": "We want to tell a joke.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i02:r3",
+            "targetText": "They want to tell a joke.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to tell a joke.",
+              "uk": "У записі звучить I want to tell a joke."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to tell a joke.",
+              "uk": "У записі звучить I want to tell a joke."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-56:i03:r1",
+          "text": "to tell"
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i03:r2",
+          "text": "to telling"
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i03:r3",
+          "text": "for tell"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ a joke.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-56:i03:r1",
+            "text": "to tell"
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i03:r2",
+            "text": "to telling"
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i03:r3",
+            "text": "for tell"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:word:make-you-laugh",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — make you laugh",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:word:make-you-laugh:audio"
+      ],
+      "accessibilityLabel": "Картка слова — make you laugh",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:word:make-you-laugh:audio",
+          "transcript": "make you laugh"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-56:word:make-you-laugh:r1",
+            "targetText": "make you laugh",
+            "meaningByLocale": {
+              "ru": "рассмешить тебя.",
+              "uk": "розсмішити тебе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make you laugh",
+          "definitionByLocale": {
+            "ru": "рассмешить тебя.",
+            "uk": "розсмішити тебе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу тебе розсмішити».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу тебе розсмішити».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to make you laugh.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу тебя рассмешить».",
+          "uk": "Скажіть: «Я хочу тебе розсмішити»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "make",
+          "you",
+          "laugh"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-56:i05:r1",
+          "text": "I want to make you laugh."
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i05:r2",
+          "text": "We want to make you laugh."
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i05:r3",
+          "text": "They want to make you laugh."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:i05:audio",
+          "transcript": "I want to make you laugh."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-56:i05:r1",
+            "targetText": "I want to make you laugh.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i05:r2",
+            "targetText": "We want to make you laugh.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i05:r3",
+            "targetText": "They want to make you laugh.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to make you laugh.",
+              "uk": "У записі звучить I want to make you laugh."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to make you laugh.",
+              "uk": "У записі звучить I want to make you laugh."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-56:i06:r1",
+          "text": "to make"
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i06:r2",
+          "text": "to making"
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i06:r3",
+          "text": "for make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ you laugh.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-56:i06:r1",
+            "text": "to make"
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i06:r2",
+            "text": "to making"
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i06:r3",
+            "text": "for make"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:word:enjoy-yourself",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — enjoy yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:word:enjoy-yourself:audio"
+      ],
+      "accessibilityLabel": "Картка слова — enjoy yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:word:enjoy-yourself:audio",
+          "transcript": "enjoy yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-56:word:enjoy-yourself:r1",
+            "targetText": "enjoy yourself",
+            "meaningByLocale": {
+              "ru": "хорошо провести время.",
+              "uk": "гарно провести час."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "enjoy yourself",
+          "definitionByLocale": {
+            "ru": "хорошо провести время.",
+            "uk": "гарно провести час."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу, щоб ти гарно провів час».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу, щоб ти гарно провів час».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want you to enjoy yourself.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу, чтобы ты хорошо провёл время».",
+          "uk": "Скажіть: «Я хочу, щоб ти гарно провів час»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "you",
+          "to",
+          "enjoy",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-56:i08:r1",
+          "text": "I want you to enjoy yourself."
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i08:r2",
+          "text": "We want you to enjoy yourself."
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i08:r3",
+          "text": "They want you to enjoy yourself."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:i08:audio",
+          "transcript": "I want you to enjoy yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-56:i08:r1",
+            "targetText": "I want you to enjoy yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i08:r2",
+            "targetText": "We want you to enjoy yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i08:r3",
+            "targetText": "They want you to enjoy yourself.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to enjoy yourself.",
+              "uk": "У записі звучить I want you to enjoy yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to enjoy yourself.",
+              "uk": "У записі звучить I want you to enjoy yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-56:i09:r1",
+          "text": "to enjoy"
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i09:r2",
+          "text": "to enjoying"
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i09:r3",
+          "text": "for enjoy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want you ___ yourself.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-56:i09:r1",
+            "text": "to enjoy"
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i09:r2",
+            "text": "to enjoying"
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i09:r3",
+            "text": "for enjoy"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:word:raise-a-glass",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — raise a glass",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:word:raise-a-glass:audio"
+      ],
+      "accessibilityLabel": "Картка слова — raise a glass",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:word:raise-a-glass:audio",
+          "transcript": "raise a glass"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-56:word:raise-a-glass:r1",
+            "targetText": "raise a glass",
+            "meaningByLocale": {
+              "ru": "поднять бокал.",
+              "uk": "підняти келих."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "raise a glass",
+          "definitionByLocale": {
+            "ru": "поднять бокал.",
+            "uk": "підняти келих."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу підняти келих за Анну».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу підняти келих за Анну».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to raise a glass to Anna.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу поднять бокал за Анну».",
+          "uk": "Скажіть: «Я хочу підняти келих за Анну»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-56:i11:r1",
+          "text": "I want to raise a glass to Anna."
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i11:r2",
+          "text": "We want to raise a glass to Anna."
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i11:r3",
+          "text": "They want to raise a glass to Anna."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:i11:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-56:i11:r1",
+            "targetText": "I want to raise a glass to Anna.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i11:r2",
+            "targetText": "We want to raise a glass to Anna.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i11:r3",
+            "targetText": "They want to raise a glass to Anna.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to raise a glass to Anna.",
+              "uk": "У записі звучить I want to raise a glass to Anna."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to raise a glass to Anna.",
+              "uk": "У записі звучить I want to raise a glass to Anna."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-56:i12:r1",
+          "text": "to raise"
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i12:r2",
+          "text": "to raising"
+        },
+        {
+          "responseId": "en:lesson-21:session-56:i12:r3",
+          "text": "for raise"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ a glass to Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-56:i12:r1",
+            "text": "to raise"
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i12:r2",
+            "text": "to raising"
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i12:r3",
+            "text": "for raise"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-56:i13:p1",
+            "target": "tell a joke",
+            "meaningByLocale": {
+              "ru": "рассказать шутку",
+              "uk": "розповісти жарт"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-56:i13:p2",
+            "target": "make you laugh",
+            "meaningByLocale": {
+              "ru": "рассмешить тебя",
+              "uk": "розсмішити тебе"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-56:i13:p3",
+            "target": "enjoy yourself",
+            "meaningByLocale": {
+              "ru": "хорошо провести время",
+              "uk": "гарно провести час"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-56:i13:p4",
+            "target": "raise a glass",
+            "meaningByLocale": {
+              "ru": "поднять бокал",
+              "uk": "підняти келих"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tell a joke",
+          "make you laugh",
+          "enjoy yourself",
+          "raise a glass"
+        ],
+        "rightColumn": [
+          "розповісти жарт",
+          "розсмішити тебе",
+          "гарно провести час",
+          "підняти келих"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я хочу розповісти тобі жарт»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я хочу розповісти тобі жарт»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:i16:audio",
+          "transcript": "I want to tell you a joke."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to tell you a joke.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я хочу підняти келих за тебе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я хочу підняти келих за тебе»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-56:i17:audio",
+          "transcript": "I want to raise a glass to you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to raise a glass to you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "112492b8af381b536f087b61a76002c485dd1a40d0908e803aa447274c1d12a7"
+}

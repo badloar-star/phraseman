@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-54:word:good-value",
+    "correctText": "good value",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i01",
+    "correctText": "This meal is such good value.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i02",
+    "correctText": "This meal is such good value.",
+    "correctResponseId": "en:lesson-21:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i03",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-21:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:word:waste-of-money",
+    "correctText": "waste of money",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i04",
+    "correctText": "This toy is such a waste of money.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i05",
+    "correctText": "This toy is such a waste of money.",
+    "correctResponseId": "en:lesson-21:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i06",
+    "correctText": "such a",
+    "correctResponseId": "en:lesson-21:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:word:good-news",
+    "correctText": "good news",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i07",
+    "correctText": "That is such good news.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i08",
+    "correctText": "That is such good news.",
+    "correctResponseId": "en:lesson-21:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i09",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-21:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:word:worth-it",
+    "correctText": "worth it",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i10",
+    "correctText": "The trip is so worth it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i11",
+    "correctText": "The trip is so worth it.",
+    "correctResponseId": "en:lesson-21:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i12",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-21:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i13",
+    "correctText": "en:lesson-21:session-54:i13:p1=good value\nen:lesson-21:session-54:i13:p2=waste of money\nen:lesson-21:session-54:i13:p3=good news\nen:lesson-21:session-54:i13:p4=worth it",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i14",
+    "correctText": "I want to split the cost with you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i15",
+    "correctText": "I need to meet a deadline.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i16",
+    "correctText": "This meal is so worth it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-54:i17",
+    "correctText": "That is a waste of money.",
+    "correctResponseId": null
+  }
+]

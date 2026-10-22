@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-55:word:lose-my-temper",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lose my temper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:word:lose-my-temper:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lose my temper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:word:lose-my-temper:audio",
+          "transcript": "lose my temper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-55:word:lose-my-temper:r1",
+            "targetText": "lose my temper",
+            "meaningByLocale": {
+              "ru": "выйти из себя.",
+              "uk": "вийти із себе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lose my temper",
+          "definitionByLocale": {
+            "ru": "выйти из себя.",
+            "uk": "вийти із себе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу виходити із себе».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу виходити із себе».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to lose my temper.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу выходить из себя».",
+          "uk": "Скажіть: «Я не хочу виходити із себе»."
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "lose",
+          "my",
+          "temper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-55:i02:r1",
+          "text": "I do not want to lose my temper."
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i02:r2",
+          "text": "We do not want to lose our tempers."
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i02:r3",
+          "text": "They do not want to lose their tempers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:i02:audio",
+          "transcript": "I do not want to lose my temper."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-55:i02:r1",
+            "targetText": "I do not want to lose my temper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i02:r2",
+            "targetText": "We do not want to lose our tempers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i02:r3",
+            "targetText": "They do not want to lose their tempers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to lose my temper.",
+              "uk": "У записі звучить I do not want to lose my temper."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to lose my temper.",
+              "uk": "У записі звучить I do not want to lose my temper."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-55:i03:r1",
+          "text": "to lose"
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i03:r2",
+          "text": "to losing"
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i03:r3",
+          "text": "for lose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I do not want ___ my temper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-55:i03:r1",
+            "text": "to lose"
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i03:r2",
+            "text": "to losing"
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i03:r3",
+            "text": "for lose"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:word:raise-my-voice",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — raise my voice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:word:raise-my-voice:audio"
+      ],
+      "accessibilityLabel": "Картка слова — raise my voice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:word:raise-my-voice:audio",
+          "transcript": "raise my voice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-55:word:raise-my-voice:r1",
+            "targetText": "raise my voice",
+            "meaningByLocale": {
+              "ru": "повысить голос.",
+              "uk": "підвищити голос."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "raise my voice",
+          "definitionByLocale": {
+            "ru": "повысить голос.",
+            "uk": "підвищити голос."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу підвищувати голос».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу підвищувати голос».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to raise my voice.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу повышать голос».",
+          "uk": "Скажіть: «Я не хочу підвищувати голос»."
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "raise",
+          "my",
+          "voice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-55:i05:r1",
+          "text": "I do not want to raise my voice."
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i05:r2",
+          "text": "We do not want to raise our voices."
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i05:r3",
+          "text": "They do not want to raise their voices."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:i05:audio",
+          "transcript": "I do not want to raise my voice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-55:i05:r1",
+            "targetText": "I do not want to raise my voice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i05:r2",
+            "targetText": "We do not want to raise our voices.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i05:r3",
+            "targetText": "They do not want to raise their voices.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-55:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to raise my voice.",
+              "uk": "У записі звучить I do not want to raise my voice."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to raise my voice.",
+              "uk": "У записі звучить I do not want to raise my voice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-55:i06:r1",
+          "text": "to raise"
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i06:r2",
+          "text": "to raising"
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i06:r3",
+          "text": "for raise"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I do not want ___ my voice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-55:i06:r1",
+            "text": "to raise"
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i06:r2",
+            "text": "to raising"
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i06:r3",
+            "text": "for raise"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-55:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:word:keep-my-voice-down",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — keep my voice down",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:word:keep-my-voice-down:audio"
+      ],
+      "accessibilityLabel": "Картка слова — keep my voice down",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:word:keep-my-voice-down:audio",
+          "transcript": "keep my voice down"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-55:word:keep-my-voice-down:r1",
+            "targetText": "keep my voice down",
+            "meaningByLocale": {
+              "ru": "говорить потише.",
+              "uk": "говорити тихіше."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep my voice down",
+          "definitionByLocale": {
+            "ru": "говорить потише.",
+            "uk": "говорити тихіше."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібно говорити тихіше».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібно говорити тихіше».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need to keep my voice down.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно говорить потише».",
+          "uk": "Скажіть: «Мені потрібно говорити тихіше»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "keep",
+          "my",
+          "voice",
+          "down"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-55:i08:r1",
+          "text": "I need to keep my voice down."
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i08:r2",
+          "text": "We need to keep our voices down."
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i08:r3",
+          "text": "They need to keep their voices down."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:i08:audio",
+          "transcript": "I need to keep my voice down."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-55:i08:r1",
+            "targetText": "I need to keep my voice down.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i08:r2",
+            "targetText": "We need to keep our voices down.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i08:r3",
+            "targetText": "They need to keep their voices down.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to keep my voice down.",
+              "uk": "У записі звучить I need to keep my voice down."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to keep my voice down.",
+              "uk": "У записі звучить I need to keep my voice down."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-55:i09:r1",
+          "text": "to keep"
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i09:r2",
+          "text": "to keeping"
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i09:r3",
+          "text": "for keep"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I need ___ my voice down.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-55:i09:r1",
+            "text": "to keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i09:r2",
+            "text": "to keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i09:r3",
+            "text": "for keep"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:word:change-the-subject",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — change the subject",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:word:change-the-subject:audio"
+      ],
+      "accessibilityLabel": "Картка слова — change the subject",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:word:change-the-subject:audio",
+          "transcript": "change the subject"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-55:word:change-the-subject:r1",
+            "targetText": "change the subject",
+            "meaningByLocale": {
+              "ru": "сменить тему разговора.",
+              "uk": "змінити тему розмови."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "change the subject",
+          "definitionByLocale": {
+            "ru": "сменить тему разговора.",
+            "uk": "змінити тему розмови."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу змінити тему розмови».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу змінити тему розмови».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to change the subject.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу сменить тему разговора».",
+          "uk": "Скажіть: «Я хочу змінити тему розмови»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-55:i11:r1",
+          "text": "I want to change the subject."
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i11:r2",
+          "text": "We want to change the subject."
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i11:r3",
+          "text": "They want to change the subject."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:i11:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-55:i11:r1",
+            "targetText": "I want to change the subject.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i11:r2",
+            "targetText": "We want to change the subject.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i11:r3",
+            "targetText": "They want to change the subject.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-55:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to change the subject.",
+              "uk": "У записі звучить I want to change the subject."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to change the subject.",
+              "uk": "У записі звучить I want to change the subject."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-55:i12:r1",
+          "text": "to change"
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i12:r2",
+          "text": "to changing"
+        },
+        {
+          "responseId": "en:lesson-21:session-55:i12:r3",
+          "text": "for change"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ the subject.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-55:i12:r1",
+            "text": "to change"
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i12:r2",
+            "text": "to changing"
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i12:r3",
+            "text": "for change"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-55:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-55:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-55:i13:p1",
+            "target": "lose my temper",
+            "meaningByLocale": {
+              "ru": "выйти из себя",
+              "uk": "вийти із себе"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-55:i13:p2",
+            "target": "raise my voice",
+            "meaningByLocale": {
+              "ru": "повысить голос",
+              "uk": "підвищити голос"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-55:i13:p3",
+            "target": "keep my voice down",
+            "meaningByLocale": {
+              "ru": "говорить потише",
+              "uk": "говорити тихіше"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-55:i13:p4",
+            "target": "change the subject",
+            "meaningByLocale": {
+              "ru": "сменить тему разговора",
+              "uk": "змінити тему розмови"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lose my temper",
+          "raise my voice",
+          "keep my voice down",
+          "change the subject"
+        ],
+        "rightColumn": [
+          "вийти із себе",
+          "підвищити голос",
+          "говорити тихіше",
+          "змінити тему розмови"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Мені потрібно змінити тему розмови»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Мені потрібно змінити тему розмови»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:i16:audio",
+          "transcript": "I need to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to change the subject.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-55:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я хочу говорити тихіше»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я хочу говорити тихіше»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-55:i17:audio",
+          "transcript": "I want to keep my voice down."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to keep my voice down.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a94c825fae4c04f51c61e860c970e68bb693d6d256c2b8834db6942508c2dff9"
+}

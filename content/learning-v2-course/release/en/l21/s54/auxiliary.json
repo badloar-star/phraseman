@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-54:intro1:r2": {
+          "ru": "Перед неисчисляемым сочетанием здесь нужно such без a.",
+          "uk": "Перед незлічуваною сполукою тут потрібне such без a."
+        },
+        "en:lesson-21:session-54:intro1:r3": {
+          "ru": "Перед неисчисляемым сочетанием здесь нужно such без a.",
+          "uk": "Перед незлічуваною сполукою тут потрібне such без a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-54:intro2:r2": {
+          "ru": "Перед waste of money здесь нужно such a.",
+          "uk": "Перед waste of money тут потрібне such a."
+        },
+        "en:lesson-21:session-54:intro2:r3": {
+          "ru": "Перед waste of money здесь нужно such a.",
+          "uk": "Перед waste of money тут потрібне such a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-54:intro3:r2": {
+          "ru": "Перед worth it здесь нужно so.",
+          "uk": "Перед worth it тут потрібне so."
+        },
+        "en:lesson-21:session-54:intro3:r3": {
+          "ru": "Перед worth it здесь нужно so.",
+          "uk": "Перед worth it тут потрібне so."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "52d4fb95fc7440a8d9ca4046dcaeade9c60a7f88a2e84454f619785c58bf2c0e"
+}

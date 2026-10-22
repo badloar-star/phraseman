@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "so / such: emphasis",
+    "uk": "so / such: emphasis"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Цена и качество",
+        "uk": "Ціна та якість"
+      },
+      "bodyByLocale": {
+        "ru": "Good value — вещь или услуга хороша за свою цену. В примере человек доволен ценой и качеством еды. Good news — хорошие новости; английское news согласуется как единственное число: the news is good. Such усиливает сочетание с существительным: such good value, such good news. Value и news в этих значениях неисчисляемые, поэтому без a. В such a waste of money слово waste обозначает одну напрасную трату. В разговорном so worth it выражение worth it усиливается словом so.",
+        "uk": "Good value — річ або послуга добра за свою ціну. У прикладі людина задоволена ціною та якістю їжі. Good news — добрі новини; англійське news узгоджується як однина: the news is good. Such підсилює сполуку з іменником: such good value, such good news. Value і news у цих значеннях незлічувані, тому без a. У such a waste of money слово waste позначає одну марну трату. У розмовному so worth it вираз worth it підсилюється словом so."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-54:intro1:r1",
+              "text": "This meal is such good value."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro1:r2",
+              "text": "This meal is so good value."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro1:r3",
+              "text": "This meal is such a good value."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-54:intro1:r1",
+              "text": "This meal is such good value."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro1:r2",
+              "text": "This meal is so good value."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro1:r3",
+              "text": "This meal is such a good value."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Неудачная покупка",
+        "uk": "Невдала покупка"
+      },
+      "bodyByLocale": {
+        "ru": "Waste of money — напрасная трата денег. В примере игрушка не оправдала ожиданий покупателя; это его оценка покупки. Such усиливает сочетание с существительным: such good value, such good news. Value и news в этих значениях неисчисляемые, поэтому без a. В such a waste of money слово waste обозначает одну напрасную трату. В разговорном so worth it выражение worth it усиливается словом so.",
+        "uk": "Waste of money — марна трата грошей. У прикладі іграшка не виправдала очікувань покупця; це його оцінка покупки. Such підсилює сполуку з іменником: such good value, such good news. Value і news у цих значеннях незлічувані, тому без a. У such a waste of money слово waste позначає одну марну трату. У розмовному so worth it вираз worth it підсилюється словом so."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-54:intro2:r1",
+              "text": "This toy is such a waste of money."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro2:r2",
+              "text": "This toy is so waste of money."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro2:r3",
+              "text": "This toy is such waste of money."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-54:intro2:r1",
+              "text": "This toy is such a waste of money."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro2:r2",
+              "text": "This toy is so waste of money."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro2:r3",
+              "text": "This toy is such waste of money."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оно того стоит",
+        "uk": "Воно того варте"
+      },
+      "bodyByLocale": {
+        "ru": "Worth it — стоит потраченных усилий, времени или денег. После интересной поездки так можно сказать, что затраты оправдались. So worth it — разговорное усиление: «действительно того стоит». Such усиливает сочетание с существительным: such good value, such good news. Value и news в этих значениях неисчисляемые, поэтому без a. В such a waste of money слово waste обозначает одну напрасную трату. В разговорном so worth it выражение worth it усиливается словом so.",
+        "uk": "Worth it — варте витрачених зусиль, часу або грошей. Після цікавої поїздки так можна сказати, що витрати виправдалися. So worth it — розмовне підсилення: «справді того варте». Such підсилює сполуку з іменником: such good value, such good news. Value і news у цих значеннях незлічувані, тому без a. У such a waste of money слово waste позначає одну марну трату. У розмовному so worth it вираз worth it підсилюється словом so."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-54:intro3:r1",
+              "text": "The trip is so worth it."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro3:r2",
+              "text": "The trip is such worth it."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro3:r3",
+              "text": "The trip is such a worth it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-54:intro3:r1",
+              "text": "The trip is so worth it."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro3:r2",
+              "text": "The trip is such worth it."
+            },
+            {
+              "responseId": "en:lesson-21:session-54:intro3:r3",
+              "text": "The trip is such a worth it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "314ee206663380052305bef74df891dc54452554aa7628fe32c4b5c9fea1e1db"
+}

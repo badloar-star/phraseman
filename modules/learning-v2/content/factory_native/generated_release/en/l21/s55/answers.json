@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-55:word:lose-my-temper",
+    "correctText": "lose my temper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i01",
+    "correctText": "I do not want to lose my temper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i02",
+    "correctText": "I do not want to lose my temper.",
+    "correctResponseId": "en:lesson-21:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i03",
+    "correctText": "to lose",
+    "correctResponseId": "en:lesson-21:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:word:raise-my-voice",
+    "correctText": "raise my voice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i04",
+    "correctText": "I do not want to raise my voice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i05",
+    "correctText": "I do not want to raise my voice.",
+    "correctResponseId": "en:lesson-21:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i06",
+    "correctText": "to raise",
+    "correctResponseId": "en:lesson-21:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:word:keep-my-voice-down",
+    "correctText": "keep my voice down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i07",
+    "correctText": "I need to keep my voice down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i08",
+    "correctText": "I need to keep my voice down.",
+    "correctResponseId": "en:lesson-21:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i09",
+    "correctText": "to keep",
+    "correctResponseId": "en:lesson-21:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:word:change-the-subject",
+    "correctText": "change the subject",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i10",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i11",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": "en:lesson-21:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i12",
+    "correctText": "to change",
+    "correctResponseId": "en:lesson-21:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i13",
+    "correctText": "en:lesson-21:session-55:i13:p1=lose my temper\nen:lesson-21:session-55:i13:p2=raise my voice\nen:lesson-21:session-55:i13:p3=keep my voice down\nen:lesson-21:session-55:i13:p4=change the subject",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i16",
+    "correctText": "I need to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-55:i17",
+    "correctText": "I want to keep my voice down.",
+    "correctResponseId": null
+  }
+]

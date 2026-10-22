@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-54:word:good-value",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — good value",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:word:good-value:audio"
+      ],
+      "accessibilityLabel": "Картка слова — good value",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:word:good-value:audio",
+          "transcript": "good value"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-54:word:good-value:r1",
+            "targetText": "good value",
+            "meaningByLocale": {
+              "ru": "хорошее качество за свою цену.",
+              "uk": "гарна якість за свою ціну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "good value",
+          "definitionByLocale": {
+            "ru": "хорошее качество за свою цену.",
+            "uk": "гарна якість за свою ціну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ця їжа така добра за свою ціну».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ця їжа така добра за свою ціну».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This meal is such good value.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эта еда так хороша за свою цену».",
+          "uk": "Скажіть: «Ця їжа така добра за свою ціну»."
+        },
+        "orderedTokens": [
+          "This",
+          "meal",
+          "is",
+          "such",
+          "good",
+          "value"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-54:i02:r1",
+          "text": "This meal is such good value."
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i02:r2",
+          "text": "This meal was such good value."
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i02:r3",
+          "text": "This meal is not such good value."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:i02:audio",
+          "transcript": "This meal is such good value."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-54:i02:r1",
+            "targetText": "This meal is such good value.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i02:r2",
+            "targetText": "This meal was such good value.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i02:r3",
+            "targetText": "This meal is not such good value.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This meal is such good value.",
+              "uk": "У записі звучить This meal is such good value."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This meal is such good value.",
+              "uk": "У записі звучить This meal is such good value."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть підсилення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-54:i03:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i03:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i03:r3",
+          "text": "such a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть підсилення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите усиление.",
+          "uk": "Виберіть підсилення."
+        },
+        "gappedTargetPhrase": "This meal is ___ good value.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-54:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i03:r3",
+            "text": "such a"
+          }
+        ],
+        "testedDimension": "Виберіть підсилення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть підсилення.",
+            "feedbackByLocale": {
+              "ru": "Перед неисчисляемым сочетанием здесь нужно such без a.",
+              "uk": "Перед незлічуваною сполукою тут потрібне such без a."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть підсилення.",
+            "feedbackByLocale": {
+              "ru": "Перед неисчисляемым сочетанием здесь нужно such без a.",
+              "uk": "Перед незлічуваною сполукою тут потрібне such без a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:word:waste-of-money",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — waste of money",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:word:waste-of-money:audio"
+      ],
+      "accessibilityLabel": "Картка слова — waste of money",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:word:waste-of-money:audio",
+          "transcript": "waste of money"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-54:word:waste-of-money:r1",
+            "targetText": "waste of money",
+            "meaningByLocale": {
+              "ru": "напрасная трата денег.",
+              "uk": "марна трата грошей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "waste of money",
+          "definitionByLocale": {
+            "ru": "напрасная трата денег.",
+            "uk": "марна трата грошей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ця іграшка — така марна трата грошей».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ця іграшка — така марна трата грошей».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This toy is such a waste of money.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эта игрушка — такая напрасная трата денег».",
+          "uk": "Скажіть: «Ця іграшка — така марна трата грошей»."
+        },
+        "orderedTokens": [
+          "This",
+          "toy",
+          "is",
+          "such",
+          "a",
+          "waste",
+          "of",
+          "money"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-54:i05:r1",
+          "text": "This toy is such a waste of money."
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i05:r2",
+          "text": "This toy was such a waste of money."
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i05:r3",
+          "text": "This toy is not such a waste of money."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:i05:audio",
+          "transcript": "This toy is such a waste of money."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-54:i05:r1",
+            "targetText": "This toy is such a waste of money.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i05:r2",
+            "targetText": "This toy was such a waste of money.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i05:r3",
+            "targetText": "This toy is not such a waste of money.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This toy is such a waste of money.",
+              "uk": "У записі звучить This toy is such a waste of money."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This toy is such a waste of money.",
+              "uk": "У записі звучить This toy is such a waste of money."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть підсилення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-54:i06:r1",
+          "text": "such a"
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i06:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i06:r3",
+          "text": "such"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть підсилення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите усиление.",
+          "uk": "Виберіть підсилення."
+        },
+        "gappedTargetPhrase": "This toy is ___ waste of money.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-54:i06:r1",
+            "text": "such a"
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i06:r3",
+            "text": "such"
+          }
+        ],
+        "testedDimension": "Виберіть підсилення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-54:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть підсилення.",
+            "feedbackByLocale": {
+              "ru": "Перед waste of money здесь нужно such a.",
+              "uk": "Перед waste of money тут потрібне such a."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть підсилення.",
+            "feedbackByLocale": {
+              "ru": "Перед waste of money здесь нужно such a.",
+              "uk": "Перед waste of money тут потрібне such a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:word:good-news",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — good news",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:word:good-news:audio"
+      ],
+      "accessibilityLabel": "Картка слова — good news",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:word:good-news:audio",
+          "transcript": "good news"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-54:word:good-news:r1",
+            "targetText": "good news",
+            "meaningByLocale": {
+              "ru": "хорошие новости.",
+              "uk": "добрі новини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "good news",
+          "definitionByLocale": {
+            "ru": "хорошие новости.",
+            "uk": "добрі новини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Це такі добрі новини».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Це такі добрі новини».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is such good news.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Это такие хорошие новости».",
+          "uk": "Скажіть: «Це такі добрі новини»."
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "such",
+          "good",
+          "news"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-54:i08:r1",
+          "text": "That is such good news."
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i08:r2",
+          "text": "That was such good news."
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i08:r3",
+          "text": "That is not such good news."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:i08:audio",
+          "transcript": "That is such good news."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-54:i08:r1",
+            "targetText": "That is such good news.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i08:r2",
+            "targetText": "That was such good news.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i08:r3",
+            "targetText": "That is not such good news.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That is such good news.",
+              "uk": "У записі звучить That is such good news."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That is such good news.",
+              "uk": "У записі звучить That is such good news."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть підсилення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-54:i09:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i09:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i09:r3",
+          "text": "such a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть підсилення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите усиление.",
+          "uk": "Виберіть підсилення."
+        },
+        "gappedTargetPhrase": "That is ___ good news.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-54:i09:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i09:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i09:r3",
+            "text": "such a"
+          }
+        ],
+        "testedDimension": "Виберіть підсилення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть підсилення.",
+            "feedbackByLocale": {
+              "ru": "Перед неисчисляемым сочетанием здесь нужно such без a.",
+              "uk": "Перед незлічуваною сполукою тут потрібне such без a."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть підсилення.",
+            "feedbackByLocale": {
+              "ru": "Перед неисчисляемым сочетанием здесь нужно such без a.",
+              "uk": "Перед незлічуваною сполукою тут потрібне such без a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:word:worth-it",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — worth it",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:word:worth-it:audio"
+      ],
+      "accessibilityLabel": "Картка слова — worth it",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:word:worth-it:audio",
+          "transcript": "worth it"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-54:word:worth-it:r1",
+            "targetText": "worth it",
+            "meaningByLocale": {
+              "ru": "стоит затраченных усилий или денег.",
+              "uk": "варте витрачених зусиль або грошей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worth it",
+          "definitionByLocale": {
+            "ru": "стоит затраченных усилий или денег.",
+            "uk": "варте витрачених зусиль або грошей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ця поїздка справді варта витрачених зусиль».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ця поїздка справді варта витрачених зусиль».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The trip is so worth it.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эта поездка действительно стоит затраченных усилий».",
+          "uk": "Скажіть: «Ця поїздка справді варта витрачених зусиль»."
+        },
+        "orderedTokens": [
+          "The",
+          "trip",
+          "is",
+          "so",
+          "worth",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-54:i11:r1",
+          "text": "The trip is so worth it."
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i11:r2",
+          "text": "The trip was so worth it."
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i11:r3",
+          "text": "The trip is not so worth it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:i11:audio",
+          "transcript": "The trip is so worth it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-54:i11:r1",
+            "targetText": "The trip is so worth it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i11:r2",
+            "targetText": "The trip was so worth it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i11:r3",
+            "targetText": "The trip is not so worth it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The trip is so worth it.",
+              "uk": "У записі звучить The trip is so worth it."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The trip is so worth it.",
+              "uk": "У записі звучить The trip is so worth it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть підсилення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-54:i12:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i12:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-21:session-54:i12:r3",
+          "text": "such a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть підсилення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите усиление.",
+          "uk": "Виберіть підсилення."
+        },
+        "gappedTargetPhrase": "The trip is ___ worth it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-54:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i12:r3",
+            "text": "such a"
+          }
+        ],
+        "testedDimension": "Виберіть підсилення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть підсилення.",
+            "feedbackByLocale": {
+              "ru": "Перед worth it здесь нужно so.",
+              "uk": "Перед worth it тут потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть підсилення.",
+            "feedbackByLocale": {
+              "ru": "Перед worth it здесь нужно so.",
+              "uk": "Перед worth it тут потрібне so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-54:i13:p1",
+            "target": "good value",
+            "meaningByLocale": {
+              "ru": "хорошее качество за свою цену",
+              "uk": "гарна якість за свою ціну"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-54:i13:p2",
+            "target": "waste of money",
+            "meaningByLocale": {
+              "ru": "напрасная трата денег",
+              "uk": "марна трата грошей"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-54:i13:p3",
+            "target": "good news",
+            "meaningByLocale": {
+              "ru": "хорошие новости",
+              "uk": "добрі новини"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-54:i13:p4",
+            "target": "worth it",
+            "meaningByLocale": {
+              "ru": "стоит затраченных усилий или денег",
+              "uk": "варте витрачених зусиль або грошей"
+            }
+          }
+        ],
+        "leftColumn": [
+          "good value",
+          "waste of money",
+          "good news",
+          "worth it"
+        ],
+        "rightColumn": [
+          "гарна якість за свою ціну",
+          "марна трата грошей",
+          "добрі новини",
+          "варте витрачених зусиль або грошей"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: витрати",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: витрати",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:i14:audio",
+          "transcript": "I want to split the cost with you."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to split the cost with you.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "split",
+          "the",
+          "cost",
+          "with",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: терміни",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: терміни",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:i15:audio",
+          "transcript": "I need to meet a deadline."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need to meet a deadline.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "meet",
+          "a",
+          "deadline"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ця їжа справді того варта»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ця їжа справді того варта»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:i16:audio",
+          "transcript": "This meal is so worth it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This meal is so worth it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-54:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Це марна трата грошей»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Це марна трата грошей»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-54:i17:audio",
+          "transcript": "That is a waste of money."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is a waste of money.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d8bca318355b741b28b254f9fd58c11169341fb498a57bba611cabbbf7ad6ac5"
+}

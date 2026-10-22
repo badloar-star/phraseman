@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-56:word:tell-a-joke",
+    "correctText": "tell a joke",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i01",
+    "correctText": "I want to tell a joke.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i02",
+    "correctText": "I want to tell a joke.",
+    "correctResponseId": "en:lesson-21:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i03",
+    "correctText": "to tell",
+    "correctResponseId": "en:lesson-21:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:word:make-you-laugh",
+    "correctText": "make you laugh",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i04",
+    "correctText": "I want to make you laugh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i05",
+    "correctText": "I want to make you laugh.",
+    "correctResponseId": "en:lesson-21:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i06",
+    "correctText": "to make",
+    "correctResponseId": "en:lesson-21:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:word:enjoy-yourself",
+    "correctText": "enjoy yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i07",
+    "correctText": "I want you to enjoy yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i08",
+    "correctText": "I want you to enjoy yourself.",
+    "correctResponseId": "en:lesson-21:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i09",
+    "correctText": "to enjoy",
+    "correctResponseId": "en:lesson-21:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:word:raise-a-glass",
+    "correctText": "raise a glass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i10",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i11",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": "en:lesson-21:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i12",
+    "correctText": "to raise",
+    "correctResponseId": "en:lesson-21:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i13",
+    "correctText": "en:lesson-21:session-56:i13:p1=tell a joke\nen:lesson-21:session-56:i13:p2=make you laugh\nen:lesson-21:session-56:i13:p3=enjoy yourself\nen:lesson-21:session-56:i13:p4=raise a glass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i16",
+    "correctText": "I want to tell you a joke.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-56:i17",
+    "correctText": "I want to raise a glass to you.",
+    "correctResponseId": null
+  }
+]

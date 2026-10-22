@@ -8211,4 +8211,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"want / need + to-infinitive","uk":"want / need + to-infinitive"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 53,
+    sourceFingerprint: "0c471fd3f429dfa79165a1f7dcf1457194002ca358b7707ed9acfa89f59f0ec4",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"mustn’t + base verb","uk":"mustn’t + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 54,
+    sourceFingerprint: "0602821f9260ef08a4c32d329bffda13d0bb932464415b3cd76ed11e9f7dd672",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"so / such: emphasis","uk":"so / such: emphasis"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 55,
+    sourceFingerprint: "e3ff5155e13afe18866ef1247168f2f5bf0259b9e94e1d5e276202be7a283f63",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"want / need + to-infinitive","uk":"want / need + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 56,
+    sourceFingerprint: "49cfb91988b100785a52828652eab4950bc31617ef5b2fd08b4aa771b6b9edf8",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"want + to-infinitive; want + person + to-infinitive","uk":"want + to-infinitive; want + person + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
 ]);

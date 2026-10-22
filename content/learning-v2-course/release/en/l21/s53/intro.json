@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "mustn’t + base verb",
+    "uk": "mustn’t + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Запрет входа",
+        "uk": "Заборона входу"
+      },
+      "bodyByLocale": {
+        "ru": "No entry — надпись «Вход запрещён». В этой ситуации она висит на двери, через которую посетители не должны входить. Mustn’t означает запрет: you mustn’t enter — «входить нельзя». После mustn’t ставим начальную форму без to и без -ing. Means означает «означает».",
+        "uk": "No entry — напис «Вхід заборонено». У цій ситуації він висить на дверях, через які відвідувачі не повинні входити. Mustn’t означає заборону: you mustn’t enter — «входити не можна». Після mustn’t ставимо початкову форму без to та без -ing. Means означає «означає»."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-53:intro1:r1",
+              "text": "The no entry sign means you mustn't enter."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro1:r2",
+              "text": "The no entry sign means you mustn't to enter."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro1:r3",
+              "text": "The no entry sign means you mustn't entering."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-53:intro1:r1",
+              "text": "The no entry sign means you mustn't enter."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro1:r2",
+              "text": "The no entry sign means you mustn't to enter."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro1:r3",
+              "text": "The no entry sign means you mustn't entering."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Надписи с no",
+        "uk": "Написи з no"
+      },
+      "bodyByLocale": {
+        "ru": "No smoking — «Курить запрещено». No parking — «Парковка запрещена». Это короткие надписи на табличках; после no в них стоят формы smoking и parking, но после mustn’t в предложении — smoke и park. Mustn’t означает запрет: you mustn’t enter — «входить нельзя». После mustn’t ставим начальную форму без to и без -ing. Means означает «означает».",
+        "uk": "No smoking — «Курити заборонено». No parking — «Паркування заборонене». Це короткі написи на табличках; після no в них стоять форми smoking і parking, але після mustn’t у реченні — smoke і park. Mustn’t означає заборону: you mustn’t enter — «входити не можна». Після mustn’t ставимо початкову форму без to та без -ing. Means означає «означає»."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-53:intro2:r1",
+              "text": "The no smoking sign means you mustn't smoke."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro2:r2",
+              "text": "The no smoking sign means you mustn't to smoke."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro2:r3",
+              "text": "The no smoking sign means you mustn't smoking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-53:intro2:r1",
+              "text": "The no smoking sign means you mustn't smoke."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro2:r2",
+              "text": "The no smoking sign means you mustn't to smoke."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro2:r3",
+              "text": "The no smoking sign means you mustn't smoking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Служебная дверь",
+        "uk": "Службові двері"
+      },
+      "bodyByLocale": {
+        "ru": "Staff only — «Только для сотрудников». В нашей ситуации это дверь в служебную комнату: сотрудники могут войти, посетители — нет. Mustn’t означает запрет: you mustn’t enter — «входить нельзя». После mustn’t ставим начальную форму без to и без -ing. Means означает «означает».",
+        "uk": "Staff only — «Лише для працівників». У нашій ситуації це двері до службової кімнати: працівники можуть увійти, відвідувачі — ні. Mustn’t означає заборону: you mustn’t enter — «входити не можна». Після mustn’t ставимо початкову форму без to та без -ing. Means означає «означає»."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-53:intro3:r1",
+              "text": "The staff only sign means visitors mustn't enter."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro3:r2",
+              "text": "The staff only sign means visitors mustn't to enter."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro3:r3",
+              "text": "The staff only sign means visitors mustn't entering."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-53:intro3:r1",
+              "text": "The staff only sign means visitors mustn't enter."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro3:r2",
+              "text": "The staff only sign means visitors mustn't to enter."
+            },
+            {
+              "responseId": "en:lesson-21:session-53:intro3:r3",
+              "text": "The staff only sign means visitors mustn't entering."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9b48abe26938a3db9beaa6944ee7378fd8696d1a32a79e6829861f70c1a053ff"
+}

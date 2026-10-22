@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-53:word:no-entry",
+    "correctText": "no entry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i01",
+    "correctText": "The no entry sign means you mustn't enter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i02",
+    "correctText": "The no entry sign means you mustn't enter.",
+    "correctResponseId": "en:lesson-21:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i03",
+    "correctText": "enter",
+    "correctResponseId": "en:lesson-21:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:word:no-smoking",
+    "correctText": "no smoking",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i04",
+    "correctText": "The no smoking sign means you mustn't smoke.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i05",
+    "correctText": "The no smoking sign means you mustn't smoke.",
+    "correctResponseId": "en:lesson-21:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i06",
+    "correctText": "smoke",
+    "correctResponseId": "en:lesson-21:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:word:no-parking",
+    "correctText": "no parking",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i07",
+    "correctText": "The no parking sign means you mustn't park here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i08",
+    "correctText": "The no parking sign means you mustn't park here.",
+    "correctResponseId": "en:lesson-21:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i09",
+    "correctText": "park",
+    "correctResponseId": "en:lesson-21:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:word:staff-only",
+    "correctText": "staff only",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i10",
+    "correctText": "The staff only sign means visitors mustn't enter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i11",
+    "correctText": "The staff only sign means visitors mustn't enter.",
+    "correctResponseId": "en:lesson-21:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i12",
+    "correctText": "enter",
+    "correctResponseId": "en:lesson-21:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i13",
+    "correctText": "en:lesson-21:session-53:i13:p1=no entry\nen:lesson-21:session-53:i13:p2=no smoking\nen:lesson-21:session-53:i13:p3=no parking\nen:lesson-21:session-53:i13:p4=staff only",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i14",
+    "correctText": "I need to take a day off.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i15",
+    "correctText": "I want to pay my share now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i16",
+    "correctText": "You mustn't smoke here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-53:i17",
+    "correctText": "Visitors mustn't enter.",
+    "correctResponseId": null
+  }
+]

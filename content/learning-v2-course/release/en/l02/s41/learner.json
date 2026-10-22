@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что мама говорит о детях",
+      "prompt": "Послушайте и выберите — мама по телефону говорит с вами о детях",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-41:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-41:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что мама говорит о детях",
+      "accessibilityLabel": "Послушайте и выберите — мама по телефону говорит с вами о детях",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-41:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что мама говорит о детях",
+            "testedDimension": "Послушайте и выберите — мама по телефону говорит с вами о детях",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `tired`, а в этом варианте — `hungry`.",
               "uk": "У записі останнє слово — `tired`, а в цьому варіанті — `hungry`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-41:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что мама говорит о детях",
+            "testedDimension": "Послушайте и выберите — мама по телефону говорит с вами о детях",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `tired`, а в этом варианте — `sleepy`.",
               "uk": "У записі останнє слово — `tired`, а в цьому варіанті — `sleepy`."
@@ -636,7 +636,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что мама говорит о собаке",
+      "prompt": "Послушайте и выберите — ещё раз вечером вам звонит мама",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-41:i09:r1",
@@ -655,7 +655,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-41:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что мама говорит о собаке",
+      "accessibilityLabel": "Послушайте и выберите — ещё раз вечером вам звонит мама",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -685,7 +685,7 @@
           {
             "responseId": "en:lesson-02:session-41:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что мама говорит о собаке",
+            "testedDimension": "Послушайте и выберите — ещё раз вечером вам звонит мама",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `naughty`, а в этом варианте — `gentle`.",
               "uk": "У записі останнє слово — `naughty`, а в цьому варіанті — `gentle`."
@@ -694,7 +694,7 @@
           {
             "responseId": "en:lesson-02:session-41:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что мама говорит о собаке",
+            "testedDimension": "Послушайте и выберите — ещё раз вечером вам звонит мама",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `naughty`, а в этом варианте — `stubborn`.",
               "uk": "У записі останнє слово — `naughty`, а в цьому варіанті — `stubborn`."
@@ -979,7 +979,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос мамы",
+      "prompt": "Послушайте и выберите — вечером мама интересуется у вас, как дела",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-41:i15:r1",
@@ -998,7 +998,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-41:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос мамы",
+      "accessibilityLabel": "Послушайте и выберите — вечером мама интересуется у вас, как дела",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1028,7 +1028,7 @@
           {
             "responseId": "en:lesson-02:session-41:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос мамы",
+            "testedDimension": "Послушайте и выберите — вечером мама интересуется у вас, как дела",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `naughty`, а в этом варианте — `gentle`.",
               "uk": "У записі останнє слово — `naughty`, а в цьому варіанті — `gentle`."
@@ -1037,7 +1037,7 @@
           {
             "responseId": "en:lesson-02:session-41:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос мамы",
+            "testedDimension": "Послушайте и выберите — вечером мама интересуется у вас, как дела",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `naughty`, а в этом варианте — `selfish`.",
               "uk": "У записі останнє слово — `naughty`, а в цьому варіанті — `selfish`."
@@ -1170,5 +1170,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9ce61253833a15ef72f210eb950146df66ab532cc22c6dd838cb3ff2a39a807f"
+  "learnerFingerprint": "457052c5946ce4ae481e7c81c30eba65f6276965e60e9071ef08e90f9f532fc7"
 }

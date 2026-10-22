@@ -53,7 +53,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о друге",
+      "prompt": "Послушайте и выберите — подруга накрывает завтрак в гостевом доме",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i02:r1",
@@ -72,7 +72,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-27:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о друге",
+      "accessibilityLabel": "Послушайте и выберите — подруга накрывает завтрак в гостевом доме",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +102,7 @@
           {
             "responseId": "en:lesson-02:session-27:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о друге",
+            "testedDimension": "Послушайте и выберите — подруга накрывает завтрак в гостевом доме",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `asleep`, а в этом варианте — `awake`.",
               "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `awake`."
@@ -111,7 +111,7 @@
           {
             "responseId": "en:lesson-02:session-27:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о друге",
+            "testedDimension": "Послушайте и выберите — подруга накрывает завтрак в гостевом доме",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `asleep`, а в этом варианте — `guilty`.",
               "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `guilty`."
@@ -508,7 +508,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что подруга говорит о первом тосте",
+      "prompt": "Послушайте и выберите — за общим столом подруга говорит о завтраке",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i09:r1",
@@ -527,7 +527,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-27:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что подруга говорит о первом тосте",
+      "accessibilityLabel": "Послушайте и выберите — за общим столом подруга говорит о завтраке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -557,7 +557,7 @@
           {
             "responseId": "en:lesson-02:session-27:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о первом тосте",
+            "testedDimension": "Послушайте и выберите — за общим столом подруга говорит о завтраке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `burnt`, а в этом варианте — `available`.",
               "uk": "У записі останнє слово — `burnt`, а в цьому варіанті — `available`."
@@ -566,7 +566,7 @@
           {
             "responseId": "en:lesson-02:session-27:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о первом тосте",
+            "testedDimension": "Послушайте и выберите — за общим столом подруга говорит о завтраке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `burnt`, а в этом варианте — `broken`.",
               "uk": "У записі останнє слово — `burnt`, а в цьому варіанті — `broken`."
@@ -979,7 +979,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос друга о соусе",
+      "prompt": "Послушайте и выберите — друг выходит к столу, когда завтрак готов",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i15:r1",
@@ -998,7 +998,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-27:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос друга о соусе",
+      "accessibilityLabel": "Послушайте и выберите — друг выходит к столу, когда завтрак готов",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1028,7 +1028,7 @@
           {
             "responseId": "en:lesson-02:session-27:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос друга о соусе",
+            "testedDimension": "Послушайте и выберите — друг выходит к столу, когда завтрак готов",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `spicy`, а в этом варианте — `available`.",
               "uk": "У записі останнє слово — `spicy`, а в цьому варіанті — `available`."
@@ -1037,7 +1037,7 @@
           {
             "responseId": "en:lesson-02:session-27:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос друга о соусе",
+            "testedDimension": "Послушайте и выберите — друг выходит к столу, когда завтрак готов",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `spicy`, а в этом варианте — `burnt`.",
               "uk": "У записі останнє слово — `spicy`, а в цьому варіанті — `burnt`."
@@ -1170,5 +1170,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "be2044b8e536d80c3522b2ffaa5a5e3cb0da4cf96a98db341788b2eb00592739"
+  "learnerFingerprint": "7327b01bb27b290298cf5f94f7c293e6d4b1eac1b7fab78c2488c1797abc3476"
 }

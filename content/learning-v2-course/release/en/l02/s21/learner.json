@@ -53,7 +53,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос подруги о друге",
+      "prompt": "Послушайте и выберите — подруга звонит вам, пока вы готовите выставку",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-21:i02:r1",
@@ -72,7 +72,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-21:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос подруги о друге",
+      "accessibilityLabel": "Послушайте и выберите — подруга звонит вам, пока вы готовите выставку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +102,7 @@
           {
             "responseId": "en:lesson-02:session-21:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги о друге",
+            "testedDimension": "Послушайте и выберите — подруга звонит вам, пока вы готовите выставку",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `upstairs`, а в этом варианте — `inside`.",
               "uk": "У записі останнє слово — `upstairs`, а в цьому варіанті — `inside`."
@@ -111,7 +111,7 @@
           {
             "responseId": "en:lesson-02:session-21:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги о друге",
+            "testedDimension": "Послушайте и выберите — подруга звонит вам, пока вы готовите выставку",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `upstairs`, а в этом варианте — `outside`.",
               "uk": "У записі останнє слово — `upstairs`, а в цьому варіанті — `outside`."
@@ -593,7 +593,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что друг говорит об афишах",
+      "prompt": "Послушайте и выберите — друг идёт с вами вдоль стен в доме",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-21:i09:r1",
@@ -612,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-21:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что друг говорит об афишах",
+      "accessibilityLabel": "Послушайте и выберите — друг идёт с вами вдоль стен в доме",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -642,7 +642,7 @@
           {
             "responseId": "en:lesson-02:session-21:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что друг говорит об афишах",
+            "testedDimension": "Послушайте и выберите — друг идёт с вами вдоль стен в доме",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `torn`, а в этом варианте — `broken`.",
               "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `broken`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-02:session-21:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что друг говорит об афишах",
+            "testedDimension": "Послушайте и выберите — друг идёт с вами вдоль стен в доме",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `torn`, а в этом варианте — `straight`.",
               "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `straight`."
@@ -979,7 +979,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что друг говорит о выставке",
+      "prompt": "Послушайте и выберите — подготовку выставки подводит к концу друг",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-21:i15:r1",
@@ -998,7 +998,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-21:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что друг говорит о выставке",
+      "accessibilityLabel": "Послушайте и выберите — подготовку выставки подводит к концу друг",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1028,7 +1028,7 @@
           {
             "responseId": "en:lesson-02:session-21:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что друг говорит о выставке",
+            "testedDimension": "Послушайте и выберите — подготовку выставки подводит к концу друг",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `private`, а в этом варианте — `public`.",
               "uk": "У записі останнє слово — `private`, а в цьому варіанті — `public`."
@@ -1037,7 +1037,7 @@
           {
             "responseId": "en:lesson-02:session-21:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что друг говорит о выставке",
+            "testedDimension": "Послушайте и выберите — подготовку выставки подводит к концу друг",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `private`, а в этом варианте — `tidy`.",
               "uk": "У записі останнє слово — `private`, а в цьому варіанті — `tidy`."
@@ -1170,5 +1170,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9c3021e57a90db6cb93ece2392ea54ab29f731e24bbb4fc5c2a5bc0eb77ea9d7"
+  "learnerFingerprint": "b28e0563a5fb8cb365e8d5ccbd605c19cc1cf027f1162114ca2bb62f33134a26"
 }

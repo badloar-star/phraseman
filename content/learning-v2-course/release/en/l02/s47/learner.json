@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что соседка говорит о реке за мостом",
+      "prompt": "Послушайте и выберите — соседка идёт с вами вдоль воды в парке",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-47:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-47:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что соседка говорит о реке за мостом",
+      "accessibilityLabel": "Послушайте и выберите — соседка идёт с вами вдоль воды в парке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-47:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что соседка говорит о реке за мостом",
+            "testedDimension": "Послушайте и выберите — соседка идёт с вами вдоль воды в парке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `deep`, а в этом варианте — `narrow`.",
               "uk": "У записі останнє слово — `deep`, а в цьому варіанті — `narrow`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-47:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что соседка говорит о реке за мостом",
+            "testedDimension": "Послушайте и выберите — соседка идёт с вами вдоль воды в парке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `deep`, а в этом варианте — `wide`.",
               "uk": "У записі останнє слово — `deep`, а в цьому варіанті — `wide`."
@@ -637,7 +637,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что продавец говорит о мишках в киоске",
+      "prompt": "Послушайте и выберите — продавец в киоске с игрушками обращается к вам",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-47:i09:r1",
@@ -656,7 +656,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-47:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что продавец говорит о мишках в киоске",
+      "accessibilityLabel": "Послушайте и выберите — продавец в киоске с игрушками обращается к вам",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -686,7 +686,7 @@
           {
             "responseId": "en:lesson-02:session-47:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что продавец говорит о мишках в киоске",
+            "testedDimension": "Послушайте и выберите — продавец в киоске с игрушками обращается к вам",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `cuddly`, а в этом варианте — `soft`.",
               "uk": "У записі останнє слово — `cuddly`, а в цьому варіанті — `soft`."
@@ -695,7 +695,7 @@
           {
             "responseId": "en:lesson-02:session-47:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что продавец говорит о мишках в киоске",
+            "testedDimension": "Послушайте и выберите — продавец в киоске с игрушками обращается к вам",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `cuddly`, а в этом варианте — `cute`.",
               "uk": "У записі останнє слово — `cuddly`, а в цьому варіанті — `cute`."
@@ -980,7 +980,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос соседки",
+      "prompt": "Послушайте и выберите — соседка отдыхает с вами на скамейке в парке",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-47:i15:r1",
@@ -999,7 +999,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-47:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос соседки",
+      "accessibilityLabel": "Послушайте и выберите — соседка отдыхает с вами на скамейке в парке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1029,7 +1029,7 @@
           {
             "responseId": "en:lesson-02:session-47:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос соседки",
+            "testedDimension": "Послушайте и выберите — соседка отдыхает с вами на скамейке в парке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `peaceful`, а в этом варианте — `overgrown`.",
               "uk": "У записі останнє слово — `peaceful`, а в цьому варіанті — `overgrown`."
@@ -1038,7 +1038,7 @@
           {
             "responseId": "en:lesson-02:session-47:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос соседки",
+            "testedDimension": "Послушайте и выберите — соседка отдыхает с вами на скамейке в парке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `peaceful`, а в этом варианте — `shallow`.",
               "uk": "У записі останнє слово — `peaceful`, а в цьому варіанті — `shallow`."
@@ -1171,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5e2ab921e18a808990cde8cd24d19e9189b15a4d060c0a65d4f6850a69565f21"
+  "learnerFingerprint": "5a8c603724c06adb28733e28c699b8962ec2248bf87016366445e6c6b7574bc0"
 }

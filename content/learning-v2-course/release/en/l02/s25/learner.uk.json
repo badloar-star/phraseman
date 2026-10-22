@@ -52,22 +52,22 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На репетицію прийшли не всі. Запитайте, хто відсутній",
+      "prompt": "На репетиції збираються. Запитайте, хто вже на місці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На репетицію прийшли не всі. Запитайте, хто відсутній",
+      "accessibilityLabel": "На репетиції збираються. Запитайте, хто вже на місці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Who is absent?",
+        "targetPhrase": "Who is here?",
         "localizedMeaning": {
-          "ru": "На репетицию пришли не все. Спросите, кто отсутствует",
-          "uk": "На репетицію прийшли не всі. Запитайте, хто відсутній"
+          "ru": "На репетиции собираются. Спросите, кто уже на месте",
+          "uk": "На репетиції збираються. Запитайте, хто вже на місці"
         },
         "orderedTokens": [
           "Who",
           "is",
-          "absent"
+          "here"
         ],
         "authoredDistractorTokens": [
           "What"
@@ -76,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-25:i01:tile:d1",
             "correct": false,
-            "testedDimension": "На репетицію прийшли не всі. Запитайте, хто відсутній",
+            "testedDimension": "На репетиції збираються. Запитайте, хто вже на місці",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Who` — `Who is absent?`",
-              "uk": "тут потрібно `Who` — `Who is absent?`"
+              "ru": "о человеке спрашивают `Who` — `Who is here?`",
+              "uk": "про людину питають `Who` — `Who is here?`"
             }
           }
         ],
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9342d4617fd1fa687573ce7618367f63782e24eed91527389fad56f8e9a36d60"
+  "learnerFingerprint": "c94323f7621e2eff71cfcc0d9c199c1ca5d715df9acde01c14bdaf036961fe8a"
 }

@@ -52,22 +52,22 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На репетицию пришли не все. Спросите, кто отсутствует",
+      "prompt": "На репетиции собираются. Спросите, кто уже на месте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На репетицию пришли не все. Спросите, кто отсутствует",
+      "accessibilityLabel": "На репетиции собираются. Спросите, кто уже на месте",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Who is absent?",
+        "targetPhrase": "Who is here?",
         "localizedMeaning": {
-          "ru": "На репетицию пришли не все. Спросите, кто отсутствует",
-          "uk": "На репетицію прийшли не всі. Запитайте, хто відсутній"
+          "ru": "На репетиции собираются. Спросите, кто уже на месте",
+          "uk": "На репетиції збираються. Запитайте, хто вже на місці"
         },
         "orderedTokens": [
           "Who",
           "is",
-          "absent"
+          "here"
         ],
         "authoredDistractorTokens": [
           "What"
@@ -76,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-25:i01:tile:d1",
             "correct": false,
-            "testedDimension": "На репетицию пришли не все. Спросите, кто отсутствует",
+            "testedDimension": "На репетиции собираются. Спросите, кто уже на месте",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Who` — `Who is absent?`",
-              "uk": "тут потрібно `Who` — `Who is absent?`"
+              "ru": "о человеке спрашивают `Who` — `Who is here?`",
+              "uk": "про людину питають `Who` — `Who is here?`"
             }
           }
         ],
@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте и выберите — друг оглядывается среди декораций на репетиции",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-25:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-25:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте и выберите — друг оглядывается среди декораций на репетиции",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-02:session-25:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте и выберите — друг оглядывается среди декораций на репетиции",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `Where`, а в этом варианте — `Who`.",
               "uk": "У записі перше слово — `Where`, а в цьому варіанті — `Who`."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-02:session-25:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте и выберите — друг оглядывается среди декораций на репетиции",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `she`, а в этом варианте — `he`.",
               "uk": "У записі останнє слово — `she`, а в цьому варіанті — `he`."
@@ -636,7 +636,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о друге",
+      "prompt": "Послушайте и выберите — в зал к декорациям возвращается друг",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-25:i09:r1",
@@ -655,7 +655,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-25:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о друге",
+      "accessibilityLabel": "Послушайте и выберите — в зал к декорациям возвращается друг",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -685,7 +685,7 @@
           {
             "responseId": "en:lesson-02:session-25:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о друге",
+            "testedDimension": "Послушайте и выберите — в зал к декорациям возвращается друг",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `proud`, а в этом варианте — `ashamed`.",
               "uk": "У записі останнє слово — `proud`, а в цьому варіанті — `ashamed`."
@@ -694,7 +694,7 @@
           {
             "responseId": "en:lesson-02:session-25:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о друге",
+            "testedDimension": "Послушайте и выберите — в зал к декорациям возвращается друг",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `proud`, а в этом варианте — `surprised`.",
               "uk": "У записі останнє слово — `proud`, а в цьому варіанті — `surprised`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте и выберите — среди декораций друг задаёт вам вопрос",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-25:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-25:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте и выберите — среди декораций друг задаёт вам вопрос",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-02:session-25:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте и выберите — среди декораций друг задаёт вам вопрос",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `absent`, а в этом варианте — `surprised`.",
               "uk": "У записі останнє слово — `absent`, а в цьому варіанті — `surprised`."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-02:session-25:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте и выберите — среди декораций друг задаёт вам вопрос",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `absent`, а в этом варианте — `ashamed`.",
               "uk": "У записі останнє слово — `absent`, а в цьому варіанті — `ashamed`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "32077898d0e0b2ee4f32868ee66b692b05e0045c181c3478df63dc227c9a4c18"
+  "learnerFingerprint": "9e687538937ca0ce22fb132605fbacf0bf920eb3186818e3bc81192f58de4795"
 }

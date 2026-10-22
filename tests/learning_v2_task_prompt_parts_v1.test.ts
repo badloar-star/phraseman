@@ -158,3 +158,15 @@ describe('structure over the whole bundled release', () => {
     expect(empty.slice(0, 5)).toEqual([]);
   });
 });
+
+// зачем (2 · ДИЗАЙН 22.10): смысл фразы — из кавычек текста задания; localizedMeaning в выпуске равен самому тексту задания.
+describe('phrase meaning comes from the quote in the task text', () => {
+  it('a heading-repeat label becomes «Скажите по-английски»', () => {
+    expect(splitLearningV2TaskPromptV1({ family: 'phrase_builder', prompt: 'Вы сверили время в билете с расписанием. Соберите фразу: «Оно верное»', interfaceLocale: 'ru' }))
+      .toMatchObject({ situation: 'Вы сверили время в билете с расписанием.', goal: { label: 'Скажите по-английски', text: 'Оно верное' } });
+  });
+  it('a real addressee label stays («Скажите ей»)', () => {
+    expect(splitLearningV2TaskPromptV1({ family: 'phrase_builder', prompt: 'Бабушка ищет бубен. Скажите ей: «Бубен рядом с диваном»', interfaceLocale: 'ru' }).goal)
+      .toEqual({ label: 'Скажите ей', text: 'Бубен рядом с диваном' });
+  });
+});

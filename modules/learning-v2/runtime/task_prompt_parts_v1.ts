@@ -42,6 +42,7 @@ const INSTRUCTION: Readonly<Record<LearningV2TaskFamilyV1, Readonly<{ icon: Lear
   sound_contrast: { icon: "ear", copy: { ru: "Различи звуки", uk: "Розрізни звуки", en: "Tell the sounds apart", es: "Distingue los sonidos", "pt-BR": "Diferencie os sons", vi: "Phân biệt âm", id: "Bedakan bunyinya", tr: "Sesleri ayırt et", pl: "Rozróżnij dźwięki" } },
 };
 
+const GENERIC_GOAL_LABEL_RE = /^(?:соберите(?: фразу)?|складіть(?: фразу)?|скажите(?: вслух| по-английски)?|скажіть(?: уголос| англійською)?|произнесите|вимовте)$/iu;
 const GOAL_SAY: Copy9 = { ru: "Скажите по-английски", uk: "Скажіть англійською", en: "Say it in English", es: "Dilo en inglés", "pt-BR": "Diga em inglês", vi: "Nói bằng tiếng Anh", id: "Katakan dalam bahasa Inggris", tr: "İngilizce söyle", pl: "Powiedz po angielsku" };
 
 // Первое слово — повелительное наклонение ru/uk: Соберите, Вставьте, Послушайте, Складіть, Вставте, Поєднайте…
@@ -117,6 +118,13 @@ export function splitLearningV2TaskPromptV1(input: Readonly<{
   // зачем (владелец 22.10: «ничего не склеено», правило для всех): команда в ситуации — это цель. Если цели ещё нет — команда
   // становится целью; если цель уже есть (перевод фразы) или режим на слух (команда в заголовке) — команда убирается.
   const hearing = family === "listen_choose" || family === "listen_build_dictation" || family === "sound_contrast";
+  // зачем (2 · ДИЗАЙН 22.10): смысл фразы у «Собери фразу» лежит в кавычках текста задания («Соберите фразу: «Оно верное»») —
+  // поле localizedMeaning в выпуске всегда равно самому тексту задания (4454 из 4454), смысла в нём нет. Подпись-повтор
+  // заголовка («Соберите фразу», «Скажите») заменяем на «Скажите по-английски», как в макете №23.
+  const goalLabel = (clause: string): string => {
+    const label = capitalize(clause.trim().replace(/[.!?…:]+$/u, ""));
+    return GENERIC_GOAL_LABEL_RE.test(label) ? pick(GOAL_SAY, input.interfaceLocale) : label;
+  };
   const done = (rule: LearningV2TaskPromptPartsV1["rule"], situation: string | null, goal: LearningV2TaskPromptPartsV1["goal"]) => {
     let finalSituation = situation ? sentence(situation) : null;
     let finalGoal = goal;
@@ -155,7 +163,7 @@ export function splitLearningV2TaskPromptV1(input: Readonly<{
     return done(
       "colon_quote",
       beforeSentences.length ? beforeSentences.join(" ") : null,
-      { label: capitalize(quoteCommand[1].trim()), text: quoteCommand[2].trim() },
+      { label: goalLabel(quoteCommand[1]), text: quoteCommand[2].trim() },
     );
   }
 
@@ -204,7 +212,7 @@ export function splitLearningV2TaskPromptV1(input: Readonly<{
   if (colon) {
     const before = colon[1].match(/[^.!?…]+[.!?…]*/gu)?.map((part) => part.trim()).filter(Boolean) ?? [colon[1]];
     const last = before[before.length - 1] ?? "";
-    const label = isImperative(last) ? capitalize(last.replace(/[.!?…]+$/u, "")) : pick(GOAL_SAY, input.interfaceLocale);
+    const label = isImperative(last) ? goalLabel(last) : pick(GOAL_SAY, input.interfaceLocale);
     const context = isImperative(last) ? before.slice(0, -1).join(" ") : colon[1];
     return done("colon_quote", context || null, { label, text: colon[2].trim() });
   }

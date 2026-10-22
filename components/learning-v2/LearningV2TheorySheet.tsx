@@ -37,8 +37,8 @@ const copyFor = (lang: Lang) => ({
   kicker: (n: number) => triLang(lang, { ru: `Теория · урок ${n}`, uk: `Теорія · урок ${n}`, en: `Theory · lesson ${n}`, es: `Teoría · lección ${n}`, "pt-BR": `Teoria · lição ${n}`, vi: `Lý thuyết · bài ${n}`, id: `Teori · pelajaran ${n}`, tr: `Teori · ders ${n}`, pl: `Teoria · lekcja ${n}` }),
   close: triLang(lang, { ru: "Закрыть", uk: "Закрити", en: "Close", es: "Cerrar", "pt-BR": "Fechar", vi: "Đóng", id: "Tutup", tr: "Kapat", pl: "Zamknij" }),
   // RU — из макета; остальные языки — предложение, на сверку «Переводчику».
-  returnTo: (n: number, m: number) => triLang(lang, { ru: `Вернуться к заданию ${n} из ${m}`, uk: `Повернутися до завдання ${n} з ${m}`, en: `Back to task ${n} of ${m}`, es: `Volver a la tarea ${n} de ${m}`, "pt-BR": `Voltar à tarefa ${n} de ${m}`, vi: `Quay lại bài ${n}/${m}`, id: `Kembali ke tugas ${n} dari ${m}`, tr: `Göreve dön: ${n}/${m}`, pl: `Wróć do zadania ${n} z ${m}` }),
-  check: triLang(lang, { ru: "Проверь себя", uk: "Перевір себе", en: "Check yourself", es: "Ponte a prueba", "pt-BR": "Teste você mesmo", vi: "Tự kiểm tra", id: "Uji dirimu", tr: "Kendini dene", pl: "Sprawdź się" }),
+  returnTo: (n: number, m: number) => triLang(lang, { ru: `Вернуться к заданию ${n} из ${m}`, uk: `Повернутися до завдання ${n} з ${m}`, en: `Back to task ${n} of ${m}`, es: `Volver a la tarea ${n} de ${m}`, "pt-BR": `Voltar à tarefa ${n} de ${m}`, vi: `Quay lại bài tập ${n}/${m}`, id: `Kembali ke tugas ${n} dari ${m}`, tr: `Göreve dön: ${n}/${m}`, pl: `Wróć do zadania ${n} z ${m}` }),
+  check: triLang(lang, { ru: "Проверь себя", uk: "Перевір себе", en: "Test yourself", es: "Ponte a prueba", "pt-BR": "Teste seus conhecimentos", vi: "Tự kiểm tra", id: "Uji dirimu", tr: "Kendini sına", pl: "Sprawdź się" }),
   listen: (s: string) => triLang(lang, { ru: `Прослушать: ${s}`, uk: `Прослухати: ${s}`, en: `Listen: ${s}`, es: `Escuchar: ${s}`, "pt-BR": `Ouvir: ${s}`, vi: `Nghe: ${s}`, id: `Dengarkan: ${s}`, tr: `Dinle: ${s}`, pl: `Odsłuchaj: ${s}` }),
 });
 

@@ -3,7 +3,7 @@
 //
 // зачем (владелец 22.10 выбрал вариант 2 scenes-compact.html; координатор: «нижняя карточка „Неделя · N из 6 дней“ с кольцами по дням
 // вместо „История“», вариант А — итог дня на телефоне): шесть дней до сегодняшнего, у каждого три мини-кольца эталона `ringsMini`
-// (34, радиусы 15/10/5, толщина 3,5, дорожка 20 %, дуга только у ненулевого) теми же цветами RC, что кольца-герой, и дата под ними.
+// (34, радиусы 15/10/5, толщина 3,5, дорожка 20 %, дуга только у ненулевого) теми же оттенками темы, что кольца-герой (на карточке — углублёнными до читаемых), и дата под ними.
 // «N из 6 дней» — дни, когда хоть одно задание сдвинулось; дней до выпуска нет в памяти — пустые кольца, честно. Карточка — тон
 // темы уровня «Максимум», как панель «Задания дня» (без обводок, тень). Чтение — use_today_week (память → диск, без сети).
 // ═══════════════════════════════════════════════════════════════════════════
@@ -18,23 +18,24 @@ import { useLang } from '../../../LangContext';
 import { useTheme } from '../../../ThemeContext';
 import { plateBoxShadow, useShadowGlass } from '../../../v2/ShadowSurface';
 import { todayHistoryDateLabel, todayHistoryDayA11y, todayWeekActiveLabel, todayWeekTitle } from '../today_activity_history_copy';
-import { TODAY_SCENE_RING_LOOK } from './TodaySceneView';
+import { homeSceneTokensForTheme } from '../scene/home_scene_tokens';
+import { todayRingsOnCard } from './today_scene_ring_look';
 import { useTodayWeek } from './use_today_week';
 
 /** Мини-кольца эталона `ringsMini`: холст 34, внешний радиус 15, шаг 5, толщина 3,5. */
 const MINI = Object.freeze({ size: 34, r0: 15, step: 5, stroke: 3.5, track: 0.2 });
 
-const MiniRings = memo(function MiniRings({ day }: Readonly<{ day: TodayWeekDay | null }>) {
+const MiniRings = memo(function MiniRings({ day, colors }: Readonly<{ day: TodayWeekDay | null; colors: readonly [string, string, string] }>) {
   const c = MINI.size / 2;
   return (
     <Svg width={MINI.size} height={MINI.size} viewBox={`0 0 ${MINI.size} ${MINI.size}`} style={baseStyles.svg}>
-      {TODAY_SCENE_RING_LOOK.colors.map((color, i) => {
+      {colors.map((color, i) => {
         const r = MINI.r0 - i * MINI.step;
         const len = 2 * Math.PI * r;
         const target = day ? day.targets[i] : 0;
         const x = day && target > 0 ? Math.min(1, day.progress[i] / target) : 0;
         return (
-          <React.Fragment key={color}>
+          <React.Fragment key={i} /* guard-ok: три кольца фиксированного порядка */>
             <Circle cx={c} cy={c} r={r} fill="none" stroke={color} strokeOpacity={MINI.track} strokeWidth={MINI.stroke} />
             {x > 0 ? <Circle cx={c} cy={c} r={r} fill="none" stroke={color} strokeWidth={MINI.stroke} strokeLinecap="round" strokeDasharray={`${len * x} ${len}`} /> : null}
           </React.Fragment>
@@ -57,6 +58,9 @@ function TodayWeekCard({ dayKey, fixture }: Props) {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const glass = useShadowGlass();
   const p = useMemo(() => liquidGlassTokens(liquidGlassThemeId, { level: 'max', appearance: liquidGlassAppearance }), [liquidGlassThemeId, liquidGlassAppearance]);
+  // зачем (закон владельца 22.10: «КРУЖОЧКИ … СТРОГО В ЦВЕТАХ ТЕМЫ»): мини-кольца — оттенки колец-героя; на светлой карточке светлые пропадают —
+  // углубляем к акцентному тексту карточки лесенкой (today_scene_ring_look), в тёмных темах цвета как на сцене
+  const ringColors = useMemo(() => todayRingsOnCard(homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance).todayRing, p), [liquidGlassThemeId, liquidGlassAppearance, p]);
   const week = useTodayWeek(dayKey, fixture);
   return (
     <View testID="today-week-card" style={[s.card, { backgroundColor: p.opaqueCard, boxShadow: plateBoxShadow(glass) }]}>
@@ -70,7 +74,7 @@ function TodayWeekCard({ dayKey, fixture }: Props) {
           const done = cell.day ? cell.day.progress.filter((v, i) => (cell.day?.targets[i] ?? 0) > 0 && v >= (cell.day?.targets[i] ?? 0)).length : 0;
           return (
             <View key={cell.dayKey} testID={`today-week-day-${cell.dayKey}`} style={s.day} accessible accessibilityLabel={todayHistoryDayA11y(lang, cell.dayKey, done)}>
-              <MiniRings day={cell.day} />
+              <MiniRings day={cell.day} colors={ringColors} />
               <Text style={[s.date, { color: p.secondary }]} numberOfLines={2}>{todayHistoryDateLabel(lang, cell.dayKey)}</Text>
             </View>
           );

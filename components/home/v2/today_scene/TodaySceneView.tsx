@@ -19,7 +19,6 @@ import { useStableSafeAreaInsets } from '../../../../app/stable_safe_area_metric
 import { useScaledTextStyles } from '../../../../hooks/useLineScale';
 import TodayRingsSlot from '../../../streak/moments/TodayRingsSlot';
 import type { TodayRingsTask } from '../../../streak/moments/TodayRingsSlot';
-import type { TodayRingsLook } from '../../../streak/moments/TodayRings';
 import BackButton from '../../../v2/BackButton';
 import { plateBoxShadow, useShadowGlass } from '../../../v2/ShadowSurface';
 import V2Pressable from '../../../v2/V2Pressable';
@@ -28,7 +27,9 @@ import type { TodayTask, TodayTaskKind } from '../home_v2_types';
 import { liquidGlassTokens } from '../../../../constants/liquidGlassThemePalette';
 import { useTheme } from '../../../ThemeContext';
 import { homeSceneTokensForTheme } from '../scene/home_scene_tokens';
+import { homeSceneWarmTone } from '../scene/home_scene_warm_tone';
 import type { TodaySceneCopy } from './today_scene_copy';
+import { TODAY_RING_ON_CARD_MIN, todayRingOnCard, todaySceneRingLook } from './today_scene_ring_look';
 import type { TodaySceneDecision } from './today_scene_state';
 
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
@@ -39,13 +40,6 @@ const HERO_SIZE = 160;
 export const TODAY_HERO_BOUND_FONT_SCALE = 1.15;
 /** Панель «Задания дня» наезжает на сцену (вариант 2: −22). */
 const PANEL_OVERLAP = 22;
-/**
- * Кольца как рисует эталон scenes-compact.html v2 в любой теме: RC макета (урок, диалог, карточки), дорожка 22 %, точка начала у пустого.
- * зачем (координатор 22.10, Сверка 366de369b: «кольца — цветные красное/синее/зелёное, а сейчас приглушённые лиловые»)
- */
-export const TODAY_SCENE_RING_LOOK: TodayRingsLook = Object.freeze({ colors: Object.freeze(['#FF6B5B', '#3DD6A3', '#55A8FF'] as const), trackOpacity: 0.22, zeroDot: true }); // theme-exempt: цвета колец эталона scenes-compact v2 (RC), одни в светлой и тёмной
-/** Отметка выполненного задания справа в строке (эталон `.rw .ok`). */
-const DONE_TICK = '#3DD6A3'; // theme-exempt: цвет отметки эталона scenes-compact v2 (.rw .ok), как зелёное кольцо
 const ROW_ICON: Readonly<Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']>> = {
   lesson: 'book-outline', dialog: 'chatbubbles-outline', cards: 'copy-outline', video: 'play-circle-outline', mistakes: 'alert-circle-outline', spire_steps: 'trending-up-outline',
 };
@@ -91,6 +85,11 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
   // зачем (Сверка 22.10, склейки td_side: плитка «Задания дня» в эталоне = карточка темы --card, т.е. opaqueCard токенов уровня «Максимум», а не палитра экрана): панель красится
   // теми же токенами, что и сцена, — «всегда как в макете» при любом положении ползунка
   const card = useMemo(() => liquidGlassTokens(liquidGlassThemeId, { level: 'max', appearance: liquidGlassAppearance }), [liquidGlassThemeId, liquidGlassAppearance]);
+  // зачем (закон владельца 22.10: «КРУЖОЧКИ ДОЛЖНЫ БЫТЬ СТРОГО В ЦВЕТАХ ТЕМЫ»): кольца-герой — оттенки акцента (токены todayRing); ✓ на карточке —
+  // тот же оттенок, углублённый до читаемого; тёплая строка — тон Главной (≥ 4,5 на сцене во всех темах, аудит scene_contrast_audit)
+  const ringLook = useMemo(() => todaySceneRingLook(tokens), [tokens]);
+  const doneTick = useMemo(() => todayRingOnCard(tokens.todayRingDone, card, TODAY_RING_ON_CARD_MIN[0]), [tokens.todayRingDone, card]);
+  const warmTone = homeSceneWarmTone(card.accent).flame;
   const nextTask = decision.nextIndex === null ? null : tasks[decision.nextIndex] ?? null;
   const ringTasks: readonly TodayRingsTask[] = tasks.map((task) => ({ progress: task.progress, target: task.target }));
   // разделитель строк: цвет текста 7 % (эталон `.rw + .rw`: color-mix(var(--tx) 7%))
@@ -123,7 +122,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
         {/* герой — сами кольца дня; место занято с первого кадра (160 × 160), кольца докручиваются внутри */}
         {heroBounded ? null : (
           <View pointerEvents="none" testID="today-scene-rings" style={s.hero}>
-            <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} look={TODAY_SCENE_RING_LOOK} />
+            <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} look={ringLook} />
           </View>
         )}
         {/* зачем (эталон): у тёмной сцены затемнения низа нет — иначе стык с панелью сливается */}
@@ -136,7 +135,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
         {heroBounded ? (
           <View pointerEvents="none" style={s.heroSlot} onLayout={(e) => setSlotH(Math.round(e.nativeEvent.layout.height))}>
             <View testID="today-scene-rings" style={[s.heroBoundedBox, { transform: [{ scale: heroScale }] }]}>
-              <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} look={TODAY_SCENE_RING_LOOK} />
+              <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} look={ringLook} />
             </View>
           </View>
         ) : null}
@@ -145,8 +144,8 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
           <Text testID="today-scene-title" accessibilityRole="header" style={s.title}>{copy.title}</Text>
           {copy.warm ? (
             <View style={s.warmRow}>
-              <Ionicons name="flame" size={16} color="#FFD9D0" />
-              <Text testID="today-scene-warm" style={s.warm}>{copy.warm}</Text>
+              <Ionicons name="flame" size={16} color={warmTone} />
+              <Text testID="today-scene-warm" style={[s.warm, { color: warmTone }]}>{copy.warm}</Text>
             </View>
           ) : null}
           {copy.line ? <Text testID="today-scene-line" style={s.line}>{copy.line}</Text> : null}
@@ -183,9 +182,9 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
                 <Text style={[s.rowTitle, { color: card.text }]} numberOfLines={2}>{task.title}</Text>
                 {task.subtitle ? <Text style={[s.rowSub, { color: card.secondary }]} numberOfLines={2}>{task.subtitle}</Text> : null}
               </View>
-              {/* зачем (эталон `.rw .n` / `.rw .ok`): справа — зелёная ✓, когда сделано, иначе счётчик; левого кружка в эталоне нет */}
+              {/* зачем (эталон `.rw .n` / `.rw .ok`): справа — ✓ оттенком кольца темы, когда сделано, иначе счётчик; левого кружка в эталоне нет */}
               {done ? (
-                <Ionicons name="checkmark" size={16} color={DONE_TICK} />
+                <Ionicons name="checkmark" size={16} color={doneTick} />
               ) : (
                 <Text style={[s.rowN, { color: urgent ? card.bad : card.secondary }]}>{`${task.progress}/${task.target}`}</Text>
               )}
@@ -234,7 +233,7 @@ const baseStyles = StyleSheet.create({
   kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17 },
   title: { color: '#FFFFFF', fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4, fontVariant: ['tabular-nums'] },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
-  warm: { color: '#FFD9D0', /* аудит контраста 22.10: как на Главной, чуть светлее прежнего #FFD0C4 */ fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
+  warm: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17, marginTop: 10 },
   // эталон `.cta .btn`: по содержимому слева (flex-start), высота 50, радиус 28, поля 24, значок 17 и зазор 10; длинная подпись переносится, не шире строки
   ctaOuter: { alignSelf: 'flex-start', maxWidth: '100%', marginTop: 16 },

@@ -91,7 +91,7 @@ describe('аудит контраста сцен: все темы, уровен�
     expect(stale).toEqual([]);
   });
 
-  it('константы теста совпадают с компонентами: подложка 14 % и тёплая строка #FFD9D0 на Главной и в «Сегодня»', () => {
+  it('константы теста совпадают с компонентами: подложка 14 % на Главной; тёплая строка Главной и «Сегодня» — тон темы homeSceneWarmTone', () => {
     const home = readSource('components/home/v2/scene/HomeScene.tsx');
     const stage = readSource('components/home/v2/scene/HomeSceneStage.tsx');
     const today = readSource('components/home/v2/today_scene/TodaySceneView.tsx');
@@ -99,7 +99,8 @@ describe('аудит контраста сцен: все темы, уровен�
     expect(stage).toContain("backgroundColor: 'rgba(255,255,255,0.14)'");
     expect(stage).toContain('homeSceneWarmTone(');
     expect(stage).not.toContain('#FFD9D0');
-    expect(today).toContain("warm: { color: '#FFD9D0'");
+    expect(today).toContain('homeSceneWarmTone(card.accent).flame');
+    expect(today).not.toContain('#FFD9D0');
   });
 
   it('пары берут токены уровня «Максимум» (светлое/тёмное оформление различаются)', () => {

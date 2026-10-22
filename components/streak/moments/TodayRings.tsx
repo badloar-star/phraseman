@@ -39,12 +39,13 @@ export const TODAY_RING_SIZES = Object.freeze({
 });
 export type TodayRingSize = keyof typeof TODAY_RING_SIZES;
 /**
- * Вид колец поверх темы: цвета трёх колец, прозрачность дорожки, круглая точка в начале пустого кольца. Нет — как раньше (цвета темы,
- * дорожка 0,16, без точки).
- * зачем (владелец 22.10 выбрал вариант 2 scenes-compact.html; Сверка 366de369b): сцена «Сегодня» рисует кольца эталона в любой теме —
- * RC макета, дорожка 22 %, у кольца на нуле точка (в макете — штрих нулевой длины с круглым концом); Главная и момент m11 не меняются.
+ * Вид колец поверх темы: цвета трёх колец, цвет и прозрачность дорожки, круглая точка в начале пустого кольца. Нет — как раньше (цвета
+ * темы, дорожка цветом кольца 0,16, без точки).
+ * зачем (владелец 22.10 выбрал вариант 2 scenes-compact.html; закон владельца 22.10 «КРУЖОЧКИ ДОЛЖНЫ БЫТЬ СТРОГО В ЦВЕТАХ ТЕМЫ»): сцена
+ * «Сегодня» рисует кольца оттенками акцента темы (токены todayRing), дорожка — свой токен темы (trackColor, уже с прозрачностью), у кольца
+ * на нуле точка (в макете — штрих нулевой длины с круглым концом); Главная и момент m11 не меняются.
  */
-export type TodayRingsLook = Readonly<{ colors: readonly [string, string, string]; trackOpacity: number; zeroDot: boolean }>;
+export type TodayRingsLook = Readonly<{ colors: readonly [string, string, string]; trackOpacity: number; zeroDot: boolean; trackColor?: string }>;
 /** Дорожка кольца без своего вида (цвета темы). */
 const TRACK_OPACITY = 0.16;
 /** Кольца заполняются по очереди (макет Б: transition-delay i × 120 мс) — только при «до → после». */
@@ -66,8 +67,8 @@ export function todayRingFraction(done: number, target: number): number {
   return target > 0 ? Math.min(1, Math.max(0, done / target)) : 0;
 }
 
-type RingProps = Readonly<{ index: number; value: number; from: number; color: string; instant: boolean; ringSize: TodayRingSize; delayMs: number; trackOpacity: number; zeroDot: boolean }>;
-const Ring = memo(function Ring({ index, value, from, color, instant, ringSize, delayMs, trackOpacity, zeroDot }: RingProps) {
+type RingProps = Readonly<{ index: number; value: number; from: number; color: string; track: string; instant: boolean; ringSize: TodayRingSize; delayMs: number; trackOpacity: number; zeroDot: boolean }>;
+const Ring = memo(function Ring({ index, value, from, color, track, instant, ringSize, delayMs, trackOpacity, zeroDot }: RingProps) {
   const { r, len } = todayRingGeometry(index, ringSize);
   const { size, stroke } = TODAY_RING_SIZES[ringSize];
   // зачем (экран «Сегодня», координатор 17.10): кольцо стартует с того, что человек видел в прошлый раз, и докручивается до текущего; reduceMotion — сразу финал
@@ -81,7 +82,7 @@ const Ring = memo(function Ring({ index, value, from, color, instant, ringSize, 
   const c = size / 2;
   return (
     <>
-      <Circle cx={c} cy={c} r={r} fill="none" stroke={color} strokeWidth={stroke} opacity={trackOpacity} />
+      <Circle cx={c} cy={c} r={r} fill="none" stroke={track} strokeWidth={stroke} opacity={trackOpacity} />
       {/* зачем (эталон scenes-compact v2): точка в начале кольца (0° холста, после поворота −90° — верх); с прогрессом её закрывает круглый конец дуги */}
       {zeroDot ? <Circle cx={c + r} cy={c} r={stroke / 2} fill={color} /> : null}
       <AnimatedCircle cx={c} cy={c} r={r} fill="none" stroke={color} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={len} animatedProps={animated} />
@@ -119,6 +120,7 @@ function TodayRings({ lang, progress, fromProgress, targets = TODAY_RING_TARGETS
   const colors = look ? look.colors : todayRingColors(streakColors);
   const trackOpacity = look ? look.trackOpacity : TRACK_OPACITY;
   const zeroDot = look?.zeroDot === true;
+  const trackColor = look?.trackColor;
   const values = progress.map((n, i) => todayRingFraction(n, targets[i]));
   const allClosed = values.every((x) => x >= 1);
   const fromValues = fromProgress ? fromProgress.map((n, i) => todayRingFraction(n, targets[i])) : values;
@@ -163,7 +165,7 @@ function TodayRings({ lang, progress, fromProgress, targets = TODAY_RING_TARGETS
       <View style={[s.rw, { width: geom.size, height: geom.size }]}>
         <Animated.View pointerEvents="none" style={[s.flash, { backgroundColor: colors[sparkRing] }, flashStyle]} />
         <Svg width={geom.size} height={geom.size} viewBox={`0 0 ${geom.size} ${geom.size}`} style={s.svg}>
-          {values.map((x, i) => <Ring key={i} /* guard-ok: три кольца фиксированного порядка */ index={i} value={x} from={fromValues[i] ?? x} color={colors[i]} instant={reduceMotion} ringSize={ringSize} delayMs={fromProgress ? i * RING_STAGGER_MS : 0} trackOpacity={trackOpacity} zeroDot={zeroDot} />)}
+          {values.map((x, i) => <Ring key={i} /* guard-ok: три кольца фиксированного порядка */ index={i} value={x} from={fromValues[i] ?? x} color={colors[i]} track={trackColor ?? colors[i]} instant={reduceMotion} ringSize={ringSize} delayMs={fromProgress ? i * RING_STAGGER_MS : 0} trackOpacity={trackOpacity} zeroDot={zeroDot} />)}
         </Svg>
         <MomentCoin rank={coinRank} size={geom.coin} mood={allClosed && !reduceMotion ? 'jump' : 'idle'} shadow={false} />
         <MomentFirework x={geom.size / 2} y={geom.size / 2} r={(68 - sparkRing * 16 + 28) * k} n={10} fire={sparkKey > 0} key={sparkKey} />

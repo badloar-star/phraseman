@@ -1,7 +1,7 @@
 // зачем (координатор 22.10, Сверка 366de369b «Сегодня» vs scenes-compact.html v.2: светлая 25,9 %, тёмная 48,2 %): сторож вида сцены
-// «Сегодня» до бита по CSS эталона — кольца RC (#FF6B5B / #3DD6A3 / #55A8FF, дорожка .22, точка начала у пустого кольца) только у сцены
+// «Сегодня» до бита по CSS эталона — кольца по пропу look (на сцене — оттенки темы, today_scene_ring_look; дорожка своим цветом, точка начала у пустого кольца) только у сцены
 // (без своего вида — цвета темы, дорожка 0,16, без точки: Главная, момент m11 и прежний экран «Сегодня» не меняются); кнопка «Начать»
-// по содержимому слева (.cta flex-start); строки без левого кружка — справа зелёная ✓ или счётчик; плитка значка 34/12, панель 24.
+// по содержимому слева (.cta flex-start); строки без левого кружка — справа ✓ оттенком кольца темы или счётчик; плитка значка 34/12, панель 24.
 // зачем: TodayRings пишет журнал под голым __DEV__ — в тестах его нет (ReferenceError), задаём как в streak_today_rings_slot
 (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = false;
 
@@ -101,15 +101,27 @@ describe('кольца «Сегодня»: вид эталона scenes-compact 
     expect(tracks.every((c) => c.props.opacity === 0.16)).toBe(true);
     expect(all.filter((c) => typeof c.props.fill === 'string' && c.props.fill !== 'none')).toHaveLength(0);
   });
+
+  it('с trackColor: дорожки — свой цвет темы (уже с прозрачностью) при непрозрачности 1; дуги и точки — цвета колец', async () => {
+    const track = 'rgba(184,246,255,0.22)';
+    await render(<TodayRings lang="ru" progress={[1, 0, 6]} targets={[1, 1, 10]} coinRank={5} size={160} showDayDone={false} look={{ ...LOOK, trackOpacity: 1, trackColor: track }} />);
+    const all = circles();
+    const tracks = all.filter((c) => c.props.opacity !== undefined);
+    expect(tracks.map((c) => c.props.stroke)).toEqual([track, track, track]);
+    expect(tracks.every((c) => c.props.opacity === 1)).toBe(true);
+    expect(all.filter((c) => c.props.animatedProps !== undefined).map((c) => c.props.stroke)).toEqual([...RC]);
+    expect(all.filter((c) => typeof c.props.fill === 'string' && c.props.fill !== 'none').map((c) => c.props.fill)).toEqual([...RC]);
+  });
 });
 
 describe('сцена «Сегодня»: кнопка, строки и панель как CSS эталона', () => {
   const view = readSource('components/home/v2/today_scene/TodaySceneView.tsx');
   const code = view.split('\n').filter((l) => !l.trim().startsWith('//')).join('\n');
 
-  it('кольца-герой берут вид эталона (оба места: обычное и на крупном шрифте)', () => {
-    expect(view).toContain("colors: Object.freeze(['#FF6B5B', '#3DD6A3', '#55A8FF'] as const), trackOpacity: 0.22, zeroDot: true");
-    expect(code.match(/look=\{TODAY_SCENE_RING_LOOK\}/g)).toHaveLength(2);
+  it('кольца-герой — оттенки темы из токенов (оба места: обычное и на крупном шрифте), цветов эталона нет', () => {
+    expect(code).toContain('const ringLook = useMemo(() => todaySceneRingLook(tokens), [tokens]);');
+    expect(code.match(/look=\{ringLook\}/g)).toHaveLength(2);
+    expect(view).not.toMatch(/#FF6B5B|#3DD6A3|#55A8FF/i);
   });
 
   it('кнопка — «Начать» по содержимому слева: высота от 50, радиус 28, поля 24; что откроет — в подписи для чтения с экрана', () => {
@@ -120,13 +132,13 @@ describe('сцена «Сегодня»: кнопка, строки и пане�
     expect(code).toContain('accessibilityLabel={`${copy.cta}: ${nextTask.title}`}');
   });
 
-  it('строки — без левого кружка: значок 34/12, название не гаснет, справа зелёная ✓ или счётчик; разделитель 1 сверху', () => {
+  it('строки — без левого кружка: значок 34/12, название не гаснет, справа ✓ оттенком кольца темы или счётчик; разделитель 1 сверху', () => {
     expect(code).not.toMatch(/s\.ck\b|ckRing/);
     expect(code).toContain("ic: { width: 34, height: 34, borderRadius: 12,");
     expect(code).toContain("row: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 52, paddingVertical: 8 },");
     expect(code).toContain('<Text style={[s.rowTitle, { color: card.text }]} numberOfLines={2}>{task.title}</Text>');
-    expect(code).toContain('<Ionicons name="checkmark" size={16} color={DONE_TICK} />');
-    expect(view).toContain("const DONE_TICK = '#3DD6A3';");
+    expect(code).toContain('<Ionicons name="checkmark" size={16} color={doneTick} />');
+    expect(code).toContain('const doneTick = useMemo(() => todayRingOnCard(tokens.todayRingDone, card, TODAY_RING_ON_CARD_MIN[0]), [tokens.todayRingDone, card]);');
     expect(code).toContain('index > 0 ? { borderTopColor: separator, borderTopWidth: 1 } : null');
     expect(code).toContain('borderRadius: 24, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },');
     expect(code).not.toContain('ringColors');

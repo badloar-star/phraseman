@@ -138,12 +138,13 @@ describe('настоящее хранилище заданий: смена дн�
 });
 
 describe('проводка сцены «Сегодня»', () => {
-  it('под «Заданиями дня» — «Неделя» с кольцами RC; «История» осталась только у прежнего экрана', () => {
+  it('под «Заданиями дня» — «Неделя» с кольцами в оттенках темы; «История» осталась только у прежнего экрана', () => {
     const scene = readSource('components/home/v2/today_scene/TodayScene.tsx');
     expect(scene).toContain('history={<TodayWeekCard dayKey={dayKey} />}');
     expect(scene).not.toContain('TodayActivityHistory');
     const card = readSource('components/home/v2/today_scene/TodayWeekCard.tsx');
-    expect(card).toContain('TODAY_SCENE_RING_LOOK.colors.map((color, i) => {');
+    expect(card).toContain('{colors.map((color, i) => {');
+    expect(card).toContain('todayRingsOnCard(homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance).todayRing, p)');
     expect(card).toContain('const MINI = Object.freeze({ size: 34, r0: 15, step: 5, stroke: 3.5, track: 0.2 });');
     expect(card).toContain('{x > 0 ? <Circle');
     expect(card).toContain('{week.ready ? <Text testID="today-week-count"');

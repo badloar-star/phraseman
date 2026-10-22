@@ -45,11 +45,10 @@ describe('вид «Сезона»', () => {
   const view = code(read('components/learning-v2/season/SeasonCourseView.tsx'));
   const preview = code(read('app/dev_season_preview.tsx'));
 
-  it('«Слова · Теория» (без полноэкранной обложки) — без подложки, разнесены по ширине', () => {
-    expect(view).toMatch(/style=\{\(\{ pressed \}\) => \[styles\.chip, \{ opacity: pressed \? 0\.72 : 1 \}\]\}/);
-    expect(view).not.toMatch(/styles\.chip, \{ backgroundColor/);
-    expect(view).toMatch(/actions: \{ flexDirection: 'row', justifyContent: 'space-around'/);
-    expect(view).not.toMatch(/chip: \{[^}]*backgroundColor/);
+  it('«Слова · Теория» — плитки в строке с главной кнопкой обложки (стекло в тоне обложки), не голый текст', () => {
+    expect(view).toContain('<HeroTile icon="albums-outline"');
+    expect(view).toMatch(/heroTile: \{ width: 70, height: 50, borderRadius: 18,/);
+    expect(view).not.toMatch(/actions: \{/);
   });
 
   it('в шапке dev-превью — аватар-монета с кольцом Plus (через avatarSlot, без чтений)', () => {

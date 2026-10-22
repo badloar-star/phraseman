@@ -45,6 +45,11 @@ describe('новые экраны: отклик нажатия на кнопка
     const viaV2 = (file: string): string[] => openingTags(readSource(file), 'V2Pressable').map((tag) => (/testID="([^"]+)"/.exec(tag) ?? [])[1] ?? '');
     const view = viaV2('components/learning-v2/season/SeasonCourseView.tsx');
     for (const id of ['season-lesson-pill', 'season-primary', 'season-not-from-start']) expect(view).toContain(id);
+    // плитки «Слова» / «Теория» в обложке — V2Pressable внутри HeroTile (testID приходит пропсом)
+    const heroSrc = readSource('components/learning-v2/season/SeasonCourseView.tsx');
+    expect(heroSrc).toContain('<HeroTile icon="albums-outline" label={seasonText(lang, \'words\')} onPress={props.onWords} dark={dark} testID="season-words" />');
+    expect(heroSrc).toContain('<HeroTile icon="book-outline" label={seasonText(lang, \'theory\')} onPress={props.onTheory} dark={dark} testID="season-theory" />');
+    expect(heroSrc).toMatch(/function HeroTile[\s\S]*?<V2Pressable/);
     const expanded = viaV2('components/learning-v2/season/SeasonExpandedCard.tsx');
     for (const id of ['season-expanded-close', 'season-expanded-primary', 'season-expanded-secondary']) expect(expanded).toContain(id);
     // зачем (владелец 22.10, макет lesson-hub-final.html): плитки и строки списков — тоже через V2Pressable

@@ -13,6 +13,9 @@ type Nine = readonly [string, string, string, string, string, string, string, st
 export const SEASON_COPY = {
   lesson: ['Урок {n}', 'Урок {n}', 'Lesson {n}', 'Lección {n}', 'Lição {n}', 'Bài {n}', 'Pelajaran {n}', 'Ders {n}', 'Lekcja {n}'],
   episode: ['Эпизод', 'Епізод', 'Episode', 'Episodio', 'Episódio', 'Tập', 'Episode', 'Bölüm', 'Odcinek'],
+  // зачем (владелец 22.10, макет lesson-hub-words-theory.html, вариант 2): кнопка в обложке стала уже — рядом с ней плитки «Слова» и «Теория», поэтому видимая подпись короткая («Продолжить» / «Начать»), полная «Продолжить эпизод N» остаётся для озвучки
+  continueShort: ['Продолжить', 'Продовжити', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjutkan', 'Devam et', 'Kontynuuj'],
+  startShort: ['Начать', 'Почати', 'Start', 'Empezar', 'Começar', 'Bắt đầu', 'Mulai', 'Başla', 'Zacznij'],
   continueEpisode: ['Продолжить эпизод {n}', 'Продовжити епізод {n}', 'Continue episode {n}', 'Continuar el episodio {n}', 'Continuar o episódio {n}', 'Tiếp tục tập {n}', 'Lanjutkan episode {n}', '{n}. bölümle devam et', 'Kontynuuj odcinek {n}'],
   startEpisode: ['Начать с эпизода {n}', 'Почати з епізоду {n}', 'Start with episode {n}', 'Empezar por el episodio {n}', 'Começar pelo episódio {n}', 'Bắt đầu từ tập {n}', 'Mulai dari episode {n}', '{n}. bölümden başla', 'Zacznij od odcinka {n}'],
   notFromStart: ['Не хочу с начала', 'Не хочу з початку', 'Start somewhere else', 'No quiero desde el principio', 'Não quero do início', 'Không muốn học từ đầu', 'Tidak mau dari awal', 'Baştan başlamak istemiyorum', 'Nie chcę od początku'],

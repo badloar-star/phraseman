@@ -9,7 +9,7 @@
 // к файлам контента, которые ведёт Codex; прогресс — готовая колода (season_course_model) из уже посчитанного снимка, новых чтений Firebase нет.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { useIsTabPage } from '../../tab_top_bleed';
 import V2Pressable from '../../v2/V2Pressable';
@@ -203,10 +203,15 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         <View style={[styles.heroBody, props.topBleed && props.topBleed > 0 ? styles.heroBodyTall : null, { paddingTop: props.topPadding + 8 + HUD_ROW_HEIGHT + 12 }]}>
           <Text style={styles.kicker}>{kicker}</Text>
           <Text accessibilityRole="header" style={[styles.heroTitle, tall && longTitle ? styles.heroTitleLong : null]}>{props.lessonTitle}</Text>
-          <V2Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={primaryLabel} onPress={() => currentEpisode && props.onPrimary(currentEpisode)} style={styles.primary} testID="season-primary">
-            <Ionicons name="play" size={18} color={BTN_INK} />
-            <Text style={styles.primaryText}>{primaryLabel}</Text>
-          </V2Pressable>
+          {/* зачем (владелец 22.10, выбор варианта 2 макета lesson-hub-words-theory.html): «Слова» и «Теория» — плитки в строке с «Продолжить» (стекло в тоне обложки, 70 × 50), без чипов и без голого текста под каруселью; во всех режимах обложки (с зоной часов и без неё) */}
+          <View style={styles.primaryRow}>
+            <V2Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={primaryLabel} onPress={() => currentEpisode && props.onPrimary(currentEpisode)} outerStyle={styles.primaryOuter} style={styles.primary} testID="season-primary">
+              <Ionicons name="play" size={18} color={BTN_INK} />
+              <Text style={styles.primaryText} numberOfLines={1}>{props.newcomer ? seasonText(lang, 'startShort') : seasonText(lang, 'continueShort')}</Text>
+            </V2Pressable>
+            <HeroTile icon="albums-outline" label={seasonText(lang, 'words')} onPress={props.onWords} dark={dark} testID="season-words" />
+            <HeroTile icon="book-outline" label={seasonText(lang, 'theory')} onPress={props.onTheory} dark={dark} testID="season-theory" />
+          </View>
           {props.newcomer && props.onNotFromStart ? (
             <V2Pressable hitSlop={8} accessibilityRole="button" onPress={props.onNotFromStart} style={styles.glass} testID="season-not-from-start">
               <Ionicons name="school-outline" size={18} color={WHITE} />
@@ -216,12 +221,6 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
             <View style={styles.resume}>
               <View style={styles.bar}><View style={[styles.barFill, { width: `${Math.round((currentEpisode ? props.episodeInfo(currentEpisode).progress ?? 0 : 0) * 100)}%` }]} /></View>
               <Text style={styles.resumeText} numberOfLines={2}>{props.resumeLine}</Text>
-            </View>
-          ) : null}
-          {tall ? (
-            <View style={styles.heroChips}>
-              <HeroChip icon="albums-outline" label={seasonText(lang, 'words')} onPress={props.onWords} testID="season-words" />
-              <HeroChip icon="book-outline" label={seasonText(lang, 'theory')} onPress={props.onTheory} testID="season-theory" />
             </View>
           ) : null}
         </View>
@@ -266,33 +265,17 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         <Text style={[styles.captionTitle, { color: g.text }]} numberOfLines={3}>{caption.title}</Text>
       </View>
 
-      {tall ? null : (
-        <View style={styles.actions}>
-          <ActionChip icon="albums-outline" label={seasonText(lang, 'words')} onPress={props.onWords} testID="season-words" />
-          <ActionChip icon="book-outline" label={seasonText(lang, 'theory')} onPress={props.onTheory} testID="season-theory" />
-        </View>
-      )}
     </ScrollView>
   );
 }
 
-/** Чип на обложке (белый на градиенте, стеклянная подложка): «Слова», «Теория». */
-function HeroChip({ icon, label, onPress, testID }: Readonly<{ icon: IonName; label: string; onPress: () => void; testID: string }>) {
+/** Плитка «Слова» / «Теория» в строке с главной кнопкой обложки: стекло в тоне обложки (тёмное стекло на светлой), значок + подпись, 70 × 50 (макет lesson-hub-words-theory.html, вариант 2). */
+function HeroTile({ icon, label, onPress, dark, testID }: Readonly<{ icon: IonName; label: string; onPress: () => void; dark: boolean; testID: string }>) {
   return (
-    <Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={label} onPress={onPress} testID={testID} style={({ pressed }) => [styles.heroChip, { opacity: pressed ? 0.72 : 1 }]}>
-      <Ionicons name={icon} size={16} color={WHITE} />
-      <Text style={styles.heroChipText}>{label}</Text>
-    </Pressable>
-  );
-}
-
-function ActionChip({ icon, label, onPress, testID }: Readonly<{ icon: IonName; label: string; onPress: () => void; testID: string }>) {
-  const g = useLv2Glass();
-  return (
-    <Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={label} onPress={onPress} testID={testID} style={({ pressed }) => [styles.chip, { opacity: pressed ? 0.72 : 1 }]}>
-      <Ionicons name={icon} size={16} color={g.text} />
-      <Text style={[styles.chipText, { color: g.text }]}>{label}</Text>
-    </Pressable>
+    <V2Pressable hitSlop={4} accessibilityRole="button" accessibilityLabel={label} onPress={onPress} testID={testID} style={[styles.heroTile, { backgroundColor: dark ? PILL : PILL_ON_LIGHT }]}>
+      <Ionicons name={icon} size={18} color={WHITE} />
+      <Text style={styles.heroTileText} numberOfLines={1}>{label}</Text>
+    </V2Pressable>
   );
 }
 
@@ -304,9 +287,6 @@ const styles = StyleSheet.create({
   heroBodyTall: { paddingBottom: 44 },
   hudPlate: { borderRadius: 22, paddingHorizontal: 6, paddingVertical: 2, flexDirection: 'row', alignItems: 'center' },
   heroTitleLong: { fontSize: 26, lineHeight: 32 },
-  heroChips: { marginTop: 12, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  heroChip: { height: 34, paddingHorizontal: 12, borderRadius: 17, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },
-  heroChipText: { fontSize: 13, lineHeight: 17, fontWeight: '600', color: WHITE },
   heroTall: { minHeight: 392, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 320 },
   heroTop: { position: 'absolute', left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -315,7 +295,11 @@ const styles = StyleSheet.create({
   heroBody: { flexGrow: 1, justifyContent: 'flex-end', paddingHorizontal: 20, paddingBottom: 22 },
   kicker: { fontSize: 13, lineHeight: 17, color: WHITE_SOFT },
   heroTitle: { marginTop: 4, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.5, color: WHITE },
-  primary: { marginTop: 16, height: 50, borderRadius: 25, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: WHITE },
+  primaryRow: { marginTop: 16, flexDirection: 'row', gap: 8 },
+  primaryOuter: { flex: 1 },
+  primary: { height: 50, borderRadius: 25, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: WHITE },
+  heroTile: { width: 70, height: 50, borderRadius: 18, alignItems: 'center', justifyContent: 'center', gap: 2 },
+  heroTileText: { fontSize: 13, lineHeight: 15, fontWeight: '700', color: WHITE },
   primaryText: { fontSize: 16, lineHeight: 21, fontWeight: '700', color: BTN_INK },
   glass: { marginTop: 12, height: 50, borderRadius: 25, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: PILL },
   glassText: { fontSize: 16, lineHeight: 21, fontWeight: '600', color: WHITE },
@@ -332,10 +316,6 @@ const styles = StyleSheet.create({
   caption: { alignItems: 'center', marginTop: 6, paddingHorizontal: 20 },
   captionKicker: { fontSize: 16, lineHeight: 21, textAlign: 'center' },
   captionTitle: { marginTop: 2, fontSize: 19, lineHeight: 24, fontWeight: '700', textAlign: 'center' },
-  // зачем (Сверка 22.10, ss_side_7/9; эталон course-hybrid-1-4): действия — текст со значком без подложки, разнесены по ширине; высота 40 остаётся зоной нажатия
-  actions: { flexDirection: 'row', justifyContent: 'space-around', marginTop: 14, paddingHorizontal: 8, flexWrap: 'wrap' },
-  chip: { height: 40, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  chipText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
 });
 
 export default memo(SeasonCourseView);

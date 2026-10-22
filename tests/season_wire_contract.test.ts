@@ -83,19 +83,29 @@ describe('Сезон: обложка 46 % от самого верха (влад
     expect(view).toMatch(/heroTall: \{ minHeight: 392/);
     expect(view).toContain('paddingTop: props.topPadding + 8 + HUD_ROW_HEIGHT + 12');
     expect(view).toMatch(/heroTitle: \{ marginTop: 4, fontSize: 30, lineHeight: 36/);
-    expect(view).toMatch(/primary: \{ marginTop: 16, height: 50/);
+    expect(view).toMatch(/primaryRow: \{ marginTop: 16,/);
+    expect(view).toMatch(/primary: \{ height: 50,/);
     expect(view).toContain('heroBodyTall: { paddingBottom: 44 }');
   });
 });
 
-describe('Сезон: чипы «Слова / Теория» внутри обложки (scenes-compact, вариант 2)', () => {
+describe('Сезон: «Слова» и «Теория» — плитки в строке с «Продолжить» (владелец 22.10, макет lesson-hub-words-theory.html, вариант 2)', () => {
   const view2 = readSource('components/learning-v2/season/SeasonCourseView.tsx');
-  it('на полноэкранной обложке чипы под кнопкой, под каруселью чипов нет (веера «Вся глава» больше нет)', () => {
-    expect(view2).toContain('const tall = props.topBleed !== undefined && props.topBleed > 0;');
-    expect(view2).toContain('<HeroChip icon="albums-outline"');
-    expect(view2).toContain('{tall ? null : (');
-    expect(view2).toContain('<ActionChip icon="albums-outline"');
-    expect(view2).toMatch(/heroChip: \{ height: 34, paddingHorizontal: 12, borderRadius: 17/);
+  const copy2 = readSource('components/learning-v2/season/season_copy.ts');
+  it('в обложке строка: главная кнопка (уже, короткая подпись) + две стеклянные плитки 70 × 50 со значком и подписью, V2Pressable; в обоих режимах обложки', () => {
+    expect(view2).toContain('<View style={styles.primaryRow}>');
+    expect(view2).toContain('<HeroTile icon="albums-outline"');
+    expect(view2).toContain('<HeroTile icon="book-outline"');
+    expect(view2).toMatch(/heroTile: \{ width: 70, height: 50, borderRadius: 18,/);
+    expect(view2).toContain("backgroundColor: dark ? PILL : PILL_ON_LIGHT");
+    expect(view2).toContain("props.newcomer ? seasonText(lang, 'startShort') : seasonText(lang, 'continueShort')");
+    expect(view2).toContain('accessibilityLabel={primaryLabel}');
+    for (const key of ['continueShort', 'startShort']) expect((copy2.split('\n').find((l) => l.trim().startsWith(`${key}:`)) ?? '').match(/'[^']+'/g)?.length).toBe(9);
+  });
+  it('голого текста и чипов больше нет: ни под каруселью, ни в обложке', () => {
+    for (const gone of ['HeroChip', 'ActionChip', 'heroChips', 'styles.chip', 'styles.actions']) expect(view2).not.toContain(gone);
+    expect(view2).not.toContain('{tall ? null : (');
+    expect(view2).not.toMatch(/import {[^}]*Pressable[^}]*} from 'react-native'/);
   });
 });
 

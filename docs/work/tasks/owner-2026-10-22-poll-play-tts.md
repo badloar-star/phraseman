@@ -41,3 +41,8 @@ Governance-ID: TG-F8D930F1F83E
 Governance-ID: TG-E4795580EB36
 (22.10: кнопки звука — динамик и повтор во всех режимах; довести восстановленные home/lessons/HomePollV2Card)
 Governance-ID: TG-E4795580EB36 — связка A: HomePollV2Card без рамок (тон), шрифты 13/16
+
+Governance-ID: TG-61F8F06AA2DD
+(22.10: связка B — старые тесты под переносы 19.10: last_lesson, instant_open_batch, audio_runtime_ownership)
+
+Governance-ID: TG-D3BAE8C492E1

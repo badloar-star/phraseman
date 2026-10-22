@@ -56,12 +56,12 @@ import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { computeHeightScale, isShortScreen } from '../constants/layout-scale';
-import { getDeviceBootstrapLocale, triLang, type Lang } from '../constants/i18n';
+import { coerceInterfaceLang, getDeviceBootstrapLocale, getVisibleInterfaceLanguageOptions, triLang, type Lang } from '../constants/i18n';
 import { signInRefusalCopyFor } from '../app/account_sync_copy';
 import { warmAuthSignInCallables } from '../app/cloud_sync';
 import { noAndroidOutline, softShadow } from '../constants/androidGlow';
 import { LUM, SUITE } from '../constants/motionHybrid';
-import { ENABLE_DEV_STUDY_TARGET_LANG, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
+import { ENABLE_DEV_STUDY_TARGET_LANG, IS_STORE_RELEASE, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 import { openLegalLink } from '../app/open_legal_link';
 // зачем: онбординг подтверждает только факт «есть ли 16» (self-attestation), года
 // рождения не спрашиваем — поэтому импортируем attestation-API, а не запись года.
@@ -647,6 +647,42 @@ let lastProgressFraction = 0;
 
 const OnboardingOrderContext = React.createContext<readonly OnboardingStepId[]>(CLEAN_ONBOARDING_ORDER);
 
+// зачем (22.10 владелец: включаем, исключение из заморозки 12.10): на приветствии справа в шапке — меню языка интерфейса,
+// чтобы человек сменил язык до первого экрана анкеты, а не искал настройку после онбординга.
+type OnboardingLanguageMenuContextValue = {
+  open: () => void;
+  enabled: boolean;
+  triggerRef: React.RefObject<View | null>;
+};
+
+const OnboardingLanguageMenuContext = React.createContext<OnboardingLanguageMenuContextValue | null>(null);
+
+function OnboardingLanguageMenuTrigger() {
+  const menu = React.useContext(OnboardingLanguageMenuContext);
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
+  const lang = useOnboardingLang();
+  if (!menu) return null;
+  return (
+    <Pressable
+      ref={menu.triggerRef}
+      testID="onboarding-interface-language-menu"
+      onPressIn={() => { void hapticTap(); }}
+      onPress={menu.open}
+      disabled={!menu.enabled}
+      style={({ pressed }) => [styles.interfaceLanguageMenuButton, pressed && styles.pressed, !menu.enabled && styles.hidden]}
+      hitSlop={10}
+      accessibilityRole="button"
+      accessibilityLabel={triLang(lang, {
+        ru: 'Выбрать язык интерфейса', uk: 'Вибрати мову інтерфейсу', en: 'Choose app language', es: 'Elegir idioma de la aplicación',
+        'pt-BR': 'Escolher idioma do aplicativo', vi: 'Chọn ngôn ngữ ứng dụng', id: 'Pilih bahasa aplikasi', tr: 'Uygulama dilini seç', pl: 'Wybierz język aplikacji',
+      })}
+    >
+      <Ionicons name="ellipsis-horizontal" size={22} color={P.text} />
+    </Pressable>
+  );
+}
+
 function ProgressHeader({
   step,
   onBack,
@@ -692,7 +728,7 @@ function ProgressHeader({
       >
         <NavIcon name={onClose ? 'close' : 'chevron-back'} size={22} color={P.text} />
       </Pressable>
-      {headerRight ?? <View style={styles.headerRightSpacer} />}
+      {headerRight ?? <OnboardingLanguageMenuTrigger />}
     </View>
   );
 }
@@ -2461,11 +2497,13 @@ function SuccessCheck() {
 function CleanOnboarding({
   onDone,
   initialLang,
+  onLangSelect,
   startAtNameStep,
   consentOnly = false,
 }: OnboardingProps) {
   const P = useOnboardingPalette();
   const styles = createStyles(P);
+  const insets = useStableSafeAreaInsets();
   const lang = initialLang ?? getDeviceBootstrapLocale();
   // зачем (координатор 12.10): тексты онбординга по языку интерфейса; объект из кэша, одинаковый между рендерами
   const oc = onboardingCopy(lang);
@@ -2543,7 +2581,10 @@ function CleanOnboarding({
   const [codeValue, setCodeValue] = useState('');
   const [codeBusy, setCodeBusy] = useState(false);
   const [codeFeedback, setCodeFeedback] = useState<{ ok: boolean; text: string } | null>(null);
+  const [interfaceLanguageMenuOpen, setInterfaceLanguageMenuOpen] = useState(false);
+  const [interfaceLanguageMenuBusy, setInterfaceLanguageMenuBusy] = useState(false);
   const paywallMenuButtonRef = useRef<View | null>(null);
+  const interfaceLanguageMenuButtonRef = useRef<View | null>(null);
   const codeInputRef = useRef<TextInput | null>(null);
   const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(() =>
     resolveRuntimeOnboardingSteps(getEnabledOnboardingSteps(), FORCE_ONBOARDING_QA));
@@ -2572,6 +2613,47 @@ function CleanOnboarding({
     setCodeSheet(null);
     restorePaywallMenuFocus();
   }, [codeBusy, restorePaywallMenuFocus]);
+  const restoreLanguageMenuFocus = useCallback(() => {
+    InteractionManager.runAfterInteractions(() => {
+      const node = findNodeHandle(interfaceLanguageMenuButtonRef.current);
+      if (node) AccessibilityInfo.setAccessibilityFocus(node);
+    });
+  }, []);
+  const closeInterfaceLanguageMenu = useCallback(() => {
+    if (interfaceLanguageMenuBusy) return;
+    setInterfaceLanguageMenuOpen(false);
+    restoreLanguageMenuFocus();
+  }, [interfaceLanguageMenuBusy, restoreLanguageMenuFocus]);
+  const openInterfaceLanguageMenu = useCallback(() => {
+    if (onLangSelect) setInterfaceLanguageMenuOpen(true);
+  }, [onLangSelect]);
+  const selectInterfaceLanguage = useCallback(async (candidate: string) => {
+    const nextLang = coerceInterfaceLang(candidate);
+    if (!nextLang || !onLangSelect || interfaceLanguageMenuBusy) {
+      // guard-ok: ранний выход пишет причину
+      console.warn('[ONB-LANG-MENU] skip', JSON.stringify({ candidate, nextLang, hasHandler: !!onLangSelect, busy: interfaceLanguageMenuBusy }));
+      return;
+    }
+    setInterfaceLanguageMenuBusy(true);
+    try {
+      await onLangSelect(nextLang);
+      setInterfaceLanguageMenuOpen(false);
+      restoreLanguageMenuFocus();
+    } catch (error) {
+      reportSwallowed('CleanOnboarding:selectInterfaceLanguage', error);
+    } finally {
+      setInterfaceLanguageMenuBusy(false);
+    }
+  }, [interfaceLanguageMenuBusy, onLangSelect, restoreLanguageMenuFocus]);
+  const interfaceLanguageMenu = useMemo<OnboardingLanguageMenuContextValue>(() => ({
+    open: openInterfaceLanguageMenu,
+    enabled: !!onLangSelect,
+    triggerRef: interfaceLanguageMenuButtonRef,
+  }), [onLangSelect, openInterfaceLanguageMenu]);
+  const interfaceLanguageOptions = useMemo(
+    () => getVisibleInterfaceLanguageOptions(IS_STORE_RELEASE),
+    [],
+  );
 
   useEffect(() => {
     if (legalError) AccessibilityInfo.announceForAccessibility(legalError);
@@ -3793,6 +3875,68 @@ function CleanOnboarding({
     return () => sub.remove();
   }, []);
 
+  const renderInterfaceLanguageMenu = () => (
+    <Modal
+      transparent
+      animationType={reduceMotion ? 'none' : 'fade'}
+      visible={interfaceLanguageMenuOpen}
+      onRequestClose={closeInterfaceLanguageMenu}
+    >
+      <View style={styles.interfaceLanguageMenuScrim}>
+        <Pressable
+          style={StyleSheet.absoluteFill}
+          onPress={closeInterfaceLanguageMenu}
+          accessibilityLabel={triLang(lang, {
+            ru: 'Закрыть выбор языка', uk: 'Закрити вибір мови', en: 'Close language picker', es: 'Cerrar selector de idioma',
+            'pt-BR': 'Fechar seletor de idioma', vi: 'Đóng bộ chọn ngôn ngữ', id: 'Tutup pemilih bahasa', tr: 'Dil seçiciyi kapat', pl: 'Zamknij wybór języka',
+          })}
+          accessibilityRole="button"
+        />
+        <ScrollView
+          style={styles.interfaceLanguageMenuCardScroll}
+          contentContainerStyle={styles.interfaceLanguageMenuCard}
+          bounces={false}
+          accessibilityViewIsModal
+          onAccessibilityEscape={closeInterfaceLanguageMenu}
+        >
+          <Text style={styles.interfaceLanguageMenuTitle} accessibilityRole="header">
+            {triLang(lang, {
+              ru: 'Язык приложения', uk: 'Мова застосунку', en: 'App language', es: 'Idioma de la aplicación',
+              'pt-BR': 'Idioma do aplicativo', vi: 'Ngôn ngữ ứng dụng', id: 'Bahasa aplikasi', tr: 'Uygulama dili', pl: 'Język aplikacji',
+            })}
+          </Text>
+          <View style={styles.interfaceLanguageMenuOptions}>
+            {interfaceLanguageOptions.map((option) => {
+              const selectableLang = coerceInterfaceLang(option.code);
+              const selected = lang === option.code;
+              return (
+                <Pressable
+                  key={option.code}
+                  testID={`onboarding-interface-language-option-${option.code}`}
+                  onPressIn={() => { void hapticTap(); }}
+                  onPress={() => { void selectInterfaceLanguage(option.code); }}
+                  disabled={!selectableLang || interfaceLanguageMenuBusy}
+                  style={({ pressed }) => [
+                    styles.interfaceLanguageMenuOption,
+                    selected && styles.interfaceLanguageMenuOptionSelected,
+                    pressed && styles.pressed,
+                    (!selectableLang || interfaceLanguageMenuBusy) && styles.interfaceLanguageMenuOptionDisabled,
+                  ]}
+                  accessibilityRole="button"
+                  accessibilityLabel={option.native}
+                  accessibilityState={{ selected, disabled: !selectableLang || interfaceLanguageMenuBusy }}
+                >
+                  <Text style={styles.interfaceLanguageMenuOptionText}>{option.native}</Text>
+                  {selected ? <Ionicons name="checkmark" size={20} color={P.text} /> : null}
+                </Pressable>
+              );
+            })}
+          </View>
+        </ScrollView>
+      </View>
+    </Modal>
+  );
+
 
   if (!restored) {
     return (
@@ -3808,6 +3952,9 @@ function CleanOnboarding({
   const renderWelcome = () => (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
       <StatusBar barStyle={P.isLight ? 'dark-content' : 'light-content'} />
+      <View style={[styles.welcomeLanguageMenu, { top: insets.top + 2 }]}>
+        <OnboardingLanguageMenuTrigger />
+      </View>
       {/* Bevel, кадр 1: вертикальный градиент серо-стального к светлому поверх
           общего фона — только на этом экране. */}
       <LinearGradient
@@ -4609,6 +4756,7 @@ function CleanOnboarding({
   const bare = displayStep === 'welcome';
 
   return (
+    <OnboardingLanguageMenuContext.Provider value={interfaceLanguageMenu}>
     <OnboardingOrderContext.Provider value={enabledOrder}>
     <OnboardingSkipContext.Provider value={skipHandler}>
     <View style={styles.root}>
@@ -4620,11 +4768,13 @@ function CleanOnboarding({
           <Animated.View style={[styles.stepSlide, slideStyle]}>{renderStep(displayStep)}</Animated.View>
         )}
       </Profiler>
+      {renderInterfaceLanguageMenu()}
       {/* зачем (правило владельца 22.09, координатор 12.10): плашки «Ты удалил(а) все свои данные» здесь больше нет —
           уведомлений об удалении не показываем никогда. Вид онбординга не тронут. */}
     </View>
     </OnboardingSkipContext.Provider>
     </OnboardingOrderContext.Provider>
+    </OnboardingLanguageMenuContext.Provider>
   );
 }
 
@@ -4691,6 +4841,69 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
   headerRightSpacer: {
     width: 48,
     height: 48,
+  },
+  interfaceLanguageMenuButton: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: P.card,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.09, offsetY: 1, backgroundColor: P.card }),
+  },
+  welcomeLanguageMenu: {
+    position: 'absolute',
+    right: 18,
+    zIndex: 1,
+  },
+  interfaceLanguageMenuScrim: {
+    flex: 1,
+    backgroundColor: 'rgba(20, 22, 28, 0.45)',
+    justifyContent: 'center',
+    paddingHorizontal: 26,
+  },
+  interfaceLanguageMenuCardScroll: {
+    maxHeight: '86%',
+  },
+  interfaceLanguageMenuCard: {
+    borderRadius: 20,
+    backgroundColor: P.card,
+    padding: 18,
+    gap: 14,
+    ...softShadow({ color: '#0C111B', radius: 28, opacity: 0.20, offsetY: 6, backgroundColor: P.card }),
+  },
+  interfaceLanguageMenuTitle: {
+    color: P.text,
+    fontSize: 19,
+    lineHeight: 24,
+    fontWeight: '800',
+    letterSpacing: -0.38,
+  },
+  interfaceLanguageMenuOptions: {
+    gap: 8,
+  },
+  interfaceLanguageMenuOption: {
+    minHeight: 48,
+    borderRadius: 12,
+    backgroundColor: P.soft,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  interfaceLanguageMenuOptionSelected: {
+    backgroundColor: P.track,
+  },
+  interfaceLanguageMenuOptionDisabled: {
+    opacity: 0.42,
+  },
+  interfaceLanguageMenuOptionText: {
+    flex: 1,
+    color: P.text,
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: '700',
   },
   hidden: {
     opacity: 0,

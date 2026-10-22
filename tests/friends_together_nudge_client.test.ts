@@ -53,6 +53,12 @@ jest.mock('@react-native-community/netinfo', () => ({
   }),
 }));
 
+// зачем (Ревизор 22.10, 🔴): владелец зова — stableId аккаунта на телефоне; тест «меняет аккаунт» через него
+const mockStableId = { current: 'me-stable' };
+jest.mock('../app/stable_id', () => ({
+  getStableId: jest.fn(async () => mockStableId.current),
+}));
+
 const QUEUE_KEY = 'friends_nudge_queue_v1';
 const requestIdOf = (call: unknown[] | undefined): string => (call?.[0] as { requestId: string }).requestId;
 
@@ -64,6 +70,8 @@ beforeEach(() => {
   mockNetState.isConnected = true;
   mockNetState.isInternetReachable = true;
   mockNetListeners.splice(0, mockNetListeners.length);
+  mockStableId.current = 'me-stable';
+  mockPrepareTogetherSender.mockImplementation(async () => ({ stableId: 'me-stable', displayName: 'Марина' }));
 });
 
 describe('nudgeFriend', () => {
@@ -294,7 +302,7 @@ describe('nudge offline queue (идея 1, макет «Нет сети»: «В 
   });
 
   it('drops a call queued on a previous day without sending it', async () => {
-    mockStorage[QUEUE_KEY] = JSON.stringify([{ friendUid: 'old-friend', requestId: 'ftn_old', dayKey: '2026-08-16', queuedAt: 1 }]);
+    mockStorage[QUEUE_KEY] = JSON.stringify([{ friendUid: 'old-friend', requestId: 'ftn_old', dayKey: '2026-08-16', queuedAt: 1, ownerStableId: 'me-stable' }]);
     const mod = await import('../app/friends_together/nudge_client');
 
     await mod.primeNudgedTodayCache(); // prime запускает отправку очереди
@@ -314,5 +322,71 @@ describe('nudge offline queue (идея 1, макет «Нет сети»: «В 
 
     expect(mockCallableInvoker).not.toHaveBeenCalled();
     expect(mod.isNudgeQueuedToday('friend-q')).toBe(true);
+  });
+});
+
+describe('nudge offline queue belongs to its account (Ревизор 22.10, 🔴)', () => {
+  const goOffline = (): void => { mockNetState.isConnected = false; };
+  const goOnline = (): void => {
+    mockNetState.isConnected = true;
+    mockNetListeners.slice().forEach((listener) => listener({ isConnected: true, isInternetReachable: true }));
+  };
+
+  it('A queued a call offline → B signed in → the call never goes (owner_changed)', async () => {
+    goOffline();
+    const mod = await import('../app/friends_together/nudge_client');
+    await mod.primeNudgedTodayCache();
+    expect(await mod.nudgeFriend('friend-q')).toEqual({ ok: true, queued: true });
+    expect(JSON.parse(mockStorage[QUEUE_KEY])[0]).toMatchObject({ friendUid: 'friend-q', ownerStableId: 'me-stable' });
+
+    // вошёл B
+    mockStableId.current = 'boris-stable';
+    mockPrepareTogetherSender.mockImplementation(async () => ({ stableId: 'boris-stable', displayName: 'Борис' }));
+    const log = jest.spyOn(console, 'log');
+    goOnline();
+    await mod.flushNudgeQueue('test_await');
+
+    expect(mockCallableInvoker).not.toHaveBeenCalled();
+    expect(mockStorage[QUEUE_KEY]).toBeUndefined();
+    expect(log.mock.calls.some((call) => String(call[0]).includes('[FRIENDS-NUDGE-QUEUE] reason=owner_changed'))).toBe(true);
+    expect(mod.isNudgedToday('friend-q')).toBe(false); // у B этот друг не «позван»
+    log.mockRestore();
+  });
+
+  it('a queue another account left on the phone is dropped on start, never sent', async () => {
+    mockStorage[QUEUE_KEY] = JSON.stringify([{ friendUid: 'friend-q', requestId: 'ftn_alice_1', dayKey: '2026-08-17', queuedAt: 1, ownerStableId: 'alice-stable' }]);
+    mockStorage['friends_nudged_today_v1::alice-stable::2026-08-17'] = JSON.stringify({ 'friend-q': 1 });
+    const mod = await import('../app/friends_together/nudge_client');
+
+    await mod.primeNudgedTodayCache(); // текущий аккаунт — me-stable
+    await mod.flushNudgeQueue('test_await');
+
+    expect(mockCallableInvoker).not.toHaveBeenCalled();
+    expect(mockStorage[QUEUE_KEY]).toBeUndefined();
+    expect(JSON.parse(mockStorage['friends_nudged_today_v1::alice-stable::2026-08-17'])).toEqual({});
+  });
+
+  it('A queued offline → signed out → A again: the old call is gone and a new tap sends exactly once', async () => {
+    goOffline();
+    const mod = await import('../app/friends_together/nudge_client');
+    await mod.primeNudgedTodayCache();
+    await mod.nudgeFriend('friend-q');
+
+    // выход: на телефоне другой (анонимный) аккаунт — очередь A сброшена, отметка снята
+    mockStableId.current = 'anon-after-signout';
+    await mod.primeNudgedTodayCache();
+    expect(mockStorage[QUEUE_KEY]).toBeUndefined();
+
+    // A снова, сеть есть
+    mockStableId.current = 'me-stable';
+    goOnline();
+    await mod.primeNudgedTodayCache();
+    await mod.flushNudgeQueue('test_await');
+    expect(mockCallableInvoker).not.toHaveBeenCalled(); // старый зов не ожил
+
+    expect(await mod.nudgeFriend('friend-q')).toEqual({ ok: true });
+    await mod.flushNudgeQueue('test_await_2');
+    expect(mockCallableInvoker).toHaveBeenCalledTimes(1);
+    expect(mockCallableInvoker).toHaveBeenCalledWith(expect.objectContaining({ friendUid: 'friend-q', stableId: 'me-stable' }));
   });
 });

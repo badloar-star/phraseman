@@ -15,7 +15,9 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getLocalDayKey } from '../local_date';
 import { prepareTogetherSender, type TogetherSenderIdentity } from './sender_identity';
+import { getStableId } from '../stable_id';
 import {
+  clearNudgeQueue,
   enqueueNudge,
   isNudgeQueued,
   isOfflineNow,
@@ -51,13 +53,14 @@ type NudgedTodayMap = Record<string, number>; // friendUid -> ts ms
 
 const log = (line: string): void => { console.log(`[FRIENDS-1] ${line}`); }; // guard-ok: журнал зова, одна строка на шаг
 
-function nudgedTodayKey(dayKey: string): string {
-  return `${NUDGED_TODAY_KEY_PREFIX}::${dayKey}`;
+/** зачем (Ревизор 22.10): отметки «позвал сегодня» свои у каждого аккаунта на телефоне — ключ с владельцем (stableId). */
+function nudgedTodayKey(owner: string, dayKey: string): string {
+  return `${NUDGED_TODAY_KEY_PREFIX}::${owner}::${dayKey}`;
 }
 
-async function readNudgedToday(dayKey: string): Promise<NudgedTodayMap> {
+async function readNudgedToday(owner: string, dayKey: string): Promise<NudgedTodayMap> {
   try {
-    const raw = await AsyncStorage.getItem(nudgedTodayKey(dayKey));
+    const raw = await AsyncStorage.getItem(nudgedTodayKey(owner, dayKey));
     if (!raw) return {};
     const parsed = JSON.parse(raw) as unknown;
     if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
@@ -72,33 +75,78 @@ async function readNudgedToday(dayKey: string): Promise<NudgedTodayMap> {
   }
 }
 
-async function writeNudgedToday(dayKey: string, map: NudgedTodayMap): Promise<void> {
-  await AsyncStorage.setItem(nudgedTodayKey(dayKey), JSON.stringify(map)).catch(noteSwallowedHandler('nudge_client:promise_1'));
+async function writeNudgedToday(owner: string, dayKey: string, map: NudgedTodayMap): Promise<void> {
+  await AsyncStorage.setItem(nudgedTodayKey(owner, dayKey), JSON.stringify(map)).catch(noteSwallowedHandler('nudge_client:promise_1'));
 }
 
-/** Синхронная проверка после prime — используем последний прочитанный snapshot в памяти. */
+/** Синхронная проверка после prime — последний прочитанный снимок в памяти (владелец + день). */
+let _memoryOwner: string | null = null;
 let _memoryDayKey = '';
 let _memoryMap: NudgedTodayMap = {};
 
-async function ensureMemoryFresh(): Promise<void> {
+/** Владелец — stableId аккаунта на телефоне (читается без сети). Сбой чтения — пустой владелец: такой зов в очередь не встанет. */
+async function readOwner(): Promise<string> {
+  try {
+    return await getStableId();
+  } catch (e) {
+    console.warn(`[FRIENDS-NUDGE-QUEUE] owner read failed → без владельца: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: catch называет причину
+    return '';
+  }
+}
+
+/**
+ * Владелец памяти зова. Сменился (выход, вход другим аккаунтом) — память, номера повторов и очередь прежнего владельца
+ * сбрасываются, отметки его ждавших зовов снимаются: зов A никогда не уйдёт от имени B, а у A после возврата кнопка снова «Позвать».
+ */
+async function ensureOwner(): Promise<string> {
+  const owner = await readOwner();
+  if (_memoryOwner !== null && _memoryOwner !== owner) {
+    console.log(`[FRIENDS-NUDGE-QUEUE] reason=owner_changed prev=${maskUid(_memoryOwner)} next=${owner ? maskUid(owner) : '-'} → память и очередь сброшены`); // guard-ok: одна строка на смену владельца
+    _memoryDayKey = '';
+    _memoryMap = {};
+    retryRequestIds = {};
+    _memoryOwner = owner;
+    const dropped = await clearNudgeQueue('owner_changed');
+    for (const entry of dropped) await removeStoredMark(entry.ownerStableId, entry.dayKey, entry.friendUid);
+    return owner;
+  }
+  _memoryOwner = owner;
+  return owner;
+}
+
+async function ensureMemoryFresh(): Promise<string> {
+  const owner = await ensureOwner();
   const dayKey = getLocalDayKey();
-  if (_memoryDayKey === dayKey) return;
+  if (_memoryDayKey === dayKey) return owner;
   _memoryDayKey = dayKey;
-  _memoryMap = await readNudgedToday(dayKey);
+  _memoryMap = await readNudgedToday(owner, dayKey);
+  return owner;
 }
 
 async function markNudged(dayKey: string, uid: string): Promise<void> {
-  if (_memoryDayKey !== dayKey) return;
+  if (_memoryDayKey !== dayKey || _memoryOwner === null) return;
   _memoryMap = { ..._memoryMap, [uid]: Date.now() };
-  await writeNudgedToday(dayKey, _memoryMap);
+  await writeNudgedToday(_memoryOwner, dayKey, _memoryMap);
 }
 
 /** Откат ТОЛЬКО этого друга: соседний зов, отмеченный за время ожидания, не стирается. */
 async function unmarkNudged(dayKey: string, uid: string): Promise<void> {
-  if (_memoryDayKey !== dayKey || !_memoryMap[uid]) return;
+  if (_memoryDayKey !== dayKey || _memoryOwner === null || !_memoryMap[uid]) return;
   const { [uid]: _removed, ...rest } = _memoryMap;
   _memoryMap = rest;
-  await writeNudgedToday(dayKey, _memoryMap);
+  await writeNudgedToday(_memoryOwner, dayKey, _memoryMap);
+}
+
+/** Снять отметку зова у его владельца (зов не ушёл) — в памяти, если это текущий владелец и день, иначе прямо на телефоне. */
+async function removeStoredMark(owner: string, dayKey: string, uid: string): Promise<void> {
+  if (owner === _memoryOwner && dayKey === _memoryDayKey) {
+    await unmarkNudged(dayKey, uid);
+    return;
+  }
+  const stored = await readNudgedToday(owner, dayKey);
+  if (!stored[uid]) return;
+  const { [uid]: _removed, ...rest } = stored;
+  await writeNudgedToday(owner, dayKey, rest);
 }
 
 /** Уже позвали этого друга сегодня? (после первого refresh синхронно верно для текущего дня) */
@@ -201,7 +249,7 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
 
   inFlight.add(uid);
   try {
-    await ensureMemoryFresh();
+    const owner = await ensureMemoryFresh();
     const dayKey = _memoryDayKey;
     if (_memoryMap[uid]) {
       const queued = isNudgeQueued(uid, dayKey);
@@ -214,8 +262,13 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
     // 0) Сети нет — в очередь (макет «Нет сети»): отметка + очередь; отправителя готовим уже при отправке,
     //    офлайн он не собирается (нужна связка аккаунта).
     if (await isOfflineNow()) {
+      if (!owner) {
+        // зачем (Ревизор 22.10): зов без владельца нельзя отправить потом ни от чьего имени — в очередь не ставим
+        console.warn(`[FRIENDS-NUDGE-QUEUE] skip reason=no_owner friend=${maskUid(uid)}`); // guard-ok: ранний выход называет причину
+        return { ok: false, reason: 'network' };
+      }
       await markNudged(dayKey, uid);
-      await enqueueNudge({ friendUid: uid, requestId, dayKey, queuedAt: Date.now() });
+      await enqueueNudge({ friendUid: uid, requestId, dayKey, queuedAt: Date.now(), ownerStableId: owner });
       ensureQueueFlusher();
       return { ok: true, queued: true };
     }
@@ -298,6 +351,8 @@ export function flushNudgeQueue(trigger: string): Promise<void> {
 }
 
 async function runFlush(trigger: string): Promise<void> {
+  // зачем (Ревизор 22.10, 🔴): владелец — ПЕРВЫМ. Сменился — очередь прежнего уже сброшена, читаем то, что осталось
+  const owner = await ensureMemoryFresh();
   const queue = await readNudgeQueue();
   if (queue.length === 0) {
     log(`nudge:flush skip reason=empty trigger=${trigger}`);
@@ -312,23 +367,34 @@ async function runFlush(trigger: string): Promise<void> {
     log(`nudge:flush skip reason=offline trigger=${trigger} size=${queue.length}`);
     return;
   }
-  await ensureMemoryFresh();
   const { due, stale } = splitNudgeQueue(queue, _memoryDayKey);
   for (const entry of stale) {
     await removeQueuedNudge(entry.friendUid);
     log(`nudge:flush drop reason=stale_day friend=${maskUid(entry.friendUid)} day=${entry.dayKey} today=${_memoryDayKey}`);
   }
-  if (due.length === 0) {
+  // Запуск уже под другим аккаунтом (память прежнего владельца не дожила): зов чужого владельца выбрасывается, его отметка снимается
+  const own = due.filter((entry) => owner !== '' && entry.ownerStableId === owner);
+  for (const entry of due.filter((e) => !own.includes(e))) {
+    await removeQueuedNudge(entry.friendUid);
+    await removeStoredMark(entry.ownerStableId, entry.dayKey, entry.friendUid);
+    console.warn(`[FRIENDS-NUDGE-QUEUE] drop reason=owner_changed friend=${maskUid(entry.friendUid)} owner=${maskUid(entry.ownerStableId)} current=${owner ? maskUid(owner) : '-'}`); // guard-ok: выброшенный зов называет причину
+  }
+  if (own.length === 0) {
     stopQueueFlusher();
     return;
   }
   const sender = await prepareTogetherSender();
   if (!sender) {
-    log(`nudge:flush skip reason=no_sender_identity trigger=${trigger} size=${due.length}`);
+    log(`nudge:flush skip reason=no_sender_identity trigger=${trigger} size=${own.length}`);
     return;
   }
-  log(`nudge:flush start trigger=${trigger} due=${due.length}`);
-  for (const entry of due) {
+  if (sender.stableId !== owner) {
+    // зачем: отправитель — не тот, чьи зовы в очереди (гонка смены аккаунта) — не шлём ни одного, следующая проверка владельца их уберёт
+    console.warn(`[FRIENDS-NUDGE-QUEUE] skip reason=sender_mismatch owner=${maskUid(owner)} sender=${maskUid(sender.stableId)} size=${own.length}`); // guard-ok: ранний выход называет причину
+    return;
+  }
+  log(`nudge:flush start trigger=${trigger} due=${own.length}`);
+  for (const entry of own) {
     await flushEntry(sender, entry.friendUid, entry.requestId, entry.dayKey);
   }
   if ((await readNudgeQueue()).length === 0) stopQueueFlusher();

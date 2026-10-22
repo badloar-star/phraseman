@@ -14,7 +14,11 @@ export const NUDGE_QUEUE_KEY = 'friends_nudge_queue_v1';
 export const NUDGE_QUEUE_MAX = 5;
 const NET_CHECK_TIMEOUT_MS = 600;
 
-export type QueuedNudge = Readonly<{ friendUid: string; requestId: string; dayKey: string; queuedAt: number }>;
+/**
+ * Зов в очереди. ownerStableId — аккаунт, который нажал «Позвать».
+ * зачем (Ревизор 22.10, 🔴): очередь живёт на телефоне дольше сессии — без владельца зов A ушёл бы от имени B после смены аккаунта.
+ */
+export type QueuedNudge = Readonly<{ friendUid: string; requestId: string; dayKey: string; queuedAt: number; ownerStableId: string }>;
 
 const errText = (e: unknown): string => (e instanceof Error ? e.message : String(e));
 
@@ -24,23 +28,40 @@ function isQueuedNudge(value: unknown): value is QueuedNudge {
   return typeof v.friendUid === 'string' && v.friendUid.length > 0
     && typeof v.requestId === 'string' && v.requestId.length > 0
     && typeof v.dayKey === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v.dayKey)
-    && typeof v.queuedAt === 'number' && Number.isFinite(v.queuedAt);
+    && typeof v.queuedAt === 'number' && Number.isFinite(v.queuedAt)
+    && typeof v.ownerStableId === 'string' && v.ownerStableId.length > 0;
 }
 
 let memoryQueue: readonly QueuedNudge[] | null = null;
 
-/** Очередь с телефона (один раз за запуск, дальше — из памяти). */
+/** Очередь с телефона (один раз за запуск, дальше — из памяти). Записи без владельца или битые — выбрасываются. */
 export async function readNudgeQueue(): Promise<readonly QueuedNudge[]> {
   if (memoryQueue) return memoryQueue;
   try {
     const raw = await AsyncStorage.getItem(NUDGE_QUEUE_KEY);
     const parsed: unknown = raw ? JSON.parse(raw) : [];
-    memoryQueue = Array.isArray(parsed) ? parsed.filter(isQueuedNudge) : [];
+    const list = Array.isArray(parsed) ? parsed : [];
+    const valid = list.filter(isQueuedNudge);
+    memoryQueue = valid;
+    if (valid.length !== list.length) {
+      // зачем: запись без владельца нельзя отправить ни от чьего имени — убираем и с телефона, чтобы не читать её снова
+      console.warn(`[FRIENDS-NUDGE-QUEUE] drop reason=invalid_entry count=${list.length - valid.length}`); // guard-ok: ранний отсев называет причину
+      await writeNudgeQueue(valid);
+    }
   } catch (e) {
-    console.warn(`[FRIENDS-1] nudge:queue read failed → пусто: ${errText(e)}`); // guard-ok: catch называет причину
+    console.warn(`[FRIENDS-NUDGE-QUEUE] read failed → пусто: ${errText(e)}`); // guard-ok: catch называет причину
     memoryQueue = [];
   }
   return memoryQueue;
+}
+
+/** Очистить очередь целиком (смена аккаунта). Возвращает выброшенные зовы — вызывающий снимает их отметки «позвал сегодня». */
+export async function clearNudgeQueue(reason: string): Promise<readonly QueuedNudge[]> {
+  const queue = await readNudgeQueue();
+  if (queue.length === 0) return queue;
+  await writeNudgeQueue([]);
+  console.log(`[FRIENDS-NUDGE-QUEUE] clear reason=${reason} size=${queue.length}`); // guard-ok: одна строка на очистку
+  return queue;
 }
 
 async function writeNudgeQueue(next: readonly QueuedNudge[]): Promise<void> {
@@ -58,7 +79,7 @@ export async function enqueueNudge(entry: QueuedNudge): Promise<void> {
   const queue = await readNudgeQueue();
   const next = [...queue.filter((e) => e.friendUid !== entry.friendUid), entry].slice(-NUDGE_QUEUE_MAX);
   await writeNudgeQueue(next);
-  console.log(`[FRIENDS-1] nudge:queued friend=${maskUid(entry.friendUid)} requestId=${entry.requestId} day=${entry.dayKey} size=${next.length}`); // guard-ok: одна строка на зов
+  console.log(`[FRIENDS-NUDGE-QUEUE] queued friend=${maskUid(entry.friendUid)} owner=${maskUid(entry.ownerStableId)} requestId=${entry.requestId} day=${entry.dayKey} size=${next.length}`); // guard-ok: одна строка на зов
 }
 
 export async function removeQueuedNudge(friendUid: string): Promise<void> {

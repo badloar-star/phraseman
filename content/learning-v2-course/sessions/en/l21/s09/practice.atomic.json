@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-09",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-09:word:intend",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — intend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:word:intend:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — intend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:word:intend:audio",
+            "transcript": "intend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:word:intend:r1",
+              "targetText": "intend",
+              "meaningByLocale": {
+                "ru": "намереваться.",
+                "uk": "мати намір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "intend",
+            "definitionByLocale": {
+              "ru": "намереваться.",
+              "uk": "мати намір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я намерен остаться здесь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я намерен остаться здесь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I intend to stay here.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я намерен остаться здесь».",
+            "uk": "Скажіть: «Я маю намір залишитися тут»."
+          },
+          "orderedTokens": [
+            "I",
+            "intend",
+            "to",
+            "stay",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i02:r1",
+            "text": "I intend to stay here."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i02:r2",
+            "text": "We intend to stay here."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i02:r3",
+            "text": "They intend to stay here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i02:audio",
+            "transcript": "I intend to stay here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:i02:r1",
+              "targetText": "I intend to stay here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i02:r2",
+              "targetText": "We intend to stay here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i02:r3",
+              "targetText": "They intend to stay here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to stay here.",
+                "uk": "У записі звучить I intend to stay here."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to stay here.",
+                "uk": "У записі звучить I intend to stay here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i03:r1",
+            "text": "to stay"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i03:r2",
+            "text": "to staying"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i03:r3",
+            "text": "to stays"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I intend ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-09:i03:r1",
+              "text": "to stay"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i03:r2",
+              "text": "to staying"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i03:r3",
+              "text": "to stays"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:word:expect",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — expect",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:word:expect:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — expect",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:word:expect:audio",
+            "transcript": "expect"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:word:expect:r1",
+              "targetText": "expect",
+              "meaningByLocale": {
+                "ru": "ожидать, рассчитывать.",
+                "uk": "очікувати, розраховувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "expect",
+            "definitionByLocale": {
+              "ru": "ожидать, рассчитывать.",
+              "uk": "очікувати, розраховувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я рассчитываю приехать завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я рассчитываю приехать завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I expect to arrive tomorrow.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я рассчитываю приехать завтра».",
+            "uk": "Скажіть: «Я розраховую приїхати завтра»."
+          },
+          "orderedTokens": [
+            "I",
+            "expect",
+            "to",
+            "arrive",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i05:r1",
+            "text": "I expect to arrive tomorrow."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i05:r2",
+            "text": "We expect to arrive tomorrow."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i05:r3",
+            "text": "They expect to arrive tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i05:audio",
+            "transcript": "I expect to arrive tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:i05:r1",
+              "targetText": "I expect to arrive tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i05:r2",
+              "targetText": "We expect to arrive tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i05:r3",
+              "targetText": "They expect to arrive tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I expect to arrive tomorrow.",
+                "uk": "У записі звучить I expect to arrive tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I expect to arrive tomorrow.",
+                "uk": "У записі звучить I expect to arrive tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i06:r1",
+            "text": "to arrive"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i06:r2",
+            "text": "to arriving"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i06:r3",
+            "text": "to arrives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I expect ___ tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-09:i06:r1",
+              "text": "to arrive"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i06:r2",
+              "text": "to arriving"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i06:r3",
+              "text": "to arrives"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:word:deserve",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — deserve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:word:deserve:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — deserve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:word:deserve:audio",
+            "transcript": "deserve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:word:deserve:r1",
+              "targetText": "deserve",
+              "meaningByLocale": {
+                "ru": "заслуживать.",
+                "uk": "заслуговувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "deserve",
+            "definitionByLocale": {
+              "ru": "заслуживать.",
+              "uk": "заслуговувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я заслуживаю отдыха».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я заслуживаю отдыха».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I deserve to rest.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я заслуживаю отдыха».",
+            "uk": "Скажіть: «Я заслуговую на відпочинок»."
+          },
+          "orderedTokens": [
+            "I",
+            "deserve",
+            "to",
+            "rest"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i08:r1",
+            "text": "I deserve to rest."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i08:r2",
+            "text": "We deserve to rest."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i08:r3",
+            "text": "They deserve to rest."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i08:audio",
+            "transcript": "I deserve to rest."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:i08:r1",
+              "targetText": "I deserve to rest.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i08:r2",
+              "targetText": "We deserve to rest.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i08:r3",
+              "targetText": "They deserve to rest.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I deserve to rest.",
+                "uk": "У записі звучить I deserve to rest."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I deserve to rest.",
+                "uk": "У записі звучить I deserve to rest."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i09:r1",
+            "text": "to rest"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i09:r2",
+            "text": "to resting"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i09:r3",
+            "text": "to rests"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I deserve ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-09:i09:r1",
+              "text": "to rest"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i09:r2",
+              "text": "to resting"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i09:r3",
+              "text": "to rests"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:word:offer",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — offer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:word:offer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — offer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:word:offer:audio",
+            "transcript": "offer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:word:offer:r1",
+              "targetText": "offer",
+              "meaningByLocale": {
+                "ru": "предлагать сделать что-либо.",
+                "uk": "пропонувати зробити щось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "offer",
+            "definitionByLocale": {
+              "ru": "предлагать сделать что-либо.",
+              "uk": "пропонувати зробити щось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я всегда предлагаю помочь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я всегда предлагаю помочь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I always offer to help.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я всегда предлагаю помочь».",
+            "uk": "Скажіть: «Я завжди пропоную допомогти»."
+          },
+          "orderedTokens": [
+            "I",
+            "always",
+            "offer",
+            "to",
+            "help"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i11:r1",
+            "text": "I always offer to help."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i11:r2",
+            "text": "We always offer to help."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i11:r3",
+            "text": "They always offer to help."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i11:audio",
+            "transcript": "I always offer to help."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:i11:r1",
+              "targetText": "I always offer to help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i11:r2",
+              "targetText": "We always offer to help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i11:r3",
+              "targetText": "They always offer to help.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I always offer to help.",
+                "uk": "У записі звучить I always offer to help."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I always offer to help.",
+                "uk": "У записі звучить I always offer to help."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i12:r1",
+            "text": "to help"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i12:r2",
+            "text": "to helping"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i12:r3",
+            "text": "to helps"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I always offer ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-09:i12:r1",
+              "text": "to help"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i12:r2",
+              "text": "to helping"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i12:r3",
+              "text": "to helps"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-09:i13:p1",
+              "target": "intend",
+              "meaningByLocale": {
+                "ru": "намереваться",
+                "uk": "мати намір"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-09:i13:p2",
+              "target": "expect",
+              "meaningByLocale": {
+                "ru": "ожидать, рассчитывать",
+                "uk": "очікувати, розраховувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-09:i13:p3",
+              "target": "deserve",
+              "meaningByLocale": {
+                "ru": "заслуживать",
+                "uk": "заслуговувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-09:i13:p4",
+              "target": "offer",
+              "meaningByLocale": {
+                "ru": "предлагать сделать что-либо",
+                "uk": "пропонувати зробити щось"
+              }
+            }
+          ],
+          "leftColumn": [
+            "intend",
+            "expect",
+            "deserve",
+            "offer"
+          ],
+          "rightColumn": [
+            "намереваться",
+            "ожидать, рассчитывать",
+            "заслуживать",
+            "предлагать сделать что-либо"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: приятное занятие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: приятное занятие",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: закончить дело",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: закончить дело",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы заслуживаете отдыха",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы заслуживаете отдыха",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i16:audio",
+            "transcript": "I deserve to rest."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I deserve to rest.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы всегда предлагаете помочь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы всегда предлагаете помочь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i17:audio",
+            "transcript": "I always offer to help."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I always offer to help.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-09:word:intend",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — intend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:word:intend:audio"
+        ],
+        "accessibilityLabel": "Картка слова — intend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:word:intend:audio",
+            "transcript": "intend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:word:intend:r1",
+              "targetText": "intend",
+              "meaningByLocale": {
+                "ru": "намереваться.",
+                "uk": "мати намір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "intend",
+            "definitionByLocale": {
+              "ru": "намереваться.",
+              "uk": "мати намір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я маю намір залишитися тут».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я маю намір залишитися тут».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I intend to stay here.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я намерен остаться здесь».",
+            "uk": "Скажіть: «Я маю намір залишитися тут»."
+          },
+          "orderedTokens": [
+            "I",
+            "intend",
+            "to",
+            "stay",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i02:r1",
+            "text": "I intend to stay here."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i02:r2",
+            "text": "We intend to stay here."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i02:r3",
+            "text": "They intend to stay here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i02:audio",
+            "transcript": "I intend to stay here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:i02:r1",
+              "targetText": "I intend to stay here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i02:r2",
+              "targetText": "We intend to stay here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i02:r3",
+              "targetText": "They intend to stay here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to stay here.",
+                "uk": "У записі звучить I intend to stay here."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to stay here.",
+                "uk": "У записі звучить I intend to stay here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i03:r1",
+            "text": "to stay"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i03:r2",
+            "text": "to staying"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i03:r3",
+            "text": "to stays"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I intend ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-09:i03:r1",
+              "text": "to stay"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i03:r2",
+              "text": "to staying"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i03:r3",
+              "text": "to stays"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:word:expect",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — expect",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:word:expect:audio"
+        ],
+        "accessibilityLabel": "Картка слова — expect",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:word:expect:audio",
+            "transcript": "expect"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:word:expect:r1",
+              "targetText": "expect",
+              "meaningByLocale": {
+                "ru": "ожидать, рассчитывать.",
+                "uk": "очікувати, розраховувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "expect",
+            "definitionByLocale": {
+              "ru": "ожидать, рассчитывать.",
+              "uk": "очікувати, розраховувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я розраховую приїхати завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я розраховую приїхати завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I expect to arrive tomorrow.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я рассчитываю приехать завтра».",
+            "uk": "Скажіть: «Я розраховую приїхати завтра»."
+          },
+          "orderedTokens": [
+            "I",
+            "expect",
+            "to",
+            "arrive",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i05:r1",
+            "text": "I expect to arrive tomorrow."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i05:r2",
+            "text": "We expect to arrive tomorrow."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i05:r3",
+            "text": "They expect to arrive tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i05:audio",
+            "transcript": "I expect to arrive tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:i05:r1",
+              "targetText": "I expect to arrive tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i05:r2",
+              "targetText": "We expect to arrive tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i05:r3",
+              "targetText": "They expect to arrive tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I expect to arrive tomorrow.",
+                "uk": "У записі звучить I expect to arrive tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I expect to arrive tomorrow.",
+                "uk": "У записі звучить I expect to arrive tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i06:r1",
+            "text": "to arrive"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i06:r2",
+            "text": "to arriving"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i06:r3",
+            "text": "to arrives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I expect ___ tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-09:i06:r1",
+              "text": "to arrive"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i06:r2",
+              "text": "to arriving"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i06:r3",
+              "text": "to arrives"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:word:deserve",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — deserve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:word:deserve:audio"
+        ],
+        "accessibilityLabel": "Картка слова — deserve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:word:deserve:audio",
+            "transcript": "deserve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:word:deserve:r1",
+              "targetText": "deserve",
+              "meaningByLocale": {
+                "ru": "заслуживать.",
+                "uk": "заслуговувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "deserve",
+            "definitionByLocale": {
+              "ru": "заслуживать.",
+              "uk": "заслуговувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я заслуговую на відпочинок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я заслуговую на відпочинок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I deserve to rest.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я заслуживаю отдыха».",
+            "uk": "Скажіть: «Я заслуговую на відпочинок»."
+          },
+          "orderedTokens": [
+            "I",
+            "deserve",
+            "to",
+            "rest"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i08:r1",
+            "text": "I deserve to rest."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i08:r2",
+            "text": "We deserve to rest."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i08:r3",
+            "text": "They deserve to rest."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i08:audio",
+            "transcript": "I deserve to rest."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:i08:r1",
+              "targetText": "I deserve to rest.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i08:r2",
+              "targetText": "We deserve to rest.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i08:r3",
+              "targetText": "They deserve to rest.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I deserve to rest.",
+                "uk": "У записі звучить I deserve to rest."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I deserve to rest.",
+                "uk": "У записі звучить I deserve to rest."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i09:r1",
+            "text": "to rest"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i09:r2",
+            "text": "to resting"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i09:r3",
+            "text": "to rests"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I deserve ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-09:i09:r1",
+              "text": "to rest"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i09:r2",
+              "text": "to resting"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i09:r3",
+              "text": "to rests"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:word:offer",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — offer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:word:offer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — offer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:word:offer:audio",
+            "transcript": "offer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:word:offer:r1",
+              "targetText": "offer",
+              "meaningByLocale": {
+                "ru": "предлагать сделать что-либо.",
+                "uk": "пропонувати зробити щось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "offer",
+            "definitionByLocale": {
+              "ru": "предлагать сделать что-либо.",
+              "uk": "пропонувати зробити щось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я завжди пропоную допомогти».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я завжди пропоную допомогти».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I always offer to help.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я всегда предлагаю помочь».",
+            "uk": "Скажіть: «Я завжди пропоную допомогти»."
+          },
+          "orderedTokens": [
+            "I",
+            "always",
+            "offer",
+            "to",
+            "help"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i11:r1",
+            "text": "I always offer to help."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i11:r2",
+            "text": "We always offer to help."
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i11:r3",
+            "text": "They always offer to help."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i11:audio",
+            "transcript": "I always offer to help."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-09:i11:r1",
+              "targetText": "I always offer to help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i11:r2",
+              "targetText": "We always offer to help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i11:r3",
+              "targetText": "They always offer to help.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I always offer to help.",
+                "uk": "У записі звучить I always offer to help."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I always offer to help.",
+                "uk": "У записі звучить I always offer to help."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-09:i12:r1",
+            "text": "to help"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i12:r2",
+            "text": "to helping"
+          },
+          {
+            "responseId": "en:lesson-21:session-09:i12:r3",
+            "text": "to helps"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I always offer ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-09:i12:r1",
+              "text": "to help"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i12:r2",
+              "text": "to helping"
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i12:r3",
+              "text": "to helps"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-09:i13:p1",
+              "target": "intend",
+              "meaningByLocale": {
+                "ru": "намереваться",
+                "uk": "мати намір"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-09:i13:p2",
+              "target": "expect",
+              "meaningByLocale": {
+                "ru": "ожидать, рассчитывать",
+                "uk": "очікувати, розраховувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-09:i13:p3",
+              "target": "deserve",
+              "meaningByLocale": {
+                "ru": "заслуживать",
+                "uk": "заслуговувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-09:i13:p4",
+              "target": "offer",
+              "meaningByLocale": {
+                "ru": "предлагать сделать что-либо",
+                "uk": "пропонувати зробити щось"
+              }
+            }
+          ],
+          "leftColumn": [
+            "intend",
+            "expect",
+            "deserve",
+            "offer"
+          ],
+          "rightColumn": [
+            "мати намір",
+            "очікувати, розраховувати",
+            "заслуговувати",
+            "пропонувати зробити щось"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: приємне заняття",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: приємне заняття",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: закінчити справу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: закінчити справу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви заслуговуєте на відпочинок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви заслуговуєте на відпочинок",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i16:audio",
+            "transcript": "I deserve to rest."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I deserve to rest.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви завжди пропонуєте допомогти",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви завжди пропонуєте допомогти",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-09:i17:audio",
+            "transcript": "I always offer to help."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I always offer to help.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-09:word:intend",
+      "correctText": "intend",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i01",
+      "correctText": "I intend to stay here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i02",
+      "correctText": "I intend to stay here.",
+      "correctResponseId": "en:lesson-21:session-09:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i03",
+      "correctText": "to stay",
+      "correctResponseId": "en:lesson-21:session-09:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:word:expect",
+      "correctText": "expect",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i04",
+      "correctText": "I expect to arrive tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i05",
+      "correctText": "I expect to arrive tomorrow.",
+      "correctResponseId": "en:lesson-21:session-09:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i06",
+      "correctText": "to arrive",
+      "correctResponseId": "en:lesson-21:session-09:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:word:deserve",
+      "correctText": "deserve",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i07",
+      "correctText": "I deserve to rest.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i08",
+      "correctText": "I deserve to rest.",
+      "correctResponseId": "en:lesson-21:session-09:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i09",
+      "correctText": "to rest",
+      "correctResponseId": "en:lesson-21:session-09:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:word:offer",
+      "correctText": "offer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i10",
+      "correctText": "I always offer to help.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i11",
+      "correctText": "I always offer to help.",
+      "correctResponseId": "en:lesson-21:session-09:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i12",
+      "correctText": "to help",
+      "correctResponseId": "en:lesson-21:session-09:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i14",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i15",
+      "correctText": "I must finish reading the description.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i16",
+      "correctText": "I deserve to rest.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-09:i17",
+      "correctText": "I always offer to help.",
+      "correctResponseId": null
+    }
+  ]
+}

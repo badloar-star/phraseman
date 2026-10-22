@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-16",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-16:word:get-changed",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — get changed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:word:get-changed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — get changed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:word:get-changed:audio",
+            "transcript": "get changed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:word:get-changed:r1",
+              "targetText": "get changed",
+              "meaningByLocale": {
+                "ru": "переодеться.",
+                "uk": "переодягнутися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get changed",
+            "definitionByLocale": {
+              "ru": "переодеться.",
+              "uk": "переодягнутися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу переодеться».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу переодеться».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to get changed.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу переодеться».",
+            "uk": "Скажіть: «Я хочу переодягнутися»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "get",
+            "changed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i02:r1",
+            "text": "I want to get changed."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i02:r2",
+            "text": "We want to get changed."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i02:r3",
+            "text": "They want to get changed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i02:audio",
+            "transcript": "I want to get changed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:i02:r1",
+              "targetText": "I want to get changed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i02:r2",
+              "targetText": "We want to get changed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i02:r3",
+              "targetText": "They want to get changed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to get changed.",
+                "uk": "У записі звучить I want to get changed."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to get changed.",
+                "uk": "У записі звучить I want to get changed."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i03:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i03:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i03:r3",
+            "text": "to gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I want ___ changed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-16:i03:r1",
+              "text": "to get"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i03:r2",
+              "text": "to getting"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i03:r3",
+              "text": "to gets"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:word:get-ready",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — get ready",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:word:get-ready:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — get ready",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:word:get-ready:audio",
+            "transcript": "get ready"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:word:get-ready:r1",
+              "targetText": "get ready",
+              "meaningByLocale": {
+                "ru": "подготовиться, собраться.",
+                "uk": "підготуватися, зібратися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get ready",
+            "definitionByLocale": {
+              "ru": "подготовиться, собраться.",
+              "uk": "підготуватися, зібратися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мне нужно собраться».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мне нужно собраться».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need to get ready.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно собраться».",
+            "uk": "Скажіть: «Мені потрібно зібратися»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "to",
+            "get",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i05:r1",
+            "text": "I need to get ready."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i05:r2",
+            "text": "We need to get ready."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i05:r3",
+            "text": "They need to get ready."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i05:audio",
+            "transcript": "I need to get ready."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:i05:r1",
+              "targetText": "I need to get ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i05:r2",
+              "targetText": "We need to get ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i05:r3",
+              "targetText": "They need to get ready.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to get ready.",
+                "uk": "У записі звучить I need to get ready."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to get ready.",
+                "uk": "У записі звучить I need to get ready."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i06:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i06:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i06:r3",
+            "text": "to gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I need ___ ready.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-16:i06:r1",
+              "text": "to get"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i06:r2",
+              "text": "to getting"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i06:r3",
+              "text": "to gets"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:word:get-started",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — get started",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:word:get-started:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — get started",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:word:get-started:audio",
+            "transcript": "get started"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:word:get-started:r1",
+              "targetText": "get started",
+              "meaningByLocale": {
+                "ru": "приступить к делу.",
+                "uk": "взятися до справи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get started",
+            "definitionByLocale": {
+              "ru": "приступить к делу.",
+              "uk": "взятися до справи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я планирую сейчас приступить к делу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я планирую сейчас приступить к делу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I plan to get started now.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я планирую сейчас приступить к делу».",
+            "uk": "Скажіть: «Я планую зараз взятися до справи»."
+          },
+          "orderedTokens": [
+            "I",
+            "plan",
+            "to",
+            "get",
+            "started",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i08:r1",
+            "text": "I plan to get started now."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i08:r2",
+            "text": "We plan to get started now."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i08:r3",
+            "text": "They plan to get started now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i08:audio",
+            "transcript": "I plan to get started now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:i08:r1",
+              "targetText": "I plan to get started now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i08:r2",
+              "targetText": "We plan to get started now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i08:r3",
+              "targetText": "They plan to get started now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to get started now.",
+                "uk": "У записі звучить I plan to get started now."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to get started now.",
+                "uk": "У записі звучить I plan to get started now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i09:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i09:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i09:r3",
+            "text": "to gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I plan ___ started now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-16:i09:r1",
+              "text": "to get"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i09:r2",
+              "text": "to getting"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i09:r3",
+              "text": "to gets"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:word:finish-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — finish up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:word:finish-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — finish up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:word:finish-up:audio",
+            "transcript": "finish up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:word:finish-up:r1",
+              "targetText": "finish up",
+              "meaningByLocale": {
+                "ru": "закончить оставшуюся работу.",
+                "uk": "закінчити решту роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "finish up",
+            "definitionByLocale": {
+              "ru": "закончить оставшуюся работу.",
+              "uk": "закінчити решту роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я надеюсь скоро закончить оставшуюся работу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я надеюсь скоро закончить оставшуюся работу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I hope to finish up soon.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я надеюсь скоро закончить оставшуюся работу».",
+            "uk": "Скажіть: «Я сподіваюся скоро закінчити решту роботи»."
+          },
+          "orderedTokens": [
+            "I",
+            "hope",
+            "to",
+            "finish",
+            "up",
+            "soon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i11:r1",
+            "text": "I hope to finish up soon."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i11:r2",
+            "text": "We hope to finish up soon."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i11:r3",
+            "text": "They hope to finish up soon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i11:audio",
+            "transcript": "I hope to finish up soon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:i11:r1",
+              "targetText": "I hope to finish up soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i11:r2",
+              "targetText": "We hope to finish up soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i11:r3",
+              "targetText": "They hope to finish up soon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to finish up soon.",
+                "uk": "У записі звучить I hope to finish up soon."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to finish up soon.",
+                "uk": "У записі звучить I hope to finish up soon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i12:r1",
+            "text": "to finish"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i12:r2",
+            "text": "to finishing"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i12:r3",
+            "text": "to finishes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I hope ___ up soon.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-16:i12:r1",
+              "text": "to finish"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i12:r2",
+              "text": "to finishing"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i12:r3",
+              "text": "to finishes"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-16:i13:p1",
+              "target": "get changed",
+              "meaningByLocale": {
+                "ru": "переодеться",
+                "uk": "переодягнутися"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-16:i13:p2",
+              "target": "get ready",
+              "meaningByLocale": {
+                "ru": "подготовиться, собраться",
+                "uk": "підготуватися, зібратися"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-16:i13:p3",
+              "target": "get started",
+              "meaningByLocale": {
+                "ru": "приступить к делу",
+                "uk": "взятися до справи"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-16:i13:p4",
+              "target": "finish up",
+              "meaningByLocale": {
+                "ru": "закончить оставшуюся работу",
+                "uk": "закінчити решту роботи"
+              }
+            }
+          ],
+          "leftColumn": [
+            "get changed",
+            "get ready",
+            "get started",
+            "finish up"
+          ],
+          "rightColumn": [
+            "переодеться",
+            "подготовиться, собраться",
+            "приступить к делу",
+            "закончить оставшуюся работу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: приятное занятие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: приятное занятие",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: закончить дело",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: закончить дело",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы планируете сейчас приступить к делу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы планируете сейчас приступить к делу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i16:audio",
+            "transcript": "I plan to get started now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I plan to get started now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы надеетесь скоро закончить оставшуюся работу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы надеетесь скоро закончить оставшуюся работу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i17:audio",
+            "transcript": "I hope to finish up soon."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I hope to finish up soon.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-16:word:get-changed",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — get changed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:word:get-changed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — get changed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:word:get-changed:audio",
+            "transcript": "get changed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:word:get-changed:r1",
+              "targetText": "get changed",
+              "meaningByLocale": {
+                "ru": "переодеться.",
+                "uk": "переодягнутися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get changed",
+            "definitionByLocale": {
+              "ru": "переодеться.",
+              "uk": "переодягнутися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу переодягнутися».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу переодягнутися».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to get changed.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу переодеться».",
+            "uk": "Скажіть: «Я хочу переодягнутися»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "get",
+            "changed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i02:r1",
+            "text": "I want to get changed."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i02:r2",
+            "text": "We want to get changed."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i02:r3",
+            "text": "They want to get changed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i02:audio",
+            "transcript": "I want to get changed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:i02:r1",
+              "targetText": "I want to get changed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i02:r2",
+              "targetText": "We want to get changed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i02:r3",
+              "targetText": "They want to get changed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to get changed.",
+                "uk": "У записі звучить I want to get changed."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to get changed.",
+                "uk": "У записі звучить I want to get changed."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i03:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i03:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i03:r3",
+            "text": "to gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I want ___ changed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-16:i03:r1",
+              "text": "to get"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i03:r2",
+              "text": "to getting"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i03:r3",
+              "text": "to gets"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:word:get-ready",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — get ready",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:word:get-ready:audio"
+        ],
+        "accessibilityLabel": "Картка слова — get ready",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:word:get-ready:audio",
+            "transcript": "get ready"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:word:get-ready:r1",
+              "targetText": "get ready",
+              "meaningByLocale": {
+                "ru": "подготовиться, собраться.",
+                "uk": "підготуватися, зібратися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get ready",
+            "definitionByLocale": {
+              "ru": "подготовиться, собраться.",
+              "uk": "підготуватися, зібратися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Мені потрібно зібратися».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Мені потрібно зібратися».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need to get ready.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно собраться».",
+            "uk": "Скажіть: «Мені потрібно зібратися»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "to",
+            "get",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i05:r1",
+            "text": "I need to get ready."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i05:r2",
+            "text": "We need to get ready."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i05:r3",
+            "text": "They need to get ready."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i05:audio",
+            "transcript": "I need to get ready."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:i05:r1",
+              "targetText": "I need to get ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i05:r2",
+              "targetText": "We need to get ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i05:r3",
+              "targetText": "They need to get ready.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to get ready.",
+                "uk": "У записі звучить I need to get ready."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to get ready.",
+                "uk": "У записі звучить I need to get ready."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i06:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i06:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i06:r3",
+            "text": "to gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I need ___ ready.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-16:i06:r1",
+              "text": "to get"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i06:r2",
+              "text": "to getting"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i06:r3",
+              "text": "to gets"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:word:get-started",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — get started",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:word:get-started:audio"
+        ],
+        "accessibilityLabel": "Картка слова — get started",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:word:get-started:audio",
+            "transcript": "get started"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:word:get-started:r1",
+              "targetText": "get started",
+              "meaningByLocale": {
+                "ru": "приступить к делу.",
+                "uk": "взятися до справи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get started",
+            "definitionByLocale": {
+              "ru": "приступить к делу.",
+              "uk": "взятися до справи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я планую зараз взятися до справи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я планую зараз взятися до справи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I plan to get started now.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я планирую сейчас приступить к делу».",
+            "uk": "Скажіть: «Я планую зараз взятися до справи»."
+          },
+          "orderedTokens": [
+            "I",
+            "plan",
+            "to",
+            "get",
+            "started",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i08:r1",
+            "text": "I plan to get started now."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i08:r2",
+            "text": "We plan to get started now."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i08:r3",
+            "text": "They plan to get started now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i08:audio",
+            "transcript": "I plan to get started now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:i08:r1",
+              "targetText": "I plan to get started now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i08:r2",
+              "targetText": "We plan to get started now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i08:r3",
+              "targetText": "They plan to get started now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to get started now.",
+                "uk": "У записі звучить I plan to get started now."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to get started now.",
+                "uk": "У записі звучить I plan to get started now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i09:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i09:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i09:r3",
+            "text": "to gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I plan ___ started now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-16:i09:r1",
+              "text": "to get"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i09:r2",
+              "text": "to getting"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i09:r3",
+              "text": "to gets"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:word:finish-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — finish up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:word:finish-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — finish up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:word:finish-up:audio",
+            "transcript": "finish up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:word:finish-up:r1",
+              "targetText": "finish up",
+              "meaningByLocale": {
+                "ru": "закончить оставшуюся работу.",
+                "uk": "закінчити решту роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "finish up",
+            "definitionByLocale": {
+              "ru": "закончить оставшуюся работу.",
+              "uk": "закінчити решту роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я сподіваюся скоро закінчити решту роботи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я сподіваюся скоро закінчити решту роботи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I hope to finish up soon.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я надеюсь скоро закончить оставшуюся работу».",
+            "uk": "Скажіть: «Я сподіваюся скоро закінчити решту роботи»."
+          },
+          "orderedTokens": [
+            "I",
+            "hope",
+            "to",
+            "finish",
+            "up",
+            "soon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i11:r1",
+            "text": "I hope to finish up soon."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i11:r2",
+            "text": "We hope to finish up soon."
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i11:r3",
+            "text": "They hope to finish up soon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i11:audio",
+            "transcript": "I hope to finish up soon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-16:i11:r1",
+              "targetText": "I hope to finish up soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i11:r2",
+              "targetText": "We hope to finish up soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i11:r3",
+              "targetText": "They hope to finish up soon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to finish up soon.",
+                "uk": "У записі звучить I hope to finish up soon."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to finish up soon.",
+                "uk": "У записі звучить I hope to finish up soon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-16:i12:r1",
+            "text": "to finish"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i12:r2",
+            "text": "to finishing"
+          },
+          {
+            "responseId": "en:lesson-21:session-16:i12:r3",
+            "text": "to finishes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I hope ___ up soon.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-16:i12:r1",
+              "text": "to finish"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i12:r2",
+              "text": "to finishing"
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i12:r3",
+              "text": "to finishes"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-16:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-16:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-16:i13:p1",
+              "target": "get changed",
+              "meaningByLocale": {
+                "ru": "переодеться",
+                "uk": "переодягнутися"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-16:i13:p2",
+              "target": "get ready",
+              "meaningByLocale": {
+                "ru": "подготовиться, собраться",
+                "uk": "підготуватися, зібратися"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-16:i13:p3",
+              "target": "get started",
+              "meaningByLocale": {
+                "ru": "приступить к делу",
+                "uk": "взятися до справи"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-16:i13:p4",
+              "target": "finish up",
+              "meaningByLocale": {
+                "ru": "закончить оставшуюся работу",
+                "uk": "закінчити решту роботи"
+              }
+            }
+          ],
+          "leftColumn": [
+            "get changed",
+            "get ready",
+            "get started",
+            "finish up"
+          ],
+          "rightColumn": [
+            "переодягнутися",
+            "підготуватися, зібратися",
+            "взятися до справи",
+            "закінчити решту роботи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: приємне заняття",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: приємне заняття",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: закінчити справу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: закінчити справу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви плануєте зараз взятися до справи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви плануєте зараз взятися до справи",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i16:audio",
+            "transcript": "I plan to get started now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I plan to get started now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-16:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви сподіваєтеся скоро закінчити решту роботи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви сподіваєтеся скоро закінчити решту роботи",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-16:i17:audio",
+            "transcript": "I hope to finish up soon."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I hope to finish up soon.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-16:word:get-changed",
+      "correctText": "get changed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i01",
+      "correctText": "I want to get changed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i02",
+      "correctText": "I want to get changed.",
+      "correctResponseId": "en:lesson-21:session-16:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i03",
+      "correctText": "to get",
+      "correctResponseId": "en:lesson-21:session-16:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:word:get-ready",
+      "correctText": "get ready",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i04",
+      "correctText": "I need to get ready.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i05",
+      "correctText": "I need to get ready.",
+      "correctResponseId": "en:lesson-21:session-16:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i06",
+      "correctText": "to get",
+      "correctResponseId": "en:lesson-21:session-16:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:word:get-started",
+      "correctText": "get started",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i07",
+      "correctText": "I plan to get started now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i08",
+      "correctText": "I plan to get started now.",
+      "correctResponseId": "en:lesson-21:session-16:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i09",
+      "correctText": "to get",
+      "correctResponseId": "en:lesson-21:session-16:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:word:finish-up",
+      "correctText": "finish up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i10",
+      "correctText": "I hope to finish up soon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i11",
+      "correctText": "I hope to finish up soon.",
+      "correctResponseId": "en:lesson-21:session-16:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i12",
+      "correctText": "to finish",
+      "correctResponseId": "en:lesson-21:session-16:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i14",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i15",
+      "correctText": "I must finish reading the description.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i16",
+      "correctText": "I plan to get started now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-16:i17",
+      "correctText": "I hope to finish up soon.",
+      "correctResponseId": null
+    }
+  ]
+}

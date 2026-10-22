@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-16:word:get-changed",
+    "correctText": "get changed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i01",
+    "correctText": "I want to get changed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i02",
+    "correctText": "I want to get changed.",
+    "correctResponseId": "en:lesson-21:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i03",
+    "correctText": "to get",
+    "correctResponseId": "en:lesson-21:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:word:get-ready",
+    "correctText": "get ready",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i04",
+    "correctText": "I need to get ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i05",
+    "correctText": "I need to get ready.",
+    "correctResponseId": "en:lesson-21:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i06",
+    "correctText": "to get",
+    "correctResponseId": "en:lesson-21:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:word:get-started",
+    "correctText": "get started",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i07",
+    "correctText": "I plan to get started now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i08",
+    "correctText": "I plan to get started now.",
+    "correctResponseId": "en:lesson-21:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i09",
+    "correctText": "to get",
+    "correctResponseId": "en:lesson-21:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:word:finish-up",
+    "correctText": "finish up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i10",
+    "correctText": "I hope to finish up soon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i11",
+    "correctText": "I hope to finish up soon.",
+    "correctResponseId": "en:lesson-21:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i12",
+    "correctText": "to finish",
+    "correctResponseId": "en:lesson-21:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i13",
+    "correctText": "en:lesson-21:session-16:i13:p1=get changed\nen:lesson-21:session-16:i13:p2=get ready\nen:lesson-21:session-16:i13:p3=get started\nen:lesson-21:session-16:i13:p4=finish up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i16",
+    "correctText": "I plan to get started now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-16:i17",
+    "correctText": "I hope to finish up soon.",
+    "correctResponseId": null
+  }
+]

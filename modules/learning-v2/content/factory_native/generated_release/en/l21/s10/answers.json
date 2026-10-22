@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-10:word:resign",
+    "correctText": "resign",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i01",
+    "correctText": "I intend to resign.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i02",
+    "correctText": "I intend to resign.",
+    "correctResponseId": "en:lesson-21:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i03",
+    "correctText": "to resign",
+    "correctResponseId": "en:lesson-21:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:word:relocate",
+    "correctText": "relocate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i04",
+    "correctText": "I plan to relocate next year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i05",
+    "correctText": "I plan to relocate next year.",
+    "correctResponseId": "en:lesson-21:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i06",
+    "correctText": "to relocate",
+    "correctResponseId": "en:lesson-21:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:word:retrain",
+    "correctText": "retrain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i07",
+    "correctText": "I hope to retrain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i08",
+    "correctText": "I hope to retrain.",
+    "correctResponseId": "en:lesson-21:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i09",
+    "correctText": "to retrain",
+    "correctResponseId": "en:lesson-21:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:word:start-over",
+    "correctText": "start over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i10",
+    "correctText": "I hope to start over.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i11",
+    "correctText": "I hope to start over.",
+    "correctResponseId": "en:lesson-21:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i12",
+    "correctText": "to start",
+    "correctResponseId": "en:lesson-21:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i13",
+    "correctText": "en:lesson-21:session-10:i13:p1=resign\nen:lesson-21:session-10:i13:p2=relocate\nen:lesson-21:session-10:i13:p3=retrain\nen:lesson-21:session-10:i13:p4=start over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i16",
+    "correctText": "I hope to retrain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-10:i17",
+    "correctText": "I hope to start over.",
+    "correctResponseId": null
+  }
+]

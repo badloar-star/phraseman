@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Намерение остаться",
+        "uk": "Намір залишитися"
+      },
+      "bodyByLocale": {
+        "ru": "Intend — намереваться, иметь план. Вы решили ещё пожить в этом городе и говорите, что намерены остаться здесь. Это намерение, а не обязательное обещание. В этих фразах следующее действие выражаем через to + начальную форму: intend to stay, expect to arrive, deserve to rest, offer to help. После to не добавляем -ing или -s. Сравните знакомое enjoy reading: форма второго глагола зависит от первого.",
+        "uk": "Intend — мати намір, планувати. Ви вирішили ще пожити в цьому місті й кажете, що маєте намір залишитися тут. Це намір, а не обовʼязкова обіцянка. У цих фразах наступну дію виражаємо через to + початкову форму: intend to stay, expect to arrive, deserve to rest, offer to help. Після to не додаємо -ing або -s. Порівняйте знайоме enjoy reading: форма другого дієслова залежить від першого."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-09:intro1:r1",
+              "text": "I intend to stay here."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro1:r2",
+              "text": "I intend to staying here."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro1:r3",
+              "text": "I intend to stays here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-09:intro1:r1",
+              "text": "I intend to stay here."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro1:r2",
+              "text": "I intend to staying here."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro1:r3",
+              "text": "I intend to stays here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ожидание и заслуженный отдых",
+        "uk": "Очікування та заслужений відпочинок"
+      },
+      "bodyByLocale": {
+        "ru": "Expect — ожидать, рассчитывать на что-то. По вашему плану поездки вы должны приехать завтра, и вы сообщаете об этом знакомому. Deserve — заслуживать: после напряжённой недели вы считаете, что заслуживаете отдыха. В этих фразах следующее действие выражаем через to + начальную форму: intend to stay, expect to arrive, deserve to rest, offer to help. После to не добавляем -ing или -s. Сравните знакомое enjoy reading: форма второго глагола зависит от первого.",
+        "uk": "Expect — очікувати, розраховувати на щось. За вашим планом поїздки ви маєте приїхати завтра й повідомляєте про це знайомому. Deserve — заслуговувати: після напруженого тижня ви вважаєте, що заслуговуєте на відпочинок. У цих фразах наступну дію виражаємо через to + початкову форму: intend to stay, expect to arrive, deserve to rest, offer to help. Після to не додаємо -ing або -s. Порівняйте знайоме enjoy reading: форма другого дієслова залежить від першого."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-09:intro2:r1",
+              "text": "I expect to arrive tomorrow."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro2:r2",
+              "text": "I expect to arriving tomorrow."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro2:r3",
+              "text": "I expect to arrives tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-09:intro2:r1",
+              "text": "I expect to arrive tomorrow."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro2:r2",
+              "text": "I expect to arriving tomorrow."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro2:r3",
+              "text": "I expect to arrives tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Предложить помощь",
+        "uk": "Запропонувати допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "Offer — предлагать сделать что-либо. В знакомом job offer это было существительное «предложение работы»; теперь offer — глагол. Когда у друзей много дел, вы обычно сами предлагаете помощь: I always offer to help. В этих фразах следующее действие выражаем через to + начальную форму: intend to stay, expect to arrive, deserve to rest, offer to help. После to не добавляем -ing или -s. Сравните знакомое enjoy reading: форма второго глагола зависит от первого.",
+        "uk": "Offer — пропонувати зробити щось. У знайомому job offer це був іменник «пропозиція роботи»; тепер offer — дієслово. Коли в друзів багато справ, ви зазвичай самі пропонуєте допомогу: I always offer to help. У цих фразах наступну дію виражаємо через to + початкову форму: intend to stay, expect to arrive, deserve to rest, offer to help. Після to не додаємо -ing або -s. Порівняйте знайоме enjoy reading: форма другого дієслова залежить від першого."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-09:intro3:r1",
+              "text": "I always offer to help."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro3:r2",
+              "text": "I always offer to helping."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro3:r3",
+              "text": "I always offer to helps."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-09:intro3:r1",
+              "text": "I always offer to help."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro3:r2",
+              "text": "I always offer to helping."
+            },
+            {
+              "responseId": "en:lesson-21:session-09:intro3:r3",
+              "text": "I always offer to helps."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "312012ddbf58692c15e7e34132ffd23b386ed8348c5bc323b17de3e311bca94b"
+}

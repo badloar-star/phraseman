@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Закончить выплаты",
+        "uk": "Завершити виплати"
+      },
+      "bodyByLocale": {
+        "ru": "Pay off — полностью выплатить долг. В этой ситуации вы надеетесь закончить выплаты по кредиту. Знакомое pay back значит вернуть деньги; pay off подчёркивает, что долг выплачен полностью. После hope, plan и intend здесь используем to + начальную форму глагола. Сохраняем остальные слова сочетания: to pay off, to shop around, to get by, to go without.",
+        "uk": "Pay off — повністю виплатити борг. У цій ситуації ви сподіваєтеся завершити виплати за кредитом. Знайоме pay back означає повернути гроші; pay off підкреслює, що борг виплачено повністю. Після hope, plan та intend тут використовуємо to + початкову форму дієслова. Зберігаємо решту слів сполучення: to pay off, to shop around, to get by, to go without."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-12:intro1:r1",
+              "text": "I hope to pay off my loan."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro1:r2",
+              "text": "I hope to paying off my loan."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro1:r3",
+              "text": "I hope to pays off my loan."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-12:intro1:r1",
+              "text": "I hope to pay off my loan."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro1:r2",
+              "text": "I hope to paying off my loan."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro1:r3",
+              "text": "I hope to pays off my loan."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сравнить цены",
+        "uk": "Порівняти ціни"
+      },
+      "bodyByLocale": {
+        "ru": "Shop around — посмотреть предложения в разных магазинах и сравнить цены или условия. Вы ещё не решили, где купить нужную вещь. Get by — обходиться тем, что есть; get by on my income означает, что своего дохода хватает на жизнь, хотя лишних денег может не быть. После hope, plan и intend здесь используем to + начальную форму глагола. Сохраняем остальные слова сочетания: to pay off, to shop around, to get by, to go without.",
+        "uk": "Shop around — переглянути пропозиції в різних магазинах і порівняти ціни або умови. Ви ще не вирішили, де купити потрібну річ. Get by — обходитися тим, що є; get by on my income означає, що свого доходу вистачає на життя, хоча зайвих грошей може не бути. Після hope, plan та intend тут використовуємо to + початкову форму дієслова. Зберігаємо решту слів сполучення: to pay off, to shop around, to get by, to go without."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-12:intro2:r1",
+              "text": "I plan to shop around."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro2:r2",
+              "text": "I plan to shopping around."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro2:r3",
+              "text": "I plan to shops around."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-12:intro2:r1",
+              "text": "I plan to shop around."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro2:r2",
+              "text": "I plan to shopping around."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro2:r3",
+              "text": "I plan to shops around."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обойтись без машины",
+        "uk": "Обійтися без машини"
+      },
+      "bodyByLocale": {
+        "ru": "Go without — обходиться без чего-либо. В учебной ситуации человек решил пользоваться общественным транспортом вместо личной машины. Он сообщает о своём намерении: I intend to go without a car. После hope, plan и intend здесь используем to + начальную форму глагола. Сохраняем остальные слова сочетания: to pay off, to shop around, to get by, to go without.",
+        "uk": "Go without — обходитися без чогось. У навчальній ситуації людина вирішила користуватися громадським транспортом замість власної машини. Вона повідомляє про свій намір: I intend to go without a car. Після hope, plan та intend тут використовуємо to + початкову форму дієслова. Зберігаємо решту слів сполучення: to pay off, to shop around, to get by, to go without."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-12:intro3:r1",
+              "text": "I intend to go without a car."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro3:r2",
+              "text": "I intend to going without a car."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro3:r3",
+              "text": "I intend to goes without a car."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-12:intro3:r1",
+              "text": "I intend to go without a car."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro3:r2",
+              "text": "I intend to going without a car."
+            },
+            {
+              "responseId": "en:lesson-21:session-12:intro3:r3",
+              "text": "I intend to goes without a car."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e3bb3498e667f33f4e517eb6ba50f5b74d1aef9a91fcba2cecd82769cf43c92a"
+}

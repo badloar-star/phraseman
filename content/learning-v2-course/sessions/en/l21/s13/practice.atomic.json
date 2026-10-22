@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-13",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-13:word:travel-light",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — travel light",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:word:travel-light:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — travel light",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:word:travel-light:audio",
+            "transcript": "travel light"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:word:travel-light:r1",
+              "targetText": "travel light",
+              "meaningByLocale": {
+                "ru": "путешествовать налегке.",
+                "uk": "подорожувати без зайвого багажу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "travel light",
+            "definitionByLocale": {
+              "ru": "путешествовать налегке.",
+              "uk": "подорожувати без зайвого багажу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я планирую путешествовать налегке».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я планирую путешествовать налегке».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I plan to travel light.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я планирую путешествовать налегке».",
+            "uk": "Скажіть: «Я планую подорожувати без зайвого багажу»."
+          },
+          "orderedTokens": [
+            "I",
+            "plan",
+            "to",
+            "travel",
+            "light"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i02:r1",
+            "text": "I plan to travel light."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i02:r2",
+            "text": "We plan to travel light."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i02:r3",
+            "text": "They plan to travel light."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i02:audio",
+            "transcript": "I plan to travel light."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:i02:r1",
+              "targetText": "I plan to travel light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i02:r2",
+              "targetText": "We plan to travel light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i02:r3",
+              "targetText": "They plan to travel light.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to travel light.",
+                "uk": "У записі звучить I plan to travel light."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to travel light.",
+                "uk": "У записі звучить I plan to travel light."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i03:r1",
+            "text": "to travel"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i03:r2",
+            "text": "to travelling"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i03:r3",
+            "text": "to travels"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I plan ___ light.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-13:i03:r1",
+              "text": "to travel"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i03:r2",
+              "text": "to travelling"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i03:r3",
+              "text": "to travels"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:word:book-ahead",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — book ahead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:word:book-ahead:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — book ahead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:word:book-ahead:audio",
+            "transcript": "book ahead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:word:book-ahead:r1",
+              "targetText": "book ahead",
+              "meaningByLocale": {
+                "ru": "бронировать заранее.",
+                "uk": "бронювати заздалегідь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "book ahead",
+            "definitionByLocale": {
+              "ru": "бронировать заранее.",
+              "uk": "бронювати заздалегідь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я намерен забронировать заранее».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я намерен забронировать заранее».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I intend to book ahead.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я намерен забронировать заранее».",
+            "uk": "Скажіть: «Я маю намір забронювати заздалегідь»."
+          },
+          "orderedTokens": [
+            "I",
+            "intend",
+            "to",
+            "book",
+            "ahead"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i05:r1",
+            "text": "I intend to book ahead."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i05:r2",
+            "text": "We intend to book ahead."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i05:r3",
+            "text": "They intend to book ahead."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i05:audio",
+            "transcript": "I intend to book ahead."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:i05:r1",
+              "targetText": "I intend to book ahead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i05:r2",
+              "targetText": "We intend to book ahead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i05:r3",
+              "targetText": "They intend to book ahead.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to book ahead.",
+                "uk": "У записі звучить I intend to book ahead."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to book ahead.",
+                "uk": "У записі звучить I intend to book ahead."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i06:r1",
+            "text": "to book"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i06:r2",
+            "text": "to booking"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i06:r3",
+            "text": "to books"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I intend ___ ahead.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-13:i06:r1",
+              "text": "to book"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i06:r2",
+              "text": "to booking"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i06:r3",
+              "text": "to books"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:word:unpack",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unpack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:word:unpack:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unpack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:word:unpack:audio",
+            "transcript": "unpack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:word:unpack:r1",
+              "targetText": "unpack",
+              "meaningByLocale": {
+                "ru": "разобрать вещи после поездки.",
+                "uk": "розібрати речі після поїздки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unpack",
+            "definitionByLocale": {
+              "ru": "разобрать вещи после поездки.",
+              "uk": "розібрати речі після поїздки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу сейчас разобрать вещи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу сейчас разобрать вещи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to unpack now.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу сейчас разобрать вещи».",
+            "uk": "Скажіть: «Я хочу зараз розібрати речі»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "unpack",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i08:r1",
+            "text": "I want to unpack now."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i08:r2",
+            "text": "We want to unpack now."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i08:r3",
+            "text": "They want to unpack now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i08:audio",
+            "transcript": "I want to unpack now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:i08:r1",
+              "targetText": "I want to unpack now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i08:r2",
+              "targetText": "We want to unpack now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i08:r3",
+              "targetText": "They want to unpack now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to unpack now.",
+                "uk": "У записі звучить I want to unpack now."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to unpack now.",
+                "uk": "У записі звучить I want to unpack now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i09:r1",
+            "text": "to unpack"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i09:r2",
+            "text": "to unpacking"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i09:r3",
+            "text": "to unpacks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I want ___ now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-13:i09:r1",
+              "text": "to unpack"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i09:r2",
+              "text": "to unpacking"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i09:r3",
+              "text": "to unpacks"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:word:overpack",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — overpack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:word:overpack:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — overpack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:word:overpack:audio",
+            "transcript": "overpack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:word:overpack:r1",
+              "targetText": "overpack",
+              "meaningByLocale": {
+                "ru": "взять в поездку слишком много вещей.",
+                "uk": "взяти в поїздку забагато речей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overpack",
+            "definitionByLocale": {
+              "ru": "взять в поездку слишком много вещей.",
+              "uk": "взяти в поїздку забагато речей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я не хочу брать в поездку слишком много вещей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я не хочу брать в поездку слишком много вещей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not want to overpack.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я не хочу брать в поездку слишком много вещей».",
+            "uk": "Скажіть: «Я не хочу брати в поїздку забагато речей»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "want",
+            "to",
+            "overpack"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i11:r1",
+            "text": "I do not want to overpack."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i11:r2",
+            "text": "We do not want to overpack."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i11:r3",
+            "text": "They do not want to overpack."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i11:audio",
+            "transcript": "I do not want to overpack."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:i11:r1",
+              "targetText": "I do not want to overpack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i11:r2",
+              "targetText": "We do not want to overpack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i11:r3",
+              "targetText": "They do not want to overpack.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to overpack.",
+                "uk": "У записі звучить I do not want to overpack."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to overpack.",
+                "uk": "У записі звучить I do not want to overpack."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i12:r1",
+            "text": "to overpack"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i12:r2",
+            "text": "to overpacking"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i12:r3",
+            "text": "to overpacks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I do not want ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-13:i12:r1",
+              "text": "to overpack"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i12:r2",
+              "text": "to overpacking"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i12:r3",
+              "text": "to overpacks"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-13:i13:p1",
+              "target": "travel light",
+              "meaningByLocale": {
+                "ru": "путешествовать налегке",
+                "uk": "подорожувати без зайвого багажу"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-13:i13:p2",
+              "target": "book ahead",
+              "meaningByLocale": {
+                "ru": "бронировать заранее",
+                "uk": "бронювати заздалегідь"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-13:i13:p3",
+              "target": "unpack",
+              "meaningByLocale": {
+                "ru": "разобрать вещи после поездки",
+                "uk": "розібрати речі після поїздки"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-13:i13:p4",
+              "target": "overpack",
+              "meaningByLocale": {
+                "ru": "взять в поездку слишком много вещей",
+                "uk": "взяти в поїздку забагато речей"
+              }
+            }
+          ],
+          "leftColumn": [
+            "travel light",
+            "book ahead",
+            "unpack",
+            "overpack"
+          ],
+          "rightColumn": [
+            "путешествовать налегке",
+            "бронировать заранее",
+            "разобрать вещи после поездки",
+            "взять в поездку слишком много вещей"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: приятное занятие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: приятное занятие",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: закончить дело",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: закончить дело",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы хотите сейчас разобрать вещи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы хотите сейчас разобрать вещи",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i16:audio",
+            "transcript": "I want to unpack now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to unpack now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы не хотите брать слишком много вещей",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы не хотите брать слишком много вещей",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i17:audio",
+            "transcript": "I do not want to overpack."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I do not want to overpack.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-13:word:travel-light",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — travel light",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:word:travel-light:audio"
+        ],
+        "accessibilityLabel": "Картка слова — travel light",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:word:travel-light:audio",
+            "transcript": "travel light"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:word:travel-light:r1",
+              "targetText": "travel light",
+              "meaningByLocale": {
+                "ru": "путешествовать налегке.",
+                "uk": "подорожувати без зайвого багажу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "travel light",
+            "definitionByLocale": {
+              "ru": "путешествовать налегке.",
+              "uk": "подорожувати без зайвого багажу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я планую подорожувати без зайвого багажу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я планую подорожувати без зайвого багажу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I plan to travel light.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я планирую путешествовать налегке».",
+            "uk": "Скажіть: «Я планую подорожувати без зайвого багажу»."
+          },
+          "orderedTokens": [
+            "I",
+            "plan",
+            "to",
+            "travel",
+            "light"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i02:r1",
+            "text": "I plan to travel light."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i02:r2",
+            "text": "We plan to travel light."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i02:r3",
+            "text": "They plan to travel light."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i02:audio",
+            "transcript": "I plan to travel light."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:i02:r1",
+              "targetText": "I plan to travel light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i02:r2",
+              "targetText": "We plan to travel light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i02:r3",
+              "targetText": "They plan to travel light.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to travel light.",
+                "uk": "У записі звучить I plan to travel light."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to travel light.",
+                "uk": "У записі звучить I plan to travel light."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i03:r1",
+            "text": "to travel"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i03:r2",
+            "text": "to travelling"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i03:r3",
+            "text": "to travels"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I plan ___ light.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-13:i03:r1",
+              "text": "to travel"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i03:r2",
+              "text": "to travelling"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i03:r3",
+              "text": "to travels"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:word:book-ahead",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — book ahead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:word:book-ahead:audio"
+        ],
+        "accessibilityLabel": "Картка слова — book ahead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:word:book-ahead:audio",
+            "transcript": "book ahead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:word:book-ahead:r1",
+              "targetText": "book ahead",
+              "meaningByLocale": {
+                "ru": "бронировать заранее.",
+                "uk": "бронювати заздалегідь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "book ahead",
+            "definitionByLocale": {
+              "ru": "бронировать заранее.",
+              "uk": "бронювати заздалегідь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я маю намір забронювати заздалегідь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я маю намір забронювати заздалегідь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I intend to book ahead.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я намерен забронировать заранее».",
+            "uk": "Скажіть: «Я маю намір забронювати заздалегідь»."
+          },
+          "orderedTokens": [
+            "I",
+            "intend",
+            "to",
+            "book",
+            "ahead"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i05:r1",
+            "text": "I intend to book ahead."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i05:r2",
+            "text": "We intend to book ahead."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i05:r3",
+            "text": "They intend to book ahead."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i05:audio",
+            "transcript": "I intend to book ahead."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:i05:r1",
+              "targetText": "I intend to book ahead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i05:r2",
+              "targetText": "We intend to book ahead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i05:r3",
+              "targetText": "They intend to book ahead.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to book ahead.",
+                "uk": "У записі звучить I intend to book ahead."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to book ahead.",
+                "uk": "У записі звучить I intend to book ahead."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i06:r1",
+            "text": "to book"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i06:r2",
+            "text": "to booking"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i06:r3",
+            "text": "to books"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I intend ___ ahead.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-13:i06:r1",
+              "text": "to book"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i06:r2",
+              "text": "to booking"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i06:r3",
+              "text": "to books"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:word:unpack",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unpack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:word:unpack:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unpack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:word:unpack:audio",
+            "transcript": "unpack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:word:unpack:r1",
+              "targetText": "unpack",
+              "meaningByLocale": {
+                "ru": "разобрать вещи после поездки.",
+                "uk": "розібрати речі після поїздки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unpack",
+            "definitionByLocale": {
+              "ru": "разобрать вещи после поездки.",
+              "uk": "розібрати речі після поїздки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу зараз розібрати речі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу зараз розібрати речі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to unpack now.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу сейчас разобрать вещи».",
+            "uk": "Скажіть: «Я хочу зараз розібрати речі»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "unpack",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i08:r1",
+            "text": "I want to unpack now."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i08:r2",
+            "text": "We want to unpack now."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i08:r3",
+            "text": "They want to unpack now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i08:audio",
+            "transcript": "I want to unpack now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:i08:r1",
+              "targetText": "I want to unpack now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i08:r2",
+              "targetText": "We want to unpack now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i08:r3",
+              "targetText": "They want to unpack now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to unpack now.",
+                "uk": "У записі звучить I want to unpack now."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to unpack now.",
+                "uk": "У записі звучить I want to unpack now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i09:r1",
+            "text": "to unpack"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i09:r2",
+            "text": "to unpacking"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i09:r3",
+            "text": "to unpacks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I want ___ now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-13:i09:r1",
+              "text": "to unpack"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i09:r2",
+              "text": "to unpacking"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i09:r3",
+              "text": "to unpacks"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:word:overpack",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — overpack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:word:overpack:audio"
+        ],
+        "accessibilityLabel": "Картка слова — overpack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:word:overpack:audio",
+            "transcript": "overpack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:word:overpack:r1",
+              "targetText": "overpack",
+              "meaningByLocale": {
+                "ru": "взять в поездку слишком много вещей.",
+                "uk": "взяти в поїздку забагато речей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overpack",
+            "definitionByLocale": {
+              "ru": "взять в поездку слишком много вещей.",
+              "uk": "взяти в поїздку забагато речей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я не хочу брати в поїздку забагато речей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я не хочу брати в поїздку забагато речей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not want to overpack.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я не хочу брать в поездку слишком много вещей».",
+            "uk": "Скажіть: «Я не хочу брати в поїздку забагато речей»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "want",
+            "to",
+            "overpack"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i11:r1",
+            "text": "I do not want to overpack."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i11:r2",
+            "text": "We do not want to overpack."
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i11:r3",
+            "text": "They do not want to overpack."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i11:audio",
+            "transcript": "I do not want to overpack."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-13:i11:r1",
+              "targetText": "I do not want to overpack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i11:r2",
+              "targetText": "We do not want to overpack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i11:r3",
+              "targetText": "They do not want to overpack.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to overpack.",
+                "uk": "У записі звучить I do not want to overpack."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to overpack.",
+                "uk": "У записі звучить I do not want to overpack."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-13:i12:r1",
+            "text": "to overpack"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i12:r2",
+            "text": "to overpacking"
+          },
+          {
+            "responseId": "en:lesson-21:session-13:i12:r3",
+            "text": "to overpacks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I do not want ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-13:i12:r1",
+              "text": "to overpack"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i12:r2",
+              "text": "to overpacking"
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i12:r3",
+              "text": "to overpacks"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-13:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-13:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-13:i13:p1",
+              "target": "travel light",
+              "meaningByLocale": {
+                "ru": "путешествовать налегке",
+                "uk": "подорожувати без зайвого багажу"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-13:i13:p2",
+              "target": "book ahead",
+              "meaningByLocale": {
+                "ru": "бронировать заранее",
+                "uk": "бронювати заздалегідь"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-13:i13:p3",
+              "target": "unpack",
+              "meaningByLocale": {
+                "ru": "разобрать вещи после поездки",
+                "uk": "розібрати речі після поїздки"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-13:i13:p4",
+              "target": "overpack",
+              "meaningByLocale": {
+                "ru": "взять в поездку слишком много вещей",
+                "uk": "взяти в поїздку забагато речей"
+              }
+            }
+          ],
+          "leftColumn": [
+            "travel light",
+            "book ahead",
+            "unpack",
+            "overpack"
+          ],
+          "rightColumn": [
+            "подорожувати без зайвого багажу",
+            "бронювати заздалегідь",
+            "розібрати речі після поїздки",
+            "взяти в поїздку забагато речей"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: приємне заняття",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: приємне заняття",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: закінчити справу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: закінчити справу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви хочете зараз розібрати речі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви хочете зараз розібрати речі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i16:audio",
+            "transcript": "I want to unpack now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to unpack now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-13:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви не хочете брати забагато речей",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-13:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви не хочете брати забагато речей",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-13:i17:audio",
+            "transcript": "I do not want to overpack."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I do not want to overpack.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-13:word:travel-light",
+      "correctText": "travel light",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i01",
+      "correctText": "I plan to travel light.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i02",
+      "correctText": "I plan to travel light.",
+      "correctResponseId": "en:lesson-21:session-13:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i03",
+      "correctText": "to travel",
+      "correctResponseId": "en:lesson-21:session-13:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:word:book-ahead",
+      "correctText": "book ahead",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i04",
+      "correctText": "I intend to book ahead.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i05",
+      "correctText": "I intend to book ahead.",
+      "correctResponseId": "en:lesson-21:session-13:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i06",
+      "correctText": "to book",
+      "correctResponseId": "en:lesson-21:session-13:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:word:unpack",
+      "correctText": "unpack",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i07",
+      "correctText": "I want to unpack now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i08",
+      "correctText": "I want to unpack now.",
+      "correctResponseId": "en:lesson-21:session-13:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i09",
+      "correctText": "to unpack",
+      "correctResponseId": "en:lesson-21:session-13:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:word:overpack",
+      "correctText": "overpack",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i10",
+      "correctText": "I do not want to overpack.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i11",
+      "correctText": "I do not want to overpack.",
+      "correctResponseId": "en:lesson-21:session-13:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i12",
+      "correctText": "to overpack",
+      "correctResponseId": "en:lesson-21:session-13:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i14",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i15",
+      "correctText": "I must finish reading the description.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i16",
+      "correctText": "I want to unpack now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-13:i17",
+      "correctText": "I do not want to overpack.",
+      "correctResponseId": null
+    }
+  ]
+}

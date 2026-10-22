@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-12:word:pay-off",
+    "correctText": "pay off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i01",
+    "correctText": "I hope to pay off my loan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i02",
+    "correctText": "I hope to pay off my loan.",
+    "correctResponseId": "en:lesson-21:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i03",
+    "correctText": "to pay",
+    "correctResponseId": "en:lesson-21:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:word:shop-around",
+    "correctText": "shop around",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i04",
+    "correctText": "I plan to shop around.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i05",
+    "correctText": "I plan to shop around.",
+    "correctResponseId": "en:lesson-21:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i06",
+    "correctText": "to shop",
+    "correctResponseId": "en:lesson-21:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:word:get-by",
+    "correctText": "get by",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i07",
+    "correctText": "I hope to get by on my income.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i08",
+    "correctText": "I hope to get by on my income.",
+    "correctResponseId": "en:lesson-21:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i09",
+    "correctText": "to get",
+    "correctResponseId": "en:lesson-21:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:word:go-without",
+    "correctText": "go without",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i10",
+    "correctText": "I intend to go without a car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i11",
+    "correctText": "I intend to go without a car.",
+    "correctResponseId": "en:lesson-21:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i12",
+    "correctText": "to go",
+    "correctResponseId": "en:lesson-21:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i13",
+    "correctText": "en:lesson-21:session-12:i13:p1=pay off\nen:lesson-21:session-12:i13:p2=shop around\nen:lesson-21:session-12:i13:p3=get by\nen:lesson-21:session-12:i13:p4=go without",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i16",
+    "correctText": "I hope to get by on my income.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-12:i17",
+    "correctText": "I intend to go without a car.",
+    "correctResponseId": null
+  }
+]

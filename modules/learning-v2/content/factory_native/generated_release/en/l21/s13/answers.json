@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-13:word:travel-light",
+    "correctText": "travel light",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i01",
+    "correctText": "I plan to travel light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i02",
+    "correctText": "I plan to travel light.",
+    "correctResponseId": "en:lesson-21:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i03",
+    "correctText": "to travel",
+    "correctResponseId": "en:lesson-21:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:word:book-ahead",
+    "correctText": "book ahead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i04",
+    "correctText": "I intend to book ahead.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i05",
+    "correctText": "I intend to book ahead.",
+    "correctResponseId": "en:lesson-21:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i06",
+    "correctText": "to book",
+    "correctResponseId": "en:lesson-21:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:word:unpack",
+    "correctText": "unpack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i07",
+    "correctText": "I want to unpack now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i08",
+    "correctText": "I want to unpack now.",
+    "correctResponseId": "en:lesson-21:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i09",
+    "correctText": "to unpack",
+    "correctResponseId": "en:lesson-21:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:word:overpack",
+    "correctText": "overpack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i10",
+    "correctText": "I do not want to overpack.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i11",
+    "correctText": "I do not want to overpack.",
+    "correctResponseId": "en:lesson-21:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i12",
+    "correctText": "to overpack",
+    "correctResponseId": "en:lesson-21:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i13",
+    "correctText": "en:lesson-21:session-13:i13:p1=travel light\nen:lesson-21:session-13:i13:p2=book ahead\nen:lesson-21:session-13:i13:p3=unpack\nen:lesson-21:session-13:i13:p4=overpack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i16",
+    "correctText": "I want to unpack now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-13:i17",
+    "correctText": "I do not want to overpack.",
+    "correctResponseId": null
+  }
+]

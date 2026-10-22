@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-14:word:mishear",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mishear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:word:mishear:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mishear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:word:mishear:audio",
+          "transcript": "mishear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-14:word:mishear:r1",
+            "targetText": "mishear",
+            "meaningByLocale": {
+              "ru": "неправильно расслышать.",
+              "uk": "неправильно розчути."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mishear",
+          "definitionByLocale": {
+            "ru": "неправильно расслышать.",
+            "uk": "неправильно розчути."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу неправильно розчути адресу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу неправильно розчути адресу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to mishear the address.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу неправильно расслышать адрес».",
+          "uk": "Скажіть: «Я не хочу неправильно розчути адресу»."
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "mishear",
+          "the",
+          "address"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-14:i02:r1",
+          "text": "I do not want to mishear the address."
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i02:r2",
+          "text": "We do not want to mishear the address."
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i02:r3",
+          "text": "They do not want to mishear the address."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:i02:audio",
+          "transcript": "I do not want to mishear the address."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-14:i02:r1",
+            "targetText": "I do not want to mishear the address.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i02:r2",
+            "targetText": "We do not want to mishear the address.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i02:r3",
+            "targetText": "They do not want to mishear the address.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to mishear the address.",
+              "uk": "У записі звучить I do not want to mishear the address."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to mishear the address.",
+              "uk": "У записі звучить I do not want to mishear the address."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-14:i03:r1",
+          "text": "to mishear"
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i03:r2",
+          "text": "to mishearing"
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i03:r3",
+          "text": "to mishears"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I do not want ___ the address.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-14:i03:r1",
+            "text": "to mishear"
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i03:r2",
+            "text": "to mishearing"
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i03:r3",
+            "text": "to mishears"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:word:misread",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — misread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:word:misread:audio"
+      ],
+      "accessibilityLabel": "Картка слова — misread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:word:misread:audio",
+          "transcript": "misread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-14:word:misread:r1",
+            "targetText": "misread",
+            "meaningByLocale": {
+              "ru": "неправильно прочитать.",
+              "uk": "неправильно прочитати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "misread",
+          "definitionByLocale": {
+            "ru": "неправильно прочитать.",
+            "uk": "неправильно прочитати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу неправильно прочитати інструкції».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу неправильно прочитати інструкції».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to misread the instructions.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу неправильно прочитать инструкции».",
+          "uk": "Скажіть: «Я не хочу неправильно прочитати інструкції»."
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "misread",
+          "the",
+          "instructions"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-14:i05:r1",
+          "text": "I do not want to misread the instructions."
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i05:r2",
+          "text": "We do not want to misread the instructions."
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i05:r3",
+          "text": "They do not want to misread the instructions."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:i05:audio",
+          "transcript": "I do not want to misread the instructions."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-14:i05:r1",
+            "targetText": "I do not want to misread the instructions.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i05:r2",
+            "targetText": "We do not want to misread the instructions.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i05:r3",
+            "targetText": "They do not want to misread the instructions.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-14:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to misread the instructions.",
+              "uk": "У записі звучить I do not want to misread the instructions."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to misread the instructions.",
+              "uk": "У записі звучить I do not want to misread the instructions."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-14:i06:r1",
+          "text": "to misread"
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i06:r2",
+          "text": "to misreading"
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i06:r3",
+          "text": "to misreads"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I do not want ___ the instructions.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-14:i06:r1",
+            "text": "to misread"
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i06:r2",
+            "text": "to misreading"
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i06:r3",
+            "text": "to misreads"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-14:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:word:mispronounce",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mispronounce",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:word:mispronounce:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mispronounce",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:word:mispronounce:audio",
+          "transcript": "mispronounce"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-14:word:mispronounce:r1",
+            "targetText": "mispronounce",
+            "meaningByLocale": {
+              "ru": "неправильно произнести.",
+              "uk": "неправильно вимовити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mispronounce",
+          "definitionByLocale": {
+            "ru": "неправильно произнести.",
+            "uk": "неправильно вимовити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу неправильно вимовити ваше імʼя».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу неправильно вимовити ваше імʼя».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to mispronounce your name.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу неправильно произнести ваше имя».",
+          "uk": "Скажіть: «Я не хочу неправильно вимовити ваше імʼя»."
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "mispronounce",
+          "your",
+          "name"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-14:i08:r1",
+          "text": "I do not want to mispronounce your name."
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i08:r2",
+          "text": "We do not want to mispronounce your name."
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i08:r3",
+          "text": "They do not want to mispronounce your name."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:i08:audio",
+          "transcript": "I do not want to mispronounce your name."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-14:i08:r1",
+            "targetText": "I do not want to mispronounce your name.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i08:r2",
+            "targetText": "We do not want to mispronounce your name.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i08:r3",
+            "targetText": "They do not want to mispronounce your name.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to mispronounce your name.",
+              "uk": "У записі звучить I do not want to mispronounce your name."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to mispronounce your name.",
+              "uk": "У записі звучить I do not want to mispronounce your name."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-14:i09:r1",
+          "text": "to mispronounce"
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i09:r2",
+          "text": "to mispronouncing"
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i09:r3",
+          "text": "to mispronounces"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I do not want ___ your name.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-14:i09:r1",
+            "text": "to mispronounce"
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i09:r2",
+            "text": "to mispronouncing"
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i09:r3",
+            "text": "to mispronounces"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:word:rephrase",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rephrase",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:word:rephrase:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rephrase",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:word:rephrase:audio",
+          "transcript": "rephrase"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-14:word:rephrase:r1",
+            "targetText": "rephrase",
+            "meaningByLocale": {
+              "ru": "сказать другими словами.",
+              "uk": "сказати іншими словами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rephrase",
+          "definitionByLocale": {
+            "ru": "сказать другими словами.",
+            "uk": "сказати іншими словами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу сформулювати запитання іншими словами».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу сформулювати запитання іншими словами».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to rephrase the question.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу сформулировать вопрос другими словами».",
+          "uk": "Скажіть: «Я хочу сформулювати запитання іншими словами»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "rephrase",
+          "the",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-14:i11:r1",
+          "text": "I want to rephrase the question."
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i11:r2",
+          "text": "We want to rephrase the question."
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i11:r3",
+          "text": "They want to rephrase the question."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:i11:audio",
+          "transcript": "I want to rephrase the question."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-14:i11:r1",
+            "targetText": "I want to rephrase the question.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i11:r2",
+            "targetText": "We want to rephrase the question.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i11:r3",
+            "targetText": "They want to rephrase the question.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-14:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to rephrase the question.",
+              "uk": "У записі звучить I want to rephrase the question."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to rephrase the question.",
+              "uk": "У записі звучить I want to rephrase the question."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-14:i12:r1",
+          "text": "to rephrase"
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i12:r2",
+          "text": "to rephrasing"
+        },
+        {
+          "responseId": "en:lesson-21:session-14:i12:r3",
+          "text": "to rephrases"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I want ___ the question.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-14:i12:r1",
+            "text": "to rephrase"
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i12:r2",
+            "text": "to rephrasing"
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i12:r3",
+            "text": "to rephrases"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-14:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-14:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-14:i13:p1",
+            "target": "mishear",
+            "meaningByLocale": {
+              "ru": "неправильно расслышать",
+              "uk": "неправильно розчути"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-14:i13:p2",
+            "target": "misread",
+            "meaningByLocale": {
+              "ru": "неправильно прочитать",
+              "uk": "неправильно прочитати"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-14:i13:p3",
+            "target": "mispronounce",
+            "meaningByLocale": {
+              "ru": "неправильно произнести",
+              "uk": "неправильно вимовити"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-14:i13:p4",
+            "target": "rephrase",
+            "meaningByLocale": {
+              "ru": "сказать другими словами",
+              "uk": "сказати іншими словами"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mishear",
+          "misread",
+          "mispronounce",
+          "rephrase"
+        ],
+        "rightColumn": [
+          "неправильно розчути",
+          "неправильно прочитати",
+          "неправильно вимовити",
+          "сказати іншими словами"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: приємне заняття",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: приємне заняття",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:i14:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: закінчити справу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: закінчити справу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:i15:audio",
+          "transcript": "I must finish reading the description."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I must finish reading the description.",
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "reading",
+          "the",
+          "description"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зверніться до співрозмовника: «Я не хочу неправильно вимовити ваше імʼя»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:i16:audio"
+      ],
+      "accessibilityLabel": "Зверніться до співрозмовника: «Я не хочу неправильно вимовити ваше імʼя»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:i16:audio",
+          "transcript": "I do not want to mispronounce your name."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I do not want to mispronounce your name.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-14:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ви хочете сформулювати запитання іншими словами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ви хочете сформулювати запитання іншими словами",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-14:i17:audio",
+          "transcript": "I want to rephrase the question."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to rephrase the question.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "29b3c584e2a8acef478055fd21257a59c6ce6432b72cb44b322dc26c28c1f38f"
+}

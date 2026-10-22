@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-12:word:pay-off",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pay off",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:word:pay-off:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pay off",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:word:pay-off:audio",
+          "transcript": "pay off"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-12:word:pay-off:r1",
+            "targetText": "pay off",
+            "meaningByLocale": {
+              "ru": "полностью выплатить долг.",
+              "uk": "повністю виплатити борг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pay off",
+          "definitionByLocale": {
+            "ru": "полностью выплатить долг.",
+            "uk": "повністю виплатити борг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я сподіваюся повністю виплатити свій кредит».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я сподіваюся повністю виплатити свій кредит».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I hope to pay off my loan.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я надеюсь полностью выплатить свой кредит».",
+          "uk": "Скажіть: «Я сподіваюся повністю виплатити свій кредит»."
+        },
+        "orderedTokens": [
+          "I",
+          "hope",
+          "to",
+          "pay",
+          "off",
+          "my",
+          "loan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-12:i02:r1",
+          "text": "I hope to pay off my loan."
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i02:r2",
+          "text": "We hope to pay off our loan."
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i02:r3",
+          "text": "They hope to pay off their loan."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:i02:audio",
+          "transcript": "I hope to pay off my loan."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-12:i02:r1",
+            "targetText": "I hope to pay off my loan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i02:r2",
+            "targetText": "We hope to pay off our loan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i02:r3",
+            "targetText": "They hope to pay off their loan.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I hope to pay off my loan.",
+              "uk": "У записі звучить I hope to pay off my loan."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I hope to pay off my loan.",
+              "uk": "У записі звучить I hope to pay off my loan."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-12:i03:r1",
+          "text": "to pay"
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i03:r2",
+          "text": "to paying"
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i03:r3",
+          "text": "to pays"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I hope ___ off my loan.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-12:i03:r1",
+            "text": "to pay"
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i03:r2",
+            "text": "to paying"
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i03:r3",
+            "text": "to pays"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:word:shop-around",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shop around",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:word:shop-around:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shop around",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:word:shop-around:audio",
+          "transcript": "shop around"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-12:word:shop-around:r1",
+            "targetText": "shop around",
+            "meaningByLocale": {
+              "ru": "сравнить предложения в разных магазинах.",
+              "uk": "порівняти пропозиції в різних магазинах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shop around",
+          "definitionByLocale": {
+            "ru": "сравнить предложения в разных магазинах.",
+            "uk": "порівняти пропозиції в різних магазинах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я планую порівняти пропозиції в різних магазинах».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я планую порівняти пропозиції в різних магазинах».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I plan to shop around.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я планирую сравнить предложения в разных магазинах».",
+          "uk": "Скажіть: «Я планую порівняти пропозиції в різних магазинах»."
+        },
+        "orderedTokens": [
+          "I",
+          "plan",
+          "to",
+          "shop",
+          "around"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-12:i05:r1",
+          "text": "I plan to shop around."
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i05:r2",
+          "text": "We plan to shop around."
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i05:r3",
+          "text": "They plan to shop around."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:i05:audio",
+          "transcript": "I plan to shop around."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-12:i05:r1",
+            "targetText": "I plan to shop around.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i05:r2",
+            "targetText": "We plan to shop around.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i05:r3",
+            "targetText": "They plan to shop around.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I plan to shop around.",
+              "uk": "У записі звучить I plan to shop around."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I plan to shop around.",
+              "uk": "У записі звучить I plan to shop around."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-12:i06:r1",
+          "text": "to shop"
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i06:r2",
+          "text": "to shopping"
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i06:r3",
+          "text": "to shops"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I plan ___ around.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-12:i06:r1",
+            "text": "to shop"
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i06:r2",
+            "text": "to shopping"
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i06:r3",
+            "text": "to shops"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:word:get-by",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — get by",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:word:get-by:audio"
+      ],
+      "accessibilityLabel": "Картка слова — get by",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:word:get-by:audio",
+          "transcript": "get by"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-12:word:get-by:r1",
+            "targetText": "get by",
+            "meaningByLocale": {
+              "ru": "обходиться имеющимися средствами.",
+              "uk": "обходитися наявними коштами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get by",
+          "definitionByLocale": {
+            "ru": "обходиться имеющимися средствами.",
+            "uk": "обходитися наявними коштами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я сподіваюся обходитися своїм доходом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я сподіваюся обходитися своїм доходом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I hope to get by on my income.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я надеюсь обходиться своим доходом».",
+          "uk": "Скажіть: «Я сподіваюся обходитися своїм доходом»."
+        },
+        "orderedTokens": [
+          "I",
+          "hope",
+          "to",
+          "get",
+          "by",
+          "on",
+          "my",
+          "income"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-12:i08:r1",
+          "text": "I hope to get by on my income."
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i08:r2",
+          "text": "We hope to get by on our income."
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i08:r3",
+          "text": "They hope to get by on their income."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:i08:audio",
+          "transcript": "I hope to get by on my income."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-12:i08:r1",
+            "targetText": "I hope to get by on my income.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i08:r2",
+            "targetText": "We hope to get by on our income.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i08:r3",
+            "targetText": "They hope to get by on their income.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I hope to get by on my income.",
+              "uk": "У записі звучить I hope to get by on my income."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I hope to get by on my income.",
+              "uk": "У записі звучить I hope to get by on my income."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-12:i09:r1",
+          "text": "to get"
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i09:r2",
+          "text": "to getting"
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i09:r3",
+          "text": "to gets"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I hope ___ by on my income.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-12:i09:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i09:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i09:r3",
+            "text": "to gets"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:word:go-without",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — go without",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:word:go-without:audio"
+      ],
+      "accessibilityLabel": "Картка слова — go without",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:word:go-without:audio",
+          "transcript": "go without"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-12:word:go-without:r1",
+            "targetText": "go without",
+            "meaningByLocale": {
+              "ru": "обходиться без чего-либо.",
+              "uk": "обходитися без чогось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "go without",
+          "definitionByLocale": {
+            "ru": "обходиться без чего-либо.",
+            "uk": "обходитися без чогось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я маю намір обходитися без машини».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я маю намір обходитися без машини».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I intend to go without a car.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я намерен обходиться без машины».",
+          "uk": "Скажіть: «Я маю намір обходитися без машини»."
+        },
+        "orderedTokens": [
+          "I",
+          "intend",
+          "to",
+          "go",
+          "without",
+          "a",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-12:i11:r1",
+          "text": "I intend to go without a car."
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i11:r2",
+          "text": "We intend to go without a car."
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i11:r3",
+          "text": "They intend to go without a car."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:i11:audio",
+          "transcript": "I intend to go without a car."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-12:i11:r1",
+            "targetText": "I intend to go without a car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i11:r2",
+            "targetText": "We intend to go without a car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i11:r3",
+            "targetText": "They intend to go without a car.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I intend to go without a car.",
+              "uk": "У записі звучить I intend to go without a car."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I intend to go without a car.",
+              "uk": "У записі звучить I intend to go without a car."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-12:i12:r1",
+          "text": "to go"
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i12:r2",
+          "text": "to going"
+        },
+        {
+          "responseId": "en:lesson-21:session-12:i12:r3",
+          "text": "to goes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I intend ___ without a car.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-12:i12:r1",
+            "text": "to go"
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i12:r2",
+            "text": "to going"
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i12:r3",
+            "text": "to goes"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-12:i13:p1",
+            "target": "pay off",
+            "meaningByLocale": {
+              "ru": "полностью выплатить долг",
+              "uk": "повністю виплатити борг"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-12:i13:p2",
+            "target": "shop around",
+            "meaningByLocale": {
+              "ru": "сравнить предложения в разных магазинах",
+              "uk": "порівняти пропозиції в різних магазинах"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-12:i13:p3",
+            "target": "get by",
+            "meaningByLocale": {
+              "ru": "обходиться имеющимися средствами",
+              "uk": "обходитися наявними коштами"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-12:i13:p4",
+            "target": "go without",
+            "meaningByLocale": {
+              "ru": "обходиться без чего-либо",
+              "uk": "обходитися без чогось"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pay off",
+          "shop around",
+          "get by",
+          "go without"
+        ],
+        "rightColumn": [
+          "повністю виплатити борг",
+          "порівняти пропозиції в різних магазинах",
+          "обходитися наявними коштами",
+          "обходитися без чогось"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: приємне заняття",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: приємне заняття",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:i14:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: закінчити справу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: закінчити справу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:i15:audio",
+          "transcript": "I must finish reading the description."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I must finish reading the description.",
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "reading",
+          "the",
+          "description"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ви сподіваєтеся обходитися своїм доходом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ви сподіваєтеся обходитися своїм доходом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:i16:audio",
+          "transcript": "I hope to get by on my income."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I hope to get by on my income.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-12:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ви маєте намір обходитися без машини",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ви маєте намір обходитися без машини",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-12:i17:audio",
+          "transcript": "I intend to go without a car."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I intend to go without a car.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cfaad3ba8988d66d21f4ed42b25623926d9774902129ee0dd976ecadab445134"
+}

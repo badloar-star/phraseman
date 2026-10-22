@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Правильно расслышать",
+        "uk": "Правильно розчути"
+      },
+      "bodyByLocale": {
+        "ru": "Mishear — неправильно расслышать. Вам диктуют адрес по телефону, а связь не очень хорошая. Вы хотите записать верный адрес и говорите, что не хотите расслышать его неправильно. Это ошибка слуха, а не чтения. После want здесь используем to + начальную форму. I do not want to… означает «я не хочу…». Отрицание не меняет форму действия после to.",
+        "uk": "Mishear — неправильно розчути. Вам диктують адресу телефоном, а звʼязок не дуже добрий. Ви хочете записати правильну адресу й кажете, що не хочете розчути її неправильно. Це помилка слуху, а не читання. Після want тут використовуємо to + початкову форму. I do not want to… означає «я не хочу…». Заперечення не змінює форми дії після to."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-14:intro1:r1",
+              "text": "I do not want to mishear the address."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro1:r2",
+              "text": "I do not want to mishearing the address."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro1:r3",
+              "text": "I do not want to mishears the address."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-14:intro1:r1",
+              "text": "I do not want to mishear the address."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro1:r2",
+              "text": "I do not want to mishearing the address."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro1:r3",
+              "text": "I do not want to mishears the address."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Прочитать и произнести",
+        "uk": "Прочитати й вимовити"
+      },
+      "bodyByLocale": {
+        "ru": "Misread — неправильно прочитать; например, принять одно слово за другое в инструкции. Mispronounce — неправильно произнести. Знакомое pronounce означает «произносить», а mis- добавляет значение ошибки. Вы стараетесь правильно назвать имя собеседника. После want здесь используем to + начальную форму. I do not want to… означает «я не хочу…». Отрицание не меняет форму действия после to.",
+        "uk": "Misread — неправильно прочитати; наприклад, сприйняти одне слово як інше в інструкції. Mispronounce — неправильно вимовити. Знайоме pronounce означає «вимовляти», а mis- додає значення помилки. Ви намагаєтеся правильно назвати імʼя співрозмовника. Після want тут використовуємо to + початкову форму. I do not want to… означає «я не хочу…». Заперечення не змінює форми дії після to."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-14:intro2:r1",
+              "text": "I do not want to misread the instructions."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro2:r2",
+              "text": "I do not want to misreading the instructions."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro2:r3",
+              "text": "I do not want to misreads the instructions."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-14:intro2:r1",
+              "text": "I do not want to misread the instructions."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro2:r2",
+              "text": "I do not want to misreading the instructions."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro2:r3",
+              "text": "I do not want to misreads the instructions."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сказать иначе",
+        "uk": "Сказати інакше"
+      },
+      "bodyByLocale": {
+        "ru": "Rephrase — сказать то же самое другими словами. Собеседник не понял ваш вопрос, поэтому вы хотите сформулировать его иначе. Вы сохраняете смысл вопроса, но выбираете другие слова. После want здесь используем to + начальную форму. I do not want to… означает «я не хочу…». Отрицание не меняет форму действия после to.",
+        "uk": "Rephrase — сказати те саме іншими словами. Співрозмовник не зрозумів вашого запитання, тому ви хочете сформулювати його інакше. Ви зберігаєте зміст запитання, але добираєте інші слова. Після want тут використовуємо to + початкову форму. I do not want to… означає «я не хочу…». Заперечення не змінює форми дії після to."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-14:intro3:r1",
+              "text": "I want to rephrase the question."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro3:r2",
+              "text": "I want to rephrasing the question."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro3:r3",
+              "text": "I want to rephrases the question."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-14:intro3:r1",
+              "text": "I want to rephrase the question."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro3:r2",
+              "text": "I want to rephrasing the question."
+            },
+            {
+              "responseId": "en:lesson-21:session-14:intro3:r3",
+              "text": "I want to rephrases the question."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "99de587fc7b51144e60abb4c48dc91b134775d09bb0150890dc27508c10e43ce"
+}

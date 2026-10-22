@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-11:word:sleep-in",
+    "correctText": "sleep in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i01",
+    "correctText": "I hope to sleep in tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i02",
+    "correctText": "I hope to sleep in tomorrow.",
+    "correctResponseId": "en:lesson-21:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i03",
+    "correctText": "to sleep",
+    "correctResponseId": "en:lesson-21:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:word:get-some-sleep",
+    "correctText": "get some sleep",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i04",
+    "correctText": "I hope to get some sleep tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i05",
+    "correctText": "I hope to get some sleep tonight.",
+    "correctResponseId": "en:lesson-21:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i06",
+    "correctText": "to get",
+    "correctResponseId": "en:lesson-21:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:word:clear-my-head",
+    "correctText": "clear my head",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i07",
+    "correctText": "I want to clear my head.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i08",
+    "correctText": "I want to clear my head.",
+    "correctResponseId": "en:lesson-21:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i09",
+    "correctText": "to clear",
+    "correctResponseId": "en:lesson-21:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:word:have-a-good-time",
+    "correctText": "have a good time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i10",
+    "correctText": "I hope to have a good time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i11",
+    "correctText": "I hope to have a good time.",
+    "correctResponseId": "en:lesson-21:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i12",
+    "correctText": "to have",
+    "correctResponseId": "en:lesson-21:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i13",
+    "correctText": "en:lesson-21:session-11:i13:p1=sleep in\nen:lesson-21:session-11:i13:p2=get some sleep\nen:lesson-21:session-11:i13:p3=clear my head\nen:lesson-21:session-11:i13:p4=have a good time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i16",
+    "correctText": "I want to clear my head.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-11:i17",
+    "correctText": "I hope to have a good time.",
+    "correctResponseId": null
+  }
+]

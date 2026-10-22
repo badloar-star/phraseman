@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-14:word:mishear",
+    "correctText": "mishear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i01",
+    "correctText": "I do not want to mishear the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i02",
+    "correctText": "I do not want to mishear the address.",
+    "correctResponseId": "en:lesson-21:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i03",
+    "correctText": "to mishear",
+    "correctResponseId": "en:lesson-21:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:word:misread",
+    "correctText": "misread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i04",
+    "correctText": "I do not want to misread the instructions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i05",
+    "correctText": "I do not want to misread the instructions.",
+    "correctResponseId": "en:lesson-21:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i06",
+    "correctText": "to misread",
+    "correctResponseId": "en:lesson-21:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:word:mispronounce",
+    "correctText": "mispronounce",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i07",
+    "correctText": "I do not want to mispronounce your name.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i08",
+    "correctText": "I do not want to mispronounce your name.",
+    "correctResponseId": "en:lesson-21:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i09",
+    "correctText": "to mispronounce",
+    "correctResponseId": "en:lesson-21:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:word:rephrase",
+    "correctText": "rephrase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i10",
+    "correctText": "I want to rephrase the question.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i11",
+    "correctText": "I want to rephrase the question.",
+    "correctResponseId": "en:lesson-21:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i12",
+    "correctText": "to rephrase",
+    "correctResponseId": "en:lesson-21:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i13",
+    "correctText": "en:lesson-21:session-14:i13:p1=mishear\nen:lesson-21:session-14:i13:p2=misread\nen:lesson-21:session-14:i13:p3=mispronounce\nen:lesson-21:session-14:i13:p4=rephrase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i16",
+    "correctText": "I do not want to mispronounce your name.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-14:i17",
+    "correctText": "I want to rephrase the question.",
+    "correctResponseId": null
+  }
+]

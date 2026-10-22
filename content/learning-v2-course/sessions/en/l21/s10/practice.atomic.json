@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-10",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-10:word:resign",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — resign",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:word:resign:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — resign",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:word:resign:audio",
+            "transcript": "resign"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:word:resign:r1",
+              "targetText": "resign",
+              "meaningByLocale": {
+                "ru": "уволиться по собственному желанию.",
+                "uk": "звільнитися за власним бажанням."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "resign",
+            "definitionByLocale": {
+              "ru": "уволиться по собственному желанию.",
+              "uk": "звільнитися за власним бажанням."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я намерен уволиться по собственному желанию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я намерен уволиться по собственному желанию».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I intend to resign.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я намерен уволиться по собственному желанию».",
+            "uk": "Скажіть: «Я маю намір звільнитися за власним бажанням»."
+          },
+          "orderedTokens": [
+            "I",
+            "intend",
+            "to",
+            "resign"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i02:r1",
+            "text": "I intend to resign."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i02:r2",
+            "text": "We intend to resign."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i02:r3",
+            "text": "They intend to resign."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i02:audio",
+            "transcript": "I intend to resign."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:i02:r1",
+              "targetText": "I intend to resign.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i02:r2",
+              "targetText": "We intend to resign.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i02:r3",
+              "targetText": "They intend to resign.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to resign.",
+                "uk": "У записі звучить I intend to resign."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to resign.",
+                "uk": "У записі звучить I intend to resign."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i03:r1",
+            "text": "to resign"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i03:r2",
+            "text": "to resigning"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i03:r3",
+            "text": "to resigns"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I intend ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-10:i03:r1",
+              "text": "to resign"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i03:r2",
+              "text": "to resigning"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i03:r3",
+              "text": "to resigns"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:word:relocate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — relocate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:word:relocate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — relocate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:word:relocate:audio",
+            "transcript": "relocate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:word:relocate:r1",
+              "targetText": "relocate",
+              "meaningByLocale": {
+                "ru": "переехать в другое место.",
+                "uk": "переїхати в інше місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "relocate",
+            "definitionByLocale": {
+              "ru": "переехать в другое место.",
+              "uk": "переїхати в інше місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я планирую переехать в следующем году».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я планирую переехать в следующем году».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I plan to relocate next year.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я планирую переехать в следующем году».",
+            "uk": "Скажіть: «Я планую переїхати наступного року»."
+          },
+          "orderedTokens": [
+            "I",
+            "plan",
+            "to",
+            "relocate",
+            "next",
+            "year"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i05:r1",
+            "text": "I plan to relocate next year."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i05:r2",
+            "text": "We plan to relocate next year."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i05:r3",
+            "text": "They plan to relocate next year."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i05:audio",
+            "transcript": "I plan to relocate next year."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:i05:r1",
+              "targetText": "I plan to relocate next year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i05:r2",
+              "targetText": "We plan to relocate next year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i05:r3",
+              "targetText": "They plan to relocate next year.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to relocate next year.",
+                "uk": "У записі звучить I plan to relocate next year."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to relocate next year.",
+                "uk": "У записі звучить I plan to relocate next year."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i06:r1",
+            "text": "to relocate"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i06:r2",
+            "text": "to relocating"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i06:r3",
+            "text": "to relocates"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I plan ___ next year.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-10:i06:r1",
+              "text": "to relocate"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i06:r2",
+              "text": "to relocating"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i06:r3",
+              "text": "to relocates"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:word:retrain",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — retrain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:word:retrain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — retrain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:word:retrain:audio",
+            "transcript": "retrain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:word:retrain:r1",
+              "targetText": "retrain",
+              "meaningByLocale": {
+                "ru": "переучиться, освоить другую профессию.",
+                "uk": "перевчитися, опанувати іншу професію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "retrain",
+            "definitionByLocale": {
+              "ru": "переучиться, освоить другую профессию.",
+              "uk": "перевчитися, опанувати іншу професію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я надеюсь освоить другую профессию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я надеюсь освоить другую профессию».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I hope to retrain.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я надеюсь освоить другую профессию».",
+            "uk": "Скажіть: «Я сподіваюся опанувати іншу професію»."
+          },
+          "orderedTokens": [
+            "I",
+            "hope",
+            "to",
+            "retrain"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i08:r1",
+            "text": "I hope to retrain."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i08:r2",
+            "text": "We hope to retrain."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i08:r3",
+            "text": "They hope to retrain."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i08:audio",
+            "transcript": "I hope to retrain."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:i08:r1",
+              "targetText": "I hope to retrain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i08:r2",
+              "targetText": "We hope to retrain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i08:r3",
+              "targetText": "They hope to retrain.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to retrain.",
+                "uk": "У записі звучить I hope to retrain."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to retrain.",
+                "uk": "У записі звучить I hope to retrain."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i09:r1",
+            "text": "to retrain"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i09:r2",
+            "text": "to retraining"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i09:r3",
+            "text": "to retrains"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I hope ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-10:i09:r1",
+              "text": "to retrain"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i09:r2",
+              "text": "to retraining"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i09:r3",
+              "text": "to retrains"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:word:start-over",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — start over",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:word:start-over:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — start over",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:word:start-over:audio",
+            "transcript": "start over"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:word:start-over:r1",
+              "targetText": "start over",
+              "meaningByLocale": {
+                "ru": "начать заново.",
+                "uk": "почати заново."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "start over",
+            "definitionByLocale": {
+              "ru": "начать заново.",
+              "uk": "почати заново."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я надеюсь начать заново».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я надеюсь начать заново».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I hope to start over.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я надеюсь начать заново».",
+            "uk": "Скажіть: «Я сподіваюся почати заново»."
+          },
+          "orderedTokens": [
+            "I",
+            "hope",
+            "to",
+            "start",
+            "over"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i11:r1",
+            "text": "I hope to start over."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i11:r2",
+            "text": "We hope to start over."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i11:r3",
+            "text": "They hope to start over."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i11:audio",
+            "transcript": "I hope to start over."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:i11:r1",
+              "targetText": "I hope to start over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i11:r2",
+              "targetText": "We hope to start over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i11:r3",
+              "targetText": "They hope to start over.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to start over.",
+                "uk": "У записі звучить I hope to start over."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to start over.",
+                "uk": "У записі звучить I hope to start over."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i12:r1",
+            "text": "to start"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i12:r2",
+            "text": "to starting"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i12:r3",
+            "text": "to starts"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I hope ___ over.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-10:i12:r1",
+              "text": "to start"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i12:r2",
+              "text": "to starting"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i12:r3",
+              "text": "to starts"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-10:i13:p1",
+              "target": "resign",
+              "meaningByLocale": {
+                "ru": "уволиться по собственному желанию",
+                "uk": "звільнитися за власним бажанням"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-10:i13:p2",
+              "target": "relocate",
+              "meaningByLocale": {
+                "ru": "переехать в другое место",
+                "uk": "переїхати в інше місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-10:i13:p3",
+              "target": "retrain",
+              "meaningByLocale": {
+                "ru": "переучиться, освоить другую профессию",
+                "uk": "перевчитися, опанувати іншу професію"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-10:i13:p4",
+              "target": "start over",
+              "meaningByLocale": {
+                "ru": "начать заново",
+                "uk": "почати заново"
+              }
+            }
+          ],
+          "leftColumn": [
+            "resign",
+            "relocate",
+            "retrain",
+            "start over"
+          ],
+          "rightColumn": [
+            "уволиться по собственному желанию",
+            "переехать в другое место",
+            "переучиться, освоить другую профессию",
+            "начать заново"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: приятное занятие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: приятное занятие",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: закончить дело",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: закончить дело",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы надеетесь освоить другую профессию",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы надеетесь освоить другую профессию",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i16:audio",
+            "transcript": "I hope to retrain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I hope to retrain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы надеетесь начать заново",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы надеетесь начать заново",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i17:audio",
+            "transcript": "I hope to start over."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I hope to start over.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-10:word:resign",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — resign",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:word:resign:audio"
+        ],
+        "accessibilityLabel": "Картка слова — resign",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:word:resign:audio",
+            "transcript": "resign"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:word:resign:r1",
+              "targetText": "resign",
+              "meaningByLocale": {
+                "ru": "уволиться по собственному желанию.",
+                "uk": "звільнитися за власним бажанням."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "resign",
+            "definitionByLocale": {
+              "ru": "уволиться по собственному желанию.",
+              "uk": "звільнитися за власним бажанням."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я маю намір звільнитися за власним бажанням».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я маю намір звільнитися за власним бажанням».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I intend to resign.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я намерен уволиться по собственному желанию».",
+            "uk": "Скажіть: «Я маю намір звільнитися за власним бажанням»."
+          },
+          "orderedTokens": [
+            "I",
+            "intend",
+            "to",
+            "resign"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i02:r1",
+            "text": "I intend to resign."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i02:r2",
+            "text": "We intend to resign."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i02:r3",
+            "text": "They intend to resign."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i02:audio",
+            "transcript": "I intend to resign."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:i02:r1",
+              "targetText": "I intend to resign.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i02:r2",
+              "targetText": "We intend to resign.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i02:r3",
+              "targetText": "They intend to resign.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to resign.",
+                "uk": "У записі звучить I intend to resign."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I intend to resign.",
+                "uk": "У записі звучить I intend to resign."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i03:r1",
+            "text": "to resign"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i03:r2",
+            "text": "to resigning"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i03:r3",
+            "text": "to resigns"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I intend ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-10:i03:r1",
+              "text": "to resign"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i03:r2",
+              "text": "to resigning"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i03:r3",
+              "text": "to resigns"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:word:relocate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — relocate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:word:relocate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — relocate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:word:relocate:audio",
+            "transcript": "relocate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:word:relocate:r1",
+              "targetText": "relocate",
+              "meaningByLocale": {
+                "ru": "переехать в другое место.",
+                "uk": "переїхати в інше місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "relocate",
+            "definitionByLocale": {
+              "ru": "переехать в другое место.",
+              "uk": "переїхати в інше місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я планую переїхати наступного року».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я планую переїхати наступного року».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I plan to relocate next year.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я планирую переехать в следующем году».",
+            "uk": "Скажіть: «Я планую переїхати наступного року»."
+          },
+          "orderedTokens": [
+            "I",
+            "plan",
+            "to",
+            "relocate",
+            "next",
+            "year"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i05:r1",
+            "text": "I plan to relocate next year."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i05:r2",
+            "text": "We plan to relocate next year."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i05:r3",
+            "text": "They plan to relocate next year."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i05:audio",
+            "transcript": "I plan to relocate next year."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:i05:r1",
+              "targetText": "I plan to relocate next year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i05:r2",
+              "targetText": "We plan to relocate next year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i05:r3",
+              "targetText": "They plan to relocate next year.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to relocate next year.",
+                "uk": "У записі звучить I plan to relocate next year."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to relocate next year.",
+                "uk": "У записі звучить I plan to relocate next year."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i06:r1",
+            "text": "to relocate"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i06:r2",
+            "text": "to relocating"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i06:r3",
+            "text": "to relocates"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I plan ___ next year.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-10:i06:r1",
+              "text": "to relocate"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i06:r2",
+              "text": "to relocating"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i06:r3",
+              "text": "to relocates"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:word:retrain",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — retrain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:word:retrain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — retrain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:word:retrain:audio",
+            "transcript": "retrain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:word:retrain:r1",
+              "targetText": "retrain",
+              "meaningByLocale": {
+                "ru": "переучиться, освоить другую профессию.",
+                "uk": "перевчитися, опанувати іншу професію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "retrain",
+            "definitionByLocale": {
+              "ru": "переучиться, освоить другую профессию.",
+              "uk": "перевчитися, опанувати іншу професію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я сподіваюся опанувати іншу професію».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я сподіваюся опанувати іншу професію».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I hope to retrain.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я надеюсь освоить другую профессию».",
+            "uk": "Скажіть: «Я сподіваюся опанувати іншу професію»."
+          },
+          "orderedTokens": [
+            "I",
+            "hope",
+            "to",
+            "retrain"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i08:r1",
+            "text": "I hope to retrain."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i08:r2",
+            "text": "We hope to retrain."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i08:r3",
+            "text": "They hope to retrain."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i08:audio",
+            "transcript": "I hope to retrain."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:i08:r1",
+              "targetText": "I hope to retrain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i08:r2",
+              "targetText": "We hope to retrain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i08:r3",
+              "targetText": "They hope to retrain.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to retrain.",
+                "uk": "У записі звучить I hope to retrain."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to retrain.",
+                "uk": "У записі звучить I hope to retrain."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i09:r1",
+            "text": "to retrain"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i09:r2",
+            "text": "to retraining"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i09:r3",
+            "text": "to retrains"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I hope ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-10:i09:r1",
+              "text": "to retrain"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i09:r2",
+              "text": "to retraining"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i09:r3",
+              "text": "to retrains"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:word:start-over",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — start over",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:word:start-over:audio"
+        ],
+        "accessibilityLabel": "Картка слова — start over",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:word:start-over:audio",
+            "transcript": "start over"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:word:start-over:r1",
+              "targetText": "start over",
+              "meaningByLocale": {
+                "ru": "начать заново.",
+                "uk": "почати заново."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "start over",
+            "definitionByLocale": {
+              "ru": "начать заново.",
+              "uk": "почати заново."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я сподіваюся почати заново».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я сподіваюся почати заново».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I hope to start over.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я надеюсь начать заново».",
+            "uk": "Скажіть: «Я сподіваюся почати заново»."
+          },
+          "orderedTokens": [
+            "I",
+            "hope",
+            "to",
+            "start",
+            "over"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i11:r1",
+            "text": "I hope to start over."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i11:r2",
+            "text": "We hope to start over."
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i11:r3",
+            "text": "They hope to start over."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i11:audio",
+            "transcript": "I hope to start over."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-10:i11:r1",
+              "targetText": "I hope to start over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i11:r2",
+              "targetText": "We hope to start over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i11:r3",
+              "targetText": "They hope to start over.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to start over.",
+                "uk": "У записі звучить I hope to start over."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I hope to start over.",
+                "uk": "У записі звучить I hope to start over."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-10:i12:r1",
+            "text": "to start"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i12:r2",
+            "text": "to starting"
+          },
+          {
+            "responseId": "en:lesson-21:session-10:i12:r3",
+            "text": "to starts"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I hope ___ over.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-10:i12:r1",
+              "text": "to start"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i12:r2",
+              "text": "to starting"
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i12:r3",
+              "text": "to starts"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-10:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-10:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-10:i13:p1",
+              "target": "resign",
+              "meaningByLocale": {
+                "ru": "уволиться по собственному желанию",
+                "uk": "звільнитися за власним бажанням"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-10:i13:p2",
+              "target": "relocate",
+              "meaningByLocale": {
+                "ru": "переехать в другое место",
+                "uk": "переїхати в інше місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-10:i13:p3",
+              "target": "retrain",
+              "meaningByLocale": {
+                "ru": "переучиться, освоить другую профессию",
+                "uk": "перевчитися, опанувати іншу професію"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-10:i13:p4",
+              "target": "start over",
+              "meaningByLocale": {
+                "ru": "начать заново",
+                "uk": "почати заново"
+              }
+            }
+          ],
+          "leftColumn": [
+            "resign",
+            "relocate",
+            "retrain",
+            "start over"
+          ],
+          "rightColumn": [
+            "звільнитися за власним бажанням",
+            "переїхати в інше місце",
+            "перевчитися, опанувати іншу професію",
+            "почати заново"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: приємне заняття",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: приємне заняття",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: закінчити справу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: закінчити справу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви сподіваєтеся опанувати іншу професію",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви сподіваєтеся опанувати іншу професію",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i16:audio",
+            "transcript": "I hope to retrain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I hope to retrain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-10:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви сподіваєтеся почати заново",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви сподіваєтеся почати заново",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-10:i17:audio",
+            "transcript": "I hope to start over."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I hope to start over.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-10:word:resign",
+      "correctText": "resign",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i01",
+      "correctText": "I intend to resign.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i02",
+      "correctText": "I intend to resign.",
+      "correctResponseId": "en:lesson-21:session-10:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i03",
+      "correctText": "to resign",
+      "correctResponseId": "en:lesson-21:session-10:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:word:relocate",
+      "correctText": "relocate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i04",
+      "correctText": "I plan to relocate next year.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i05",
+      "correctText": "I plan to relocate next year.",
+      "correctResponseId": "en:lesson-21:session-10:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i06",
+      "correctText": "to relocate",
+      "correctResponseId": "en:lesson-21:session-10:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:word:retrain",
+      "correctText": "retrain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i07",
+      "correctText": "I hope to retrain.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i08",
+      "correctText": "I hope to retrain.",
+      "correctResponseId": "en:lesson-21:session-10:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i09",
+      "correctText": "to retrain",
+      "correctResponseId": "en:lesson-21:session-10:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:word:start-over",
+      "correctText": "start over",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i10",
+      "correctText": "I hope to start over.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i11",
+      "correctText": "I hope to start over.",
+      "correctResponseId": "en:lesson-21:session-10:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i12",
+      "correctText": "to start",
+      "correctResponseId": "en:lesson-21:session-10:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i14",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i15",
+      "correctText": "I must finish reading the description.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i16",
+      "correctText": "I hope to retrain.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-10:i17",
+      "correctText": "I hope to start over.",
+      "correctResponseId": null
+    }
+  ]
+}

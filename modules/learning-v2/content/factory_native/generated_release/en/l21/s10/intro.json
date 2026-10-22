@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уйти с работы",
+        "uk": "Піти з роботи"
+      },
+      "bodyByLocale": {
+        "ru": "Resign — уволиться по собственному желанию. В учебной ситуации человек решил уйти с нынешней работы и сообщает о своём намерении. Слово означает его собственное решение, а не увольнение работодателем. После intend, plan и hope в этих фразах используем to + начальную форму глагола. Intend обозначает намерение, plan — план, hope — надежду. После to формы resign, relocate, retrain и start остаются без -ing и -s.",
+        "uk": "Resign — звільнитися за власним бажанням. У навчальній ситуації людина вирішила піти з нинішньої роботи й повідомляє про свій намір. Слово означає її власне рішення, а не звільнення роботодавцем. Після intend, plan і hope в цих фразах використовуємо to + початкову форму дієслова. Intend позначає намір, plan — план, hope — надію. Після to форми resign, relocate, retrain і start залишаються без -ing та -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-10:intro1:r1",
+              "text": "I intend to resign."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro1:r2",
+              "text": "I intend to resigning."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro1:r3",
+              "text": "I intend to resigns."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-10:intro1:r1",
+              "text": "I intend to resign."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro1:r2",
+              "text": "I intend to resigning."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro1:r3",
+              "text": "I intend to resigns."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Переезд и новая профессия",
+        "uk": "Переїзд і нова професія"
+      },
+      "bodyByLocale": {
+        "ru": "Relocate — переехать в другое место; это слово часто встречается при обсуждении переезда ради работы. Вы планируете переезд на следующий год. Retrain — переучиться для другой профессии: вы надеетесь освоить новую работу, а не просто повторить уже известный материал. После intend, plan и hope в этих фразах используем to + начальную форму глагола. Intend обозначает намерение, plan — план, hope — надежду. После to формы resign, relocate, retrain и start остаются без -ing и -s.",
+        "uk": "Relocate — переїхати в інше місце; це слово часто трапляється під час обговорення переїзду заради роботи. Ви плануєте переїзд на наступний рік. Retrain — перевчитися для іншої професії: ви сподіваєтеся опанувати нову роботу, а не просто повторити вже відомий матеріал. Після intend, plan і hope в цих фразах використовуємо to + початкову форму дієслова. Intend позначає намір, plan — план, hope — надію. Після to форми resign, relocate, retrain і start залишаються без -ing та -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-10:intro2:r1",
+              "text": "I plan to relocate next year."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro2:r2",
+              "text": "I plan to relocating next year."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro2:r3",
+              "text": "I plan to relocates next year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-10:intro2:r1",
+              "text": "I plan to relocate next year."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro2:r2",
+              "text": "I plan to relocating next year."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro2:r3",
+              "text": "I plan to relocates next year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Попробовать заново",
+        "uk": "Спробувати заново"
+      },
+      "bodyByLocale": {
+        "ru": "Start over — начать заново после прежней попытки. Вы прервали обучение, но теперь надеетесь начать его заново. Это знакомая идея «с нуля», выраженная глагольным сочетанием: start over. После intend, plan и hope в этих фразах используем to + начальную форму глагола. Intend обозначает намерение, plan — план, hope — надежду. После to формы resign, relocate, retrain и start остаются без -ing и -s.",
+        "uk": "Start over — почати заново після попередньої спроби. Ви перервали навчання, але тепер сподіваєтеся почати його заново. Це знайома ідея «з нуля», виражена дієслівним сполученням: start over. Після intend, plan і hope в цих фразах використовуємо to + початкову форму дієслова. Intend позначає намір, plan — план, hope — надію. Після to форми resign, relocate, retrain і start залишаються без -ing та -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-10:intro3:r1",
+              "text": "I hope to start over."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro3:r2",
+              "text": "I hope to starting over."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro3:r3",
+              "text": "I hope to starts over."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-10:intro3:r1",
+              "text": "I hope to start over."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro3:r2",
+              "text": "I hope to starting over."
+            },
+            {
+              "responseId": "en:lesson-21:session-10:intro3:r3",
+              "text": "I hope to starts over."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "15ee2ffd0cc7d2be14f154b072c3c47b58ce21a77c4e4f75215001f9e604a285"
+}

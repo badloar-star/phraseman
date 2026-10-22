@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вода под раковиной",
+        "uk": "Вода під раковиною"
+      },
+      "bodyByLocale": {
+        "ru": "Leak — протечка: вода выходит там, где не должна. Вы заметили воду под раковиной и обсуждаете, что нужно исправить. Fix the leak означает устранить конкретную протечку. После hope, want и plan здесь ставим to + начальную форму действия: to fix, to stop, to clear, to remove. The указывает на конкретную проблему, о которой вы говорите.",
+        "uk": "Leak — протікання: вода виходить там, де не повинна. Ви помітили воду під раковиною й обговорюєте, що потрібно виправити. Fix the leak означає усунути конкретне протікання. Після hope, want і plan тут ставимо to + початкову форму дії: to fix, to stop, to clear, to remove. The вказує на конкретну проблему, про яку ви говорите."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-15:intro1:r1",
+              "text": "I hope to fix the leak."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro1:r2",
+              "text": "I hope to fixing the leak."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro1:r3",
+              "text": "I hope to fixes the leak."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-15:intro1:r1",
+              "text": "I hope to fix the leak."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro1:r2",
+              "text": "I hope to fixing the leak."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro1:r3",
+              "text": "I hope to fixes the leak."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Капает кран",
+        "uk": "Капає кран"
+      },
+      "bodyByLocale": {
+        "ru": "Drip — капание, например из неплотно закрытого крана. Вы хотите остановить это капание. Blockage — засор: что-то мешает воде уходить по трубе. Clear the blockage означает устранить засор. После hope, want и plan здесь ставим to + начальную форму действия: to fix, to stop, to clear, to remove. The указывает на конкретную проблему, о которой вы говорите.",
+        "uk": "Drip — капання, наприклад із нещільно закритого крана. Ви хочете припинити це капання. Blockage — засмічення: щось заважає воді йти трубою. Clear the blockage означає усунути засмічення. Після hope, want і plan тут ставимо to + початкову форму дії: to fix, to stop, to clear, to remove. The вказує на конкретну проблему, про яку ви говорите."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-15:intro2:r1",
+              "text": "I want to stop the drip."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro2:r2",
+              "text": "I want to stopping the drip."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro2:r3",
+              "text": "I want to stops the drip."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-15:intro2:r1",
+              "text": "I want to stop the drip."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro2:r2",
+              "text": "I want to stopping the drip."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro2:r3",
+              "text": "I want to stops the drip."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пятна на стене",
+        "uk": "Плями на стіні"
+      },
+      "bodyByLocale": {
+        "ru": "Mould здесь означает плесень, например тёмные пятна на влажной стене. Раньше mould встречалось в значении формы для изготовления предмета; сейчас изучаем другое значение. Вы говорите о желании убрать плесень. После hope, want и plan здесь ставим to + начальную форму действия: to fix, to stop, to clear, to remove. The указывает на конкретную проблему, о которой вы говорите.",
+        "uk": "Mould тут означає плісняву, наприклад темні плями на вологій стіні. Раніше mould траплялося у значенні форми для виготовлення предмета; зараз вивчаємо інше значення. Ви говорите про бажання прибрати плісняву. Після hope, want і plan тут ставимо to + початкову форму дії: to fix, to stop, to clear, to remove. The вказує на конкретну проблему, про яку ви говорите."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-15:intro3:r1",
+              "text": "I want to remove the mould."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro3:r2",
+              "text": "I want to removing the mould."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro3:r3",
+              "text": "I want to removes the mould."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-15:intro3:r1",
+              "text": "I want to remove the mould."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro3:r2",
+              "text": "I want to removing the mould."
+            },
+            {
+              "responseId": "en:lesson-21:session-15:intro3:r3",
+              "text": "I want to removes the mould."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "152acbf7439ca94e257e86721a16f461c2a1ba3af1af8742206cd6924e3ff380"
+}

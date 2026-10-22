@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-15:word:leak",
+    "correctText": "leak",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i01",
+    "correctText": "I hope to fix the leak.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i02",
+    "correctText": "I hope to fix the leak.",
+    "correctResponseId": "en:lesson-21:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i03",
+    "correctText": "to fix",
+    "correctResponseId": "en:lesson-21:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:word:drip",
+    "correctText": "drip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i04",
+    "correctText": "I want to stop the drip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i05",
+    "correctText": "I want to stop the drip.",
+    "correctResponseId": "en:lesson-21:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i06",
+    "correctText": "to stop",
+    "correctResponseId": "en:lesson-21:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:word:blockage",
+    "correctText": "blockage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i07",
+    "correctText": "I plan to clear the blockage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i08",
+    "correctText": "I plan to clear the blockage.",
+    "correctResponseId": "en:lesson-21:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i09",
+    "correctText": "to clear",
+    "correctResponseId": "en:lesson-21:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:word:mould",
+    "correctText": "mould",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i10",
+    "correctText": "I want to remove the mould.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i11",
+    "correctText": "I want to remove the mould.",
+    "correctResponseId": "en:lesson-21:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i12",
+    "correctText": "to remove",
+    "correctResponseId": "en:lesson-21:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i13",
+    "correctText": "en:lesson-21:session-15:i13:p1=leak\nen:lesson-21:session-15:i13:p2=drip\nen:lesson-21:session-15:i13:p3=blockage\nen:lesson-21:session-15:i13:p4=mould",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i16",
+    "correctText": "I plan to clear the blockage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-15:i17",
+    "correctText": "I want to remove the mould.",
+    "correctResponseId": null
+  }
+]

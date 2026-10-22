@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сменить одежду",
+        "uk": "Змінити одяг"
+      },
+      "bodyByLocale": {
+        "ru": "Get changed — переодеться, сменить одну одежду на другую. Вы вернулись с прогулки и хотите надеть домашнюю одежду. В отличие от знакомого get dressed, здесь речь именно о смене одежды. После want, need, plan и hope здесь используем to + начальную форму: to get, to finish. В get changed, get ready и get started слово после get сохраняется; меняется только форма get, если этого требует предложение.",
+        "uk": "Get changed — переодягнутися, змінити один одяг на інший. Ви повернулися з прогулянки й хочете вдягнути домашній одяг. На відміну від знайомого get dressed, тут ідеться саме про зміну одягу. Після want, need, plan і hope тут використовуємо to + початкову форму: to get, to finish. У get changed, get ready та get started слово після get зберігається; змінюється лише форма get, якщо цього вимагає речення."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-16:intro1:r1",
+              "text": "I want to get changed."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro1:r2",
+              "text": "I want to getting changed."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro1:r3",
+              "text": "I want to gets changed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-16:intro1:r1",
+              "text": "I want to get changed."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro1:r2",
+              "text": "I want to getting changed."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro1:r3",
+              "text": "I want to gets changed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Собраться и начать",
+        "uk": "Зібратися й почати"
+      },
+      "bodyByLocale": {
+        "ru": "Get ready — подготовиться или собраться. Перед выходом вам нужно собраться. Get started — приступить к делу: например, начать домашнее задание, а не продолжать откладывать его. После want, need, plan и hope здесь используем to + начальную форму: to get, to finish. В get changed, get ready и get started слово после get сохраняется; меняется только форма get, если этого требует предложение.",
+        "uk": "Get ready — підготуватися або зібратися. Перед виходом вам потрібно зібратися. Get started — взятися до справи: наприклад, почати домашнє завдання, а не продовжувати відкладати його. Після want, need, plan і hope тут використовуємо to + початкову форму: to get, to finish. У get changed, get ready та get started слово після get зберігається; змінюється лише форма get, якщо цього вимагає речення."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-16:intro2:r1",
+              "text": "I need to get ready."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro2:r2",
+              "text": "I need to getting ready."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro2:r3",
+              "text": "I need to gets ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-16:intro2:r1",
+              "text": "I need to get ready."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro2:r2",
+              "text": "I need to getting ready."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro2:r3",
+              "text": "I need to gets ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Закончить дела",
+        "uk": "Закінчити справи"
+      },
+      "bodyByLocale": {
+        "ru": "Finish up — закончить оставшуюся часть дела. Вы почти закончили домашнюю работу и надеетесь скоро завершить её. Это знакомое finish с частицей up, которая подчёркивает завершение. После want, need, plan и hope здесь используем to + начальную форму: to get, to finish. В get changed, get ready и get started слово после get сохраняется; меняется только форма get, если этого требует предложение.",
+        "uk": "Finish up — закінчити решту справи. Ви майже закінчили домашню роботу й сподіваєтеся скоро завершити її. Це знайоме finish із часткою up, яка підкреслює завершення. Після want, need, plan і hope тут використовуємо to + початкову форму: to get, to finish. У get changed, get ready та get started слово після get зберігається; змінюється лише форма get, якщо цього вимагає речення."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-16:intro3:r1",
+              "text": "I hope to finish up soon."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro3:r2",
+              "text": "I hope to finishing up soon."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro3:r3",
+              "text": "I hope to finishes up soon."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-16:intro3:r1",
+              "text": "I hope to finish up soon."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro3:r2",
+              "text": "I hope to finishing up soon."
+            },
+            {
+              "responseId": "en:lesson-21:session-16:intro3:r3",
+              "text": "I hope to finishes up soon."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "26bde7dc214d66523f4edc752b1fa76b478e0163128b1d54dbcd630ffd48b72e"
+}

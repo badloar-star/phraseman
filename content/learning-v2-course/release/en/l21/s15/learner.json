@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-15:word:leak",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — leak",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:word:leak:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — leak",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:word:leak:audio",
+          "transcript": "leak"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-15:word:leak:r1",
+            "targetText": "leak",
+            "meaningByLocale": {
+              "ru": "протечка.",
+              "uk": "протікання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leak",
+          "definitionByLocale": {
+            "ru": "протечка.",
+            "uk": "протікання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я надеюсь устранить протечку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я надеюсь устранить протечку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I hope to fix the leak.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я надеюсь устранить протечку».",
+          "uk": "Скажіть: «Я сподіваюся усунути протікання»."
+        },
+        "orderedTokens": [
+          "I",
+          "hope",
+          "to",
+          "fix",
+          "the",
+          "leak"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-15:i02:r1",
+          "text": "I hope to fix the leak."
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i02:r2",
+          "text": "We hope to fix the leak."
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i02:r3",
+          "text": "They hope to fix the leak."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:i02:audio",
+          "transcript": "I hope to fix the leak."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-15:i02:r1",
+            "targetText": "I hope to fix the leak.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i02:r2",
+            "targetText": "We hope to fix the leak.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i02:r3",
+            "targetText": "They hope to fix the leak.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I hope to fix the leak.",
+              "uk": "У записі звучить I hope to fix the leak."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I hope to fix the leak.",
+              "uk": "У записі звучить I hope to fix the leak."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму с to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-15:i03:r1",
+          "text": "to fix"
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i03:r2",
+          "text": "to fixing"
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i03:r3",
+          "text": "to fixes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму с to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I hope ___ the leak.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-15:i03:r1",
+            "text": "to fix"
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i03:r2",
+            "text": "to fixing"
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i03:r3",
+            "text": "to fixes"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму с to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:word:drip",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:word:drip:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:word:drip:audio",
+          "transcript": "drip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-15:word:drip:r1",
+            "targetText": "drip",
+            "meaningByLocale": {
+              "ru": "капание.",
+              "uk": "капання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drip",
+          "definitionByLocale": {
+            "ru": "капание.",
+            "uk": "капання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я хочу остановить капание».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я хочу остановить капание».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to stop the drip.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу остановить капание».",
+          "uk": "Скажіть: «Я хочу припинити капання»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "stop",
+          "the",
+          "drip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-15:i05:r1",
+          "text": "I want to stop the drip."
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i05:r2",
+          "text": "We want to stop the drip."
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i05:r3",
+          "text": "They want to stop the drip."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:i05:audio",
+          "transcript": "I want to stop the drip."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-15:i05:r1",
+            "targetText": "I want to stop the drip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i05:r2",
+            "targetText": "We want to stop the drip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i05:r3",
+            "targetText": "They want to stop the drip.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to stop the drip.",
+              "uk": "У записі звучить I want to stop the drip."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to stop the drip.",
+              "uk": "У записі звучить I want to stop the drip."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму с to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-15:i06:r1",
+          "text": "to stop"
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i06:r2",
+          "text": "to stopping"
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i06:r3",
+          "text": "to stops"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму с to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I want ___ the drip.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-15:i06:r1",
+            "text": "to stop"
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i06:r2",
+            "text": "to stopping"
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i06:r3",
+            "text": "to stops"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму с to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:word:blockage",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blockage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:word:blockage:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blockage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:word:blockage:audio",
+          "transcript": "blockage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-15:word:blockage:r1",
+            "targetText": "blockage",
+            "meaningByLocale": {
+              "ru": "засор.",
+              "uk": "засмічення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blockage",
+          "definitionByLocale": {
+            "ru": "засор.",
+            "uk": "засмічення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я планирую устранить засор».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я планирую устранить засор».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I plan to clear the blockage.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я планирую устранить засор».",
+          "uk": "Скажіть: «Я планую усунути засмічення»."
+        },
+        "orderedTokens": [
+          "I",
+          "plan",
+          "to",
+          "clear",
+          "the",
+          "blockage"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-15:i08:r1",
+          "text": "I plan to clear the blockage."
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i08:r2",
+          "text": "We plan to clear the blockage."
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i08:r3",
+          "text": "They plan to clear the blockage."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:i08:audio",
+          "transcript": "I plan to clear the blockage."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-15:i08:r1",
+            "targetText": "I plan to clear the blockage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i08:r2",
+            "targetText": "We plan to clear the blockage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i08:r3",
+            "targetText": "They plan to clear the blockage.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I plan to clear the blockage.",
+              "uk": "У записі звучить I plan to clear the blockage."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I plan to clear the blockage.",
+              "uk": "У записі звучить I plan to clear the blockage."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму с to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-15:i09:r1",
+          "text": "to clear"
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i09:r2",
+          "text": "to clearing"
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i09:r3",
+          "text": "to clears"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму с to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I plan ___ the blockage.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-15:i09:r1",
+            "text": "to clear"
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i09:r2",
+            "text": "to clearing"
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i09:r3",
+            "text": "to clears"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму с to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:word:mould",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mould",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:word:mould:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mould",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:word:mould:audio",
+          "transcript": "mould"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-15:word:mould:r1",
+            "targetText": "mould",
+            "meaningByLocale": {
+              "ru": "плесень.",
+              "uk": "пліснява."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mould",
+          "definitionByLocale": {
+            "ru": "плесень.",
+            "uk": "пліснява."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я хочу убрать плесень».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я хочу убрать плесень».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to remove the mould.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу убрать плесень».",
+          "uk": "Скажіть: «Я хочу прибрати плісняву»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "remove",
+          "the",
+          "mould"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-15:i11:r1",
+          "text": "I want to remove the mould."
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i11:r2",
+          "text": "We want to remove the mould."
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i11:r3",
+          "text": "They want to remove the mould."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:i11:audio",
+          "transcript": "I want to remove the mould."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-15:i11:r1",
+            "targetText": "I want to remove the mould.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i11:r2",
+            "targetText": "We want to remove the mould.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i11:r3",
+            "targetText": "They want to remove the mould.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to remove the mould.",
+              "uk": "У записі звучить I want to remove the mould."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to remove the mould.",
+              "uk": "У записі звучить I want to remove the mould."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму с to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-15:i12:r1",
+          "text": "to remove"
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i12:r2",
+          "text": "to removing"
+        },
+        {
+          "responseId": "en:lesson-21:session-15:i12:r3",
+          "text": "to removes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму с to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I want ___ the mould.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-15:i12:r1",
+            "text": "to remove"
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i12:r2",
+            "text": "to removing"
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i12:r3",
+            "text": "to removes"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму с to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-15:i13:p1",
+            "target": "leak",
+            "meaningByLocale": {
+              "ru": "протечка",
+              "uk": "протікання"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-15:i13:p2",
+            "target": "drip",
+            "meaningByLocale": {
+              "ru": "капание",
+              "uk": "капання"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-15:i13:p3",
+            "target": "blockage",
+            "meaningByLocale": {
+              "ru": "засор",
+              "uk": "засмічення"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-15:i13:p4",
+            "target": "mould",
+            "meaningByLocale": {
+              "ru": "плесень",
+              "uk": "пліснява"
+            }
+          }
+        ],
+        "leftColumn": [
+          "leak",
+          "drip",
+          "blockage",
+          "mould"
+        ],
+        "rightColumn": [
+          "протечка",
+          "капание",
+          "засор",
+          "плесень"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: приятное занятие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: приятное занятие",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:i14:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: закончить дело",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: закончить дело",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:i15:audio",
+          "transcript": "I must finish reading the description."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I must finish reading the description.",
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "reading",
+          "the",
+          "description"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вы планируете устранить засор",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вы планируете устранить засор",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:i16:audio",
+          "transcript": "I plan to clear the blockage."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I plan to clear the blockage.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вы хотите убрать плесень",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вы хотите убрать плесень",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-15:i17:audio",
+          "transcript": "I want to remove the mould."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to remove the mould.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "35add1846311a7bc8c19daa76cddbf82452f37178a3040a72ec0076d69ea5fad"
+}

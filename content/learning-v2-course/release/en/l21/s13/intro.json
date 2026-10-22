@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поехать налегке",
+        "uk": "Поїхати без зайвого багажу"
+      },
+      "bodyByLocale": {
+        "ru": "Travel light — путешествовать налегке, с небольшим количеством багажа. Вы собираетесь в короткую поездку и не хотите везти большой чемодан. Light здесь относится к количеству и весу вещей. После plan, intend и want здесь используем to + начальную форму. В отрицании I do not want to overpack отрицание стоит перед want; сочетание to overpack сохраняется.",
+        "uk": "Travel light — подорожувати без зайвого багажу. Ви збираєтеся в коротку поїздку й не хочете везти велику валізу. Light тут стосується кількості та ваги речей. Після plan, intend і want тут використовуємо to + початкову форму. У запереченні I do not want to overpack заперечення стоїть перед want; сполучення to overpack зберігається."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-13:intro1:r1",
+              "text": "I plan to travel light."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro1:r2",
+              "text": "I plan to travelling light."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro1:r3",
+              "text": "I plan to travels light."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-13:intro1:r1",
+              "text": "I plan to travel light."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro1:r2",
+              "text": "I plan to travelling light."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro1:r3",
+              "text": "I plan to travels light."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подготовиться к приезду",
+        "uk": "Підготуватися до приїзду"
+      },
+      "bodyByLocale": {
+        "ru": "Book ahead — бронировать заранее, до поездки или посещения. Вы решили заранее забронировать номер, чтобы не искать его по приезде. Unpack — разобрать вещи, вынуть их из сумки после поездки; это обратное действие к знакомому pack. После plan, intend и want здесь используем to + начальную форму. В отрицании I do not want to overpack отрицание стоит перед want; сочетание to overpack сохраняется.",
+        "uk": "Book ahead — бронювати заздалегідь, до поїздки або відвідування. Ви вирішили заздалегідь забронювати номер, щоб не шукати його після приїзду. Unpack — розібрати речі, вийняти їх із сумки після поїздки; це зворотна дія до знайомого pack. Після plan, intend і want тут використовуємо to + початкову форму. У запереченні I do not want to overpack заперечення стоїть перед want; сполучення to overpack зберігається."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-13:intro2:r1",
+              "text": "I intend to book ahead."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro2:r2",
+              "text": "I intend to booking ahead."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro2:r3",
+              "text": "I intend to books ahead."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-13:intro2:r1",
+              "text": "I intend to book ahead."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro2:r2",
+              "text": "I intend to booking ahead."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro2:r3",
+              "text": "I intend to books ahead."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не брать лишнее",
+        "uk": "Не брати зайве"
+      },
+      "bodyByLocale": {
+        "ru": "Overpack — взять в поездку больше вещей, чем нужно. Вы оставляете лишнюю одежду дома и говорите, что не хотите брать слишком много. Это не значит забыть нужные вещи: вы стараетесь не брать лишнее. После plan, intend и want здесь используем to + начальную форму. В отрицании I do not want to overpack отрицание стоит перед want; сочетание to overpack сохраняется.",
+        "uk": "Overpack — взяти в поїздку більше речей, ніж потрібно. Ви залишаєте зайвий одяг удома й кажете, що не хочете брати забагато. Це не означає забути потрібні речі: ви намагаєтеся не брати зайве. Після plan, intend і want тут використовуємо to + початкову форму. У запереченні I do not want to overpack заперечення стоїть перед want; сполучення to overpack зберігається."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-13:intro3:r1",
+              "text": "I do not want to overpack."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro3:r2",
+              "text": "I do not want to overpacking."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro3:r3",
+              "text": "I do not want to overpacks."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-13:intro3:r1",
+              "text": "I do not want to overpack."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro3:r2",
+              "text": "I do not want to overpacking."
+            },
+            {
+              "responseId": "en:lesson-21:session-13:intro3:r3",
+              "text": "I do not want to overpacks."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c737591c58bb28d90c37a46d65700cc361e2691af4568bf0f7afa4c4d2a92161"
+}

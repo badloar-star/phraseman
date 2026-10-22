@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-09:word:intend",
+    "correctText": "intend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i01",
+    "correctText": "I intend to stay here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i02",
+    "correctText": "I intend to stay here.",
+    "correctResponseId": "en:lesson-21:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i03",
+    "correctText": "to stay",
+    "correctResponseId": "en:lesson-21:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:word:expect",
+    "correctText": "expect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i04",
+    "correctText": "I expect to arrive tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i05",
+    "correctText": "I expect to arrive tomorrow.",
+    "correctResponseId": "en:lesson-21:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i06",
+    "correctText": "to arrive",
+    "correctResponseId": "en:lesson-21:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:word:deserve",
+    "correctText": "deserve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i07",
+    "correctText": "I deserve to rest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i08",
+    "correctText": "I deserve to rest.",
+    "correctResponseId": "en:lesson-21:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i09",
+    "correctText": "to rest",
+    "correctResponseId": "en:lesson-21:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:word:offer",
+    "correctText": "offer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i10",
+    "correctText": "I always offer to help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i11",
+    "correctText": "I always offer to help.",
+    "correctResponseId": "en:lesson-21:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i12",
+    "correctText": "to help",
+    "correctResponseId": "en:lesson-21:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i13",
+    "correctText": "en:lesson-21:session-09:i13:p1=intend\nen:lesson-21:session-09:i13:p2=expect\nen:lesson-21:session-09:i13:p3=deserve\nen:lesson-21:session-09:i13:p4=offer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i16",
+    "correctText": "I deserve to rest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-09:i17",
+    "correctText": "I always offer to help.",
+    "correctResponseId": null
+  }
+]

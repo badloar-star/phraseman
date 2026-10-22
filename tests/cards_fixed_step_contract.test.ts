@@ -25,19 +25,24 @@ describe('«Карточки»: только нормальный вид (шаг
     expect(layout).not.toMatch(/stepForSliderFraction|sliderFractionForStep|GALLERY_DEFAULT_STEP/);
   });
 
-  it('ни в экранах «Сохранённые» и «Набор до добавления», ни в галерее нет щипка, ползунка и выбора шага', () => {
-    for (const file of ['app/flashcards/CollectionGalleryView.tsx', 'app/flashcards/CommunityPackPreview.tsx', 'components/cards-grid/CardsGallery.tsx', 'components/cards-grid/useFixedGalleryStep.ts']) {
+  it('ни в экранах «Сохранённые» и «Набор до добавления», ни в галерее нет щипка, ползунка, выбора шага и анимации перетекания', () => {
+    for (const file of ['app/flashcards/CollectionGalleryView.tsx', 'app/flashcards/CommunityPackPreview.tsx', 'components/cards-grid/CardsGallery.tsx']) {
       const src = code(file);
-      expect(src).not.toMatch(/Gesture\.Pinch|GestureDetector|ZoomBar|useCardsGridStep|useCardsScale|setStep\(|onZoomStep|fc-zoom|CARDS-ZOOM/);
+      expect(src).not.toMatch(/Gesture\.Pinch|GestureDetector|ZoomBar|useCardsGridStep|useCardsScale|useFixedGalleryStep|setStep\(|onZoomStep|fc-zoom|CARDS-ZOOM|morph|useAnimatedStyle|react-native-reanimated/);
     }
-    expect(read('app/flashcards/CollectionGalleryView.tsx')).toContain('useFixedGalleryStep()');
-    expect(read('app/flashcards/CommunityPackPreview.tsx')).toContain('useFixedGalleryStep()');
+    expect(exists('components/cards-grid/useFixedGalleryStep.ts')).toBe(false);
   });
 
-  it('хук отдаёт шаг 0 и неподвижное «перетекание»', () => {
-    const hook = read('components/cards-grid/useFixedGalleryStep.ts');
-    expect(hook).toContain('step: GALLERY_OPEN_STEP');
-    expect(hook).toMatch(/useSharedValue<number>\(1\);\s*\n\s*const shift = useSharedValue<number>\(0\);\s*\n\s*const live = useSharedValue<number>\(1\);/);
+  it('мёртвый код галереи удалён: таблица шагов из одной строки, сетка одна, нет опоры щипка и докрутки', () => {
+    const layout = code('components/cards-grid/cardsGalleryLayout.ts');
+    expect(layout).not.toMatch(/galleryScrollFor|galleryAnchorIndex|unionRange|GALLERY_MORPH|galleryLayoutFor|galleryVisibleRange/);
+    expect(GALLERY_STEPS).toHaveLength(1);
+    const grid = code('components/cards-grid/cardsGalleryGrid.ts');
+    expect(grid).not.toMatch(/gridScrollFor|gridAnchorIndex/);
+    expect(grid).toContain('const grids = [buildGalleryGrid(0, cards, width, fontScale, fixes)] as const;');
+    // сброс сохранённого шага подключают экраны (сама галерея остаётся лёгкой и не тянет хранилище)
+    expect(read('app/flashcards/CollectionGalleryView.tsx')).toContain("import '../../components/cards-grid/gallery_step_prefs';");
+    expect(read('app/flashcards/CommunityPackPreview.tsx')).toContain("import '../../components/cards-grid/gallery_step_prefs';");
   });
 
   it('поиск остаётся на месте: залипающая полоса под шапкой держит поле, шаг при поиске не меняется', () => {

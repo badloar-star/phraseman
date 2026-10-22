@@ -23,22 +23,19 @@ type FaceDef = Readonly<{
 
 const FACES: readonly FaceDef[] = [
   { lg: 12, lgLine: 14, word: 26, wordLine: 32, wordTop: 6, tr: 15, trLine: 20, trTop: 2, padL: 12, padR: 46, padV: 14, lead: 60, foot: 0, label: true, translation: true },
-  { lg: 11, lgLine: 14, word: 20, wordLine: 25, wordTop: 4, tr: 13.5, trLine: 18, trTop: 2, padL: 16, padR: 44, padV: 12, lead: 0, foot: 10, label: true, translation: true },
-  { lg: 0, lgLine: 0, word: 15, wordLine: 19, wordTop: 0, tr: 10, trLine: 13, trTop: 2, padL: 8, padR: 8, padV: 6, lead: 0, foot: 0, label: false, translation: true },
-  { lg: 0, lgLine: 0, word: 10.5, wordLine: 13, wordTop: 0, tr: 7, trLine: 9, trTop: 1, padL: 5, padR: 5, padV: 3, lead: 0, foot: 0, label: false, translation: true },
 ];
 
 /**
  * Наименьшая высота плитки шага на ширине макета, px. зачем (владелец 18.10 через координатора: «карточка всегда горизонтальная, ширина больше высоты»; 1 колонка ≈ 390×105
  * по CARDS_LOCKED): 105 / 96 / 62 / 37 — все плитки шире, чем выше.
  */
-const MIN_H = [105, 96, 62, 37] as const;
+const MIN_H = [105] as const;
 /**
  * Пол кегля фразы и перевода, px. зачем (владелец 18.10: «не влезает — уменьши кегль», карточка остаётся горизонтальной): на мелких шагах длинная фраза в плитке шириной 50–110 px читается
  * только очень мелкой — это выбор человека, поставившего мелкий шаг; пол нужен лишь затем, чтобы кегль не уходил в ноль.
  */
-const WORD_FLOOR = [0.01, 0.01, 0.01, 0.01] as const;
-const TR_FLOOR = [0.01, 0.01, 0.01, 0.01] as const;
+const WORD_FLOOR = [0.01] as const;
+const TR_FLOOR = [0.01] as const;
 
 /** Ширина плитки шага в макете — точка отсчёта масштаба. */
 export function fitRefTileWidth(step: number): number {

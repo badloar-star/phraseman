@@ -7,7 +7,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { FlipCard } from './FlipCard';
@@ -17,7 +16,6 @@ import { gridVisibleRange, type GalleryGrid, type GalleryGrids, type TileGeom } 
 import { cardsPerfCount, cardsPerfMark } from './cardsPerfLog';
 import { GalleryTileFace } from './GalleryTileFace';
 import { galleryFaceColors } from './galleryFaceColors';
-import type { GridMorph } from './useFixedGalleryStep';
 import { useGalleryGrids } from './useGalleryGrids';
 
 export type GalleryCard = Readonly<{
@@ -35,9 +33,6 @@ type Props = Readonly<{
   cards: readonly GalleryCard[];
   /** Ширина сетки (экран минус поля). */
   width: number;
-  /** Шаг сетки; с 22.10 всегда 0 (useFixedGalleryStep): ползунок и щипок убраны, остался нормальный вид. */
-  step: number;
-  morph: GridMorph;
   /** Смещение прокрутки относительно верха сетки и высота окна — для окна отрисовки. */
   scrollY: number;
   viewportH: number;
@@ -71,15 +66,15 @@ function renderFront(front: string, highlight?: string): React.ReactNode {
   );
 }
 
-/** Кнопка звука: 38 / 28 px в макете (× масштаб); на шагах 3 и 5 колонок её нет. */
-const SPEAK_SIZE = [38, 28, 0, 0] as const;
+/** Кнопка звука: 38 px в макете (× масштаб). */
+/** Шаг плитки — всегда 0 (нормальный вид): ползунок и щипок убраны решением владельца 22.10. */
+const STEP = 0;
+const SPEAK_SIZE = 38;
 const DOT = 6;
 
-const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selected, highlight, onFix }: Readonly<{
+const Tile = memo(function Tile({ card, index, geoms, gridStep, g, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selected, highlight, onFix }: Readonly<{
   card: GalleryCard;
   index: number;
-  step: number;
-  morph: GridMorph;
   geoms: readonly TileGeom[];
   gridStep: GalleryGrid;
   g: GlassTokens;
@@ -93,28 +88,18 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
   onFix?: (cardId: string, step: number, extraPx: number) => void;
 }>) {
   const [flipped, setFlipped] = useState(false);
+  const step = STEP;
   cardsPerfCount('tile-render'); // зачем: [CARDS-PERF] сколько плиток перерисовано за прокрутку (memo должен их держать)
-  const { from, to, t, shift } = morph;
-  const style = useAnimatedStyle(() => {
-    const a = geoms[Math.round(from.value)]!;
-    const b = geoms[Math.round(to.value)]!;
-    const k = t.value;
-    return {
-      width: a.w + (b.w - a.w) * k,
-      height: a.h + (b.h - a.h) * k,
-      transform: [{ translateX: a.x + (b.x - a.x) * k }, { translateY: (a.y + shift.value) * (1 - k) + b.y * k }],
-    };
-  });
-  // зачем (макет: firstElementChild opacity 0 → 0 до 22 % → 1): содержимое плитки появляется после того, как плитка заняла почти новый размер
-  const contentStyle = useAnimatedStyle(() => ({ opacity: t.value < 0.22 ? 0 : (t.value - 0.22) / 0.78 }));
   const face = gridStep.face;
   const geom = geoms[step]!;
+  // нормальный вид: плитка стоит на месте, без перетекания (прежнее покадровое перетекание между шагами удалено вместе с ползунком)
+  const style = { width: geom.w, height: geom.h, transform: [{ translateX: geom.x }, { translateY: geom.y }] };
   const radius = GALLERY_STEPS[step]!.radius;
   const colors = galleryFaceColors(g);
   const hasTranslation = !!card.back?.trim();
   const showTranslation = face.translation && hasTranslation;
-  const speakSize = Math.round(SPEAK_SIZE[step]! * face.k);
-  const speakVisible = step <= 1 && !!onSpeak;
+  const speakSize = Math.round(SPEAK_SIZE * face.k);
+  const speakVisible = !!onSpeak;
   // зачем (владелец 18.10: «карточка всегда горизонтальная; не влезает — уменьши кегль»): кегль этой карточки — после уменьшения под потолок высоты (cardsGalleryFit.fitWithin)
   const fit = gridStep.fit(index);
   // Поправка по настоящему шрифту уменьшает кегль внутри той же фиксированной геометрии.
@@ -141,24 +126,22 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
       accessibilityLabel={speakLabel}
       hitSlop={8}
       onPress={(event) => { event.stopPropagation(); onSpeak?.(card.id); }}
-      style={[step === 0 ? styles.speak0 : [styles.speak1, { right: 12 * face.k, bottom: 12 * face.k }], { width: speakSize, height: speakSize, borderRadius: speakSize / 2, backgroundColor: colors.speakBg }]}>
-      <Ionicons name="volume-high" size={Math.round((step === 0 ? 18 : 14) * face.k)} color={colors.ink} />
+      style={[styles.speak0, { width: speakSize, height: speakSize, borderRadius: speakSize / 2, backgroundColor: colors.speakBg }]}>
+      <Ionicons name="volume-high" size={Math.round(18 * face.k)} color={colors.ink} />
     </Pressable>
   ) : null;
   // зачем (владелец 18.10: «с точечками»; макет `.face .dots`: слева снизу, 6 px, зазор 4, заполненные — цвет акцента темы): силу слова показываем на шагах 1 и 2 колонки
-  const dotsEl = step <= 1 && card.dots !== undefined ? (
+  const dotsEl = card.dots !== undefined ? (
     <View pointerEvents="none" accessible={false} importantForAccessibility="no-hide-descendants" testID={`fc-gallery-dots-${card.id}`} style={[styles.dots, { left: 14 * face.k, bottom: 11 * face.k }]}>
       {[0, 1, 2].map((i) => <View key={i /* guard-ok: три статичные точки, порядок не меняется */} style={[styles.dot, { backgroundColor: i < (card.dots ?? 0) ? colors.dotOn : colors.dotOff }]} />)}
     </View>
   ) : null;
-  const pad = { paddingLeft: face.padL, paddingRight: face.padR, paddingTop: face.padV, paddingBottom: face.padV + face.foot };
   const renderFace = (back: boolean) => (
         <View style={[styles.face, { borderRadius: radius }]}>
           <GalleryTileFace g={g} w={geom.w} h={geom.h} />
           {/* зачем (владелец 18.10): содержимое держит размер ЦЕЛЕВОЙ плитки, а не бегущий — во время перетекания между шагами текст не пересчитывает перенос по сужающейся ширине (иначе onTextLayout принимал промежуточные строки за нехватку места и плитки раздувались), лишнее срезает сама плитка */}
-          <Animated.View style={[styles.content, { width: geom.w, height: geom.h }, contentStyle]}>
-            {step === 0 ? (
-              <View style={[styles.row0, { paddingLeft: face.padL, paddingRight: face.padR, gap: 22 * face.k }]}>
+          <View style={[styles.content, { width: geom.w, height: geom.h }]}>
+            <View style={[styles.row0, { paddingLeft: face.padL, paddingRight: face.padR, gap: 22 * face.k }]}>
                 {speakEl}
                 <View style={styles.text}>{back ? trEl : <>{labelEl}{wordEl}</>}</View>
                 {selected === undefined && onLongPress ? (
@@ -167,22 +150,17 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
                   </Pressable>
                 ) : null}
               </View>
-            ) : step === 1 ? (
-              <View style={[styles.col1, pad]}>{back ? trEl : <>{labelEl}{wordEl}</>}{speakEl}</View>
-            ) : (
-              <View style={[styles.mini, pad]}>{back ? trEl : wordEl}</View>
-            )}
             {!back ? dotsEl : null}
-          </Animated.View>
+          </View>
           {selected !== undefined ? (
             <View pointerEvents="none" style={[styles.check, selected ? { backgroundColor: g.accent } : { backgroundColor: g.dividerTone }]}>
-              {selected ? <Ionicons name="checkmark" size={step >= 2 ? 12 : 16} color={g.accentInk} /> : null}
+              {selected ? <Ionicons name="checkmark" size={16} color={g.accentInk} /> : null}
             </View>
           ) : null}
         </View>
   );
   return (
-    <Animated.View style={[styles.tile, style]}>
+    <View style={[styles.tile, style]}>
       <FlipCard
         g={g}
         testID={`fc-gallery-tile-${card.id}`}
@@ -195,39 +173,32 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
         onLongPress={onLongPress ? () => onLongPress(card.id) : undefined}
         gallery={{ height: geom.h, radius, front: renderFace(false), back: renderFace(true) }}
       />
-    </Animated.View>
+    </View>
   );
 });
 
-function CardsGalleryInner({ g, cards, width, step, morph, scrollY, viewportH, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selectedIds, highlight, grids: gridsProp, onFix: onFixProp }: Props) {
-  const { to, live, fx, fy } = morph;
+function CardsGalleryInner({ g, cards, width, scrollY, viewportH, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selectedIds, highlight, grids: gridsProp, onFix: onFixProp }: Props) {
   // зачем: экран, который сам считает сетки (Сохранённые), передаёт их сюда; остальные (предпросмотр набора сообщества) получают свои
   const own = useGalleryGrids(gridsProp ? EMPTY_CARDS : cards, width);
   const grids = gridsProp ?? own.grids;
   const onFix = onFixProp ?? own.reportFix;
   // зачем: в рабочий поток уходит только массив из четырёх высот, а не весь объект сеток (в нём функции и сотни чисел по рядам)
   const heights = grids.heights;
-  const heightStyle = useAnimatedStyle(() => ({
-    height: heights[Math.round(to.value)] ?? 0,
-    // живой отклик щипка: сетка тянется за пальцами вокруг точки опоры (translate → scale → translate обратно)
-    transform: [{ translateX: fx.value }, { translateY: fy.value }, { scale: live.value }, { translateX: -fx.value }, { translateY: -fy.value }],
-  }));
-  const range = useMemo(() => gridVisibleRange(grids.grids[step]!, cards.length, scrollY, viewportH), [cards.length, grids, scrollY, step, viewportH]);
+  const heightStyle = { height: heights[0] ?? 0 };
+  const range = useMemo(() => gridVisibleRange(grids.grids[STEP]!, cards.length, scrollY, viewportH), [cards.length, grids, scrollY, viewportH]);
   const visible = cards.slice(range.from, range.to);
   cardsPerfCount('gallery-render');
   cardsPerfMark('tiles-in-window', visible.length);
   cardsPerfMark('cards-total', cards.length);
   return (
-    <Animated.View style={[styles.container, { width }, heightStyle]}>
+    <View style={[styles.container, { width }, heightStyle]}>
       {visible.map((card, offset) => (
         <Tile
           key={card.id}
           card={card}
           index={range.from + offset}
-          step={step}
-          morph={morph}
           geoms={grids.geoms(range.from + offset)}
-          gridStep={grids.grids[step]!}
+          gridStep={grids.grids[STEP]!}
           g={g}
           onOpen={onOpen}
           onSpeak={onSpeak}
@@ -239,7 +210,7 @@ function CardsGalleryInner({ g, cards, width, step, morph, scrollY, viewportH, o
           onFix={onFix}
         />
       ))}
-    </Animated.View>
+    </View>
   );
 }
 
@@ -253,14 +224,11 @@ const styles = StyleSheet.create({
   face: { flex: 1, overflow: 'hidden' },
   content: { position: 'absolute', left: 0, top: 0 },
   row0: { flex: 1, flexDirection: 'row', alignItems: 'center' },
-  col1: { flex: 1, justifyContent: 'center' },
-  mini: { flex: 1, justifyContent: 'center' },
   text: { flex: 1, minWidth: 0 },
   lg: { fontWeight: '600' },
   word: { fontWeight: '600', letterSpacing: -0.2, minWidth: 0 },
   match: { textDecorationLine: 'underline' },
   speak0: { alignItems: 'center', justifyContent: 'center' },
-  speak1: { position: 'absolute', alignItems: 'center', justifyContent: 'center' },
   more: { position: 'absolute' },
   dots: { position: 'absolute', flexDirection: 'row', gap: 4 },
   dot: { width: DOT, height: DOT, borderRadius: DOT / 2 },

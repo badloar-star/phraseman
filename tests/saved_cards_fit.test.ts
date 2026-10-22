@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { GALLERY_OPEN_STEP, GALLERY_STEPS } from '../components/cards-grid/cardsGalleryLayout';
 import { FIT_K_MAX, FIT_K_MIN, estimateLines, fitRefTileWidth, fitScaleFor, stepFace, tileFit } from '../components/cards-grid/cardsGalleryFit';
-import { buildGalleryGrids, gridAnchorIndex, gridScrollFor, gridVisibleRange, rowAt } from '../components/cards-grid/cardsGalleryGrid';
+import { buildGalleryGrids, gridVisibleRange, rowAt } from '../components/cards-grid/cardsGalleryGrid';
 import { galleryFaceColors } from '../components/cards-grid/galleryFaceColors';
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
@@ -63,26 +63,26 @@ function plausibleRealLines(text: string, size: number, maxW: number): number {
 
 describe('кегль и размеры считаются от ширины плитки, пропорционально шагу', () => {
   it('в макете (ширина 350) масштаб 1 на каждом шаге; пропорционален ширине и зажат в пределах', () => {
-    for (let s = 0; s < 4; s += 1) expect(fitScaleFor(s, fitRefTileWidth(s))).toBeCloseTo(1, 5);
-    expect(fitScaleFor(1, fitRefTileWidth(1) * 1.5)).toBe(FIT_K_MAX);
-    expect(fitScaleFor(1, fitRefTileWidth(1) * 0.5)).toBe(FIT_K_MIN);
-    const narrow = stepFace(1, fitRefTileWidth(1) * 0.9);
-    const ref = stepFace(1, fitRefTileWidth(1));
+    for (let s = 0; s < GALLERY_STEPS.length; s += 1) expect(fitScaleFor(s, fitRefTileWidth(s))).toBeCloseTo(1, 5);
+    expect(fitScaleFor(0, fitRefTileWidth(0) * 1.5)).toBe(FIT_K_MAX);
+    expect(fitScaleFor(0, fitRefTileWidth(0) * 0.5)).toBe(FIT_K_MIN);
+    const narrow = stepFace(0, fitRefTileWidth(0) * 0.9);
+    const ref = stepFace(0, fitRefTileWidth(0));
     expect(narrow.wordSize).toBeCloseTo(ref.wordSize * 0.9, 1);
     expect(narrow.trSize).toBeLessThan(ref.trSize);
     expect(narrow.minH).toBeLessThan(ref.minH);
   });
 
-  it('кегли убывают от шага 0 к шагу 3 (крупнее → мельче), как в макете', () => {
-    const sizes = [0, 1, 2, 3].map((s) => stepFace(s, fitRefTileWidth(s)).wordSize);
-    expect(sizes).toEqual([26, 20, 15, 10.5]);
+  it('кегль слова нормального вида (шаг 0) — 26, как в макете', () => {
+    const sizes = GALLERY_STEPS.map((_, s) => stepFace(s, fitRefTileWidth(s)).wordSize);
+    expect(sizes).toEqual([26]);
   });
 });
 
 describe('текст помещается целиком на любом шаге и ширине экрана', () => {
   it('высота плитки не ниже макета и растёт под длинную фразу; короткое слово остаётся в высоте макета', () => {
     for (const grid of WIDTHS) {
-      for (let s = 0; s < 4; s += 1) {
+      for (let s = 0; s < GALLERY_STEPS.length; s += 1) {
         const def = GALLERY_STEPS[s]!;
         const face = stepFace(s, (grid - def.gap * (def.cols - 1)) / def.cols);
         const short = tileFit(face, 'Gate', 'Выход');
@@ -96,7 +96,7 @@ describe('текст помещается целиком на любом шаг�
 
   it('оценка строк не меньше правдоподобного настоящего замера (с запасом): фраза и перевод, все шаги, пять ширин экрана', () => {
     for (const grid of WIDTHS) {
-      for (let s = 0; s < 4; s += 1) {
+      for (let s = 0; s < GALLERY_STEPS.length; s += 1) {
         const def = GALLERY_STEPS[s]!;
         const face = stepFace(s, (grid - def.gap * (def.cols - 1)) / def.cols);
         for (const [front, back] of PHRASES) {
@@ -136,7 +136,7 @@ describe('карточка всегда горизонтальная: ширин
 
   it('кегль длинной фразы меньше, чем у короткого слова, на тех же шагах; короткое слово остаётся крупным', () => {
     const grids = buildGalleryGrids(normal, 350);
-    for (const g of [grids.grids[1]!, grids.grids[2]!]) {
+    for (const g of [grids.grids[0]!]) {
       const longFit = g.fit(1); // «Could you tell me how to get…»
       const shortFit = g.fit(3); // «Gate»
       expect(longFit.wordSize).toBeLessThan(shortFit.wordSize);
@@ -168,27 +168,18 @@ describe('сетка с одинаковой высотой рядов', () => {
     }
     // карточки одной геометрии по шагам — один и тот же массив (плитка не перерисовывается зря)
     expect(grids.geoms(3)).toBe(grids.geoms(3));
-    expect(grids.geoms(3)).toHaveLength(4);
+    expect(grids.geoms(3)).toHaveLength(1);
   });
 
-  it('окно отрисовки покрывает экран и не выходит за список; опора щипка остаётся под пальцами', () => {
+  it('окно отрисовки покрывает экран и не выходит за список', () => {
     const grids = buildGalleryGrids(cards, 350);
-    const grid = grids.grids[1]!;
+    const grid = grids.grids[0]!;
     const range = gridVisibleRange(grid, cards.length, 300, 800);
     expect(range.from % grid.cols).toBe(0);
     expect(range.to).toBeLessThanOrEqual(cards.length);
     expect(gridVisibleRange(grid, 0, 0, 800)).toEqual({ from: 0, to: 0 });
     const row = rowAt(grid, 400);
     expect(grid.rowTops[row]! + grid.rowHeights[row]! + grid.gap).toBeGreaterThan(400);
-    const anchor = gridAnchorIndex(grid, cards.length, 40, 400);
-    expect(anchor).toBeGreaterThanOrEqual(0);
-    const next = grids.grids[2]!;
-    const scroll = gridScrollFor({ n: cards.length, prev: grid, next, fx: 40, fvY: 300, scrollY: 100, gridTop: 260 });
-    expect(Number.isFinite(scroll)).toBe(true);
-    expect(scroll).toBeGreaterThanOrEqual(0);
-    // опорная карточка после смены шага — там же, где палец
-    const a = next.geom(anchor);
-    expect(a.y).toBeLessThanOrEqual(260 + scroll + 300 + 1000);
   });
 });
 
@@ -232,7 +223,7 @@ describe('исходник и шаг по умолчанию', () => {
 
   it('вид всегда нормальный — горизонтальный (шаг 0): выбор шага убран решением владельца 22.10', () => {
     expect(GALLERY_OPEN_STEP).toBe(0);
-    expect(read('components/cards-grid/useFixedGalleryStep.ts')).toContain('step: GALLERY_OPEN_STEP');
+    expect(read('components/cards-grid/CardsGallery.tsx')).toContain('const STEP = 0;');
     expect(read('components/cards-grid/gallery_step_prefs.ts')).toContain('resetStoredGalleryStep');
   });
 
@@ -252,8 +243,8 @@ it('один масштаб даёт одинаковые размеры нез�
     for (const fontScale of [1, 1.2]) {
       const saved = buildGalleryGrids(short, width, fontScale);
       const video = buildGalleryGrids(mixed, width, fontScale);
-      const community = buildGalleryGrids([...mixed].reverse(), width, fontScale, new Map([['0|1', 12]]));
-      for (let step = 0; step < 4; step += 1) {
+      const community = buildGalleryGrids([...mixed].reverse(), width, fontScale, new Map([['0|0', 12]]));
+      for (let step = 0; step < GALLERY_STEPS.length; step += 1) {
         const expected = saved.grids[step]!.geom(0);
         for (const grid of [video.grids[step]!, community.grids[step]!]) {
           for (let i = 0; i < mixed.length; i += 1) {
@@ -304,9 +295,8 @@ describe('тап галереи переворачивает карточку, �
       const cards = [{ id: 'a', front: 'Gate', back: 'Выход', dots: 2 }];
       const onOpen = jest.fn(); const onSpeak = jest.fn(); const onLongPress = jest.fn();
       const props = {
-        cards, g: liquidGlassTokens('graphite'), width: 350, step: 0, scrollY: 0, viewportH: 800,
+        cards, g: liquidGlassTokens('graphite'), width: 350, scrollY: 0, viewportH: 800,
         grids: buildGalleryGrids(cards, 350), onOpen, onSpeak, onLongPress, speakLabel: 'Speak',
-        morph: { from: { value: 0 }, to: { value: 0 }, t: { value: 1 }, shift: { value: 0 }, live: { value: false }, fx: { value: 0 }, fy: { value: 0 } },
       };
       let nodes = expand(CardsGallery(props));
       const tile = () => nodes.find((n) => n.type === 'Pressable' && n.props.testID === 'fc-gallery-tile-a')!;
@@ -314,8 +304,6 @@ describe('тап галереи переворачивает карточку, �
       expect(tile().props.accessibilityLabel).toBe('Gate');
       expect(nodes.filter((n) => n.props.testID === 'fc-gallery-dots-a')).toHaveLength(1);
       press(tile()); nodes = expand(CardsGallery(props));
-      expect(tile().props.accessibilityLabel).toBe('Выход');
-      nodes = expand(CardsGallery({ ...props, step: 2 }));
       expect(tile().props.accessibilityLabel).toBe('Выход');
       nodes = expand(CardsGallery({ ...props, cards: [{ ...cards[0], back: '' }] }));
       expect(tile().props.accessibilityLabel).toBe('Gate');
@@ -347,7 +335,7 @@ describe('тап галереи переворачивает карточку, �
 it('длинное широкое слово и поправка замера не обрезаются фиксированной плиткой', () => {
   const cards = [{ id: 'wide', front: 'W'.repeat(80), back: 'Ш'.repeat(80) }];
   for (const extra of [0, 12, 100]) {
-    const fixes = new Map([0, 1, 2, 3].map((step) => [`wide|${step}`, extra]));
+    const fixes = new Map([0].map((step) => [`wide|${step}`, extra]));
     for (const grid of buildGalleryGrids(cards, 280, 1.3, fixes).grids) {
       expect(grid.fit(0).h).toBeLessThanOrEqual(grid.geom(0).h);
     }

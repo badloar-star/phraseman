@@ -12,7 +12,8 @@ import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, typ
 
 import { CardsGallery, type GalleryCard } from '../../components/cards-grid/CardsGallery';
 import { cardsPerfCount, cardsPerfFlush } from '../../components/cards-grid/cardsPerfLog';
-import { useFixedGalleryStep } from '../../components/cards-grid/useFixedGalleryStep';
+import { GALLERY_OPEN_STEP } from '../../components/cards-grid/cardsGalleryLayout';
+import '../../components/cards-grid/gallery_step_prefs'; // зачем (владелец 22.10): при загрузке экрана старый сохранённый шаг сбрасывается на 0 ([CARDS-GRID] old=… → 0)
 import { useGalleryGrids } from '../../components/cards-grid/useGalleryGrids';
 import { StickySearchBar } from '../../components/cards-grid/StickySearchBar';
 import { strengthDotCount, type WordStrength } from './word_strength';
@@ -141,7 +142,7 @@ export default function CollectionGalleryView({
 
   // зачем (владелец 22.10: «ползунок и щипок убираем, оставляем только нормальный вид»): шаг всегда 0 — одна горизонтальная карточка на строку (высота 118, радиус 16, как в макете при открытии);
   // ни щипка, ни ползунка, ни запоминания шага; сохранённый шаг прошлых версий сбрасывается на 0 ([CARDS-GRID] old=… → 0). Поиск тоже на шаге 0.
-  const { step, morph } = useFixedGalleryStep();
+  const step = GALLERY_OPEN_STEP; // для журналов замера: шаг сетки всегда 0
 
   const searching = searchQuery.trim().length > 0;
 
@@ -234,8 +235,6 @@ export default function CollectionGalleryView({
               g={g}
               cards={items}
               width={width}
-              step={step}
-              morph={morph}
               scrollY={Math.max(0, scrollY - gridTop)}
               viewportH={screenH}
               grids={grids}

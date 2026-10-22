@@ -18,7 +18,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { CardsGallery } from '../../components/cards-grid/CardsGallery';
-import { useFixedGalleryStep } from '../../components/cards-grid/useFixedGalleryStep';
+import '../../components/cards-grid/gallery_step_prefs'; // зачем (владелец 22.10): при загрузке экрана старый сохранённый шаг сбрасывается на 0 ([CARDS-GRID] old=… → 0)
+
 import { useGalleryGrids } from '../../components/cards-grid/useGalleryGrids';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { loadWordStrengthMap, strengthDotCount, strengthFor, type WordStrengthMap } from './word_strength';
@@ -163,7 +164,6 @@ export default function CommunityPackPreview({
     return () => { alive = false; };
   }, [studyTarget]);
   // зачем (владелец 22.10: «ползунок и щипок убираем, оставляем только нормальный вид»): шаг всегда 0 — одна горизонтальная карточка на строку; щипка, ползунка и запоминания нет.
-  const { step, morph } = useFixedGalleryStep();
   const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const raw = event.nativeEvent.contentOffset.y;
     scrollYRef.current = raw;
@@ -249,8 +249,6 @@ export default function CommunityPackPreview({
                 g={g}
                 cards={items}
                 width={width}
-                step={step}
-                morph={morph}
                 scrollY={Math.max(0, scrollY - gridTop)}
                 viewportH={screenH}
                 grids={grids}

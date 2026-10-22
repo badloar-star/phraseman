@@ -1,7 +1,7 @@
 /**
  * Общая геометрия галереи: размер определяется шириной и шагом, независимо от раздела и текста.
  * Текст подбирается в фиксированную высоту; замеры могут уменьшить кегль, но не растянуть ряд.
- * Сохраняем геометрии всех четырёх шагов для анимации zoom, окна отрисовки и опоры щипка.
+ * Единственная сетка — нормальный вид (шаг 0); окно отрисовки считается по её рядам.
  */
 import { GALLERY_STEPS, clampStep } from './cardsGalleryLayout';
 import { fitAtScale, fitWithin, stepFace, type CardFit, type StepFace } from './cardsGalleryFit';
@@ -21,12 +21,12 @@ export type GalleryGrid = Readonly<{
 }>;
 
 export type GalleryGrids = Readonly<{
-  grids: readonly [GalleryGrid, GalleryGrid, GalleryGrid, GalleryGrid];
+  grids: readonly [GalleryGrid];
   count: number;
   width: number;
-  /** Высоты сеток по шагам (для высоты контейнера на UI-потоке). */
-  heights: readonly [number, number, number, number];
-  /** Геометрии карточки по всем четырём шагам — один и тот же массив на всё время жизни этих сеток. */
+  /** Высота сетки (для высоты контейнера). */
+  heights: readonly [number];
+  /** Геометрия карточки — один и тот же массив на всё время жизни этих сеток. */
   geoms: (index: number) => readonly TileGeom[];
 }>;
 
@@ -71,10 +71,10 @@ export function buildGalleryGrid(step: number, cards: readonly GridCard[], width
 }
 
 export function buildGalleryGrids(cards: readonly GridCard[], width: number, fontScale = 1, fixes?: GridFixes): GalleryGrids {
-  const grids = [0, 1, 2, 3].map((s) => buildGalleryGrid(s, cards, width, fontScale, fixes)) as unknown as GalleryGrids['grids'];
+  const grids = [buildGalleryGrid(0, cards, width, fontScale, fixes)] as const;
   const cache: (readonly TileGeom[] | undefined)[] = [];
   const geoms = (i: number): readonly TileGeom[] => (cache[i] ??= grids.map((g) => g.geom(i)));
-  return { grids, count: cards.length, width, heights: [grids[0].height, grids[1].height, grids[2].height, grids[3].height], geoms };
+  return { grids, count: cards.length, width, heights: [grids[0].height], geoms };
 }
 
 /** Индекс первого ряда, чей низ ниже `y` (бинарный поиск по верхам и высотам). */
@@ -97,25 +97,4 @@ export function gridVisibleRange(grid: GalleryGrid, n: number, scrollY: number, 
   const firstRow = Math.max(0, rowAt(grid, Math.max(0, scrollY)) - 2);
   const lastRow = rowAt(grid, Math.max(0, scrollY) + viewportH) + 2;
   return { from: Math.min(n, firstRow * grid.cols), to: Math.min(n, (lastRow + 1) * grid.cols) };
-}
-
-/** Карточка, ближайшая к точке (x, y) в координатах сетки; -1 — карточек нет. */
-export function gridAnchorIndex(grid: GalleryGrid, n: number, x: number, y: number): number {
-  if (n <= 0) return -1;
-  const col = Math.max(0, Math.min(grid.cols - 1, Math.floor(x / (grid.tileW + grid.gap))));
-  const row = Math.min(grid.rowTops.length - 1, rowAt(grid, Math.max(0, y)));
-  return Math.min(n - 1, Math.max(0, row) * grid.cols + col);
-}
-
-/** Новая прокрутка, при которой карточка под пальцами остаётся под ними после смены шага (то же, что galleryScrollFor, но по рядам разной высоты). */
-export function gridScrollFor(opts: Readonly<{ n: number; prev: GalleryGrid; next: GalleryGrid; fx: number; fvY: number; scrollY: number; gridTop: number }>): number {
-  const { n, prev, next, fx, fvY, scrollY, gridTop } = opts;
-  const focalGridY = fvY + scrollY - gridTop;
-  const anchor = gridAnchorIndex(prev, n, fx, focalGridY);
-  if (anchor < 0) return scrollY;
-  const a = prev.geom(anchor);
-  const fy = Math.max(0, Math.min(1, (focalGridY - a.y) / Math.max(1, a.h)));
-  const b = next.geom(anchor);
-  const newFingerY = gridTop + b.y + fy * b.h;
-  return Math.max(0, newFingerY - fvY);
 }

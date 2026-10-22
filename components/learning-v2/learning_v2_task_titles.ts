@@ -11,7 +11,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 
 export type LearningV2TaskTitleKind = 'listen_choose' | 'listen_build' | 'build_phrase' | 'fill_gap' | 'match_pairs' | 'speak';
-export type LearningV2TaskTitleIcon = 'ear' | 'headset' | 'extension-puzzle' | 'create' | 'swap-horizontal' | 'mic';
+export type LearningV2TaskTitleIcon = 'ear-outline' | 'headset-outline' | 'extension-puzzle-outline' | 'create-outline' | 'swap-horizontal-outline' | 'mic';
 
 const TITLES: Readonly<Record<LearningV2TaskTitleKind, Nine>> = {
   listen_choose: ['Послушай и выбери', 'Послухай і обери', 'Listen and choose', 'Escucha y elige', 'Ouça e escolha', 'Nghe và chọn', 'Dengarkan dan pilih', 'Dinle ve seç', 'Posłuchaj i wybierz'],
@@ -22,13 +22,13 @@ const TITLES: Readonly<Record<LearningV2TaskTitleKind, Nine>> = {
   speak: ['Скажи вслух', 'Скажи вголос', 'Say it out loud', 'Dilo en voz alta', 'Diga em voz alta', 'Nói thành tiếng', 'Ucapkan dengan lantang', 'Sesli söyle', 'Powiedz na głos'],
 };
 
-/** Значки макета (`IC`: ear, headset, puzzle, create, swap, mic) — имена Ionicons. */
+/** Значки макета (`IC`: ear f2c0, headset f368, puzzle f2e4, create f293, swap f5b1, mic f454) — имена Ionicons; в макете они контурные (Сверка 22.10, №23). */
 export const LEARNING_V2_TASK_TITLE_ICONS: Readonly<Record<LearningV2TaskTitleKind, LearningV2TaskTitleIcon>> = {
-  listen_choose: 'ear',
-  listen_build: 'headset',
-  build_phrase: 'extension-puzzle',
-  fill_gap: 'create',
-  match_pairs: 'swap-horizontal',
+  listen_choose: 'ear-outline',
+  listen_build: 'headset-outline',
+  build_phrase: 'extension-puzzle-outline',
+  fill_gap: 'create-outline',
+  match_pairs: 'swap-horizontal-outline',
   speak: 'mic',
 };
 

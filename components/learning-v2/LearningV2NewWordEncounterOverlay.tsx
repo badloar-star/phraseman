@@ -10,27 +10,16 @@ import {
 } from "react-native";
 import { useReducedMotion } from "react-native-reanimated";
 
-import FlashcardListItem from "../../app/flashcards/FlashcardListItem";
-import {
-  FLASHCARD_LIST_ITEM_CARD_STYLE,
-} from "../../app/flashcards/FlashcardListItemChrome";
-import type {
-  CardItem,
-  FlashcardContentLang,
-} from "../../app/flashcards/types";
 import { learningV2NewWordEncounterCopy } from "../../app/learning_v2_new_word_encounter_copy";
 import { useAppRuntimeActive } from "../../app/runtime_app_state_store";
 import type {
   LearningV2NewWordAudioStateV1,
   LearningV2NewWordSaveStateV1,
 } from "../../app/learning_v2_new_word_encounter_copy";
-import {
-  createLearningV2NewWordAutoFlipControllerV1,
-  learningV2NewWordAudioEnabledV1,
-} from "../../app/learning_v2_new_word_card_runtime_v1";
+import { learningV2NewWordAudioEnabledV1 } from "../../app/learning_v2_new_word_card_runtime_v1";
 import type { LearningV2InterfaceLocale } from "../../modules/learning-v2/content/generator_course_contract";
 import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
-import { useTheme } from "../ThemeContext";
+import { LinearGradient } from "../SafeLinearGradient";
 import { Lv2Explain, useLv2Glass } from "./LearningV2Glass";
 import { LearningV2TaskCta } from "./LearningV2TaskBody";
 import { lv2TaskTokens } from "./learning_v2_task_theme_tokens";
@@ -38,10 +27,10 @@ import { plateBoxShadow } from "../v2/ShadowSurface";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learningV2OwnerLayout";
 import { useLineScale } from '../../hooks/useLineScale';
 
-export const NEW_WORD_AUTO_FLIP_MS = 3_000;
-const NEW_WORD_FLIP_MS = 180;
+/** Значки и текст на тёмной карточке слова: белые во всех темах (карточка тёмная всегда — токен wordCardGradient). */
+const FACE_INK = "#FFFFFF"; // theme-exempt: карточка слова тёмная в любой теме
 
-export type LearningV2WindowPointV1 = Readonly<{ x: number; y: number }>;
+export type LearningV2WindowPointV1 =Readonly<{ x: number; y: number }>;
 
 function measureViewCenterInWindow(view: View | null): Promise<LearningV2WindowPointV1 | null> {
   return new Promise((resolve) => {
@@ -91,10 +80,8 @@ export default function LearningV2NewWordEncounterOverlay({
   measurePocketTarget,
 }: LearningV2NewWordEncounterOverlayProps) {
   const lh = useLineScale();
-  const { theme: t, f } = useTheme();
-  // зачем (learning-v2.html, wordCard): окно нового слова — плита стекла (`g`), CTA и статус
-  // сохранения из общего набора Learning V2; `t` остаётся только общей карточке слова
-  // FlashcardListItem, чей контракт темы живёт в модуле карточек.
+  // зачем (learning-v2.html, wordCard): окно нового слова — плита стекла (`g`), CTA и статус сохранения из общего набора Learning V2;
+  // лицо карточки — своё (задания №23, 22.10: тёмный градиент токена макета, слово и перевод, динамик и закладка внизу в кружках)
   const g = useLv2Glass();
   const reduceMotion = useReducedMotion();
   const appActive = useAppRuntimeActive();
@@ -113,34 +100,11 @@ export default function LearningV2NewWordEncounterOverlay({
   );
   const saved = saveState === "saved";
   const saveDisabled = saveState === "saving";
-  // Owner chose Panorama geometry with the active app palette (12 September).
-  const cardTheme = t;
-  const cardLocale: FlashcardContentLang = locale === "en" ? "ru" : locale;
-  // Reverse side is deliberately the exact short translation. The playful
-  // editorial line belongs to teaching copy, never to the flashcard back.
+  // зачем (владелец 22.10): под словом — только точный короткий перевод (без транскрипции и примера); переворачивать карточку не нужно
   const exactMeaningByLocale = encounter.save.meaningByLocale;
   const exactTranslation = exactMeaningByLocale[locale];
-  const cardItem = useMemo<CardItem>(
-    () => ({
-      id: `learning-v2-new-word-${encounter.lexicalItemId}`,
-      en: word,
-      ru: exactTranslation,
-      uk: exactTranslation,
-      es: exactTranslation,
-      sourceLocales: { [cardLocale]: exactTranslation },
-      // зачем (владелец 22.10): под словом — только перевод (без транскрипции и примера); переворачивать карточку не нужно
-      transcription: exactTranslation,
-      categoryId: "saved",
-      isSystem: true,
-    }),
-    [cardLocale, encounter.lexicalItemId, encounter.transcription, exactTranslation, word],
-  );
   // зачем (владелец 22.10, 1:1): `.nw .fc { height: 245 }` — высота карточки как в макете, без прежнего потолка 210 (окно прокручивается на малых экранах)
   const cardHeight = LEARNING_V2_OWNER_LAYOUT.word.cardHeight;
-  const flipAnim = useRef(new RNAnimated.Value(0)).current;
-  const overlayAnim = useRef(new RNAnimated.Value(0)).current;
-  const deleteOpacity = useRef(new RNAnimated.Value(1)).current;
-  const deleteScale = useRef(new RNAnimated.Value(1)).current;
   const pocketFlight = useRef(new RNAnimated.Value(0)).current;
   const pocketFlightX = useRef(new RNAnimated.Value(0)).current;
   const pocketFlightY = useRef(new RNAnimated.Value(0)).current;
@@ -152,60 +116,19 @@ export default function LearningV2NewWordEncounterOverlay({
   const continuingRef = useRef(false);
   const presentedRef = useRef(false);
   const sheetFlightOriginRef = useRef<View>(null);
-  const flippedRef = useRef(false);
-  const autoFlipControllerRef = useRef<ReturnType<
-    typeof createLearningV2NewWordAutoFlipControllerV1
-  > | null>(null);
+  // зачем (задания №23, 22.10): переворота у нового слова больше нет — слово и перевод на одной стороне, поэтому анимаций переворота и таймера авто-переворота нет
   useLayoutEffect(() => {
     continuingRef.current = false;
     presentedRef.current = false;
-    flippedRef.current = false;
     setContinuing(false);
-    flipAnim.stopAnimation();
-    flipAnim.setValue(0);
     pocketFlight.setValue(0);
     pocketFlightX.setValue(0);
     pocketFlightY.setValue(0);
-  }, [encounter.lexicalItemId, flipAnim, pocketFlight, pocketFlightX, pocketFlightY]);
-  const animateFlipTo = useCallback(
-    (next: boolean, reason: "auto" | "tap" = "tap") => {
-      console.log("[V2-WORD-CARD] flip", JSON.stringify({ lexicalItemId: encounter.lexicalItemId, reason, toFace: next ? "back" : "front", sinceRenderMs: Date.now() - renderedAtRef.current })); // guard-ok: строка на переворот
-      flippedRef.current = next;
-      flipAnim.stopAnimation();
-      RNAnimated.timing(flipAnim, {
-        toValue: next ? 1 : 0,
-        duration: reduceMotion ? 0 : NEW_WORD_FLIP_MS,
-        useNativeDriver: true,
-      }).start();
-    },
-    [encounter.lexicalItemId, flipAnim, reduceMotion],
-  );
-  const onFlipFromCardsComponent = useCallback(() => {
-    autoFlipControllerRef.current?.manualFlip();
-    animateFlipTo(!flippedRef.current);
-  }, [animateFlipTo]);
+  }, [encounter.lexicalItemId, pocketFlight, pocketFlightX, pocketFlightY]);
+  // Что на карточке — строка на слово (слово курса и точный перевод).
   useEffect(() => {
-    const controller = createLearningV2NewWordAutoFlipControllerV1({
-      delayMs: NEW_WORD_AUTO_FLIP_MS,
-      schedule: (callback, delayMs) => setTimeout(callback, delayMs),
-      cancel: (timer) => clearTimeout(timer as ReturnType<typeof setTimeout>),
-      onAutoFlip: () => {
-        if (!flippedRef.current) animateFlipTo(true, "auto");
-      },
-    });
-    autoFlipControllerRef.current = controller;
-    // зачем (колонка «Предлагаем»): авто-переворот на 3 с убран — перевод и так на лицевой стороне; карточка по-прежнему переворачивается касанием
-    return () => {
-      controller.dispose();
-      if (autoFlipControllerRef.current === controller) {
-        autoFlipControllerRef.current = null;
-      }
-    };
-  }, [animateFlipTo, encounter.lexicalItemId]);
-  // Что на лице и обороте карточки — строка на слово (лицо = слово курса, оборот = перевод, автопереворот через NEW_WORD_AUTO_FLIP_MS).
-  useEffect(() => {
-    console.log("[V2-WORD-CARD] faces", JSON.stringify({ lexicalItemId: encounter.lexicalItemId, front: word, back: exactTranslation ?? null, transcription: encounter.transcription ?? null, locale, autoFlipMs: NEW_WORD_AUTO_FLIP_MS })); // guard-ok: строка на карточку
-  }, [encounter.lexicalItemId, encounter.transcription, exactTranslation, locale, word]);
+    console.log("[V2-WORD-CARD] faces", JSON.stringify({ lexicalItemId: encounter.lexicalItemId, word, translation: exactTranslation ?? null, locale })); // guard-ok: строка на карточку
+  }, [encounter.lexicalItemId, exactTranslation, locale, word]);
   useEffect(() => {
     console.log("[V2-WORD-CARD] entrance_start", JSON.stringify({ lexicalItemId: encounter.lexicalItemId, sinceRenderMs: Date.now() - renderedAtRef.current, reduceMotion })); // guard-ok: строка на карточку
     renderedAtRef.current = Date.now();
@@ -357,34 +280,30 @@ export default function LearningV2NewWordEncounterOverlay({
           testID="learning-v2-new-word-compact-card"
           style={styles.cardWrap}
         >
-          <FlashcardListItem
-          item={cardItem}
-          itemIdx={0}
-          lang={cardLocale}
-          activeCat="saved"
-          deletingId={null}
-          longPressedId={null}
-          t={cardTheme}
-          f={f as unknown as Record<string, number>}
-          sourceLabels={{}}
-          deleteLabel=""
-          voiceLabel={copy.audioLabel}
-          voiceDisabled={!learningV2NewWordAudioEnabledV1(audioState)}
-          cardHeight={cardHeight}
-          cardStyle={FLASHCARD_LIST_ITEM_CARD_STYLE}
-          sourceBadgeStyle={{}}
-          sourceBadgeTextStyle={{}}
-          getCardFlipAnim={() => flipAnim}
-          getOverlayAnim={() => overlayAnim}
-          getDeleteAnim={() => ({ opacity: deleteOpacity, scale: deleteScale })}
-          onFlipCard={onFlipFromCardsComponent}
-          flipOnPressIn
-          onOpenDelete={() => undefined}
-          onCloseDelete={() => undefined}
-          onDeleteCard={() => undefined}
-          onSpeak={onSpeakFromCardsComponent}
-          strength={null}
-        />
+          {/* зачем (Сверка 22.10, №23 «до бита»; макет `.nw .fc`): лицо — тёмный градиент 160° (токен wordCardGradient, во всех темах), слово 40/800 белое и перевод 16 с α .7 по центру;
+              динамик (круг 38, `.spk`) слева внизу и закладка (круг 44) справа внизу — в 14 от краёв, на плашке белого α .14 */}
+          <LinearGradient
+            testID="learning-v2-new-word-face"
+            colors={[...lv2TaskTokens(g).wordCardGradient.colors]}
+            start={{ x: 0.33, y: 0.03 }}
+            end={{ x: 0.67, y: 0.97 }}
+            style={[styles.face, { height: cardHeight }]}
+          >
+            <Text testID="learning-v2-new-word-word" style={[styles.faceWord, { lineHeight: lh(48) }]}>{word}</Text>
+            <Text testID="learning-v2-new-word-translation" style={[styles.faceTranslation, { lineHeight: lh(21) }]}>{exactTranslation}</Text>
+          </LinearGradient>
+          <Pressable
+            testID="learning-v2-new-word-audio"
+            accessibilityRole="button"
+            accessibilityLabel={copy.audioLabel}
+            accessibilityState={{ disabled: !learningV2NewWordAudioEnabledV1(audioState) }}
+            disabled={!learningV2NewWordAudioEnabledV1(audioState)}
+            hitSlop={6}
+            onPress={onSpeakFromCardsComponent}
+            style={({ pressed }) => [styles.faceSpeaker, { opacity: !learningV2NewWordAudioEnabledV1(audioState) ? 0.45 : pressed ? 0.68 : 1, transform: [{ scale: pressed ? 0.94 : 1 }] }]}
+          >
+            <Ionicons name="volume-high" size={18} color={FACE_INK} />
+          </Pressable>
           <Pressable
             testID="learning-v2-new-word-save"
             accessibilityRole="button"
@@ -401,11 +320,7 @@ export default function LearningV2NewWordEncounterOverlay({
               },
             ]}
           >
-            <Ionicons
-              name={saved ? "bookmark" : "bookmark-outline"}
-              size={20}
-              color={saved ? g.cta : g.text}
-            />
+            <Ionicons name={saved ? "bookmark" : "bookmark-outline"} size={20} color={FACE_INK} />
           </Pressable>
         </RNAnimated.View>
         </View>
@@ -489,17 +404,43 @@ const styles = StyleSheet.create({
   cardWrap: {
     position: "relative",
     borderRadius: LEARNING_V2_OWNER_LAYOUT.word.cardRadius,
-    // The rotated back face needs room for its rounded silhouette. The faces
-    // themselves clip their fills, so clipping this 3D host only cuts corners.
     overflow: "visible",
   },
+  // `.nw .fc`: высота 245 (cardHeight), радиус 33, колонка по центру с gap 8; слово 40/800, перевод 16 с α .7
+  face: {
+    borderRadius: LEARNING_V2_OWNER_LAYOUT.word.cardRadius,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    paddingHorizontal: 24,
+    paddingBottom: 30, // слово и перевод — оптический центр над рядом кнопок внизу
+    overflow: "hidden",
+  },
+  faceWord: { color: FACE_INK, fontSize: 40, fontWeight: "800", textAlign: "center" },
+  faceTranslation: { color: FACE_INK, opacity: 0.7, fontSize: 16, fontWeight: "400", textAlign: "center" },
+  // `.spk` 38 × 38 слева внизу в 14 от краёв, плашка белого α .14, значок 18
+  faceSpeaker: {
+    position: "absolute",
+    left: 14,
+    bottom: 14,
+    zIndex: 5,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: "rgba(255,255,255,0.14)", // theme-exempt: плашка на тёмной карточке слова (во всех темах карточка тёмная)
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  // закладка 44 × 44 справа внизу в 14 от краёв, та же плашка
   cardBookmark: {
     position: "absolute",
-    right: 14, // зачем: макет — закладка 44×44 в 14 от правого и нижнего краёв карточки
+    right: 14,
     bottom: 14,
     zIndex: 5,
     width: 44,
     height: 44,
+    borderRadius: 22,
+    backgroundColor: "rgba(255,255,255,0.14)", // theme-exempt: плашка на тёмной карточке слова
     alignItems: "center",
     justifyContent: "center",
   },

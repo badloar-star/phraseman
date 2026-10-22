@@ -36,8 +36,10 @@ import Animated, {
   SlideInRight,
   SlideOutLeft,
   useAnimatedStyle,
+  ReduceMotion,
   useReducedMotion,
   useSharedValue,
+  withDelay,
   withSequence,
   withTiming,
 } from "react-native-reanimated";
@@ -194,8 +196,8 @@ import {
 } from "./learning_v2_preview_speech_watchdog_v1";
 import {
   SPEECH_RING_CALIBRATION_V1,
-  speechRingBoundaryPlanV1,
   speechRingDonePlanV1,
+  speechRingFirstWordPlanV1,
   speechRingStartPlanV1,
   type SpeechRingEstimateV1,
 } from "../modules/learning-v2/runtime/speech_ring_clock_v1";
@@ -448,11 +450,15 @@ type SpeechRingRunV1 = Readonly<{
   startedAtMs: number | null;
   estimate: SpeechRingEstimateV1 | null;
   boundaries: number;
+  /** Через сколько после onStart пришло первое слово (звук пошёл) — замер задержки голоса. */
+  firstWordAtMs: number | null;
 }>;
 type SpeechRingEndV1 = "done" | "stopped" | "error" | "watchdog" | "cancelled" | "superseded";
 type SpeechRingBoundaryEventV1 = Readonly<{ charIndex: number; charLength: number; textLength: number }>;
 
 const ringValue3 = (value: number): number => Math.round(value * 1000) / 1000;
+/** Нажатие на звук отвечает сразу: кольцо откатывается к нулю за это время и ждёт голос (при «уменьшить движение» — мгновенно). */
+const SPEECH_RING_REWIND_MS = 120;
 
 function logSpeechRing(phase: string, payload: Readonly<Record<string, unknown>>): void {
   if (__DEV__) console.log("[AUDIO-RING]", JSON.stringify({ phase, ...payload })); // guard-ok: ход кольца звука фразы (только разработка)
@@ -833,9 +839,12 @@ export default function LearningV2DirectSessionPlayerV1() {
     createLearningV2PreviewSpeechGenerationGuardV1(),
   );
   // зачем (владелец 22.10: «Кружочек должен заполняться строго по длине аудио, а не сначала медленно, а потом аудио закончилось —
-  // и он резко дозаполнился»): кольцо кнопки фразы ведёт сама речь голоса — старт по onStart, темп по границам слов, плавное
-  // доведение не дольше 150 мс по onDone (runtime/speech_ring_clock_v1). Ход живёт на UI-потоке (SharedValue + withTiming):
-  // React на кадрах не перерисовывается. У кольца свой номер проигрыша — поздние колбэки прежней фразы его не двигают.
+  // и он резко дозаполнился»): кольцо кнопки фразы ведёт сама речь голоса (runtime/speech_ring_clock_v1): ждёт выученную задержку
+  // голоса после onStart, первая граница слова — «звук пошёл», полным кольцо становится к ожидаемому концу речи, по onDone —
+  // плавное доведение не дольше 150 мс. Ход живёт на UI-потоке (SharedValue + withTiming): React на кадрах не перерисовывается.
+  // У кольца свой номер проигрыша — поздние колбэки прежней фразы его не двигают.
+  // Каждый новый план — только после сброса прежней анимации (присвоение числа или cancelAnimation): withTiming к той же цели
+  // иначе наследует старт прежней («continuity» Reanimated) — по журналу Сверки 22.10 кольцо от этого прыгало назад и вперёд.
   const referenceSpeechProgress = useSharedValue(0);
   const speechRingRunRef = useRef<SpeechRingRunV1 | null>(null);
   const startSpeechRing = useCallback((generation: number) => {
@@ -850,21 +859,28 @@ export default function LearningV2DirectSessionPlayerV1() {
     }
     const nowMs = Date.now();
     const estimate = SPEECH_RING_CALIBRATION_V1.estimate(run.text, run.rate);
-    const plan = speechRingStartPlanV1(estimate.ms);
+    const plan = speechRingStartPlanV1(estimate);
     speechRingRunRef.current = { ...run, startedAtMs: nowMs, estimate };
     referenceSpeechProgress.value = 0;
-    referenceSpeechProgress.value = withTiming(plan.target, { duration: plan.durationMs, easing: Easing.linear });
+    // Ход по звуку — сведение, а не украшение: идёт и при «уменьшить движение», иначе кольцо стало бы полным до конца речи.
+    referenceSpeechProgress.value = withDelay(
+      plan.delayMs,
+      withTiming(plan.target, { duration: plan.durationMs, easing: Easing.linear, reduceMotion: ReduceMotion.Never }),
+    );
     logSpeechRing("start", {
       key: run.key,
       latencyMs: nowMs - run.requestedAtMs,
-      estimateMs: estimate.ms,
+      leadMs: estimate.leadMs,
+      leadKnown: estimate.leadKnown,
+      audibleMs: estimate.audibleMs,
       source: estimate.source,
+      delayMs: plan.delayMs,
       planMs: plan.durationMs,
     });
   }, [referenceSpeechProgress]);
   const moveSpeechRing = useCallback((generation: number, event: SpeechRingBoundaryEventV1) => {
     const run = speechRingRunRef.current;
-    if (!run || run.generation !== generation || run.startedAtMs === null) {
+    if (!run || run.generation !== generation || run.startedAtMs === null || run.estimate === null) {
       logSpeechRing("boundary_skip", {
         reason: !run ? "no_run" : run.generation !== generation ? "other_run" : "not_started",
         charIndex: event.charIndex,
@@ -872,20 +888,45 @@ export default function LearningV2DirectSessionPlayerV1() {
       return;
     }
     const elapsedMs = Date.now() - run.startedAtMs;
+    const n = run.boundaries + 1;
+    const spokenPct = event.textLength > 0 ? Math.round((event.charIndex / event.textLength) * 100) : null;
+    if (run.boundaries > 0) {
+      // Границы внутри фразы не пропорциональны буквам (журнал Сверки 22.10) — темп по ним не меняем, только пишем.
+      speechRingRunRef.current = { ...run, boundaries: n };
+      logSpeechRing("boundary", { key: run.key, n, charIndex: event.charIndex, textLength: event.textLength, spokenPct, elapsedMs, decision: "log_only" });
+      return;
+    }
     const ring = referenceSpeechProgress.value;
-    const plan = speechRingBoundaryPlanV1({ charIndex: event.charIndex, textLength: event.textLength, elapsedMs, current: ring });
-    speechRingRunRef.current = { ...run, boundaries: run.boundaries + 1 };
-    if (plan) referenceSpeechProgress.value = withTiming(plan.target, { duration: plan.durationMs, easing: Easing.linear });
-    logSpeechRing("boundary", {
-      key: run.key,
-      n: run.boundaries + 1,
+    const decision = speechRingFirstWordPlanV1({
+      estimate: run.estimate,
+      elapsedMs,
+      current: ring,
       charIndex: event.charIndex,
       textLength: event.textLength,
-      spokenPct: event.textLength > 0 ? Math.round((event.charIndex / event.textLength) * 100) : null,
+    });
+    speechRingRunRef.current = {
+      ...run,
+      boundaries: n,
+      firstWordAtMs: decision.reason === "not_first_word" ? null : elapsedMs,
+    };
+    if (decision.plan) {
+      cancelAnimation(referenceSpeechProgress);
+      referenceSpeechProgress.value = withTiming(decision.plan.target, {
+        duration: decision.plan.durationMs,
+        easing: Easing.linear,
+        reduceMotion: ReduceMotion.Never,
+      });
+    }
+    logSpeechRing("boundary", {
+      key: run.key,
+      n,
+      charIndex: event.charIndex,
+      textLength: event.textLength,
+      spokenPct,
       elapsedMs,
       ring: ringValue3(ring),
-      planMs: plan?.durationMs ?? null,
-      decision: plan ? "retime" : "keep_plan",
+      planMs: decision.plan?.durationMs ?? null,
+      decision: decision.reason,
     });
   }, [referenceSpeechProgress]);
   const endSpeechRing = useCallback((generation: number, how: SpeechRingEndV1) => {
@@ -897,31 +938,37 @@ export default function LearningV2DirectSessionPlayerV1() {
     }
     speechRingRunRef.current = null;
     const ringAtEnd = referenceSpeechProgress.value;
-    // Голос так и не заговорил: кольцо остаётся как было до нажатия (пустое до первой фразы, полное после прослушанной);
-    // застывшее на середине от прерванной фразы — доводим, её начало уже прозвучало.
-    if (run.startedAtMs === null && how !== "done" && (ringAtEnd <= 0 || ringAtEnd >= 1)) {
-      logSpeechRing("end", { key: run.key, how, started: false, ringAtEnd: ringValue3(ringAtEnd), decision: "keep" });
+    // Голос так и не заговорил: кольцо с нажатия откатывается к нулю — пусть таким и остаётся, ничего не прозвучало.
+    if (run.startedAtMs === null && how !== "done") {
+      logSpeechRing("end", { key: run.key, how, started: false, ringAtEnd: ringValue3(ringAtEnd), decision: "stay_empty" });
       return;
     }
     const plan = speechRingDonePlanV1(ringAtEnd);
+    cancelAnimation(referenceSpeechProgress);
     referenceSpeechProgress.value = withTiming(plan.target, { duration: plan.durationMs, easing: Easing.out(Easing.cubic) });
-    const actualMs = run.startedAtMs === null ? null : Date.now() - run.startedAtMs;
-    const recorded = how === "done" && actualMs !== null
-      ? SPEECH_RING_CALIBRATION_V1.record(run.text, run.rate, actualMs)
-      : false;
+    const totalMs = run.startedAtMs === null ? null : Date.now() - run.startedAtMs;
+    const expectedMs = run.estimate ? run.estimate.leadMs + run.estimate.audibleMs : null;
+    // В память — только речь, дошедшая до конца: длина от onStart и задержка до первого слова (если граница была).
+    const recorded = how === "done" && totalMs !== null
+      ? SPEECH_RING_CALIBRATION_V1.record(run.text, run.rate, { totalMs, leadMs: run.firstWordAtMs })
+      : null;
     logSpeechRing("end", {
       key: run.key,
       how,
       chars: run.text.length,
       rate: run.rate ?? 1,
-      estimateMs: run.estimate?.ms ?? null,
+      leadMs: run.estimate?.leadMs ?? null,
+      audibleMs: run.estimate?.audibleMs ?? null,
+      expectedMs,
       source: run.estimate?.source ?? null,
-      actualMs,
-      errorPct: run.estimate && actualMs ? Math.round(((run.estimate.ms - actualMs) / actualMs) * 100) : null,
+      totalMs,
+      errorPct: expectedMs !== null && totalMs ? Math.round(((expectedMs - totalMs) / totalMs) * 100) : null,
+      firstWordMs: run.firstWordAtMs,
       boundaries: run.boundaries,
       ringAtEnd: ringValue3(ringAtEnd),
       finishMs: plan.durationMs,
-      recorded,
+      recordedLead: recorded?.lead ?? false,
+      recordedAudible: recorded?.audible ?? false,
     });
   }, [referenceSpeechProgress]);
   const speakPreviewText = useCallback(
@@ -955,18 +1002,16 @@ export default function LearningV2DirectSessionPlayerV1() {
       setPreviewSpeechKey(null);
       stopPreviewAudio();
       const request = previewSpeechGuardRef.current.begin(key);
-      // Кольцо: новый проигрыш фразы сменяет прежний — кольцо замирает до старта голоса и пойдёт с нуля;
-      // любой другой звук закрывает прежний проигрыш фразы (он прервался).
+      // Кольцо: нажатие на фразу отвечает сразу — кольцо откатывается к нулю и ждёт голос (Сверка 22.10: раньше оно стояло
+      // на месте ~0,4 с до старта голоса); прежний проигрыш фразы закрыт этим же нажатием.
+      // Любой другой звук закрывает прежний проигрыш фразы (он прервался).
       const previousRing = speechRingRunRef.current;
       if (drivesRing) {
+        const ringFrom = referenceSpeechProgress.value;
+        cancelAnimation(referenceSpeechProgress);
+        referenceSpeechProgress.value = withTiming(0, { duration: SPEECH_RING_REWIND_MS, easing: Easing.out(Easing.cubic) });
         if (previousRing) {
-          cancelAnimation(referenceSpeechProgress);
-          logSpeechRing("superseded", {
-            key: previousRing.key,
-            by: key,
-            ring: ringValue3(referenceSpeechProgress.value),
-            decision: "hold_until_start",
-          });
+          logSpeechRing("superseded", { key: previousRing.key, by: key, ring: ringValue3(ringFrom), decision: "rewind" });
         }
         speechRingRunRef.current = {
           generation: request.generation,
@@ -977,8 +1022,9 @@ export default function LearningV2DirectSessionPlayerV1() {
           startedAtMs: null,
           estimate: null,
           boundaries: 0,
+          firstWordAtMs: null,
         };
-        logSpeechRing("request", { key, chars: normalized.length, rate: rate ?? 1, ringFrom: ringValue3(referenceSpeechProgress.value) });
+        logSpeechRing("request", { key, chars: normalized.length, rate: rate ?? 1, ringFrom: ringValue3(ringFrom), rewindMs: SPEECH_RING_REWIND_MS });
       } else if (previousRing) {
         endSpeechRing(previousRing.generation, "superseded");
       }
@@ -4263,10 +4309,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   retryText: { fontSize: 16, fontWeight: "900" },
+  // зачем (Сверка 22.10, №23: «второй ряд и полоса на ≈20 px ниже макета»): от низа верхней строки до заголовка в макете 14 (`.tvb` padding-top 8 + `.todo` margin-top 6);
+  // у тела (LearningV2PracticeViewport) уже 8 сверху, поэтому нижний отступ шапки 0 — прежние 10 были лишними; поля 20 как `--pad`
   header: {
-    minHeight: 64,
-    paddingHorizontal: 16,
-    paddingBottom: 10,
+    minHeight: 54,
+    paddingHorizontal: 20,
+    paddingBottom: 0,
     flexDirection: "row",
     alignItems: "center",
     gap: 12,

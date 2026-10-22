@@ -22,7 +22,7 @@ async function main(): Promise<void> {
   );
   assert.deepEqual(
     [LEARNING_V2_TASK_TITLE_ICONS.listen_choose, LEARNING_V2_TASK_TITLE_ICONS.listen_build, LEARNING_V2_TASK_TITLE_ICONS.build_phrase, LEARNING_V2_TASK_TITLE_ICONS.fill_gap, LEARNING_V2_TASK_TITLE_ICONS.match_pairs, LEARNING_V2_TASK_TITLE_ICONS.speak],
-    ["ear", "headset", "extension-puzzle", "create", "swap-horizontal", "mic"],
+    ["ear-outline", "headset-outline", "extension-puzzle-outline", "create-outline", "swap-horizontal-outline", "mic"], // зачем (Сверка 22.10, №23): значки макета контурные
   );
 
   const chrome = readFileSync("components/learning-v2/LearningV2TaskChrome.tsx", "utf8");

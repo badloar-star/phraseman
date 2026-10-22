@@ -8,12 +8,9 @@ const overlay = readFileSync(
   "utf8",
 );
 
-assert.match(overlay, /NEW_WORD_AUTO_FLIP_MS\s*=\s*3_?000/);
-assert.match(overlay, /createLearningV2NewWordAutoFlipControllerV1\(\{/);
-assert.match(overlay, /delayMs:\s*NEW_WORD_AUTO_FLIP_MS/);
-assert.match(overlay, /controller\.arm\(\)/);
-assert.match(overlay, /controller\.dispose\(\)/);
-assert.match(overlay, /autoFlipControllerRef\.current\?\.manualFlip\(\)/);
+// зачем (владелец 22.10, колонка «Предлагаем» №23): авто-переворот, подсказка «переверни» и переворот касанием отменены — перевод на лицевой стороне; здесь держим их отсутствие
+assert.doesNotMatch(overlay, /NEW_WORD_AUTO_FLIP_MS|createLearningV2NewWordAutoFlipControllerV1|autoFlipControllerRef|flippedRef|flipOnPressIn|hintPulse/);
+assert.match(overlay, /testID="learning-v2-new-word-face"/);
 assert.match(overlay, /testID="learning-v2-new-word-save"/);
 assert.match(overlay, /styles\.cardBookmark/);
 assert.equal(
@@ -38,14 +35,6 @@ assert.match(
   overlay,
   /inputRange:\s*\[0,\s*0\.9,\s*1\]/,
   "the flying card must remain visible until it reaches the footer",
-);
-assert.match(overlay, /hintPulse/);
-assert.match(overlay, /RNAnimated\.loop\(/);
-assert.match(overlay, /outputRange:\s*\[0\.58,\s*1\]/);
-assert.match(
-  overlay,
-  /flipOnPressIn/,
-  "the canonical card must opt into immediate, interruptible flip taps",
 );
 assert.ok(
   !/entering=\{entering\}/.test(overlay),

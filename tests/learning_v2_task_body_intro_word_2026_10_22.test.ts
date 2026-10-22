@@ -13,7 +13,7 @@ describe('«Новое слово» и интро', () => {
 
   it('новое слово: перевод сразу на карточке («/hɪə/ · здесь»), подсказки «переверни» и авто-переворота нет; «Понятно» на 9 языках', () => {
     // владелец 22.10: на карточке — слово и ТОЛЬКО перевод (без транскрипции и примера)
-    expect(nw).toContain('transcription: exactTranslation,');
+    expect(nw).toContain('{exactTranslation}</Text>'); // перевод под словом на одной стороне карточки
     expect(nw).not.toContain('.join(" · ")');
     expect(nw).not.toContain('learningV2NewWordFlipHintV1(locale)');
     expect(nw).not.toContain('controller.arm()');

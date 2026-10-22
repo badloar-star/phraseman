@@ -139,7 +139,8 @@ export const LearningV2TaskCta = memo(function LearningV2TaskCta({ children, onP
 
 /** Ключи значков макета (kit.js) → имена Ionicons. */
 const TASK_ICON: Readonly<Record<LearningV2TaskIconV1, React.ComponentProps<typeof Ionicons>['name']>> = {
-  ear: 'ear', headset: 'headset', puzzle: 'extension-puzzle', create: 'create', swap: 'swap-horizontal', mic: 'mic',
+  // зачем (Сверка 22.10, №23): значки заголовка контурные, как в макете (`IC` ear f2c0, headset f368, puzzle f2e4, create f293, swap f5b1)
+  ear: 'ear-outline', headset: 'headset-outline', puzzle: 'extension-puzzle-outline', create: 'create-outline', swap: 'swap-horizontal-outline', mic: 'mic',
 };
 
 /**

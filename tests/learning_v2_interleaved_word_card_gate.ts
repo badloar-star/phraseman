@@ -27,30 +27,22 @@ expectText(
   'kind: "continue"',
   "missing_resume_same_interaction",
 );
-expectText(
+// зачем (владелец 22.10, «до бита» с колонкой «Предлагаем» №23): общая карточка Карточек и переворот отменены — у нового слова своё тёмное лицо: слово и перевод на одной стороне,
+// динамик (круг 38) слева внизу и закладка (круг 44) справа внизу. Сторож теперь держит это, а не старую общую карточку.
+rejectText(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
   'from "../../app/flashcards/FlashcardListItem"',
-  "overlay_does_not_use_exact_compact_cards_section_component",
+  "overlay_must_not_use_cards_section_component_any_more",
 );
 expectText(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
-  "<FlashcardListItem",
-  "overlay_has_no_exact_compact_flip_card",
+  'testID="learning-v2-new-word-face"',
+  "overlay_has_no_own_dark_word_face",
 );
 expectText(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
-  'from "../../app/flashcards/FlashcardListItemChrome"',
-  "overlay_does_not_share_exact_cards_section_geometry",
-);
-expectText(
-  "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
-  "cardStyle={FLASHCARD_LIST_ITEM_CARD_STYLE}",
-  "overlay_does_not_render_shared_compact_card_style",
-);
-expectText(
-  "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
-  "onSpeak={onSpeakFromCardsComponent}",
-  "canonical_top_right_speaker_not_wired",
+  "onPress={onSpeakFromCardsComponent}",
+  "bottom_left_speaker_not_wired",
 );
 expectText(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
@@ -73,20 +65,15 @@ rejectText(
   'testID="learning-v2-new-word-definition"',
   "under_card_editorial_definition_must_not_render",
 );
-expectText(
+rejectText(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
-  "flippedRef.current = false",
-  "next_word_does_not_reset_flip_state",
+  "flippedRef",
+  "flip_state_must_be_gone",
 );
 expectText(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
   "useLayoutEffect(() =>",
-  "next_word_flip_reset_can_flash_after_paint",
-);
-expectText(
-  "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
-  "[animateFlipTo, encounter.lexicalItemId]",
-  "next_word_does_not_rearm_auto_flip",
+  "next_word_state_reset_can_flash_after_paint",
 );
 const overlaySource = read(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",

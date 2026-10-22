@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Диалоги — как выбрать диалог</title>
+<style>
+/* ───────── PhraseMan 2.0 · «Диалоги»: четыре варианта выбора диалога (владелец 22.10 через координатора) ─────────
+   «МНЕ НЕ НРАВИТСЯ, КАК СДЕЛАН РАЗДЕЛ ДИАЛОГИ (НОВЫЙ, СЦЕНА): НЕПОНЯТНО, КАК ВЫБИРАТЬ ДИАЛОГИ. ПОКАЖИ МАКЕТЫ УЛУЧШЕННЫЕ».
+   Цель каждого варианта: сразу ясно, КАК выбрать диалог и что будет дальше. Путь из трёх кадров: ① выбираю → ② что увижу → ③ начал.
+   Данные — настоящие: 76 диалогов (content/dialogues-v2 + shared/generated/dialogue_v2_ui_copy.ru.json): мир, название, собеседник, цели, уровень CEFR, ранг,
+   с которого диалог открывается. Звёзд и длительности в данных нет: «≈ N мин» = число целей (помечено), звёзд не рисуем.
+   Размеры текста — только 13 и 16 (правило D145), заголовки крупнее; обводок нет: тон, тень, скругление. Классы dr-, телефон .ph, 390 × 844 (Pixel 8 в dp). */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.dr-page { max-width: 1320px; margin: 0 auto; padding: 32px 24px 96px; }
+.dr-page h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.4px; }
+.dr-lead { color: #A9A9AE; font-size: 16px; line-height: 24px; max-width: 920px; margin: 0 0 12px; }
+.dr-data { background: #1C1D21; border-radius: 20px; padding: 14px 18px; max-width: 920px; font-size: 13px; line-height: 20px; color: #C9C9CE; margin: 0 0 8px; }
+.dr-data b { color: #ECECEE; }
+.dr-bar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 0; background: #101113; }
+.dr-seg { display: inline-flex; background: #1C1D21; border-radius: 22px; padding: 4px; }
+.dr-seg button, .dr-pick { font: 600 16px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: transparent; border: 0; border-radius: 18px; padding: 10px 16px; cursor: pointer; }
+.dr-seg button.on { background: #ECECEE; color: #111214; }
+.dr-sum { color: #A9A9AE; font-size: 13px; }
+.dr-sum b { color: #ECECEE; }
+.dr-block { margin-top: 44px; }
+.dr-pick { background: #1C1D21; padding: 12px 20px; display: inline-flex; align-items: center; gap: 10px; }
+.dr-pick b { font-weight: 800; font-size: 22px; }
+.dr-pick.on { background: #ECECEE; color: #111214; }
+.dr-block h2 { font-size: 22px; line-height: 28px; margin: 14px 0 4px; }
+.dr-block > p { margin: 0 0 18px; color: #A9A9AE; font-size: 16px; line-height: 24px; max-width: 920px; }
+.dr-row { display: flex; flex-wrap: wrap; gap: 36px; }
+.dr-col { display: flex; flex-direction: column; gap: 12px; width: 390px; flex: none; }
+.dr-cap { font-size: 16px; line-height: 21px; font-weight: 700; color: #ECECEE; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; min-height: 62px; align-content: flex-start; }
+.dr-cap i { width: 26px; height: 26px; border-radius: 13px; background: #ECECEE; color: #111214; font-style: normal; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; }
+.dr-cap span { font-weight: 500; color: #A9A9AE; font-size: 13px; }
+
+/* ── телефон ── */
+.ph { position: relative; width: 390px; height: 844px; border-radius: 48px; overflow: hidden; flex: none; background: var(--bg); color: var(--tx);
+  box-shadow: 0 0 0 10px #0B0B0D, 0 0 0 11px #2B2C31, 0 30px 70px rgba(0, 0, 0, .55); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 21px; }
+.ph.dk { --bg: #0E171C; --card: #172329; --card2: #1D2B32; --ctl: #243640; --tx: #FFFFFF; --sec: #9BB0B9; --good: #3DD6A3; --acc: #6FD6E2; --sh: 0 12px 28px rgba(0, 0, 0, .38);
+  --st-top: oklch(.36 .08 214); --st-bot: oklch(.15 .05 222); --st-glow: oklch(.55 .10 200 / .85); --shade: rgba(4, 9, 12, .62); }
+.ph.lt { --bg: #F2F1F6; --card: #FFFFFF; --card2: #F6F5FA; --ctl: #E6E7F4; --tx: #16141D; --sec: #6A6777; --good: #1C7F5A; --acc: #4B3FC4; --sh: 0 10px 26px rgba(40, 30, 80, .12);
+  --st-top: oklch(.47 .14 282); --st-bot: oklch(.28 .10 276); --st-glow: oklch(.66 .13 300 / .9); --shade: rgba(22, 20, 29, .42); }
+.ph * { min-width: 0; }
+.dr-sb { position: absolute; z-index: 9; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 34px; font-size: 13px; font-weight: 700; color: var(--tx); }
+.dr-sb.on-scene { color: #fff; }
+.dr-sb .sys { display: inline-flex; gap: 6px; align-items: center; }
+.dr-sb .sys i { display: block; background: currentColor; border-radius: 2px; }
+.dr-ind { position: absolute; z-index: 9; bottom: 6px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .85; }
+.dr-scr { position: absolute; inset: 0; overflow: hidden; padding-top: 52px; }
+.dr-fade { position: absolute; z-index: 5; left: 0; right: 0; bottom: 0; height: 90px; background: linear-gradient(to bottom, transparent, var(--bg) 78%); pointer-events: none; }
+
+/* ── шапка ── */
+.dr-top { display: flex; align-items: center; gap: 10px; padding: 0 16px; min-height: 44px; }
+.dr-top .sp { flex: 1; }
+.dr-round { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: inline-flex; align-items: center; justify-content: center; font-size: 22px; flex: none; }
+.dr-top h1 { margin: 0; font-size: 24px; line-height: 30px; font-weight: 800; letter-spacing: -.3px; }
+.dr-pill { min-height: 36px; padding: 0 12px; border-radius: 18px; background: var(--card); box-shadow: var(--sh); display: inline-flex; align-items: center; gap: 6px; font-size: 13px; line-height: 17px; font-weight: 700; }
+.dr-pill .io { font-size: 16px; }
+.dr-pill.warn .io { color: var(--acc); }
+
+/* ── кнопки и чипы ── */
+.dr-btn { min-height: 50px; border-radius: 25px; padding: 0 24px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; line-height: 21px; font-weight: 700; background: var(--tx); color: var(--bg); }
+.dr-btn.sec { background: var(--ctl); color: var(--tx); }
+.dr-btn.full { width: 100%; }
+.dr-btn.sm { min-height: 40px; padding: 0 18px; border-radius: 20px; }
+.dr-btn .io { font-size: 18px; }
+.dr-chip { flex: none; min-height: 36px; border-radius: 18px; padding: 0 14px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; line-height: 17px; font-weight: 700; background: var(--card2); color: var(--tx); }
+.dr-chip.on { background: var(--tx); color: var(--bg); }
+.dr-chip.lock { color: var(--sec); }
+.dr-chip .io { font-size: 15px; }
+.dr-chips { display: flex; gap: 8px; overflow: hidden; padding: 0 16px; }
+.dr-lab { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); padding: 0 16px; margin: 14px 0 8px; display: flex; justify-content: space-between; }
+.dr-segc { margin: 0 16px; display: flex; background: var(--card2); border-radius: 18px; padding: 3px; }
+.dr-segc span { flex: 1; min-height: 38px; border-radius: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.dr-segc span.on { background: var(--tx); color: var(--bg); }
+.dr-segc span em { font-style: normal; font-weight: 600; opacity: .7; }
+
+/* ── карточки ── */
+.dr-card { margin: 0 16px; border-radius: 24px; background: var(--card); box-shadow: var(--sh); padding: 16px; }
+.dr-card .k { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.dr-card .t { font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -.3px; margin-top: 4px; }
+.dr-prog { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 13px; line-height: 17px; font-weight: 600; color: var(--sec); }
+.dr-prog .bar { flex: 0 0 96px; height: 6px; border-radius: 3px; background: var(--ctl); overflow: hidden; }
+.dr-prog .bar i { display: block; height: 100%; background: var(--acc); border-radius: 3px; }
+.dr-card .dr-btn { margin-top: 14px; }
+.dr-list { padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
+.dc { border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 12px 14px; display: flex; align-items: center; gap: 12px; min-height: 68px; }
+.dc .wi { width: 40px; height: 40px; border-radius: 14px; background: var(--card2); display: flex; align-items: center; justify-content: center; font-size: 20px; flex: none; }
+.dc .tx { flex: 1; }
+.dc .tx b { display: block; font-size: 16px; line-height: 21px; font-weight: 700; }
+.dc .tx small { display: block; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 2px; font-weight: 500; }
+.dc .lv { flex: none; min-height: 26px; border-radius: 13px; padding: 0 9px; display: inline-flex; align-items: center; background: var(--ctl); font-size: 13px; line-height: 17px; font-weight: 800; }
+.dc .st { flex: none; width: 28px; text-align: center; font-size: 22px; color: var(--sec); }
+.dc.done .st { color: var(--good); }
+.dc.current { background: color-mix(in srgb, var(--acc) 14%, var(--card)); }
+.dc.locked { box-shadow: none; background: color-mix(in srgb, var(--card) 55%, var(--bg)); }
+.dc.locked .tx b { color: var(--sec); }
+.dc.sel { transform: translateY(-2px); background: color-mix(in srgb, var(--acc) 18%, var(--card)); }
+.dc .lockt { color: var(--sec); font-weight: 700; }
+.dr-more { text-align: center; font-size: 13px; font-weight: 700; color: var(--sec); padding: 6px 0; }
+
+/* ── листы и экраны «что увижу» ── */
+.dr-dim { position: absolute; z-index: 6; inset: 0; background: rgba(0, 0, 0, .55); }
+.dr-sheet { position: absolute; z-index: 7; left: 0; right: 0; bottom: 0; border-radius: 32px 32px 0 0; background: var(--card); padding: 12px 20px 30px; box-shadow: 0 -14px 40px rgba(0, 0, 0, .35); }
+.dr-grab { width: 44px; height: 5px; border-radius: 3px; background: var(--ctl); margin: 0 auto 14px; }
+.dr-sheet .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.dr-who { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+.dr-ava { width: 40px; height: 40px; border-radius: 20px; background: linear-gradient(135deg, #F6C9A8, #C98E6B); color: #3a2418; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; flex: none; }
+.dr-goals { margin: 12px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.dr-goals li { display: flex; gap: 10px; align-items: flex-start; font-size: 16px; line-height: 21px; }
+.dr-goals li i { flex: none; width: 24px; height: 24px; border-radius: 12px; background: var(--ctl); display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 13px; font-weight: 800; margin-top: -1px; }
+.dr-how { margin-top: 14px; border-radius: 16px; background: var(--card2); padding: 12px 14px; font-size: 13px; line-height: 19px; color: var(--sec); }
+.dr-how b { color: var(--tx); }
+.dr-two { display: flex; gap: 10px; margin-top: 16px; }
+.dr-two .dr-btn { flex: 1; }
+.dr-foot { position: absolute; z-index: 6; left: 0; right: 0; bottom: 0; padding: 14px 16px 30px; background: linear-gradient(to bottom, transparent, var(--bg) 30%); }
+
+/* ── сцена варианта 2 ── */
+.dr-sc { position: relative; height: 392px; margin-top: -52px; border-radius: 0 0 32px 32px; overflow: hidden; color: #fff;
+  background: radial-gradient(70% 60% at 18% 0%, var(--st-glow), transparent 70%), linear-gradient(165deg, var(--st-top) 0%, var(--st-bot) 100%); }
+.dr-sc .glow { position: absolute; right: 0; top: 96px; width: 168px; height: 168px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .22), transparent 70%); }
+.dr-sc img.art { position: absolute; right: -14px; top: 96px; width: 160px; height: 160px; object-fit: contain; filter: drop-shadow(0 24px 32px rgba(0, 0, 0, .45)); }
+.dr-sc .scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 60%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .34)); }
+.dr-sc .top { position: absolute; z-index: 3; top: 52px; left: 16px; right: 16px; display: flex; align-items: center; gap: 10px; }
+.dr-sc .top .sp { flex: 1; }
+.dr-sc .dr-round, .dr-sc .dr-pill { background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); color: #fff; }
+.dr-sc .body { position: absolute; z-index: 2; left: 20px; right: 150px; bottom: 36px; }
+.dr-sc .kick { font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .86); }
+.dr-sc .ttl { font-weight: 800; letter-spacing: -.5px; margin-top: 2px; font-size: 26px; line-height: 32px; }
+.dr-sc .dr-prog { color: rgba(255, 255, 255, .88); margin-top: 8px; }
+.dr-sc .dr-prog .bar { flex-basis: 56px; height: 4px; background: rgba(255, 255, 255, .28); }
+.dr-sc .dr-prog .bar i { background: #fff; }
+.dr-sc .dr-btn { background: #fff; color: #121318; margin-top: 14px; }
+.dr-after { position: relative; z-index: 4; margin-top: 14px; padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
+.dr-after h3 { margin: 6px 4px 0; font-size: 16px; line-height: 21px; font-weight: 800; display: flex; justify-content: space-between; align-items: baseline; }
+.dr-after h3 span { font-size: 13px; color: var(--sec); font-weight: 600; }
+.dr-worlds { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dr-w { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px; min-height: 122px; display: flex; flex-direction: column; }
+.dr-w .wi { width: 40px; height: 40px; border-radius: 14px; background: var(--card2); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.dr-w b { font-size: 16px; line-height: 21px; font-weight: 800; margin-top: 10px; }
+.dr-w small { font-size: 13px; line-height: 17px; color: var(--sec); font-weight: 600; margin-top: 2px; }
+.dr-w .meter { display: flex; gap: 3px; margin-top: auto; padding-top: 10px; }
+.dr-w .meter i { flex: 1; height: 5px; border-radius: 3px; background: var(--ctl); }
+.dr-w .meter i.f { background: var(--acc); }
+.dr-w.on { background: color-mix(in srgb, var(--acc) 16%, var(--card)); }
+
+/* ── лестница (вариант 3) ── */
+.dr-ladder { padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
+.dr-lv { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px; }
+.dr-lv.closed { background: color-mix(in srgb, var(--card) 55%, var(--bg)); box-shadow: none; }
+.dr-lv .h { display: flex; align-items: center; gap: 12px; }
+.dr-lv .badge { width: 44px; height: 44px; border-radius: 14px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex: none; }
+.dr-lv.cur .badge { background: var(--tx); color: var(--bg); }
+.dr-lv .h .tx { flex: 1; }
+.dr-lv .h b { display: block; font-size: 16px; line-height: 21px; font-weight: 800; }
+.dr-lv .h small { display: block; font-size: 13px; line-height: 17px; color: var(--sec); font-weight: 600; margin-top: 1px; }
+.dr-lv .h .io { font-size: 20px; color: var(--sec); }
+.dr-lv .meter { display: flex; gap: 3px; margin-top: 10px; }
+.dr-lv .meter i { flex: 1; height: 5px; border-radius: 3px; background: var(--ctl); }
+.dr-lv .meter i.f { background: var(--acc); }
+.dr-lv .items { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.dr-lv .rk { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); margin-top: 4px; }
+.dr-mini { border-radius: 16px; background: var(--card2); padding: 10px 12px; display: flex; align-items: center; gap: 10px; min-height: 52px; }
+.dr-mini .wi { font-size: 18px; width: 24px; text-align: center; flex: none; }
+.dr-mini b { flex: 1; font-size: 16px; line-height: 21px; font-weight: 700; }
+.dr-mini small { font-size: 13px; color: var(--sec); font-weight: 600; flex: none; }
+.dr-mini.done .io:last-child { color: var(--good); font-size: 20px; }
+.dr-mini.sel { background: color-mix(in srgb, var(--acc) 20%, var(--card2)); }
+
+/* ── подбор (вариант 4) ── */
+.dr-h { padding: 8px 20px 0; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -.5px; }
+.dr-sub { padding: 6px 20px 0; font-size: 16px; line-height: 21px; color: var(--sec); }
+.dr-wiz { margin: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dr-wiz .o div { min-width: 0; }
+.dr-wiz .o { border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 12px; display: flex; align-items: center; gap: 10px; min-height: 60px; font-size: 16px; line-height: 21px; font-weight: 700; }
+.dr-wiz .o .io { font-size: 20px; width: 32px; height: 32px; border-radius: 12px; background: var(--card2); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.dr-wiz .o.on { background: var(--tx); color: var(--bg); }
+.dr-wiz .o.on .io { background: rgba(0, 0, 0, .12); }
+.dr-pick3 { margin: 0 16px; display: flex; flex-direction: column; gap: 10px; }
+.dr-rec { border-radius: 26px; background: var(--card); box-shadow: var(--sh); padding: 16px; }
+.dr-rec.first { background: color-mix(in srgb, var(--acc) 14%, var(--card)); }
+.dr-rec .why { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.dr-rec .why span { min-height: 26px; border-radius: 13px; padding: 0 10px; display: inline-flex; align-items: center; background: var(--ctl); font-size: 13px; line-height: 17px; font-weight: 700; }
+.dr-rec .t { font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -.3px; margin-top: 6px; }
+.dr-rec .k { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.dr-rec .dr-btn { margin-top: 14px; }
+
+/* ── чат (кадр ③) ── */
+.dr-chat-top { display: flex; align-items: center; gap: 12px; padding: 0 16px; min-height: 52px; }
+.dr-chat-top .tx { flex: 1; }
+.dr-chat-top b { display: block; font-size: 16px; line-height: 21px; font-weight: 800; }
+.dr-chat-top small { display: block; font-size: 13px; line-height: 17px; color: var(--sec); font-weight: 600; }
+.dr-gl { margin: 8px 16px 0; border-radius: 18px; background: var(--card); box-shadow: var(--sh); padding: 12px 14px; }
+.dr-gl .r { display: flex; align-items: center; justify-content: space-between; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.dr-gl .dots { display: flex; gap: 4px; margin-top: 8px; }
+.dr-gl .dots i { flex: 1; height: 6px; border-radius: 3px; background: var(--ctl); }
+.dr-gl .dots i.f { background: var(--acc); }
+.dr-gl .now { margin-top: 10px; font-size: 16px; line-height: 21px; font-weight: 700; display: flex; gap: 8px; align-items: center; }
+.dr-msgs { padding: 18px 16px 0; display: flex; flex-direction: column; gap: 12px; }
+.dr-bub { max-width: 82%; border-radius: 22px 22px 22px 8px; background: var(--card); box-shadow: var(--sh); padding: 12px 14px; font-size: 16px; line-height: 22px; }
+.dr-bub small { display: block; margin-top: 6px; font-size: 13px; line-height: 17px; color: var(--sec); font-weight: 500; }
+.dr-in { position: absolute; z-index: 6; left: 12px; right: 12px; bottom: 30px; display: flex; gap: 10px; align-items: center; }
+.dr-in .f { flex: 1; min-height: 52px; border-radius: 26px; background: var(--card); box-shadow: var(--sh); padding: 0 18px; display: flex; align-items: center; color: var(--sec); font-size: 16px; }
+.dr-in .mic { width: 52px; height: 52px; border-radius: 26px; background: var(--tx); color: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.dr-hintrow { padding: 0 16px; margin-top: 12px; display: flex; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="dr-page">
+  <h1>Диалоги — как выбрать диалог</h1>
+  <p class="dr-lead">Владелец 22.10: «Мне не нравится, как сделан раздел Диалоги — непонятно, как выбирать диалоги». Четыре разных способа выбора. У каждого — путь из трёх кадров: <b>① выбираю → ② что увижу → ③ начал</b>. Сцена сверху — не выше 46 % (в варианте 2) или совсем без неё. Нажмите номер, чтобы выбрать вариант.</p>
+  <div class="dr-data"><b>Что есть в данных приложения</b> (то, на чём стоят макеты): 76 диалогов = 4 темы × 19 рангов; у каждого — тема (Общение · Дела · Поездки · Повседневное), название, собеседник, 6–8 целей, уровень CEFR (A1–C2) и ранг, с которого диалог открывается; статусы «новый / в процессе / пройден / закрыт рангом». Дневной лимит: 30 ответов у бесплатных, у Plus без лимита; <b>отдельных Plus-диалогов нет</b> — лимит и замок по рангу показаны честно. <b>Чего в данных нет:</b> звёзд за диалог и длительности — в макетах «≈ N мин» = число целей, звёзды не рисуем (если нужны, это новое поле результата). Пример: ранг 6 (уровень A2), пройдено 9 из 76, в процессе «Спросить, как добраться» (2 из 6 целей), осталось 12 ответов на сегодня.</div>
+  <div class="dr-bar">
+    <div class="dr-seg" role="group" aria-label="Оформление"><button type="button" data-ap="dk" class="on">Тёмное</button><button type="button" data-ap="lt">Светлое</button></div>
+    <div class="dr-sum" id="dr-sum"></div>
+  </div>
+  <div id="root"></div>
+</div>
+<script>
+window.__ICODE = {"funnel-outline":"f332","options-outline":"f48b","add":"f103","add-circle-outline":"f105","star":"f595","lock-closed":"f3c7","lock-closed-outline":"f3c8","checkmark-circle":"f21e","checkmark":"f21d","diamond":"f2a1","time-outline":"f5de","chevron-forward":"f23b","chevron-back":"f229","chevron-down":"f232","play":"f4c6","search":"f55f","flash":"f316","chatbubbles-outline":"f218","chatbubbles":"f217","people-outline":"f4a3","briefcase-outline":"f1b2","airplane-outline":"f10a","cafe-outline":"f1ca","infinite":"f394","refresh":"f514","arrow-forward":"f133","sparkles":"f58c","mic":"f454","bulb-outline":"f1c1","close":"f24a","repeat":"f52f","grid-outline":"f356","navigate-outline":"f470","time":"f5dd","information-circle-outline":"f399","shield-checkmark-outline":"f579","book-outline":"f1a6","flag-outline":"f311","trending-up-outline":"f5fc"};
+const DATA = [["social_01","social","Поздороваться после знакомства",1,"A1",["Мила"],["начать с приветствия","назвать себя","сказать, где вы познакомились","задать один простой вопрос","ответить на встречный вопрос","дружелюбно завершить чат."]],["social_02","social","Перенести встречу",2,"A1",["Зоя"],["поздороваться","напомнить о планах","сказать, что время не подходит","предложить один новый вариант","спросить, подходит ли он","подтвердить финальное время."]],["social_03","social","Спросить, как добраться",3,"A1",["Денис"],["начать вежливо","назвать место","спросить маршрут","уточнить вид транспорта","попросить повторить непонятное","поблагодарить."]],["social_04","social","Поблагодарить за помощь",4,"A1",["Мила"],["обратиться по имени","назвать помощь","выразить благодарность","сказать, чем это помогло","ответить на реакцию","попрощаться."]],["social_05","social","Поздравить и задать простой вопрос",5,"A1",["Зоя"],["начать приветствием","поздравить","назвать повод","добавить короткое пожелание","задать вопрос о событии","завершить тёплой фразой."]],["social_06","social","Познакомиться в чате по интересу",6,"A2",["Денис","Мила"],["представиться","сослаться на общий интерес","рассказать о своём опыте","спросить опыт собеседника","отреагировать на ответ","предложить продолжить разговор","закрыть тему естественно."]],["social_07","social","Договориться о времени и месте",7,"A2",["Мила"],["предложить встречу","назвать два времени","спросить о доступности","согласовать место","уточнить, как узнать друг друга","подтвердить план","попрощаться."]],["social_08","social","Позвать на событие",8,"A2",["Зоя"],["начать неформально","назвать событие","сказать дату и время","объяснить, почему зовёшь","спросить, сможет ли человек","ответить на сомнение","договориться о следующем шаге."]],["social_09","social","Вежливо отменить планы",9,"A2",["Денис","Мила"],["обратиться лично","извиниться","коротко объяснить причину","показать, что встреча важна","предложить альтернативу","ответить на реакцию","поблагодарить за понимание."]],["social_10","social","Написать после встречи",10,"A2",["Мила"],["поблагодарить за встречу","упомянуть конкретный момент","выразить эмоцию","предложить повторить","дать удобный срок","ответить на предложение собеседника","закрыть чат."]],["social_11","social","Собрать планы в группе",11,"B1",["Зоя","Денис"],["поздороваться с группой","сформулировать цель","предложить первый вариант","спросить ограничения каждого","сопоставить два ответа","предложить компромисс","попросить явное подтверждение","зафиксировать план."]],["social_12","social","Поддержать друга",12,"B1",["Денис"],["заметить настроение","спросить, хочет ли он говорить","выслушать без совета","уточнить потребность","предложить конкретную помощь","не давить при отказе","договориться, когда написать снова."]],["social_13","social","Снять лёгкое недопонимание",13,"B1",["Мила","Зоя"],["спокойно сослаться на сообщение","сказать, что понял иначе","переспросить намерение","признать свою часть путаницы","предложить ясную формулировку","проверить, что вас поняли","вернуть дружелюбный тон."]],["social_14","social","Мягко отказать",14,"B2",["Зоя"],["поблагодарить за приглашение","обозначить, что решение непростое","отказаться прямо, но уважительно","дать достаточную причину без лишних деталей","признать ценность предложения","предложить подходящую альтернативу","сохранить возможность будущего контакта."]],["social_15","social","Обсудить ожидания в группе",15,"B2",["Денис"],["назвать общую тему","попросить каждого обозначить ожидание","перефразировать две разные позиции","выявить общую часть","назвать разногласие без обвинения","предложить правило","собрать согласие","закрепить договорённость."]],["social_16","social","Дать деликатную обратную связь",16,"B2",["Мила"],["запросить удобный момент","назвать наблюдаемый факт","описать влияние","спросить точку зрения человека","предложить конкретное изменение","признать сильную сторону","договориться о проверке результата."]],["social_17","social","Обозначить личную границу",17,"C1",["Зоя","Денис"],["начать уважительно","назвать повторяющуюся ситуацию","объяснить своё ощущение без обвинения","сформулировать границу","назвать приемлемую альтернативу","ответить на несогласие","подтвердить важность отношений."]],["social_18","social","Восстановить доверие",18,"C1",["Денис"],["признать конкретную ошибку","не оправдываться","показать понимание последствий","извиниться ясно","спросить, что помогло бы исправить ситуацию","предложить реалистичный шаг","принять право собеседника не ответить сразу","зафиксировать дальнейший контакт."]],["social_19","social","Урегулировать тонкий конфликт в группе",19,"C2",["Мила","Зоя"],["нейтрально резюмировать конфликт","отделить факты от интерпретаций","дать слово каждой позиции","назвать скрытое общее намерение","предложить варианты компромисса","проверить риски каждого","сформулировать решение без победителя","закрепить ответственность и срок."]],["work_01","work","Представиться коллеге",1,"A1",["Марина"],["поздороваться","назвать себя","назвать команду или роль","сказать, чем занимаешься сегодня","задать простой рабочий вопрос","поблагодарить и завершить."]],["work_02","work","Спросить файл",2,"A1",["Олег"],["обратиться по имени","назвать нужный файл","объяснить простую цель","спросить, где он находится","уточнить срок","поблагодарить."]],["work_03","work","Подтвердить время созвона",3,"A1",["Сэм"],["сослаться на встречу","назвать день","назвать время и часовой пояс","спросить подтверждение","отправить ссылку или попросить её","завершить делово."]],["work_04","work","Написать, что опаздываешь",4,"A1",["Марина"],["предупредить сразу","извиниться","назвать новый ориентир","предложить начать без тебя или подождать","спросить, что удобнее","поблагодарить."]],["work_05","work","Поблагодарить за инструкцию",5,"A1",["Олег"],["назвать инструкцию","поблагодарить","сказать, что уже понял","уточнить один шаг","подтвердить следующее действие","закрыть сообщение."]],["work_06","work","Уточнить простую задачу",6,"A2",["Сэм","Марина"],["сослаться на задачу","сказать, что понял","задать вопрос о результате","спросить о сроке","уточнить формат","повторить план своими словами","подтвердить старт."]],["work_07","work","Попросить перенести дедлайн",7,"A2",["Марина"],["предупредить заранее","назвать текущий статус","объяснить препятствие","назвать реалистичный срок","предложить промежуточный результат","спросить согласие","поблагодарить."]],["work_08","work","Сообщить короткий статус",8,"A2",["Олег"],["назвать задачу","сказать, что сделано","назвать следующий шаг","отметить блокер","попросить нужную помощь","назвать следующий апдейт","закончить ясно."]],["work_09","work","Запросить доступ",9,"A2",["Сэм","Марина"],["назвать систему","объяснить рабочую причину","попросить конкретный уровень доступа","указать срок","спросить, кому написать","подтвердить получение","поблагодарить."]],["work_10","work","Написать после первого рабочего дня",10,"A2",["Марина"],["поблагодарить команду","назвать, что было полезно","рассказать о первом результате","задать один вопрос","подтвердить задачу на завтра","попрощаться профессионально."]],["work_11","work","Согласовать следующий шаг в команде",11,"B1",["Олег","Сэм"],["кратко резюмировать тред","назвать незакрытый вопрос","предложить следующий шаг","назначить владельца","спросить об ограничениях","согласовать дату","зафиксировать итог."]],["work_12","work","Объяснить проблему и предложить решение",12,"B1",["Сэм"],["обозначить проблему","дать нужный контекст","показать влияние","предложить два решения","сравнить их","запросить выбор","подтвердить действие."]],["work_13","work","Собрать доступность для встречи",13,"B1",["Марина","Олег"],["назвать цель встречи","предложить три слота","попросить ответ в одном формате","уточнить часовые пояса","обработать конфликт","выбрать слот","отправить подтверждение."]],["work_14","work","Защитить реалистичный срок",14,"B2",["Олег"],["признать срочность","назвать объём","объяснить зависимость","показать риск поспешного срока","предложить поэтапный вариант","обсудить компромисс","зафиксировать согласованный срок."]],["work_15","work","Дать конструктивный отзыв",15,"B2",["Сэм"],["начать с сильной стороны","назвать конкретный фрагмент","объяснить проблему","описать влияние на пользователя или команду","предложить улучшение","спросить мнение автора","договориться о следующей версии."]],["work_16","work","Согласовать приоритеты",16,"B2",["Марина"],["назвать ограничение","перечислить варианты","прояснить ценность каждого","запросить критерий выбора","предложить порядок","обозначить, что откладывается","получить согласие","сформулировать решение."]],["work_17","work","Дипломатично возразить решению",17,"C1",["Олег","Сэм"],["признать цель решения","сформулировать оговорку","привести доказательство","назвать риск","предложить альтернативу","ответить на контраргумент","сохранить совместный тон."]],["work_18","work","Снять риск между командами",18,"C1",["Сэм"],["собрать позиции","отделить ответственность от вины","сформулировать общий риск","предложить временную защиту","распределить владельцев","обозначить эскалацию","закрепить дату проверки."]],["work_19","work","Провести сложные переговоры в треде",19,"C2",["Марина","Олег"],["открыть контекстом","назвать интересы сторон","зафиксировать неоспоримые факты","предложить рамку компромисса","уточнить условия","обработать возражения","сформулировать финальное соглашение","закрепить действия и критерий успеха."]],["travel_01","travel","Написать хозяину жилья: я приехал",1,"A1",["Лея"],["поздороваться","назвать себя","сказать, что приехал","назвать время","спросить, что делать дальше","поблагодарить."]],["travel_02","travel","Спросить код от двери",2,"A1",["Нико"],["обратиться вежливо","назвать адрес или бронь","спросить код","уточнить, когда он будет доступен","попросить повторить цифры","подтвердить получение."]],["travel_03","travel","Уточнить время заселения",3,"A1",["Клара"],["назвать дату","спросить время","сказать своё время приезда","спросить о раннем/позднем варианте","ответить на условие","подтвердить план."]],["travel_04","travel","Заказать трансфер",4,"A1",["Лея"],["назвать точку отправления","назвать время","указать число людей","спросить цену","подтвердить заказ","спросить, как узнать водителя."]],["travel_05","travel","Поблагодарить за подсказку",5,"A1",["Нико"],["назвать подсказку","поблагодарить","сказать, что она помогла","задать короткий следующий вопрос","ответить на совет","попрощаться."]],["travel_06","travel","Уточнить маршрут в чате",6,"A2",["Клара","Лея"],["назвать пункт назначения","сказать старт","спросить лучший транспорт","уточнить пересадку","спросить о времени в пути","повторить маршрут","поблагодарить."]],["travel_07","travel","Подтвердить бронь",7,"A2",["Лея"],["назвать номер брони","подтвердить даты","подтвердить число гостей","уточнить включённую услугу","спросить о следующем шаге","подтвердить ответ","завершить."]],["travel_08","travel","Написать о задержке",8,"A2",["Нико"],["сообщить о задержке","назвать причину","дать новый ориентир","извиниться","спросить, возможен ли поздний приезд","согласовать действие","поблагодарить."]],["travel_09","travel","Спросить, где оставить багаж",9,"A2",["Клара","Лея"],["представиться","назвать время","спросить про багаж","уточнить адрес","спросить часы доступа","подтвердить инструкцию","поблагодарить."]],["travel_10","travel","Договориться о времени встречи",10,"A2",["Лея"],["предложить место","назвать два времени","учесть дорогу собеседника","согласовать вариант","уточнить точку встречи","обменяться приметой","подтвердить."]],["travel_11","travel","Решить проблему с жильём",11,"B1",["Нико","Клара"],["обозначить проблему","дать номер брони","описать факты","назвать желаемое решение","ответить на уточнение","предложить разумную альтернативу","зафиксировать обещанный срок."]],["travel_12","travel","Скоординировать группу в поездке",12,"B1",["Клара"],["назвать общую цель","собрать местоположение участников","спросить ограничения","предложить маршрут","обработать опоздание","согласовать точку","подтвердить, кто что делает","закрыть план."]],["travel_13","travel","Запросить изменение бронирования",13,"B1",["Лея","Нико"],["назвать исходную бронь","объяснить изменение","назвать новые даты","спросить доступность","уточнить разницу в цене","выбрать вариант","подтвердить изменение."]],["travel_14","travel","Объяснить претензию сервису",14,"B2",["Нико"],["задать деловой тон","назвать услугу и дату","изложить последовательность событий","приложить/описать доказательство","назвать ожидаемое решение","ответить на шаблонный ответ","запросить срок рассмотрения."]],["travel_15","travel","Согласовать альтернативный маршрут",15,"B2",["Клара"],["описать сбой","назвать ограничения","сравнить варианты","спросить о предпочтениях группы","назвать компромисс","распределить билеты/действия","подтвердить маршрут."]],["travel_16","travel","Отстоять решение по бронированию",16,"B2",["Лея"],["признать позицию сервиса","сослаться на подтверждение","объяснить расхождение","попросить проверить запись","предложить возможный выход","вежливо эскалировать при необходимости","закрепить решение письменно."]],["travel_17","travel","Договориться о компенсации",17,"C1",["Нико","Клара"],["кратко резюмировать нарушение","назвать фактические последствия","сослаться на условия","запросить соразмерную компенсацию","обосновать её","обсудить контрпредложение","подтвердить итог и срок."]],["travel_18","travel","Разрешить ситуацию гость—хозяин—сервис",18,"C1",["Клара"],["разложить версии сторон","прояснить факты","снять эмоциональные формулировки","назвать срочную потребность","предложить временное решение","распределить постоянное решение","зафиксировать подтверждение всех сторон."]],["travel_19","travel","Вести многосторонний тред при сбое поездки",19,"C2",["Лея","Нико"],["дать краткий статус","назвать критические ограничения","разделить срочные и вторичные действия","запросить решения участников","сравнить последствия вариантов","предложить приоритет","подтвердить новую логистику","назначить следующий апдейт."]],["everyday_01","everyday","Спросить совет",1,"A1",["Ира"],["поздороваться","назвать тему","задать простой вопрос","попросить один вариант","ответить на совет","поблагодарить."]],["everyday_02","everyday","Напомнить о вещи",2,"A1",["Никита"],["обратиться по имени","напомнить о вещи","сказать, где она","спросить, когда удобно забрать","договориться о времени","закончить дружелюбно."]],["everyday_03","everyday","Поздравить с событием",3,"A1",["Вера"],["начать тепло","назвать повод","выразить радость","добавить пожелание","спросить о планах","попрощаться."]],["everyday_04","everyday","Спросить, свободен ли человек",4,"A1",["Ира"],["поздороваться","спросить о времени","назвать причину","предложить короткий формат","принять «нет»","договориться написать позже."]],["everyday_05","everyday","Написать короткое извинение",5,"A1",["Никита"],["обратиться лично","назвать поступок","извиниться","признать неудобство","предложить исправление","завершить без давления."]],["everyday_06","everyday","Попросить небольшую помощь",6,"A2",["Вера","Ира"],["спросить, удобно ли сейчас","назвать просьбу","дать контекст","сказать, сколько это займёт","предложить альтернативу","принять ответ","поблагодарить."]],["everyday_07","everyday","Договориться присмотреть за питомцем",7,"A2",["Ира"],["описать даты","спросить о возможности","назвать простые обязанности","ответить на вопрос","согласовать ключи/время","предложить помощь взамен","подтвердить план."]],["everyday_08","everyday","Выбрать подарок в групповом чате",8,"A2",["Никита"],["назвать повод","предложить бюджет","попросить идеи","отреагировать на варианты","сравнить два варианта","собрать голоса","назначить покупку."]],["everyday_09","everyday","Уточнить детали доставки",9,"A2",["Вера","Ира"],["назвать заказ","спросить дату","уточнить адрес","описать удобный способ связи","спросить об изменении","подтвердить инструкцию","поблагодарить."]],["everyday_10","everyday","Поблагодарить после помощи",10,"A2",["Ира"],["назвать помощь","выразить благодарность","сказать результат","добавить личную реакцию","предложить ответную услугу","ответить на скромную реакцию","попрощаться."]],["everyday_11","everyday","Организовать общий план на выходные",11,"B1",["Никита","Вера"],["предложить идею","назвать условия","собрать доступность","спросить предпочтения","учесть ограничение","предложить финальный план","разделить мелкие задачи","подтвердить."]],["everyday_12","everyday","Сравнить варианты и принять решение",12,"B1",["Вера"],["назвать цель","перечислить варианты","запросить критерии","оценить плюсы и минусы","предложить выбор","обработать сомнение","договориться о действии."]],["everyday_13","everyday","Объяснить проблему соседу или сервису",13,"B1",["Ира","Никита"],["начать уважительно","описать повторяющийся факт","сказать, как это влияет","спросить возможную причину","предложить решение","договориться о проверке","поблагодарить."]],["everyday_14","everyday","Обсудить общие правила",14,"B2",["Никита"],["назвать причину разговора","предложить правило","объяснить пользу","спросить о неудобствах","изменить формулировку с учётом ответа","согласовать исключения","зафиксировать договорённость."]],["everyday_15","everyday","Урегулировать неудобство без обвинений",15,"B2",["Вера"],["описать ситуацию нейтрально","сказать о влиянии на себя","спросить точку зрения","признать возможное недоразумение","предложить решение","обсудить альтернативу","завершить уважительно."]],["everyday_16","everyday","Убедить группу выбрать разумный вариант",16,"B2",["Ира"],["признать другие идеи","сформулировать критерии","привести аргумент","ответить на два возражения","предложить компромисс","попросить решение","подтвердить следующий шаг."]],["everyday_17","everyday","Провести чувствительный разговор о границах",17,"C1",["Никита","Вера"],["запросить пространство для разговора","назвать ситуацию точно","описать переживание без обвинения","сформулировать границу","объяснить, что поддержит отношения","выслушать ответ","договориться о новом паттерне."]],["everyday_18","everyday","Разобрать противоречивую информацию",18,"C1",["Вера"],["отделить факты от слухов","указать, где версии расходятся","запросить источник","признать неопределённость","предложить безопасное временное действие","определить, что проверять","согласовать, когда вернуться к вопросу."]],["everyday_19","everyday","Посредничать в личном групповом конфликте",19,"C2",["Ира","Никита"],["установить правила тона","дать каждой стороне изложить позицию","резюмировать без оценки","назвать общий интерес","выявить минимальные требования","предложить выполнимый компромисс","подтвердить согласие каждой стороны","зафиксировать действия и способ вернуться к теме."]]];
+(() => {
+  const CODE = window.__ICODE;
+  const io = (n, st = '') => { const c = CODE[n]; if (!c) throw new Error('[DIALOGS-REDESIGN] нет значка ' + n); return `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${c};</i>`; };
+  let AP = 'dk';
+  const art = (name) => `assets/v2art/${AP === 'lt' ? 'light' : 'dark'}/${name}.webp`;
+  const WORLD = { social: { n: 'Общение', ic: 'people-outline' }, work: { n: 'Дела', ic: 'briefcase-outline' }, travel: { n: 'Поездки', ic: 'airplane-outline' }, everyday: { n: 'Повседневное', ic: 'cafe-outline' } };
+  const WORLD_ORDER = ['social', 'work', 'travel', 'everyday'];
+  const WITH = { 'Мила': 'Милой', 'Денис': 'Денисом', 'Марина': 'Мариной', 'Зоя': 'Зоей', 'Олег': 'Олегом', 'Сэм': 'Сэмом', 'Нико': 'Нико', 'Клара': 'Кларой', 'Лея': 'Леей', 'Ира': 'Ирой', 'Вера': 'Верой', 'Никита': 'Никитой' };
+  const D = DATA.map(([id, w, t, r, c, who, goals]) => ({ id, w, t, r, c, who, goals, g: goals.length }));
+  const by = Object.fromEntries(D.map((d) => [d.id, d]));
+  const MY_RANK = 6;
+  const QUOTA_LEFT = 12;
+  // пример состояния: пройдены ранги 1–2 во всех темах и work_03; в процессе social_03 (2 из 6 целей)
+  const DONE = new Set(D.filter((d) => d.r <= 2 || d.id === 'work_03').map((d) => d.id));
+  const CURRENT = 'social_03';
+  const CUR_DONE = 2;
+  const stat = (d) => (DONE.has(d.id) ? 'done' : d.id === CURRENT ? 'current' : d.r > MY_RANK ? 'locked' : 'new');
+  const who = (d) => d.who.map((n) => WITH[n] || n).join(' и ');
+  const mins = (d) => `≈ ${d.g} мин`;
+  const cnt = { all: D.length, done: DONE.size, cur: 1, locked: D.filter((d) => stat(d) === 'locked').length };
+  cnt.fresh = D.filter((d) => stat(d) === 'new').length;
+  const sb = (time, scene) => `<div class="dr-sb${scene ? ' on-scene' : ''}"><span>${time}</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div>`;
+  const phone = (inner, time = '18:10', scene = false) => `<div class="ph ${AP}">${sb(time, scene)}${inner}<div class="dr-ind"></div></div>`;
+  const quota = () => `<span class="dr-pill warn">${io('chatbubbles-outline')}${QUOTA_LEFT} ответов сегодня</span>`;
+  const stIcon = (d) => { const s = stat(d); return s === 'done' ? io('checkmark-circle') : s === 'locked' ? io('lock-closed') : s === 'current' ? `<span style="font-size:13px;font-weight:800;color:var(--tx)">${CUR_DONE}/${d.g}</span>` : io('chevron-forward'); };
+  const dc = (d, o = {}) => {
+    const s = stat(d);
+    const sub = s === 'locked' ? `<span class="lockt">Откроется на ранге ${d.r}</span>` : s === 'current' ? `${WORLD[d.w].n} · ${CUR_DONE} из ${d.g} целей` : `${WORLD[d.w].n} · ${d.g} целей · ${mins(d)}`;
+    return `<div class="dc ${s}${o.sel ? ' sel' : ''}"><span class="wi">${io(WORLD[d.w].ic)}</span><div class="tx"><b>${d.t}</b><small>${sub}</small></div><span class="lv">${d.c}</span><span class="st">${stIcon(d)}</span></div>`;
+  };
+  const meter = (arr) => `<div class="meter">${arr.map((f) => `<i class="${f ? 'f' : ''}"></i>`).join('')}</div>`;
+  const worldStat = (w) => { const all = D.filter((d) => d.w === w); const done = all.filter((d) => DONE.has(d.id)).length + (all.some((d) => d.id === CURRENT) ? 0 : 0); return { all: all.length, done, open: all.filter((d) => d.r <= MY_RANK).length }; };
+
+  /* ── общие кадры ── */
+  const sheet = (d, opts = {}) => `<div class="dr-dim"></div><div class="dr-sheet"><div class="dr-grab"></div>
+    <div class="dr-card" style="margin:0;padding:0;background:none;box-shadow:none"><div class="k">${io(WORLD[d.w].ic, 'font-size:15px')}${WORLD[d.w].n}</div><div class="t">${d.t}</div></div>
+    <div class="dr-who"><span class="dr-ava">${d.who[0][0]}</span><div><b style="font-size:16px;line-height:21px">Вы пишете ${d.who.length > 1 ? 'в чате' : ''} с ${who(d)}</b><div style="font-size:13px;line-height:17px;color:var(--sec)">Отвечает по-английски, как живой человек</div></div></div>
+    <div class="meta"><span class="dr-chip">${d.c} · ранг ${d.r}</span><span class="dr-chip">${io('flag-outline')}${d.g} целей</span><span class="dr-chip">${io('time-outline')}${mins(d)}</span></div>
+    <ul class="dr-goals">${d.goals.slice(0, 4).map((g, i) => `<li><i>${i + 1}</i><span>${g[0].toUpperCase()}${g.slice(1).replace(/\.$/, '')}</span></li>`).join('')}${d.g > 4 ? `<li><i>…</i><span style="color:var(--sec)">ещё ${d.g - 4}</span></li>` : ''}</ul>
+    <div class="dr-how"><b>Как проходит:</b> пишете сообщения, собеседник отвечает, цели отмечаются сами. В конце — разбор ошибок. Тратит до ${d.g} из ваших ${QUOTA_LEFT} ответов на сегодня; Plus снимает лимит.</div>
+    <div class="dr-two"><span class="dr-btn sec" style="flex:0 0 auto">${io('chevron-back')}Назад</span><span class="dr-btn">${io('play')}${opts.cta || 'Начать диалог'}</span></div></div>`;
+  const OPEN = { travel_03: ['Клара', 'Hi, this is Clara from the guesthouse. When are you arriving?'], social_03: ['Денис', 'Hi! You look like you know this area. Can I help you?'], travel_06: ['Клара', 'Hi! Lea and I are checking the route. Where are you heading today?'], work_06: ['Сэм', 'Hi! I saw your message about the task. What exactly is unclear?'], everyday_04: ['Ира', 'Hey! I just got off work. What are you up to?'] };
+  const chat = (d, extra = '') => {
+    const op = OPEN[d.id] || [d.who[0], 'Hi! Do you have a minute?'];
+    const done = d.id === CURRENT ? CUR_DONE : 0;
+    return phone(`<div class="dr-scr"><div class="dr-chat-top"><span class="dr-round">${io('chevron-back')}</span><span class="dr-ava">${d.who[0][0]}</span><div class="tx"><b>${d.who.join(' и ')}</b><small>${d.t}</small></div></div>
+      <div class="dr-gl"><div class="r"><span>Цели диалога</span><span>${done} из ${d.g}</span></div><div class="dots">${d.goals.map((_, i) => `<i class="${i < done ? 'f' : ''}"></i>`).join('')}</div><div class="now">${io('flag-outline', 'font-size:18px')}<span>Сейчас: ${d.goals[done][0].toUpperCase()}${d.goals[done].slice(1).replace(/\.$/, '')}</span></div></div>
+      <div class="dr-msgs"><div class="dr-bub"><span style="display:block;font-size:13px;line-height:17px;font-weight:700;color:var(--sec);margin-bottom:2px">${op[0]}</span>${op[1]}<small>Нажмите на сообщение — покажу перевод</small></div></div>
+      <div class="dr-hintrow"><span class="dr-chip">${io('bulb-outline')}Подсказка</span><span class="dr-chip">${io('book-outline')}Слова</span></div>${extra}
+      <div class="dr-in"><div class="f">Напишите по-английски…</div><span class="mic">${io('mic')}</span></div></div>`, '18:11');
+  };
+  const cap = (n, t, s) => `<div class="dr-cap"><i>${n}</i>${t}<span>${s}</span></div>`;
+
+  /* ── 1. Лента: «Продолжить» + «Новый» + фильтры + список ── */
+  const v1 = () => {
+    const cur = by[CURRENT];
+    const rec = by.travel_03;
+    const list = ['travel_03', 'everyday_03', 'social_04', 'work_04', 'social_06'].map((id) => by[id]);
+    const hub = phone(`<div class="dr-scr">
+      <div class="dr-top"><span class="dr-round">${io('chevron-back')}</span><h1>Диалоги</h1><span class="sp"></span>${quota()}</div>
+      <div class="dr-card" style="margin-top:12px">
+        <div class="k">${io('play', 'font-size:13px')}Продолжить · ${WORLD[cur.w].n} · с ${who(cur)}</div>
+        <div class="t">${cur.t}</div>
+        <div class="dr-prog"><span class="bar"><i style="width:${Math.round(CUR_DONE / cur.g * 100)}%"></i></span>${CUR_DONE} из ${cur.g} целей</div>
+        <span class="dr-btn full">${io('play')}Продолжить</span>
+      </div>
+      <div class="dr-card" style="margin-top:10px;padding:12px 14px;display:flex;align-items:center;gap:12px"><span class="dc" style="all:unset"></span><span class="dr-ava" style="background:var(--ctl);color:var(--tx)">${io('sparkles', 'font-size:20px')}</span><div style="flex:1"><div class="k" style="margin:0">Новый · на ваш уровень</div><div style="font-size:16px;line-height:21px;font-weight:700;margin-top:2px">${rec.t}</div></div><span class="dr-btn sm">Начать</span></div>
+      <div style="height:6px"></div>
+      <div class="dr-lab"><span>Все диалоги · ${cnt.all}</span><span>ваш уровень A2 · ранг ${MY_RANK}</span></div>
+      <div class="dr-segc"><span class="on">Все <em>${cnt.all}</em></span><span>Новые <em>${cnt.fresh}</em></span><span>Пройдено <em>${cnt.done}</em></span></div>
+      <div class="dr-chips" style="margin-top:10px"><span class="dr-chip on">Все темы</span>${WORLD_ORDER.map((w) => `<span class="dr-chip">${io(WORLD[w].ic)}${WORLD[w].n}</span>`).join('')}</div>
+      <div class="dr-chips" style="margin-top:8px"><span class="dr-chip on">A1 · A2</span><span class="dr-chip lock">${io('lock-closed')}B1 с ранга 11</span><span class="dr-chip lock">${io('lock-closed')}B2</span></div>
+      <div class="dr-list" style="margin-top:12px">${list.map((d, i) => dc(d, { sel: i === 0 })).join('')}</div>
+      <div class="dr-fade"></div></div>`);
+    const pick = phone(`<div class="dr-scr"><div class="dr-top"><span class="dr-round">${io('chevron-back')}</span><h1>Диалоги</h1><span class="sp"></span>${quota()}</div>
+      <div class="dr-list" style="margin-top:14px">${list.map((d, i) => dc(d, { sel: i === 0 })).join('')}</div></div>${sheet(rec)}`);
+    return [[hub, '① Выбираю', 'сверху «Продолжить» и «Новый», ниже фильтры и список'], [pick, '② Что увижу', 'тап по диалогу — лист: собеседник, цели, как проходит'], [chat(rec), '③ Начал', 'первое сообщение, цели сверху']];
+  };
+
+  /* ── 2. Сцена 46 % + выбор по темам ── */
+  const v2 = () => {
+    const cur = by[CURRENT];
+    const scene = `<div class="dr-sc"><div class="glow"></div><img class="art" src="${art('dialogs_scene_next')}" alt=""><div class="scrim"></div>
+      <div class="top"><span class="dr-round">${io('chevron-back')}</span><span class="sp"></span><span class="dr-pill">${io('chatbubbles-outline')}${QUOTA_LEFT} ответов</span></div>
+      <div class="body"><div class="kick">${WORLD[cur.w].n} · с ${who(cur)}</div><div class="ttl">${cur.t}</div><div class="dr-prog"><span class="bar"><i style="width:33%"></i></span>${CUR_DONE} из ${cur.g} целей</div><span class="dr-btn">${io('play')}Продолжить</span></div></div>`;
+    const tiles = WORLD_ORDER.map((w, i) => {
+      const s = worldStat(w); const open = D.filter((d) => d.w === w && d.r <= MY_RANK);
+      return `<div class="dr-w${w === 'travel' ? ' on' : ''}"><span class="wi">${io(WORLD[w].ic)}</span><b>${WORLD[w].n}</b><small>${s.done} из ${s.all} · открыто ${open.length}</small>${meter(D.filter((d) => d.w === w).slice(0, 19).map((d) => DONE.has(d.id)))}</div>`;
+    }).join('');
+    const hub = phone(`<div class="dr-scr">${scene}<div class="dr-after"><h3>Выберите тему<span>или «Новый диалог» ниже</span></h3><div class="dr-worlds">${tiles}</div>
+      <span class="dr-btn full sec" style="margin-top:2px">${io('sparkles')}Новый диалог — подберите мне</span></div></div>`, '18:10', true);
+    const tw = D.filter((d) => d.w === 'travel');
+    const rec = by.travel_03;
+    const list = tw.filter((d) => [2, 3, 4, 6, 7].includes(d.r));
+    const worldScr = phone(`<div class="dr-scr"><div class="dr-top"><span class="dr-round">${io('chevron-back')}</span><h1>Поездки</h1><span class="sp"></span>${quota()}</div>
+      <div class="dr-lab"><span>${worldStat('travel').done} из ${worldStat('travel').all} пройдено</span><span>открыто ${worldStat('travel').open} из ${worldStat('travel').all}</span></div>
+      <div class="dr-chips"><span class="dr-chip on">Все</span><span class="dr-chip">Новые</span><span class="dr-chip">Пройдено</span><span class="dr-chip on" style="margin-left:auto">${io('funnel-outline')}A1 · A2</span></div>
+      <div class="dr-list" style="margin-top:12px">${list.map((d) => dc(d, { sel: d.id === rec.id })).join('')}</div></div>${sheet(rec)}`);
+    return [[hub, '① Выбираю', 'сцена 46 % с «Продолжить», ниже темы с прогрессом и «Подберите мне»'], [worldScr, '② Что увижу', 'внутри темы — список с фильтром уровня, тап — лист'], [chat(rec), '③ Начал', 'тот же чат']];
+  };
+
+  /* ── 3. Лестница уровней ── */
+  const v3 = () => {
+    const cur = by[CURRENT];
+    const lvl = (code, title, ranks, state, rows) => {
+      const all = D.filter((d) => d.c === code); const done = all.filter((d) => DONE.has(d.id)).length;
+      const open = all.filter((d) => d.r <= MY_RANK).length;
+      return `<div class="dr-lv ${state}"><div class="h"><span class="badge">${code}</span><div class="tx"><b>${title}</b><small>${state === 'closed' ? `Откроется на ранге ${ranks[0]} · ${all.length} диалогов` : `${done} пройдено · ${open - done} можно начать ${all.length - open > 0 ? ` · ${all.length - open} закроет ранг` : ''}`}</small></div>${state === 'closed' ? io('lock-closed') : io('chevron-down')}</div>${meter(all.map((d) => DONE.has(d.id)))}${rows || ''}</div>`;
+    };
+    const a2 = ['work_06', 'travel_06', 'everyday_06', 'social_06'].map((id) => by[id]);
+    const mini = (d, o = {}) => `<div class="dr-mini${o.sel ? ' sel' : ''}${stat(d) === 'done' ? ' done' : ''}"><span class="wi">${io(WORLD[d.w].ic)}</span><b>${d.t}</b><small>${d.g} целей</small>${stat(d) === 'done' ? io('checkmark-circle') : io('chevron-forward', 'color:var(--sec)')}</div>`;
+    const hub = phone(`<div class="dr-scr"><div class="dr-top"><span class="dr-round">${io('chevron-back')}</span><h1>Диалоги</h1><span class="sp"></span>${quota()}</div>
+      <div class="dr-card" style="margin-top:12px;padding:12px 14px;display:flex;gap:12px;align-items:center"><div style="flex:1"><div class="k">Вы здесь · ранг ${MY_RANK} · A2</div><div style="font-size:16px;line-height:21px;font-weight:800;margin-top:2px">${cur.t}</div><div class="dr-prog" style="margin-top:6px"><span class="bar"><i style="width:33%"></i></span>${CUR_DONE} из ${cur.g}</div></div><span class="dr-btn sm">${io('play')}Дальше</span></div>
+      <div class="dr-chips" style="margin-top:12px"><span class="dr-chip on">Все темы</span>${WORLD_ORDER.map((w) => `<span class="dr-chip">${io(WORLD[w].ic)}</span>`).join('')}<span class="dr-chip" style="margin-left:auto">Только новые</span></div>
+      <div class="dr-ladder" style="margin-top:12px">
+        ${lvl('A2', 'A2 · Основы общения', [6, 10], 'cur', `<div class="items">${a2.map((d, i) => mini(d, { sel: i === 1 })).join('')}<div class="rk">${io('lock-closed', 'font-size:13px')} Ещё 16 диалогов A2 откроются на рангах 7–10</div></div>`)}
+        ${lvl('A1', 'A1 · Первые фразы', [1, 5], 'ok', '')}
+        ${lvl('B1', 'B1 · Уверенный разговор', [11, 13], 'closed', '')}
+      </div><div class="dr-fade"></div></div>`);
+    const rec = by.travel_06;
+    const brief = phone(`<div class="dr-scr"><div class="dr-top"><span class="dr-round">${io('chevron-back')}</span><span class="sp"></span>${quota()}</div>
+      <div style="padding:14px 20px 0"><div class="dr-chip" style="min-height:32px">${io(WORLD[rec.w].ic)}${WORLD[rec.w].n} · ${rec.c} · ранг ${rec.r}</div><div class="dr-h" style="padding:10px 0 0;font-size:30px">${rec.t}</div>
+      <div class="dr-who" style="margin-top:14px"><span class="dr-ava">${rec.who[0][0]}</span><span class="dr-ava" style="margin-left:-18px;background:linear-gradient(135deg,#B6D6F6,#6B8EC9)">${rec.who[1][0]}</span><div style="margin-left:4px"><b style="font-size:16px;line-height:21px">Вы, ${rec.who[0]} и ${rec.who[1]}</b><div style="font-size:13px;line-height:17px;color:var(--sec)">Групповой чат</div></div></div>
+      <div class="dr-lab" style="padding:0;margin-top:20px"><span>${rec.g} целей</span><span>${mins(rec)}</span></div>
+      <ul class="dr-goals">${rec.goals.slice(0, 5).map((g, i) => `<li><i>${i + 1}</i><span>${g[0].toUpperCase()}${g.slice(1).replace(/\.$/, '')}</span></li>`).join('')}<li><i>…</i><span style="color:var(--sec)">ещё ${rec.g - 5}</span></li></ul>
+      <div class="dr-how" style="margin-top:18px"><b>Как проходит:</b> пишете, собеседники отвечают, цели отмечаются сами. В конце — разбор ошибок и слова в карточки.</div></div>
+      <div class="dr-foot"><div class="dr-prog" style="margin:0 0 10px;justify-content:center">Тратит до ${rec.g} из ${QUOTA_LEFT} ответов на сегодня · Plus снимает лимит</div><span class="dr-btn full">${io('play')}Начать диалог</span></div></div>`);
+    return [[hub, '① Выбираю', 'лестница уровней: где я, что дальше, что закрыто и когда откроется'], [brief, '② Что увижу', 'страница диалога: кто, цели, как проходит, цена в ответах'], [chat(rec), '③ Начал', 'чат с двумя собеседниками']];
+  };
+
+  /* ── 4. Подбор: «что хочу» → три предложения ── */
+  const v4 = () => {
+    const cur = by[CURRENT];
+    const hub = phone(`<div class="dr-scr"><div class="dr-top"><span class="dr-round">${io('chevron-back')}</span><span class="sp"></span>${quota()}</div>
+      <div class="dr-h">Что потренируем?</div><div class="dr-sub">Выберите — подберу диалоги под ваш уровень A2.</div>
+      <div class="dr-lab"><span>1 · Что хочу</span></div>
+      <div class="dr-wiz"><div class="o on"><i class="io">&#x${CODE.sparkles};</i><div>Новый<div style="font-size:13px;line-height:17px;font-weight:600;opacity:.7">${cnt.fresh} доступно</div></div></div><div class="o"><i class="io">&#x${CODE.repeat};</i><div>Повторить<div style="font-size:13px;line-height:17px;font-weight:600;color:var(--sec)">${cnt.done} пройдено</div></div></div></div>
+      <div class="dr-lab"><span>2 · Тема</span></div>
+      <div class="dr-chips" style="flex-wrap:wrap"><span class="dr-chip on" style="min-height:44px;padding:0 18px;font-size:16px;line-height:21px">Любая</span>${WORLD_ORDER.map((w) => `<span class="dr-chip" style="min-height:44px;padding:0 16px;font-size:16px;line-height:21px">${io(WORLD[w].ic)}${WORLD[w].n}</span>`).join('')}</div>
+      <div class="dr-lab"><span>3 · Уровень</span><span>ранг ${MY_RANK}</span></div>
+      <div class="dr-segc"><span class="on">Мой · A2</span><span>Полегче · A1</span><span>${io('lock-closed', 'font-size:13px')} B1</span></div>
+      <div class="dr-foot" style="padding-top:30px"><div class="dr-card" style="margin:0 0 10px;padding:10px 14px;display:flex;align-items:center;gap:10px"><div style="flex:1;font-size:13px;line-height:17px;font-weight:700;color:var(--sec)">Продолжить: ${cur.t} · ${CUR_DONE} из ${cur.g}</div><span class="dr-btn sm sec">${io('play')}</span></div><span class="dr-btn full">${io('sparkles')}Подобрать 3 диалога</span></div></div>`);
+    const recs = [by.work_06, by.travel_06, by.everyday_04];
+    const why = (d, i) => [`<span>Новый</span><span>${d.c}</span><span>${d.g} целей</span>`, `<span>Новый</span><span>${d.c}</span><span>2 собеседника</span>`, `<span>Новый</span><span>${d.c}</span><span>${mins(d)}</span>`][i];
+    const rc = (d, i) => `<div class="dr-rec${i === 0 ? ' first' : ''}"><div class="k">${io(WORLD[d.w].ic, 'font-size:15px')}${WORLD[d.w].n} · с ${who(d)}</div><div class="t">${d.t}</div><div class="why">${why(d, i)}</div>${i === 0 ? `<ul class="dr-goals" style="margin-top:12px">${d.goals.slice(0, 3).map((g, k) => `<li><i>${k + 1}</i><span>${g[0].toUpperCase()}${g.slice(1).replace(/\.$/, '')}</span></li>`).join('')}<li><i>…</i><span style="color:var(--sec)">ещё ${d.g - 3} цели</span></li></ul><span class="dr-btn full">${io('play')}Начать</span>` : ''}</div>`;
+    const res = phone(`<div class="dr-scr"><div class="dr-top"><span class="dr-round">${io('chevron-back')}</span><h1>Для вас</h1><span class="sp"></span>${quota()}</div>
+      <div class="dr-chips" style="margin-top:12px"><span class="dr-chip on">${io('sparkles')}Новый</span><span class="dr-chip on">Любая тема</span><span class="dr-chip on">Мой · A2</span></div>
+      <div class="dr-pick3" style="margin-top:14px">${recs.map(rc).join('')}</div>
+      <div class="dr-foot"><span class="dr-btn full sec">${io('refresh')}Показать другие</span></div></div>`);
+    return [[hub, '① Выбираю', 'три простых выбора, внизу «Продолжить» и «Подобрать»'], [res, '② Что увижу', 'три предложения с причиной выбора; у первого сразу цели'], [chat(recs[0]), '③ Начал', 'чат']];
+  };
+
+  const VARIANTS = [
+    { n: 1, name: 'Лента', text: 'Без большой сцены. Сверху две явные кнопки: «Продолжить» (с прогрессом) и «Новый диалог» (подобран на ваш уровень). Ниже — фильтры: статус, тема, уровень; закрытые уровни видны сразу с рангом. Список — карточки с уровнем, целями, временем и состоянием.', f: v1 },
+    { n: 2, name: 'Сцена + темы', text: 'Сцена 46 % остаётся, но работает как «Продолжить». Под ней — четыре темы с прогрессом и кнопка «Новый диалог — подберите мне». Внутри темы — те же фильтры и лист «что увижу».', f: v2 },
+    { n: 3, name: 'Лестница', text: 'Без сцены. Диалоги сгруппированы по уровням A1 → C2, как путь: видно, где я, что можно начать, что закроет ранг и когда откроется. Страница диалога — на весь экран, с ценой в ответах и кнопкой внизу.', f: v3 },
+    { n: 4, name: 'Подбор', text: 'Не список, а вопрос: «что хочу — тема — уровень» → три предложения с причиной выбора. Список из 76 не нужен. «Продолжить» всегда под рукой внизу.', f: v4 },
+  ];
+  const picked = { v: null };
+  const sum = () => { document.getElementById('dr-sum').innerHTML = 'Выбор: <b>' + (picked.v ? picked.v + ' · ' + VARIANTS[picked.v - 1].name : '—') + '</b>'; };
+  const render = () => {
+    document.getElementById('root').innerHTML = VARIANTS.map((v) => {
+      const frames = v.f();
+      return `<section class="dr-block" id="v${v.n}"><button type="button" class="dr-pick${picked.v === v.n ? ' on' : ''}" data-v="${v.n}"><b>${v.n}</b>${v.name}</button><h2>Вариант ${v.n} — ${v.name}</h2><p>${v.text}</p><div class="dr-row">`
+        + frames.map(([html, t, s], i) => `<div class="dr-col">${cap(i + 1, t.replace(/^[①②③]\s*/u, ''), s)}${html}</div>`).join('') + '</div></section>';
+    }).join('');
+    sum();
+  };
+  document.addEventListener('click', (e) => {
+    const ap = e.target.closest('[data-ap]');
+    if (ap) { AP = ap.dataset.ap; document.querySelectorAll('[data-ap]').forEach((b) => b.classList.toggle('on', b === ap)); render(); return; }
+    const p = e.target.closest('.dr-pick');
+    if (p) { picked.v = Number(p.dataset.v); render(); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>

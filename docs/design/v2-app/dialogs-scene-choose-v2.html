@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Диалоги — карусель под сценой</title>
+<style>
+/* ───────── PhraseMan 2.0 · «Диалоги»: выбор диалога каруселью под сценой (владелец 22.10 через координатора) ─────────
+   Владелец о dialogs-scene-choose (34b0caae2): «вариант карусель интересный вроде, но нет — сразу с самого начала, как первый взгляд
+   кидаешь, то куча всего. Мне нравится текущая сцена, верхняя часть, что в приложении, но нижняя часть — вот там надо добавить карусель,
+   наверное, и общий экран тоже, чтобы было видно и можно было выбирать диалоги. Попробуй ещё сделать».
+   Верх — сцена «Диалогов» из приложения 1:1 (components/dialogs/scene/DialogsSceneStage.tsx, состояние next: «назад» 44, пилюля остатка
+   ответов, энергия без капсулы, герой dialogs_scene_next 160 справа −14 на 96, мир · собеседник, название 26/32, полоска и цели, «Начать»
+   и микрофон 50), цвета — dialogsSceneColors из токенов тем marine (тёмная) и ink (светлая): на них Сверка снимает экраны.
+   Низ — новое: панель приложения (наезд 22, радиус 28, поля 16) с каруселью ОДНОЙ темы. Три плотности, у каждой три кадра:
+   первый взгляд → выбираю → начал. Данные — из приложения (76 диалогов, 4 темы × 19, собеседники, цели), состояние примера:
+   ранг 7, бесплатный тариф, 18 из 30 ответов, энергия 5. Телефон 390 × 844, без нижнего меню (хаб открыт поверх вкладок, как в
+   приложении), всё видно без прокрутки. Классы с префиксом dv- (kit.css не подключён). Governance-ID: TG-70CB924AA0A7 */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.dv-page { max-width: 1320px; margin: 0 auto; padding: 32px 24px 80px; }
+.dv-page h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.4px; }
+.dv-lead { color: #A9A9AE; font-size: 15px; line-height: 22px; max-width: 940px; margin: 0 0 10px; }
+.dv-lead b { color: #ECECEE; }
+.dv-bar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 0; background: #101113; }
+.dv-seg { display: inline-flex; background: #1C1D21; border-radius: 22px; padding: 4px; }
+.dv-seg button, .dv-pick { font: 600 14px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: transparent; border: 0; border-radius: 18px; padding: 10px 16px; cursor: pointer; }
+.dv-seg button.on { background: #ECECEE; color: #111214; }
+.dv-sum { color: #A9A9AE; font-size: 14px; }
+.dv-sum b { color: #ECECEE; }
+.dv-block { margin-top: 40px; }
+.dv-block h2 { font-size: 22px; line-height: 28px; margin: 0 0 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.dv-block p { margin: 0 0 16px; color: #A9A9AE; font-size: 14px; line-height: 20px; max-width: 980px; }
+.dv-row { display: flex; flex-wrap: wrap; gap: 28px; }
+.dv-col { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.dv-cap { font-size: 15px; font-weight: 700; color: #ECECEE; }
+.dv-cap span { font-weight: 400; color: #A9A9AE; }
+.dv-pick { background: #1C1D21; font-size: 15px; padding: 10px 18px; }
+.dv-pick.on { background: #ECECEE; color: #111214; }
+
+/* ── телефон: цвета — токены тем приложения (dialogsSceneColors + liquidGlassTokens уровня «Максимум») ── */
+.ph { position: relative; width: 390px; height: 844px; border-radius: 48px; overflow: hidden; flex: none; background: var(--bg); color: var(--tx);
+  box-shadow: 0 0 0 10px #0B0B0D, 0 0 0 11px #2B2C31, 0 30px 70px rgba(0, 0, 0, .55); font-family: Inter, system-ui, sans-serif; }
+.ph.dk { /* marine, тёмное */
+  --bg: #000F16; --card: #002027; --card2: #123037; --ctl: #123037; --tx: #F6FBFD; --sec: #B8CFD6; --cta: #D0EAED; --cta-ink: #010708; --good: #73CB87; --acc: #5CCFEB;
+  --card-o: #002027; --shc: rgba(0, 0, 0, .6); --sh: 0 12px 28px rgba(0, 0, 0, .38);
+  --s-top: #1c5b6c; --s-bot: #1a494b; --s-glr: #008AA4C7; --s-gll: #008F84B3; --s-glb: transparent; --s-scrim: rgba(0, 0, 0, 0); --s-halo: #0196B08C;
+  --s-tx: #F6FBFD; --s-sec: #B8CFD6; --s-acc: #64D1EC; --s-cta: #D0EAED; --s-ink: #010708; --s-glass: rgba(246, 251, 253, .12); --s-track: rgba(246, 251, 253, .18);
+  --s-raised: rgba(0, 32, 39, .78); --sb: #FFFFFF; }
+.ph.lt { /* ink, светлое */
+  --bg: #EAEBFE; --card: #FCFCFF; --card2: #DBDDEC; --ctl: #DBDDEC; --tx: #17181E; --sec: #595A63; --cta: #1D1D2F; --cta-ink: #FFFFFF; --good: #006F30; --acc: #5F5CB1;
+  --card-o: #FCFCFF; --shc: rgba(40, 30, 80, .28); --sh: 0 10px 26px rgba(40, 30, 80, .12);
+  --s-top: #F3F4FD; --s-bot: #EAEBFE; --s-glr: #C9CCFDB3; --s-gll: #E0CEF899; --s-glb: #E0E2FE80; --s-scrim: rgba(236, 228, 247, .34); --s-halo: #4E4F8366;
+  --s-tx: #17181E; --s-sec: #595A63; --s-acc: #514EA1; --s-cta: #1D1D2F; --s-ink: #FFFFFF; --s-glass: rgba(23, 24, 30, .12); --s-track: rgba(23, 24, 30, .18);
+  --s-raised: #FFFFFF; --sb: #17181E; }
+.dv-scr { position: absolute; inset: 0; overflow: hidden; }
+.dv-sb { position: absolute; z-index: 60; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 26px 0 34px; font-size: 15px; font-weight: 600; color: var(--sb); pointer-events: none; }
+.dv-sb .sys { display: inline-flex; gap: 6px; align-items: center; }
+.dv-sb .sys i { display: block; background: currentColor; border-radius: 2px; }
+.home-ind { position: absolute; z-index: 61; bottom: 6px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .85; }
+
+/* ── ВЕРХ: сцена «Диалогов» как в приложении (DialogsSceneStage + DialogsSceneBackdrop), 46 % = 392 ── */
+.dsc { position: relative; height: 392px; border-radius: 0 0 32px 32px; overflow: hidden; color: var(--s-tx);
+  background: radial-gradient(70% 46% at 84% 14%, var(--s-glr), transparent), radial-gradient(60% 42% at 8% 0%, var(--s-gll), transparent),
+    radial-gradient(80% 50% at 50% 100%, var(--s-glb), transparent), linear-gradient(171deg, var(--s-top), var(--s-bot)); }
+.dsc .halo { position: absolute; left: 57%; top: 96px; width: 168px; height: 168px;
+  background: radial-gradient(closest-side, var(--s-halo), color-mix(in srgb, var(--s-halo) 20%, transparent) 62%, transparent); }
+.dsc .art { position: absolute; right: -14px; top: 96px; width: 160px; height: 160px; object-fit: contain; opacity: .96; }
+.dsc .scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 60%; background: linear-gradient(to bottom, transparent, var(--s-scrim)); pointer-events: none; }
+.dtop { position: absolute; z-index: 5; top: 52px; left: 20px; right: 20px; display: flex; align-items: center; gap: 8px; }
+.dtop .sp { flex: 1; }
+.iback { width: 44px; height: 44px; border-radius: 22px; display: inline-flex; align-items: center; justify-content: center; flex: none; font-size: 20px;
+  background: var(--s-raised); color: var(--s-tx); box-shadow: 0 4px 12px -6px var(--shc), inset 0 1px 0 rgba(255, 255, 255, .12); }
+.qpill { min-height: 36px; border-radius: 18px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; background: var(--s-glass);
+  font-size: 13px; line-height: 17px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.qpill .io { font-size: 16px; }
+.en { display: inline-flex; align-items: center; gap: 4px; font-size: 16px; line-height: 21px; font-weight: 700; padding: 0 4px; }
+.en .io { font-size: 19px; color: var(--s-acc); }
+.dbody { position: absolute; z-index: 3; left: 20px; right: 150px; bottom: 44px; }
+.dkick { display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 17px; color: var(--s-sec); }
+.dkick .io { font-size: 16px; }
+.dttl { margin-top: 2px; font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; }
+.dttl.small { font-size: 26px; line-height: 32px; }
+.dprog { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 13px; line-height: 17px; color: var(--s-sec); font-variant-numeric: tabular-nums; }
+.dprog .bar { flex: 0 0 56px; height: 4px; border-radius: 2px; background: var(--s-track); overflow: hidden; }
+.dprog .bar i { display: block; height: 100%; background: var(--s-acc); }
+.dcta { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+.dbtn { min-height: 50px; border-radius: 25px; padding: 0 24px; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--s-cta); color: var(--s-ink); font-size: 16px; line-height: 21px; font-weight: 700; white-space: nowrap; }
+.dbtn .io { font-size: 17px; }
+.dround { width: 50px; height: 50px; border-radius: 25px; display: inline-flex; align-items: center; justify-content: center; background: var(--s-glass); font-size: 22px; flex: none; }
+
+/* ── НИЗ: панель приложения (DialogsScenePanel: наезд 22, радиус 28, поля 16) ── */
+.dpn { position: relative; z-index: 4; margin: -22px 16px 0; border-radius: 28px; padding: 16px 16px 10px; background: var(--card); box-shadow: var(--sh); overflow: hidden; }
+.dph { display: flex; align-items: baseline; gap: 8px; }
+.dph .t { display: inline-flex; align-items: center; gap: 6px; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
+.dph .t .io { font-size: 16px; color: var(--sec); }
+.dph .n { margin-left: auto; font-size: 16px; line-height: 21px; color: var(--sec); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dall { display: flex; align-items: center; justify-content: center; gap: 4px; min-height: 44px; margin-top: 6px; font-size: 16px; line-height: 21px; font-weight: 700; }
+.dall .io { font-size: 16px; color: var(--sec); }
+.dall span { color: var(--sec); font-weight: 400; }
+
+/* карта диалога: название + собеседник + ✓ / 🔒 (больше ничего) */
+.dvc { position: absolute; top: 0; border-radius: 22px; background: var(--ctl); padding: 12px; display: flex; flex-direction: column; overflow: hidden;
+  transition: none; }
+.dvc .hd { display: flex; align-items: center; justify-content: space-between; min-height: 24px; }
+.dvc .ok { width: 24px; height: 24px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font-size: 14px;
+  background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); }
+.dvc .lk { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); white-space: nowrap; }
+.dvc .lk .io { font-size: 13px; }
+.dvc .t { margin-top: auto; font-size: 16px; line-height: 21px; font-weight: 700; letter-spacing: -.1px; text-wrap: balance; }
+.dvc .w { margin-top: 4px; font-size: 13px; line-height: 17px; color: var(--sec); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dvc .w b { color: var(--tx); font-weight: 700; }
+.av { width: 24px; height: 24px; border-radius: 12px; flex: none; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;
+  background: color-mix(in srgb, var(--tx) 12%, transparent); color: var(--tx); }
+.dvc.lock { opacity: .55; }
+.dvc.side { opacity: .6; }
+/* выбранная — приподнята тенью и тоном (стиль «Тень»: без обводок) */
+.dvc.on { background: color-mix(in srgb, var(--acc) 14%, var(--ctl)); box-shadow: 0 14px 28px -14px var(--shc), inset 0 1px 0 rgba(255, 255, 255, .10); opacity: 1; }
+.dots { display: flex; justify-content: center; align-items: center; gap: 5px; margin-top: 14px; }
+.dots i { width: 6px; height: 6px; border-radius: 3px; background: color-mix(in srgb, var(--tx) 22%, transparent); }
+.dots i.d { background: color-mix(in srgb, var(--good) 70%, transparent); }
+.dots i.l { width: 4px; height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--tx) 14%, transparent); }
+.dots i.on { width: 18px; background: var(--tx); }
+/* края карусели и строки тем мягко гаснут — обрывков букв у края нет, а что дальше есть ещё — видно */
+.c1, .c2, .wch { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%); }
+.c3 { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32px, #000 calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 32px, #000 calc(100% - 24px), transparent 100%); }
+
+/* 1 · одна карта: в фокусе одна, соседние выглядывают по краям */
+.c1 { position: relative; height: 204px; margin: 14px -16px 0; }
+.c1 .dvc { width: 270px; height: 204px; left: calc(50% - 135px); padding: 16px; }
+.c1 .dvc .t { font-size: 20px; line-height: 26px; letter-spacing: -.3px; }
+.c1 .dvc .av { width: 40px; height: 40px; border-radius: 20px; font-size: 16px; }
+.c1 .dvc .w { margin-top: 6px; }
+.c1 .dvc.side { transform: scale(.88); }
+/* 2 · три карты: пройденная — выбранная — следующая, все видны */
+.c2 { position: relative; height: 168px; margin: 14px -16px 0; }
+.c2 .dvc { width: 172px; height: 168px; left: calc(50% - 86px); padding: 12px; }
+.c2 .dvc .av { width: 32px; height: 32px; border-radius: 16px; font-size: 16px; }
+/* 3 · лента: строка тем и 2–3 карты темы */
+.wch { display: flex; gap: 6px; margin: 12px -16px 0; padding: 0 16px; overflow: hidden; }
+.wch span { flex: none; min-height: 34px; padding: 4px 14px; border-radius: 17px; display: inline-flex; align-items: center; gap: 6px; font-size: 16px; line-height: 21px; font-weight: 700;
+  background: var(--ctl); color: var(--tx); white-space: nowrap; }
+.wch span .io { font-size: 15px; }
+.wch span.on { background: var(--cta); color: var(--cta-ink); }
+.c3 { position: relative; height: 150px; margin: 12px -16px 0; }
+.c3 .dvc { width: 172px; height: 150px; }
+.c3 .dvc .av { width: 32px; height: 32px; border-radius: 16px; font-size: 16px; }
+
+/* ── «начал»: экран диалога (как в утверждённом кадре talk), подложка — та же сцена ── */
+.dtk { position: relative; height: 250px; overflow: hidden; color: var(--s-tx);
+  background: radial-gradient(70% 46% at 84% 14%, var(--s-glr), transparent), radial-gradient(60% 42% at 8% 0%, var(--s-gll), transparent),
+    radial-gradient(80% 50% at 50% 100%, var(--s-glb), transparent), linear-gradient(171deg, var(--s-top), var(--s-bot)); }
+.dtk .ini { position: absolute; right: 30px; top: 92px; width: 120px; height: 120px; border-radius: 60px; display: flex; align-items: center; justify-content: center;
+  font-size: 64px; font-weight: 700; letter-spacing: -1px; color: color-mix(in srgb, var(--s-tx) 34%, transparent);
+  background: radial-gradient(closest-side, var(--s-halo), transparent); }
+.dtk .bar2 { position: absolute; left: 16px; right: 16px; top: 54px; display: flex; align-items: center; gap: 8px; }
+.dtk .bar2 .sp { flex: 1; }
+.dtk .x { width: 44px; height: 44px; border-radius: 22px; display: inline-flex; align-items: center; justify-content: center; background: var(--s-raised); font-size: 20px;
+  box-shadow: 0 4px 12px -6px var(--shc); }
+.dtk .gch { height: 36px; padding: 0 12px; border-radius: 18px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; background: var(--s-glass); white-space: nowrap; }
+.dtk .who2 { position: absolute; left: 20px; right: 160px; bottom: 44px; }
+.dtk .who2 b { display: block; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; }
+.dtk .who2 span { display: block; font-size: 13px; line-height: 17px; color: var(--s-sec); }
+.chat { position: relative; z-index: 3; margin: -26px 0 0; border-radius: 28px 28px 0 0; background: var(--card); box-shadow: 0 -10px 40px -24px var(--shc); padding: 18px 16px 0; min-height: 640px; }
+.task { border-radius: 18px; background: var(--card2); padding: 12px 14px; margin-bottom: 12px; }
+.task .h { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--sec); }
+.task .b { font-size: 16px; line-height: 22px; margin-top: 4px; }
+.goal-now, .goal-toast { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 0 12px; border-radius: 15px; font-size: 13px; font-weight: 700; margin: 0 auto 12px; }
+.goal-now { background: var(--ctl); color: var(--tx); }
+.goal-toast { background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); }
+.msg { max-width: 84%; margin: 0 0 10px; padding: 11px 14px; border-radius: 20px; font-size: 16px; line-height: 22px; overflow-wrap: anywhere; }
+.msg.them { background: var(--ctl); color: var(--tx); border-bottom-left-radius: 6px; }
+.msg.me { margin-left: auto; background: var(--cta); color: var(--cta-ink); border-bottom-right-radius: 6px; }
+.msg .tr { display: block; margin-top: 8px; padding-top: 8px; font-size: 13px; line-height: 17px; color: var(--sec); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--tx) 12%, transparent); }
+.typing-row { display: flex; align-items: center; gap: 10px; color: var(--sec); font-size: 13px; }
+.typing { display: inline-flex; gap: 4px; padding: 14px 16px; border-radius: 20px; border-bottom-left-radius: 6px; background: var(--ctl); }
+.typing i { width: 7px; height: 7px; border-radius: 4px; background: var(--sec); opacity: .7; }
+.composer { position: absolute; left: 0; right: 0; bottom: 0; z-index: 35; padding: 12px 16px 34px; background: linear-gradient(to bottom, color-mix(in srgb, var(--card-o) 0%, transparent), var(--card-o) 28%); }
+.composer .row { display: flex; align-items: center; gap: 10px; }
+.composer .fld { flex: 1; min-width: 0; height: 52px; border-radius: 26px; background: var(--ctl); display: flex; align-items: center; padding: 0 18px; font-size: 16px; color: var(--sec); white-space: nowrap; }
+.composer .mic { width: 64px; height: 64px; border-radius: 32px; flex: none; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 14px 28px -12px var(--shc); }
+.composer .hint { text-align: center; font-size: 13px; color: var(--sec); margin-top: 8px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="dv-page">
+  <h1>Диалоги — карусель под сценой</h1>
+  <p class="dv-lead">Владелец о прошлом макете: карусель интересная, но с первого взгляда — «куча всего»; нравится текущая сцена, а снизу нужна карусель, чтобы диалоги было видно и можно было выбирать. <b>Верх — сцена «Диалогов» из приложения один в один</b>: «назад», остаток ответов, энергия, герой, тема · собеседник, название, цели, «Начать» и микрофон; цвета — темы приложения (тёмная marine, светлая ink), как снимает Сверка. <b>Низ — новое</b>: одна тема, следующий диалог в фокусе, пройденные ✓ слева, закрытые 🔒 справа, на карте только название и собеседник. Листаешь — сцена сверху сразу показывает выбранный диалог, «Начать» запускает его.</p>
+  <p class="dv-lead">Три плотности карусели, у каждой три кадра: первый взгляд → выбираю → начал. Всё помещается на экран 390 × 844 без прокрутки. Данные — из приложения: 76 диалогов (4 темы по 19), собеседники и цели; пример — ранг 7, бесплатный тариф, 18 из 30 ответов месяца.</p>
+  <div class="dv-bar">
+    <div class="dv-seg" role="group" aria-label="Оформление"><button type="button" data-ap="dk" class="on">Тёмное · marine</button><button type="button" data-ap="lt">Светлое · ink</button></div>
+    <div class="dv-sum" id="dv-sum"></div>
+  </div>
+  <div id="root"></div>
+</div>
+<script>
+window.__ICODE = {"chevron-back":"f229","chatbubbles-outline":"f218","flash":"f316","people-outline":"f4a3","briefcase-outline":"f1b2","airplane-outline":"f10a","cafe-outline":"f1ca","play":"f4c6","mic":"f454","checkmark":"f21d","lock-closed":"f3c7","chevron-down":"f232","chevron-forward":"f23b","close":"f24a","flag-outline":"f311","radio-button-on":"f503","checkmark-circle":"f21e","swap-horizontal":"f5b0","hand-left-outline":"f35c"};
+window.__DLG = {"worlds":[{"id":"social","t":"Общение"},{"id":"work","t":"Дела"},{"id":"travel","t":"Поездки"},{"id":"everyday","t":"Повседневное"}],"persona":{"mila":{"name":"Мила","note":"Тепло подхватывает разговор и задаёт живые уточняющие вопросы."},"zoe":{"name":"Зоя","note":"Общается легко, иногда с мягкой шуткой помогает сказать естественнее."},"denis":{"name":"Денис","note":"Не торопится, внимательно читает детали и отвечает без лишнего шума."},"marina":{"name":"Марина","note":"Ценит сроки, конкретику и сразу просит назвать следующий шаг."},"oleg":{"name":"Олег","note":"Держит деловой тон, проверяет договорённости и фиксирует решения."},"sam":{"name":"Сэм","note":"Снимает напряжение, но не даёт разговору уйти от главной задачи."},"lea":{"name":"Лея","note":"Помогает сориентироваться и доброжелательно уточняет недостающие детали."},"niko":{"name":"Нико","note":"Быстро собирает факты, предлагает варианты и просит выбрать один."},"clara":{"name":"Клара","note":"Следует правилам сервиса и вежливо объясняет, что можно сделать дальше."},"ira":{"name":"Ира","note":"Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы."},"nikita":{"name":"Никита","note":"Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию."},"vera":{"name":"Вера","note":"Помогает договориться и сохраняет дружелюбный тон даже при разногласии."}},"rows":[["social_01","social",1,"A1","Поздороваться после знакомства",["mila"],6],["social_02","social",2,"A1","Перенести встречу",["zoe"],6],["social_03","social",3,"A1","Спросить, как добраться",["denis"],6],["social_04","social",4,"A1","Поблагодарить за помощь",["mila"],6],["social_05","social",5,"A1","Поздравить и задать простой вопрос",["zoe"],6],["social_06","social",6,"A2","Познакомиться в чате по интересу",["denis","mila"],7],["social_07","social",7,"A2","Договориться о времени и месте",["mila"],7],["social_08","social",8,"A2","Позвать на событие",["zoe"],7],["social_09","social",9,"A2","Вежливо отменить планы",["denis","mila"],7],["social_10","social",10,"A2","Написать после встречи",["mila"],7],["social_11","social",11,"B1","Собрать планы в группе",["zoe","denis"],8],["social_12","social",12,"B1","Поддержать друга",["denis"],7],["social_13","social",13,"B1","Снять лёгкое недопонимание",["mila","zoe"],7],["social_14","social",14,"B2","Мягко отказать",["zoe"],7],["social_15","social",15,"B2","Обсудить ожидания в группе",["denis"],8],["social_16","social",16,"B2","Дать деликатную обратную связь",["mila"],7],["social_17","social",17,"C1","Обозначить личную границу",["zoe","denis"],7],["social_18","social",18,"C1","Восстановить доверие",["denis"],8],["social_19","social",19,"C2","Урегулировать тонкий конфликт в группе",["mila","zoe"],8],["work_01","work",1,"A1","Представиться коллеге",["marina"],6],["work_02","work",2,"A1","Спросить файл",["oleg"],6],["work_03","work",3,"A1","Подтвердить время созвона",["sam"],6],["work_04","work",4,"A1","Написать, что опаздываешь",["marina"],6],["work_05","work",5,"A1","Поблагодарить за инструкцию",["oleg"],6],["work_06","work",6,"A2","Уточнить простую задачу",["sam","marina"],7],["work_07","work",7,"A2","Попросить перенести дедлайн",["marina"],7],["work_08","work",8,"A2","Сообщить короткий статус",["oleg"],7],["work_09","work",9,"A2","Запросить доступ",["sam","marina"],7],["work_10","work",10,"A2","Написать после первого рабочего дня",["marina"],6],["work_11","work",11,"B1","Согласовать следующий шаг в команде",["oleg","sam"],7],["work_12","work",12,"B1","Объяснить проблему и предложить решение",["sam"],7],["work_13","work",13,"B1","Собрать доступность для встречи",["marina","oleg"],7],["work_14","work",14,"B2","Защитить реалистичный срок",["oleg"],7],["work_15","work",15,"B2","Дать конструктивный отзыв",["sam"],7],["work_16","work",16,"B2","Согласовать приоритеты",["marina"],8],["work_17","work",17,"C1","Дипломатично возразить решению",["oleg","sam"],7],["work_18","work",18,"C1","Снять риск между командами",["sam"],7],["work_19","work",19,"C2","Провести сложные переговоры в треде",["marina","oleg"],8],["travel_01","travel",1,"A1","Написать хозяину жилья: я приехал",["lea"],6],["travel_02","travel",2,"A1","Спросить код от двери",["niko"],6],["travel_03","travel",3,"A1","Уточнить время заселения",["clara"],6],["travel_04","travel",4,"A1","Заказать трансфер",["lea"],6],["travel_05","travel",5,"A1","Поблагодарить за подсказку",["niko"],6],["travel_06","travel",6,"A2","Уточнить маршрут в чате",["clara","lea"],7],["travel_07","travel",7,"A2","Подтвердить бронь",["lea"],7],["travel_08","travel",8,"A2","Написать о задержке",["niko"],7],["travel_09","travel",9,"A2","Спросить, где оставить багаж",["clara","lea"],7],["travel_10","travel",10,"A2","Договориться о времени встречи",["lea"],7],["travel_11","travel",11,"B1","Решить проблему с жильём",["niko","clara"],7],["travel_12","travel",12,"B1","Скоординировать группу в поездке",["clara"],8],["travel_13","travel",13,"B1","Запросить изменение бронирования",["lea","niko"],7],["travel_14","travel",14,"B2","Объяснить претензию сервису",["niko"],7],["travel_15","travel",15,"B2","Согласовать альтернативный маршрут",["clara"],7],["travel_16","travel",16,"B2","Отстоять решение по бронированию",["lea"],7],["travel_17","travel",17,"C1","Договориться о компенсации",["niko","clara"],7],["travel_18","travel",18,"C1","Разрешить ситуацию гость—хозяин—сервис",["clara"],7],["travel_19","travel",19,"C2","Вести многосторонний тред при сбое поездки",["lea","niko"],8],["everyday_01","everyday",1,"A1","Спросить совет",["ira"],6],["everyday_02","everyday",2,"A1","Напомнить о вещи",["nikita"],6],["everyday_03","everyday",3,"A1","Поздравить с событием",["vera"],6],["everyday_04","everyday",4,"A1","Спросить, свободен ли человек",["ira"],6],["everyday_05","everyday",5,"A1","Написать короткое извинение",["nikita"],6],["everyday_06","everyday",6,"A2","Попросить небольшую помощь",["vera","ira"],7],["everyday_07","everyday",7,"A2","Договориться присмотреть за питомцем",["ira"],7],["everyday_08","everyday",8,"A2","Выбрать подарок в групповом чате",["nikita"],7],["everyday_09","everyday",9,"A2","Уточнить детали доставки",["vera","ira"],7],["everyday_10","everyday",10,"A2","Поблагодарить после помощи",["ira"],7],["everyday_11","everyday",11,"B1","Организовать общий план на выходные",["nikita","vera"],8],["everyday_12","everyday",12,"B1","Сравнить варианты и принять решение",["vera"],7],["everyday_13","everyday",13,"B1","Объяснить проблему соседу или сервису",["ira","nikita"],7],["everyday_14","everyday",14,"B2","Обсудить общие правила",["nikita"],7],["everyday_15","everyday",15,"B2","Урегулировать неудобство без обвинений",["vera"],7],["everyday_16","everyday",16,"B2","Убедить группу выбрать разумный вариант",["ira"],7],["everyday_17","everyday",17,"C1","Провести чувствительный разговор о границах",["nikita","vera"],7],["everyday_18","everyday",18,"C1","Разобрать противоречивую информацию",["vera"],7],["everyday_19","everyday",19,"C2","Посредничать в личном групповом конфликте",["ira","nikita"],8]],"detail":{"social_01":{"brief":"Напиши Миле после знакомства — поздоровайся, напомни, где вы встретились, и задай вопрос. Мила любит поболтать, так что одним «привет» тут не отделаешься.","goals":["начать с приветствия","назвать себя","сказать, где вы познакомились","задать один простой вопрос","ответить на встречный вопрос","дружелюбно завершить чат"]},"social_06":{"brief":"В чате по общему увлечению — Денис и Мила. Представься, расскажи о своём опыте и расспроси их — разговор держится, пока интересно обеим сторонам.","goals":["представиться","сослаться на общий интерес","рассказать о своём опыте","спросить опыт собеседника","отреагировать на ответ","предложить продолжить разговор","закрыть тему естественно"]},"social_07":{"brief":"Договорись с Милой о встрече — предложи два времени, выберите место и решите, как вы узнаете друг друга. Мила за любой план, если он понятный.","goals":["предложить встречу","назвать два времени","спросить о доступности","согласовать место","уточнить, как узнать друг друга","подтвердить план","попрощаться"]},"work_01":{"brief":"Ты в команде первый день — представься Марине, скажи, чем занимаешься, и задай рабочий вопрос. Марина ценит конкретику, так что лучше сразу к делу.","goals":["поздороваться","назвать себя","назвать команду или роль","сказать, чем занимаешься сегодня","задать простой рабочий вопрос","поблагодарить и завершить"]},"work_02":{"brief":"Попроси у Олега нужный файл — скажи, зачем он тебе и к какому сроку. Олег любит порядок, и чем точнее просьба, тем быстрее ответ.","goals":["обратиться по имени","назвать нужный файл","объяснить простую цель","спросить, где он находится","уточнить срок","поблагодарить"]},"travel_02":{"brief":"Без кода дверь не откроется. Спроси его у Нико, назови адрес или бронь и попроси повторить цифры — одна ошибка, и стоять тебе у входа.","goals":["обратиться вежливо","назвать адрес или бронь","спросить код","уточнить, когда он будет доступен","попросить повторить цифры","подтвердить получение"]},"travel_03":{"brief":"Узнай у Клары, когда можно заселиться, и скажи, во сколько будешь. Если нужно раньше или позже, спроси — Клара строго по правилам, но вежливо подскажет, что можно.","goals":["назвать дату","спросить время","сказать своё время приезда","спросить о раннем/позднем варианте","ответить на условие","подтвердить план"]},"everyday_01":{"brief":"Спроси у Иры совет — назови тему, попроси один вариант и ответь, подходит ли он. Ира советует охотно, но ей важно услышать, что ты выбираешь.","goals":["поздороваться","назвать тему","задать простой вопрос","попросить один вариант","ответить на совет","поблагодарить"]},"everyday_04":{"brief":"Хочешь увидеться с Ирой. Спроси, есть ли у неё время, объясни зачем и предложи что-то короткое — а если «нет», договоритесь списаться позже.","goals":["поздороваться","спросить о времени","назвать причину","предложить короткий формат","принять «нет»","договориться написать позже"]}}};
+
+(() => {
+  const CODE = window.__ICODE;
+  const DATA = window.__DLG;
+  const io = (n, st = '') => { const c = CODE[n]; if (!c) throw new Error('[DIALOGS-CHOOSE-V2] нет значка ' + n); return `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${c};</i>`; };
+  let AP = 'dk';
+  let picked = null;
+  const art = (name) => `assets/v2art/${AP === 'lt' ? 'light' : 'dark'}/${name}.webp`;
+
+  /* ── данные приложения (как в 34b0caae2) ── */
+  const WORLD = { social: { t: 'Общение', ic: 'people-outline' }, work: { t: 'Дела', ic: 'briefcase-outline' }, travel: { t: 'Поездки', ic: 'airplane-outline' }, everyday: { t: 'Повседневное', ic: 'cafe-outline' } };
+  for (const w of DATA.worlds) if (WORLD[w.id] && WORLD[w.id].t !== w.t) throw new Error('[DIALOGS-CHOOSE-V2] мир ' + w.id + ' в данных: ' + w.t);
+  const D = {};
+  for (const [id, world, rank, cefr, title, personas, goals] of DATA.rows) D[id] = { id, world, rank, cefr, title, personas, goals };
+  if (Object.keys(D).length !== 76) throw new Error('[DIALOGS-CHOOSE-V2] ждал 76 диалогов, в данных ' + Object.keys(D).length);
+  const P = DATA.persona;
+  // собеседник в творительном (dialogsSceneWhoName); на сцене и в карте — первый собеседник, как в приложении (buildDialogsSceneHubModel)
+  const INSTR = { mila: 'Милой', zoe: 'Зоей', denis: 'Денисом', marina: 'Мариной', oleg: 'Олегом', sam: 'Сэмом', lea: 'Леей', niko: 'Нико', clara: 'Кларой', ira: 'Ирой', nikita: 'Никитой', vera: 'Верой' };
+  const who1 = (d) => d.personas[0];
+  const goalsWord = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'цель' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'цели' : 'целей');
+  const goalsN = (n) => `${n} ${goalsWord(n)}`;
+  const idOf = (world, rank) => `${world}_${String(rank).padStart(2, '0')}`;
+  const topic = (w) => Array.from({ length: 19 }, (_, i) => D[idOf(w, i + 1)]);
+
+  /* ── состояние примера: ранг 7; пройдено по темам; следующий — первый открытый непройденный (как next приложения) ── */
+  const RANK = 7;
+  const DONE = { social: [1, 2, 3, 4, 5], work: [], travel: [1], everyday: [1, 2, 3] };
+  const status = (d) => (d.rank > RANK ? 'lock' : DONE[d.world].includes(d.rank) ? 'done' : 'open');
+  const doneCount = (w) => DONE[w].length;
+
+  /* ── общие куски ── */
+  const sb = (t) => `<div class="dv-sb"><span>${t}</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px"></i><i style="width:25px;height:12px;border-radius:3px"></i></span></div>`;
+  const phone = (inner, o = {}) => `<div class="ph ${AP}">${sb(o.time || '18:10')}<div class="dv-scr">${inner}</div>${o.fixed || ''}<div class="home-ind"></div></div>`;
+
+  /* ВЕРХ — DialogsSceneStage, состояние next (диалог не начат: «Начать», полоска пустая, «N целей») */
+  const scene = (d) => {
+    const small = d.title.length > 20;
+    return `<div class="dsc"><div class="halo"></div><img class="art" src="${art('dialogs_scene_next')}" alt=""><div class="scrim"></div>`
+      + `<div class="dtop"><span class="iback">${io('chevron-back')}</span><span class="qpill">${io('chatbubbles-outline')}18 из 30</span><span class="sp"></span><span class="en">${io('flash')}5</span></div>`
+      + `<div class="dbody"><div class="dkick">${io(WORLD[d.world].ic)}${WORLD[d.world].t} · с ${INSTR[who1(d)]}</div>`
+      + `<div class="dttl${small ? ' small' : ''}">${d.title}</div>`
+      + `<div class="dprog"><span class="bar"><i style="width:0%"></i></span>${goalsN(d.goals)}</div>`
+      + `<div class="dcta"><span class="dbtn">${io('play')}Начать</span><span class="dround">${io('mic')}</span></div></div></div>`;
+  };
+
+  /* карта: мир (значок) · ✓ / 🔒 ранг; название; собеседник */
+  const card = (d, cls, style) => {
+    const s = status(d);
+    const mark = s === 'done' ? `<span class="ok">${io('checkmark')}</span>` : s === 'lock' ? `<span class="lk">${io('lock-closed')}Ранг ${d.rank}</span>` : '';
+    const name = P[who1(d)].name;
+    return `<div class="dvc ${cls}${s === 'lock' ? ' lock' : ''}" style="${style}"><div class="hd"><span class="av">${name[0]}</span>${mark}</div>`
+      + `<div class="t">${d.title}</div><div class="w">с <b>${INSTR[who1(d)]}</b></div></div>`;
+  };
+  const dots = (w, sel) => `<div class="dots">${topic(w).map((d) => `<i class="${d.id === sel ? 'on' : status(d) === 'done' ? 'd' : status(d) === 'lock' ? 'l' : ''}"></i>`).join('')}</div>`;
+  const head = (w) => `<div class="dph"><span class="t">${WORLD[w].t}${io('chevron-down')}</span><span class="n">${doneCount(w)} из 19</span></div>`;
+  const all = () => `<div class="dall">Все диалоги <span>· 76</span>${io('chevron-forward')}</div>`;
+
+  /* ═══════ 1 · Одна карта ═══════ */
+  const c1 = (w, sel) => {
+    const list = topic(w);
+    const i = list.findIndex((d) => d.id === sel);
+    const W = 270; const SW = W * 0.88; const GAP = 10;
+    const out = [];
+    for (const k of [-1, 0, 1]) {
+      const d = list[i + k];
+      if (!d) continue;
+      // соседняя: центр смещён на половину выбранной + зазор + половину уменьшенной; видна полоска у края
+      const dx = k === 0 ? 0 : k * (W / 2 + GAP + SW / 2);
+      out.push(card(d, k === 0 ? 'on' : 'side', `transform:translateX(${dx}px)${k === 0 ? '' : ' scale(.88)'}`));
+    }
+    return `<div class="c1">${out.join('')}</div>`;
+  };
+  const v1 = (sel) => phone(`${scene(D[sel])}<div class="dpn">${head('social')}${c1('social', sel)}${dots('social', sel)}${all()}</div>`);
+
+  /* ═══════ 2 · Три карты ═══════ */
+  const c2 = (w, sel) => {
+    const list = topic(w);
+    const i = list.findIndex((d) => d.id === sel);
+    const out = [];
+    for (const k of [-1, 0, 1]) {
+      const d = list[i + k];
+      if (!d) continue;
+      // карты 172 (самое длинное слово не режется); соседние уменьшены до 0,86 и видны наполовину — три карты сразу
+      const W = 172; const SW = W * 0.86; const GAP = 8;
+      const dx = k === 0 ? 0 : k * (W / 2 + GAP + SW / 2);
+      out.push(card(d, k === 0 ? 'on' : 'side', `transform:translateX(${dx}px)${k === 0 ? '' : ' scale(.86)'}`));
+    }
+    return `<div class="c2">${out.join('')}</div>`;
+  };
+  const v2 = (sel) => phone(`${scene(D[sel])}<div class="dpn">${head('social')}${c2('social', sel)}${dots('social', sel)}${all()}</div>`);
+
+  /* ═══════ 3 · Лента с темами ═══════ */
+  const c3 = (w, sel) => {
+    const list = topic(w);
+    const i = list.findIndex((d) => d.id === sel);
+    // выбранная — второй в ленте: слева видна пройденная (или край), справа следующие
+    const start = Math.max(0, i - 1);
+    const x0 = i === 0 ? 16 : 38 - 172; // пройденная слева — полоска 38 px под затуханием края
+    return `<div class="c3">${list.slice(start, start + 4).map((d, k) => card(d, d.id === sel ? 'on' : '', `left:${x0 + k * 182}px`)).join('')}</div>`;
+  };
+  const chips = (w) => `<div class="wch">${Object.keys(WORLD).map((x) => `<span class="${x === w ? 'on' : ''}">${io(WORLD[x].ic)}${WORLD[x].t}</span>`).join('')}</div>`;
+  const v3 = (w, sel) => phone(`${scene(D[sel])}<div class="dpn"><div class="dph"><span class="t">Диалоги</span><span class="n">76</span></div>${chips(w)}${c3(w, sel)}${dots(w, sel)}${all()}</div>`);
+
+  /* ═══════ «начал»: экран разговора ═══════ */
+  const talk = (d, real) => {
+    const det = DATA.detail[d.id];
+    const p = P[who1(d)];
+    const body = real
+      ? `<div class="msg them">Hi! You must be new here. I'm Marina, I run the design team.</div><div class="msg me">Hi Marina, I'm Alex. I'm the new QA engineer.</div>`
+        + `<div style="text-align:center"><span class="goal-toast">${io('checkmark-circle')}${det.goals[0]}</span></div>`
+        + `<div class="msg them">Nice to meet you, Alex! What are you working on today?<span class="tr">Приятно познакомиться, Алекс! Над чем ты сегодня работаешь?</span></div>`
+        + `<div class="typing-row"><div class="typing"><i></i><i></i><i></i></div>${p.name} пишет</div>`
+      : `<div class="task"><div class="h">${io('flag-outline')}Задача</div><div class="b">${det.brief}</div></div>`
+        + `<div style="text-align:center"><span class="goal-now">${io('radio-button-on')}Сейчас: ${det.goals[0]}</span></div>`
+        + `<div class="typing-row"><div class="typing"><i></i><i></i><i></i></div>${p.name} пишет</div>`;
+    const done = real ? 1 : 0;
+    return phone(`<div class="dtk"><div class="ini">${p.name[0]}</div><div class="bar2"><span class="x">${io('close')}</span><span class="sp"></span><span class="gch">${io('flag-outline')}Цели ${done} из ${d.goals}</span></div>`
+      + `<div class="who2"><b>${d.personas.map((x) => P[x].name).join(' и ')}</b><span>${d.title}</span></div></div><div class="chat">${body}</div>`,
+    { fixed: `<div class="composer"><div class="row"><div class="fld">Напиши или говори</div><span class="mic">${io('mic')}</span></div><div class="hint">Или зажми и говори · осталось ${real ? 17 : 18} ответов</div></div>` });
+  };
+
+  /* ── страница ── */
+  const S6 = 'social_06'; const S7 = 'social_07'; const W1 = 'work_01';
+  const VARS = [
+    { n: 1, t: 'Одна карта', lead: 'Спокойнее всего: в фокусе одна крупная карта темы, соседние только выглядывают по краям. Листаешь — сцена сверху показывает выбранный диалог, «Начать» запускает его. Тема — «Общение ⌄» в заголовке панели, весь список — «Все диалоги». Точки под картой — 19 диалогов темы: зелёные пройдены, белая — где ты, мелкие — закрыты.',
+      steps: ['Первый взгляд', 'Выбираю · листаю вправо', 'Начал · «Начать»'], f: [() => v1(S6), () => v1(S7), () => talk(D[S7], false)] },
+    { n: 2, t: 'Три карты', lead: 'Плотнее: выбранная карта по центру, соседние видны наполовину — пройденная ✓ слева, следующая или закрытая 🔒 справа. Тап по боковой карте ставит её в центр, сцена показывает её.',
+      steps: ['Первый взгляд', 'Выбираю · тап по карте справа', 'Начал · «Начать»'], f: [() => v2(S6), () => v2(S7), () => talk(D[S7], false)] },
+    { n: 3, t: 'Лента с темами', lead: 'Плотнее всего: строка тем над лентой и две-три карты темы; пройденные слева, закрытые 🔒 справа. Тап по теме — лента и сцена переходят в неё (на втором кадре — «Дела»).',
+      steps: ['Первый взгляд', 'Выбираю · тема «Дела»', 'Начал · «Начать»'], f: [() => v3('social', S6), () => v3('work', W1), () => talk(D[W1], true)] },
+  ];
+  const sum = () => { document.getElementById('dv-sum').innerHTML = `Выбор: <b>${picked ? `вариант ${picked}` : '—'}</b> · ${AP === 'dk' ? 'тёмное' : 'светлое'}`; };
+  const render = () => {
+    document.getElementById('root').innerHTML = VARS.map((v) => `<section class="dv-block" id="v${v.n}"><h2>${v.n} · ${v.t}<button type="button" class="dv-pick${picked === v.n ? ' on' : ''}" data-n="${v.n}">Выбрать ${v.n}</button></h2><p>${v.lead}</p>`
+      + `<div class="dv-row">${v.f.map((f, i) => `<div class="dv-col"><div class="dv-cap">${v.n}.${i + 1} · ${v.steps[i]}</div>${f()}</div>`).join('')}</div></section>`).join('');
+    sum();
+  };
+  document.addEventListener('click', (e) => {
+    const ap = e.target.closest('[data-ap]');
+    if (ap) { AP = ap.dataset.ap; document.querySelectorAll('[data-ap]').forEach((b) => b.classList.toggle('on', b === ap)); render(); return; }
+    const pk = e.target.closest('.dv-pick');
+    if (pk) { picked = Number(pk.dataset.n); render(); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>

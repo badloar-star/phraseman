@@ -129,8 +129,10 @@ describe('перенос 1:1 «Собери фразу» (tasks-1to1-2026-10-22.
   const pb = code(read('modules/learning-v2/modes/phrase_builder_mode_v1.tsx'));
   const glass = code(read('components/learning-v2/LearningV2Glass.tsx'));
 
-  it('тень плит заданий — `--sh` макета: светлая 0 10 26 −14 α .30 + белая кромка сверху; тёмная 0 12 28 −14 α .7', () => {
-    expect(tokens).toContain("{ offsetX: 0, offsetY: 10, blurRadius: 26, spreadDistance: -14, color: 'rgba(51,51,87,0.30)' }");
+  it('тень плит заданий — `--sh` макета: светлая 0 10 26 −14 цвета g.dropShadow темы (не фиксированный сине-фиолетовый) + белая кромка сверху; тёмная 0 12 28 −14 α .7', () => {
+    expect(tokens).toContain("{ offsetX: 0, offsetY: 10, blurRadius: 26, spreadDistance: -14, color: tint }");
+    expect(tokens).toContain('lightShadow(g.dropShadow)');
+    expect(tokens).not.toContain('51,51,87');
     expect(tokens).toContain("color: 'rgba(255,255,255,0.9)', inset: true");
     expect(tokens).toContain("{ offsetX: 0, offsetY: 12, blurRadius: 28, spreadDistance: -14, color: 'rgba(0,0,0,0.7)' }");
   });

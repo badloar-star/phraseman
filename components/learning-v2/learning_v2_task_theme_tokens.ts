@@ -59,8 +59,9 @@ const EXAM_SHEET_SHADOW: readonly BoxShadowValue[] = [
   { offsetX: 0, offsetY: -18, blurRadius: 40, spreadDistance: -18, color: 'rgba(0,0,0,0.5)' }, // theme-exempt: тень шторки экзамена, эталон `.xsh` — чёрная в обеих темах
 ];
 
-const LIGHT_SHADOW: readonly BoxShadowValue[] = [
-  { offsetX: 0, offsetY: 10, blurRadius: 26, spreadDistance: -14, color: 'rgba(51,51,87,0.30)' },
+// зачем (закон владельца 22.10 «цвета строго цвета и оттенки ТЕКУЩЕЙ ТЕМЫ»; координатор): тень плит в светлой теме — g.dropShadow темы, а не фиксированный сине-фиолетовый rgba(51,51,87,.30) макета
+const lightShadow = (tint: string): readonly BoxShadowValue[] => [
+  { offsetX: 0, offsetY: 10, blurRadius: 26, spreadDistance: -14, color: tint },
   { offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.9)', inset: true }, // shadow-ok: макет №23, hairline 1px, владелец 24.09
 ];
 const DARK_SHADOW: readonly BoxShadowValue[] = [
@@ -90,7 +91,7 @@ export function lv2TaskTokens(g: Lv2Glass): Lv2TaskTokens {
     footerSolid: light ? '#EEEFFA' : g.bg, // theme-exempt: --solid макета («Сумерки», светлая); тёмная — фон экрана
     accentWash9: lv2Alpha(g.accent, 0.09),
     accentWash14: lv2Alpha(g.accent, 0.14),
-    taskPlateShadow: light ? LIGHT_SHADOW : DARK_SHADOW,
+    taskPlateShadow: light ? lightShadow(g.dropShadow) : DARK_SHADOW,
     chipShelf: light ? lv2Alpha(g.text, 0.12) : 'rgba(0,0,0,0.34)', // theme-exempt: полка чипа — чёрная α .34 в тёмной теме (kit.css)
     ctaFill: g.text,
     ctaInk: g.opaqueCard,

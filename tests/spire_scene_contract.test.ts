@@ -116,6 +116,20 @@ async function main(): Promise<void> {
   const dock = read("components/spire/SpireClimbDock.tsx");
   assert.ok(dock.includes("scene ? spireSceneText(lang, 'playIn'"), "«Играть через 6:40» на «Сцене»");
   assert.ok(dock.includes('testID="spire-dock-searching"'), "«Ищем комнату…» на «Сцене»");
+
+  // ── шаг 3b: экран Пика и шапка «Сообщества» на цвете сцены ──
+  const screen = read("components/spire/SpireHomeScreen.tsx");
+  assert.ok(screen.includes("const scene = useSpireSceneTop("), "экран берёт данные сцены одной строкой");
+  assert.ok(screen.includes("headerTint={runtimeOwnerId === 'spire'}"), "шапку красит только видимый «Пик»");
+  assert.ok(screen.includes("scene={scene !== null} searching={scene?.decision.state === 'search'}"), "кнопка в режиме «Сцены»");
+  assert.ok(screen.split("\n").length <= 400, "экран Пика ≤ 400 строк");
+  assert.ok(scene.includes("setSpireSceneHeaderTint(tokens.sceneTop)") && scene.includes("return () => setSpireSceneHeaderTint(null);"), "сцена кладёт и убирает цвет шапки");
+  const community = read("app/(tabs)/community.tsx");
+  assert.ok(community.includes("const peakScene = section === 'spire' && sceneTint !== null;"), "«Сообщество» красит шапку только на «Пике» со «Сценой»");
+  assert.ok(community.includes("peakScene ? <HomeSceneEnergy /> : null"), "справа — белая энергия");
+  const layout = read("app/(tabs)/_layout.tsx");
+  assert.ok(layout.includes("<SpireSceneStatusStrip height={insets.top} visible={visualIdx === communityLogicalIdx} />"), "полоса под часами — только на «Сообществе»");
+  assert.ok(!route.includes("headerTint"), "dev-вход не красит настоящую шапку");
 }
 
 if (typeof test === "function") {

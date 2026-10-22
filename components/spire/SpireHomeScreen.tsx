@@ -279,7 +279,7 @@ export default function SpireHomeScreen() {
         onLayout={(e) => logSpireLayout('scroll', { viewportH: roundLayout(e.nativeEvent.layout.height), bottomPad: roundLayout(bottomPad), paddingBottom: roundLayout(bottomPad + tailPad) })}
         onContentSizeChange={(_w, ch) => logSpireLayout('scroll.content', { contentH: roundLayout(ch) })}
       >
-        {scene ? <View style={s.bleed}><SpireScene lang={lang} {...scene} rankBy={game.rankBy} myCoinRank={myCoinRank} myPlus={myIsPlus} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} rivalsByFloor={rivals} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} onTouchActive={towerTouch.onTouchActive} onOpenAll={openAll} topRight={<SpireEnergyPill ownerActive={runtimeOwnerId === 'spire'} />} /></View> : <>
+        {scene ? <View style={s.bleed}><SpireScene lang={lang} {...scene} rankBy={game.rankBy} myCoinRank={myCoinRank} myPlus={myIsPlus} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} rivalsByFloor={rivals} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} onTouchActive={towerTouch.onTouchActive} onOpenAll={openAll} headerTint={runtimeOwnerId === 'spire'} /></View> : <>
         <View style={[s.head, budget.headerThin ? thin.head : null]}>
           <View style={s.headText}>
             <View style={s.titleRow}>

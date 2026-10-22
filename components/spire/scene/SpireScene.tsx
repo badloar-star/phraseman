@@ -11,7 +11,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { memo, useMemo } from 'react';
+import React, { memo, useEffect, useMemo } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
@@ -29,6 +29,7 @@ import { spireText } from '../spire_strings';
 import type { SpireRival } from '../spire_tower_model';
 import SpireScenePodium from './SpireScenePodium';
 import type { SpireSceneCopy, SpireSceneDecision, SpireSceneRoom } from './spire_scene_model';
+import { setSpireSceneHeaderTint } from './spire_scene_header_tint';
 import { SPIRE_SCENE_INK } from './spire_scene_palette';
 import { spireScenePromoText, spireSceneText } from './spire_scene_strings';
 
@@ -67,8 +68,8 @@ type Props = Readonly<{
   onOpenAll: () => void;
   /** Только dev-вход: «6:40» из моков вместо живого отсчёта энергии. */
   energyTime?: string;
-  /** Справа сверху — энергия Пика (пока строка вкладок «Сообщества» не стоит на сцене, шаг 3b-2). */
-  topRight?: React.ReactNode;
+  /** «Пик» на экране: верх сцены красит шапку «Сообщества» и полосу под часами (spire_scene_header_tint). dev-вход не красит. */
+  headerTint?: boolean;
 }>;
 
 /** Живой отсчёт до энергии в заголовке: тикает только этот текст, сцена не перерисовывается. */
@@ -96,6 +97,12 @@ function SpireScene(p: Props) {
     return cut > 0 ? { bold: full.slice(0, cut + 1), rest: full.slice(cut + 1) } : { bold: full, rest: '' };
   }, [p.lang]);
   const glow = evening ? tokens.eveningGlow : tokens.sceneGlow;
+  // зачем (эталон: сцена уходит под вкладки и под часы): пока «Пик» на экране — верхний цвет сцены шапке «Сообщества» и полосе статуса
+  useEffect(() => {
+    if (!p.headerTint) return undefined;
+    setSpireSceneHeaderTint(tokens.sceneTop);
+    return () => setSpireSceneHeaderTint(null);
+  }, [p.headerTint, tokens.sceneTop]);
   return (
     <View testID={`spire-scene-${p.decision.state}`} style={[s.stage, { height: SPIRE_SCENE_H }]}>
       <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
@@ -204,12 +211,11 @@ function SpireScene(p: Props) {
         </V2Pressable>
       </View>
       {off ? (
-        <View testID="spire-scene-offline" style={[s.offline, p.topRight ? s.offlineBesideTop : null]} accessibilityLiveRegion="polite">
+        <View testID="spire-scene-offline" style={s.offline} accessibilityLiveRegion="polite">
           <Ionicons name="cloud-offline-outline" size={18} color={SPIRE_SCENE_INK.text} />
           <Text style={s.offlineText}><Text style={s.offlineBold}>{offText.bold}</Text>{offText.rest}</Text>
         </View>
       ) : null}
-      {p.topRight ? <View style={s.topRight}>{p.topRight}</View> : null}
     </View>
   );
 }
@@ -249,8 +255,5 @@ const s = StyleSheet.create({
   offline: { position: 'absolute', top: 8, left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 10, backgroundColor: SPIRE_SCENE_INK.glass },
   offlineText: { flex: 1, color: SPIRE_SCENE_INK.text, fontSize: 13, lineHeight: 17 },
   offlineBold: { fontWeight: '700' },
-  // «Нет сети» не заходит под энергию справа сверху
-  offlineBesideTop: { right: 84 },
-  topRight: { position: 'absolute', top: 14, right: 20 },
   dim: { opacity: 0.55 },
 });

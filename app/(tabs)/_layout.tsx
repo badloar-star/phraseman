@@ -13,6 +13,7 @@ import ScreenGradient from '../../components/ScreenGradient';
 import TopFadeMask from '../../components/TopFadeMask';
 // зачем (координатор 22.10, Главная «Сцена»): полоса под часами цветом сцены — только над Главной
 import HomeSceneStatusStrip from '../../components/home/v2/scene/HomeSceneStatusStrip';
+import SpireSceneStatusStrip from '../../components/spire/scene/SpireSceneStatusStrip';
 import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
@@ -799,6 +800,8 @@ function TabScaffold({
           (вне paddingTop-обёртки), opacity привязан к скроллу активного таба. */}
       {/* зачем (координатор 22.10: тон полосы статуса только на вкладке Главной): «Сцена» уходит под часы, как в эталоне; другие вкладки не меняются */}
       <HomeSceneStatusStrip height={insets.top} scrollY={topFadeScroll?.scrollY} visible={visualIdx === 0} />
+      {/* зачем (Пик v2, эталон peak-scene-v2.html): «Сцена» Пика уходит под часы — полоса цветом верха сцены, только на «Сообществе» */}
+      <SpireSceneStatusStrip height={insets.top} visible={visualIdx === communityLogicalIdx} />
       <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} />
       <View
         onLayout={notifyFirstContentReady}

@@ -58,7 +58,10 @@ export function seasonCardState(source: LearningV2AccordionSessionStateV1): Seas
 }
 
 /** Колода карт урока: строки-занятия по порядку, после последнего занятия каждой главы — карта экзамена; другие строки (урок, глава) пропускаются. */
-export function buildSeasonDeck(rows: readonly LearningV2CourseAccordionRowV1[]): SeasonDeck {
+// зачем (Сверка 22.10, ss_side_9; координатор): пока экзамена главы нет в курсе (SEASON_CHAPTER_EXAM_ENABLED = false), карту «Экзамен главы» показывать нельзя — она вела в пустоту и
+// дублировала подпись. Вызывающий передаёт includeExam: SEASON_CHAPTER_EXAM_ENABLED; без параметра экзамен кладётся (чистая модель, тесты эталона).
+export function buildSeasonDeck(rows: readonly LearningV2CourseAccordionRowV1[], options: Readonly<{ includeExam?: boolean }> = {}): SeasonDeck {
+  const includeExam = options.includeExam !== false;
   const sessions = rows
     .filter((row): row is SessionRow => row.kind === 'session')
     .slice()
@@ -67,7 +70,7 @@ export function buildSeasonDeck(rows: readonly LearningV2CourseAccordionRowV1[])
   const cards: SeasonCard[] = [];
   const chapters: SeasonChapterSpan[] = [];
   const flushExam = (chapterRows: readonly SessionRow[]): void => {
-    if (chapterRows.length === 0) return;
+    if (!includeExam || chapterRows.length === 0) return;
     const last = chapterRows[chapterRows.length - 1];
     const allDone = chapterRows.every((row) => row.state === 'completed');
     cards.push({

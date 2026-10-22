@@ -23,7 +23,9 @@ async function main(): Promise<void> {
 
   for (const state of SEASON_PREVIEW_STATES) {
     const { deck, initialState } = seasonPreviewSetup(state);
-    assert.equal(deck.cards.length, 27, `${state}: 24 занятия + 3 карты экзамена`);
+    // зачем (Сверка 22.10): карта «Экзамен главы» есть в колоде, только когда экзамен включён флагом
+    assert.equal(deck.cards.length, SEASON_CHAPTER_EXAM_ENABLED ? 27 : 24, `${state}: 24 занятия${SEASON_CHAPTER_EXAM_ENABLED ? ' + 3 карты экзамена' : ', карты экзамена нет (флаг выключен)'}`);
+    assert.equal(deck.cards.some((c) => c.kind === 'exam'), SEASON_CHAPTER_EXAM_ENABLED, `${state}: карта экзамена видна только при включённом экзамене`);
     assert.ok(deck.cards[initialState.selectedIndex], `${state}: стартовая карта есть в колоде`);
     if (initialState.expandedIndex !== null) assert.ok(deck.cards[initialState.expandedIndex], `${state}: раскрытая карта есть в колоде`);
   }
@@ -52,18 +54,25 @@ async function main(): Promise<void> {
 
   const exam = seasonPreviewSetup("exam_card");
   const examCard = exam.deck.cards[exam.initialState.selectedIndex];
-  assert.equal(examCard.kind, "exam");
+  // экзамен выключен: состояние встаёт на последний эпизод главы 2 — закрытый (как «🔒 16» эталона: пройдены 1–11, «3 из 8»)
+  assert.equal(examCard.kind, SEASON_CHAPTER_EXAM_ENABLED ? "exam" : "episode");
   assert.equal(examCard.chapterOrdinal, 2);
-  assert.equal(examCard.state, "current", "все занятия главы 2 пройдены — экзамен доступен");
+  assert.equal(examCard.state, "locked", "в эталоне глава 2 пройдена на 3 из 8: эпизод 16 закрыт (🔒), а не ✓");
+  if (!SEASON_CHAPTER_EXAM_ENABLED) assert.equal((examCard as { sessionOrdinal: number }).sessionOrdinal, 16);
   assert.equal(exam.initialState.selectedIndex, seasonPreviewExamIndex(2));
   assert.equal(seasonPreviewSetup("exam_open").initialState.expandedIndex, seasonPreviewExamIndex(2));
   assert.equal(SEASON_CHAPTER_EXAM_ENABLED, false, "экзамен главы закрыт флагом: карта видна, кнопки нет");
 
   // индексы помощников совпадают с колодой
   const rows = seasonPreviewRows(11);
-  const deck = buildSeasonDeck(rows);
+  const deck = buildSeasonDeck(rows, { includeExam: SEASON_CHAPTER_EXAM_ENABLED });
   assert.equal(deck.cards[seasonPreviewEpisodeIndex(9)].sessionOrdinal, 9);
-  assert.equal(deck.cards[seasonPreviewExamIndex(1)].kind, "exam");
+  assert.equal(deck.cards[seasonPreviewExamIndex(1)].kind, SEASON_CHAPTER_EXAM_ENABLED ? "exam" : "episode");
+  // колода без экзамена: ни одной карты экзамена, три главы по 8
+  const noExam = buildSeasonDeck(rows, { includeExam: false });
+  assert.equal(noExam.cards.length, 24);
+  assert.ok(noExam.cards.every((c) => c.kind === "episode"));
+  assert.deepEqual(noExam.chapters.map((c) => [c.chapterOrdinal, c.firstIndex, c.lastIndex, c.total]), [[1, 0, 7, 8], [2, 8, 15, 8], [3, 16, 23, 8]]);
   assert.equal(seasonPreviewChapterInfo(2).scene, "Кофе с коллегой");
   assert.equal(seasonPreviewChapterInfo(99).scene, "Воскресный звонок домой", "номер вне диапазона не падает");
 

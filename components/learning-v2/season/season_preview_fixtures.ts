@@ -14,7 +14,11 @@ import type { LearningV2CourseAccordionRowV1 } from '../../../modules/learning-v
 import type { SeasonChapterInfo } from './SeasonCourseView';
 import { seasonText } from './season_copy';
 import { seasonTasksLabel } from './season_copy_card';
-import { buildSeasonDeck, type SeasonDeck, type SeasonEpisodeCard } from './season_course_model';
+import { buildSeasonDeck as buildDeck, type SeasonDeck, type SeasonEpisodeCard } from './season_course_model';
+import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
+
+/** Колода превью: карта «Экзамен главы» есть, только когда экзамен включён флагом (иначе её нет и на экране). */
+const buildSeasonDeck = (rows: readonly LearningV2CourseAccordionRowV1[]): SeasonDeck => buildDeck(rows, { includeExam: SEASON_CHAPTER_EXAM_ENABLED });
 
 export const SEASON_PREVIEW_STATES = ['cover', 'newcomer', 'carousel', 'locked_open', 'chapter_picker', 'exam_card', 'exam_open'] as const;
 export type SeasonPreviewState = (typeof SEASON_PREVIEW_STATES)[number];
@@ -63,14 +67,14 @@ function episodeFixture(ordinal: number): EpisodeFixture {
   return EP[ordinal] ?? { title: `Эпизод ${ordinal}`, phrase: 'It is fine.', tasks: 20 };
 }
 
-/** Индекс карты-эпизода в колоде: после каждых 8 эпизодов вставлена карта экзамена главы. */
+/** Индекс карты-эпизода в колоде: при включённом экзамене после каждых 8 эпизодов вставлена его карта. */
 export function seasonPreviewEpisodeIndex(ordinal: number): number {
-  return (ordinal - 1) + Math.floor((ordinal - 1) / 8);
+  return (ordinal - 1) + (SEASON_CHAPTER_EXAM_ENABLED ? Math.floor((ordinal - 1) / 8) : 0);
 }
 
-/** Индекс карты «Экзамен главы N» (N-я глава заканчивается 9-й картой). */
+/** Индекс карты «Экзамен главы N» (N-я глава заканчивается 9-й картой); экзамен выключен — последний эпизод главы. */
 export function seasonPreviewExamIndex(chapterOrdinal: number): number {
-  return chapterOrdinal * 9 - 1;
+  return chapterOrdinal * (SEASON_CHAPTER_EXAM_ENABLED ? 9 : 8) - 1;
 }
 
 /** Строки прогресса: занятия 1…`completedThrough` пройдены, следующее — текущее (0 — «новичок»: текущее — эпизод 1). */
@@ -125,12 +129,13 @@ export function seasonPreviewSetup(state: SeasonPreviewState): SeasonPreviewSetu
       return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx14, expandedIndex: idx14, fanChapter: null } };
     case 'chapter_picker': // phone 8: «Вся глава» веером, глава 2, выбран эпизод 12
       return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx12, expandedIndex: null, fanChapter: 2 } };
-    case 'exam_card': { // phone 9: глава 2 пройдена целиком, карусель на карте «Экзамен главы 2»
-      const deck = buildSeasonDeck(seasonPreviewRows(16));
+    case 'exam_card': { // phone 9: эталон — «3 из 8» в главе 2 (пройдены 1–11), эпизод 16 закрыт 🔒, карусель на карте «Экзамен главы 2»
+      // зачем (Сверка 22.10, ss_side_9: «✓» у 16 в приложении, «🔒» в макете): мок проходил все 16 эпизодов, а эталон — 11; данные мока приведены к эталону
+      const deck = buildSeasonDeck(seasonPreviewRows(11));
       return { deck, newcomer: false, initialState: { selectedIndex: seasonPreviewExamIndex(2), expandedIndex: null, fanChapter: null } };
     }
     case 'exam_open': {
-      const deck = buildSeasonDeck(seasonPreviewRows(16));
+      const deck = buildSeasonDeck(seasonPreviewRows(11));
       const exam = seasonPreviewExamIndex(2);
       return { deck, newcomer: false, initialState: { selectedIndex: exam, expandedIndex: exam, fanChapter: null } };
     }

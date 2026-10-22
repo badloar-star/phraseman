@@ -14,7 +14,7 @@ const pick = (lang: Lang, copy: L9): string => triLang(lang, copy);
 const COPY = {
   buildPhrase: L('Собери фразу', 'Збери фразу', 'Build the phrase', 'Arma la frase', 'Monte a frase', 'Ghép câu', 'Susun frasa', 'Cümleyi kur', 'Ułóż frazę'),
   situation: L('Ситуация', 'Ситуація', 'Situation', 'Situación', 'Situação', 'Tình huống', 'Situasi', 'Durum', 'Sytuacja'),
-  sayInEnglish: L('Скажи по-английски', 'Скажи англійською', 'Say it in English', 'Dilo en inglés', 'Diga em inglês', 'Nói bằng tiếng Anh', 'Ucapkan dalam bahasa Inggris', 'İngilizce söyle', 'Powiedz po angielsku'),
+  sayInEnglish: L('Скажи по-английски', 'Скажи англійською', 'Say it in English', 'Dilo en inglés', 'Diga em inglês', 'Nói bằng tiếng Anh', 'Katakan dalam bahasa Inggris', 'İngilizce söyle', 'Powiedz po angielsku'),
   tapWords: L('Нажимай слова по порядку', 'Натискай слова по черзі', 'Tap the words in order', 'Toca las palabras en orden', 'Toque as palavras na ordem', 'Chạm các từ theo thứ tự', 'Ketuk kata secara berurutan', 'Kelimelere sırayla dokun', 'Stukaj słowa po kolei'),
   check: L('Проверить', 'Перевірити', 'Check', 'Comprobar', 'Verificar', 'Kiểm tra', 'Periksa', 'Kontrol et', 'Sprawdź'),
   next: L('Дальше', 'Далі', 'Next', 'Siguiente', 'Próxima', 'Tiếp', 'Lanjut', 'Devam', 'Dalej'),

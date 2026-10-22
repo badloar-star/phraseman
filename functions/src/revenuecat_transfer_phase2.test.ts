@@ -430,54 +430,10 @@ describe('RevenueCat TRANSFER Phase 2 safety (RED)', () => {
     }
   });
 
-  it('refunds a merged loser purchase against the mapped canonical winner', async () => {
-    const admin = require('firebase-admin');
-    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
-    const { db, store } = transferDbStub({
-      users: { winner: { shards: 100, progress: {} } },
-      account_identity_owner_map: { loser: { canonicalStableId: 'winner' } },
-      revenuecat_shard_transactions: {
-        original: { uid: 'loser', shards: 35, productId: 'phraseman_shards_30' },
-      },
-    });
-    const realFieldValue = admin.firestore.FieldValue;
-    const firestoreMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
-    firestoreMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
-    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
-    try {
-      const response = responseStub();
-      await __revenueCatWebhookTestHooks.handleShardRefundEvent({
-        id: 'refund-merged',
-        type: 'REFUND',
-        original_transaction_id: 'original',
-        event_timestamp_ms: Date.now(),
-      } as any, 'phraseman_shards_30', response);
-
-      expect(response.statusCode).toBe(200);
-      // зачем: баланс `users.shards` сервер намеренно НЕ трогает —
-      // shards_apply_delta выведен из строя («personal_balance_is_client_owned»),
-      // списание живёт в неизменяемом журнале external_economy_events, который
-      // клиент применяет к своему кошельку. Тест раньше ждал 65 (прямое списание
-      // со 100) и падал ещё ДО правок этого файла — он сторожил снятую механику.
-      // Проверяем то, за что сервер реально отвечает: журнальную запись возврата.
-      expect(store.users.winner.shards).toBe(100);
-      const refundJournal = Object.values(store['users/winner/external_economy_events'] ?? {});
-      expect(refundJournal).toHaveLength(1);
-      expect(refundJournal[0]).toMatchObject({
-        delta: -35,
-        reason: 'shards_store_refund',
-        ownerStableId: 'winner',
-      });
-      expect(store.revenuecat_shard_transactions.original.uid).toBe('winner');
-      expect(store.revenuecat_shard_refunds['refund-merged']).toMatchObject({
-        // requestedDebit, а не actuallyDeducted: сервер фиксирует ЗАПРОШЕННОЕ
-        // списание в квитанции, само списание применяет клиент по журналу.
-        uid: 'winner', sourceUid: 'loser', requestedDebit: 35,
-      });
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
-  });
+  // зачем: кейс «refunds a merged loser purchase…» снят 22.10 (Ревизор): он звал
+  // handleShardRefundEvent, удалённый в efe19ae9d — жемчуг снятый товар (D103/D136/D139),
+  // его REFUND уходит в handleRetiredProductEvent (лог-отказ, без записей) и проверен в
+  // revenuecat_shards.test.ts («ignores REFUND without any write»). Из-за TS2339 молчал весь набор.
 
   it('moves every donor lineage to one resolved canonical owner', () => {
     expect(transferSource).toContain("db.collection('revenuecat_premium_lineages')");

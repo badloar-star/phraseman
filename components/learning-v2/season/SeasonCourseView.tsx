@@ -8,8 +8,10 @@
 // Компонент — чистая вёрстка и движение: данные курса (названия, фразы, сцены, слова) приходят пропсами от родителя, чтобы экран не привязывался
 // к файлам контента, которые ведёт Codex; прогресс — готовая колода (season_course_model) из уже посчитанного снимка, новых чтений Firebase нет.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
+import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
+import { useIsTabPage } from '../../tab_top_bleed';
 import V2Pressable from '../../v2/V2Pressable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -125,6 +127,23 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   // зачем (владелец 22.10, 4 · ТЕМЫ 17a7af053): звёзды результата на карточках — оттенки текущей темы, цвета только из seasonStarTones
   const starTones = useMemo(() => seasonStarTones(themeHue), [themeHue]);
 
+  // зачем (закон «сперва логи», владелец 22.10: «ПРАВИЛО НАРУШЕНО» — под часами светлая полоса над обложкой): [SEASON-TOP] показывает всё, что решает, начинается ли обложка с y = 0:
+  // зона часов страницы (topBleed из TabTopBleedContext), безопасный верх, страница ли это вкладки, тема и фон, а после раскладки — положение обложки В ОКНЕ (должно быть 0).
+  const topInsets = useStableSafeAreaInsets();
+  const isTabPage = useIsTabPage();
+  const heroRef = useRef<View>(null);
+  useEffect(() => {
+    console.log('[SEASON-TOP] вход', JSON.stringify({ topBleed: props.topBleed ?? null, topPadding: props.topPadding, insetsTop: topInsets.top, isTabPage, tall: props.topBleed !== undefined && props.topBleed > 0, theme, bg: g.bg, rule: 'обложка от y=0, insets.top — только отступ содержимого' })); // guard-ok: значения, решающие раскладку верха
+  }, [g.bg, isTabPage, props.topBleed, props.topPadding, theme, topInsets.top]);
+  const onHeroLayout = useCallback((event: LayoutChangeEvent) => {
+    const { y, height } = event.nativeEvent.layout;
+    heroRef.current?.measureInWindow((_x, windowY, _w, windowHeight) => {
+      const band = windowY > 0.5;
+      const log = band ? console.warn : console.log;
+      log('[SEASON-TOP] обложка', JSON.stringify({ layoutY: y, layoutHeight: height, windowY, windowHeight, topBleed: props.topBleed ?? null, insetsTop: topInsets.top, isTabPage, verdict: band ? `ПОЛОСА над обложкой ${Math.round(windowY)} px (фон страницы виден под часами)` : 'обложка от верха экрана, полосы нет' })); // guard-ok: итог раскладки верха
+    });
+  }, [isTabPage, props.topBleed, topInsets.top]);
+
   const selectedCard = deck.cards[selected] ?? currentCard;
   const sectionInfo = props.chapterInfo(selectedCard ? selectedCard.chapterOrdinal : heroChapter);
   const progress = selectedCard ? seasonChapterProgress(deck, selectedCard.chapterOrdinal) : { done: 0, total: 0 };
@@ -167,7 +186,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: props.bottomPadding }} showsVerticalScrollIndicator={false} testID="season-course">
-      <View style={[styles.hero, props.topBleed && props.topBleed > 0 ? styles.heroTall : null]} testID="season-hero">
+      <View ref={heroRef} onLayout={onHeroLayout} style={[styles.hero, props.topBleed && props.topBleed > 0 ? styles.heroTall : null]} testID="season-hero">
         <LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
         <LinearGradient colors={[heroArt.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
         <LinearGradient colors={SCRIM} style={styles.scrim} pointerEvents="none" />

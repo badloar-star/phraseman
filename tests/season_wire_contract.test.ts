@@ -247,3 +247,32 @@ describe('Сезон: звёзды без прыжка, названия на 8 
     expect(wire).not.toContain('learningV2SessionTitleV1(');
   });
 });
+
+describe('Сезон: обложка рисуется от верхнего края, без полосы под часами (закон владельца 22.10)', () => {
+  const top = readSource('components/learning-v2/season/SeasonCourseView.tsx');
+  const course3 = readSource('components/learning-v2/season/SeasonCourse.tsx');
+  const layout2 = readSource('app/(tabs)/_layout.tsx');
+  const lessons2 = readSource('app/(tabs)/lessons.tsx');
+  it('сторож: обложка — первый элемент прокрутки без своего отступа и фона в зоне часов; градиенты на всю обложку; отступ содержимого — padding тела, а не сдвиг обложки', () => {
+    const hero = /hero: \{[^}]*\}/.exec(top)?.[0] ?? '';
+    const heroTall = /heroTall: \{[^}]*\}/.exec(top)?.[0] ?? '';
+    for (const style of [hero, heroTall]) {
+      expect(style).not.toMatch(/margin|padding|backgroundColor|top:/);
+    }
+    expect(top).toContain("<LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />");
+    expect(top).toContain('paddingTop: props.topPadding + 8 + HUD_ROW_HEIGHT + 12');
+    expect(top).toContain('<ScrollView contentContainerStyle={{ paddingBottom: props.bottomPadding }}');
+  });
+  it('страница «Уроки» с Сезоном полноэкранная (зона часов = часть обложки), подключение передаёт bleed; журнал [SEASON-TOP] пишет положение обложки в окне и вердикт', () => {
+    expect(layout2).toContain('SEASON_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(1, pageLayout)] : []');
+    expect(lessons2).toContain('bleedTop={isRetainedTab && seasonBleed === 0 ? insets.top : 0}');
+    expect(wire).toContain('topBleed={bleed}');
+    for (const key of ['[SEASON-TOP] вход', '[SEASON-TOP] обложка', 'measureInWindow', 'ПОЛОСА над обложкой', 'обложка от верха экрана, полосы нет']) expect(top).toContain(key);
+  });
+  it('страховка: страница вкладки без bleed — зона часов закрашена цветом верха обложки (не фоном страницы), с предупреждением в журнал', () => {
+    expect(course3).toContain('isTabPage && !(props.topBleed !== undefined && props.topBleed > 0) && insetsTop > 0 ? insetsTop : 0');
+    expect(course3).toContain('testID="season-top-cover"');
+    expect(course3).toContain('страховка включена');
+    expect(course3).toContain("topCover: { position: 'absolute', left: 0, right: 0, zIndex: 1 }");
+  });
+});

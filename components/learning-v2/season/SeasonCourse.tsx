@@ -9,6 +9,9 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { BackHandler, StyleSheet, View } from 'react-native';
 
+import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
+import { useIsTabPage } from '../../tab_top_bleed';
+
 import { SeasonChapterEpisodesScreen, SeasonChaptersScreen } from './SeasonPickScreens';
 import SeasonCourseView, { type SeasonCourseViewProps } from './SeasonCourseView';
 import SeasonExpandedCard, { type SeasonExamPanel, type SeasonExpandedAction } from './SeasonExpandedCard';
@@ -51,6 +54,15 @@ function SeasonCourse(props: SeasonCourseProps) {
 
   // зачем (закон владельца 22.10): цвет карточек — оттенок текущей темы, а не свой оттенок главы
   const themeHue = hexHue(useLv2Glass().accent);
+  // зачем (владелец 22.10: «ПРАВИЛО НАРУШЕНО» — под часами светлая полоса над обложкой; закон «сейф-зона — часть общей композиции»): страховка. Обложка рисуется от верха экрана, когда страница вкладки полноэкранная
+  // (topBleed > 0). Если страница по какой-то причине осталась под отступом оболочки (topBleed = 0, но это страница вкладки), зона часов закрашивается цветом верха обложки, а не фоном страницы; причину пишет журнал [SEASON-TOP].
+  const insetsTop = useStableSafeAreaInsets().top;
+  const isTabPage = useIsTabPage();
+  const topBand = isTabPage && !(props.topBleed !== undefined && props.topBleed > 0) && insetsTop > 0 ? insetsTop : 0;
+  const topBandColor = useMemo(() => seasonThemedArt(themeHue, deck.cards[deck.currentIndex]?.chapterOrdinal ?? 1, 0, theme).from, [deck.cards, deck.currentIndex, theme, themeHue]);
+  useEffect(() => {
+    if (topBand > 0) console.warn(`${LOG} [SEASON-TOP] страховка включена: страница вкладки без bleed — зона часов закрашена цветом обложки`, JSON.stringify({ topBleed: props.topBleed ?? null, insetsTop, topBand, color: topBandColor })); // guard-ok: ветка и значения, которые её решили
+  }, [insetsTop, props.topBleed, topBand, topBandColor]);
   const artFor = useCallback((chapter: number, ordinal: number, exam = false) => seasonThemedArt(themeHue, chapter, ordinal, theme, exam), [themeHue, theme]);
 
   // ── раскрытая карта ──
@@ -171,6 +183,7 @@ function SeasonCourse(props: SeasonCourseProps) {
 
   return (
     <View style={styles.root}>
+      {topBand > 0 ? <View pointerEvents="none" testID="season-top-cover" style={[styles.topCover, { top: -topBand, height: topBand, backgroundColor: topBandColor }]} /> : null}
       <SeasonCourseView
         {...props}
         focus={focus}
@@ -183,6 +196,6 @@ function SeasonCourse(props: SeasonCourseProps) {
   );
 }
 
-const styles = StyleSheet.create({ root: { flex: 1 } });
+const styles = StyleSheet.create({ root: { flex: 1 }, topCover: { position: 'absolute', left: 0, right: 0, zIndex: 1 } });
 
 export default memo(SeasonCourse);

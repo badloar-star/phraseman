@@ -294,7 +294,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     // зачем (владелец 12.10, стиль «Тень»): окно башни без кромки; тень — на внешней обёртке, обрезка содержимого — на внутреннем окне.
     <View style={sceneMode ? null : [s.shadowWrap, { boxShadow: plateBoxShadow(g) }]}>
     <View
-      style={[s.window, { height: windowHeight, backgroundColor: sceneMode ? 'transparent' : g.plateFillFrom }, sceneMode ? s.windowScene : null]}
+      style={[s.window, { height: windowHeight, backgroundColor: g.plateFillFrom }, sceneMode ? s.windowScene : null]}
       onLayout={onLayout}
       accessible
       accessibilityRole="adjustable"
@@ -360,8 +360,8 @@ const s = StyleSheet.create({
   // Тонкая (1px) полупрозрачная кромка окна, как .tview в макете; толстых рамок нет.
   shadowWrap: { borderRadius: 22 },
   window: { height: WINDOW_HEIGHT, borderRadius: 22, overflow: 'hidden' },
-  // «Сцена»: окно без скругления — башня стоит прямо на свету сцены
-  windowScene: { borderRadius: 0 },
+  // «Сцена»: окно без плиты и скругления — башня стоит прямо на свету сцены (перекрывает фон плиты выше)
+  windowScene: { borderRadius: 0, backgroundColor: 'transparent' },
   topFade: { position: 'absolute', left: 0, right: 0, top: 0, height: TOP_FADE_H },
   rivals: { position: 'absolute', flexDirection: 'row', alignItems: 'center' },
   rivalExtra: { marginLeft: 5, fontSize: 13, fontWeight: '700' },

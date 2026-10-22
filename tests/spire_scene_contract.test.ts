@@ -109,7 +109,7 @@ async function main(): Promise<void> {
   assert.ok(storeBranch.includes("dev_spire_scene_preview"), "стор-ветка router.ctx.js вырезает dev-вход");
   const tower = read("components/spire/SpireTower.tsx");
   assert.ok(tower.includes("variant = 'window'"), "башня по умолчанию — прежнее окно");
-  assert.ok(tower.includes("sceneMode ? 'transparent' : g.plateFillFrom"), "на «Сцене» — без плиты");
+  assert.ok(tower.includes("windowScene: { borderRadius: 0, backgroundColor: 'transparent' }"), "на «Сцене» — без плиты");
   const scene = read("components/spire/scene/SpireScene.tsx");
   assert.ok(scene.includes("homeSceneTokensForTheme("), "цвета сцены — те же, что у Главной (всегда «Максимум»)");
   assert.ok(scene.includes('variant="scene"'));

@@ -63,3 +63,9 @@ classic-l31-perception-traps-2026-10-22.md.
 4 заголовка: en/es sound_contrast, id «Ucapkan dengan keras», id «Cocokkan pasangan» (с таймером) — короткие
 варианты в файле. Плюс: подпись «Скажите по-английски» живёт в двух местах с разными vi/id, одно из них мёртвое.
 Файлы Learning V2 не правил — список для тебя и 2 · ДИЗАЙН.
+
+## Дополнение: короткие заголовки №23
+
+**52b242cb6** — en «Spot the sound», es «Distingue sonidos», id «Ucapkan keras», id «Cari pasangan» (в обоих файлах с
+заголовками); дубль sayInEnglish убран, на экране одна подпись GOAL_SAY. Тесты Learning V2: 37 из 37. Learning V2
+предупреждён до правки (сообщение задержано их сессией). Подробно — tasks-23-short-titles-2026-10-22.md.

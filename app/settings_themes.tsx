@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { useRouter } from 'expo-router';
@@ -33,6 +33,7 @@ import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 import { themeDisplayName, type ThemeDisplayName } from './theme_display_names';
 import BackGlyph from '../components/v2/BackGlyph';
+import { useScrollToSelectedTheme } from './settings_themes_scroll';
 
 // зачем (PM-064, D38/D45): полка тем «за жемчуг» опустела ещё 2026-09-13 —
 // модалка покупки темы за жемчуг удалена целиком (D45).
@@ -171,6 +172,18 @@ export default function SettingsThemes() {
   } = useTheme();
   const { lang } = useLang();
   const lh = useLineScale();
+  // зачем (6 · СВЕРКА §44): список открывается прокрученным к выбранной теме (один раз, без анимации); выбранная берётся на момент открытия экрана
+  const initialSelected = useRef(
+    ((): { card: 'main' | 'gradient'; rowCount: number; rowIndex: number } | null => {
+      const main = THEME_OPTIONS.findIndex((o) => o.mode === appliedLiquidGlassThemeId);
+      if (main >= 0) return { card: 'main', rowCount: THEME_OPTIONS.length, rowIndex: main };
+      const grad = GRADIENT_OPTIONS.findIndex((o) => o.mode === appliedLiquidGlassThemeId);
+      return grad >= 0 ? { card: 'gradient', rowCount: GRADIENT_OPTIONS.length, rowIndex: grad } : null;
+    })(),
+  ).current;
+  const { scrollRef, onCardLayout, onScrollLayout, onContentSizeChange } = useScrollToSelectedTheme(initialSelected);
+  const onMainCardLayout = useMemo(() => onCardLayout('main'), [onCardLayout]);
+  const onGradientCardLayout = useMemo(() => onCardLayout('gradient'), [onCardLayout]);
 
   // зачем: примерки больше нет, но старая примерка (если осталась с прошлой версии
   // экрана) не должна пережить уход — всегда возвращаем применённую тему.
@@ -221,7 +234,7 @@ export default function SettingsThemes() {
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 24 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView ref={scrollRef} onLayout={onScrollLayout} onContentSizeChange={onContentSizeChange} decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 24 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
             <ScreenBackSlot />
             <View style={styles.head}>
@@ -240,6 +253,7 @@ export default function SettingsThemes() {
             />
             <View
               accessibilityRole="radiogroup"
+              onLayout={onMainCardLayout}
               style={[settingsGlassCardStyle(glass), styles.list]}
             >
               <ThemeGlassSmoke glass={glass} radius={20} />
@@ -260,6 +274,7 @@ export default function SettingsThemes() {
                 карточкой ниже, без подписи; набор берётся из одного списка-конфига. */}
             <View
               accessibilityRole="radiogroup"
+              onLayout={onGradientCardLayout}
               style={[settingsGlassCardStyle(glass), styles.list]}
             >
               <ThemeGlassSmoke glass={glass} radius={20} />

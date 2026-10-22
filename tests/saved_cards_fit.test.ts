@@ -230,12 +230,10 @@ describe('исходник и шаг по умолчанию', () => {
     expect(code).not.toMatch(/borderWidth|borderColor/);
   });
 
-  it('первый вход — горизонтальный вид (шаг 0); выбор человека запоминается и важнее', () => {
+  it('вид всегда нормальный — горизонтальный (шаг 0): выбор шага убран решением владельца 22.10', () => {
     expect(GALLERY_OPEN_STEP).toBe(0);
-    const prefs = read('components/cards-grid/gallery_step_prefs.ts');
-    expect(prefs).toContain('return memory ?? GALLERY_OPEN_STEP;');
-    expect(read('components/cards-grid/useCardsScale.ts')).toContain('initialGalleryStep()');
-    expect(read('components/cards-grid/useCardsScale.ts')).toContain("if (persist) saveGalleryStep(target);");
+    expect(read('components/cards-grid/useFixedGalleryStep.ts')).toContain('step: GALLERY_OPEN_STEP');
+    expect(read('components/cards-grid/gallery_step_prefs.ts')).toContain('resetStoredGalleryStep');
   });
 
   it('экран «Сохранённые»: сетки с рядами под текст, точки силы слова из strengthForCard, журнал [SAVED-CARDS-SIZE]', () => {

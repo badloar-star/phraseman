@@ -5,8 +5,8 @@ import path from 'node:path';
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 
 describe('R1_DIFF_ONE_FIX: cards* и dialogs* (два и более пункта)', () => {
-  it('cards-005: верх залипающей полосы с ползунком плотный (FF), сквозь неё не просвечивают карточки', () => {
-    const bar = read('components/cards-grid/ZoomBar.tsx');
+  it('cards-005: верх залипающей полосы поиска плотный (FF), сквозь неё не просвечивают карточки (ползунок убран 22.10, полоса осталась под поиск)', () => {
+    const bar = read('components/cards-grid/StickySearchBar.tsx');
     expect(bar).toContain("colors={[withAlpha(bg, 'FF'), withAlpha(bg, 'FF'), withAlpha(bg, '00')]}");
     expect(bar).not.toContain("withAlpha(bg, 'F0')");
   });

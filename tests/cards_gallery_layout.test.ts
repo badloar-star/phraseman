@@ -1,7 +1,7 @@
 // зачем (Карточки 2.0, макет docs/design/v2-app/cards-v2.html, `.zg.s0…s3`): раскладка галереи — четыре остановки 1 / 2 / 3 / 5 колонок
 // с высотами плиток 118 / 96 / 62 / 37 и зазорами 10 / 10 / 8 / 5; ползунок с четырьмя остановками; опора «карточка под пальцами» при смене шага.
 import {
-  GALLERY_DEFAULT_STEP,
+  GALLERY_OPEN_STEP,
   GALLERY_MORPH_MS,
   GALLERY_STEPS,
   clampStep,
@@ -12,11 +12,8 @@ import {
   galleryPosition,
   galleryScrollFor,
   galleryVisibleRange,
-  sliderFractionForStep,
-  stepForSliderFraction,
   unionRange,
 } from '../components/cards-grid/cardsGalleryLayout';
-import { __resetGalleryStepPrefsForTests, parseGalleryStep } from '../components/cards-grid/gallery_step_prefs';
 
 describe('cards gallery layout (cards-v2 steps)', () => {
   test('four steps match the mockup CSS: columns, row heights, gaps, radii', () => {
@@ -25,7 +22,7 @@ describe('cards gallery layout (cards-v2 steps)', () => {
     expect(GALLERY_STEPS.map((s) => s.gap)).toEqual([10, 10, 8, 5]);
     expect(GALLERY_STEPS.map((s) => s.radius)).toEqual([16, 14, 12, 8]);
     expect(GALLERY_MORPH_MS).toBe(380);
-    expect(GALLERY_DEFAULT_STEP).toBe(1);
+    expect(GALLERY_OPEN_STEP).toBe(0);
   });
 
   test('tile width is the grid width minus gaps divided by columns', () => {
@@ -38,7 +35,7 @@ describe('cards gallery layout (cards-v2 steps)', () => {
   test('out-of-range and non-finite steps are clamped', () => {
     expect(clampStep(-3)).toBe(0);
     expect(clampStep(9)).toBe(3);
-    expect(clampStep(Number.NaN)).toBe(GALLERY_DEFAULT_STEP);
+    expect(clampStep(Number.NaN)).toBe(GALLERY_OPEN_STEP);
     expect(galleryLayoutFor(7, 390).cols).toBe(5);
   });
 
@@ -59,14 +56,6 @@ describe('cards gallery layout (cards-v2 steps)', () => {
     expect(range.to).toBeLessThanOrEqual(200);
     expect(galleryVisibleRange(3, layout, 0, 800)).toEqual({ from: 0, to: 3 });
     expect(unionRange({ from: 10, to: 40 }, { from: 0, to: 20 })).toEqual({ from: 0, to: 40 });
-  });
-
-  test('slider has four stops: right is larger (step 0), left is smaller (step 3)', () => {
-    expect([0, 1 / 3, 2 / 3, 1].map(stepForSliderFraction)).toEqual([3, 2, 1, 0]);
-    expect([0, 1, 2, 3].map(sliderFractionForStep)).toEqual([1, 2 / 3, 1 / 3, 0]);
-    expect(stepForSliderFraction(-1)).toBe(3);
-    expect(stepForSliderFraction(2)).toBe(0);
-    expect(stepForSliderFraction(0.49)).toBe(2);
   });
 
   test('anchor card stays under the finger after a step change', () => {
@@ -96,20 +85,5 @@ describe('cards gallery layout (cards-v2 steps)', () => {
     const wide = cssGradientPoints(158, 390, 118);
     expect(wide.start.y).toBeLessThan(0);
     expect(wide.end.y).toBeGreaterThan(1);
-  });
-});
-
-describe('gallery step prefs', () => {
-  beforeEach(() => __resetGalleryStepPrefsForTests());
-
-  test('only integer steps 0…3 are accepted', () => {
-    expect(parseGalleryStep('0')).toBe(0);
-    expect(parseGalleryStep('3')).toBe(3);
-    expect(parseGalleryStep('4')).toBeNull();
-    expect(parseGalleryStep('-1')).toBeNull();
-    expect(parseGalleryStep('1.5')).toBeNull();
-    expect(parseGalleryStep('abc')).toBeNull();
-    expect(parseGalleryStep(null)).toBeNull();
-    expect(parseGalleryStep(undefined)).toBeNull();
   });
 });

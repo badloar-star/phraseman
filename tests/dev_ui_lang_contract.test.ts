@@ -95,12 +95,6 @@ describe('dev_state?uiLang — английский интерфейс без г
       expect(line).toContain('overlays=off');
     }
   });
-
-  it('метки журнала ZoomBar — латиницей (сканер непереведённых строк больше не видит их как интерфейс)', () => {
-    const src = read('components/cards-grid/ZoomBar.tsx');
-    expect(src).toContain("moveTo(event.x, 'touch');");
-    expect(src).toContain("moveTo(event.x, 'drag');");
-  });
 });
 
 describe('находки EN-прохода 12.10 (Сверка)', () => {

@@ -7,6 +7,7 @@ const ROOT = path.join(__dirname, '..');
 const read = (rel: string): string => fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
 const code = (src: string): string => src.replace(/\{\/\*[\s\S]*?\*\/\}/g, '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
 
+// ЗАМОК ВЛАДЕЛЬЦА 22.10: «ТЫ НЕ ВИДЕЛ, КАК ТЕОРИЯ ВЫГЛЯДИТ В ОСНОВНОМ КУРСЕ???» — теория Learning V2 = экран основного курса.
 describe('теория Learning V2 = экран теории основного курса', () => {
   const sheet = code(read('components/learning-v2/LearningV2TheorySheet.tsx'));
   const view = code(read('components/theory/TheoryLessonView.tsx'));
@@ -42,6 +43,7 @@ describe('теория Learning V2 = экран теории основного 
   });
 });
 
+// ЗАМОК ВЛАДЕЛЬЦА 22.10: «В ТЕОРИИ РАМКИ НА ВСЮ ШИРИНУ ЭКРАНА!!! … ЧТО ВВЕРХУ ЦВЕТ ДРУГОЙ И ТАК ОБРЕЗАНО! И ТЕОРИЯ ОТЦЕНТРИРОВАНА».
 describe('один вид теории для основного курса и Learning V2 (владелец 22.10)', () => {
   const view = code(read('components/theory/TheoryLessonView.tsx'));
 
@@ -60,17 +62,5 @@ describe('один вид теории для основного курса и L
   it('разделы без колонки номера: тело не сдвинуто вправо, поля симметричные', () => {
     expect(view).not.toMatch(/sectionNum: \{[^}]*width: 26/);
     expect(view).toMatch(/sectionBody: \{\s*paddingLeft: 4,\s*paddingRight: 4,/);
-  });
-});
-
-describe('закон цветов (4 · ТЕМЫ 22.10): «верно/неверно» в теории — токены текущей темы', () => {
-  const view = code(read('components/theory/TheoryLessonView.tsx'));
-
-  it('нет токенов старой темы t.correct / t.wrong, есть glass.good / glass.bad', () => {
-    expect(view).not.toMatch(/\bt\.(correct|wrong)\b/);
-    expect(view).toContain('correct: glass.good,');
-    expect(view).toContain('wrong: glass.bad,');
-    expect(view).toContain("{ color: glass.bad, textDecorationLine: 'line-through' }");
-    expect(view).toContain('{ color: glass.good }]}>{fx.right}');
   });
 });

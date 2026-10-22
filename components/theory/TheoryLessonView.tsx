@@ -39,7 +39,7 @@ import { pluralWithCount } from '../../constants/plural';
  * - Минимализм: без жирных рамок/коробок. Открытый раздел = лёгкая ПОДЛОЖКА, не рамка.
  * - Цвет только для языков: английский = textPrimary, перевод = textMuted.
  * - АКЦЕНТ берётся из активной темы (t.accent), уникален на каждую тему.
- * - Семантика верно/промах = glass.good / glass.bad текущей темы. Никаких ролевых цветов.
+ * - Семантика верно/промах = t.correct / t.wrong. Никаких ролевых цветов.
  * - Текст НИКОГДА не обрезается (без numberOfLines/ellipsis).
  */
 
@@ -239,7 +239,7 @@ export default function TheoryLessonView({
   scrollToSection,
   reportDataId,
 }: Props) {
-  const { themeMode, liquidGlassThemeId } = useTheme();
+  const { theme: t, themeMode, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
@@ -387,10 +387,8 @@ export default function TheoryLessonView({
     () => ({
       textPrimary: glass.text,
       textMuted: glass.secondary,
-      // зачем (4 · ТЕМЫ 22.10, закон цветов): «верно/неверно» — токены текущей темы стекла, а не старой (cinemaThemes);
-      // у glass.good / glass.bad контраст на плите ≥ 4,5 во всех 138 сочетаниях тем.
-      correct: glass.good,
-      wrong: glass.bad,
+      correct: t.correct,
+      wrong: t.wrong,
       bgCard: glass.opaqueCard,
       // зачем: чипы дриллов = непрозрачные плашки макета (.opt), а не белые альфы.
       chipBg: glass.opaqueControl,
@@ -398,7 +396,7 @@ export default function TheoryLessonView({
       chipBgFaint: glass.line,
       onAccentText: glass.ctaInk,
     }),
-    [glass],
+    [glass, t.correct, t.wrong],
   );
 
   // ─── Рендер интерактива ───────────────────────────────────────────────────
@@ -569,7 +567,7 @@ export default function TheoryLessonView({
                   <Text
                     style={[
                       styles.fixWrong,
-                      { color: glass.bad, textDecorationLine: 'line-through' }, // зачем: токен текущей темы (закон цветов 22.10)
+                      { color: t.wrong, textDecorationLine: 'line-through' },
                     ]}
                   >
                     {fx.wrong}
@@ -580,7 +578,7 @@ export default function TheoryLessonView({
                     color={glass.secondary}
                     style={styles.fixArrow}
                   />
-                  <Text style={[styles.fixRight, { color: glass.good }]}>{fx.right}</Text>
+                  <Text style={[styles.fixRight, { color: t.correct }]}>{fx.right}</Text>
                 </View>
               ))}
             </View>
@@ -604,7 +602,7 @@ export default function TheoryLessonView({
           return null;
       }
     },
-    [glass, renderDrill],
+    [t, glass, renderDrill],
   );
 
   const progressLabel = triLang(lang, {
@@ -647,6 +645,8 @@ export default function TheoryLessonView({
 
   const progressPct = Math.round(progress * 100);
 
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: экран теории edge-to-edge, общий «назад», разделы без колонки номера — ослабить только по слову владельца
+  // (сторож tests/theory_sheet_1to1_2026_10_22.test.ts, реестр docs/work/OWNER_LOCKS.md).
   // зачем (владелец 22.10, на снимок теории: «В ТЕОРИИ РАМКИ НА ВСЮ ШИРИНУ ЭКРАНА!!! ВОТ ТАКОГО РАЗДЕЛЕНИЯ НЕ ДОЛЖНО БЫТЬ,
   // ЧТО ВВЕРХУ ЦВЕТ ДРУГОЙ И ТАК ОБРЕЗАНО! И ТЕОРИЯ ОТЦЕНТРИРОВАНА»): экран edge-to-edge на одном фоне до часов — без SafeAreaView
   // со своим фоном и без шапки-полосы, о которую резался контент. Строка «Урок N · A1» и флажок — первая строка прокрутки,

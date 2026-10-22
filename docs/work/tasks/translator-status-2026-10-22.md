@@ -230,3 +230,10 @@ pt-BR «Começar», pl «Zacznij»/«Kontynuuj», tr «Başla»/«Devam et». vi
 ru «Старый курс», uk «Старий курс», en «Old course», es «Curso anterior», pt-BR «Curso antigo», vi «Khóa học cũ»,
 id «Kursus lama», tr «Eski kurs», pl «Stary kurs». Везде два слова до 14 знаков, перенос только между словами.
 Почему es «anterior»: «antiguo» звучит как «древний».
+
+## Дополнение: «Тебя не было N дней» (Главная) и реестр замков
+
+Реестр `docs/work/OWNER_LOCKS.md` прочитан, при переводах сверяюсь с ним. «Старый курс» стоит там под замком (ставит 2 · ДИЗАЙН).
+Строку `away` в `components/home/v2/scene/home_scene_copy.ts` проверил под новый смысл: дни без захода в приложение.
+ru, uk, en, es, pt-BR, vi («vắng»), tr («yoktun»), pl — про отсутствие. id «Kamu absen» означало неявку на занятия,
+заменено на «Sudah N hari kamu tidak mampir» («N дней не заглядывал»). Паспорт: home-away-days-copy-check-2026-10-22.md.

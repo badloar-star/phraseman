@@ -67,16 +67,17 @@ function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVarian
       });
   // зачем (координатор 11.10, первый выпуск): сторы требуют прямо назвать сторонний ИИ, который получает сообщения;
   // текст совпадает с политикой (раздел 11 «AI features and OpenAI processing») и с окном AiExplainConsentModal.
+  // зачем (Переводчик 22.10): окно стоит и перед «Свободным разговором» — названы оба режима; голос уходит текстом, запись остаётся на телефоне (политика: «Only in AI dialogues is the recognised text of your answer sent»)
   const body = triLang(lang, {
-        ru: 'Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.\n\nМожно выключить в настройках в любой момент.',
-        uk: 'Практикуй листування з персонажами, виконуй завдання й отримуй зворотний зв’язок. Для цього твої повідомлення надсилаються в OpenAI.\n\nМожна вимкнути в налаштуваннях будь-коли.',
-        en: 'Practice chats with characters, complete goals and get feedback. To do this, your messages are sent to OpenAI.\n\nYou can turn this off in settings at any time.',
-        es: 'Practica chats con personajes, completa objetivos y recibe comentarios. Para eso, tus mensajes se envían a OpenAI.\n\nPuedes desactivarlo en ajustes cuando quieras.',
-        'pt-BR': 'Pratique conversas com personagens, cumpra objetivos e receba feedback. Para isso, suas mensagens são enviadas à OpenAI.\n\nVocê pode desativar isso nas configurações quando quiser.',
-        vi: 'Luyện chat với các nhân vật, hoàn thành mục tiêu và nhận phản hồi. Để làm vậy, tin nhắn của bạn được gửi tới OpenAI.\n\nCó thể tắt trong cài đặt bất cứ lúc nào.',
-        id: 'Berlatih chat dengan karakter, selesaikan tujuan, dan dapatkan masukan. Untuk itu, pesanmu dikirim ke OpenAI.\n\nBisa dimatikan di pengaturan kapan saja.',
-        tr: 'Karakterlerle yazış, hedefleri tamamla ve geri bildirim al. Bunun için mesajların OpenAI\'ye gönderilir.\n\nİstediğin zaman ayarlardan kapatabilirsin.',
-        pl: 'Ćwicz czaty z postaciami, realizuj cele i otrzymuj informację zwrotną. W tym celu Twoje wiadomości trafiają do OpenAI.\n\nMożesz to wyłączyć w ustawieniach w dowolnym momencie.',
+        ru: 'Практикуй разговоры с персонажами и свободный разговор, получай обратную связь. Для этого то, что ты пишешь или говоришь, отправляется в OpenAI текстом; запись голоса остаётся на телефоне.\n\nМожно выключить в настройках в любой момент.',
+        uk: 'Практикуй розмови з персонажами й вільну розмову, отримуй зворотний зв’язок. Для цього те, що ти пишеш або кажеш, надсилається в OpenAI текстом; запис голосу залишається на телефоні.\n\nМожна вимкнути в налаштуваннях будь-коли.',
+        en: 'Practice conversations with characters and open conversation, and get feedback. To do this, what you type or say is sent to OpenAI as text; your voice recording stays on your phone.\n\nYou can turn this off in settings at any time.',
+        es: 'Practica conversaciones con personajes y la conversación libre, y recibe comentarios. Para eso, lo que escribes o dices se envía a OpenAI como texto; la grabación de tu voz se queda en el teléfono.\n\nPuedes desactivarlo en ajustes cuando quieras.',
+        'pt-BR': 'Pratique conversas com personagens e a conversa livre, e receba feedback. Para isso, o que você escreve ou fala é enviado à OpenAI como texto; a gravação da sua voz fica no celular.\n\nVocê pode desativar isso nas configurações quando quiser.',
+        vi: 'Luyện trò chuyện với các nhân vật và trò chuyện tự do, nhận phản hồi. Để làm vậy, những gì bạn viết hoặc nói được gửi tới OpenAI dưới dạng chữ; bản ghi giọng nói vẫn ở trên điện thoại.\n\nCó thể tắt trong cài đặt bất cứ lúc nào.',
+        id: 'Berlatih percakapan dengan karakter dan percakapan bebas, dapatkan masukan. Untuk itu, yang kamu tulis atau ucapkan dikirim ke OpenAI sebagai teks; rekaman suaramu tetap di ponsel.\n\nBisa dimatikan di pengaturan kapan saja.',
+        tr: 'Karakterlerle ve serbest konuşmada pratik yap, geri bildirim al. Bunun için yazdıkların ya da söylediklerin OpenAI\'ye metin olarak gönderilir; ses kaydın telefonda kalır.\n\nİstediğin zaman ayarlardan kapatabilirsin.',
+        pl: 'Ćwicz rozmowy z postaciami i swobodną rozmowę, otrzymuj informację zwrotną. W tym celu to, co piszesz lub mówisz, trafia do OpenAI jako tekst; nagranie głosu zostaje w telefonie.\n\nMożesz to wyłączyć w ustawieniach w dowolnym momencie.',
       });
   return (
     <AiConsentSheetModal

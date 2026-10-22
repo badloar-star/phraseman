@@ -114,7 +114,10 @@ export default function LearningV2Horizons(props: Props) {
         projectionScopeKey: scopeKey,
         expandedLessonOrdinal: lesson,
         preparedProgress,
-      }).rows.filter((row) => row.kind === "session"),
+      // зачем: с 20.09 карта курса отдаёт занятия ВСЕХ уроков подряд (аккордеон отменён), «урок в фокусе» выбирает
+      // потребитель по row.lessonOrdinal. Без этого фильтра в главе оказывалось 32×8 занятий при 8 точках маршрута —
+      // экран падал на HORIZON_ROUTES[chapter - 1][i] (зонд 22.10: 1792 ряда, по 256 на главу).
+      }).rows.filter((row) => row.kind === "session" && row.lessonOrdinal === lesson),
     [lesson, preparedProgress, scopeKey],
   );
   const chapterRows = rows.filter((row) => row.chapterOrdinal === chapter);

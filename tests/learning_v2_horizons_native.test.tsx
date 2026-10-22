@@ -40,12 +40,30 @@ jest.mock("react-native", () => {
     PanResponder: { create: () => ({ panHandlers: {} }) },
     BackHandler: { addEventListener: () => ({ remove: jest.fn() }) },
     Platform: { OS: "ios", select: (values: any) => values.ios },
+    // зачем (22.10): кнопки экрана итога (PressableHybrid) держат Animated.Value для нажатия — без него рендер падал.
+    Animated: {
+      View: "View",
+      Text: "Text",
+      Value: class {
+        current: number;
+        constructor(start: number) { this.current = start; }
+        setValue(next: number) { this.current = next; }
+        interpolate() { return this; }
+        stopAnimation() {}
+      },
+      timing: () => ({ start: (cb?: (r: { finished: boolean }) => void) => cb?.({ finished: true }), stop: () => undefined }),
+      spring: () => ({ start: (cb?: (r: { finished: boolean }) => void) => cb?.({ finished: true }), stop: () => undefined }),
+      parallel: () => ({ start: (cb?: (r: { finished: boolean }) => void) => cb?.({ finished: true }), stop: () => undefined }),
+      sequence: () => ({ start: (cb?: (r: { finished: boolean }) => void) => cb?.({ finished: true }), stop: () => undefined }),
+    },
   };
 });
 let mockReducedMotion = true;
 const mockGestureEnd: { current?: (event: any) => void } = {};
 jest.mock("../hooks/use_reduce_motion", () => ({
   useReduceMotionPreference: () => mockReducedMotion,
+  // зачем (22.10): PressableHybrid на экране итога спрашивает useReduceMotion.
+  useReduceMotion: () => mockReducedMotion,
 }));
 jest.mock("../hooks/use-screen", () => ({
   normalizeSafeAreaBottomInset: (n: number) => n,
@@ -53,7 +71,10 @@ jest.mock("../hooks/use-screen", () => ({
 jest.mock("../hooks/use-haptics", () => ({ hapticTap: jest.fn() }));
 let mockThemeName = "INDIGO";
 jest.mock("../components/ThemeContext", () => ({
-  useTheme: () => ({ theme: require("../constants/theme")[mockThemeName], f: { h2: 24, body: 16 } }),
+  // зачем (22.10): FeedbackRatingCard считает textScale через FONT_SCALE[fontSize] * uiScale — заглушка повторяет
+  // текущий контракт ThemeContext (значения как в components/ThemeContext.tsx).
+  FONT_SCALE: { small: 1.0, medium: 1.15, large: 1.3 },
+  useTheme: () => ({ theme: require("../constants/theme")[mockThemeName], f: { h2: 24, body: 16 }, fontSize: "medium", uiScale: 1 }),
 }));
 // зачем (PM-086, владелец 2026-09-24): components/EnergyCostBadge.tsx удалён
 // целиком — мок больше не нужен (модуль не существует).

@@ -12,6 +12,8 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { ensureStableLinkForAuth } from './auth_identity';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
+// зачем (координатор 22.10, 10 · ПЕРЕВОДЧИК): пуш и строка ленты — на языке получателя
+import { friendsPushLangOf, friendsPushText } from './friends_push_copy';
 import { sendExpoPush, type ExpoPushTransport } from './expo_push';
 import {
   type ActiveDaysState,
@@ -240,7 +242,7 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
       fromUid: stableUid,
       fromName: senderName,
       // зачем (D188-следствие, 14.10): друзья учат разные языки — без названия языка (клиент 2.0 показывает свой перевод).
-      text: 'Пять минут на практику?',
+      text: friendsPushText(friendsPushLangOf(friendSnap.data()), 'nudgeFeed'),
       nav: {
         kind: 'friend_event',
         actorStableUid: stableUid,
@@ -259,6 +261,7 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
       ...response,
       _friendPushToken: typeof friendSnap.data()?.expoPushToken === 'string' ? friendSnap.data()!.expoPushToken as string : '',
       _senderName: senderName,
+      _friendLang: friendsPushLangOf(friendSnap.data()),
     };
   });
 
@@ -266,7 +269,7 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
   const senderName = (result as { _senderName?: string })._senderName ?? 'Friend';
   const pushPairStreak = togetherOn ? Number((result as { pairStreak?: unknown }).pairStreak) || 0 : 0;
   if (pushToken) {
-    const copy = friendNudgePushCopy(senderName, pushPairStreak);
+    const copy = friendNudgePushCopy(senderName, pushPairStreak, friendsPushLangOf({ lang: (result as { _friendLang?: string })._friendLang }));
     // зачем (ревью Ядра): заголовок пуша содержит имя отправителя — в журнал только шаблон текста
     console.log(`[FRIENDS-TOGETHER] nudge:push together=${togetherOn} pairStreak=${pushPairStreak} copy=${pushPairStreak >= PAIR_STREAK_PUSH_MIN ? 'pair_streak' : 'plain'}`);
     void sendExpoPush(

@@ -4,8 +4,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
+// зачем (Ревизор 22.10, source_guard_eol_normalized_contract): на ПК владельца рабочая копия в CRLF — читаем через normalizeEol
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const src = fs.readFileSync(path.join(import.meta.dirname, '..', 'app', '(tabs)', 'lessons.tsx'), 'utf8');
+const src = normalizeEol(fs.readFileSync(path.join(import.meta.dirname, '..', 'app', '(tabs)', 'lessons.tsx'), 'utf8'));
 const start = src.indexOf('function useLegacyCoinBalanceBinding(');
 const hook = src.slice(start, src.indexOf('return binding;', start));
 

@@ -3,6 +3,8 @@ import { createHash } from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
+// зачем (координатор 22.10, 10 · ПЕРЕВОДЧИК): «Дать пять» — пуш и строка ленты на языке получателя
+import { friendsPushLangOf, friendsPushText } from './friends_push_copy';
 import { sendExpoPush, type ExpoPushTransport } from './expo_push';
 import { isQuietHours } from './friends_together_core';
 import {
@@ -398,7 +400,7 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
         fromUid: senderStableId,
         fromName: senderName,
         fromAvatar: resolveSenderAvatar(senderData),
-        text: 'Пятюня на удачу уже здесь.',
+        text: friendsPushText(friendsPushLangOf(targetSnap.data()), 'highFiveFeed'),
         nav: {
           kind: 'friend_event',
           actorStableUid: senderStableId,
@@ -422,6 +424,7 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       _pushBlockReason: activityLikePushBlockReason(targetSnap.data(), now, targetFriendSnap.exists),
       _senderName: senderName,
       _notificationId: notificationId,
+      _targetLang: friendsPushLangOf(targetSnap.data()),
     };
   });
 
@@ -435,10 +438,11 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
   } else if (pushToken && notificationId && pushBlockReason) {
     console.log('[PUSH-PREFS] activity_like push skipped', { type: 'activity_like', reason: pushBlockReason });
   } else if (pushToken && notificationId) {
+    const targetLang = friendsPushLangOf({ lang: (result as { _targetLang?: string })._targetLang });
     void sendExpoPush(
       pushToken,
-      `${senderName} даёт пять`,
-      'Пятюня получена.',
+      friendsPushText(targetLang, 'highFiveTitle', { name: senderName }),
+      friendsPushText(targetLang, 'highFiveBody'),
       {
         type: 'activity_like',
         eventId: notificationId,
@@ -458,7 +462,7 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
     });
   }
 
-  const { _pushToken, _senderName, _notificationId, _pushBlockReason, ...publicResult } = result as Record<string, unknown>;
+  const { _pushToken, _senderName, _notificationId, _pushBlockReason, _targetLang, ...publicResult } = result as Record<string, unknown>;
   return publicResult;
 });
 

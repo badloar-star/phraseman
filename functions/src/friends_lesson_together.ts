@@ -17,6 +17,8 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { sendExpoPush } from './expo_push';
+// зачем (координатор 22.10, 10 · ПЕРЕВОДЧИК): пуш и строка ленты — на языке получателя, а не только по-русски
+import { friendsPushLangOf, friendsPushText } from './friends_push_copy';
 import {
   FRIENDS_TOGETHER_DEFAULTS,
   type FriendsTogetherConfig,
@@ -36,6 +38,9 @@ import {
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
 const LOG = '[LESSON-TOGETHER]';
+// зачем (Ревизор 22.10, 💸): квитанции повторов нужны дни, а не годы — TTL Firestore по полю expireAt стирает их через 30 дней
+// (политика TTL на группу коллекций — отдельной командой координатора). Повтор старше 30 дней — новый запрос, как и задумано.
+const RECEIPT_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 const uidTag = (uid: string): string => (uid ? uid.slice(0, 6) : '-');
 
@@ -184,7 +189,7 @@ export async function handleFriendsLessonInvite(request: CallableRequest): Promi
         type: 'friend_nudge',
         fromUid: stableUid,
         fromName: senderName,
-        text: 'Зовёт на занятие',
+        text: friendsPushText(friendsPushLangOf(friendData), 'lessonInviteFeed'),
         nav: {
           kind: 'friend_event', action: 'lesson_invite', actorStableUid: stableUid, eventId, inviteId,
           lessonOrdinal: input.lessonOrdinal, sessionOrdinal: input.sessionOrdinal, lessonKey: input.lessonKey,
@@ -193,19 +198,20 @@ export async function handleFriendsLessonInvite(request: CallableRequest): Promi
       }, now));
       const quiet = isQuietHours(now, tz, config.nudgeQuietStartHour, config.nudgeQuietEndHour, config.nudgeDefaultTzOffsetMinutes);
       const token = typeof friendData?.expoPushToken === 'string' ? friendData.expoPushToken : '';
-      if (prefs.enabled !== false && !quiet && token) pushes.push({ token, eventId, inviteId });
+      if (prefs.enabled !== false && !quiet && token) pushes.push({ token, eventId, inviteId, lang: friendsPushLangOf(friendData) });
       else console.log(`${LOG} invite:push_skipped ${JSON.stringify({ ...ctx, friend: uidTag(friendUid), quiet, enabled: prefs.enabled !== false, token: Boolean(token) })}`);
     });
     tx.set(dayRef, { lessons: { ...lessons, [lessonSlot]: usedForLesson + input.friendUids.length }, updatedAt: now }, { merge: true });
     const response = { ok: true, inviteIds, expiresAtMs };
-    tx.set(receiptRef, { response, createdAt: now });
+    tx.set(receiptRef, { response, createdAt: now, expireAt: new Date(now + RECEIPT_TTL_MS) });
     console.log(`${LOG} invite:sent ${JSON.stringify({ ...ctx, lessonSlot, usedAfter: usedForLesson + input.friendUids.length })}`);
     return { response, pushes, senderName };
   });
 
   for (const push of result.pushes) {
-    void sendExpoPush(push.token, `${(result as { senderName?: string }).senderName ?? 'Friend'} зовёт на занятие`,
-      `Урок ${input.lessonOrdinal} · Занятие ${input.sessionOrdinal}`,
+    const lang = friendsPushLangOf({ lang: push.lang });
+    void sendExpoPush(push.token, friendsPushText(lang, 'lessonInviteTitle', { name: (result as { senderName?: string }).senderName ?? 'Friend' }),
+      friendsPushText(lang, 'lessonInviteBody', { l: input.lessonOrdinal, s: input.sessionOrdinal }),
       { type: 'friend_nudge', eventId: push.eventId, actorStableUid: stableUid, nav: 'friends', inviteId: push.inviteId })
       .then((transport) => { if (transport !== 'sent') console.warn(`${LOG} invite:push_${transport}`); })
       .catch((error: unknown) => console.warn(`${LOG} invite:push_threw ${error instanceof Error ? error.name : typeof error}`));
@@ -263,7 +269,7 @@ export async function handleFriendsLessonTogetherMark(request: CallableRequest):
       type: 'friend_nudge',
       fromUid: stableUid,
       fromName: displayName(myProfile.data()),
-      text: `+${LESSON_TOGETHER_COINS} за занятие вместе`,
+      text: friendsPushText(friendsPushLangOf(inviterSnap.data()), 'lessonDoneFeed', { n: LESSON_TOGETHER_COINS }),
       nav: {
         kind: 'friend_event', action: 'lesson_together', actorStableUid: stableUid, eventId, inviteId, dayKey,
         coins: LESSON_TOGETHER_COINS, lessonOrdinal: Number(invite?.lessonOrdinal), sessionOrdinal: Number(invite?.sessionOrdinal),
@@ -279,12 +285,12 @@ export async function handleFriendsLessonTogetherMark(request: CallableRequest):
     }
     return {
       response: { ok: true, replay: false, coins: LESSON_TOGETHER_COINS, inviterName, dayKey },
-      push: inviterPrefs.enabled !== false && !quiet && token ? { token, eventId } : null,
+      push: inviterPrefs.enabled !== false && !quiet && token ? { token, eventId, lang: friendsPushLangOf(inviterSnap.data()) } : null,
     };
   });
 
   if (result.push) {
-    void sendExpoPush(result.push.token, 'Занятие вместе', `+${LESSON_TOGETHER_COINS} монеты вам обоим`,
+    void sendExpoPush(result.push.token, friendsPushText(result.push.lang, 'lessonDoneTitle'), friendsPushText(result.push.lang, 'lessonDoneBody', { n: LESSON_TOGETHER_COINS }),
       { type: 'friend_nudge', eventId: result.push.eventId, actorStableUid: stableUid, nav: 'friends' })
       .then((transport) => { if (transport !== 'sent') console.warn(`${LOG} mark:push_${transport}`); })
       .catch((error: unknown) => console.warn(`${LOG} mark:push_threw ${error instanceof Error ? error.name : typeof error}`));

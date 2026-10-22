@@ -4,6 +4,8 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+// зачем (Ревизор 22.10, source_guard_eol_normalized_contract): многострочная сверка исходника — через normalizeEol (CRLF на ПК владельца)
+import { normalizeEol } from './helpers/read_source';
 
 const mockStore = new Map<string, string>();
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -99,7 +101,7 @@ describe('Plus splash price and copy', () => {
 
   it('источник пейвола plus_launch_splash зарегистрирован, ключ арбитра plusSplash — в хвосте очереди перед coinsMigration', () => {
     expect(PAYWALL_SOURCE_VALUES).toContain('plus_launch_splash');
-    const core = fs.readFileSync(path.join(__dirname, '..', 'components/overlay_arbiter_core.ts'), 'utf8');
+    const core = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'components/overlay_arbiter_core.ts'), 'utf8'));
     const at = core.indexOf("  'plusSplash',\n  // coinsMigration");
     expect(at).toBeGreaterThan(0);
   });

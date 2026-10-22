@@ -38,3 +38,39 @@ Owner: Ядро (сессия 1).
 ## Rollback
 
 Функция — прежняя ревизия `levelspinstargrant-00010-kin`. Инвентарь — откат коммита. Метрика и алерт — удаление по имени. OTA — `eas update:rollback`.
+
+Governance-ID: TG-744D78280C9F
+Governance-ID: TG-6B83D98623EC
+Governance-ID: TG-D1462149D079
+
+## Хотфикс OTA вершины Пика (c2ad7ec38 + 34de6c00c) — ручной перенос на базу прошлого OTA
+
+Папка экспорта C:\Temp\claude\ota_patch_108b37562 (= прошлый OTA, группа b7e1f972). Опубликованный бандл отложен в dist_prev_ota для сверки строк Hermes. Чисто легли: use_spire_game, SpireMomentsLayer, spire_game_strings (+34de6c00c), report_queue, новый use_spire_summit. Вручную: SpireClimbDock (в 142 нет пропсов сцены — ветка searching не переносится), SpireHomeScreen. Превью и фикстуры не переносятся. Оригиналы — C:\Temp\claude\ota_hotfix_orig.
+
+Governance-ID: TG-D1462149D079
+
+## Ревизор: source_guard_eol_normalized_contract — три сторожа Ядра читают через normalizeEol
+
+tests/ios_firebase_default_app_configure.test.mjs, tests/lessons_coin_balance_kept_contract.test.mjs, tests/plus_splash_state_offer.test.ts: чтение файлов обёрнуто в normalizeEol (tests/helpers/read_source*.{mjs,ts}). tests/learning_v2_plan_b_gates.test.mjs — передан Learning V2.
+
+Governance-ID: TG-BB8FB8F9EECF
+
+## Наблюдение за пакетом «Друзей» после выкладки 18:17Z (HEAD 54f47688e)
+
+6 срезов по 10 минут: ошибки Cloud Run по 10 функциям, принятие старой награды «Дневного пути» (dailyjourney_228…), шаги удаления аккаунта (friend_duels_anonymize), limits_flag. Скрипты в scratchpad, без записи в базу.
+
+Governance-ID: TG-6236776A1D66
+
+- Проверка вершины на НЕИЗМЕННОМ бандле: скрипт-рецепт для 6 · СВЕРКА ставит неделю Пика на вершине в AsyncStorage эмулятора (RKStorage/catalystLocalStorage, ключ spire_week_v1:{uid}:{lang}); бандл и dist не трогаются.
+
+## Тексты пушей и ленты «Друзей» на 9 языках (Переводчик, 9c137f5af)
+
+Модуль functions/src/friends_push_copy.ts сгенерирован из таблицы черновика (ключи — дословно); плюральные слова ячеек → {days}/{coins}, склонение ru/uk/pl, en/es/pt one/other. Язык получателя — цепочка admin_push_jobs (lang || app_lang || pushTokenLang || progress.lang || progress.app_lang), запасной ru. Сторож: 9 языков у каждого ключа, плейсхолдеры как в ru.
+
+Governance-ID: TG-60B4AE2168B8
+
+## Хотфикс OTA отменён владельцем; очередь по текущей версии
+
+Владелец через координатора: хотфикс на старой базе отменён, OTA не выпускаем, папка экспорта забыта. Очередь: (1) TTL ~30 дней на friend_lesson_invite_receipts и friend_duel_receipts — поле expireAt (Timestamp) в квитанциях + политика TTL на группы коллекций (команда — координатору); (2) пуши «Друзей» на 9 языках — прогоны, коммит, команда выкладки; (3) итог наблюдения за 10 функциями.
+
+Governance-ID: TG-EC3F85D869DA

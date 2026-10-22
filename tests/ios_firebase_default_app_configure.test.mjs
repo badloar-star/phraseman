@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
+// зачем (Ревизор 22.10, source_guard_eol_normalized_contract): чтение файлов — через normalizeEol, как у всех сторожей исходника
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
 const require = createRequire(import.meta.url);
 const { patchSwiftAppDelegate } = require('../plugins/withIosFirebaseAppConfigure');
@@ -57,7 +59,7 @@ test('fails the prebuild instead of silently omitting Firebase initialization on
 });
 
 test('registers the corrective plugin immediately after react-native-firebase app', () => {
-  const plugins = JSON.parse(readFileSync('app.json', 'utf8')).expo.plugins;
+  const plugins = JSON.parse(normalizeEol(readFileSync('app.json', 'utf8'))).expo.plugins;
   const rnfbIndex = plugins.findIndex((entry) => entry === '@react-native-firebase/app');
 
   assert.notEqual(rnfbIndex, -1);
@@ -65,7 +67,7 @@ test('registers the corrective plugin immediately after react-native-firebase ap
 });
 
 test('normal production keeps startup diagnostics disabled', () => {
-  const eas = JSON.parse(readFileSync('eas.json', 'utf8'));
+  const eas = JSON.parse(normalizeEol(readFileSync('eas.json', 'utf8')));
 
   assert.equal(eas.build.production.env.EXPO_PUBLIC_STARTUP_DIAGNOSTICS, undefined);
 });

@@ -7,6 +7,8 @@
  * напрямую без эмулятора — как referral_roulette_policy делает со
  * своими чистыми частями.
  */
+// зачем (координатор 22.10): тексты пуша «Позвать» — из словаря на 9 языках (модуль чистый, без admin)
+import { type FriendsPushLang, friendsPushText } from './friends_push_copy';
 
 /* ------------------------------- active days ------------------------------ */
 
@@ -274,23 +276,18 @@ export function pairStreakReferenceDay(senderDays: ActiveDaysState | null | unde
 /** Серия от двух дней — уже «серия вдвоём» в тексте пуша (один общий день — ещё обычный зов). */
 export const PAIR_STREAK_PUSH_MIN = 2;
 
-function ruDaysWord(n: number): string {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return 'день';
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'дня';
-  return 'дней';
-}
-
-/** Текст пуша «Позвать»: с серией вдвоём — про огонь пары, без серии — прежний зов. */
-export function friendNudgePushCopy(senderName: string, pairStreak: number): { title: string; body: string } {
+/**
+ * Текст пуша «Позвать»: с серией вдвоём — про огонь пары, без серии — прежний зов.
+ * зачем (координатор 22.10, 10 · ПЕРЕВОДЧИК): на языке получателя (словарь friends_push_copy); по умолчанию ru — как раньше.
+ */
+export function friendNudgePushCopy(senderName: string, pairStreak: number, lang: FriendsPushLang = 'ru'): { title: string; body: string } {
   const name = String(senderName || '').trim() || 'Friend';
   const streak = Number.isFinite(pairStreak) ? Math.max(0, Math.floor(pairStreak)) : 0;
   if (streak >= PAIR_STREAK_PUSH_MIN) {
     return {
-      title: `${name}: серия вдвоём ждёт`,
-      body: `${streak} ${ruDaysWord(streak)} подряд. Одно маленькое занятие — и огонь не погаснет.`,
+      title: friendsPushText(lang, 'nudgeStreakTitle', { name }),
+      body: friendsPushText(lang, 'nudgeStreakBody', { n: streak }),
     };
   }
-  return { title: `${name}: пять минут практики?`, body: 'Одно маленькое занятие.' };
+  return { title: friendsPushText(lang, 'nudgeTitle', { name }), body: friendsPushText(lang, 'nudgeBody') };
 }

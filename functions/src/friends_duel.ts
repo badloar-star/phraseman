@@ -14,6 +14,8 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
+// зачем (координатор 22.10, 10 · ПЕРЕВОДЧИК): пуш и строка ленты — на языке получателя, а не только по-русски
+import { friendsPushLangOf, friendsPushText } from './friends_push_copy';
 import { sendExpoPush } from './expo_push';
 import {
   FRIENDS_TOGETHER_DEFAULTS,
@@ -39,6 +41,9 @@ import {
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
 const LOG = '[FRIENDS-DUEL]';
+// зачем (Ревизор 22.10, 💸): квитанции повторов нужны дни, а не годы — TTL Firestore по полю expireAt стирает их через 30 дней
+// (политика TTL на группу коллекций — отдельной командой координатора). Повтор старше 30 дней — новый запрос, как и задумано.
+const RECEIPT_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 /* ------------------------------------ helpers -------------------------------- */
 
@@ -229,23 +234,23 @@ export const friendsDuelChallenge = onCall(CALLABLE_BASE, async (request) => {
       type: 'friend_nudge',
       fromUid: stableUid,
       fromName: senderName,
-      text: 'Вызов на дуэль',
+      text: friendsPushText(friendsPushLangOf(friendSnap.data()), 'duelFeed'),
       nav: { kind: 'friend_event', action: 'duel_challenge', actorStableUid: stableUid, eventId, duelId, expiresAtMs, phraseIds },
     }, now));
     const response = { ok: true, duelId, expiresAtMs };
-    tx.set(receiptRef, { kind: 'challenge', friendUid, duelId, response, createdAt: now });
+    tx.set(receiptRef, { kind: 'challenge', friendUid, duelId, response, createdAt: now, expireAt: new Date(now + RECEIPT_TTL_MS) });
     console.log(`${LOG} challenge:created ${JSON.stringify({ ...ctx, duelId, seq, sentToday: sentToday + 1 })}`);
     const friendData = friendSnap.data();
     return {
       response,
       push: pushAllowed(friendData, config, now)
-        ? { token: typeof friendData?.expoPushToken === 'string' ? friendData.expoPushToken : '', senderName, eventId, duelId }
+        ? { token: typeof friendData?.expoPushToken === 'string' ? friendData.expoPushToken : '', senderName, eventId, duelId, lang: friendsPushLangOf(friendData) }
         : null,
     };
   });
 
   if (result.push) {
-    sendDuelPush(result.push.token, `${result.push.senderName} вызывает на дуэль`, '5 фраз · 24 часа на ответ', {
+    sendDuelPush(result.push.token, friendsPushText(result.push.lang, 'duelTitle', { name: result.push.senderName }), friendsPushText(result.push.lang, 'duelBody'), {
       type: 'friend_nudge', eventId: result.push.eventId, actorStableUid: stableUid, nav: 'friends', duelId: result.push.duelId,
     }, 'duel_challenge');
   } else {
@@ -321,7 +326,7 @@ export const friendsDuelMove = onCall(CALLABLE_BASE, async (request) => {
       type: 'friend_nudge',
       fromUid: stableUid,
       fromName: opponentName,
-      text: 'Итог дуэли',
+      text: friendsPushText(friendsPushLangOf(challengerSnap.data()), 'duelResultTitle'),
       nav: {
         kind: 'friend_event', action: 'duel_result', actorStableUid: stableUid, eventId, duelId,
         outcome: challengerOutcome, mine: challengerSummary, theirs: opponentSummary, phraseIds,
@@ -333,21 +338,21 @@ export const friendsDuelMove = onCall(CALLABLE_BASE, async (request) => {
       mine: { correct: opponentSummary.correct, elapsedMs: opponentSummary.elapsedMs },
       theirs: challengerSummary,
     };
-    tx.set(receiptRef, { kind: 'move', duelId, response, createdAt: now });
+    tx.set(receiptRef, { kind: 'move', duelId, response, createdAt: now, expireAt: new Date(now + RECEIPT_TTL_MS) });
     console.log(`${LOG} move:finished ${JSON.stringify({ ...ctx, opponentOutcome, mine: opponentSummary.correct, theirs: challengerSummary.correct, releaseLock })}`);
     const challengerData = challengerSnap.data();
     return {
       error: null,
       response,
       push: pushAllowed(challengerData, config, now)
-        ? { token: typeof challengerData?.expoPushToken === 'string' ? challengerData.expoPushToken : '', name: opponentName, eventId, challengerUid }
+        ? { token: typeof challengerData?.expoPushToken === 'string' ? challengerData.expoPushToken : '', name: opponentName, eventId, challengerUid, lang: friendsPushLangOf(challengerData) }
         : null,
     };
   });
 
   if (result.error) rejectDuel('failed-precondition', result.error, ctx);
   if (result.push) {
-    sendDuelPush(result.push.token, 'Итог дуэли', `${result.push.name} ответил(а) на дуэль`, {
+    sendDuelPush(result.push.token, friendsPushText(result.push.lang, 'duelResultTitle'), friendsPushText(result.push.lang, 'duelResultBody', { name: result.push.name }), {
       type: 'friend_nudge', eventId: result.push.eventId, actorStableUid: stableUid, nav: 'friends', duelId,
     }, 'duel_result');
   }
@@ -384,9 +389,10 @@ export const friendsDuelDecline = onCall(CALLABLE_BASE, async (request) => {
     const challengerUid = String(duel?.challengerUid);
     const pairRef = db.collection('friend_pairs').doc(duelPairKey(challengerUid, stableUid));
     // зачем: в транзакции Firestore все чтения — до первой записи; профиль читаем вместе с парой.
-    const [pairSnap, profileSnap] = await Promise.all([
+    const [pairSnap, profileSnap, challengerSnap] = await Promise.all([
       tx.get(pairRef),
       tx.get(db.collection('public_profiles').doc(stableUid)),
+      tx.get(db.collection('users').doc(challengerUid)),
     ]);
     const releaseLock = parseJsonObject(pairSnap.data()?.duel).openDuelId === duelId;
     if (releaseLock) tx.set(pairRef, { duel: { openDuelId: null, openExpiresAtMs: 0 }, updatedAt: now }, { merge: true });
@@ -402,10 +408,10 @@ export const friendsDuelDecline = onCall(CALLABLE_BASE, async (request) => {
       type: 'friend_nudge',
       fromUid: stableUid,
       fromName: displayName(profileSnap.data(), request.data?.senderDisplayName),
-      text: 'не принял(а) дуэль',
+      text: friendsPushText(friendsPushLangOf(challengerSnap.data()), 'duelDeclinedFeed'),
       nav: { kind: 'friend_event', action: 'duel_declined', actorStableUid: stableUid, eventId, duelId },
     }, now));
-    tx.set(receiptRef, { kind: 'decline', duelId, response: { ok: true }, createdAt: now });
+    tx.set(receiptRef, { kind: 'decline', duelId, response: { ok: true }, createdAt: now, expireAt: new Date(now + RECEIPT_TTL_MS) });
     console.log(`${LOG} decline:done ${JSON.stringify({ ...ctx, releaseLock })}`);
     return { error: null };
   });

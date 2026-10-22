@@ -217,7 +217,7 @@ describe('admin access controls', () => {
     it.each([
       ['in the past', { kind: 'vip', untilMs: NOW - 1 }],
       ['equal to now', { kind: 'vip', untilMs: NOW }],
-      ['more than 100 years ahead', { kind: 'vip', untilMs: NOW + 36_500 * DAY_MS + 1 }],
+      ['more than 100 calendar years ahead', { kind: 'vip', untilMs: NOW + 36_525 * DAY_MS + 1 }],
       ['not an integer', { kind: 'vip', untilMs: NOW + 1.5 }],
       ['a string', { kind: 'vip', untilMs: String(NOW + DAY_MS) }],
       ['for the premium branch', { kind: 'premium', untilMs: NOW + DAY_MS }],
@@ -230,6 +230,7 @@ describe('admin access controls', () => {
       expect(normalizeAdminAccessInput({ ...base, kind: 'vip', durationDays: 36_500 }, NOW).durationDays).toBe(36_500);
       expect(() => normalizeAdminAccessInput({ ...base, kind: 'vip', durationDays: 36_501 }, NOW)).toThrow(HttpsError);
       expect(normalizeAdminAccessInput({ ...base, kind: 'vip', untilMs: NOW + 100 * YEAR_MS }, NOW).untilMs).toBe(NOW + 100 * YEAR_MS);
+      expect(normalizeAdminAccessInput({ ...base, kind: 'vip', untilMs: NOW + 36_525 * DAY_MS }, NOW).untilMs).toBe(NOW + 36_525 * DAY_MS);
       const forever = buildAdminAccessPatch({ progress: {} }, normalizeAdminAccessInput({ ...base, kind: 'vip', durationDays: 0 }, NOW), NOW);
       expect(forever.expiresAtMs).toBe(0);
     });

@@ -14360,6 +14360,73 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     <button type="button" onclick="switchTab('premium')" class="plus-subtab" style="background:#1f2937;border:1px solid #374151;color:#9ca3af;padding:8px 16px;border-radius:8px;font-weight:700;cursor:pointer">⭐ Real Plus</button>
     <button type="button" onclick="switchTab('vip')" class="plus-subtab active" style="background:#064e3b;border:1px solid #047857;color:#86efac;padding:8px 16px;border-radius:8px;font-weight:700;cursor:pointer">💚 Admin Plus</button>
   </div>
+  <!-- зачем (владелец 22.10 «ДОБАВЬ МНЕ В АДМИНКЕ ВОЗМОЖНОСТЬ ЛЮБОМУ ПРОФИЛЮ ВЫДАВАТЬ ПЛЮС НА ЛЮБОЕ ВРЕМЯ»): поиск через
+       сервер (adminSearchUsers, имя/почта/UID) — без выкачивания всей коллекции users; срок считается по календарю. -->
+  <style>
+    #apg { margin:14px 24px 18px; padding:18px; border-radius:16px; background:linear-gradient(180deg,#0d1f17,#0b1712); box-shadow:inset 0 0 0 1px rgba(134,239,172,.10); max-width:860px; }
+    #apg h3 { margin:0 0 12px; font-size:17px; color:#e8fff1; letter-spacing:-.01em; }
+    #apg .apg-search { display:flex; gap:8px; flex-wrap:wrap; }
+    #apg input[type="text"], #apg input[type="number"], #apg input[type="date"] { background:#0a120e !important; border:1px solid rgba(134,239,172,.16) !important; border-radius:10px; color:#e8fff1 !important; padding:9px 12px; font-size:14px; }
+    #apg .apg-search input { flex:1 1 260px; min-width:0; }
+    #apg button { cursor:pointer; border:0 !important; border-radius:10px; padding:9px 14px; font-weight:700; font-size:13px; transition:transform .12s ease-out, background-color .15s ease; }
+    #apg button:active:not(:disabled) { transform:scale(.97); }
+    #apg button:disabled { opacity:.5; cursor:default; }
+    #apg button:focus-visible, #apg input:focus-visible { outline:2px solid #86efac; outline-offset:2px; }
+    #apg .apg-primary { background:#22c55e !important; color:#04140a !important; }
+    #apg .apg-quiet { background:#15261d !important; color:#bbf7d0 !important; }
+    #apg .apg-danger { background:#3a1414 !important; color:#fecaca !important; }
+    #apg .apg-results { display:grid; gap:6px; margin-top:10px; }
+    #apg .apg-row { display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:#0f1c16 !important; color:#e8fff1 !important; font-weight:500; padding:10px 12px; }
+    #apg .apg-row[aria-pressed="true"] { background:#173226 !important; }
+    #apg .apg-row .n { font-weight:700; }
+    #apg .apg-row .m { color:#8fbfa3; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; flex:1; }
+    #apg .apg-chip { font-size:12px; font-weight:700; padding:3px 9px; border-radius:999px; background:#1f2a24; color:#a7c4b4; white-space:nowrap; }
+    #apg .apg-chip.on { background:#14532d; color:#bbf7d0; }
+    #apg .apg-note { margin:10px 0 0; color:#8fbfa3; font-size:13px; }
+    #apg .apg-note.err { color:#fca5a5; }
+    #apg .apg-card { margin-top:14px; padding:16px; border-radius:14px; background:#0f1c16; }
+    #apg .apg-who { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px; }
+    #apg .apg-who b { font-size:16px; color:#fff; }
+    #apg .apg-who span { color:#8fbfa3; font-size:12px; word-break:break-all; }
+    #apg .apg-status { margin:10px 0 14px; font-size:15px; color:#e8fff1; font-variant-numeric:tabular-nums; }
+    #apg .apg-status .pending { color:#8fbfa3; font-size:12px; margin-left:8px; }
+    #apg .apg-terms { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    #apg .apg-terms button[aria-pressed="true"] { background:#22c55e !important; color:#04140a !important; }
+    #apg .apg-years { display:inline-flex; align-items:center; gap:6px; }
+    #apg .apg-years input { width:72px; }
+    #apg .apg-preview { margin:12px 0; font-size:14px; color:#bbf7d0; font-variant-numeric:tabular-nums; min-height:20px; }
+    #apg .apg-reason { display:flex; gap:8px; align-items:center; margin-bottom:12px; color:#8fbfa3; font-size:13px; }
+    #apg .apg-reason input { flex:1; min-width:0; }
+    #apg .apg-actions { display:flex; gap:8px; flex-wrap:wrap; }
+    @media (prefers-reduced-motion: reduce) { #apg button { transition:none; } }
+  </style>
+  <section id="apg" aria-label="Выдать Plus">
+    <h3>💚 Выдать Plus любому профилю</h3>
+    <form class="apg-search" id="apg-search-form" autocomplete="off">
+      <input type="text" id="apg-q" placeholder="Имя, почта или UID" aria-label="Имя, почта или UID" maxlength="160">
+      <button type="submit" class="apg-quiet" id="apg-search-btn">Найти</button>
+    </form>
+    <div class="apg-results" id="apg-results" role="list"></div>
+    <p class="apg-note" id="apg-note" hidden></p>
+    <div class="apg-card" id="apg-card" hidden>
+      <div class="apg-who"><b id="apg-name"></b><span id="apg-meta"></span></div>
+      <div class="apg-status" id="apg-status" aria-live="polite"></div>
+      <div class="apg-terms" id="apg-terms" role="group" aria-label="Срок">
+        <button type="button" class="apg-quiet" data-apg-term="d7">+7 дней</button>
+        <button type="button" class="apg-quiet" data-apg-term="m1">+1 месяц</button>
+        <button type="button" class="apg-quiet" data-apg-term="y1">+1 год</button>
+        <span class="apg-years"><button type="button" class="apg-quiet" data-apg-term="yn">+</button><input type="number" id="apg-years" min="1" max="100" step="1" value="5" aria-label="Сколько лет"><span>лет</span></span>
+        <button type="button" class="apg-quiet" data-apg-term="forever">Навсегда</button>
+        <span class="apg-years"><button type="button" class="apg-quiet" data-apg-term="date">До даты</button><input type="date" id="apg-date" aria-label="Своя дата"></span>
+      </div>
+      <div class="apg-preview" id="apg-preview"></div>
+      <label class="apg-reason">Причина <input type="text" id="apg-reason" value="выдано владельцем" maxlength="500"></label>
+      <div class="apg-actions">
+        <button type="button" class="apg-primary" id="apg-grant" disabled>Выдать Plus</button>
+        <button type="button" class="apg-danger" id="apg-revoke" hidden>Забрать Plus</button>
+      </div>
+    </div>
+  </section>
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
     <button type="button" onclick="loadVipData(true)" style="background:#064e3b;border:1px solid #047857;color:#86efac" data-i18n-es="🔄 Actualizar Plus">🔄 Обновить Plus</button>
     <button type="button" onclick="exportVipCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
@@ -20592,6 +20659,204 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       showToast('Plus не снят: ' + message, 'err');
     }
   };
+
+  // ── 💚 Выдать Plus любому профилю (владелец 22.10) ─────────────────────────────
+  // зачем: владелец хочет выдавать Plus любому профилю на любой срок. Поиск — серверный adminSearchUsers (имя/почта/UID),
+  // без выкачивания всей коллекции users. Срок считается по КАЛЕНДАРЮ (решение владельца) от max(сейчас, текущий конец
+  // admin Plus) и уходит на сервер точной датой untilMs; «навсегда» — durationDays 0. Сервер — adminGrantAccess (kind vip).
+  // Optimistic: статус меняется сразу, при ошибке — откат и сообщение; повторное нажатие и опоздавший ответ отсекаются.
+  const APG_LOG = '[ADMIN-PLUS-UI]';
+  const APG_DAY_MS = 86_400_000;
+  const APG_MAX_YEARS = 100;
+  let _fnAdminSearchUsers = null;
+  function getAdminSearchUsersCallable() {
+    if (!_fnAdminSearchUsers) _fnAdminSearchUsers = httpsCallable(functionsUs, 'adminSearchUsers');
+    return _fnAdminSearchUsers;
+  }
+  const apg = { items: [], selected: null, term: null, busy: false, seq: 0, searchSeq: 0 };
+  const apgEl = (id) => document.getElementById(id);
+
+  function apgFmtDate(ms) {
+    return new Date(ms).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+  function apgStatusText(item) {
+    if (!item) return '';
+    if (item.vipActive) return item.vipUntilMs === 0 ? '💚 Plus навсегда' : '💚 Plus до ' + apgFmtDate(item.vipUntilMs);
+    if (item.plusActive) return '⭐ Платный Plus' + (item.plusUntilMs > 0 ? ' до ' + apgFmtDate(item.plusUntilMs) : '') + ' — отсюда не снимается';
+    return 'Plus нет';
+  }
+  function apgChip(item) {
+    const on = item.vipActive || item.plusActive;
+    const label = item.vipActive ? (item.vipUntilMs === 0 ? 'навсегда' : 'до ' + apgFmtDate(item.vipUntilMs)) : item.plusActive ? 'платный' : 'нет Plus';
+    return `<span class="apg-chip${on ? ' on' : ''}">${escapeHtml(label)}</span>`;
+  }
+  function apgNote(text, isErr) {
+    const n = apgEl('apg-note'); if (!n) return;
+    n.hidden = !text; n.textContent = text || ''; n.classList.toggle('err', !!isErr);
+  }
+
+  // Прибавить календарные месяцы: 31 января + 1 месяц = 28/29 февраля, а не 3 марта.
+  function apgAddMonths(ms, months) {
+    const d = new Date(ms); const day = d.getDate();
+    d.setDate(1); d.setMonth(d.getMonth() + months);
+    const last = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+    d.setDate(Math.min(day, last));
+    return d.getTime();
+  }
+  // Итог выбранного срока: { untilMs } | { forever:true } | { error }.
+  function apgTarget(item, term, nowMs) {
+    if (!item || !term) return null;
+    if (term === 'forever') return { forever: true };
+    const currentEnd = item.vipActive && item.vipUntilMs > 0 ? item.vipUntilMs : 0;
+    const base = Math.max(nowMs, currentEnd);
+    let untilMs;
+    if (term === 'd7') untilMs = base + 7 * APG_DAY_MS;
+    else if (term === 'm1') untilMs = apgAddMonths(base, 1);
+    else if (term === 'y1') untilMs = apgAddMonths(base, 12);
+    else if (term === 'yn') {
+      const years = Number(apgEl('apg-years')?.value);
+      if (!Number.isInteger(years) || years < 1 || years > APG_MAX_YEARS) return { error: 'Лет — целое число от 1 до 100' };
+      untilMs = apgAddMonths(base, 12 * years);
+    } else if (term === 'date') {
+      const raw = apgEl('apg-date')?.value || '';
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
+      if (!m) return { error: 'Выбери дату' };
+      untilMs = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 23, 59, 59, 999).getTime(); // до конца выбранного дня
+      if (untilMs <= nowMs) return { error: 'Дата должна быть в будущем' };
+    } else return null;
+    if (untilMs - nowMs > 36_525 * APG_DAY_MS) return { error: 'Не дальше 100 лет от сегодня' }; // тот же предел, что на сервере
+    return { untilMs };
+  }
+
+  function apgRenderResults() {
+    const box = apgEl('apg-results'); if (!box) return;
+    box.innerHTML = apg.items.map((it, i) => `<button type="button" role="listitem" class="apg-row" data-apg-pick="${i}" aria-pressed="${apg.selected && apg.selected.uid === it.uid}">`
+      + `<span class="n">${escapeHtml(it.name || it.uid)}</span><span class="m">${escapeHtml([it.email, it.uid].filter(Boolean).join(' · '))}</span>${apgChip(it)}</button>`).join('');
+  }
+  function apgRenderCard(pendingText) {
+    const card = apgEl('apg-card'); const it = apg.selected;
+    if (!card) return;
+    card.hidden = !it; if (!it) return;
+    apgEl('apg-name').textContent = it.name || it.uid;
+    apgEl('apg-meta').textContent = [it.email, it.uid].filter(Boolean).join(' · ');
+    apgEl('apg-status').innerHTML = escapeHtml(apgStatusText(it)) + (pendingText ? `<span class="pending">${escapeHtml(pendingText)}</span>` : '');
+    document.querySelectorAll('#apg-terms [data-apg-term]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.apgTerm === apg.term)));
+    const t = apgTarget(it, apg.term, Date.now());
+    const preview = apgEl('apg-preview');
+    preview.textContent = !t ? 'Выбери срок' : t.error ? t.error : t.forever ? 'Станет: Plus навсегда' : 'Станет: Plus до ' + apgFmtDate(t.untilMs);
+    apgEl('apg-grant').disabled = apg.busy || !t || !!t.error;
+    const revoke = apgEl('apg-revoke');
+    revoke.hidden = !it.vipActive; revoke.disabled = apg.busy;
+  }
+  function apgReplaceItem(next) {
+    apg.selected = next;
+    apg.items = apg.items.map((x) => (x.uid === next.uid ? next : x));
+    apgRenderResults(); apgRenderCard();
+  }
+
+  async function apgSearch(ev) {
+    ev?.preventDefault();
+    const q = (apgEl('apg-q')?.value || '').trim();
+    if (!q) { apgNote('Введи имя, почту или UID'); return; }
+    const mySeq = ++apg.searchSeq; const btn = apgEl('apg-search-btn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Ищу…'; }
+    apgNote('');
+    const t0 = Date.now();
+    try {
+      const res = await getAdminSearchUsersCallable()({ query: q, limit: 10 });
+      if (mySeq !== apg.searchSeq) { console.log(APG_LOG, JSON.stringify({ step: 'search_stale', mySeq, latest: apg.searchSeq })); return; }
+      const data = res?.data || {};
+      apg.items = Array.isArray(data.items) ? data.items : [];
+      console.log(APG_LOG, JSON.stringify({ step: 'search_ok', count: apg.items.length, state: data.state, ms: Date.now() - t0 }));
+      if (data.state === 'partial') console.warn(APG_LOG, 'search partial', data.errors);
+      apgRenderResults();
+      if (!apg.items.length) apgNote(data.state === 'error' ? 'Поиск не сработал: ' + (data.errors || []).join('; ') : 'Никого не нашли', data.state === 'error');
+      else if (apg.items.length === 1) apgPick(0);
+    } catch (e) {
+      console.warn(APG_LOG, 'search_failed', e?.code, e?.message);
+      if (mySeq === apg.searchSeq) apgNote('Поиск не сработал: ' + (e?.message || 'ошибка сети'), true);
+    } finally {
+      if (mySeq === apg.searchSeq && btn) { btn.disabled = false; btn.textContent = 'Найти'; }
+    }
+  }
+  function apgPick(i) {
+    const it = apg.items[i]; if (!it || apg.busy) return;
+    apg.selected = it; apg.term = null;
+    apgRenderResults(); apgRenderCard();
+  }
+
+  async function apgSend(active) {
+    const it = apg.selected; if (!it || apg.busy) return; // защита от двойного нажатия
+    const nowMs = Date.now();
+    const t = active ? apgTarget(it, apg.term, nowMs) : null;
+    if (active && (!t || t.error)) { apgRenderCard(); return; }
+    const reason = (apgEl('apg-reason')?.value || '').trim() || 'выдано владельцем';
+    const who = escapeHtml(it.name || it.uid);
+    if (!active) {
+      const ok = await showConfirmModal({ title: `Забрать Plus у ${who}?`, desc: 'Снимется выданный вручную Plus. Купленную подписку это не затронет.', confirmLabel: 'Забрать Plus', danger: true });
+      if (!ok) { console.log(APG_LOG, JSON.stringify({ step: 'revoke_cancelled' })); return; }
+    } else if (t.forever) {
+      const ok = await showConfirmModal({ title: `Plus навсегда для ${who}?`, desc: 'Plus будет без срока, пока его не заберут вручную.', confirmLabel: 'Выдать навсегда' });
+      if (!ok) { console.log(APG_LOG, JSON.stringify({ step: 'forever_cancelled' })); return; }
+    } else if (it.vipActive && it.vipUntilMs === 0) {
+      const ok = await showConfirmModal({ title: `Сейчас у ${who} Plus навсегда`, desc: 'Заменить на срок до ' + apgFmtDate(t.untilMs) + '?', confirmLabel: 'Заменить', danger: true });
+      if (!ok) { console.log(APG_LOG, JSON.stringify({ step: 'shorten_cancelled' })); return; }
+    }
+    if (apg.busy || apg.selected !== it) return; // пока шло подтверждение, могли выбрать другого
+    const before = it; const mySeq = ++apg.seq;
+    const optimistic = active
+      ? { ...it, vipActive: true, vipUntilMs: t.forever ? 0 : t.untilMs, plusActive: true }
+      : { ...it, vipActive: false, vipUntilMs: null };
+    apg.busy = true; apgReplaceItem(optimistic); apgRenderCard('сохраняю…');
+    const payload = { uid: it.uid, kind: 'vip', active, reason, requestId: createAdminCommandId('admin_plus_card_request'), idempotencyKey: createAdminCommandId('admin_plus_card_operation') };
+    payload.durationDays = 0; // «навсегда» и снятие; для срока сервер берёт точную дату untilMs
+    if (active && !t.forever) {
+      payload.untilMs = t.untilMs;
+      // зачем: сервер без поддержки untilMs (до выкладки 8c2a5ce21) молча взял бы durationDays 0 = НАВСЕГДА. Запасной срок
+      // в днях от того же начала (max(сейчас, текущий конец)) — старый сервер даст почти ту же дату, новый возьмёт untilMs.
+      const base = Math.max(nowMs, it.vipActive && it.vipUntilMs > 0 ? it.vipUntilMs : 0);
+      payload.durationDays = Math.min(36_500, Math.max(1, Math.ceil((t.untilMs - base) / APG_DAY_MS))); // потолок сервера
+    }
+    console.log(APG_LOG, JSON.stringify({ step: 'send', active, forever: !!(t && t.forever), untilMs: payload.untilMs ?? null, term: apg.term }));
+    const t0 = Date.now();
+    try {
+      const res = await getAdminGrantAccessCallable()(payload);
+      const d = res?.data || {};
+      if (d.ok !== true || !d.uid || !Number.isFinite(Number(d.expiresAtMs))) throw new Error('Сервер не подтвердил');
+      const serverUntil = Number(d.expiresAtMs);
+      if (active && payload.untilMs && serverUntil !== payload.untilMs) console.warn(APG_LOG, JSON.stringify({ step: 'server_until_differs', asked: payload.untilMs, got: serverUntil, hint: 'сервер без untilMs — дата по durationDays' }));
+      console.log(APG_LOG, JSON.stringify({ step: 'server_ok', active, expiresAtMs: serverUntil, sameUid: d.uid === it.uid, ms: Date.now() - t0 }));
+      if (mySeq !== apg.seq) { console.log(APG_LOG, JSON.stringify({ step: 'late_response_ignored', mySeq, latest: apg.seq })); return; }
+      const confirmed = active
+        ? { ...optimistic, vipUntilMs: serverUntil }
+        : { ...optimistic, plusActive: !!(before.plusActive && !before.vipActive) };
+      if (typeof applyVipPatchToCachedUser === 'function') {
+        applyVipPatchToCachedUser(d.uid, active
+          ? { vip_active: 'true', vip_plan: 'admin_vip', vip_until: String(serverUntil), vip_admin_override: 'true' }
+          : { vip_active: 'false', vip_admin_override: 'false', vip_until: String(serverUntil), vip_revoked_at: String(serverUntil) });
+      }
+      apg.busy = false; apgReplaceItem(confirmed);
+      showToast(active ? (serverUntil === 0 ? '💚 Plus навсегда выдан' : '💚 Plus до ' + apgFmtDate(serverUntil)) : '💚 Plus снят');
+      if (typeof window.renderVipList === 'function' && Array.isArray(window._users) && window._users.length) window.renderVipList();
+    } catch (e) {
+      console.warn(APG_LOG, JSON.stringify({ step: 'server_failed', active, code: e?.code || null, message: e?.message || String(e), ms: Date.now() - t0 }));
+      if (mySeq !== apg.seq) return;
+      apg.busy = false; apgReplaceItem(before); // откат
+      const msg = (active ? 'Plus не выдан: ' : 'Plus не снят: ') + (e?.message || 'ошибка сети');
+      apgNote(msg, true); showToast(msg, 'err');
+    }
+  }
+
+  (function apgBind() {
+    const form = apgEl('apg-search-form'); if (!form) { console.warn(APG_LOG, 'panel_missing'); return; }
+    form.addEventListener('submit', apgSearch);
+    apgEl('apg-results').addEventListener('click', (e) => { const b = e.target.closest('[data-apg-pick]'); if (b) apgPick(Number(b.dataset.apgPick)); });
+    apgEl('apg-terms').addEventListener('click', (e) => { const b = e.target.closest('[data-apg-term]'); if (!b || apg.busy) return; apg.term = b.dataset.apgTerm; apgNote(''); apgRenderCard(); });
+    apgEl('apg-years').addEventListener('input', () => { apg.term = 'yn'; apgRenderCard(); });
+    apgEl('apg-date').addEventListener('input', () => { apg.term = 'date'; apgRenderCard(); });
+    apgEl('apg-grant').addEventListener('click', () => apgSend(true));
+    apgEl('apg-revoke').addEventListener('click', () => apgSend(false));
+  })();
 
   window.warnUserDirect = async function(uid, name) {
     const msg = await showInputModal({ title: `Предупреждение для "${escapeHtml(name)}"`, desc: 'Сообщение увидит пользователь в приложении (жёлтая модалка)', defaultVal: 'Ваш ник нарушает правила сообщества. Пожалуйста, смените его.', multiline: true, confirmLabel: 'Отправить' });
@@ -43868,7 +44133,11 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (!all.length) {
       summary.innerHTML = '';
       if (cnt) cnt.textContent = '';
-      window.ensureUsersLoaded(window.renderVipList, list);
+      // зачем (владелец 22.10, экономия чтений): вкладка больше не выкачивает ВСЮ коллекцию users при открытии —
+      // выдача и поиск идут через «Выдать Plus любому профилю» выше. Полный список — только по кнопке.
+      list.innerHTML = '<div class="reports-empty">Список всех выданных Plus требует загрузки всей базы пользователей. '
+        + '<button type="button" id="vip-load-all" style="margin-left:8px;padding:4px 12px;border-radius:6px;border:1px solid #047857;background:#064e3b;color:#86efac;cursor:pointer">Показать список</button></div>';
+      document.getElementById('vip-load-all')?.addEventListener('click', () => window.ensureUsersLoaded(window.renderVipList, list));
       return;
     }
     const vipUsers = all.map(u => ({ u, vip: vipInfo(u), premium: premiumInfo(u) })).filter(x => x.vip.hasVip || x.vip.active || x.vip.legacy);

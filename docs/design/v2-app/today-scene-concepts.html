@@ -527,7 +527,7 @@
 .d-now .qbtn { margin-top: 14px; height: 50px; border-radius: 25px; }
 .d-now .hm-chips { margin-top: 10px; }
 .d-now .hm-chips .qchip { background: rgba(255, 255, 255, .16); color: #fff; }
-/* серия в шапке — две строки, как в коде (значение и «Серия» / «Сегодня ещё нет») */
+/* серия в шапке — две строки, как в коде: значение и «Серия»; день ещё не засчитан — только пустой огонёк, без надписи (владелец 22.10) */
 .hm-pill.two { height: 42px; border-radius: 21px; padding: 0 12px 0 10px; }
 .hm-pill.two .vv { display: flex; flex-direction: column; line-height: 1.1; }
 .hm-pill.two .vv b { font-size: 15px; font-weight: 700; }
@@ -734,7 +734,7 @@ const fan = () => {
 };
 /* ═════════ ГЛАВНАЯ · 4 НОВЫЕ КОНЦЕПЦИИ (№54, владелец 21.10) ═════════
    Выше — общие детали из course-new-concepts (тема, данные курса, кольцо Plus). Блоки и тексты — из HomeV2 и макета друзей «строго как на экране»:
-   серия «N дней» / «Сегодня ещё нет», монеты, «Продолжить», «Сегодня» (Пройти урок, Потренировать диалог, Повторить карточки «Не менее 10 слов»),
+   серия «N дней» (подпись всегда «Серия», незасчитанный день — пустой огонёк), монеты, «Продолжить», «Сегодня» (Пройти урок, Потренировать диалог, Повторить карточки «Не менее 10 слов»),
    строка «Серия вдвоём с Лидией», «Фраза дня» (We are together., «2 друга уже ответили»), плитки Уроки / Диалоги / Карточки, Пик «Поднимайся выше всех». */
 const IMG = (name, cls = '', st = '') => `<img class="hm-art ${cls}" src="assets/v2art/${TH === 'ink' ? 'light' : 'dark'}/${name}.webp" alt="" style="${st}">`;
 const COINR = (r, s) => `<img class="hm-coin" src="${K.coin(r)}" width="${s}" height="${s}" style="width:${s}px;height:${s}px" alt="">`;
@@ -754,7 +754,7 @@ const LBL = ['Новичок, первый день', 'Активный учен
 /* ── шапка: серия (две строки, как в коде), монеты, энергия, колокол, аватар ── */
 const stats = (s, glass) => {
   const g = glass ? ' glass' : '';
-  const streak = `<span class="hm-pill two${g}${s.warn ? ' ember' : ''} t">${io(s.pend ? 'flame-outline' : 'flame')}<span class="vv"><b>${s.streak}</b><small>${s.pend ? 'Сегодня ещё нет' : 'Серия'}</small></span></span>`;
+  const streak = `<span class="hm-pill two${g}${s.warn ? ' ember' : ''} t">${io(s.pend ? 'flame-outline' : 'flame')}<span class="vv"><b>${s.streak}</b><small>Серия</small></span></span>`;
   const money = `<span class="hm-pill${g} t"><img src="${K.coin(5)}" alt="">${s.coins}<i class="dv"></i><span class="${s.zero ? 'hm-emb' : ''}" style="display:inline-flex;align-items:center;gap:3px">${io('flash')}${s.en}</span></span>`;
   return `${streak}${money}`;
 };

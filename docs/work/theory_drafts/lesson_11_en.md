@@ -139,7 +139,7 @@ Put not right after the clip, as always: It was not my day off. The fried egg wa
 ## 07 · Questions: Was…? Were…?
 
 **body**
-Make questions like in lesson 2: put the clip first. Was it warm in spring? Were you at home in autumn? Short answers use the clip too: Yes, it was. No, it was not. Don't use do or did here.
+Make questions like in lesson 2: put the clip first. Was it warm in spring? Were you at home in autumn? Short answers use the clip too: Yes, it was. No, it was not. Don't use do here — just like in lesson 2.
 
 **formula**
 `Was / Were` · `who / what` · `…` · `?`

@@ -139,7 +139,7 @@ En español «no» va delante: «no estaba». En inglés not va después de la p
 ## 07 · Pregunta: Was…? Were…?
 
 **body**
-La pregunta se arma como en la lección 2: la pieza delante. Was it warm in spring? Were you at home in autumn? La respuesta corta también con la pieza: Yes, it was. No, it was not. Aquí no van do ni did.
+La pregunta se arma como en la lección 2: la pieza delante. Was it warm in spring? Were you at home in autumn? La respuesta corta también con la pieza: Yes, it was. No, it was not. Aquí no va do, igual que en la lección 2.
 
 **formula**
 `Was / Were` · `quién / qué` · `…` · `?`

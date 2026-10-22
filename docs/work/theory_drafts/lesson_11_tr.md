@@ -139,7 +139,7 @@ Türkçede olumsuzluk ekin içindedir: «değildi». İngilizcede not, was ya da
 ## 07 · Soru: Was…? Were…?
 
 **body**
-Türkçede soru «mıydı?» ekiyle sona gelir. İngilizcede was ya da were başa geçer: Was it warm in spring? Were you at home in autumn? Kısa cevap da bağlayıcıyla: Yes, it was. do ve did burada yok.
+Türkçede soru «mıydı?» ekiyle sona gelir. İngilizcede was ya da were başa geçer: Was it warm in spring? Were you at home in autumn? Kısa cevap da bağlayıcıyla: Yes, it was. do burada yok, tıpkı 2. derste olduğu gibi.
 
 **formula**
 `Was / Were` · `kim / ne` · `…` · `?`

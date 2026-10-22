@@ -139,7 +139,7 @@ Po polsku «nie» stoi przed: «nie był». Po angielsku not idzie po was lub we
 ## 07 · Pytanie: Was…? Were…?
 
 **body**
-Pytanie jak w lekcji 2: was lub were na początek. Was it warm in spring? Were you at home in autumn? Krótka odpowiedź też z was: Yes, it was. No, it was not. Do i did nie są tu potrzebne.
+Pytanie jak w lekcji 2: was lub were na początek. Was it warm in spring? Were you at home in autumn? Krótka odpowiedź też z was: Yes, it was. No, it was not. Do nie jest tu potrzebne — tak jak w lekcji 2.
 
 **formula**
 `Was / Were` · `kto / co` · `…` · `?`

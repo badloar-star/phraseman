@@ -138,7 +138,7 @@
 ## 07 · Питання: Was…? Were…?
 
 **body**
-Питання — як в уроці 2: скріпку наперед. Was it warm in spring? Were you at home in autumn? Коротко відповідають теж скріпкою: Yes, it was. No, it was not. Do і did тут не потрібні.
+Питання — як в уроці 2: скріпку наперед. Was it warm in spring? Were you at home in autumn? Коротко відповідають теж скріпкою: Yes, it was. No, it was not. Do тут не потрібен — як і в уроці 2.
 
 **formula**
 `Was / Were` · `хто / що` · `…` · `?`

@@ -144,7 +144,7 @@
 ## 07 · Вопрос: Was…? Were…?
 
 **body**
-Вопрос — как в уроке 2: скрепку вперёд. Was it warm in spring? Were you at home in autumn? Коротко отвечают тоже скрепкой: Yes, it was. No, it was not. Do и did здесь не нужны.
+Вопрос — как в уроке 2: скрепку вперёд. Was it warm in spring? Were you at home in autumn? Коротко отвечают тоже скрепкой: Yes, it was. No, it was not. Do здесь не нужен — как и в уроке 2.
 
 **formula**
 `Was / Were` · `кто / что` · `…` · `?`

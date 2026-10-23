@@ -1,0 +1,2351 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-20",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-20:word:mystery",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mystery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:word:mystery:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mystery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:word:mystery:audio",
+            "transcript": "mystery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:word:mystery:r1",
+              "targetText": "mystery",
+              "meaningByLocale": {
+                "ru": "тайна, детективная история.",
+                "uk": "таємниця, детективна історія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mystery",
+            "definitionByLocale": {
+              "ru": "тайна, детективная история.",
+              "uk": "таємниця, детективна історія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я читаю этот детектив уже час.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я читаю этот детектив уже час.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have been reading this mystery for an hour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я читаю этот детектив уже час.»",
+            "uk": "Скажіть: «Я читаю цей детектив уже годину.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "reading",
+            "this",
+            "mystery",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об увлечении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об увлечении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об увлечении.",
+            "uk": "Доповніть розповідь про захоплення."
+          },
+          "gappedTargetPhrase": "I ___ been reading this mystery for an hour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-20:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об увлечении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об увлечении.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об увлечении.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i03:r1",
+            "text": "I have been reading this mystery for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i03:r2",
+            "text": "We have been reading this mystery for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i03:r3",
+            "text": "I have been reading this mystery for two hours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i03:audio",
+            "transcript": "I have been reading this mystery for an hour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:i03:r1",
+              "targetText": "I have been reading this mystery for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i03:r2",
+              "targetText": "We have been reading this mystery for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i03:r3",
+              "targetText": "I have been reading this mystery for two hours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been reading this mystery for an hour.",
+                "uk": "У записі звучить I have been reading this mystery for an hour."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been reading this mystery for an hour.",
+                "uk": "У записі звучить I have been reading this mystery for an hour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:word:fantasy",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fantasy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:word:fantasy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fantasy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:word:fantasy:audio",
+            "transcript": "fantasy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:word:fantasy:r1",
+              "targetText": "fantasy",
+              "meaningByLocale": {
+                "ru": "фэнтези, фантазия.",
+                "uk": "фентезі, фантазія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fantasy",
+            "definitionByLocale": {
+              "ru": "фэнтези, фантазия.",
+              "uk": "фентезі, фантазія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она читает фэнтези весь день после полудня.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она читает фэнтези весь день после полудня.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has been reading fantasy all afternoon.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она читает фэнтези весь день после полудня.»",
+            "uk": "Скажіть: «Вона читає фентезі весь час після полудня.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "reading",
+            "fantasy",
+            "all",
+            "afternoon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об увлечении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об увлечении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об увлечении.",
+            "uk": "Доповніть розповідь про захоплення."
+          },
+          "gappedTargetPhrase": "She ___ been reading fantasy all afternoon.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-20:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об увлечении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об увлечении.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об увлечении.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i06:r1",
+            "text": "She has been reading fantasy all afternoon."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i06:r2",
+            "text": "He has been reading fantasy all afternoon."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i06:r3",
+            "text": "They have been reading fantasy all afternoon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i06:audio",
+            "transcript": "She has been reading fantasy all afternoon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:i06:r1",
+              "targetText": "She has been reading fantasy all afternoon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i06:r2",
+              "targetText": "He has been reading fantasy all afternoon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i06:r3",
+              "targetText": "They have been reading fantasy all afternoon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been reading fantasy all afternoon.",
+                "uk": "У записі звучить She has been reading fantasy all afternoon."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been reading fantasy all afternoon.",
+                "uk": "У записі звучить She has been reading fantasy all afternoon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:word:romance",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — romance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:word:romance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — romance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:word:romance:audio",
+            "transcript": "romance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:word:romance:r1",
+              "targetText": "romance",
+              "meaningByLocale": {
+                "ru": "романтическая история, любовный роман.",
+                "uk": "романтична історія, любовний роман."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "romance",
+            "definitionByLocale": {
+              "ru": "романтическая история, любовный роман.",
+              "uk": "романтична історія, любовний роман."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы обсуждаем этот любовный роман всё утро.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы обсуждаем этот любовный роман всё утро.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have been discussing this romance all morning.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы обсуждаем этот любовный роман всё утро.»",
+            "uk": "Скажіть: «Ми обговорюємо цей любовний роман весь ранок.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "been",
+            "discussing",
+            "this",
+            "romance",
+            "all",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об увлечении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i08:r1",
+            "text": "discussing"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i08:r2",
+            "text": "discuss"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i08:r3",
+            "text": "discussed"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об увлечении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об увлечении.",
+            "uk": "Доповніть розповідь про захоплення."
+          },
+          "gappedTargetPhrase": "We have been ___ this romance all morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-20:i08:r1",
+              "text": "discussing"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i08:r2",
+              "text": "discuss"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i08:r3",
+              "text": "discussed"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об увлечении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об увлечении.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма discussing.",
+                "uk": "Після have been потрібна форма discussing."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об увлечении.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма discussing.",
+                "uk": "Після have been потрібна форма discussing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i09:r1",
+            "text": "We have been discussing this romance all morning."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i09:r2",
+            "text": "They have been discussing this romance all morning."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i09:r3",
+            "text": "We have been discussing this romance all day."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i09:audio",
+            "transcript": "We have been discussing this romance all morning."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:i09:r1",
+              "targetText": "We have been discussing this romance all morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i09:r2",
+              "targetText": "They have been discussing this romance all morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i09:r3",
+              "targetText": "We have been discussing this romance all day.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been discussing this romance all morning.",
+                "uk": "У записі звучить We have been discussing this romance all morning."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been discussing this romance all morning.",
+                "uk": "У записі звучить We have been discussing this romance all morning."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:word:adventure",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — adventure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:word:adventure:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — adventure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:word:adventure:audio",
+            "transcript": "adventure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:word:adventure:r1",
+              "targetText": "adventure",
+              "meaningByLocale": {
+                "ru": "приключение.",
+                "uk": "пригода."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adventure",
+            "definitionByLocale": {
+              "ru": "приключение.",
+              "uk": "пригода."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Они планируют приключение уже несколько недель.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Они планируют приключение уже несколько недель.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They have been planning an adventure for weeks.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Они планируют приключение уже несколько недель.»",
+            "uk": "Скажіть: «Вони планують пригоду вже кілька тижнів.»"
+          },
+          "orderedTokens": [
+            "They",
+            "have",
+            "been",
+            "planning",
+            "an",
+            "adventure",
+            "for",
+            "weeks"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об увлечении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i11:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i11:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i11:r3",
+            "text": "being"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об увлечении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об увлечении.",
+            "uk": "Доповніть розповідь про захоплення."
+          },
+          "gappedTargetPhrase": "They have ___ planning an adventure for weeks.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-20:i11:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i11:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i11:r3",
+              "text": "being"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об увлечении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об увлечении.",
+              "feedbackByLocale": {
+                "ru": "Между have и planning нужно been.",
+                "uk": "Між have та planning потрібне been."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об увлечении.",
+              "feedbackByLocale": {
+                "ru": "Между have и planning нужно been.",
+                "uk": "Між have та planning потрібне been."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i12:r1",
+            "text": "They have been planning an adventure for weeks."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i12:r2",
+            "text": "We have been planning an adventure for weeks."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i12:r3",
+            "text": "They have been planning an adventure for months."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i12:audio",
+            "transcript": "They have been planning an adventure for weeks."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:i12:r1",
+              "targetText": "They have been planning an adventure for weeks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i12:r2",
+              "targetText": "We have been planning an adventure for weeks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i12:r3",
+              "targetText": "They have been planning an adventure for months.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been planning an adventure for weeks.",
+                "uk": "У записі звучить They have been planning an adventure for weeks."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been planning an adventure for weeks.",
+                "uk": "У записі звучить They have been planning an adventure for weeks."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-20:i13:p1",
+              "target": "mystery",
+              "meaningByLocale": {
+                "ru": "тайна, детективная история",
+                "uk": "таємниця, детективна історія"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-20:i13:p2",
+              "target": "fantasy",
+              "meaningByLocale": {
+                "ru": "фэнтези, фантазия",
+                "uk": "фентезі, фантазія"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-20:i13:p3",
+              "target": "romance",
+              "meaningByLocale": {
+                "ru": "романтическая история, любовный роман",
+                "uk": "романтична історія, любовний роман"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-20:i13:p4",
+              "target": "adventure",
+              "meaningByLocale": {
+                "ru": "приключение",
+                "uk": "пригода"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mystery",
+            "fantasy",
+            "romance",
+            "adventure"
+          ],
+          "rightColumn": [
+            "тайна, детективная история",
+            "фэнтези, фантазия",
+            "романтическая история, любовный роман",
+            "приключение"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работает с утра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i15:audio"
+        ],
+        "accessibilityLabel": "Работает с утра",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы планируем приключение уже несколько недель».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы планируем приключение уже несколько недель».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i16:audio",
+            "transcript": "We have been planning an adventure for weeks."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have been planning an adventure for weeks.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Они обсуждают этот любовный роман весь день».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Они обсуждают этот любовный роман весь день».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i17:audio",
+            "transcript": "They have been discussing this romance all day."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They have been discussing this romance all day.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-20:word:mystery",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mystery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:word:mystery:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mystery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:word:mystery:audio",
+            "transcript": "mystery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:word:mystery:r1",
+              "targetText": "mystery",
+              "meaningByLocale": {
+                "ru": "тайна, детективная история.",
+                "uk": "таємниця, детективна історія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mystery",
+            "definitionByLocale": {
+              "ru": "тайна, детективная история.",
+              "uk": "таємниця, детективна історія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я читаю цей детектив уже годину.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я читаю цей детектив уже годину.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have been reading this mystery for an hour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я читаю этот детектив уже час.»",
+            "uk": "Скажіть: «Я читаю цей детектив уже годину.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "reading",
+            "this",
+            "mystery",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про захоплення.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про захоплення.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об увлечении.",
+            "uk": "Доповніть розповідь про захоплення."
+          },
+          "gappedTargetPhrase": "I ___ been reading this mystery for an hour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-20:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про захоплення.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про захоплення.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про захоплення.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i03:r1",
+            "text": "I have been reading this mystery for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i03:r2",
+            "text": "We have been reading this mystery for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i03:r3",
+            "text": "I have been reading this mystery for two hours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i03:audio",
+            "transcript": "I have been reading this mystery for an hour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:i03:r1",
+              "targetText": "I have been reading this mystery for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i03:r2",
+              "targetText": "We have been reading this mystery for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i03:r3",
+              "targetText": "I have been reading this mystery for two hours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been reading this mystery for an hour.",
+                "uk": "У записі звучить I have been reading this mystery for an hour."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been reading this mystery for an hour.",
+                "uk": "У записі звучить I have been reading this mystery for an hour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:word:fantasy",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fantasy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:word:fantasy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fantasy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:word:fantasy:audio",
+            "transcript": "fantasy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:word:fantasy:r1",
+              "targetText": "fantasy",
+              "meaningByLocale": {
+                "ru": "фэнтези, фантазия.",
+                "uk": "фентезі, фантазія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fantasy",
+            "definitionByLocale": {
+              "ru": "фэнтези, фантазия.",
+              "uk": "фентезі, фантазія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона читає фентезі весь час після полудня.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона читає фентезі весь час після полудня.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has been reading fantasy all afternoon.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она читает фэнтези весь день после полудня.»",
+            "uk": "Скажіть: «Вона читає фентезі весь час після полудня.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "reading",
+            "fantasy",
+            "all",
+            "afternoon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про захоплення.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про захоплення.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об увлечении.",
+            "uk": "Доповніть розповідь про захоплення."
+          },
+          "gappedTargetPhrase": "She ___ been reading fantasy all afternoon.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-20:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про захоплення.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про захоплення.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про захоплення.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i06:r1",
+            "text": "She has been reading fantasy all afternoon."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i06:r2",
+            "text": "He has been reading fantasy all afternoon."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i06:r3",
+            "text": "They have been reading fantasy all afternoon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i06:audio",
+            "transcript": "She has been reading fantasy all afternoon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:i06:r1",
+              "targetText": "She has been reading fantasy all afternoon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i06:r2",
+              "targetText": "He has been reading fantasy all afternoon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i06:r3",
+              "targetText": "They have been reading fantasy all afternoon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been reading fantasy all afternoon.",
+                "uk": "У записі звучить She has been reading fantasy all afternoon."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been reading fantasy all afternoon.",
+                "uk": "У записі звучить She has been reading fantasy all afternoon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:word:romance",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — romance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:word:romance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — romance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:word:romance:audio",
+            "transcript": "romance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:word:romance:r1",
+              "targetText": "romance",
+              "meaningByLocale": {
+                "ru": "романтическая история, любовный роман.",
+                "uk": "романтична історія, любовний роман."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "romance",
+            "definitionByLocale": {
+              "ru": "романтическая история, любовный роман.",
+              "uk": "романтична історія, любовний роман."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми обговорюємо цей любовний роман весь ранок.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми обговорюємо цей любовний роман весь ранок.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have been discussing this romance all morning.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы обсуждаем этот любовный роман всё утро.»",
+            "uk": "Скажіть: «Ми обговорюємо цей любовний роман весь ранок.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "been",
+            "discussing",
+            "this",
+            "romance",
+            "all",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про захоплення.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i08:r1",
+            "text": "discussing"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i08:r2",
+            "text": "discuss"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i08:r3",
+            "text": "discussed"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про захоплення.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об увлечении.",
+            "uk": "Доповніть розповідь про захоплення."
+          },
+          "gappedTargetPhrase": "We have been ___ this romance all morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-20:i08:r1",
+              "text": "discussing"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i08:r2",
+              "text": "discuss"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i08:r3",
+              "text": "discussed"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про захоплення.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про захоплення.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма discussing.",
+                "uk": "Після have been потрібна форма discussing."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про захоплення.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма discussing.",
+                "uk": "Після have been потрібна форма discussing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i09:r1",
+            "text": "We have been discussing this romance all morning."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i09:r2",
+            "text": "They have been discussing this romance all morning."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i09:r3",
+            "text": "We have been discussing this romance all day."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i09:audio",
+            "transcript": "We have been discussing this romance all morning."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:i09:r1",
+              "targetText": "We have been discussing this romance all morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i09:r2",
+              "targetText": "They have been discussing this romance all morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i09:r3",
+              "targetText": "We have been discussing this romance all day.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been discussing this romance all morning.",
+                "uk": "У записі звучить We have been discussing this romance all morning."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been discussing this romance all morning.",
+                "uk": "У записі звучить We have been discussing this romance all morning."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:word:adventure",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — adventure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:word:adventure:audio"
+        ],
+        "accessibilityLabel": "Картка слова — adventure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:word:adventure:audio",
+            "transcript": "adventure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:word:adventure:r1",
+              "targetText": "adventure",
+              "meaningByLocale": {
+                "ru": "приключение.",
+                "uk": "пригода."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adventure",
+            "definitionByLocale": {
+              "ru": "приключение.",
+              "uk": "пригода."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вони планують пригоду вже кілька тижнів.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вони планують пригоду вже кілька тижнів.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They have been planning an adventure for weeks.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Они планируют приключение уже несколько недель.»",
+            "uk": "Скажіть: «Вони планують пригоду вже кілька тижнів.»"
+          },
+          "orderedTokens": [
+            "They",
+            "have",
+            "been",
+            "planning",
+            "an",
+            "adventure",
+            "for",
+            "weeks"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про захоплення.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i11:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i11:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i11:r3",
+            "text": "being"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про захоплення.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об увлечении.",
+            "uk": "Доповніть розповідь про захоплення."
+          },
+          "gappedTargetPhrase": "They have ___ planning an adventure for weeks.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-20:i11:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i11:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i11:r3",
+              "text": "being"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про захоплення.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про захоплення.",
+              "feedbackByLocale": {
+                "ru": "Между have и planning нужно been.",
+                "uk": "Між have та planning потрібне been."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про захоплення.",
+              "feedbackByLocale": {
+                "ru": "Между have и planning нужно been.",
+                "uk": "Між have та planning потрібне been."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-20:i12:r1",
+            "text": "They have been planning an adventure for weeks."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i12:r2",
+            "text": "We have been planning an adventure for weeks."
+          },
+          {
+            "responseId": "en:lesson-24:session-20:i12:r3",
+            "text": "They have been planning an adventure for months."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i12:audio",
+            "transcript": "They have been planning an adventure for weeks."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-20:i12:r1",
+              "targetText": "They have been planning an adventure for weeks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i12:r2",
+              "targetText": "We have been planning an adventure for weeks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i12:r3",
+              "targetText": "They have been planning an adventure for months.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-20:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been planning an adventure for weeks.",
+                "uk": "У записі звучить They have been planning an adventure for weeks."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-20:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been planning an adventure for weeks.",
+                "uk": "У записі звучить They have been planning an adventure for weeks."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-20:i13:p1",
+              "target": "mystery",
+              "meaningByLocale": {
+                "ru": "тайна, детективная история",
+                "uk": "таємниця, детективна історія"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-20:i13:p2",
+              "target": "fantasy",
+              "meaningByLocale": {
+                "ru": "фэнтези, фантазия",
+                "uk": "фентезі, фантазія"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-20:i13:p3",
+              "target": "romance",
+              "meaningByLocale": {
+                "ru": "романтическая история, любовный роман",
+                "uk": "романтична історія, любовний роман"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-20:i13:p4",
+              "target": "adventure",
+              "meaningByLocale": {
+                "ru": "приключение",
+                "uk": "пригода"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mystery",
+            "fantasy",
+            "romance",
+            "adventure"
+          ],
+          "rightColumn": [
+            "таємниця, детективна історія",
+            "фентезі, фантазія",
+            "романтична історія, любовний роман",
+            "пригода"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працює з ранку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i15:audio"
+        ],
+        "accessibilityLabel": "Працює з ранку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми плануємо пригоду вже кілька тижнів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми плануємо пригоду вже кілька тижнів».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i16:audio",
+            "transcript": "We have been planning an adventure for weeks."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have been planning an adventure for weeks.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-20:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вони обговорюють цей любовний роман весь день».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вони обговорюють цей любовний роман весь день».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-20:i17:audio",
+            "transcript": "They have been discussing this romance all day."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They have been discussing this romance all day.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-20:word:mystery",
+      "correctText": "mystery",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i01",
+      "correctText": "I have been reading this mystery for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i02",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-20:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i03",
+      "correctText": "I have been reading this mystery for an hour.",
+      "correctResponseId": "en:lesson-24:session-20:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:word:fantasy",
+      "correctText": "fantasy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i04",
+      "correctText": "She has been reading fantasy all afternoon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i05",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-24:session-20:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i06",
+      "correctText": "She has been reading fantasy all afternoon.",
+      "correctResponseId": "en:lesson-24:session-20:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:word:romance",
+      "correctText": "romance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i07",
+      "correctText": "We have been discussing this romance all morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i08",
+      "correctText": "discussing",
+      "correctResponseId": "en:lesson-24:session-20:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i09",
+      "correctText": "We have been discussing this romance all morning.",
+      "correctResponseId": "en:lesson-24:session-20:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:word:adventure",
+      "correctText": "adventure",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i10",
+      "correctText": "They have been planning an adventure for weeks.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i11",
+      "correctText": "been",
+      "correctResponseId": "en:lesson-24:session-20:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i12",
+      "correctText": "They have been planning an adventure for weeks.",
+      "correctResponseId": "en:lesson-24:session-20:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i15",
+      "correctText": "She has been working since this morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i16",
+      "correctText": "We have been planning an adventure for weeks.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-20:i17",
+      "correctText": "They have been discussing this romance all day.",
+      "correctResponseId": null
+    }
+  ]
+}

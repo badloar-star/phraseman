@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-20:word:mystery",
+    "correctText": "mystery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i01",
+    "correctText": "I have been reading this mystery for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i03",
+    "correctText": "I have been reading this mystery for an hour.",
+    "correctResponseId": "en:lesson-24:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:word:fantasy",
+    "correctText": "fantasy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i04",
+    "correctText": "She has been reading fantasy all afternoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i05",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i06",
+    "correctText": "She has been reading fantasy all afternoon.",
+    "correctResponseId": "en:lesson-24:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:word:romance",
+    "correctText": "romance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i07",
+    "correctText": "We have been discussing this romance all morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i08",
+    "correctText": "discussing",
+    "correctResponseId": "en:lesson-24:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i09",
+    "correctText": "We have been discussing this romance all morning.",
+    "correctResponseId": "en:lesson-24:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:word:adventure",
+    "correctText": "adventure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i10",
+    "correctText": "They have been planning an adventure for weeks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i11",
+    "correctText": "been",
+    "correctResponseId": "en:lesson-24:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i12",
+    "correctText": "They have been planning an adventure for weeks.",
+    "correctResponseId": "en:lesson-24:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i13",
+    "correctText": "en:lesson-24:session-20:i13:p1=mystery\nen:lesson-24:session-20:i13:p2=fantasy\nen:lesson-24:session-20:i13:p3=romance\nen:lesson-24:session-20:i13:p4=adventure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i16",
+    "correctText": "We have been planning an adventure for weeks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-20:i17",
+    "correctText": "They have been discussing this romance all day.",
+    "correctResponseId": null
+  }
+]

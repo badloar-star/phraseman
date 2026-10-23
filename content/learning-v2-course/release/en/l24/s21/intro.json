@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "have|has been + verb-ing",
+    "uk": "have|has been + verb-ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Месяц в Японии",
+        "uk": "Місяць у Японії"
+      },
+      "bodyByLocale": {
+        "ru": "Japan — Япония. Японский язык — знакомое Japanese; название страны другое. I have been working in Japan for a month — я работаю в Японии уже месяц. Мы рассказываем о работе, которая началась раньше и продолжается. Даже если чемодан ещё не разобран, месяц уже прошёл.",
+        "uk": "Japan — Японія. Японська мова — знайоме Japanese; назва країни інша. I have been working in Japan for a month — я працюю в Японії вже місяць. Ми розповідаємо про роботу, яка почалася раніше й триває. Навіть якщо валізу ще не розібрано, місяць уже минув."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-21:intro1:r1",
+              "text": "I have been working in Japan for a month."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro1:r2",
+              "text": "I have working in Japan for a month."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro1:r3",
+              "text": "I has been working in Japan for a month."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-21:intro1:r1",
+              "text": "I have been working in Japan for a month."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro1:r2",
+              "text": "I have working in Japan for a month."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro1:r3",
+              "text": "I has been working in Japan for a month."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Учёба в Китае",
+        "uk": "Навчання в Китаї"
+      },
+      "bodyByLocale": {
+        "ru": "China — Китай. She has been studying in China since September — она учится в Китае с сентября. Studying in China означает место учёбы; studying Chinese — изучение китайского языка. Since September указывает начало. После has been используем studying.",
+        "uk": "China — Китай. She has been studying in China since September — вона навчається в Китаї з вересня. Studying in China означає місце навчання; studying Chinese — вивчення китайської мови. Since September указує початок. Після has been використовуємо studying."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-21:intro2:r1",
+              "text": "She has been studying in China since September."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro2:r2",
+              "text": "She has studying in China since September."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro2:r3",
+              "text": "She have been studying in China since September."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-21:intro2:r1",
+              "text": "She has been studying in China since September."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro2:r2",
+              "text": "She has studying in China since September."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro2:r3",
+              "text": "She have been studying in China since September."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поездка продолжается",
+        "uk": "Подорож триває"
+      },
+      "bodyByLocale": {
+        "ru": "Mexico — Мексика, Greece — Греция. We have been travelling around Mexico for two weeks — мы путешествуем по Мексике уже две недели. They have been staying in Greece since Monday — они находятся в Греции с понедельника. Stay здесь описывает временное пребывание во время поездки. Перед этими названиями стран нет the.",
+        "uk": "Mexico — Мексика, Greece — Греція. We have been travelling around Mexico for two weeks — ми подорожуємо Мексикою вже два тижні. They have been staying in Greece since Monday — вони перебувають у Греції з понеділка. Stay тут описує тимчасове перебування під час подорожі. Перед цими назвами країн немає the."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-21:intro3:r1",
+              "text": "They have been staying in Greece since Monday."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro3:r2",
+              "text": "They have staying in Greece since Monday."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro3:r3",
+              "text": "They has been staying in Greece since Monday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-21:intro3:r1",
+              "text": "They have been staying in Greece since Monday."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro3:r2",
+              "text": "They have staying in Greece since Monday."
+            },
+            {
+              "responseId": "en:lesson-24:session-21:intro3:r3",
+              "text": "They has been staying in Greece since Monday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7e505ba5943676c8d03af3a0266b7111e775ed08bc352fcb980218d490a36572"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-21:word:Japan",
+    "correctText": "Japan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i01",
+    "correctText": "I have been working in Japan for a month.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i03",
+    "correctText": "I have been working in Japan for a month.",
+    "correctResponseId": "en:lesson-24:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:word:China",
+    "correctText": "China",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i04",
+    "correctText": "She has been studying in China since September.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i05",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i06",
+    "correctText": "She has been studying in China since September.",
+    "correctResponseId": "en:lesson-24:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:word:Mexico",
+    "correctText": "Mexico",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i07",
+    "correctText": "We have been travelling around Mexico for two weeks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i08",
+    "correctText": "travelling",
+    "correctResponseId": "en:lesson-24:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i09",
+    "correctText": "We have been travelling around Mexico for two weeks.",
+    "correctResponseId": "en:lesson-24:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:word:Greece",
+    "correctText": "Greece",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i10",
+    "correctText": "They have been staying in Greece since Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i11",
+    "correctText": "been",
+    "correctResponseId": "en:lesson-24:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i12",
+    "correctText": "They have been staying in Greece since Monday.",
+    "correctResponseId": "en:lesson-24:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i13",
+    "correctText": "en:lesson-24:session-21:i13:p1=Japan\nen:lesson-24:session-21:i13:p2=China\nen:lesson-24:session-21:i13:p3=Mexico\nen:lesson-24:session-21:i13:p4=Greece",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i16",
+    "correctText": "We have been working in Japan for a year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-21:i17",
+    "correctText": "They have been travelling around Mexico for three weeks.",
+    "correctResponseId": null
+  }
+]

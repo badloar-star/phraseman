@@ -53,99 +53,99 @@ Lack — не мати чогось у потрібній кількості. I 
 <!-- interaction_id: en:lesson-26:session-08:word:shortage; family: word_card -->
 > **shortage** — Нестача. Shortage — ситуація, коли чогось менше, ніж потрібно.
 
-**2 · Скажіть: «Я використовую заморожені фрукти, коли бракує свіжих фруктів.»**
+**2 · Поясніть заміну продукту: «Ми купуємо рис, коли бракує картоплі».**
 <!-- interaction_id: en:lesson-26:session-08:i01; family: phrase_builder -->
-Плитки: `fruit` `fresh` `of` `shortage` `a` `is` `there` `when` `fruit` `frozen` `use` `I` → **I use frozen fruit when there is a shortage of fresh fruit.**
+Плитки: `potatoes` `of` `shortage` `a` `is` `there` `when` `rice` `buy` `We` → **We buy rice when there is a shortage of potatoes.**
 
-**3 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-08:i02; family: context_gap_grammar -->
-I ___ frozen fruit when there is a shortage of fresh fruit. → **use** · uses · using
-- uses — *Звичайна закономірність: Present Simple. Потрібна форма use.*
-- using — *Звичайна закономірність: Present Simple. Потрібна форма use.*
+**3 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-08:i02; family: listen_choose -->
+🔊 *I use frozen vegetables when fresh vegetables are expensive.* → **I use frozen vegetables when fresh vegetables are expensive.** · I use fresh vegetables when frozen vegetables are expensive. · I use frozen vegetables when fresh vegetables are cheap.
+- I use fresh vegetables when frozen vegetables are expensive. — *У записі звучить I use frozen vegetables when fresh vegetables are expensive.*
+- I use frozen vegetables when fresh vegetables are cheap. — *У записі звучить I use frozen vegetables when fresh vegetables are expensive.*
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-08:i03; family: listen_choose -->
-🔊 *I use frozen fruit when there is a shortage of fresh fruit.* → **I use frozen fruit when there is a shortage of fresh fruit.** · She uses frozen fruit when there is a shortage of fresh fruit. · I use frozen vegetables when there is a shortage of fresh vegetables.
-- She uses frozen fruit when there is a shortage of fresh fruit. — *У записі звучить I use frozen fruit when there is a shortage of fresh fruit.*
-- I use frozen vegetables when there is a shortage of fresh vegetables. — *У записі звучить I use frozen fruit when there is a shortage of fresh fruit.*
-
-**5 · Картка слова — excess**
+**4 · Картка слова — excess**
 <!-- interaction_id: en:lesson-26:session-08:word:excess; family: word_card -->
 > **excess** — Зайвий. Excess тут — той, що перевищує потрібну кількість.
 
-**6 · Скажіть: «Я видаляю зайвий жир, коли готую м’ясо.»**
-<!-- interaction_id: en:lesson-26:session-08:i04; family: phrase_builder -->
-Плитки: `meat` `cook` `I` `when` `fat` `excess` `remove` `I` → **I remove excess fat when I cook meat.**
+**5 · Ви завжди прибираєте зайвий жир перед смаженням. Доповніть звичну дію.**
+<!-- interaction_id: en:lesson-26:session-08:i03; family: context_gap_grammar -->
+I ___ excess fat when I prepare meat. → **remove** · removes · removing
+- removes — *Після I у Present Simple потрібна форма remove без -s.*
+- removing — *Для звичної дії тут потрібно remove; removing без допоміжного дієслова не підходить.*
 
-**7 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-08:i05; family: context_gap_grammar -->
-I ___ excess fat when I cook meat. → **remove** · removes · removing
-- removes — *Звичайна закономірність: Present Simple. Потрібна форма remove.*
-- removing — *Звичайна закономірність: Present Simple. Потрібна форма remove.*
+**6 · Відновіть почуте пояснення зберігання.**
+<!-- interaction_id: en:lesson-26:session-08:i04; family: listen_build_dictation -->
+🔊 *I freeze bread when I buy too much.* Плитки: `much` `too` `buy` `I` `when` `bread` `freeze` `I` → **I freeze bread when I buy too much.**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-08:i06; family: listen_choose -->
-🔊 *I remove excess fat when I cook meat.* → **I remove excess fat when I cook meat.** · She removes excess fat when she cooks meat. · I remove excess fat when I cook chicken.
-- She removes excess fat when she cooks meat. — *У записі звучить I remove excess fat when I cook meat.*
-- I remove excess fat when I cook chicken. — *У записі звучить I remove excess fat when I cook meat.*
-
-**9 · Картка слова — chunks**
+**7 · Картка слова — chunks**
 <!-- interaction_id: en:lesson-26:session-08:word:chunks; family: word_card -->
 > **chunks** — Шматочки. Chunk — щільний шматок; chunks — множина.
 
-**10 · Скажіть: «Я використовую невеликі шматочки картоплі, коли готую суп.»**
-<!-- interaction_id: en:lesson-26:session-08:i07; family: phrase_builder -->
-Плитки: `soup` `make` `I` `when` `potato` `of` `chunks` `small` `use` `I` → **I use small chunks of potato when I make soup.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-08:i05; family: listen_choose -->
+🔊 *I cut the potatoes into chunks when I make soup.* → **I cut the potatoes into chunks when I make soup.** · I cut the carrots into chunks when I make soup. · I cut the potatoes into slices when I make soup.
+- I cut the carrots into chunks when I make soup. — *У записі звучить I cut the potatoes into chunks when I make soup.*
+- I cut the potatoes into slices when I make soup. — *У записі звучить I cut the potatoes into chunks when I make soup.*
 
-**11 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-08:i08; family: context_gap_grammar -->
-I ___ small chunks of potato when I make soup. → **use** · uses · using
-- uses — *Звичайна закономірність: Present Simple. Потрібна форма use.*
-- using — *Звичайна закономірність: Present Simple. Потрібна форма use.*
+**9 · Розкажіть про свій сніданок: «Я додаю фрукти, коли їм кашу».**
+<!-- interaction_id: en:lesson-26:session-08:i06; family: phrase_builder -->
+Плитки: `porridge` `eat` `I` `when` `fruit` `add` `I` → **I add fruit when I eat porridge.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-08:i09; family: listen_choose -->
-🔊 *I use small chunks of potato when I make soup.* → **I use small chunks of potato when I make soup.** · She uses small chunks of potato when she makes soup. · I use small chunks of carrot when I make soup.
-- She uses small chunks of potato when she makes soup. — *У записі звучить I use small chunks of potato when I make soup.*
-- I use small chunks of carrot when I make soup. — *У записі звучить I use small chunks of potato when I make soup.*
-
-**13 · Картка слова — lacks**
+**10 · Картка слова — lacks**
 <!-- interaction_id: en:lesson-26:session-08:word:lacks; family: word_card -->
 > **lacks** — Бракує. Lack — не мати чогось у потрібній кількості; lacks — форма із закінченням -s.
 
-**14 · Скажіть: «Я додаю сіль, якщо супу бракує смаку.»**
-<!-- interaction_id: en:lesson-26:session-08:i10; family: phrase_builder -->
-Плитки: `flavour` `lacks` `soup` `the` `if` `salt` `add` `I` → **I add salt if the soup lacks flavour.**
+**11 · Поясніть вибір приправи: «Я додаю перець, якщо супу бракує смаку».**
+<!-- interaction_id: en:lesson-26:session-08:i07; family: phrase_builder -->
+Плитки: `flavour` `lacks` `soup` `the` `if` `pepper` `add` `I` → **I add pepper if the soup lacks flavour.**
 
-**15 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-08:i11; family: context_gap_grammar -->
-I ___ salt if the soup lacks flavour. → **add** · adds · adding
-- adds — *Звичайна закономірність: Present Simple. Потрібна форма add.*
-- adding — *Звичайна закономірність: Present Simple. Потрібна форма add.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-08:i12; family: listen_choose -->
-🔊 *I add salt if the soup lacks flavour.* → **I add salt if the soup lacks flavour.** · She adds salt if the soup lacks flavour. · I add herbs if the soup lacks flavour.
-- She adds salt if the soup lacks flavour. — *У записі звучить I add salt if the soup lacks flavour.*
-- I add herbs if the soup lacks flavour. — *У записі звучить I add salt if the soup lacks flavour.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-26:session-08:i13; family: speed_match -->
+**12 · Поєднайте слова з їхніми значеннями**
+<!-- interaction_id: en:lesson-26:session-08:i08; family: speed_match -->
 shortage — нестача · excess — зайвий · chunks — шматочки · lacks — бракує
 
-**18 · Відпочиваю, коли втомлююся**
-<!-- interaction_id: en:lesson-26:session-08:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**13 · Ви описуєте свою звичайну звичку, а не разовий план. Доповніть умову.**
+<!-- interaction_id: en:lesson-26:session-08:i09; family: context_gap_grammar -->
+I add water if the sauce ___ too thick. → **is** · are · be
+- are — *The sauce — однина: is.*
+- be — *Тут потрібна особова форма is, а не початкова be.*
 
-**19 · Якщо йде дощ, залишаюся вдома**
-<!-- interaction_id: en:lesson-26:session-08:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+**14 · Коли свіжого молока немає, ви використовуєте сухе. Виберіть заперечну форму.**
+<!-- interaction_id: en:lesson-26:session-08:i10; family: context_gap_grammar -->
+I use powdered milk when I ___ have fresh milk. → **do not** · does not · am not
+- does not — *Після I потрібно do not; does not вживається з he, she, it.*
+- am not — *Заперечення з have тут утворюється через do not have.*
 
-**20 · Скажіть: «Він видаляє зайвий жир, коли готує м’ясо».**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-08:i11; family: listen_choose -->
+🔊 *We share the food when there is not enough for everyone.* → **We share the food when there is not enough for everyone.** · We save the food when there is not enough for everyone. · We share the food when there is too much for everyone.
+- We save the food when there is not enough for everyone. — *У записі звучить We share the food when there is not enough for everyone.*
+- We share the food when there is too much for everyone. — *У записі звучить We share the food when there is not enough for everyone.*
+
+**16 · Почуйте, що кухар прибирає з тарілки.**
+<!-- interaction_id: en:lesson-26:session-08:i12; family: listen_build_dictation -->
+🔊 *I remove excess oil when I serve the food.* Плитки: `food` `the` `serve` `I` `when` `oil` `excess` `remove` `I` → **I remove excess oil when I serve the food.**
+
+**17 · Поясніть свою звичку: «Я куштую суп, коли додаю сіль».**
+<!-- interaction_id: en:lesson-26:session-08:i13; family: scripted_repeat_compare -->
+🎙 **I taste the soup when I add salt.**
+
+**18 · Скажіть: «Вона купує заморожені фрукти, коли бракує свіжих фруктів».**
+<!-- interaction_id: en:lesson-26:session-08:i14; family: phrase_builder -->
+Плитки: `fruit` `fresh` `of` `shortage` `a` `is` `there` `when` `fruit` `frozen` `buys` `She` → **She buys frozen fruit when there is a shortage of fresh fruit.**
+
+**19 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-08:i15; family: listen_choose -->
+🔊 *I use small chunks of apple when I make this cake.* → **I use small chunks of apple when I make this cake.** · I use small chunks of pear when I make this cake. · I use large chunks of apple when I make this cake.
+- I use small chunks of pear when I make this cake. — *У записі звучить I use small chunks of apple when I make this cake.*
+- I use large chunks of apple when I make this cake. — *У записі звучить I use small chunks of apple when I make this cake.*
+
+**20 · Навчіть друга свого способу: «Я додаю трави, якщо соусу бракує смаку».**
 <!-- interaction_id: en:lesson-26:session-08:i16; family: scripted_repeat_compare -->
-🎙 **He removes excess fat when he cooks meat.**
+🎙 **I add herbs if the sauce lacks flavour.**
 
-**21 · Скажіть: «Я додаю перець, якщо супу бракує смаку».**
-<!-- interaction_id: en:lesson-26:session-08:i17; family: scripted_repeat_compare -->
-🎙 **I add pepper if the soup lacks flavour.**
+**21 · Супу іноді бракує смаку. Доповніть умову, за якої ви додаєте сіль.**
+<!-- interaction_id: en:lesson-26:session-08:i17; family: context_gap_grammar -->
+I add salt if the soup ___ flavour. → **lacks** · lack · lacking
+- lack — *Після the soup потрібна форма lacks із -s.*
+- lacking — *Потрібна особова форма lacks; lacking тут не утворює присудок.*
 

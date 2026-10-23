@@ -4,8 +4,84 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-26:session-07:word:rigid",
+        "interactionId": "en:lesson-26:session-07:i01",
         "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i01:r1",
+            "text": "I wrap glasses in paper when I pack them."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i01:r2",
+            "text": "I wrap plates in paper when I pack them."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i01:r3",
+            "text": "I wrap glasses in towels when I pack them."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-07:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:i01:audio",
+            "transcript": "I wrap glasses in paper when I pack them."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-07:i01:r1",
+              "targetText": "I wrap glasses in paper when I pack them.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i01:r2",
+              "targetText": "I wrap plates in paper when I pack them.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i01:r3",
+              "targetText": "I wrap glasses in towels when I pack them.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wrap glasses in paper when I pack them.",
+                "uk": "У записі звучить I wrap glasses in paper when I pack them."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wrap glasses in paper when I pack them.",
+                "uk": "У записі звучить I wrap glasses in paper when I pack them."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:word:rigid",
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -47,33 +123,33 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i01",
-        "ordinal": 5,
+        "interactionId": "en:lesson-26:session-07:i02",
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Я выбираю жёсткую коробку, когда упаковываю стаканы.»",
+        "prompt": "Объясните выбор упаковки: «Я использую жёсткую коробку, когда отправляю посуду».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Я выбираю жёсткую коробку, когда упаковываю стаканы.»",
+        "accessibilityLabel": "Объясните выбор упаковки: «Я использую жёсткую коробку, когда отправляю посуду».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I choose a rigid box when I pack glasses.",
+          "targetPhrase": "I use a rigid box when I send dishes.",
           "localizedMeaning": {
-            "ru": "Скажите: «Я выбираю жёсткую коробку, когда упаковываю стаканы.»",
-            "uk": "Скажіть: «Я вибираю жорстку коробку, коли пакую склянки.»"
+            "ru": "Объясните выбор упаковки: «Я использую жёсткую коробку, когда отправляю посуду».",
+            "uk": "Поясніть вибір пакування: «Я використовую жорстку коробку, коли надсилаю посуд»."
           },
           "orderedTokens": [
             "I",
-            "choose",
+            "use",
             "a",
             "rigid",
             "box",
             "when",
             "I",
-            "pack",
-            "glasses"
+            "send",
+            "dishes"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -81,75 +157,6 @@
             "ru": "",
             "uk": ""
           }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i02",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните обычную закономерность.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i02:r1",
-            "text": "choose"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i02:r2",
-            "text": "chooses"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i02:r3",
-            "text": "choosing"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните обычную закономерность.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните обычную закономерность.",
-            "uk": "Доповніть звичайну закономірність."
-          },
-          "gappedTargetPhrase": "I ___ a rigid box when I pack glasses.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-26:session-07:i02:r1",
-              "text": "choose"
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i02:r2",
-              "text": "chooses"
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i02:r3",
-              "text": "choosing"
-            }
-          ],
-          "testedDimension": "Дополните обычную закономерность.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i02:r2",
-              "correct": false,
-              "testedDimension": "Дополните обычную закономерность.",
-              "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма choose.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма choose."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i02:r3",
-              "correct": false,
-              "testedDimension": "Дополните обычную закономерность.",
-              "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма choose.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма choose."
-              }
-            }
-          ]
         },
         "scriptedAlternate": null
       },
@@ -157,220 +164,65 @@
         "interactionId": "en:lesson-26:session-07:i03",
         "ordinal": 7,
         "purpose": "supported_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Вы не используете мокрые коробки. Дополните условие.",
         "responseOptions": [
           {
             "responseId": "en:lesson-26:session-07:i03:r1",
-            "text": "I choose a rigid box when I pack glasses."
+            "text": "is not"
           },
           {
             "responseId": "en:lesson-26:session-07:i03:r2",
-            "text": "She chooses a rigid box when she packs glasses."
+            "text": "are not"
           },
           {
             "responseId": "en:lesson-26:session-07:i03:r3",
-            "text": "I choose a rigid box when I pack plates."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:i03:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i03:audio",
-            "transcript": "I choose a rigid box when I pack glasses."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-26:session-07:i03:r1",
-              "targetText": "I choose a rigid box when I pack glasses.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i03:r2",
-              "targetText": "She chooses a rigid box when she packs glasses.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i03:r3",
-              "targetText": "I choose a rigid box when I pack plates.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i03:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I choose a rigid box when I pack glasses.",
-                "uk": "У записі звучить I choose a rigid box when I pack glasses."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i03:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I choose a rigid box when I pack glasses.",
-                "uk": "У записі звучить I choose a rigid box when I pack glasses."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:word:brittle",
-        "ordinal": 8,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — brittle",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:word:brittle:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — brittle",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:word:brittle:audio",
-            "transcript": "brittle"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-26:session-07:word:brittle:r1",
-              "targetText": "brittle",
-              "meaningByLocale": {
-                "ru": "Ломкий. Brittle — легко ломающийся вместо того, чтобы гнуться.",
-                "uk": "Ламкий. Brittle — той, що легко ламається замість того, щоб гнутися."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "brittle",
-            "definitionByLocale": {
-              "ru": "Ломкий. Brittle — легко ломающийся вместо того, чтобы гнуться.",
-              "uk": "Ламкий. Brittle — той, що легко ламається замість того, щоб гнутися."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Ломкий пластик ломается, если его согнуть.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Ломкий пластик ломается, если его согнуть.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "Brittle plastic breaks if you bend it.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Ломкий пластик ломается, если его согнуть.»",
-            "uk": "Скажіть: «Ламкий пластик ламається, якщо його зігнути.»"
-          },
-          "orderedTokens": [
-            "Brittle",
-            "plastic",
-            "breaks",
-            "if",
-            "you",
-            "bend",
-            "it"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните обычную закономерность.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i05:r1",
-            "text": "breaks"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i05:r2",
-            "text": "break"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i05:r3",
-            "text": "breaking"
+            "text": "not be"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дополните обычную закономерность.",
+        "accessibilityLabel": "Вы не используете мокрые коробки. Дополните условие.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните обычную закономерность.",
-            "uk": "Доповніть звичайну закономірність."
+            "ru": "Вы не используете мокрые коробки. Дополните условие.",
+            "uk": "Ви не використовуєте мокрі коробки. Доповніть умову."
           },
-          "gappedTargetPhrase": "Brittle plastic ___ if you bend it.",
+          "gappedTargetPhrase": "I choose another box if this one ___ dry.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-26:session-07:i05:r1",
-              "text": "breaks"
+              "responseId": "en:lesson-26:session-07:i03:r1",
+              "text": "is not"
             },
             {
-              "responseId": "en:lesson-26:session-07:i05:r2",
-              "text": "break"
+              "responseId": "en:lesson-26:session-07:i03:r2",
+              "text": "are not"
             },
             {
-              "responseId": "en:lesson-26:session-07:i05:r3",
-              "text": "breaking"
+              "responseId": "en:lesson-26:session-07:i03:r3",
+              "text": "not be"
             }
           ],
-          "testedDimension": "Дополните обычную закономерность.",
+          "testedDimension": "Вы не используете мокрые коробки. Дополните условие.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-26:session-07:i05:r2",
+              "responseId": "en:lesson-26:session-07:i03:r2",
               "correct": false,
-              "testedDimension": "Дополните обычную закономерность.",
+              "testedDimension": "Вы не используете мокрые коробки. Дополните условие.",
               "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма breaks.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма breaks."
+                "ru": "This one заменяет одну коробку: is not.",
+                "uk": "This one замінює одну коробку: is not."
               }
             },
             {
-              "responseId": "en:lesson-26:session-07:i05:r3",
+              "responseId": "en:lesson-26:session-07:i03:r3",
               "correct": false,
-              "testedDimension": "Дополните обычную закономерность.",
+              "testedDimension": "Вы не используете мокрые коробки. Дополните условие.",
               "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма breaks.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма breaks."
+                "ru": "Для отрицания с одним предметом нужна форма is not.",
+                "uk": "Для заперечення з одним предметом потрібна форма is not."
               }
             }
           ]
@@ -378,85 +230,9 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i06:r1",
-            "text": "Brittle plastic breaks if you bend it."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i06:r2",
-            "text": "Brittle plastic breaks if you drop it."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i06:r3",
-            "text": "Brittle plastic breaks if she bends it."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:i06:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i06:audio",
-            "transcript": "Brittle plastic breaks if you bend it."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-26:session-07:i06:r1",
-              "targetText": "Brittle plastic breaks if you bend it.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i06:r2",
-              "targetText": "Brittle plastic breaks if you drop it.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i06:r3",
-              "targetText": "Brittle plastic breaks if she bends it.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i06:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Brittle plastic breaks if you bend it.",
-                "uk": "У записі звучить Brittle plastic breaks if you bend it."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i06:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Brittle plastic breaks if you bend it.",
-                "uk": "У записі звучить Brittle plastic breaks if you bend it."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-26:session-07:word:transparent",
-        "ordinal": 12,
-        "purpose": "guided_practice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Карточка слова — transparent",
@@ -497,32 +273,115 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
+        "interactionId": "en:lesson-26:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i04:r1",
+            "text": "I choose transparent jars when I want to see the food."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i04:r2",
+            "text": "I choose transparent bags when I want to see the food."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i04:r3",
+            "text": "I choose transparent jars when I want to hide the food."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-07:i04:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:i04:audio",
+            "transcript": "I choose transparent jars when I want to see the food."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-07:i04:r1",
+              "targetText": "I choose transparent jars when I want to see the food.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i04:r2",
+              "targetText": "I choose transparent bags when I want to see the food.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i04:r3",
+              "targetText": "I choose transparent jars when I want to hide the food.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i04:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I choose transparent jars when I want to see the food.",
+                "uk": "У записі звучить I choose transparent jars when I want to see the food."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i04:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I choose transparent jars when I want to see the food.",
+                "uk": "У записі звучить I choose transparent jars when I want to see the food."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Я использую прозрачные банки, когда храню специи.»",
+        "prompt": "Услышьте привычку при упаковке.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Я использую прозрачные банки, когда храню специи.»",
+        "audioTargetIds": [
+          "en:lesson-26:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Услышьте привычку при упаковке.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I use transparent jars when I store spices.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Я использую прозрачные банки, когда храню специи.»",
-            "uk": "Скажіть: «Я використовую прозорі банки, коли зберігаю спеції.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:i05:audio",
+            "transcript": "I put heavy things at the bottom when I pack a box."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I put heavy things at the bottom when I pack a box.",
           "orderedTokens": [
             "I",
-            "use",
-            "transparent",
-            "jars",
+            "put",
+            "heavy",
+            "things",
+            "at",
+            "the",
+            "bottom",
             "when",
             "I",
-            "store",
-            "spices"
+            "pack",
+            "a",
+            "box"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -534,68 +393,111 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i08",
-        "ordinal": 14,
+        "interactionId": "en:lesson-26:session-07:word:brittle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brittle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-07:word:brittle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brittle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:word:brittle:audio",
+            "transcript": "brittle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-07:word:brittle:r1",
+              "targetText": "brittle",
+              "meaningByLocale": {
+                "ru": "Ломкий. Brittle — легко ломающийся вместо того, чтобы гнуться.",
+                "uk": "Ламкий. Brittle — той, що легко ламається замість того, щоб гнутися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brittle",
+            "definitionByLocale": {
+              "ru": "Ломкий. Brittle — легко ломающийся вместо того, чтобы гнуться.",
+              "uk": "Ламкий. Brittle — той, що легко ламається замість того, щоб гнутися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i06",
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дополните обычную закономерность.",
+        "prompt": "Речь о свойстве ломкого пластика, а не любого пластика. Выберите результат.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-26:session-07:i08:r1",
-            "text": "use"
+            "responseId": "en:lesson-26:session-07:i06:r1",
+            "text": "breaks"
           },
           {
-            "responseId": "en:lesson-26:session-07:i08:r2",
-            "text": "uses"
+            "responseId": "en:lesson-26:session-07:i06:r2",
+            "text": "break"
           },
           {
-            "responseId": "en:lesson-26:session-07:i08:r3",
-            "text": "using"
+            "responseId": "en:lesson-26:session-07:i06:r3",
+            "text": "breaking"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дополните обычную закономерность.",
+        "accessibilityLabel": "Речь о свойстве ломкого пластика, а не любого пластика. Выберите результат.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните обычную закономерность.",
-            "uk": "Доповніть звичайну закономірність."
+            "ru": "Речь о свойстве ломкого пластика, а не любого пластика. Выберите результат.",
+            "uk": "Йдеться про властивість ламкого пластику, а не будь-якого пластику. Виберіть результат."
           },
-          "gappedTargetPhrase": "I ___ transparent jars when I store spices.",
+          "gappedTargetPhrase": "Brittle plastic ___ if you bend it.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-26:session-07:i08:r1",
-              "text": "use"
+              "responseId": "en:lesson-26:session-07:i06:r1",
+              "text": "breaks"
             },
             {
-              "responseId": "en:lesson-26:session-07:i08:r2",
-              "text": "uses"
+              "responseId": "en:lesson-26:session-07:i06:r2",
+              "text": "break"
             },
             {
-              "responseId": "en:lesson-26:session-07:i08:r3",
-              "text": "using"
+              "responseId": "en:lesson-26:session-07:i06:r3",
+              "text": "breaking"
             }
           ],
-          "testedDimension": "Дополните обычную закономерность.",
+          "testedDimension": "Речь о свойстве ломкого пластика, а не любого пластика. Выберите результат.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-26:session-07:i08:r2",
+              "responseId": "en:lesson-26:session-07:i06:r2",
               "correct": false,
-              "testedDimension": "Дополните обычную закономерность.",
+              "testedDimension": "Речь о свойстве ломкого пластика, а не любого пластика. Выберите результат.",
               "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма use.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма use."
+                "ru": "Plastic — неисчисляемое; нужна форма breaks, как с it.",
+                "uk": "Plastic — незлічуване; потрібна форма breaks, як з it."
               }
             },
             {
-              "responseId": "en:lesson-26:session-07:i08:r3",
+              "responseId": "en:lesson-26:session-07:i06:r3",
               "correct": false,
-              "testedDimension": "Дополните обычную закономерность.",
+              "testedDimension": "Речь о свойстве ломкого пластика, а не любого пластика. Выберите результат.",
               "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма use.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма use."
+                "ru": "Для свойства в Present Simple нужно breaks; breaking не образует сказуемое.",
+                "uk": "Для властивості у Present Simple потрібно breaks; breaking не утворює присудок."
               }
             }
           ]
@@ -603,84 +505,41 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i09",
-        "ordinal": 15,
+        "interactionId": "en:lesson-26:session-07:i07",
+        "ordinal": 13,
         "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i09:r1",
-            "text": "I use transparent jars when I store spices."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i09:r2",
-            "text": "She uses transparent jars when she stores spices."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i09:r3",
-            "text": "I use transparent jars when I store rice."
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Объясните привычку: «Я прошу помощи, когда коробка слишком тяжёлая».",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-26:session-07:i09:audio"
+          "en:lesson-26:session-07:i07:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Объясните привычку: «Я прошу помощи, когда коробка слишком тяжёлая».",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i09:audio",
-            "transcript": "I use transparent jars when I store spices."
+            "audioTargetId": "en:lesson-26:session-07:i07:audio",
+            "transcript": "I ask for help when a box is too heavy."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-26:session-07:i09:r1",
-              "targetText": "I use transparent jars when I store spices.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i09:r2",
-              "targetText": "She uses transparent jars when she stores spices.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i09:r3",
-              "targetText": "I use transparent jars when I store rice.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i09:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I use transparent jars when I store spices.",
-                "uk": "У записі звучить I use transparent jars when I store spices."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i09:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I use transparent jars when I store spices.",
-                "uk": "У записі звучить I use transparent jars when I store spices."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          "targetPhrase": "I ask for help when a box is too heavy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-26:session-07:word:opaque",
-        "ordinal": 16,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -722,34 +581,33 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-26:session-07:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Я выбираю непрозрачные шторы, когда хочу тёмную комнату.»",
+        "prompt": "Вы хотите скрыть подарок. Скажите: «Я выбираю непрозрачную бумагу, когда заворачиваю подарок».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Я выбираю непрозрачные шторы, когда хочу тёмную комнату.»",
+        "accessibilityLabel": "Вы хотите скрыть подарок. Скажите: «Я выбираю непрозрачную бумагу, когда заворачиваю подарок».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I choose opaque curtains when I want a dark room.",
+          "targetPhrase": "I choose opaque paper when I wrap a present.",
           "localizedMeaning": {
-            "ru": "Скажите: «Я выбираю непрозрачные шторы, когда хочу тёмную комнату.»",
-            "uk": "Скажіть: «Я вибираю непрозорі штори, коли хочу темну кімнату.»"
+            "ru": "Вы хотите скрыть подарок. Скажите: «Я выбираю непрозрачную бумагу, когда заворачиваю подарок».",
+            "uk": "Ви хочете приховати подарунок. Скажіть: «Я вибираю непрозорий папір, коли загортаю подарунок»."
           },
           "orderedTokens": [
             "I",
             "choose",
             "opaque",
-            "curtains",
+            "paper",
             "when",
             "I",
-            "want",
+            "wrap",
             "a",
-            "dark",
-            "room"
+            "present"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -761,166 +619,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните обычную закономерность.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i11:r1",
-            "text": "choose"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i11:r2",
-            "text": "chooses"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i11:r3",
-            "text": "choosing"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните обычную закономерность.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните обычную закономерность.",
-            "uk": "Доповніть звичайну закономірність."
-          },
-          "gappedTargetPhrase": "I ___ opaque curtains when I want a dark room.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-26:session-07:i11:r1",
-              "text": "choose"
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i11:r2",
-              "text": "chooses"
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i11:r3",
-              "text": "choosing"
-            }
-          ],
-          "testedDimension": "Дополните обычную закономерность.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i11:r2",
-              "correct": false,
-              "testedDimension": "Дополните обычную закономерность.",
-              "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма choose.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма choose."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i11:r3",
-              "correct": false,
-              "testedDimension": "Дополните обычную закономерность.",
-              "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма choose.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма choose."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i12:r1",
-            "text": "I choose opaque curtains when I want a dark room."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i12:r2",
-            "text": "She chooses opaque curtains when she wants a dark room."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i12:r3",
-            "text": "I choose opaque curtains when I want more privacy."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:i12:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i12:audio",
-            "transcript": "I choose opaque curtains when I want a dark room."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-26:session-07:i12:r1",
-              "targetText": "I choose opaque curtains when I want a dark room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i12:r2",
-              "targetText": "She chooses opaque curtains when she wants a dark room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i12:r3",
-              "targetText": "I choose opaque curtains when I want more privacy.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i12:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I choose opaque curtains when I want a dark room.",
-                "uk": "У записі звучить I choose opaque curtains when I want a dark room."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i12:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I choose opaque curtains when I want a dark room.",
-                "uk": "У записі звучить I choose opaque curtains when I want a dark room."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-26:session-07:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините формы с переводом",
+        "prompt": "Вспомните свойства материалов",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините формы с переводом",
+        "accessibilityLabel": "Вспомните свойства материалов",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-26:session-07:i13:p1",
+              "pairId": "en:lesson-26:session-07:i09:p1",
               "target": "rigid",
               "meaningByLocale": {
                 "ru": "жёсткий",
@@ -928,7 +641,7 @@
               }
             },
             {
-              "pairId": "en:lesson-26:session-07:i13:p2",
+              "pairId": "en:lesson-26:session-07:i09:p2",
               "target": "brittle",
               "meaningByLocale": {
                 "ru": "ломкий",
@@ -936,7 +649,7 @@
               }
             },
             {
-              "pairId": "en:lesson-26:session-07:i13:p3",
+              "pairId": "en:lesson-26:session-07:i09:p3",
               "target": "transparent",
               "meaningByLocale": {
                 "ru": "прозрачный",
@@ -944,7 +657,7 @@
               }
             },
             {
-              "pairId": "en:lesson-26:session-07:i13:p4",
+              "pairId": "en:lesson-26:session-07:i09:p4",
               "target": "opaque",
               "meaningByLocale": {
                 "ru": "непрозрачный",
@@ -979,33 +692,109 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Отдыхаю, когда устаю",
-        "responseOptions": [],
+        "interactionId": "en:lesson-26:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i10:r1",
+            "text": "I write on the lid when I label a jar."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i10:r2",
+            "text": "I write on the box when I label a jar."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i10:r3",
+            "text": "I write on the lid when I label a bottle."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-26:session-07:i14:audio"
+          "en:lesson-26:session-07:i10:audio"
         ],
-        "accessibilityLabel": "Отдыхаю, когда устаю",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i14:audio",
-            "transcript": "I rest when I am tired."
+            "audioTargetId": "en:lesson-26:session-07:i10:audio",
+            "transcript": "I write on the lid when I label a jar."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I rest when I am tired.",
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-07:i10:r1",
+              "targetText": "I write on the lid when I label a jar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i10:r2",
+              "targetText": "I write on the box when I label a jar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i10:r3",
+              "targetText": "I write on the lid when I label a bottle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I write on the lid when I label a jar.",
+                "uk": "У записі звучить I write on the lid when I label a jar."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I write on the lid when I label a jar.",
+                "uk": "У записі звучить I write on the lid when I label a jar."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите о привычке друга: «Он берёт жёсткую коробку, когда упаковывает стаканы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о привычке друга: «Он берёт жёсткую коробку, когда упаковывает стаканы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He takes a rigid box when he packs glasses.",
+          "localizedMeaning": {
+            "ru": "Расскажите о привычке друга: «Он берёт жёсткую коробку, когда упаковывает стаканы».",
+            "uk": "Розкажіть про звичку друга: «Він бере жорстку коробку, коли пакує склянки»."
+          },
           "orderedTokens": [
-            "I",
-            "rest",
+            "He",
+            "takes",
+            "a",
+            "rigid",
+            "box",
             "when",
-            "I",
-            "am",
-            "tired"
+            "he",
+            "packs",
+            "glasses"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1013,68 +802,216 @@
             "ru": "",
             "uk": ""
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы рассказываете о своей обычной привычке. Дополните действие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i12:r1",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i12:r2",
+            "text": "closes"
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i12:r3",
+            "text": "closing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете о своей обычной привычке. Дополните действие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете о своей обычной привычке. Дополните действие.",
+            "uk": "Ви розповідаєте про свою звичайну звичку. Доповніть дію."
+          },
+          "gappedTargetPhrase": "I ___ the lid if a jar is empty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-07:i12:r1",
+              "text": "close"
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i12:r2",
+              "text": "closes"
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i12:r3",
+              "text": "closing"
+            }
+          ],
+          "testedDimension": "Вы рассказываете о своей обычной привычке. Дополните действие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о своей обычной привычке. Дополните действие.",
+              "feedbackByLocale": {
+                "ru": "После I нужна форма close без -s.",
+                "uk": "Після I потрібна форма close без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о своей обычной привычке. Дополните действие.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужен Present Simple: close, а не closing без вспомогательного глагола.",
+                "uk": "Тут потрібен Present Simple: close, а не closing без допоміжного дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Восстановите услышанное условие выбора.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-07:i13:audio"
+        ],
+        "accessibilityLabel": "Восстановите услышанное условие выбора.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:i13:audio",
+            "transcript": "I use transparent bags when I store small toys."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I use transparent bags when I store small toys.",
+          "orderedTokens": [
+            "I",
+            "use",
+            "transparent",
+            "bags",
+            "when",
+            "I",
+            "store",
+            "small",
+            "toys"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i14:r1",
+            "text": "I replace the lid if it is cracked."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i14:r2",
+            "text": "I replace the jar if it is cracked."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i14:r3",
+            "text": "I wash the lid if it is dirty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:i14:audio",
+            "transcript": "I replace the lid if it is cracked."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-07:i14:r1",
+              "targetText": "I replace the lid if it is cracked.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i14:r2",
+              "targetText": "I replace the jar if it is cracked.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i14:r3",
+              "targetText": "I wash the lid if it is dirty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i14:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I replace the lid if it is cracked.",
+                "uk": "У записі звучить I replace the lid if it is cracked."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i14:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I replace the lid if it is cracked.",
+                "uk": "У записі звучить I replace the lid if it is cracked."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-26:session-07:i15",
         "ordinal": 22,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Если идёт дождь, остаюсь дома",
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я надеваю перчатки, когда убираю разбитое стекло».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-26:session-07:i15:audio"
         ],
-        "accessibilityLabel": "Если идёт дождь, остаюсь дома",
-        "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i15:audio",
-            "transcript": "I stay home if it rains."
-          },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I stay home if it rains.",
-          "orderedTokens": [
-            "I",
-            "stay",
-            "home",
-            "if",
-            "it",
-            "rains"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i16",
-        "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Я использую прозрачные банки, когда храню муку».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:i16:audio"
-        ],
-        "accessibilityLabel": "Скажите: «Я использую прозрачные банки, когда храню муку».",
+        "accessibilityLabel": "Скажите: «Я надеваю перчатки, когда убираю разбитое стекло».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i16:audio",
-            "transcript": "I use transparent jars when I store flour."
+            "audioTargetId": "en:lesson-26:session-07:i15:audio",
+            "transcript": "I wear gloves when I clean up broken glass."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I use transparent jars when I store flour.",
+          "targetPhrase": "I wear gloves when I clean up broken glass.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1083,6 +1020,75 @@
             "NEEDS_WORK_CONFIDENT",
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Это привычный выбор вашей сестры. Дополните условие с she.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i16:r1",
+            "text": "wants"
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i16:r2",
+            "text": "want"
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i16:r3",
+            "text": "wanting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Это привычный выбор вашей сестры. Дополните условие с she.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это привычный выбор вашей сестры. Дополните условие с she.",
+            "uk": "Це звичний вибір вашої сестри. Доповніть умову із she."
+          },
+          "gappedTargetPhrase": "She uses opaque curtains when she ___ a dark room.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-07:i16:r1",
+              "text": "wants"
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i16:r2",
+              "text": "want"
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i16:r3",
+              "text": "wanting"
+            }
+          ],
+          "testedDimension": "Это привычный выбор вашей сестры. Дополните условие с she.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i16:r2",
+              "correct": false,
+              "testedDimension": "Это привычный выбор вашей сестры. Дополните условие с she.",
+              "feedbackByLocale": {
+                "ru": "После she в Present Simple нужно wants с -s.",
+                "uk": "Після she у Present Simple потрібно wants із -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i16:r3",
+              "correct": false,
+              "testedDimension": "Это привычный выбор вашей сестры. Дополните условие с she.",
+              "feedbackByLocale": {
+                "ru": "Нужна личная форма wants, не wanting.",
+                "uk": "Потрібна особова форма wants, не wanting."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1090,41 +1096,125 @@
       {
         "interactionId": "en:lesson-26:session-07:i17",
         "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Он выбирает жёсткую коробку, когда упаковывает стаканы».",
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Объясните, когда нужна новая крышка: «Мы покупаем новую крышку, если старая не подходит».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:i17:audio"
-        ],
-        "accessibilityLabel": "Скажите: «Он выбирает жёсткую коробку, когда упаковывает стаканы».",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Объясните, когда нужна новая крышка: «Мы покупаем новую крышку, если старая не подходит».",
         "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i17:audio",
-            "transcript": "He chooses a rigid box when he packs glasses."
+          "family": "phrase_builder",
+          "targetPhrase": "We buy a new lid if the old one does not fit.",
+          "localizedMeaning": {
+            "ru": "Объясните, когда нужна новая крышка: «Мы покупаем новую крышку, если старая не подходит».",
+            "uk": "Поясніть, коли потрібна нова кришка: «Ми купуємо нову кришку, якщо стара не підходить»."
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "He chooses a rigid box when he packs glasses.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "orderedTokens": [
+            "We",
+            "buy",
+            "a",
+            "new",
+            "lid",
+            "if",
+            "the",
+            "old",
+            "one",
+            "does",
+            "not",
+            "fit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       }
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-26:session-07:word:rigid",
+        "interactionId": "en:lesson-26:session-07:i01",
         "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i01:r1",
+            "text": "I wrap glasses in paper when I pack them."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i01:r2",
+            "text": "I wrap plates in paper when I pack them."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i01:r3",
+            "text": "I wrap glasses in towels when I pack them."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-07:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:i01:audio",
+            "transcript": "I wrap glasses in paper when I pack them."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-07:i01:r1",
+              "targetText": "I wrap glasses in paper when I pack them.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i01:r2",
+              "targetText": "I wrap plates in paper when I pack them.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i01:r3",
+              "targetText": "I wrap glasses in towels when I pack them.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wrap glasses in paper when I pack them.",
+                "uk": "У записі звучить I wrap glasses in paper when I pack them."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wrap glasses in paper when I pack them.",
+                "uk": "У записі звучить I wrap glasses in paper when I pack them."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:word:rigid",
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1166,33 +1256,33 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i01",
-        "ordinal": 5,
+        "interactionId": "en:lesson-26:session-07:i02",
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Я вибираю жорстку коробку, коли пакую склянки.»",
+        "prompt": "Поясніть вибір пакування: «Я використовую жорстку коробку, коли надсилаю посуд».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Я вибираю жорстку коробку, коли пакую склянки.»",
+        "accessibilityLabel": "Поясніть вибір пакування: «Я використовую жорстку коробку, коли надсилаю посуд».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I choose a rigid box when I pack glasses.",
+          "targetPhrase": "I use a rigid box when I send dishes.",
           "localizedMeaning": {
-            "ru": "Скажите: «Я выбираю жёсткую коробку, когда упаковываю стаканы.»",
-            "uk": "Скажіть: «Я вибираю жорстку коробку, коли пакую склянки.»"
+            "ru": "Объясните выбор упаковки: «Я использую жёсткую коробку, когда отправляю посуду».",
+            "uk": "Поясніть вибір пакування: «Я використовую жорстку коробку, коли надсилаю посуд»."
           },
           "orderedTokens": [
             "I",
-            "choose",
+            "use",
             "a",
             "rigid",
             "box",
             "when",
             "I",
-            "pack",
-            "glasses"
+            "send",
+            "dishes"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1200,75 +1290,6 @@
             "ru": "",
             "uk": ""
           }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i02",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть звичайну закономірність.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i02:r1",
-            "text": "choose"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i02:r2",
-            "text": "chooses"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i02:r3",
-            "text": "choosing"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть звичайну закономірність.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните обычную закономерность.",
-            "uk": "Доповніть звичайну закономірність."
-          },
-          "gappedTargetPhrase": "I ___ a rigid box when I pack glasses.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-26:session-07:i02:r1",
-              "text": "choose"
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i02:r2",
-              "text": "chooses"
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i02:r3",
-              "text": "choosing"
-            }
-          ],
-          "testedDimension": "Доповніть звичайну закономірність.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i02:r2",
-              "correct": false,
-              "testedDimension": "Доповніть звичайну закономірність.",
-              "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма choose.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма choose."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i02:r3",
-              "correct": false,
-              "testedDimension": "Доповніть звичайну закономірність.",
-              "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма choose.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма choose."
-              }
-            }
-          ]
         },
         "scriptedAlternate": null
       },
@@ -1276,220 +1297,65 @@
         "interactionId": "en:lesson-26:session-07:i03",
         "ordinal": 7,
         "purpose": "supported_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
+        "prompt": "Ви не використовуєте мокрі коробки. Доповніть умову.",
         "responseOptions": [
           {
             "responseId": "en:lesson-26:session-07:i03:r1",
-            "text": "I choose a rigid box when I pack glasses."
+            "text": "is not"
           },
           {
             "responseId": "en:lesson-26:session-07:i03:r2",
-            "text": "She chooses a rigid box when she packs glasses."
+            "text": "are not"
           },
           {
             "responseId": "en:lesson-26:session-07:i03:r3",
-            "text": "I choose a rigid box when I pack plates."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:i03:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i03:audio",
-            "transcript": "I choose a rigid box when I pack glasses."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-26:session-07:i03:r1",
-              "targetText": "I choose a rigid box when I pack glasses.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i03:r2",
-              "targetText": "She chooses a rigid box when she packs glasses.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i03:r3",
-              "targetText": "I choose a rigid box when I pack plates.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i03:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I choose a rigid box when I pack glasses.",
-                "uk": "У записі звучить I choose a rigid box when I pack glasses."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i03:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I choose a rigid box when I pack glasses.",
-                "uk": "У записі звучить I choose a rigid box when I pack glasses."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:word:brittle",
-        "ordinal": 8,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — brittle",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:word:brittle:audio"
-        ],
-        "accessibilityLabel": "Картка слова — brittle",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:word:brittle:audio",
-            "transcript": "brittle"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-26:session-07:word:brittle:r1",
-              "targetText": "brittle",
-              "meaningByLocale": {
-                "ru": "Ломкий. Brittle — легко ломающийся вместо того, чтобы гнуться.",
-                "uk": "Ламкий. Brittle — той, що легко ламається замість того, щоб гнутися."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "brittle",
-            "definitionByLocale": {
-              "ru": "Ломкий. Brittle — легко ломающийся вместо того, чтобы гнуться.",
-              "uk": "Ламкий. Brittle — той, що легко ламається замість того, щоб гнутися."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Ламкий пластик ламається, якщо його зігнути.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Ламкий пластик ламається, якщо його зігнути.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "Brittle plastic breaks if you bend it.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Ломкий пластик ломается, если его согнуть.»",
-            "uk": "Скажіть: «Ламкий пластик ламається, якщо його зігнути.»"
-          },
-          "orderedTokens": [
-            "Brittle",
-            "plastic",
-            "breaks",
-            "if",
-            "you",
-            "bend",
-            "it"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть звичайну закономірність.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i05:r1",
-            "text": "breaks"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i05:r2",
-            "text": "break"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i05:r3",
-            "text": "breaking"
+            "text": "not be"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть звичайну закономірність.",
+        "accessibilityLabel": "Ви не використовуєте мокрі коробки. Доповніть умову.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните обычную закономерность.",
-            "uk": "Доповніть звичайну закономірність."
+            "ru": "Вы не используете мокрые коробки. Дополните условие.",
+            "uk": "Ви не використовуєте мокрі коробки. Доповніть умову."
           },
-          "gappedTargetPhrase": "Brittle plastic ___ if you bend it.",
+          "gappedTargetPhrase": "I choose another box if this one ___ dry.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-26:session-07:i05:r1",
-              "text": "breaks"
+              "responseId": "en:lesson-26:session-07:i03:r1",
+              "text": "is not"
             },
             {
-              "responseId": "en:lesson-26:session-07:i05:r2",
-              "text": "break"
+              "responseId": "en:lesson-26:session-07:i03:r2",
+              "text": "are not"
             },
             {
-              "responseId": "en:lesson-26:session-07:i05:r3",
-              "text": "breaking"
+              "responseId": "en:lesson-26:session-07:i03:r3",
+              "text": "not be"
             }
           ],
-          "testedDimension": "Доповніть звичайну закономірність.",
+          "testedDimension": "Ви не використовуєте мокрі коробки. Доповніть умову.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-26:session-07:i05:r2",
+              "responseId": "en:lesson-26:session-07:i03:r2",
               "correct": false,
-              "testedDimension": "Доповніть звичайну закономірність.",
+              "testedDimension": "Ви не використовуєте мокрі коробки. Доповніть умову.",
               "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма breaks.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма breaks."
+                "ru": "This one заменяет одну коробку: is not.",
+                "uk": "This one замінює одну коробку: is not."
               }
             },
             {
-              "responseId": "en:lesson-26:session-07:i05:r3",
+              "responseId": "en:lesson-26:session-07:i03:r3",
               "correct": false,
-              "testedDimension": "Доповніть звичайну закономірність.",
+              "testedDimension": "Ви не використовуєте мокрі коробки. Доповніть умову.",
               "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма breaks.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма breaks."
+                "ru": "Для отрицания с одним предметом нужна форма is not.",
+                "uk": "Для заперечення з одним предметом потрібна форма is not."
               }
             }
           ]
@@ -1497,85 +1363,9 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i06:r1",
-            "text": "Brittle plastic breaks if you bend it."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i06:r2",
-            "text": "Brittle plastic breaks if you drop it."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i06:r3",
-            "text": "Brittle plastic breaks if she bends it."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:i06:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i06:audio",
-            "transcript": "Brittle plastic breaks if you bend it."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-26:session-07:i06:r1",
-              "targetText": "Brittle plastic breaks if you bend it.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i06:r2",
-              "targetText": "Brittle plastic breaks if you drop it.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i06:r3",
-              "targetText": "Brittle plastic breaks if she bends it.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i06:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Brittle plastic breaks if you bend it.",
-                "uk": "У записі звучить Brittle plastic breaks if you bend it."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i06:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Brittle plastic breaks if you bend it.",
-                "uk": "У записі звучить Brittle plastic breaks if you bend it."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-26:session-07:word:transparent",
-        "ordinal": 12,
-        "purpose": "guided_practice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Картка слова — transparent",
@@ -1616,32 +1406,115 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
+        "interactionId": "en:lesson-26:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i04:r1",
+            "text": "I choose transparent jars when I want to see the food."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i04:r2",
+            "text": "I choose transparent bags when I want to see the food."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i04:r3",
+            "text": "I choose transparent jars when I want to hide the food."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-07:i04:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:i04:audio",
+            "transcript": "I choose transparent jars when I want to see the food."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-07:i04:r1",
+              "targetText": "I choose transparent jars when I want to see the food.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i04:r2",
+              "targetText": "I choose transparent bags when I want to see the food.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i04:r3",
+              "targetText": "I choose transparent jars when I want to hide the food.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i04:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I choose transparent jars when I want to see the food.",
+                "uk": "У записі звучить I choose transparent jars when I want to see the food."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i04:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I choose transparent jars when I want to see the food.",
+                "uk": "У записі звучить I choose transparent jars when I want to see the food."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Я використовую прозорі банки, коли зберігаю спеції.»",
+        "prompt": "Почуйте звичку під час пакування.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Я використовую прозорі банки, коли зберігаю спеції.»",
+        "audioTargetIds": [
+          "en:lesson-26:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Почуйте звичку під час пакування.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I use transparent jars when I store spices.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Я использую прозрачные банки, когда храню специи.»",
-            "uk": "Скажіть: «Я використовую прозорі банки, коли зберігаю спеції.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:i05:audio",
+            "transcript": "I put heavy things at the bottom when I pack a box."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I put heavy things at the bottom when I pack a box.",
           "orderedTokens": [
             "I",
-            "use",
-            "transparent",
-            "jars",
+            "put",
+            "heavy",
+            "things",
+            "at",
+            "the",
+            "bottom",
             "when",
             "I",
-            "store",
-            "spices"
+            "pack",
+            "a",
+            "box"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1653,68 +1526,111 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i08",
-        "ordinal": 14,
+        "interactionId": "en:lesson-26:session-07:word:brittle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brittle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-07:word:brittle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brittle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:word:brittle:audio",
+            "transcript": "brittle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-07:word:brittle:r1",
+              "targetText": "brittle",
+              "meaningByLocale": {
+                "ru": "Ломкий. Brittle — легко ломающийся вместо того, чтобы гнуться.",
+                "uk": "Ламкий. Brittle — той, що легко ламається замість того, щоб гнутися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brittle",
+            "definitionByLocale": {
+              "ru": "Ломкий. Brittle — легко ломающийся вместо того, чтобы гнуться.",
+              "uk": "Ламкий. Brittle — той, що легко ламається замість того, щоб гнутися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i06",
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Доповніть звичайну закономірність.",
+        "prompt": "Йдеться про властивість ламкого пластику, а не будь-якого пластику. Виберіть результат.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-26:session-07:i08:r1",
-            "text": "use"
+            "responseId": "en:lesson-26:session-07:i06:r1",
+            "text": "breaks"
           },
           {
-            "responseId": "en:lesson-26:session-07:i08:r2",
-            "text": "uses"
+            "responseId": "en:lesson-26:session-07:i06:r2",
+            "text": "break"
           },
           {
-            "responseId": "en:lesson-26:session-07:i08:r3",
-            "text": "using"
+            "responseId": "en:lesson-26:session-07:i06:r3",
+            "text": "breaking"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть звичайну закономірність.",
+        "accessibilityLabel": "Йдеться про властивість ламкого пластику, а не будь-якого пластику. Виберіть результат.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните обычную закономерность.",
-            "uk": "Доповніть звичайну закономірність."
+            "ru": "Речь о свойстве ломкого пластика, а не любого пластика. Выберите результат.",
+            "uk": "Йдеться про властивість ламкого пластику, а не будь-якого пластику. Виберіть результат."
           },
-          "gappedTargetPhrase": "I ___ transparent jars when I store spices.",
+          "gappedTargetPhrase": "Brittle plastic ___ if you bend it.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-26:session-07:i08:r1",
-              "text": "use"
+              "responseId": "en:lesson-26:session-07:i06:r1",
+              "text": "breaks"
             },
             {
-              "responseId": "en:lesson-26:session-07:i08:r2",
-              "text": "uses"
+              "responseId": "en:lesson-26:session-07:i06:r2",
+              "text": "break"
             },
             {
-              "responseId": "en:lesson-26:session-07:i08:r3",
-              "text": "using"
+              "responseId": "en:lesson-26:session-07:i06:r3",
+              "text": "breaking"
             }
           ],
-          "testedDimension": "Доповніть звичайну закономірність.",
+          "testedDimension": "Йдеться про властивість ламкого пластику, а не будь-якого пластику. Виберіть результат.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-26:session-07:i08:r2",
+              "responseId": "en:lesson-26:session-07:i06:r2",
               "correct": false,
-              "testedDimension": "Доповніть звичайну закономірність.",
+              "testedDimension": "Йдеться про властивість ламкого пластику, а не будь-якого пластику. Виберіть результат.",
               "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма use.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма use."
+                "ru": "Plastic — неисчисляемое; нужна форма breaks, как с it.",
+                "uk": "Plastic — незлічуване; потрібна форма breaks, як з it."
               }
             },
             {
-              "responseId": "en:lesson-26:session-07:i08:r3",
+              "responseId": "en:lesson-26:session-07:i06:r3",
               "correct": false,
-              "testedDimension": "Доповніть звичайну закономірність.",
+              "testedDimension": "Йдеться про властивість ламкого пластику, а не будь-якого пластику. Виберіть результат.",
               "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма use.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма use."
+                "ru": "Для свойства в Present Simple нужно breaks; breaking не образует сказуемое.",
+                "uk": "Для властивості у Present Simple потрібно breaks; breaking не утворює присудок."
               }
             }
           ]
@@ -1722,84 +1638,41 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i09",
-        "ordinal": 15,
+        "interactionId": "en:lesson-26:session-07:i07",
+        "ordinal": 13,
         "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i09:r1",
-            "text": "I use transparent jars when I store spices."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i09:r2",
-            "text": "She uses transparent jars when she stores spices."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i09:r3",
-            "text": "I use transparent jars when I store rice."
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поясніть звичку: «Я прошу допомоги, коли коробка заважка».",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-26:session-07:i09:audio"
+          "en:lesson-26:session-07:i07:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть",
+        "accessibilityLabel": "Поясніть звичку: «Я прошу допомоги, коли коробка заважка».",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i09:audio",
-            "transcript": "I use transparent jars when I store spices."
+            "audioTargetId": "en:lesson-26:session-07:i07:audio",
+            "transcript": "I ask for help when a box is too heavy."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-26:session-07:i09:r1",
-              "targetText": "I use transparent jars when I store spices.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i09:r2",
-              "targetText": "She uses transparent jars when she stores spices.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i09:r3",
-              "targetText": "I use transparent jars when I store rice.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i09:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I use transparent jars when I store spices.",
-                "uk": "У записі звучить I use transparent jars when I store spices."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i09:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I use transparent jars when I store spices.",
-                "uk": "У записі звучить I use transparent jars when I store spices."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          "targetPhrase": "I ask for help when a box is too heavy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-26:session-07:word:opaque",
-        "ordinal": 16,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1841,34 +1714,33 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-26:session-07:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Я вибираю непрозорі штори, коли хочу темну кімнату.»",
+        "prompt": "Ви хочете приховати подарунок. Скажіть: «Я вибираю непрозорий папір, коли загортаю подарунок».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Я вибираю непрозорі штори, коли хочу темну кімнату.»",
+        "accessibilityLabel": "Ви хочете приховати подарунок. Скажіть: «Я вибираю непрозорий папір, коли загортаю подарунок».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I choose opaque curtains when I want a dark room.",
+          "targetPhrase": "I choose opaque paper when I wrap a present.",
           "localizedMeaning": {
-            "ru": "Скажите: «Я выбираю непрозрачные шторы, когда хочу тёмную комнату.»",
-            "uk": "Скажіть: «Я вибираю непрозорі штори, коли хочу темну кімнату.»"
+            "ru": "Вы хотите скрыть подарок. Скажите: «Я выбираю непрозрачную бумагу, когда заворачиваю подарок».",
+            "uk": "Ви хочете приховати подарунок. Скажіть: «Я вибираю непрозорий папір, коли загортаю подарунок»."
           },
           "orderedTokens": [
             "I",
             "choose",
             "opaque",
-            "curtains",
+            "paper",
             "when",
             "I",
-            "want",
+            "wrap",
             "a",
-            "dark",
-            "room"
+            "present"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1880,166 +1752,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть звичайну закономірність.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i11:r1",
-            "text": "choose"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i11:r2",
-            "text": "chooses"
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i11:r3",
-            "text": "choosing"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть звичайну закономірність.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните обычную закономерность.",
-            "uk": "Доповніть звичайну закономірність."
-          },
-          "gappedTargetPhrase": "I ___ opaque curtains when I want a dark room.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-26:session-07:i11:r1",
-              "text": "choose"
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i11:r2",
-              "text": "chooses"
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i11:r3",
-              "text": "choosing"
-            }
-          ],
-          "testedDimension": "Доповніть звичайну закономірність.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i11:r2",
-              "correct": false,
-              "testedDimension": "Доповніть звичайну закономірність.",
-              "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма choose.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма choose."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i11:r3",
-              "correct": false,
-              "testedDimension": "Доповніть звичайну закономірність.",
-              "feedbackByLocale": {
-                "ru": "Обычная закономерность: Present Simple. Нужна форма choose.",
-                "uk": "Звичайна закономірність: Present Simple. Потрібна форма choose."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-26:session-07:i12:r1",
-            "text": "I choose opaque curtains when I want a dark room."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i12:r2",
-            "text": "She chooses opaque curtains when she wants a dark room."
-          },
-          {
-            "responseId": "en:lesson-26:session-07:i12:r3",
-            "text": "I choose opaque curtains when I want more privacy."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:i12:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i12:audio",
-            "transcript": "I choose opaque curtains when I want a dark room."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-26:session-07:i12:r1",
-              "targetText": "I choose opaque curtains when I want a dark room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i12:r2",
-              "targetText": "She chooses opaque curtains when she wants a dark room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i12:r3",
-              "targetText": "I choose opaque curtains when I want more privacy.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-26:session-07:i12:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I choose opaque curtains when I want a dark room.",
-                "uk": "У записі звучить I choose opaque curtains when I want a dark room."
-              }
-            },
-            {
-              "responseId": "en:lesson-26:session-07:i12:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I choose opaque curtains when I want a dark room.",
-                "uk": "У записі звучить I choose opaque curtains when I want a dark room."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-26:session-07:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Поєднайте форми з перекладом",
+        "prompt": "Пригадайте властивості матеріалів",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "accessibilityLabel": "Пригадайте властивості матеріалів",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-26:session-07:i13:p1",
+              "pairId": "en:lesson-26:session-07:i09:p1",
               "target": "rigid",
               "meaningByLocale": {
                 "ru": "жёсткий",
@@ -2047,7 +1774,7 @@
               }
             },
             {
-              "pairId": "en:lesson-26:session-07:i13:p2",
+              "pairId": "en:lesson-26:session-07:i09:p2",
               "target": "brittle",
               "meaningByLocale": {
                 "ru": "ломкий",
@@ -2055,7 +1782,7 @@
               }
             },
             {
-              "pairId": "en:lesson-26:session-07:i13:p3",
+              "pairId": "en:lesson-26:session-07:i09:p3",
               "target": "transparent",
               "meaningByLocale": {
                 "ru": "прозрачный",
@@ -2063,7 +1790,7 @@
               }
             },
             {
-              "pairId": "en:lesson-26:session-07:i13:p4",
+              "pairId": "en:lesson-26:session-07:i09:p4",
               "target": "opaque",
               "meaningByLocale": {
                 "ru": "непрозрачный",
@@ -2098,33 +1825,109 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-26:session-07:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Відпочиваю, коли втомлююся",
-        "responseOptions": [],
+        "interactionId": "en:lesson-26:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i10:r1",
+            "text": "I write on the lid when I label a jar."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i10:r2",
+            "text": "I write on the box when I label a jar."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i10:r3",
+            "text": "I write on the lid when I label a bottle."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-26:session-07:i14:audio"
+          "en:lesson-26:session-07:i10:audio"
         ],
-        "accessibilityLabel": "Відпочиваю, коли втомлююся",
+        "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i14:audio",
-            "transcript": "I rest when I am tired."
+            "audioTargetId": "en:lesson-26:session-07:i10:audio",
+            "transcript": "I write on the lid when I label a jar."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I rest when I am tired.",
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-07:i10:r1",
+              "targetText": "I write on the lid when I label a jar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i10:r2",
+              "targetText": "I write on the box when I label a jar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i10:r3",
+              "targetText": "I write on the lid when I label a bottle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I write on the lid when I label a jar.",
+                "uk": "У записі звучить I write on the lid when I label a jar."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I write on the lid when I label a jar.",
+                "uk": "У записі звучить I write on the lid when I label a jar."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про звичку друга: «Він бере жорстку коробку, коли пакує склянки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про звичку друга: «Він бере жорстку коробку, коли пакує склянки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He takes a rigid box when he packs glasses.",
+          "localizedMeaning": {
+            "ru": "Расскажите о привычке друга: «Он берёт жёсткую коробку, когда упаковывает стаканы».",
+            "uk": "Розкажіть про звичку друга: «Він бере жорстку коробку, коли пакує склянки»."
+          },
           "orderedTokens": [
-            "I",
-            "rest",
+            "He",
+            "takes",
+            "a",
+            "rigid",
+            "box",
             "when",
-            "I",
-            "am",
-            "tired"
+            "he",
+            "packs",
+            "glasses"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2132,68 +1935,216 @@
             "ru": "",
             "uk": ""
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви розповідаєте про свою звичайну звичку. Доповніть дію.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i12:r1",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i12:r2",
+            "text": "closes"
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i12:r3",
+            "text": "closing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте про свою звичайну звичку. Доповніть дію.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете о своей обычной привычке. Дополните действие.",
+            "uk": "Ви розповідаєте про свою звичайну звичку. Доповніть дію."
+          },
+          "gappedTargetPhrase": "I ___ the lid if a jar is empty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-07:i12:r1",
+              "text": "close"
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i12:r2",
+              "text": "closes"
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i12:r3",
+              "text": "closing"
+            }
+          ],
+          "testedDimension": "Ви розповідаєте про свою звичайну звичку. Доповніть дію.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про свою звичайну звичку. Доповніть дію.",
+              "feedbackByLocale": {
+                "ru": "После I нужна форма close без -s.",
+                "uk": "Після I потрібна форма close без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про свою звичайну звичку. Доповніть дію.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужен Present Simple: close, а не closing без вспомогательного глагола.",
+                "uk": "Тут потрібен Present Simple: close, а не closing без допоміжного дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Відновіть почуту умову вибору.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-07:i13:audio"
+        ],
+        "accessibilityLabel": "Відновіть почуту умову вибору.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:i13:audio",
+            "transcript": "I use transparent bags when I store small toys."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I use transparent bags when I store small toys.",
+          "orderedTokens": [
+            "I",
+            "use",
+            "transparent",
+            "bags",
+            "when",
+            "I",
+            "store",
+            "small",
+            "toys"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i14:r1",
+            "text": "I replace the lid if it is cracked."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i14:r2",
+            "text": "I replace the jar if it is cracked."
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i14:r3",
+            "text": "I wash the lid if it is dirty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-07:i14:audio",
+            "transcript": "I replace the lid if it is cracked."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-07:i14:r1",
+              "targetText": "I replace the lid if it is cracked.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i14:r2",
+              "targetText": "I replace the jar if it is cracked.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i14:r3",
+              "targetText": "I wash the lid if it is dirty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i14:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I replace the lid if it is cracked.",
+                "uk": "У записі звучить I replace the lid if it is cracked."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i14:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I replace the lid if it is cracked.",
+                "uk": "У записі звучить I replace the lid if it is cracked."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-26:session-07:i15",
         "ordinal": 22,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Якщо йде дощ, залишаюся вдома",
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я надягаю рукавички, коли прибираю розбите скло».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-26:session-07:i15:audio"
         ],
-        "accessibilityLabel": "Якщо йде дощ, залишаюся вдома",
-        "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i15:audio",
-            "transcript": "I stay home if it rains."
-          },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I stay home if it rains.",
-          "orderedTokens": [
-            "I",
-            "stay",
-            "home",
-            "if",
-            "it",
-            "rains"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-26:session-07:i16",
-        "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Я використовую прозорі банки, коли зберігаю борошно».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:i16:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «Я використовую прозорі банки, коли зберігаю борошно».",
+        "accessibilityLabel": "Скажіть: «Я надягаю рукавички, коли прибираю розбите скло».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i16:audio",
-            "transcript": "I use transparent jars when I store flour."
+            "audioTargetId": "en:lesson-26:session-07:i15:audio",
+            "transcript": "I wear gloves when I clean up broken glass."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I use transparent jars when I store flour.",
+          "targetPhrase": "I wear gloves when I clean up broken glass.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2202,6 +2153,75 @@
             "NEEDS_WORK_CONFIDENT",
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-07:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Це звичний вибір вашої сестри. Доповніть умову із she.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-07:i16:r1",
+            "text": "wants"
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i16:r2",
+            "text": "want"
+          },
+          {
+            "responseId": "en:lesson-26:session-07:i16:r3",
+            "text": "wanting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Це звичний вибір вашої сестри. Доповніть умову із she.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это привычный выбор вашей сестры. Дополните условие с she.",
+            "uk": "Це звичний вибір вашої сестри. Доповніть умову із she."
+          },
+          "gappedTargetPhrase": "She uses opaque curtains when she ___ a dark room.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-07:i16:r1",
+              "text": "wants"
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i16:r2",
+              "text": "want"
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i16:r3",
+              "text": "wanting"
+            }
+          ],
+          "testedDimension": "Це звичний вибір вашої сестри. Доповніть умову із she.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-07:i16:r2",
+              "correct": false,
+              "testedDimension": "Це звичний вибір вашої сестри. Доповніть умову із she.",
+              "feedbackByLocale": {
+                "ru": "После she в Present Simple нужно wants с -s.",
+                "uk": "Після she у Present Simple потрібно wants із -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-07:i16:r3",
+              "correct": false,
+              "testedDimension": "Це звичний вибір вашої сестри. Доповніть умову із she.",
+              "feedbackByLocale": {
+                "ru": "Нужна личная форма wants, не wanting.",
+                "uk": "Потрібна особова форма wants, не wanting."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -2209,33 +2229,41 @@
       {
         "interactionId": "en:lesson-26:session-07:i17",
         "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Він вибирає жорстку коробку, коли пакує склянки».",
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поясніть, коли потрібна нова кришка: «Ми купуємо нову кришку, якщо стара не підходить».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-26:session-07:i17:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «Він вибирає жорстку коробку, коли пакує склянки».",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поясніть, коли потрібна нова кришка: «Ми купуємо нову кришку, якщо стара не підходить».",
         "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-26:session-07:i17:audio",
-            "transcript": "He chooses a rigid box when he packs glasses."
+          "family": "phrase_builder",
+          "targetPhrase": "We buy a new lid if the old one does not fit.",
+          "localizedMeaning": {
+            "ru": "Объясните, когда нужна новая крышка: «Мы покупаем новую крышку, если старая не подходит».",
+            "uk": "Поясніть, коли потрібна нова кришка: «Ми купуємо нову кришку, якщо стара не підходить»."
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "He chooses a rigid box when he packs glasses.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "orderedTokens": [
+            "We",
+            "buy",
+            "a",
+            "new",
+            "lid",
+            "if",
+            "the",
+            "old",
+            "one",
+            "does",
+            "not",
+            "fit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       }
@@ -2243,44 +2271,24 @@
   },
   "answers": [
     {
+      "interactionId": "en:lesson-26:session-07:i01",
+      "correctText": "I wrap glasses in paper when I pack them.",
+      "correctResponseId": "en:lesson-26:session-07:i01:r1"
+    },
+    {
       "interactionId": "en:lesson-26:session-07:word:rigid",
       "correctText": "rigid",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-26:session-07:i01",
-      "correctText": "I choose a rigid box when I pack glasses.",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-26:session-07:i02",
-      "correctText": "choose",
-      "correctResponseId": "en:lesson-26:session-07:i02:r1"
+      "correctText": "I use a rigid box when I send dishes.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-26:session-07:i03",
-      "correctText": "I choose a rigid box when I pack glasses.",
+      "correctText": "is not",
       "correctResponseId": "en:lesson-26:session-07:i03:r1"
-    },
-    {
-      "interactionId": "en:lesson-26:session-07:word:brittle",
-      "correctText": "brittle",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-07:i04",
-      "correctText": "Brittle plastic breaks if you bend it.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-07:i05",
-      "correctText": "breaks",
-      "correctResponseId": "en:lesson-26:session-07:i05:r1"
-    },
-    {
-      "interactionId": "en:lesson-26:session-07:i06",
-      "correctText": "Brittle plastic breaks if you bend it.",
-      "correctResponseId": "en:lesson-26:session-07:i06:r1"
     },
     {
       "interactionId": "en:lesson-26:session-07:word:transparent",
@@ -2288,19 +2296,29 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-26:session-07:i07",
-      "correctText": "I use transparent jars when I store spices.",
+      "interactionId": "en:lesson-26:session-07:i04",
+      "correctText": "I choose transparent jars when I want to see the food.",
+      "correctResponseId": "en:lesson-26:session-07:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-07:i05",
+      "correctText": "I put heavy things at the bottom when I pack a box.",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-26:session-07:i08",
-      "correctText": "use",
-      "correctResponseId": "en:lesson-26:session-07:i08:r1"
+      "interactionId": "en:lesson-26:session-07:word:brittle",
+      "correctText": "brittle",
+      "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-26:session-07:i09",
-      "correctText": "I use transparent jars when I store spices.",
-      "correctResponseId": "en:lesson-26:session-07:i09:r1"
+      "interactionId": "en:lesson-26:session-07:i06",
+      "correctText": "breaks",
+      "correctResponseId": "en:lesson-26:session-07:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-07:i07",
+      "correctText": "I ask for help when a box is too heavy.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-26:session-07:word:opaque",
@@ -2308,43 +2326,53 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-26:session-07:i10",
-      "correctText": "I choose opaque curtains when I want a dark room.",
+      "interactionId": "en:lesson-26:session-07:i08",
+      "correctText": "I choose opaque paper when I wrap a present.",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-26:session-07:i11",
-      "correctText": "choose",
-      "correctResponseId": "en:lesson-26:session-07:i11:r1"
-    },
-    {
-      "interactionId": "en:lesson-26:session-07:i12",
-      "correctText": "I choose opaque curtains when I want a dark room.",
-      "correctResponseId": "en:lesson-26:session-07:i12:r1"
-    },
-    {
-      "interactionId": "en:lesson-26:session-07:i13",
+      "interactionId": "en:lesson-26:session-07:i09",
       "correctText": "",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-26:session-07:i14",
-      "correctText": "I rest when I am tired.",
+      "interactionId": "en:lesson-26:session-07:i10",
+      "correctText": "I write on the lid when I label a jar.",
+      "correctResponseId": "en:lesson-26:session-07:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-07:i11",
+      "correctText": "He takes a rigid box when he packs glasses.",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-26:session-07:i12",
+      "correctText": "close",
+      "correctResponseId": "en:lesson-26:session-07:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-07:i13",
+      "correctText": "I use transparent bags when I store small toys.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-07:i14",
+      "correctText": "I replace the lid if it is cracked.",
+      "correctResponseId": "en:lesson-26:session-07:i14:r1"
+    },
+    {
       "interactionId": "en:lesson-26:session-07:i15",
-      "correctText": "I stay home if it rains.",
+      "correctText": "I wear gloves when I clean up broken glass.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-26:session-07:i16",
-      "correctText": "I use transparent jars when I store flour.",
-      "correctResponseId": null
+      "correctText": "wants",
+      "correctResponseId": "en:lesson-26:session-07:i16:r1"
     },
     {
       "interactionId": "en:lesson-26:session-07:i17",
-      "correctText": "He chooses a rigid box when he packs glasses.",
+      "correctText": "We buy a new lid if the old one does not fit.",
       "correctResponseId": null
     }
   ]

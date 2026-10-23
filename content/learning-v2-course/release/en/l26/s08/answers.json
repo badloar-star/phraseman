@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-26:session-08:i01",
-    "correctText": "I use frozen fruit when there is a shortage of fresh fruit.",
+    "correctText": "We buy rice when there is a shortage of potatoes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-08:i02",
-    "correctText": "use",
+    "correctText": "I use frozen vegetables when fresh vegetables are expensive.",
     "correctResponseId": "en:lesson-26:session-08:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-26:session-08:i03",
-    "correctText": "I use frozen fruit when there is a shortage of fresh fruit.",
-    "correctResponseId": "en:lesson-26:session-08:i03:r1"
   },
   {
     "interactionId": "en:lesson-26:session-08:word:excess",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-26:session-08:i04",
-    "correctText": "I remove excess fat when I cook meat.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-26:session-08:i05",
+    "interactionId": "en:lesson-26:session-08:i03",
     "correctText": "remove",
-    "correctResponseId": "en:lesson-26:session-08:i05:r1"
+    "correctResponseId": "en:lesson-26:session-08:i03:r1"
   },
   {
-    "interactionId": "en:lesson-26:session-08:i06",
-    "correctText": "I remove excess fat when I cook meat.",
-    "correctResponseId": "en:lesson-26:session-08:i06:r1"
+    "interactionId": "en:lesson-26:session-08:i04",
+    "correctText": "I freeze bread when I buy too much.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-08:word:chunks",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-26:session-08:i07",
-    "correctText": "I use small chunks of potato when I make soup.",
+    "interactionId": "en:lesson-26:session-08:i05",
+    "correctText": "I cut the potatoes into chunks when I make soup.",
+    "correctResponseId": "en:lesson-26:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i06",
+    "correctText": "I add fruit when I eat porridge.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-26:session-08:i08",
-    "correctText": "use",
-    "correctResponseId": "en:lesson-26:session-08:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-26:session-08:i09",
-    "correctText": "I use small chunks of potato when I make soup.",
-    "correctResponseId": "en:lesson-26:session-08:i09:r1"
   },
   {
     "interactionId": "en:lesson-26:session-08:word:lacks",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-26:session-08:i10",
-    "correctText": "I add salt if the soup lacks flavour.",
+    "interactionId": "en:lesson-26:session-08:i07",
+    "correctText": "I add pepper if the soup lacks flavour.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-26:session-08:i08",
+    "correctText": "en:lesson-26:session-08:i08:p1=shortage\nen:lesson-26:session-08:i08:p2=excess\nen:lesson-26:session-08:i08:p3=chunks\nen:lesson-26:session-08:i08:p4=lacks",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-26:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i10",
+    "correctText": "do not",
+    "correctResponseId": "en:lesson-26:session-08:i10:r1"
+  },
+  {
     "interactionId": "en:lesson-26:session-08:i11",
-    "correctText": "add",
+    "correctText": "We share the food when there is not enough for everyone.",
     "correctResponseId": "en:lesson-26:session-08:i11:r1"
   },
   {
     "interactionId": "en:lesson-26:session-08:i12",
-    "correctText": "I add salt if the soup lacks flavour.",
-    "correctResponseId": "en:lesson-26:session-08:i12:r1"
+    "correctText": "I remove excess oil when I serve the food.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-08:i13",
-    "correctText": "en:lesson-26:session-08:i13:p1=shortage\nen:lesson-26:session-08:i13:p2=excess\nen:lesson-26:session-08:i13:p3=chunks\nen:lesson-26:session-08:i13:p4=lacks",
+    "correctText": "I taste the soup when I add salt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-08:i14",
-    "correctText": "I rest when I am tired.",
+    "correctText": "She buys frozen fruit when there is a shortage of fresh fruit.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-08:i15",
-    "correctText": "I stay home if it rains.",
-    "correctResponseId": null
+    "correctText": "I use small chunks of apple when I make this cake.",
+    "correctResponseId": "en:lesson-26:session-08:i15:r1"
   },
   {
     "interactionId": "en:lesson-26:session-08:i16",
-    "correctText": "He removes excess fat when he cooks meat.",
+    "correctText": "I add herbs if the sauce lacks flavour.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-08:i17",
-    "correctText": "I add pepper if the soup lacks flavour.",
-    "correctResponseId": null
+    "correctText": "lacks",
+    "correctResponseId": "en:lesson-26:session-08:i17:r1"
   }
 ]

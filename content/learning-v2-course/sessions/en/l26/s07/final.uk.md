@@ -49,103 +49,103 @@ Opaque — непрозорий, протилежність transparent. I choos
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — rigid**
+**1 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-07:i01; family: listen_choose -->
+🔊 *I wrap glasses in paper when I pack them.* → **I wrap glasses in paper when I pack them.** · I wrap plates in paper when I pack them. · I wrap glasses in towels when I pack them.
+- I wrap plates in paper when I pack them. — *У записі звучить I wrap glasses in paper when I pack them.*
+- I wrap glasses in towels when I pack them. — *У записі звучить I wrap glasses in paper when I pack them.*
+
+**2 · Картка слова — rigid**
 <!-- interaction_id: en:lesson-26:session-07:word:rigid; family: word_card -->
 > **rigid** — Жорсткий. Rigid — той, що майже не гнеться й зберігає форму.
 
-**2 · Скажіть: «Я вибираю жорстку коробку, коли пакую склянки.»**
-<!-- interaction_id: en:lesson-26:session-07:i01; family: phrase_builder -->
-Плитки: `glasses` `pack` `I` `when` `box` `rigid` `a` `choose` `I` → **I choose a rigid box when I pack glasses.**
+**3 · Поясніть вибір пакування: «Я використовую жорстку коробку, коли надсилаю посуд».**
+<!-- interaction_id: en:lesson-26:session-07:i02; family: phrase_builder -->
+Плитки: `dishes` `send` `I` `when` `box` `rigid` `a` `use` `I` → **I use a rigid box when I send dishes.**
 
-**3 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-07:i02; family: context_gap_grammar -->
-I ___ a rigid box when I pack glasses. → **choose** · chooses · choosing
-- chooses — *Звичайна закономірність: Present Simple. Потрібна форма choose.*
-- choosing — *Звичайна закономірність: Present Simple. Потрібна форма choose.*
+**4 · Ви не використовуєте мокрі коробки. Доповніть умову.**
+<!-- interaction_id: en:lesson-26:session-07:i03; family: context_gap_grammar -->
+I choose another box if this one ___ dry. → **is not** · are not · not be
+- are not — *This one замінює одну коробку: is not.*
+- not be — *Для заперечення з одним предметом потрібна форма is not.*
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-07:i03; family: listen_choose -->
-🔊 *I choose a rigid box when I pack glasses.* → **I choose a rigid box when I pack glasses.** · She chooses a rigid box when she packs glasses. · I choose a rigid box when I pack plates.
-- She chooses a rigid box when she packs glasses. — *У записі звучить I choose a rigid box when I pack glasses.*
-- I choose a rigid box when I pack plates. — *У записі звучить I choose a rigid box when I pack glasses.*
-
-**5 · Картка слова — brittle**
-<!-- interaction_id: en:lesson-26:session-07:word:brittle; family: word_card -->
-> **brittle** — Ламкий. Brittle — той, що легко ламається замість того, щоб гнутися.
-
-**6 · Скажіть: «Ламкий пластик ламається, якщо його зігнути.»**
-<!-- interaction_id: en:lesson-26:session-07:i04; family: phrase_builder -->
-Плитки: `it` `bend` `you` `if` `breaks` `plastic` `Brittle` → **Brittle plastic breaks if you bend it.**
-
-**7 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-07:i05; family: context_gap_grammar -->
-Brittle plastic ___ if you bend it. → **breaks** · break · breaking
-- break — *Звичайна закономірність: Present Simple. Потрібна форма breaks.*
-- breaking — *Звичайна закономірність: Present Simple. Потрібна форма breaks.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-07:i06; family: listen_choose -->
-🔊 *Brittle plastic breaks if you bend it.* → **Brittle plastic breaks if you bend it.** · Brittle plastic breaks if you drop it. · Brittle plastic breaks if she bends it.
-- Brittle plastic breaks if you drop it. — *У записі звучить Brittle plastic breaks if you bend it.*
-- Brittle plastic breaks if she bends it. — *У записі звучить Brittle plastic breaks if you bend it.*
-
-**9 · Картка слова — transparent**
+**5 · Картка слова — transparent**
 <!-- interaction_id: en:lesson-26:session-07:word:transparent; family: word_card -->
 > **transparent** — Прозорий. Transparent — такий, крізь який можна бачити.
 
-**10 · Скажіть: «Я використовую прозорі банки, коли зберігаю спеції.»**
-<!-- interaction_id: en:lesson-26:session-07:i07; family: phrase_builder -->
-Плитки: `spices` `store` `I` `when` `jars` `transparent` `use` `I` → **I use transparent jars when I store spices.**
+**6 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-07:i04; family: listen_choose -->
+🔊 *I choose transparent jars when I want to see the food.* → **I choose transparent jars when I want to see the food.** · I choose transparent bags when I want to see the food. · I choose transparent jars when I want to hide the food.
+- I choose transparent bags when I want to see the food. — *У записі звучить I choose transparent jars when I want to see the food.*
+- I choose transparent jars when I want to hide the food. — *У записі звучить I choose transparent jars when I want to see the food.*
 
-**11 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-07:i08; family: context_gap_grammar -->
-I ___ transparent jars when I store spices. → **use** · uses · using
-- uses — *Звичайна закономірність: Present Simple. Потрібна форма use.*
-- using — *Звичайна закономірність: Present Simple. Потрібна форма use.*
+**7 · Почуйте звичку під час пакування.**
+<!-- interaction_id: en:lesson-26:session-07:i05; family: listen_build_dictation -->
+🔊 *I put heavy things at the bottom when I pack a box.* Плитки: `box` `a` `pack` `I` `when` `bottom` `the` `at` `things` `heavy` `put` `I` → **I put heavy things at the bottom when I pack a box.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-07:i09; family: listen_choose -->
-🔊 *I use transparent jars when I store spices.* → **I use transparent jars when I store spices.** · She uses transparent jars when she stores spices. · I use transparent jars when I store rice.
-- She uses transparent jars when she stores spices. — *У записі звучить I use transparent jars when I store spices.*
-- I use transparent jars when I store rice. — *У записі звучить I use transparent jars when I store spices.*
+**8 · Картка слова — brittle**
+<!-- interaction_id: en:lesson-26:session-07:word:brittle; family: word_card -->
+> **brittle** — Ламкий. Brittle — той, що легко ламається замість того, щоб гнутися.
 
-**13 · Картка слова — opaque**
+**9 · Йдеться про властивість ламкого пластику, а не будь-якого пластику. Виберіть результат.**
+<!-- interaction_id: en:lesson-26:session-07:i06; family: context_gap_grammar -->
+Brittle plastic ___ if you bend it. → **breaks** · break · breaking
+- break — *Plastic — незлічуване; потрібна форма breaks, як з it.*
+- breaking — *Для властивості у Present Simple потрібно breaks; breaking не утворює присудок.*
+
+**10 · Поясніть звичку: «Я прошу допомоги, коли коробка заважка».**
+<!-- interaction_id: en:lesson-26:session-07:i07; family: scripted_repeat_compare -->
+🎙 **I ask for help when a box is too heavy.**
+
+**11 · Картка слова — opaque**
 <!-- interaction_id: en:lesson-26:session-07:word:opaque; family: word_card -->
 > **opaque** — Непрозорий. Opaque — той, що не пропускає світло так, щоб можна було бачити крізь нього.
 
-**14 · Скажіть: «Я вибираю непрозорі штори, коли хочу темну кімнату.»**
-<!-- interaction_id: en:lesson-26:session-07:i10; family: phrase_builder -->
-Плитки: `room` `dark` `a` `want` `I` `when` `curtains` `opaque` `choose` `I` → **I choose opaque curtains when I want a dark room.**
+**12 · Ви хочете приховати подарунок. Скажіть: «Я вибираю непрозорий папір, коли загортаю подарунок».**
+<!-- interaction_id: en:lesson-26:session-07:i08; family: phrase_builder -->
+Плитки: `present` `a` `wrap` `I` `when` `paper` `opaque` `choose` `I` → **I choose opaque paper when I wrap a present.**
 
-**15 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-07:i11; family: context_gap_grammar -->
-I ___ opaque curtains when I want a dark room. → **choose** · chooses · choosing
-- chooses — *Звичайна закономірність: Present Simple. Потрібна форма choose.*
-- choosing — *Звичайна закономірність: Present Simple. Потрібна форма choose.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-07:i12; family: listen_choose -->
-🔊 *I choose opaque curtains when I want a dark room.* → **I choose opaque curtains when I want a dark room.** · She chooses opaque curtains when she wants a dark room. · I choose opaque curtains when I want more privacy.
-- She chooses opaque curtains when she wants a dark room. — *У записі звучить I choose opaque curtains when I want a dark room.*
-- I choose opaque curtains when I want more privacy. — *У записі звучить I choose opaque curtains when I want a dark room.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-26:session-07:i13; family: speed_match -->
+**13 · Пригадайте властивості матеріалів**
+<!-- interaction_id: en:lesson-26:session-07:i09; family: speed_match -->
 rigid — жорсткий · brittle — ламкий · transparent — прозорий · opaque — непрозорий
 
-**18 · Відпочиваю, коли втомлююся**
-<!-- interaction_id: en:lesson-26:session-07:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**14 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-07:i10; family: listen_choose -->
+🔊 *I write on the lid when I label a jar.* → **I write on the lid when I label a jar.** · I write on the box when I label a jar. · I write on the lid when I label a bottle.
+- I write on the box when I label a jar. — *У записі звучить I write on the lid when I label a jar.*
+- I write on the lid when I label a bottle. — *У записі звучить I write on the lid when I label a jar.*
 
-**19 · Якщо йде дощ, залишаюся вдома**
-<!-- interaction_id: en:lesson-26:session-07:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+**15 · Розкажіть про звичку друга: «Він бере жорстку коробку, коли пакує склянки».**
+<!-- interaction_id: en:lesson-26:session-07:i11; family: phrase_builder -->
+Плитки: `glasses` `packs` `he` `when` `box` `rigid` `a` `takes` `He` → **He takes a rigid box when he packs glasses.**
 
-**20 · Скажіть: «Я використовую прозорі банки, коли зберігаю борошно».**
-<!-- interaction_id: en:lesson-26:session-07:i16; family: scripted_repeat_compare -->
-🎙 **I use transparent jars when I store flour.**
+**16 · Ви розповідаєте про свою звичайну звичку. Доповніть дію.**
+<!-- interaction_id: en:lesson-26:session-07:i12; family: context_gap_grammar -->
+I ___ the lid if a jar is empty. → **close** · closes · closing
+- closes — *Після I потрібна форма close без -s.*
+- closing — *Тут потрібен Present Simple: close, а не closing без допоміжного дієслова.*
 
-**21 · Скажіть: «Він вибирає жорстку коробку, коли пакує склянки».**
-<!-- interaction_id: en:lesson-26:session-07:i17; family: scripted_repeat_compare -->
-🎙 **He chooses a rigid box when he packs glasses.**
+**17 · Відновіть почуту умову вибору.**
+<!-- interaction_id: en:lesson-26:session-07:i13; family: listen_build_dictation -->
+🔊 *I use transparent bags when I store small toys.* Плитки: `toys` `small` `store` `I` `when` `bags` `transparent` `use` `I` → **I use transparent bags when I store small toys.**
+
+**18 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-07:i14; family: listen_choose -->
+🔊 *I replace the lid if it is cracked.* → **I replace the lid if it is cracked.** · I replace the jar if it is cracked. · I wash the lid if it is dirty.
+- I replace the jar if it is cracked. — *У записі звучить I replace the lid if it is cracked.*
+- I wash the lid if it is dirty. — *У записі звучить I replace the lid if it is cracked.*
+
+**19 · Скажіть: «Я надягаю рукавички, коли прибираю розбите скло».**
+<!-- interaction_id: en:lesson-26:session-07:i15; family: scripted_repeat_compare -->
+🎙 **I wear gloves when I clean up broken glass.**
+
+**20 · Це звичний вибір вашої сестри. Доповніть умову із she.**
+<!-- interaction_id: en:lesson-26:session-07:i16; family: context_gap_grammar -->
+She uses opaque curtains when she ___ a dark room. → **wants** · want · wanting
+- want — *Після she у Present Simple потрібно wants із -s.*
+- wanting — *Потрібна особова форма wants, не wanting.*
+
+**21 · Поясніть, коли потрібна нова кришка: «Ми купуємо нову кришку, якщо стара не підходить».**
+<!-- interaction_id: en:lesson-26:session-07:i17; family: phrase_builder -->
+Плитки: `fit` `not` `does` `one` `old` `the` `if` `lid` `new` `a` `buy` `We` → **We buy a new lid if the old one does not fit.**
 

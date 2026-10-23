@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "zero conditional: when + present simple, present simple",
+    "uk": "zero conditional: when + present simple, present simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Двери открываются сами",
+        "uk": "Двері відчиняються самі"
+      },
+      "bodyByLocale": {
+        "ru": "У входа в магазин двери открываются сами. The doors open automatically when I approach — двери открываются автоматически, когда я подхожу. Automatically показывает, что в этот момент мне не нужно открывать их руками. Это обычная работа этих дверей: open и approach в Present Simple. Doors — множественное число, поэтому open без -s.",
+        "uk": "Біля входу до магазину двері відчиняються самі. The doors open automatically when I approach — двері відчиняються автоматично, коли я підходжу. Automatically показує, що цієї миті мені не потрібно відчиняти їх руками. Це звичайна робота цих дверей: open і approach в Present Simple. Doors — множина, тому open без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-05:intro1:r1",
+              "text": "The doors open automatically when I approach."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro1:r2",
+              "text": "The doors opens automatically when I approach."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro1:r3",
+              "text": "The doors opening automatically when I approach."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-05:intro1:r1",
+              "text": "The doors open automatically when I approach."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro1:r2",
+              "text": "The doors opens automatically when I approach."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro1:r3",
+              "text": "The doors opening automatically when I approach."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Быстро и постоянно",
+        "uk": "Швидко й постійно"
+      },
+      "bodyByLocale": {
+        "ru": "Rapidly — быстро. I speak rapidly when I get nervous — я говорю быстро, когда нервничаю. Constantly — постоянно, непрерывно или очень часто. I move constantly when I dance — я постоянно двигаюсь, когда танцую. Rapidly описывает скорость, constantly — непрерывность или частоту: это не одно и то же. Здесь я рассказываю о своих привычных реакциях, поэтому Present Simple в обеих частях.",
+        "uk": "Rapidly — швидко. I speak rapidly when I get nervous — я говорю швидко, коли нервую. Constantly — постійно, безперервно або дуже часто. I move constantly when I dance — я постійно рухаюся, коли танцюю. Rapidly описує швидкість, constantly — безперервність або частоту: це не те саме. Тут я розповідаю про свої звичні реакції, тому Present Simple в обох частинах."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-05:intro2:r1",
+              "text": "I speak rapidly when I get nervous."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro2:r2",
+              "text": "I speaks rapidly when I get nervous."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro2:r3",
+              "text": "I speaking rapidly when I get nervous."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-05:intro2:r1",
+              "text": "I speak rapidly when I get nervous."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro2:r2",
+              "text": "I speaks rapidly when I get nervous."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro2:r3",
+              "text": "I speaking rapidly when I get nervous."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Реакция без раздумий",
+        "uk": "Реакція без роздумів"
+      },
+      "bodyByLocale": {
+        "ru": "Instinctively — инстинктивно, без предварительного обдумывания. I step back instinctively when something comes towards me — я инстинктивно отступаю, когда что-то движется ко мне. Например, заметив летящий мяч, я сначала отступаю, а уже потом успеваю подумать. После I — step без -s; something означает «что-то» и требует comes с -s. Это описание моей обычной реакции.",
+        "uk": "Instinctively — інстинктивно, без попереднього обмірковування. I step back instinctively when something comes towards me — я інстинктивно відступаю, коли щось рухається до мене. Наприклад, помітивши м’яч, що летить, я спочатку відступаю, а вже потім устигаю подумати. Після I — step без -s; something означає «щось» і потребує comes із -s. Це опис моєї звичайної реакції."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-05:intro3:r1",
+              "text": "I step back instinctively when something comes towards me."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro3:r2",
+              "text": "I steps back instinctively when something comes towards me."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro3:r3",
+              "text": "I stepping back instinctively when something comes towards me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-05:intro3:r1",
+              "text": "I step back instinctively when something comes towards me."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro3:r2",
+              "text": "I steps back instinctively when something comes towards me."
+            },
+            {
+              "responseId": "en:lesson-26:session-05:intro3:r3",
+              "text": "I stepping back instinctively when something comes towards me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0f3dca9e66ce21503f33feb818b742a5f4dadec4b66cdbdfe805200cf253fbd2"
+}

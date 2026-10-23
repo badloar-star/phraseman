@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "zero conditional: when + present simple, present simple",
+    "uk": "zero conditional: when + present simple, present simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Двигаться в ритм",
+        "uk": "Рухатися в ритм"
+      },
+      "bodyByLocale": {
+        "ru": "Rhythm — ритм. I follow the rhythm when I dance — я следую ритму, когда танцую. Здесь follow the rhythm означает двигаться в соответствии с ритмом музыки. Рассказываем об обычном действии: follow и dance в Present Simple. После I не добавляем -s. Когда речь об одной привычной реакции на условие, подходит zero conditional.",
+        "uk": "Rhythm — ритм. I follow the rhythm when I dance — я дотримуюся ритму, коли танцюю. Тут follow the rhythm означає рухатися відповідно до ритму музики. Розповідаємо про звичайну дію: follow і dance в Present Simple. Після I не додаємо -s. Коли йдеться про звичну реакцію на умову, підходить zero conditional."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-04:intro1:r1",
+              "text": "I follow the rhythm when I dance."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro1:r2",
+              "text": "I follows the rhythm when I dance."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro1:r3",
+              "text": "I following the rhythm when I dance."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-04:intro1:r1",
+              "text": "I follow the rhythm when I dance."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro1:r2",
+              "text": "I follows the rhythm when I dance."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro1:r3",
+              "text": "I following the rhythm when I dance."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Осанка и пульс",
+        "uk": "Постава й пульс"
+      },
+      "bodyByLocale": {
+        "ru": "Posture — осанка, то, как вы держите тело. I check my posture when my back feels tired — я проверяю свою осанку, когда чувствую усталость в спине. Это описание моей привычки. Pulse — пульс. My pulse gets faster when I run — мой пульс учащается, когда я бегу. В первой фразе I check без -s; во второй pulse — единственное число, поэтому gets. После I в условии — run.",
+        "uk": "Posture — постава, те, як ви тримаєте тіло. I check my posture when my back feels tired — я перевіряю свою поставу, коли відчуваю втому в спині. Це опис моєї звички. Pulse — пульс. My pulse gets faster when I run — мій пульс частішає, коли я біжу. У першій фразі I check без -s; у другій pulse — однина, тому gets. Після I в умові — run."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-04:intro2:r1",
+              "text": "I check my posture when my back feels tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro2:r2",
+              "text": "I checks my posture when my back feels tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro2:r3",
+              "text": "I checking my posture when my back feels tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-04:intro2:r1",
+              "text": "I check my posture when my back feels tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro2:r2",
+              "text": "I checks my posture when my back feels tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro2:r3",
+              "text": "I checking my posture when my back feels tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Замечать сердцебиение",
+        "uk": "Помічати серцебиття"
+      },
+      "bodyByLocale": {
+        "ru": "Heartbeat — сердцебиение. I notice my heartbeat when I lie quietly — я замечаю своё сердцебиение, когда лежу тихо. Heartbeat относится к биению сердца, pulse — к пульсу, который можно ощутить, например на запястье. В этой фразе говорящий описывает своё наблюдение. После I нужны notice и lie; lies используем с he или she. Обе части в настоящем времени, потому что речь о повторяющейся ситуации.",
+        "uk": "Heartbeat — серцебиття. I notice my heartbeat when I lie quietly — я помічаю своє серцебиття, коли тихо лежу. Heartbeat стосується биття серця, pulse — пульсу, який можна відчути, наприклад на зап’ястку. У цій фразі мовець описує своє спостереження. Після I потрібні notice і lie; lies використовуємо з he чи she. Обидві частини в теперішньому часі, бо йдеться про повторювану ситуацію."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-04:intro3:r1",
+              "text": "I notice my heartbeat when I lie quietly."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro3:r2",
+              "text": "I notices my heartbeat when I lie quietly."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro3:r3",
+              "text": "I noticing my heartbeat when I lie quietly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-04:intro3:r1",
+              "text": "I notice my heartbeat when I lie quietly."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro3:r2",
+              "text": "I notices my heartbeat when I lie quietly."
+            },
+            {
+              "responseId": "en:lesson-26:session-04:intro3:r3",
+              "text": "I noticing my heartbeat when I lie quietly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5cfe9bf1f8898943255b51ab93ad7d31222258ed35240d3356f561e4ef709de6"
+}

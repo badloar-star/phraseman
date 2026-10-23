@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-05:intro1:r2": {
+          "ru": "Для этого подлежащего в Present Simple нужна форма open.",
+          "uk": "Для цього підмета в Present Simple потрібна форма open."
+        },
+        "en:lesson-26:session-05:intro1:r3": {
+          "ru": "Привычный результат: Present Simple в обеих частях.",
+          "uk": "Звичний результат: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-05:intro2:r2": {
+          "ru": "Для этого подлежащего в Present Simple нужна форма speak.",
+          "uk": "Для цього підмета в Present Simple потрібна форма speak."
+        },
+        "en:lesson-26:session-05:intro2:r3": {
+          "ru": "Привычный результат: Present Simple в обеих частях.",
+          "uk": "Звичний результат: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-05:intro3:r2": {
+          "ru": "Для этого подлежащего в Present Simple нужна форма step.",
+          "uk": "Для цього підмета в Present Simple потрібна форма step."
+        },
+        "en:lesson-26:session-05:intro3:r3": {
+          "ru": "Привычный результат: Present Simple в обеих частях.",
+          "uk": "Звичний результат: Present Simple в обох частинах."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "64e034bf1ebcfacd2ef9d413f4cabab7e9256d081b6d4466eb30cbc587c4a125"
+}

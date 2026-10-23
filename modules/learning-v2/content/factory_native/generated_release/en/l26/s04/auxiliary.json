@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-04:intro1:r2": {
+          "ru": "В Present Simple с этим подлежащим нужна форма follow.",
+          "uk": "У Present Simple із цим підметом потрібна форма follow."
+        },
+        "en:lesson-26:session-04:intro1:r3": {
+          "ru": "Привычная реакция: Present Simple в обеих частях.",
+          "uk": "Звична реакція: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-04:intro2:r2": {
+          "ru": "В Present Simple с этим подлежащим нужна форма check.",
+          "uk": "У Present Simple із цим підметом потрібна форма check."
+        },
+        "en:lesson-26:session-04:intro2:r3": {
+          "ru": "Привычная реакция: Present Simple в обеих частях.",
+          "uk": "Звична реакція: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-04:intro3:r2": {
+          "ru": "В Present Simple с этим подлежащим нужна форма notice.",
+          "uk": "У Present Simple із цим підметом потрібна форма notice."
+        },
+        "en:lesson-26:session-04:intro3:r3": {
+          "ru": "Привычная реакция: Present Simple в обеих частях.",
+          "uk": "Звична реакція: Present Simple в обох частинах."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ec529e91ab9f778d0e227ed43729ab1aa42051db3e58e7fa3263eff0b92d4e94"
+}

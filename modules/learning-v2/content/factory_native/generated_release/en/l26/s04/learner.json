@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-04:word:rhythm",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rhythm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:word:rhythm:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rhythm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:word:rhythm:audio",
+          "transcript": "rhythm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-04:word:rhythm:r1",
+            "targetText": "rhythm",
+            "meaningByLocale": {
+              "ru": "Ритм. Rhythm — повторяющийся рисунок звуков или движений.",
+              "uk": "Ритм. Rhythm — повторюваний малюнок звуків чи рухів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rhythm",
+          "definitionByLocale": {
+            "ru": "Ритм. Rhythm — повторяющийся рисунок звуков или движений.",
+            "uk": "Ритм. Rhythm — повторюваний малюнок звуків чи рухів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я следую ритму, когда танцую.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я следую ритму, когда танцую.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I follow the rhythm when I dance.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я следую ритму, когда танцую.»",
+          "uk": "Скажіть: «Я дотримуюся ритму, коли танцюю.»"
+        },
+        "orderedTokens": [
+          "I",
+          "follow",
+          "the",
+          "rhythm",
+          "when",
+          "I",
+          "dance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-04:i02:r1",
+          "text": "follow"
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i02:r2",
+          "text": "follows"
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i02:r3",
+          "text": "following"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "I ___ the rhythm when I dance.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-04:i02:r1",
+            "text": "follow"
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i02:r2",
+            "text": "follows"
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i02:r3",
+            "text": "following"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма follow.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма follow."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма follow.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма follow."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-04:i03:r1",
+          "text": "I follow the rhythm when I dance."
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i03:r2",
+          "text": "She follows the rhythm when she dances."
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i03:r3",
+          "text": "I follow the rhythm when I sing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:i03:audio",
+          "transcript": "I follow the rhythm when I dance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-04:i03:r1",
+            "targetText": "I follow the rhythm when I dance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i03:r2",
+            "targetText": "She follows the rhythm when she dances.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i03:r3",
+            "targetText": "I follow the rhythm when I sing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I follow the rhythm when I dance.",
+              "uk": "У записі звучить I follow the rhythm when I dance."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I follow the rhythm when I dance.",
+              "uk": "У записі звучить I follow the rhythm when I dance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:word:posture",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — posture",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:word:posture:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — posture",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:word:posture:audio",
+          "transcript": "posture"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-04:word:posture:r1",
+            "targetText": "posture",
+            "meaningByLocale": {
+              "ru": "Осанка. Posture — то, как человек держит тело, когда сидит или стоит.",
+              "uk": "Постава. Posture — те, як людина тримає тіло, коли сидить чи стоїть."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "posture",
+          "definitionByLocale": {
+            "ru": "Осанка. Posture — то, как человек держит тело, когда сидит или стоит.",
+            "uk": "Постава. Posture — те, як людина тримає тіло, коли сидить чи стоїть."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я проверяю свою осанку, когда чувствую усталость в спине.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я проверяю свою осанку, когда чувствую усталость в спине.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I check my posture when my back feels tired.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я проверяю свою осанку, когда чувствую усталость в спине.»",
+          "uk": "Скажіть: «Я перевіряю свою поставу, коли відчуваю втому в спині.»"
+        },
+        "orderedTokens": [
+          "I",
+          "check",
+          "my",
+          "posture",
+          "when",
+          "my",
+          "back",
+          "feels",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-04:i05:r1",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i05:r2",
+          "text": "checks"
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i05:r3",
+          "text": "checking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "I ___ my posture when my back feels tired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-04:i05:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i05:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i05:r3",
+            "text": "checking"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма check.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма check."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма check.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма check."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-04:i06:r1",
+          "text": "I check my posture when my back feels tired."
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i06:r2",
+          "text": "She checks her posture when her back feels tired."
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i06:r3",
+          "text": "I check my posture when my neck feels tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:i06:audio",
+          "transcript": "I check my posture when my back feels tired."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-04:i06:r1",
+            "targetText": "I check my posture when my back feels tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i06:r2",
+            "targetText": "She checks her posture when her back feels tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i06:r3",
+            "targetText": "I check my posture when my neck feels tired.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-04:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I check my posture when my back feels tired.",
+              "uk": "У записі звучить I check my posture when my back feels tired."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I check my posture when my back feels tired.",
+              "uk": "У записі звучить I check my posture when my back feels tired."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:word:pulse",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pulse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:word:pulse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pulse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:word:pulse:audio",
+          "transcript": "pulse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-04:word:pulse:r1",
+            "targetText": "pulse",
+            "meaningByLocale": {
+              "ru": "Пульс. Pulse — ритмические толчки крови в артериях, которые можно ощутить, например на запястье.",
+              "uk": "Пульс. Pulse — ритмічні поштовхи крові в артеріях, які можна відчути, наприклад на зап’ястку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pulse",
+          "definitionByLocale": {
+            "ru": "Пульс. Pulse — ритмические толчки крови в артериях, которые можно ощутить, например на запястье.",
+            "uk": "Пульс. Pulse — ритмічні поштовхи крові в артеріях, які можна відчути, наприклад на зап’ястку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мой пульс учащается, когда я бегу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мой пульс учащается, когда я бегу.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My pulse gets faster when I run.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мой пульс учащается, когда я бегу.»",
+          "uk": "Скажіть: «Мій пульс частішає, коли я біжу.»"
+        },
+        "orderedTokens": [
+          "My",
+          "pulse",
+          "gets",
+          "faster",
+          "when",
+          "I",
+          "run"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-04:i08:r1",
+          "text": "gets"
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i08:r2",
+          "text": "get"
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i08:r3",
+          "text": "getting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "My pulse ___ faster when I run.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-04:i08:r1",
+            "text": "gets"
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i08:r2",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i08:r3",
+            "text": "getting"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма gets.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма gets."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма gets.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма gets."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-04:i09:r1",
+          "text": "My pulse gets faster when I run."
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i09:r2",
+          "text": "Her pulse gets faster when she runs."
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i09:r3",
+          "text": "My pulse gets faster when I climb stairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:i09:audio",
+          "transcript": "My pulse gets faster when I run."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-04:i09:r1",
+            "targetText": "My pulse gets faster when I run.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i09:r2",
+            "targetText": "Her pulse gets faster when she runs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i09:r3",
+            "targetText": "My pulse gets faster when I climb stairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My pulse gets faster when I run.",
+              "uk": "У записі звучить My pulse gets faster when I run."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My pulse gets faster when I run.",
+              "uk": "У записі звучить My pulse gets faster when I run."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:word:heartbeat",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — heartbeat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:word:heartbeat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — heartbeat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:word:heartbeat:audio",
+          "transcript": "heartbeat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-04:word:heartbeat:r1",
+            "targetText": "heartbeat",
+            "meaningByLocale": {
+              "ru": "Сердцебиение. Heartbeat — биение сердца.",
+              "uk": "Серцебиття. Heartbeat — биття серця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heartbeat",
+          "definitionByLocale": {
+            "ru": "Сердцебиение. Heartbeat — биение сердца.",
+            "uk": "Серцебиття. Heartbeat — биття серця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я замечаю своё сердцебиение, когда лежу тихо.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я замечаю своё сердцебиение, когда лежу тихо.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I notice my heartbeat when I lie quietly.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я замечаю своё сердцебиение, когда лежу тихо.»",
+          "uk": "Скажіть: «Я помічаю своє серцебиття, коли тихо лежу.»"
+        },
+        "orderedTokens": [
+          "I",
+          "notice",
+          "my",
+          "heartbeat",
+          "when",
+          "I",
+          "lie",
+          "quietly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-04:i11:r1",
+          "text": "notice"
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i11:r2",
+          "text": "notices"
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i11:r3",
+          "text": "noticing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "I ___ my heartbeat when I lie quietly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-04:i11:r1",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i11:r2",
+            "text": "notices"
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i11:r3",
+            "text": "noticing"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-04:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма notice.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма notice."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма notice.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма notice."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-04:i12:r1",
+          "text": "I notice my heartbeat when I lie quietly."
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i12:r2",
+          "text": "She notices her heartbeat when she lies quietly."
+        },
+        {
+          "responseId": "en:lesson-26:session-04:i12:r3",
+          "text": "I notice my heartbeat when I sit quietly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:i12:audio",
+          "transcript": "I notice my heartbeat when I lie quietly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-04:i12:r1",
+            "targetText": "I notice my heartbeat when I lie quietly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i12:r2",
+            "targetText": "She notices her heartbeat when she lies quietly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i12:r3",
+            "targetText": "I notice my heartbeat when I sit quietly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-04:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I notice my heartbeat when I lie quietly.",
+              "uk": "У записі звучить I notice my heartbeat when I lie quietly."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-04:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I notice my heartbeat when I lie quietly.",
+              "uk": "У записі звучить I notice my heartbeat when I lie quietly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините формы с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините формы с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-26:session-04:i13:p1",
+            "target": "rhythm",
+            "meaningByLocale": {
+              "ru": "ритм",
+              "uk": "ритм"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-04:i13:p2",
+            "target": "posture",
+            "meaningByLocale": {
+              "ru": "осанка",
+              "uk": "постава"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-04:i13:p3",
+            "target": "pulse",
+            "meaningByLocale": {
+              "ru": "пульс",
+              "uk": "пульс"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-04:i13:p4",
+            "target": "heartbeat",
+            "meaningByLocale": {
+              "ru": "сердцебиение",
+              "uk": "серцебиття"
+            }
+          }
+        ],
+        "leftColumn": [
+          "rhythm",
+          "posture",
+          "pulse",
+          "heartbeat"
+        ],
+        "rightColumn": [
+          "ритм",
+          "осанка",
+          "пульс",
+          "сердцебиение"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Отдыхаю, когда устаю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Отдыхаю, когда устаю",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:i14:audio",
+          "transcript": "I rest when I am tired."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I rest when I am tired.",
+        "orderedTokens": [
+          "I",
+          "rest",
+          "when",
+          "I",
+          "am",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Если идёт дождь, остаюсь дома",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Если идёт дождь, остаюсь дома",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:i15:audio",
+          "transcript": "I stay home if it rains."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I stay home if it rains.",
+        "orderedTokens": [
+          "I",
+          "stay",
+          "home",
+          "if",
+          "it",
+          "rains"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я следую ритму, когда играю на барабанах».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я следую ритму, когда играю на барабанах».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:i16:audio",
+          "transcript": "I follow the rhythm when I play the drums."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I follow the rhythm when I play the drums.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-04:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мой пульс учащается, когда я танцую».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мой пульс учащается, когда я танцую».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-04:i17:audio",
+          "transcript": "My pulse gets faster when I dance."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My pulse gets faster when I dance.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ea2f3830fffd97ff2da2abcdfa3ee33f04dd168f38df4860cec9506019c15fba"
+}

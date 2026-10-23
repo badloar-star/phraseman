@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-05:word:automatically",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — automatically",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:word:automatically:audio"
+      ],
+      "accessibilityLabel": "Картка слова — automatically",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:word:automatically:audio",
+          "transcript": "automatically"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-05:word:automatically:r1",
+            "targetText": "automatically",
+            "meaningByLocale": {
+              "ru": "Автоматически. Automatically — без отдельного действия или решения человека в этот момент.",
+              "uk": "Автоматично. Automatically — без окремої дії чи рішення людини цієї миті."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "automatically",
+          "definitionByLocale": {
+            "ru": "Автоматически. Automatically — без отдельного действия или решения человека в этот момент.",
+            "uk": "Автоматично. Automatically — без окремої дії чи рішення людини цієї миті."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Двері відчиняються автоматично, коли я підходжу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Двері відчиняються автоматично, коли я підходжу.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The doors open automatically when I approach.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Двери открываются автоматически, когда я подхожу.»",
+          "uk": "Скажіть: «Двері відчиняються автоматично, коли я підходжу.»"
+        },
+        "orderedTokens": [
+          "The",
+          "doors",
+          "open",
+          "automatically",
+          "when",
+          "I",
+          "approach"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть звичайну закономірність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-05:i02:r1",
+          "text": "open"
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i02:r2",
+          "text": "opens"
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i02:r3",
+          "text": "opening"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть звичайну закономірність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "The doors ___ automatically when I approach.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-05:i02:r1",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i02:r2",
+            "text": "opens"
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i02:r3",
+            "text": "opening"
+          }
+        ],
+        "testedDimension": "Доповніть звичайну закономірність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть звичайну закономірність.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма open.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма open."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть звичайну закономірність.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма open.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма open."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-05:i03:r1",
+          "text": "The doors open automatically when I approach."
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i03:r2",
+          "text": "The doors open automatically when she approaches."
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i03:r3",
+          "text": "The doors close automatically when I leave."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:i03:audio",
+          "transcript": "The doors open automatically when I approach."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-05:i03:r1",
+            "targetText": "The doors open automatically when I approach.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i03:r2",
+            "targetText": "The doors open automatically when she approaches.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i03:r3",
+            "targetText": "The doors close automatically when I leave.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The doors open automatically when I approach.",
+              "uk": "У записі звучить The doors open automatically when I approach."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The doors open automatically when I approach.",
+              "uk": "У записі звучить The doors open automatically when I approach."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:word:rapidly",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rapidly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:word:rapidly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rapidly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:word:rapidly:audio",
+          "transcript": "rapidly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-05:word:rapidly:r1",
+            "targetText": "rapidly",
+            "meaningByLocale": {
+              "ru": "Быстро. Rapidly описывает высокую скорость действия или изменения.",
+              "uk": "Швидко. Rapidly описує високу швидкість дії чи зміни."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rapidly",
+          "definitionByLocale": {
+            "ru": "Быстро. Rapidly описывает высокую скорость действия или изменения.",
+            "uk": "Швидко. Rapidly описує високу швидкість дії чи зміни."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я говорю швидко, коли нервую.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я говорю швидко, коли нервую.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I speak rapidly when I get nervous.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я говорю быстро, когда нервничаю.»",
+          "uk": "Скажіть: «Я говорю швидко, коли нервую.»"
+        },
+        "orderedTokens": [
+          "I",
+          "speak",
+          "rapidly",
+          "when",
+          "I",
+          "get",
+          "nervous"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть звичайну закономірність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-05:i05:r1",
+          "text": "speak"
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i05:r2",
+          "text": "speaks"
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i05:r3",
+          "text": "speaking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть звичайну закономірність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "I ___ rapidly when I get nervous.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-05:i05:r1",
+            "text": "speak"
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i05:r2",
+            "text": "speaks"
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i05:r3",
+            "text": "speaking"
+          }
+        ],
+        "testedDimension": "Доповніть звичайну закономірність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть звичайну закономірність.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма speak.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма speak."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть звичайну закономірність.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма speak.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма speak."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-05:i06:r1",
+          "text": "I speak rapidly when I get nervous."
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i06:r2",
+          "text": "She speaks rapidly when she gets nervous."
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i06:r3",
+          "text": "I speak rapidly when I get excited."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:i06:audio",
+          "transcript": "I speak rapidly when I get nervous."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-05:i06:r1",
+            "targetText": "I speak rapidly when I get nervous.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i06:r2",
+            "targetText": "She speaks rapidly when she gets nervous.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i06:r3",
+            "targetText": "I speak rapidly when I get excited.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I speak rapidly when I get nervous.",
+              "uk": "У записі звучить I speak rapidly when I get nervous."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I speak rapidly when I get nervous.",
+              "uk": "У записі звучить I speak rapidly when I get nervous."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:word:constantly",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — constantly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:word:constantly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — constantly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:word:constantly:audio",
+          "transcript": "constantly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-05:word:constantly:r1",
+            "targetText": "constantly",
+            "meaningByLocale": {
+              "ru": "Постоянно. Constantly — непрерывно или очень часто.",
+              "uk": "Постійно. Constantly — безперервно або дуже часто."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "constantly",
+          "definitionByLocale": {
+            "ru": "Постоянно. Constantly — непрерывно или очень часто.",
+            "uk": "Постійно. Constantly — безперервно або дуже часто."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я постійно рухаюся, коли танцюю.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я постійно рухаюся, коли танцюю.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I move constantly when I dance.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я постоянно двигаюсь, когда танцую.»",
+          "uk": "Скажіть: «Я постійно рухаюся, коли танцюю.»"
+        },
+        "orderedTokens": [
+          "I",
+          "move",
+          "constantly",
+          "when",
+          "I",
+          "dance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть звичайну закономірність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-05:i08:r1",
+          "text": "move"
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i08:r2",
+          "text": "moves"
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i08:r3",
+          "text": "moving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть звичайну закономірність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "I ___ constantly when I dance.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-05:i08:r1",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i08:r2",
+            "text": "moves"
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i08:r3",
+            "text": "moving"
+          }
+        ],
+        "testedDimension": "Доповніть звичайну закономірність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть звичайну закономірність.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма move.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма move."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть звичайну закономірність.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма move.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма move."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-05:i09:r1",
+          "text": "I move constantly when I dance."
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i09:r2",
+          "text": "She moves constantly when she dances."
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i09:r3",
+          "text": "I move constantly when I cook."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:i09:audio",
+          "transcript": "I move constantly when I dance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-05:i09:r1",
+            "targetText": "I move constantly when I dance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i09:r2",
+            "targetText": "She moves constantly when she dances.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i09:r3",
+            "targetText": "I move constantly when I cook.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I move constantly when I dance.",
+              "uk": "У записі звучить I move constantly when I dance."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I move constantly when I dance.",
+              "uk": "У записі звучить I move constantly when I dance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:word:instinctively",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — instinctively",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:word:instinctively:audio"
+      ],
+      "accessibilityLabel": "Картка слова — instinctively",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:word:instinctively:audio",
+          "transcript": "instinctively"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-05:word:instinctively:r1",
+            "targetText": "instinctively",
+            "meaningByLocale": {
+              "ru": "Инстинктивно. Instinctively — без предварительного обдумывания, как естественная реакция.",
+              "uk": "Інстинктивно. Instinctively — без попереднього обмірковування, як природна реакція."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "instinctively",
+          "definitionByLocale": {
+            "ru": "Инстинктивно. Instinctively — без предварительного обдумывания, как естественная реакция.",
+            "uk": "Інстинктивно. Instinctively — без попереднього обмірковування, як природна реакція."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я інстинктивно відступаю, коли щось рухається до мене.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я інстинктивно відступаю, коли щось рухається до мене.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I step back instinctively when something comes towards me.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я инстинктивно отступаю, когда что-то движется ко мне.»",
+          "uk": "Скажіть: «Я інстинктивно відступаю, коли щось рухається до мене.»"
+        },
+        "orderedTokens": [
+          "I",
+          "step",
+          "back",
+          "instinctively",
+          "when",
+          "something",
+          "comes",
+          "towards",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть звичайну закономірність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-05:i11:r1",
+          "text": "step"
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i11:r2",
+          "text": "steps"
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i11:r3",
+          "text": "stepping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть звичайну закономірність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "I ___ back instinctively when something comes towards me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-05:i11:r1",
+            "text": "step"
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i11:r2",
+            "text": "steps"
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i11:r3",
+            "text": "stepping"
+          }
+        ],
+        "testedDimension": "Доповніть звичайну закономірність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть звичайну закономірність.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма step.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма step."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть звичайну закономірність.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма step.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма step."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-05:i12:r1",
+          "text": "I step back instinctively when something comes towards me."
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i12:r2",
+          "text": "She steps back instinctively when something comes towards her."
+        },
+        {
+          "responseId": "en:lesson-26:session-05:i12:r3",
+          "text": "I step back instinctively when someone runs towards me."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:i12:audio",
+          "transcript": "I step back instinctively when something comes towards me."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-05:i12:r1",
+            "targetText": "I step back instinctively when something comes towards me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i12:r2",
+            "targetText": "She steps back instinctively when something comes towards her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i12:r3",
+            "targetText": "I step back instinctively when someone runs towards me.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-05:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I step back instinctively when something comes towards me.",
+              "uk": "У записі звучить I step back instinctively when something comes towards me."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-05:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I step back instinctively when something comes towards me.",
+              "uk": "У записі звучить I step back instinctively when something comes towards me."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте форми з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте форми з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-26:session-05:i13:p1",
+            "target": "automatically",
+            "meaningByLocale": {
+              "ru": "автоматически",
+              "uk": "автоматично"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-05:i13:p2",
+            "target": "rapidly",
+            "meaningByLocale": {
+              "ru": "быстро",
+              "uk": "швидко"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-05:i13:p3",
+            "target": "constantly",
+            "meaningByLocale": {
+              "ru": "постоянно",
+              "uk": "постійно"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-05:i13:p4",
+            "target": "instinctively",
+            "meaningByLocale": {
+              "ru": "инстинктивно",
+              "uk": "інстинктивно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "automatically",
+          "rapidly",
+          "constantly",
+          "instinctively"
+        ],
+        "rightColumn": [
+          "автоматично",
+          "швидко",
+          "постійно",
+          "інстинктивно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Відпочиваю, коли втомлююся",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Відпочиваю, коли втомлююся",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:i14:audio",
+          "transcript": "I rest when I am tired."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I rest when I am tired.",
+        "orderedTokens": [
+          "I",
+          "rest",
+          "when",
+          "I",
+          "am",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Якщо йде дощ, залишаюся вдома",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Якщо йде дощ, залишаюся вдома",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:i15:audio",
+          "transcript": "I stay home if it rains."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I stay home if it rains.",
+        "orderedTokens": [
+          "I",
+          "stay",
+          "home",
+          "if",
+          "it",
+          "rains"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Він говорить швидко, коли нервує».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Він говорить швидко, коли нервує».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:i16:audio",
+          "transcript": "He speaks rapidly when he gets nervous."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He speaks rapidly when he gets nervous.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-05:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Двері відчиняються автоматично, коли ми підходимо».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Двері відчиняються автоматично, коли ми підходимо».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-05:i17:audio",
+          "transcript": "The doors open automatically when we approach."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The doors open automatically when we approach.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e14494414431c59780cd0a4205b384a024daeff636c9873a56f86248a1ff4421"
+}

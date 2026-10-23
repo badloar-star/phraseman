@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-04:word:rhythm",
+    "correctText": "rhythm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i01",
+    "correctText": "I follow the rhythm when I dance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i02",
+    "correctText": "follow",
+    "correctResponseId": "en:lesson-26:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i03",
+    "correctText": "I follow the rhythm when I dance.",
+    "correctResponseId": "en:lesson-26:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:word:posture",
+    "correctText": "posture",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i04",
+    "correctText": "I check my posture when my back feels tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i05",
+    "correctText": "check",
+    "correctResponseId": "en:lesson-26:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i06",
+    "correctText": "I check my posture when my back feels tired.",
+    "correctResponseId": "en:lesson-26:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:word:pulse",
+    "correctText": "pulse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i07",
+    "correctText": "My pulse gets faster when I run.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i08",
+    "correctText": "gets",
+    "correctResponseId": "en:lesson-26:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i09",
+    "correctText": "My pulse gets faster when I run.",
+    "correctResponseId": "en:lesson-26:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:word:heartbeat",
+    "correctText": "heartbeat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i10",
+    "correctText": "I notice my heartbeat when I lie quietly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i11",
+    "correctText": "notice",
+    "correctResponseId": "en:lesson-26:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i12",
+    "correctText": "I notice my heartbeat when I lie quietly.",
+    "correctResponseId": "en:lesson-26:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i13",
+    "correctText": "en:lesson-26:session-04:i13:p1=rhythm\nen:lesson-26:session-04:i13:p2=posture\nen:lesson-26:session-04:i13:p3=pulse\nen:lesson-26:session-04:i13:p4=heartbeat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i14",
+    "correctText": "I rest when I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i15",
+    "correctText": "I stay home if it rains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i16",
+    "correctText": "I follow the rhythm when I play the drums.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-04:i17",
+    "correctText": "My pulse gets faster when I dance.",
+    "correctResponseId": null
+  }
+]

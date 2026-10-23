@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-06:intro1:r2": {
+          "ru": "С этим подлежащим нужна форма feel.",
+          "uk": "Із цим підметом потрібна форма feel."
+        },
+        "en:lesson-26:session-06:intro1:r3": {
+          "ru": "Повторяющееся ощущение: Present Simple в обеих частях.",
+          "uk": "Повторюване відчуття: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-06:intro2:r2": {
+          "ru": "С этим подлежащим нужна форма feel.",
+          "uk": "Із цим підметом потрібна форма feel."
+        },
+        "en:lesson-26:session-06:intro2:r3": {
+          "ru": "Повторяющееся ощущение: Present Simple в обеих частях.",
+          "uk": "Повторюване відчуття: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-06:intro3:r2": {
+          "ru": "С этим подлежащим нужна форма throbs.",
+          "uk": "Із цим підметом потрібна форма throbs."
+        },
+        "en:lesson-26:session-06:intro3:r3": {
+          "ru": "Повторяющееся ощущение: Present Simple в обеих частях.",
+          "uk": "Повторюване відчуття: Present Simple в обох частинах."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "48459ba2873443b381bde2f28d3fed1437c055a08f0d7072a4c0012ad6fe5bc1"
+}

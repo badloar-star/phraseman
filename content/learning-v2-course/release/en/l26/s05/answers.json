@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-05:word:automatically",
+    "correctText": "automatically",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i01",
+    "correctText": "The doors open automatically when I approach.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i02",
+    "correctText": "open",
+    "correctResponseId": "en:lesson-26:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i03",
+    "correctText": "The doors open automatically when I approach.",
+    "correctResponseId": "en:lesson-26:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:word:rapidly",
+    "correctText": "rapidly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i04",
+    "correctText": "I speak rapidly when I get nervous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i05",
+    "correctText": "speak",
+    "correctResponseId": "en:lesson-26:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i06",
+    "correctText": "I speak rapidly when I get nervous.",
+    "correctResponseId": "en:lesson-26:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:word:constantly",
+    "correctText": "constantly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i07",
+    "correctText": "I move constantly when I dance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i08",
+    "correctText": "move",
+    "correctResponseId": "en:lesson-26:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i09",
+    "correctText": "I move constantly when I dance.",
+    "correctResponseId": "en:lesson-26:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:word:instinctively",
+    "correctText": "instinctively",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i10",
+    "correctText": "I step back instinctively when something comes towards me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i11",
+    "correctText": "step",
+    "correctResponseId": "en:lesson-26:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i12",
+    "correctText": "I step back instinctively when something comes towards me.",
+    "correctResponseId": "en:lesson-26:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i13",
+    "correctText": "en:lesson-26:session-05:i13:p1=automatically\nen:lesson-26:session-05:i13:p2=rapidly\nen:lesson-26:session-05:i13:p3=constantly\nen:lesson-26:session-05:i13:p4=instinctively",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i14",
+    "correctText": "I rest when I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i15",
+    "correctText": "I stay home if it rains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i16",
+    "correctText": "He speaks rapidly when he gets nervous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-05:i17",
+    "correctText": "The doors open automatically when we approach.",
+    "correctResponseId": null
+  }
+]

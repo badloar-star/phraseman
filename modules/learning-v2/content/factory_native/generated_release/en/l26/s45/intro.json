@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "when, if, unless; just, already, yet; by the time",
+    "uk": "when, if, unless; just, already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Встретиться в помещении",
+        "uk": "Зустрітися в приміщенні"
+      },
+      "bodyByLocale": {
+        "ru": "Smog — смог, загрязнённая дымка в воздухе. There is smog over the city — над городом смог. Вы договорились встретиться внутри здания: I will meet you inside when I arrive — я встречусь с тобой внутри, когда приеду. После when здесь arrive без will. Друг спрашивает, где вы. I have just arrived — я только что приехал. Just стоит между have и arrived. Это сообщение о недавнем действии и результате сейчас.",
+        "uk": "Smog — смог, забруднена димка в повітрі. There is smog over the city — над містом смог. Ви домовилися зустрітися всередині будівлі: I will meet you inside when I arrive — я зустрінуся з тобою всередині, коли приїду. Після when тут arrive без will. Друг запитує, де ви. I have just arrived — я щойно приїхав. Just стоїть між have і arrived. Це повідомлення про недавню дію й результат зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-45:intro1:r1",
+              "text": "I will meet you inside when I arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro1:r2",
+              "text": "I will meet you inside when I will arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro1:r3",
+              "text": "I will meet you inside when I arrives."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-45:intro1:r1",
+              "text": "I will meet you inside when I arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro1:r2",
+              "text": "I will meet you inside when I will arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro1:r3",
+              "text": "I will meet you inside when I arrives."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обувь после прогулки",
+        "uk": "Взуття після прогулянки"
+      },
+      "bodyByLocale": {
+        "ru": "Filthy — очень грязный; сильнее, чем dirty. My shoes are filthy — моя обувь очень грязная. Stinky — вонючий, разговорное слово. These socks are stinky — эти носки вонючие. О человеке это звучит обидно; здесь речь о вещах. Грязь и запах — разные признаки. Носки могут выглядеть чистыми, но всё равно отправиться в стирку после короткого знакомства с носом. If your shoes are wet, leave them here — если обувь мокрая, оставь её здесь. Можно начать с просьбы: Leave them here if your shoes are wet. Условие остаётся тем же.",
+        "uk": "Filthy — дуже брудний; сильніше, ніж dirty. My shoes are filthy — моє взуття дуже брудне. Stinky — смердючий, розмовне слово. These socks are stinky — ці шкарпетки смердючі. Про людину це звучить образливо; тут ідеться про речі. Бруд і запах — різні ознаки. Шкарпетки можуть виглядати чистими, але все одно потрапити до прання після короткого знайомства з носом. If your shoes are wet, leave them here — якщо взуття мокре, залиш його тут. Можна почати з прохання: Leave them here if your shoes are wet. Умова залишається тією самою."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-45:intro2:r1",
+              "text": "Leave them here if your shoes are wet."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro2:r2",
+              "text": "Leave them here unless your shoes are wet."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro2:r3",
+              "text": "Leave them here if your shoes is wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-45:intro2:r1",
+              "text": "Leave them here if your shoes are wet."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro2:r2",
+              "text": "Leave them here unless your shoes are wet."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro2:r3",
+              "text": "Leave them here if your shoes is wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Попросить другую комнату",
+        "uk": "Попросити іншу кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "Musty — затхлый, с запахом сырости. The room smells musty — в комнате затхлый запах. Вы описываете запах, а не устанавливаете его причину. Could we use another room? — можно нам воспользоваться другой комнатой? Have you asked yet? — ты уже спросил? I have already asked — я уже спросил. Already стоит перед asked, yet — в конце вопроса. О вчерашнем приезде: They had cleaned the room by the time we arrived — они убрали комнату к тому времени, как мы приехали. Had cleaned показывает, что уборка была раньше приезда.",
+        "uk": "Musty — затхлий, із запахом вогкості. The room smells musty — у кімнаті затхлий запах. Ви описуєте запах, а не встановлюєте його причину. Could we use another room? — можна нам скористатися іншою кімнатою? Have you asked yet? — ти вже запитав? I have already asked — я вже запитав. Already стоїть перед asked, yet — наприкінці запитання. Про вчорашній приїзд: They had cleaned the room by the time we arrived — вони прибрали кімнату до того часу, як ми приїхали. Had cleaned показує, що прибирання було раніше за приїзд."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-45:intro3:r1",
+              "text": "They had cleaned the room by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro3:r2",
+              "text": "They have cleaned the room by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro3:r3",
+              "text": "They had clean the room by the time we arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-45:intro3:r1",
+              "text": "They had cleaned the room by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro3:r2",
+              "text": "They have cleaned the room by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-45:intro3:r3",
+              "text": "They had clean the room by the time we arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "be51a3115002c7b7d1407c6cce91196f4d91bd473d33a35e62c152f88dd3ec6d"
+}

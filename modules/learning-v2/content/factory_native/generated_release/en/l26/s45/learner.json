@@ -1,0 +1,1074 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-45:word:smog",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — smog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:word:smog:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — smog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:word:smog:audio",
+          "transcript": "smog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-45:word:smog:r1",
+            "targetText": "smog",
+            "meaningByLocale": {
+              "ru": "Смог, загрязнённая дымка в воздухе.",
+              "uk": "Смог, забруднена димка в повітрі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smog",
+          "definitionByLocale": {
+            "ru": "Смог, загрязнённая дымка в воздухе.",
+            "uk": "Смог, забруднена димка в повітрі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-45:i01:r1",
+          "text": "There is smog over the city."
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i01:r2",
+          "text": "There is fog over the city."
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i01:r3",
+          "text": "There is snow over the city."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:i01:audio",
+          "transcript": "There is smog over the city."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-45:i01:r1",
+            "targetText": "There is smog over the city.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i01:r2",
+            "targetText": "There is fog over the city.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i01:r3",
+            "targetText": "There is snow over the city.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-45:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is smog over the city.",
+              "uk": "У записі звучить There is smog over the city."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is smog over the city.",
+              "uk": "У записі звучить There is smog over the city."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите другу, что встретитесь с ним внутри.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите другу, что встретитесь с ним внутри.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will meet you inside.",
+        "localizedMeaning": {
+          "ru": "Сообщите другу, что встретитесь с ним внутри.",
+          "uk": "Повідомте другу, що зустрінетеся з ним усередині."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "meet",
+          "you",
+          "inside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пообещайте позвонить после приезда.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-45:i03:r1",
+          "text": "arrive"
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i03:r2",
+          "text": "will arrive"
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i03:r3",
+          "text": "arrives"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообещайте позвонить после приезда.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пообещайте позвонить после приезда.",
+          "uk": "Пообіцяйте зателефонувати після приїзду."
+        },
+        "gappedTargetPhrase": "I will call you when I ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-45:i03:r1",
+            "text": "arrive"
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i03:r2",
+            "text": "will arrive"
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i03:r3",
+            "text": "arrives"
+          }
+        ],
+        "testedDimension": "Пообещайте позвонить после приезда.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Пообещайте позвонить после приезда.",
+            "feedbackByLocale": {
+              "ru": "После when здесь arrive без will.",
+              "uk": "Після when тут arrive без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Пообещайте позвонить после приезда.",
+            "feedbackByLocale": {
+              "ru": "С I нужно arrive без -s.",
+              "uk": "З I потрібно arrive без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-45:i04:r1",
+          "text": "I have just arrived."
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i04:r2",
+          "text": "I have just called."
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i04:r3",
+          "text": "I have already left."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:i04:audio",
+          "transcript": "I have just arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-45:i04:r1",
+            "targetText": "I have just arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i04:r2",
+            "targetText": "I have just called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i04:r3",
+            "targetText": "I have already left.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-45:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just arrived.",
+              "uk": "У записі звучить I have just arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just arrived.",
+              "uk": "У записі звучить I have just arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:word:filthy",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — filthy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:word:filthy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — filthy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:word:filthy:audio",
+          "transcript": "filthy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-45:word:filthy:r1",
+            "targetText": "filthy",
+            "meaningByLocale": {
+              "ru": "Очень грязный; сильнее dirty.",
+              "uk": "Дуже брудний; сильніше за dirty."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "filthy",
+          "definitionByLocale": {
+            "ru": "Очень грязный; сильнее dirty.",
+            "uk": "Дуже брудний; сильніше за dirty."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i05",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы посмотрите на свою обувь после прогулки. Скажите, что она очень грязная.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Вы посмотрите на свою обувь после прогулки. Скажите, что она очень грязная.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:i05:audio",
+          "transcript": "My shoes are filthy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My shoes are filthy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу подождать здесь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:i06:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу подождать здесь.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:i06:audio",
+          "transcript": "Please wait here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please wait here.",
+        "orderedTokens": [
+          "Please",
+          "wait",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:word:stinky",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stinky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:word:stinky:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stinky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:word:stinky:audio",
+          "transcript": "stinky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-45:word:stinky:r1",
+            "targetText": "stinky",
+            "meaningByLocale": {
+              "ru": "Вонючий; разговорное слово о неприятном запахе.",
+              "uk": "Смердючий; розмовне слово про неприємний запах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stinky",
+          "definitionByLocale": {
+            "ru": "Вонючий; разговорное слово о неприятном запахе.",
+            "uk": "Смердючий; розмовне слово про неприємний запах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-45:i07:r1",
+          "text": "These socks are stinky."
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i07:r2",
+          "text": "These shoes are stinky."
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i07:r3",
+          "text": "These socks are clean."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:i07:audio",
+          "transcript": "These socks are stinky."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-45:i07:r1",
+            "targetText": "These socks are stinky.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i07:r2",
+            "targetText": "These shoes are stinky.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i07:r3",
+            "targetText": "These socks are clean.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-45:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These socks are stinky.",
+              "uk": "У записі звучить These socks are stinky."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These socks are stinky.",
+              "uk": "У записі звучить These socks are stinky."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите пакет для вещей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Попросите пакет для вещей.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:i08:audio",
+          "transcript": "Could I have a bag?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have a bag?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Попросите оставить обувь здесь именно в случае, если она мокрая.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-45:i09:r1",
+          "text": "If"
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i09:r2",
+          "text": "Unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i09:r3",
+          "text": "Although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите оставить обувь здесь именно в случае, если она мокрая.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Попросите оставить обувь здесь именно в случае, если она мокрая.",
+          "uk": "Попросіть залишити взуття тут саме в разі, якщо воно мокре."
+        },
+        "gappedTargetPhrase": "___ your shoes are wet, leave them here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-45:i09:r1",
+            "text": "If"
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i09:r2",
+            "text": "Unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i09:r3",
+            "text": "Although"
+          }
+        ],
+        "testedDimension": "Попросите оставить обувь здесь именно в случае, если она мокрая.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "Попросите оставить обувь здесь именно в случае, если она мокрая.",
+            "feedbackByLocale": {
+              "ru": "Unless означало бы: если обувь не мокрая.",
+              "uk": "Unless означало б: якщо взуття не мокре."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "Попросите оставить обувь здесь именно в случае, если она мокрая.",
+            "feedbackByLocale": {
+              "ru": "Although означает уступку: хотя, а здесь условие.",
+              "uk": "Although означає поступку: хоча, а тут умова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перенесите условие в конец: If your shoes are wet, leave them here.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перенесите условие в конец: If your shoes are wet, leave them here.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Leave them here if your shoes are wet.",
+        "localizedMeaning": {
+          "ru": "Перенесите условие в конец: If your shoes are wet, leave them here.",
+          "uk": "Перенесіть умову в кінець: If your shoes are wet, leave them here."
+        },
+        "orderedTokens": [
+          "Leave",
+          "them",
+          "here",
+          "if",
+          "your",
+          "shoes",
+          "are",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:word:musty",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — musty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:word:musty:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — musty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:word:musty:audio",
+          "transcript": "musty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-45:word:musty:r1",
+            "targetText": "musty",
+            "meaningByLocale": {
+              "ru": "Затхлый, с запахом сырости.",
+              "uk": "Затхлий, із запахом вогкості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "musty",
+          "definitionByLocale": {
+            "ru": "Затхлый, с запахом сырости.",
+            "uk": "Затхлий, із запахом вогкості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Опишите затхлый запах в комнате.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишите затхлый запах в комнате.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The room smells musty.",
+        "localizedMeaning": {
+          "ru": "Опишите затхлый запах в комнате.",
+          "uk": "Опишіть затхлий запах у кімнаті."
+        },
+        "orderedTokens": [
+          "The",
+          "room",
+          "smells",
+          "musty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите хозяина, можно ли вам с другом воспользоваться другой комнатой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:i12:audio"
+      ],
+      "accessibilityLabel": "Спросите хозяина, можно ли вам с другом воспользоваться другой комнатой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:i12:audio",
+          "transcript": "Could we use another room?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we use another room?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-45:i13:r1",
+          "text": "The other room is ready."
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i13:r2",
+          "text": "The other room is small."
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i13:r3",
+          "text": "The other room is upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-45:i13:audio",
+          "transcript": "The other room is ready."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-45:i13:r1",
+            "targetText": "The other room is ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i13:r2",
+            "targetText": "The other room is small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i13:r3",
+            "targetText": "The other room is upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-45:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The other room is ready.",
+              "uk": "У записі звучить The other room is ready."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The other room is ready.",
+              "uk": "У записі звучить The other room is ready."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг собирался спросить хозяина о комнате. Узнайте, спросил ли он уже.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг собирался спросить хозяина о комнате. Узнайте, спросил ли он уже.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you asked yet?",
+        "localizedMeaning": {
+          "ru": "Друг собирался спросить хозяина о комнате. Узнайте, спросил ли он уже.",
+          "uk": "Друг збирався запитати господаря про кімнату. Дізнайтеся, чи він уже запитав."
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "asked",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы уже поговорили с хозяином; спрашивать повторно не нужно.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-45:i15:r1",
+          "text": "already"
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i15:r2",
+          "text": "yet"
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i15:r3",
+          "text": "still"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы уже поговорили с хозяином; спрашивать повторно не нужно.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже поговорили с хозяином; спрашивать повторно не нужно.",
+          "uk": "Ви вже поговорили з господарем; запитувати повторно не потрібно."
+        },
+        "gappedTargetPhrase": "I have ___ asked.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-45:i15:r1",
+            "text": "already"
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i15:r2",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i15:r3",
+            "text": "still"
+          }
+        ],
+        "testedDimension": "Вы уже поговорили с хозяином; спрашивать повторно не нужно.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-45:i15:r2",
+            "correct": false,
+            "testedDimension": "Вы уже поговорили с хозяином; спрашивать повторно не нужно.",
+            "feedbackByLocale": {
+              "ru": "Yet в этом утвердительном ответе не подходит.",
+              "uk": "Yet у цій стверджувальній відповіді не підходить."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i15:r3",
+            "correct": false,
+            "testedDimension": "Вы уже поговорили с хозяином; спрашивать повторно не нужно.",
+            "feedbackByLocale": {
+              "ru": "Still asked здесь не передаёт: уже спросил.",
+              "uk": "Still asked тут не передає: уже запитав."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера уборка закончилась раньше вашего приезда.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-45:i16:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i16:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-45:i16:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера уборка закончилась раньше вашего приезда.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера уборка закончилась раньше вашего приезда.",
+          "uk": "Учора прибирання закінчилося раніше за ваш приїзд."
+        },
+        "gappedTargetPhrase": "They ___ cleaned the room by the time we arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-45:i16:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i16:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i16:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вчера уборка закончилась раньше вашего приезда.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-45:i16:r2",
+            "correct": false,
+            "testedDimension": "Вчера уборка закончилась раньше вашего приезда.",
+            "feedbackByLocale": {
+              "ru": "Have связывает результат с настоящим, а здесь два прошлых события.",
+              "uk": "Have пов’язує результат із теперішнім, а тут дві минулі події."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-45:i16:r3",
+            "correct": false,
+            "testedDimension": "Вчера уборка закончилась раньше вашего приезда.",
+            "feedbackByLocale": {
+              "ru": "Are cleaned не передаёт, что они убрали комнату.",
+              "uk": "Are cleaned не передає, що вони прибрали кімнату."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите другу: останусь ждать здесь, если тебе не понадоблюсь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите другу: останусь ждать здесь, если тебе не понадоблюсь.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will wait here unless you need me.",
+        "localizedMeaning": {
+          "ru": "Скажите другу: останусь ждать здесь, если тебе не понадоблюсь.",
+          "uk": "Скажіть другу: залишуся чекати тут, якщо не знадоблюся тобі."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "wait",
+          "here",
+          "unless",
+          "you",
+          "need",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8162a114fe8dcb1ef29cfb1094b4c877b1ac6859ff6fef6674092939b5c60d16"
+}

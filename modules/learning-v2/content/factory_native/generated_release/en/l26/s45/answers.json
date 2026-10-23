@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-45:word:smog",
+    "correctText": "smog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i01",
+    "correctText": "There is smog over the city.",
+    "correctResponseId": "en:lesson-26:session-45:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i02",
+    "correctText": "I will meet you inside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i03",
+    "correctText": "arrive",
+    "correctResponseId": "en:lesson-26:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i04",
+    "correctText": "I have just arrived.",
+    "correctResponseId": "en:lesson-26:session-45:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:word:filthy",
+    "correctText": "filthy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i05",
+    "correctText": "My shoes are filthy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i06",
+    "correctText": "Please wait here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:word:stinky",
+    "correctText": "stinky",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i07",
+    "correctText": "These socks are stinky.",
+    "correctResponseId": "en:lesson-26:session-45:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i08",
+    "correctText": "Could I have a bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i09",
+    "correctText": "If",
+    "correctResponseId": "en:lesson-26:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i10",
+    "correctText": "Leave them here if your shoes are wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:word:musty",
+    "correctText": "musty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i11",
+    "correctText": "The room smells musty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i12",
+    "correctText": "Could we use another room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i13",
+    "correctText": "The other room is ready.",
+    "correctResponseId": "en:lesson-26:session-45:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i14",
+    "correctText": "Have you asked yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i15",
+    "correctText": "already",
+    "correctResponseId": "en:lesson-26:session-45:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i16",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-45:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-45:i17",
+    "correctText": "I will wait here unless you need me.",
+    "correctResponseId": null
+  }
+]

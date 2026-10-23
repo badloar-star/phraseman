@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-45:intro1:r2": {
+          "ru": "После when здесь arrive без will.",
+          "uk": "Після when тут arrive без will."
+        },
+        "en:lesson-26:session-45:intro1:r3": {
+          "ru": "С I нужно arrive без -s.",
+          "uk": "З I потрібно arrive без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-45:intro2:r2": {
+          "ru": "Unless меняет условие: если обувь не мокрая.",
+          "uk": "Unless змінює умову: якщо взуття не мокре."
+        },
+        "en:lesson-26:session-45:intro2:r3": {
+          "ru": "С shoes нужно are.",
+          "uk": "З shoes потрібно are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-45:intro3:r2": {
+          "ru": "Arrived задаёт прошлое; более раннее действие — had cleaned.",
+          "uk": "Arrived задає минуле; раніша дія — had cleaned."
+        },
+        "en:lesson-26:session-45:intro3:r3": {
+          "ru": "После had нужна форма cleaned.",
+          "uk": "Після had потрібна форма cleaned."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "39dba595965263dedf119d314437c1b7a834ce4fcf4c06242e9822c7f905ef9d"
+}

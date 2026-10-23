@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "when, if, unless; already, just, yet; by the time",
+    "uk": "when, if, unless; already, just, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не спешить за столом",
+        "uk": "Не поспішати за столом"
+      },
+      "bodyByLocale": {
+        "ru": "Gobble — жадно, быстро есть, заглатывать еду. Please do not gobble your food — пожалуйста, не заглатывай еду. Слово описывает манеру есть, а не чувство голода. Burp — рыгать, издавать отрыжку. I sometimes burp after a meal — иногда я рыгаю после еды. Это обычное слово о телесном действии. Если нужно извиниться, скажите Excuse me — извините. Обед не соревнование: тарелка никуда не убегает. О будущем: I will wash up when we finish — я помою посуду, когда мы закончим. После when здесь finish без will.",
+        "uk": "Gobble — жадібно, швидко їсти, ковтати їжу. Please do not gobble your food — будь ласка, не ковтай їжу поспіхом. Слово описує манеру їсти, а не відчуття голоду. Burp — ригати, відригувати. I sometimes burp after a meal — іноді я відригую після їжі. Це звичайне слово про тілесну дію. Якщо потрібно вибачитися, скажіть Excuse me — вибачте. Обід не змагання: тарілка нікуди не тікає. Про майбутнє: I will wash up when we finish — я помию посуд, коли ми закінчимо. Після when тут finish без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-46:intro1:r1",
+              "text": "I will wash up when we finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro1:r2",
+              "text": "I will wash up when we will finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro1:r3",
+              "text": "I will wash up when we finishes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-46:intro1:r1",
+              "text": "I will wash up when we finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro1:r2",
+              "text": "I will wash up when we will finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro1:r3",
+              "text": "I will wash up when we finishes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Попросить салфетку",
+        "uk": "Попросити серветку"
+      },
+      "bodyByLocale": {
+        "ru": "Sniffle — шмыгать носом, обычно несколько раз. I sniffle when I have a cold — я шмыгаю носом, когда простужен. Это описание привычного действия, не совет о лечении. Could you pass me a tissue? — можешь передать мне бумажную салфетку? Друг предлагает помощь: If you need anything, ask me — если тебе что-нибудь нужно, попроси меня. Условие можно поставить в конец: Ask me if you need anything.",
+        "uk": "Sniffle — шморгати носом, зазвичай кілька разів. I sniffle when I have a cold — я шморгаю носом, коли застуджений. Це опис звичної дії, не порада щодо лікування. Could you pass me a tissue? — можеш передати мені паперову серветку? Друг пропонує допомогу: If you need anything, ask me — якщо тобі щось потрібно, попроси мене. Умову можна поставити в кінець: Ask me if you need anything."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-46:intro2:r1",
+              "text": "Ask me if you need anything."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro2:r2",
+              "text": "Ask me unless you need anything."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro2:r3",
+              "text": "Ask me if you needs anything."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-46:intro2:r1",
+              "text": "Ask me if you need anything."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro2:r2",
+              "text": "Ask me unless you need anything."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro2:r3",
+              "text": "Ask me if you needs anything."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Жалоба и помощь",
+        "uk": "Скарга й допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Moan — ныть, жаловаться; здесь разговорное значение. Please do not moan about the washing-up — пожалуйста, не ной из-за мытья посуды. Такая просьба прямая и может звучать резко. Мягче предложить помощь: I can dry the plates — я могу вытереть тарелки. I have already washed them — я уже их помыл. Have you dried them yet? — ты уже их вытер? О вчерашнем ужине: I had cleared the table by the time she came back — я убрал со стола к тому времени, как она вернулась. Had cleared — более раннее действие.",
+        "uk": "Moan — нити, скаржитися; тут розмовне значення. Please do not moan about the washing-up — будь ласка, не ний через миття посуду. Таке прохання пряме й може звучати різко. М’якше запропонувати допомогу: I can dry the plates — я можу витерти тарілки. I have already washed them — я вже їх помив. Have you dried them yet? — ти вже їх витер? Про вчорашню вечерю: I had cleared the table by the time she came back — я прибрав зі столу до того часу, як вона повернулася. Had cleared — раніша дія."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-46:intro3:r1",
+              "text": "I had cleared the table by the time she came back."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro3:r2",
+              "text": "I have cleared the table by the time she came back."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro3:r3",
+              "text": "I had clear the table by the time she came back."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-46:intro3:r1",
+              "text": "I had cleared the table by the time she came back."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro3:r2",
+              "text": "I have cleared the table by the time she came back."
+            },
+            {
+              "responseId": "en:lesson-26:session-46:intro3:r3",
+              "text": "I had clear the table by the time she came back."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "394b02d1ae9826216c1e49b55ca81de375ba91ce58566f329ee8c5f8a0dc34cc"
+}

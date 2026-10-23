@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-46:word:gobble",
+    "correctText": "gobble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i01",
+    "correctText": "Please do not gobble your food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i02",
+    "correctText": "There is no hurry.",
+    "correctResponseId": "en:lesson-26:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i03",
+    "correctText": "No more for me, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:word:burp",
+    "correctText": "burp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i04",
+    "correctText": "I sometimes burp after a meal.",
+    "correctResponseId": "en:lesson-26:session-46:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i05",
+    "correctText": "Excuse me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i06",
+    "correctText": "finish",
+    "correctResponseId": "en:lesson-26:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:word:sniffle",
+    "correctText": "sniffle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i07",
+    "correctText": "I sniffle when I have a cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i08",
+    "correctText": "Could you pass me a tissue?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i09",
+    "correctText": "There are some in the drawer.",
+    "correctResponseId": "en:lesson-26:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i10",
+    "correctText": "Ask me if you need anything.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:word:moan",
+    "correctText": "moan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i11",
+    "correctText": "Please do not moan about the washing-up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i12",
+    "correctText": "I can dry the plates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i13",
+    "correctText": "I have already washed them.",
+    "correctResponseId": "en:lesson-26:session-46:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i14",
+    "correctText": "Have you dried them yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i15",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-46:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-46:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-46:i17",
+    "correctText": "Thanks for lunch.",
+    "correctResponseId": null
+  }
+]

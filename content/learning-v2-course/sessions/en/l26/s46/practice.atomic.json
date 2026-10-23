@@ -1,0 +1,2175 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-46",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-46:word:gobble",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gobble",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:word:gobble:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gobble",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:word:gobble:audio",
+            "transcript": "gobble"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:word:gobble:r1",
+              "targetText": "gobble",
+              "meaningByLocale": {
+                "ru": "Жадно и быстро есть, заглатывать еду.",
+                "uk": "Жадібно й швидко їсти, ковтати їжу поспіхом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gobble",
+            "definitionByLocale": {
+              "ru": "Жадно и быстро есть, заглатывать еду.",
+              "uk": "Жадібно й швидко їсти, ковтати їжу поспіхом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите друга не заглатывать еду.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите друга не заглатывать еду.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please do not gobble your food.",
+          "localizedMeaning": {
+            "ru": "Попросите друга не заглатывать еду.",
+            "uk": "Попросіть друга не ковтати їжу поспіхом."
+          },
+          "orderedTokens": [
+            "Please",
+            "do",
+            "not",
+            "gobble",
+            "your",
+            "food"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i02:r1",
+            "text": "There is no hurry."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i02:r2",
+            "text": "There is no milk."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i02:r3",
+            "text": "There is no bread."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i02:audio",
+            "transcript": "There is no hurry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:i02:r1",
+              "targetText": "There is no hurry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i02:r2",
+              "targetText": "There is no milk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i02:r3",
+              "targetText": "There is no bread.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is no hurry.",
+                "uk": "У записі звучить There is no hurry."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is no hurry.",
+                "uk": "У записі звучить There is no hurry."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i03",
+        "ordinal": 7,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг предлагает ещё еды. Вежливо откажитесь от добавки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i03:audio"
+        ],
+        "accessibilityLabel": "Друг предлагает ещё еды. Вежливо откажитесь от добавки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i03:audio",
+            "transcript": "No more for me, please."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No more for me, please.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:word:burp",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — burp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:word:burp:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — burp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:word:burp:audio",
+            "transcript": "burp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:word:burp:r1",
+              "targetText": "burp",
+              "meaningByLocale": {
+                "ru": "Рыгать, издавать отрыжку.",
+                "uk": "Ригати, відригувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "burp",
+            "definitionByLocale": {
+              "ru": "Рыгать, издавать отрыжку.",
+              "uk": "Ригати, відригувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i04:r1",
+            "text": "I sometimes burp after a meal."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i04:r2",
+            "text": "I sometimes sleep after a meal."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i04:r3",
+            "text": "I sometimes burp before a meal."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i04:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i04:audio",
+            "transcript": "I sometimes burp after a meal."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:i04:r1",
+              "targetText": "I sometimes burp after a meal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i04:r2",
+              "targetText": "I sometimes sleep after a meal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i04:r3",
+              "targetText": "I sometimes burp before a meal.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i04:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sometimes burp after a meal.",
+                "uk": "У записі звучить I sometimes burp after a meal."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i04:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sometimes burp after a meal.",
+                "uk": "У записі звучить I sometimes burp after a meal."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i05",
+        "ordinal": 10,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы издали отрыжку за столом. Коротко извинитесь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Вы издали отрыжку за столом. Коротко извинитесь.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i05:audio",
+            "transcript": "Excuse me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Excuse me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пообещайте помыть посуду после еды.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i06:r1",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i06:r2",
+            "text": "will finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i06:r3",
+            "text": "finishes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообещайте помыть посуду после еды.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пообещайте помыть посуду после еды.",
+            "uk": "Пообіцяйте помити посуд після їжі."
+          },
+          "gappedTargetPhrase": "I will wash up when we ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-46:i06:r1",
+              "text": "finish"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i06:r2",
+              "text": "will finish"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i06:r3",
+              "text": "finishes"
+            }
+          ],
+          "testedDimension": "Пообещайте помыть посуду после еды.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "Пообещайте помыть посуду после еды.",
+              "feedbackByLocale": {
+                "ru": "После when здесь finish без will.",
+                "uk": "Після when тут finish без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "Пообещайте помыть посуду после еды.",
+              "feedbackByLocale": {
+                "ru": "С we нужно finish без -s.",
+                "uk": "З we потрібно finish без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:word:sniffle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sniffle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:word:sniffle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sniffle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:word:sniffle:audio",
+            "transcript": "sniffle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:word:sniffle:r1",
+              "targetText": "sniffle",
+              "meaningByLocale": {
+                "ru": "Шмыгать носом, обычно несколько раз.",
+                "uk": "Шморгати носом, зазвичай кілька разів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sniffle",
+            "definitionByLocale": {
+              "ru": "Шмыгать носом, обычно несколько раз.",
+              "uk": "Шморгати носом, зазвичай кілька разів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишите привычное действие при простуде: я шмыгаю носом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишите привычное действие при простуде: я шмыгаю носом.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I sniffle when I have a cold.",
+          "localizedMeaning": {
+            "ru": "Опишите привычное действие при простуде: я шмыгаю носом.",
+            "uk": "Опишіть звичну дію під час застуди: я шморгаю носом."
+          },
+          "orderedTokens": [
+            "I",
+            "sniffle",
+            "when",
+            "I",
+            "have",
+            "a",
+            "cold"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте просьбу передать бумажную салфетку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i08:audio"
+        ],
+        "accessibilityLabel": "Услышьте просьбу передать бумажную салфетку.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i08:audio",
+            "transcript": "Could you pass me a tissue?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could you pass me a tissue?",
+          "orderedTokens": [
+            "Could",
+            "you",
+            "pass",
+            "me",
+            "a",
+            "tissue"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i09:r1",
+            "text": "There are some in the drawer."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i09:r2",
+            "text": "There are some on the chair."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i09:r3",
+            "text": "There is one in the drawer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i09:audio",
+            "transcript": "There are some in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:i09:r1",
+              "targetText": "There are some in the drawer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i09:r2",
+              "targetText": "There are some on the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i09:r3",
+              "targetText": "There is one in the drawer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are some in the drawer.",
+                "uk": "У записі звучить There are some in the drawer."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are some in the drawer.",
+                "uk": "У записі звучить There are some in the drawer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите другу обращаться к вам, если что-нибудь понадобится.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i10:audio"
+        ],
+        "accessibilityLabel": "Предложите другу обращаться к вам, если что-нибудь понадобится.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i10:audio",
+            "transcript": "Ask me if you need anything."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Ask me if you need anything.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:word:moan",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — moan",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:word:moan:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — moan",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:word:moan:audio",
+            "transcript": "moan"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:word:moan:r1",
+              "targetText": "moan",
+              "meaningByLocale": {
+                "ru": "Ныть, жаловаться; разговорное значение.",
+                "uk": "Нити, скаржитися; розмовне значення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "moan",
+            "definitionByLocale": {
+              "ru": "Ныть, жаловаться; разговорное значение.",
+              "uk": "Нити, скаржитися; розмовне значення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Близкий друг ноет из-за посуды. Попросите его перестать.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Близкий друг ноет из-за посуды. Попросите его перестать.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please do not moan about the washing-up.",
+          "localizedMeaning": {
+            "ru": "Близкий друг ноет из-за посуды. Попросите его перестать.",
+            "uk": "Близький друг ниє через посуд. Попросіть його припинити."
+          },
+          "orderedTokens": [
+            "Please",
+            "do",
+            "not",
+            "moan",
+            "about",
+            "the",
+            "washing-up"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите помощь: вы можете вытереть тарелки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i12:audio"
+        ],
+        "accessibilityLabel": "Предложите помощь: вы можете вытереть тарелки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i12:audio",
+            "transcript": "I can dry the plates."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can dry the plates.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i13:r1",
+            "text": "I have already washed them."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i13:r2",
+            "text": "I have already dried them."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i13:r3",
+            "text": "I have just put them away."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i13:audio",
+            "transcript": "I have already washed them."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:i13:r1",
+              "targetText": "I have already washed them.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i13:r2",
+              "targetText": "I have already dried them.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i13:r3",
+              "targetText": "I have just put them away.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i13:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already washed them.",
+                "uk": "У записі звучить I have already washed them."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i13:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already washed them.",
+                "uk": "У записі звучить I have already washed them."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Узнайте, вытер ли друг тарелки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Узнайте, вытер ли друг тарелки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you dried them yet?",
+          "localizedMeaning": {
+            "ru": "Узнайте, вытер ли друг тарелки.",
+            "uk": "Дізнайтеся, чи друг витер тарілки."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "dried",
+            "them",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера вы убрали со стола до возвращения подруги.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i15:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i15:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i15:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера вы убрали со стола до возвращения подруги.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера вы убрали со стола до возвращения подруги.",
+            "uk": "Учора ви прибрали зі столу до повернення подруги."
+          },
+          "gappedTargetPhrase": "I ___ cleared the table by the time she came back.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-46:i15:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i15:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i15:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Вчера вы убрали со стола до возвращения подруги.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i15:r2",
+              "correct": false,
+              "testedDimension": "Вчера вы убрали со стола до возвращения подруги.",
+              "feedbackByLocale": {
+                "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+                "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i15:r3",
+              "correct": false,
+              "testedDimension": "Вчера вы убрали со стола до возвращения подруги.",
+              "feedbackByLocale": {
+                "ru": "Am cleared не означает: я убрал со стола.",
+                "uk": "Am cleared не означає: я прибрав зі столу."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы уберёте хлеб, только если друг не хочет ещё.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i16:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уберёте хлеб, только если друг не хочет ещё.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уберёте хлеб, только если друг не хочет ещё.",
+            "uk": "Ви приберете хліб, тільки якщо друг не хоче ще."
+          },
+          "gappedTargetPhrase": "I will put the bread away ___ you want more.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-46:i16:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i16:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i16:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Вы уберёте хлеб, только если друг не хочет ещё.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы уберёте хлеб, только если друг не хочет ещё.",
+              "feedbackByLocale": {
+                "ru": "If означало бы убрать хлеб именно тогда, когда друг хочет ещё.",
+                "uk": "If означало б прибрати хліб саме тоді, коли друг хоче ще."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы уберёте хлеб, только если друг не хочет ещё.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы желание друга причиной убрать хлеб.",
+                "uk": "Because зробило б бажання друга причиною прибрати хліб."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте благодарность за обед.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Услышьте благодарность за обед.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i17:audio",
+            "transcript": "Thanks for lunch."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Thanks for lunch.",
+          "orderedTokens": [
+            "Thanks",
+            "for",
+            "lunch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-46:word:gobble",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gobble",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:word:gobble:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gobble",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:word:gobble:audio",
+            "transcript": "gobble"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:word:gobble:r1",
+              "targetText": "gobble",
+              "meaningByLocale": {
+                "ru": "Жадно и быстро есть, заглатывать еду.",
+                "uk": "Жадібно й швидко їсти, ковтати їжу поспіхом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gobble",
+            "definitionByLocale": {
+              "ru": "Жадно и быстро есть, заглатывать еду.",
+              "uk": "Жадібно й швидко їсти, ковтати їжу поспіхом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть друга не ковтати їжу поспіхом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть друга не ковтати їжу поспіхом.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please do not gobble your food.",
+          "localizedMeaning": {
+            "ru": "Попросите друга не заглатывать еду.",
+            "uk": "Попросіть друга не ковтати їжу поспіхом."
+          },
+          "orderedTokens": [
+            "Please",
+            "do",
+            "not",
+            "gobble",
+            "your",
+            "food"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i02:r1",
+            "text": "There is no hurry."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i02:r2",
+            "text": "There is no milk."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i02:r3",
+            "text": "There is no bread."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i02:audio",
+            "transcript": "There is no hurry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:i02:r1",
+              "targetText": "There is no hurry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i02:r2",
+              "targetText": "There is no milk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i02:r3",
+              "targetText": "There is no bread.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is no hurry.",
+                "uk": "У записі звучить There is no hurry."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is no hurry.",
+                "uk": "У записі звучить There is no hurry."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i03",
+        "ordinal": 7,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг пропонує ще їжі. Чемно відмовтеся від добавки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i03:audio"
+        ],
+        "accessibilityLabel": "Друг пропонує ще їжі. Чемно відмовтеся від добавки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i03:audio",
+            "transcript": "No more for me, please."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No more for me, please.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:word:burp",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — burp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:word:burp:audio"
+        ],
+        "accessibilityLabel": "Картка слова — burp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:word:burp:audio",
+            "transcript": "burp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:word:burp:r1",
+              "targetText": "burp",
+              "meaningByLocale": {
+                "ru": "Рыгать, издавать отрыжку.",
+                "uk": "Ригати, відригувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "burp",
+            "definitionByLocale": {
+              "ru": "Рыгать, издавать отрыжку.",
+              "uk": "Ригати, відригувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i04:r1",
+            "text": "I sometimes burp after a meal."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i04:r2",
+            "text": "I sometimes sleep after a meal."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i04:r3",
+            "text": "I sometimes burp before a meal."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i04:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i04:audio",
+            "transcript": "I sometimes burp after a meal."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:i04:r1",
+              "targetText": "I sometimes burp after a meal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i04:r2",
+              "targetText": "I sometimes sleep after a meal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i04:r3",
+              "targetText": "I sometimes burp before a meal.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i04:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sometimes burp after a meal.",
+                "uk": "У записі звучить I sometimes burp after a meal."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i04:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sometimes burp after a meal.",
+                "uk": "У записі звучить I sometimes burp after a meal."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i05",
+        "ordinal": 10,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви відригнули за столом. Коротко вибачтеся.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Ви відригнули за столом. Коротко вибачтеся.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i05:audio",
+            "transcript": "Excuse me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Excuse me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пообіцяйте помити посуд після їжі.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i06:r1",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i06:r2",
+            "text": "will finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i06:r3",
+            "text": "finishes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообіцяйте помити посуд після їжі.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пообещайте помыть посуду после еды.",
+            "uk": "Пообіцяйте помити посуд після їжі."
+          },
+          "gappedTargetPhrase": "I will wash up when we ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-46:i06:r1",
+              "text": "finish"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i06:r2",
+              "text": "will finish"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i06:r3",
+              "text": "finishes"
+            }
+          ],
+          "testedDimension": "Пообіцяйте помити посуд після їжі.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "Пообіцяйте помити посуд після їжі.",
+              "feedbackByLocale": {
+                "ru": "После when здесь finish без will.",
+                "uk": "Після when тут finish без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "Пообіцяйте помити посуд після їжі.",
+              "feedbackByLocale": {
+                "ru": "С we нужно finish без -s.",
+                "uk": "З we потрібно finish без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:word:sniffle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sniffle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:word:sniffle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sniffle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:word:sniffle:audio",
+            "transcript": "sniffle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:word:sniffle:r1",
+              "targetText": "sniffle",
+              "meaningByLocale": {
+                "ru": "Шмыгать носом, обычно несколько раз.",
+                "uk": "Шморгати носом, зазвичай кілька разів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sniffle",
+            "definitionByLocale": {
+              "ru": "Шмыгать носом, обычно несколько раз.",
+              "uk": "Шморгати носом, зазвичай кілька разів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишіть звичну дію під час застуди: я шморгаю носом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишіть звичну дію під час застуди: я шморгаю носом.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I sniffle when I have a cold.",
+          "localizedMeaning": {
+            "ru": "Опишите привычное действие при простуде: я шмыгаю носом.",
+            "uk": "Опишіть звичну дію під час застуди: я шморгаю носом."
+          },
+          "orderedTokens": [
+            "I",
+            "sniffle",
+            "when",
+            "I",
+            "have",
+            "a",
+            "cold"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте прохання передати паперову серветку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i08:audio"
+        ],
+        "accessibilityLabel": "Почуйте прохання передати паперову серветку.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i08:audio",
+            "transcript": "Could you pass me a tissue?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could you pass me a tissue?",
+          "orderedTokens": [
+            "Could",
+            "you",
+            "pass",
+            "me",
+            "a",
+            "tissue"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i09:r1",
+            "text": "There are some in the drawer."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i09:r2",
+            "text": "There are some on the chair."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i09:r3",
+            "text": "There is one in the drawer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i09:audio",
+            "transcript": "There are some in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:i09:r1",
+              "targetText": "There are some in the drawer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i09:r2",
+              "targetText": "There are some on the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i09:r3",
+              "targetText": "There is one in the drawer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are some in the drawer.",
+                "uk": "У записі звучить There are some in the drawer."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are some in the drawer.",
+                "uk": "У записі звучить There are some in the drawer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте другу звертатися до вас, якщо щось знадобиться.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i10:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте другу звертатися до вас, якщо щось знадобиться.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i10:audio",
+            "transcript": "Ask me if you need anything."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Ask me if you need anything.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:word:moan",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — moan",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:word:moan:audio"
+        ],
+        "accessibilityLabel": "Картка слова — moan",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:word:moan:audio",
+            "transcript": "moan"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:word:moan:r1",
+              "targetText": "moan",
+              "meaningByLocale": {
+                "ru": "Ныть, жаловаться; разговорное значение.",
+                "uk": "Нити, скаржитися; розмовне значення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "moan",
+            "definitionByLocale": {
+              "ru": "Ныть, жаловаться; разговорное значение.",
+              "uk": "Нити, скаржитися; розмовне значення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Близький друг ниє через посуд. Попросіть його припинити.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Близький друг ниє через посуд. Попросіть його припинити.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please do not moan about the washing-up.",
+          "localizedMeaning": {
+            "ru": "Близкий друг ноет из-за посуды. Попросите его перестать.",
+            "uk": "Близький друг ниє через посуд. Попросіть його припинити."
+          },
+          "orderedTokens": [
+            "Please",
+            "do",
+            "not",
+            "moan",
+            "about",
+            "the",
+            "washing-up"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте допомогу: ви можете витерти тарілки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i12:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте допомогу: ви можете витерти тарілки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i12:audio",
+            "transcript": "I can dry the plates."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can dry the plates.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i13:r1",
+            "text": "I have already washed them."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i13:r2",
+            "text": "I have already dried them."
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i13:r3",
+            "text": "I have just put them away."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i13:audio",
+            "transcript": "I have already washed them."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-46:i13:r1",
+              "targetText": "I have already washed them.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i13:r2",
+              "targetText": "I have already dried them.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i13:r3",
+              "targetText": "I have just put them away.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i13:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already washed them.",
+                "uk": "У записі звучить I have already washed them."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i13:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already washed them.",
+                "uk": "У записі звучить I have already washed them."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дізнайтеся, чи друг витер тарілки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дізнайтеся, чи друг витер тарілки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you dried them yet?",
+          "localizedMeaning": {
+            "ru": "Узнайте, вытер ли друг тарелки.",
+            "uk": "Дізнайтеся, чи друг витер тарілки."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "dried",
+            "them",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора ви прибрали зі столу до повернення подруги.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i15:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i15:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i15:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора ви прибрали зі столу до повернення подруги.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера вы убрали со стола до возвращения подруги.",
+            "uk": "Учора ви прибрали зі столу до повернення подруги."
+          },
+          "gappedTargetPhrase": "I ___ cleared the table by the time she came back.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-46:i15:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i15:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i15:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Учора ви прибрали зі столу до повернення подруги.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i15:r2",
+              "correct": false,
+              "testedDimension": "Учора ви прибрали зі столу до повернення подруги.",
+              "feedbackByLocale": {
+                "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+                "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i15:r3",
+              "correct": false,
+              "testedDimension": "Учора ви прибрали зі столу до повернення подруги.",
+              "feedbackByLocale": {
+                "ru": "Am cleared не означает: я убрал со стола.",
+                "uk": "Am cleared не означає: я прибрав зі столу."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви приберете хліб, тільки якщо друг не хоче ще.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-46:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-46:i16:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви приберете хліб, тільки якщо друг не хоче ще.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уберёте хлеб, только если друг не хочет ещё.",
+            "uk": "Ви приберете хліб, тільки якщо друг не хоче ще."
+          },
+          "gappedTargetPhrase": "I will put the bread away ___ you want more.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-46:i16:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i16:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i16:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Ви приберете хліб, тільки якщо друг не хоче ще.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-46:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви приберете хліб, тільки якщо друг не хоче ще.",
+              "feedbackByLocale": {
+                "ru": "If означало бы убрать хлеб именно тогда, когда друг хочет ещё.",
+                "uk": "If означало б прибрати хліб саме тоді, коли друг хоче ще."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-46:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви приберете хліб, тільки якщо друг не хоче ще.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы желание друга причиной убрать хлеб.",
+                "uk": "Because зробило б бажання друга причиною прибрати хліб."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-46:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте подяку за обід.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Почуйте подяку за обід.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-46:i17:audio",
+            "transcript": "Thanks for lunch."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Thanks for lunch.",
+          "orderedTokens": [
+            "Thanks",
+            "for",
+            "lunch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-46:word:gobble",
+      "correctText": "gobble",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i01",
+      "correctText": "Please do not gobble your food.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i02",
+      "correctText": "There is no hurry.",
+      "correctResponseId": "en:lesson-26:session-46:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i03",
+      "correctText": "No more for me, please.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:word:burp",
+      "correctText": "burp",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i04",
+      "correctText": "I sometimes burp after a meal.",
+      "correctResponseId": "en:lesson-26:session-46:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i05",
+      "correctText": "Excuse me.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i06",
+      "correctText": "finish",
+      "correctResponseId": "en:lesson-26:session-46:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:word:sniffle",
+      "correctText": "sniffle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i07",
+      "correctText": "I sniffle when I have a cold.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i08",
+      "correctText": "Could you pass me a tissue?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i09",
+      "correctText": "There are some in the drawer.",
+      "correctResponseId": "en:lesson-26:session-46:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i10",
+      "correctText": "Ask me if you need anything.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:word:moan",
+      "correctText": "moan",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i11",
+      "correctText": "Please do not moan about the washing-up.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i12",
+      "correctText": "I can dry the plates.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i13",
+      "correctText": "I have already washed them.",
+      "correctResponseId": "en:lesson-26:session-46:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i14",
+      "correctText": "Have you dried them yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i15",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-46:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i16",
+      "correctText": "unless",
+      "correctResponseId": "en:lesson-26:session-46:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-46:i17",
+      "correctText": "Thanks for lunch.",
+      "correctResponseId": null
+    }
+  ]
+}

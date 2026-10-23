@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-26:word:clever",
+    "correctText": "clever",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i01",
+    "correctText": "I have met a clever student.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i02",
+    "correctText": "I have met a clever student.",
+    "correctResponseId": "en:lesson-23:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i03",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:word:talkative",
+    "correctText": "talkative",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i04",
+    "correctText": "She has met a talkative neighbour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i05",
+    "correctText": "She has met a talkative neighbour.",
+    "correctResponseId": "en:lesson-23:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i06",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:word:unfriendly",
+    "correctText": "unfriendly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i07",
+    "correctText": "We have met an unfriendly driver.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i08",
+    "correctText": "We have met an unfriendly driver.",
+    "correctResponseId": "en:lesson-23:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i09",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:word:cruel",
+    "correctText": "cruel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i10",
+    "correctText": "He has met a cruel person.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i11",
+    "correctText": "He has met a cruel person.",
+    "correctResponseId": "en:lesson-23:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i12",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i13",
+    "correctText": "en:lesson-23:session-26:i13:p1=clever\nen:lesson-23:session-26:i13:p2=talkative\nen:lesson-23:session-26:i13:p3=unfriendly\nen:lesson-23:session-26:i13:p4=cruel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i14",
+    "correctText": "We can choose another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i15",
+    "correctText": "You mustn't leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i16",
+    "correctText": "I have met a talkative neighbour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-26:i17",
+    "correctText": "We have met a clever student.",
+    "correctResponseId": null
+  }
+]

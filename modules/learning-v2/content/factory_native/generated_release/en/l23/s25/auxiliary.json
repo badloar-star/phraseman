@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-25:intro1:r2": {
+          "ru": "После have нужна третья форма visited.",
+          "uk": "Після have потрібна третя форма visited."
+        },
+        "en:lesson-23:session-25:intro1:r3": {
+          "ru": "С you используем have.",
+          "uk": "Із you використовуємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-25:intro2:r2": {
+          "ru": "Для смысла «никогда» достаточно never, без not.",
+          "uk": "Для значення «ніколи» достатньо never, без not."
+        },
+        "en:lesson-23:session-25:intro2:r3": {
+          "ru": "Нужна третья форма visited.",
+          "uk": "Потрібна третя форма visited."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-25:intro3:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-23:session-25:intro3:r3": {
+          "ru": "Нужна третья форма visited.",
+          "uk": "Потрібна третя форма visited."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "759a6cbdf197fb554d87c1415f5d062848fa65dce3c01ed9462b64bf3f9b3bb1"
+}

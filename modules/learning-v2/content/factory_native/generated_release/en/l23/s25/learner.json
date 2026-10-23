@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-25:word:palace",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — palace",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:word:palace:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — palace",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:word:palace:audio",
+          "transcript": "palace"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-25:word:palace:r1",
+            "targetText": "palace",
+            "meaningByLocale": {
+              "ru": "дворец.",
+              "uk": "палац."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "palace",
+          "definitionByLocale": {
+            "ru": "дворец.",
+            "uk": "палац."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите по-английски: «Ты когда-нибудь посещал дворец?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите по-английски: «Ты когда-нибудь посещал дворец?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you ever visited a palace?",
+        "localizedMeaning": {
+          "ru": "Скажите по-английски: «Ты когда-нибудь посещал дворец?»",
+          "uk": "Скажіть англійською: «Ти коли-небудь відвідував палац?»"
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "ever",
+          "visited",
+          "a",
+          "palace"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-25:i02:r1",
+          "text": "Have you ever visited a palace?"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i02:r2",
+          "text": "Have they ever visited a palace?"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i02:r3",
+          "text": "Has he ever visited a palace?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:i02:audio",
+          "transcript": "Have you ever visited a palace?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-25:i02:r1",
+            "targetText": "Have you ever visited a palace?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i02:r2",
+            "targetText": "Have they ever visited a palace?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i02:r3",
+            "targetText": "Has he ever visited a palace?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you ever visited a palace?",
+              "uk": "У записі звучить Have you ever visited a palace?"
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you ever visited a palace?",
+              "uk": "У записі звучить Have you ever visited a palace?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-25:i03:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i03:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i03:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "Have you ever ___ a palace?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-25:i03:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i03:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i03:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма visited.",
+              "uk": "Після have або has потрібна третя форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма visited.",
+              "uk": "Після have або has потрібна третя форма visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:word:cathedral",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cathedral",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:word:cathedral:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cathedral",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:word:cathedral:audio",
+          "transcript": "cathedral"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-25:word:cathedral:r1",
+            "targetText": "cathedral",
+            "meaningByLocale": {
+              "ru": "собор.",
+              "uk": "собор."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cathedral",
+          "definitionByLocale": {
+            "ru": "собор.",
+            "uk": "собор."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите по-английски: «Я никогда не посещал собор.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите по-английски: «Я никогда не посещал собор.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have never visited a cathedral.",
+        "localizedMeaning": {
+          "ru": "Скажите по-английски: «Я никогда не посещал собор.»",
+          "uk": "Скажіть англійською: «Я ніколи не відвідував собор.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "never",
+          "visited",
+          "a",
+          "cathedral"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-25:i05:r1",
+          "text": "I have never visited a cathedral."
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i05:r2",
+          "text": "We have never visited a cathedral."
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i05:r3",
+          "text": "You have never visited a cathedral."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:i05:audio",
+          "transcript": "I have never visited a cathedral."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-25:i05:r1",
+            "targetText": "I have never visited a cathedral.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i05:r2",
+            "targetText": "We have never visited a cathedral.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i05:r3",
+            "targetText": "You have never visited a cathedral.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have never visited a cathedral.",
+              "uk": "У записі звучить I have never visited a cathedral."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have never visited a cathedral.",
+              "uk": "У записі звучить I have never visited a cathedral."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-25:i06:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i06:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i06:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have never ___ a cathedral.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-25:i06:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i06:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i06:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма visited.",
+              "uk": "Після have або has потрібна третя форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма visited.",
+              "uk": "Після have або has потрібна третя форма visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:word:mosque",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mosque",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:word:mosque:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mosque",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:word:mosque:audio",
+          "transcript": "mosque"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-25:word:mosque:r1",
+            "targetText": "mosque",
+            "meaningByLocale": {
+              "ru": "мечеть.",
+              "uk": "мечеть."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mosque",
+          "definitionByLocale": {
+            "ru": "мечеть.",
+            "uk": "мечеть."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите по-английски: «Ты когда-нибудь посещал мечеть?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите по-английски: «Ты когда-нибудь посещал мечеть?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you ever visited a mosque?",
+        "localizedMeaning": {
+          "ru": "Скажите по-английски: «Ты когда-нибудь посещал мечеть?»",
+          "uk": "Скажіть англійською: «Ти коли-небудь відвідував мечеть?»"
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "ever",
+          "visited",
+          "a",
+          "mosque"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-25:i08:r1",
+          "text": "Have you ever visited a mosque?"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i08:r2",
+          "text": "Have they ever visited a mosque?"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i08:r3",
+          "text": "Has he ever visited a mosque?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:i08:audio",
+          "transcript": "Have you ever visited a mosque?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-25:i08:r1",
+            "targetText": "Have you ever visited a mosque?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i08:r2",
+            "targetText": "Have they ever visited a mosque?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i08:r3",
+            "targetText": "Has he ever visited a mosque?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you ever visited a mosque?",
+              "uk": "У записі звучить Have you ever visited a mosque?"
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you ever visited a mosque?",
+              "uk": "У записі звучить Have you ever visited a mosque?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-25:i09:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i09:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i09:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "Have you ever ___ a mosque?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-25:i09:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i09:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i09:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма visited.",
+              "uk": "Після have або has потрібна третя форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма visited.",
+              "uk": "Після have або has потрібна третя форма visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:word:temple",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — temple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:word:temple:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — temple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:word:temple:audio",
+          "transcript": "temple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-25:word:temple:r1",
+            "targetText": "temple",
+            "meaningByLocale": {
+              "ru": "храм.",
+              "uk": "храм."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "temple",
+          "definitionByLocale": {
+            "ru": "храм.",
+            "uk": "храм."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите по-английски: «Она никогда не посещала храм.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите по-английски: «Она никогда не посещала храм.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has never visited a temple.",
+        "localizedMeaning": {
+          "ru": "Скажите по-английски: «Она никогда не посещала храм.»",
+          "uk": "Скажіть англійською: «Вона ніколи не відвідувала храм.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "never",
+          "visited",
+          "a",
+          "temple"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-25:i11:r1",
+          "text": "She has never visited a temple."
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i11:r2",
+          "text": "We have never visited a temple."
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i11:r3",
+          "text": "You have never visited a temple."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:i11:audio",
+          "transcript": "She has never visited a temple."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-25:i11:r1",
+            "targetText": "She has never visited a temple.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i11:r2",
+            "targetText": "We have never visited a temple.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i11:r3",
+            "targetText": "You have never visited a temple.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has never visited a temple.",
+              "uk": "У записі звучить She has never visited a temple."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has never visited a temple.",
+              "uk": "У записі звучить She has never visited a temple."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-25:i12:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i12:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-23:session-25:i12:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has never ___ a temple.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-25:i12:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i12:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i12:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма visited.",
+              "uk": "Після have або has потрібна третя форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма visited.",
+              "uk": "Після have або has потрібна третя форма visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-25:i13:p1",
+            "target": "palace",
+            "meaningByLocale": {
+              "ru": "дворец",
+              "uk": "палац"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-25:i13:p2",
+            "target": "cathedral",
+            "meaningByLocale": {
+              "ru": "собор",
+              "uk": "собор"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-25:i13:p3",
+            "target": "mosque",
+            "meaningByLocale": {
+              "ru": "мечеть",
+              "uk": "мечеть"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-25:i13:p4",
+            "target": "temple",
+            "meaningByLocale": {
+              "ru": "храм",
+              "uk": "храм"
+            }
+          }
+        ],
+        "leftColumn": [
+          "palace",
+          "cathedral",
+          "mosque",
+          "temple"
+        ],
+        "rightColumn": [
+          "дворец",
+          "собор",
+          "мечеть",
+          "храм"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите об опыте посещения собора",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Спросите об опыте посещения собора",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:i14:audio",
+          "transcript": "Have you ever visited a cathedral?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you ever visited a cathedral?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "ever",
+          "visited",
+          "a",
+          "cathedral"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что никогда не посещали дворец",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите, что никогда не посещали дворец",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:i15:audio",
+          "transcript": "I have never visited a palace."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have never visited a palace.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "never",
+          "visited",
+          "a",
+          "palace"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я никогда не посещал мечеть».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я никогда не посещал мечеть».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:i16:audio",
+          "transcript": "I have never visited a mosque."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have never visited a mosque.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-25:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Ты когда-нибудь посещал храм?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Ты когда-нибудь посещал храм?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-25:i17:audio",
+          "transcript": "Have you ever visited a temple?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Have you ever visited a temple?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c354dff11b07c1fd1ef85a80d9d2822329ea0518b3918949cac53c46b92c32a9"
+}

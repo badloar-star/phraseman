@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-25:word:palace",
+    "correctText": "palace",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i01",
+    "correctText": "Have you ever visited a palace?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i02",
+    "correctText": "Have you ever visited a palace?",
+    "correctResponseId": "en:lesson-23:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i03",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-23:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:word:cathedral",
+    "correctText": "cathedral",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i04",
+    "correctText": "I have never visited a cathedral.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i05",
+    "correctText": "I have never visited a cathedral.",
+    "correctResponseId": "en:lesson-23:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i06",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-23:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:word:mosque",
+    "correctText": "mosque",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i07",
+    "correctText": "Have you ever visited a mosque?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i08",
+    "correctText": "Have you ever visited a mosque?",
+    "correctResponseId": "en:lesson-23:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i09",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-23:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:word:temple",
+    "correctText": "temple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i10",
+    "correctText": "She has never visited a temple.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i11",
+    "correctText": "She has never visited a temple.",
+    "correctResponseId": "en:lesson-23:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i12",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-23:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i13",
+    "correctText": "en:lesson-23:session-25:i13:p1=palace\nen:lesson-23:session-25:i13:p2=cathedral\nen:lesson-23:session-25:i13:p3=mosque\nen:lesson-23:session-25:i13:p4=temple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i14",
+    "correctText": "Have you ever visited a cathedral?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i15",
+    "correctText": "I have never visited a palace.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i16",
+    "correctText": "I have never visited a mosque.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-25:i17",
+    "correctText": "Have you ever visited a temple?",
+    "correctResponseId": null
+  }
+]

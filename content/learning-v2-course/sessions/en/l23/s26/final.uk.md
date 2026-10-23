@@ -1,0 +1,151 @@
+# Англійська · Урок 23 · Заняття 26 — Люди, яких ви зустрічали
+
+**Ситуація.** Ви розповідаєте про людей, яких зустрічали в школі, на роботі або в подорожі.
+
+**Що ви опануєте:** present perfect + life experience
+**Нові слова:** clever, talkative, unfriendly, cruel
+
+## Інтро 1
+
+### Ваш досвід
+
+Clever — розумний, кмітливий: людина швидко розуміє або знаходить рішення. Talkative — балакучий: людина багато говорить. I have met a clever student — я зустрічав розумного студента. Met — третя форма meet.
+
+**Виберіть фразу для цієї ситуації.**
+
+- ✅ **I have met a clever student.**
+- ❌ I has met a clever student. — *Виберіть have або has за підметом.*
+- ❌ I have meet a clever student. — *Після have або has потрібна третя форма: met.*
+
+---
+
+## Інтро 2
+
+### Розрізняємо слова
+
+Unfriendly — недружній, протилежність знайомого friendly. We have met an unfriendly driver — ми зустрічали недружнього водія. Перед unfriendly потрібен an, бо слово починається з голосного звука. Прикметник стоїть перед driver.
+
+**Виберіть фразу для цієї ситуації.**
+
+- ✅ **We have met an unfriendly driver.**
+- ❌ We has met an unfriendly driver. — *Виберіть have або has за підметом.*
+- ❌ We have meet an unfriendly driver. — *Після have або has потрібна третя форма: met.*
+
+---
+
+## Інтро 3
+
+### Ще один приклад
+
+Cruel — жорстокий: людина навмисно завдає болю або страждань. Це сильніше, ніж unfriendly: просто недружня людина не обов’язково жорстока. He has met a cruel person — він зустрічав жорстоку людину. Із he потрібно has.
+
+**Виберіть фразу для цієї ситуації.**
+
+- ✅ **He has met a cruel person.**
+- ❌ He have met a cruel person. — *Виберіть have або has за підметом.*
+- ❌ He has meet a cruel person. — *Після have або has потрібна третя форма: met.*
+
+---
+
+## Практика (21 завдання)
+
+**1 · Картка слова — clever**
+<!-- interaction_id: en:lesson-23:session-26:word:clever; family: word_card -->
+> **clever** — розумний, кмітливий.
+
+**2 · Розкажіть про досвід: «Я зустрічав розумного студента.»**
+<!-- interaction_id: en:lesson-23:session-26:i01; family: phrase_builder -->
+Плитки: `student` `clever` `a` `met` `have` `I` → **I have met a clever student.**
+
+**3 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-23:session-26:i02; family: listen_choose -->
+🔊 *I have met a clever student.* → **I have met a clever student.** · You have met a clever student. · They have met a clever student.
+- You have met a clever student. — *У записі звучить I have met a clever student.*
+- They have met a clever student. — *У записі звучить I have met a clever student.*
+
+**4 · Виберіть третю форму.**
+<!-- interaction_id: en:lesson-23:session-26:i03; family: context_gap_grammar -->
+I have ___ a clever student. → **met** · meet · meets
+- meet — *Потрібна третя форма: met.*
+- meets — *Потрібна третя форма: met.*
+
+**5 · Картка слова — talkative**
+<!-- interaction_id: en:lesson-23:session-26:word:talkative; family: word_card -->
+> **talkative** — балакучий.
+
+**6 · Розкажіть про досвід: «Вона зустрічала балакучого сусіда.»**
+<!-- interaction_id: en:lesson-23:session-26:i04; family: phrase_builder -->
+Плитки: `neighbour` `talkative` `a` `met` `has` `She` → **She has met a talkative neighbour.**
+
+**7 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-23:session-26:i05; family: listen_choose -->
+🔊 *She has met a talkative neighbour.* → **She has met a talkative neighbour.** · You have met a talkative neighbour. · They have met a talkative neighbour.
+- You have met a talkative neighbour. — *У записі звучить She has met a talkative neighbour.*
+- They have met a talkative neighbour. — *У записі звучить She has met a talkative neighbour.*
+
+**8 · Виберіть третю форму.**
+<!-- interaction_id: en:lesson-23:session-26:i06; family: context_gap_grammar -->
+She has ___ a talkative neighbour. → **met** · meet · meets
+- meet — *Потрібна третя форма: met.*
+- meets — *Потрібна третя форма: met.*
+
+**9 · Картка слова — unfriendly**
+<!-- interaction_id: en:lesson-23:session-26:word:unfriendly; family: word_card -->
+> **unfriendly** — недружній.
+
+**10 · Розкажіть про досвід: «Ми зустрічали недружнього водія.»**
+<!-- interaction_id: en:lesson-23:session-26:i07; family: phrase_builder -->
+Плитки: `driver` `unfriendly` `an` `met` `have` `We` → **We have met an unfriendly driver.**
+
+**11 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-23:session-26:i08; family: listen_choose -->
+🔊 *We have met an unfriendly driver.* → **We have met an unfriendly driver.** · You have met an unfriendly driver. · They have met an unfriendly driver.
+- You have met an unfriendly driver. — *У записі звучить We have met an unfriendly driver.*
+- They have met an unfriendly driver. — *У записі звучить We have met an unfriendly driver.*
+
+**12 · Виберіть третю форму.**
+<!-- interaction_id: en:lesson-23:session-26:i09; family: context_gap_grammar -->
+We have ___ an unfriendly driver. → **met** · meet · meets
+- meet — *Потрібна третя форма: met.*
+- meets — *Потрібна третя форма: met.*
+
+**13 · Картка слова — cruel**
+<!-- interaction_id: en:lesson-23:session-26:word:cruel; family: word_card -->
+> **cruel** — жорстокий.
+
+**14 · Розкажіть про досвід: «Він зустрічав жорстоку людину.»**
+<!-- interaction_id: en:lesson-23:session-26:i10; family: phrase_builder -->
+Плитки: `person` `cruel` `a` `met` `has` `He` → **He has met a cruel person.**
+
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-23:session-26:i11; family: listen_choose -->
+🔊 *He has met a cruel person.* → **He has met a cruel person.** · You have met a cruel person. · They have met a cruel person.
+- You have met a cruel person. — *У записі звучить He has met a cruel person.*
+- They have met a cruel person. — *У записі звучить He has met a cruel person.*
+
+**16 · Виберіть третю форму.**
+<!-- interaction_id: en:lesson-23:session-26:i12; family: context_gap_grammar -->
+He has ___ a cruel person. → **met** · meet · meets
+- meet — *Потрібна третя форма: met.*
+- meets — *Потрібна третя форма: met.*
+
+**17 · Поєднайте слова з перекладом**
+<!-- interaction_id: en:lesson-23:session-26:i13; family: speed_match -->
+clever — розумний, кмітливий · talkative — балакучий · unfriendly — недружній · cruel — жорстокий
+
+**18 · Повторення: інший варіант**
+<!-- interaction_id: en:lesson-23:session-26:i14; family: listen_build_dictation -->
+🔊 *We can choose another place.* Плитки: `place` `another` `choose` `can` `We` → **We can choose another place.**
+
+**19 · Повторення: заборона**
+<!-- interaction_id: en:lesson-23:session-26:i15; family: listen_build_dictation -->
+🔊 *You mustn't leave the door open.* Плитки: `open` `door` `the` `leave` `mustn't` `You` → **You mustn't leave the door open.**
+
+**20 · Скажіть: «Я зустрічав балакучого сусіда.»**
+<!-- interaction_id: en:lesson-23:session-26:i16; family: scripted_repeat_compare -->
+🎙 **I have met a talkative neighbour.**
+
+**21 · Скажіть: «Ми зустрічали розумного студента.»**
+<!-- interaction_id: en:lesson-23:session-26:i17; family: scripted_repeat_compare -->
+🎙 **We have met a clever student.**
+

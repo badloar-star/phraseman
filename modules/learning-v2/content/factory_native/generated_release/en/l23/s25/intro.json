@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "have + ever|never + past participle",
+    "uk": "have + ever|never + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда-нибудь",
+        "uk": "Коли-небудь"
+      },
+      "bodyByLocale": {
+        "ru": "Palace — дворец. Have you ever visited a palace? — ты когда-нибудь посещал дворец? Ever в таком вопросе означает «когда-нибудь». Ставим have перед you, а ever — перед третьей формой visited. Мы спрашиваем об опыте за всё время, а не о конкретной поездке.",
+        "uk": "Palace — палац. Have you ever visited a palace? — ти коли-небудь відвідував палац? Ever у такому запитанні означає «коли-небудь». Ставимо have перед you, а ever — перед третьою формою visited. Ми запитуємо про досвід за весь час, а не про конкретну подорож."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-25:intro1:r1",
+              "text": "Have you ever visited a palace?"
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro1:r2",
+              "text": "Have you ever visit a palace?"
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro1:r3",
+              "text": "Has you ever visited a palace?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-25:intro1:r1",
+              "text": "Have you ever visited a palace?"
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro1:r2",
+              "text": "Have you ever visit a palace?"
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro1:r3",
+              "text": "Has you ever visited a palace?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Никогда",
+        "uk": "Ніколи"
+      },
+      "bodyByLocale": {
+        "ru": "Cathedral — собор. I have never visited a cathedral — я никогда не посещал собор. Never уже даёт отрицательный смысл: «никогда». Поэтому not не добавляем. Never стоит между have и visited.",
+        "uk": "Cathedral — собор. I have never visited a cathedral — я ніколи не відвідував собор. Never уже надає заперечного значення: «ніколи». Тому not не додаємо. Never стоїть між have і visited."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-25:intro2:r1",
+              "text": "I have never visited a cathedral."
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro2:r2",
+              "text": "I have not never visited a cathedral."
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro2:r3",
+              "text": "I have never visit a cathedral."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-25:intro2:r1",
+              "text": "I have never visited a cathedral."
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro2:r2",
+              "text": "I have not never visited a cathedral."
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro2:r3",
+              "text": "I have never visit a cathedral."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Места в городе",
+        "uk": "Місця в місті"
+      },
+      "bodyByLocale": {
+        "ru": "Mosque — мечеть, место молитвы мусульман. Temple — храм; это слово часто используют, например, для буддийских и индуистских храмов. She has never visited a temple — она никогда не посещала храм. С she используем has, затем never и visited.",
+        "uk": "Mosque — мечеть, місце молитви мусульман. Temple — храм; це слово часто використовують, наприклад, для буддійських та індуїстських храмів. She has never visited a temple — вона ніколи не відвідувала храм. Із she використовуємо has, потім never і visited."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-25:intro3:r1",
+              "text": "She has never visited a temple."
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro3:r2",
+              "text": "She have never visited a temple."
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro3:r3",
+              "text": "She has never visit a temple."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-25:intro3:r1",
+              "text": "She has never visited a temple."
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro3:r2",
+              "text": "She have never visited a temple."
+            },
+            {
+              "responseId": "en:lesson-23:session-25:intro3:r3",
+              "text": "She has never visit a temple."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "66faf8265b8c414df75e4bda2b81296ea3dfbd3a8335020898e116f2068747e6"
+}

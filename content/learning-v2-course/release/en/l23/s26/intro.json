@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Clever — умный, сообразительный: человек быстро понимает или находит решение. Talkative — разговорчивый: человек много говорит. I have met a clever student — я встречал умного студента. Met — третья форма meet.",
+        "uk": "Clever — розумний, кмітливий: людина швидко розуміє або знаходить рішення. Talkative — балакучий: людина багато говорить. I have met a clever student — я зустрічав розумного студента. Met — третя форма meet."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-26:intro1:r1",
+              "text": "I have met a clever student."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro1:r2",
+              "text": "I has met a clever student."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro1:r3",
+              "text": "I have meet a clever student."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-26:intro1:r1",
+              "text": "I have met a clever student."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro1:r2",
+              "text": "I has met a clever student."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro1:r3",
+              "text": "I have meet a clever student."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Unfriendly — недружелюбный, противоположность знакомого friendly. We have met an unfriendly driver — мы встречали недружелюбного водителя. Перед unfriendly нужен an, потому что слово начинается с гласного звука. Прилагательное стоит перед driver.",
+        "uk": "Unfriendly — недружній, протилежність знайомого friendly. We have met an unfriendly driver — ми зустрічали недружнього водія. Перед unfriendly потрібен an, бо слово починається з голосного звука. Прикметник стоїть перед driver."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-26:intro2:r1",
+              "text": "We have met an unfriendly driver."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro2:r2",
+              "text": "We has met an unfriendly driver."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro2:r3",
+              "text": "We have meet an unfriendly driver."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-26:intro2:r1",
+              "text": "We have met an unfriendly driver."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro2:r2",
+              "text": "We has met an unfriendly driver."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro2:r3",
+              "text": "We have meet an unfriendly driver."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Cruel — жестокий: человек намеренно причиняет боль или страдания. Это сильнее, чем unfriendly: просто недружелюбный человек не обязательно жесток. He has met a cruel person — он встречал жестокого человека. С he нужно has.",
+        "uk": "Cruel — жорстокий: людина навмисно завдає болю або страждань. Це сильніше, ніж unfriendly: просто недружня людина не обов’язково жорстока. He has met a cruel person — він зустрічав жорстоку людину. Із he потрібно has."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-26:intro3:r1",
+              "text": "He has met a cruel person."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro3:r2",
+              "text": "He have met a cruel person."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro3:r3",
+              "text": "He has meet a cruel person."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-26:intro3:r1",
+              "text": "He has met a cruel person."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro3:r2",
+              "text": "He have met a cruel person."
+            },
+            {
+              "responseId": "en:lesson-23:session-26:intro3:r3",
+              "text": "He has meet a cruel person."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cb8b7114a5576aac522e1c59cfab6521afde5477054fe9d5331c79293f4413e3"
+}

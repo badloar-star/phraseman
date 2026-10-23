@@ -2,8 +2,10 @@
  * «Дуэль на 5 фраз» (идея 3) — правила без сети: итог, проверка хода, лимит вызовов, срок, выбор фраз.
  *
  * зачем (владелец 21.10, макет docs/design/v2-app/friends-full.html, идея 3; контракт — docs/work/tasks/friends-duel-2026-10-22.md):
- * асинхронная дуэль — оба собирают те же 5 фраз из пройденного, побеждает точность, при равенстве — время. Решает сервер;
- * телефон считает так же, чтобы показать итог сразу (Optimistic UI) и не разойтись с сервером в правилах.
+ * асинхронная дуэль — оба собирают те же 5 фраз из пройденного, побеждает точность, при равенстве — время.
+ * зачем (закон владельца 22.10 «сервер для сохранения, а не решений»; план docs/work/tasks/friends-law-rebuild-2026-10-22.md):
+ * итог и лимит «три в день» решает телефон — одной функцией у обоих (duelOutcomeByScore); сервер хранит ходы и отказывает
+ * только по целостности. Копия правил на сервере (functions/src/friends_duel_core.ts) сверяется тестами на одних случаях.
  */
 
 export const DUEL_PHRASES = 5;
@@ -33,12 +35,19 @@ export function isValidDuelMove(value: unknown): value is DuelMove {
     && elapsedMs <= DUEL_MAX_ELAPSED_MS;
 }
 
-/** Итог с моей стороны: точность, затем меньшее время, иначе ничья. */
-export function duelOutcome(mine: DuelMove, theirs: DuelMove): DuelOutcome {
-  const byAccuracy = duelCorrect(mine) - duelCorrect(theirs);
+export type DuelScore = Readonly<{ correct: number; elapsedMs: number }>;
+
+/** Итог с моей стороны по счёту: точность, затем меньшее время, иначе ничья. Одна функция для обоих телефонов. */
+export function duelOutcomeByScore(mine: DuelScore, theirs: DuelScore): DuelOutcome {
+  const byAccuracy = mine.correct - theirs.correct;
   if (byAccuracy !== 0) return byAccuracy > 0 ? 'win' : 'loss';
   if (mine.elapsedMs !== theirs.elapsedMs) return mine.elapsedMs < theirs.elapsedMs ? 'win' : 'loss';
   return 'draw';
+}
+
+/** Итог с моей стороны по ходам (свои отметки на телефоне). */
+export function duelOutcome(mine: DuelMove, theirs: DuelMove): DuelOutcome {
+  return duelOutcomeByScore({ correct: duelCorrect(mine), elapsedMs: mine.elapsedMs }, { correct: duelCorrect(theirs), elapsedMs: theirs.elapsedMs });
 }
 
 export type DuelChallengeCheck = Readonly<{ ok: true }> | Readonly<{ ok: false; reason: 'limit' | 'open_duel' }>;

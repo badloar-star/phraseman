@@ -1,9 +1,10 @@
 /**
  * «Дуэль на 5 фраз» (идея 3) — свои отправленные вызовы на телефоне: сколько сегодня и с кем дуэль ещё идёт.
  *
- * зачем (правила дуэли: три вызова в день, одна открытая дуэль на друга; Firebase-экономия): шторка вызова сразу говорит
- * «Сегодня уже три вызова» / «Дуэль с другом уже идёт» — без чтений сервера. Окончательно решает сервер (limit / open_duel),
- * здесь — только честная подсказка до тапа. Запись — когда ход вызова ушёл или лёг на телефон без сети. Храним сутки.
+ * зачем (правила дуэли: три вызова в день, одна открытая дуэль на друга; Firebase-экономия; закон владельца 22.10
+ * «сервер для сохранения, а не решений»): лимит решает телефон — canChallenge по этому журналу, без чтений сервера.
+ * Запись — СРАЗУ при отправке вызова (Optimistic UI): второй вызов тому же другу закрыт мгновенно, не дожидаясь сети;
+ * сервер отказал по целостности (не друзья, битый ход) — запись снимается (forgetSentDuel). Храним сутки.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -39,7 +40,7 @@ async function readRaw(scope: string): Promise<SentDuel[]> {
   }
 }
 
-/** Свои вызовы за последние сутки. Нет пользователя — пусто (шторка ничего не запрещает, решит сервер). */
+/** Свои вызовы за последние сутки. Нет пользователя — пусто (шторка ничего не запрещает; отправить вызов без аккаунта нельзя). */
 export async function readSentDuels(nowMs: number = Date.now()): Promise<SentDuel[]> {
   const scope = await getCanonicalUserId();
   if (!scope) {
@@ -62,7 +63,28 @@ export async function recordSentDuel(friendUid: string, nowMs: number = Date.now
     await AsyncStorage.setItem(`${KEY}::${scope}`, JSON.stringify(next));
     log(`ledger:recorded friend=${maskUid(friendUid)} today=${duelSentToday(next, dayKey)}`);
   } catch (e) {
-    console.warn(`[FRIENDS-DUEL] ledger:write failed owner=${maskUid(scope)} → подсказка лимита отстанет, решит сервер: ${errText(e)}`); // guard-ok: catch называет причину
+    console.warn(`[FRIENDS-DUEL] ledger:write failed owner=${maskUid(scope)} → лимит дня не учтёт этот вызов: ${errText(e)}`); // guard-ok: catch называет причину
+  }
+}
+
+/** Откат записи вызова: сервер отказал по целостности — вызова не было, место в «три в день» возвращается. */
+export async function forgetSentDuel(friendUid: string, sentAtMs: number): Promise<void> {
+  const scope = await getCanonicalUserId();
+  if (!scope) {
+    log(`ledger:forget skip reason=no_user friend=${maskUid(friendUid)}`);
+    return;
+  }
+  const list = await readRaw(scope);
+  const next = list.filter((d) => !(d.friendUid === friendUid && d.sentAtMs === sentAtMs));
+  if (next.length === list.length) {
+    log(`ledger:forget skip reason=not_found friend=${maskUid(friendUid)}`);
+    return;
+  }
+  try {
+    await AsyncStorage.setItem(`${KEY}::${scope}`, JSON.stringify(next));
+    log(`ledger:forgot friend=${maskUid(friendUid)} left=${next.length}`);
+  } catch (e) {
+    console.warn(`[FRIENDS-DUEL] ledger:forget write failed owner=${maskUid(scope)} → вызов останется в лимите до суток: ${errText(e)}`); // guard-ok: catch называет причину
   }
 }
 

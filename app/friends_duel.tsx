@@ -31,13 +31,13 @@ import { triLang } from '../constants/i18n';
 import { maskUid } from './diagnostic_mask';
 import { safeRouterBack } from './navigation_back';
 import { FRIENDS_TOGETHER_UI_ENABLED } from './friends_together/together_config';
-import { DUEL_PHRASES, duelCorrect, duelOutcome, type DuelMove, type DuelOutcome } from './friends_together/duel_core';
+import { DUEL_PHRASES, duelCorrect, duelOutcome, duelOutcomeByScore, type DuelMove, type DuelOutcome } from './friends_together/duel_core';
 import { duelCopy, duelOutcomeLine } from './friends_together/duel_copy';
 import { duelClock, duelPlayCopy, duelProgressLabel } from './friends_together/duel_play_copy';
 import { parseDuelLaunch, type DuelLaunch } from './friends_together/duel_launch';
 import { resolveDuelPhrasesOnPhone } from './friends_together/duel_phrase_source';
 import { submitDuelChallenge, submitDuelMove, type DuelChallengeResult, type DuelMoveResult } from './friends_together/duel_client';
-import { recordSentDuel } from './friends_together/duel_ledger';
+import { forgetSentDuel, recordSentDuel } from './friends_together/duel_ledger';
 import { markUserNotificationsRead } from './user_notifications';
 import { requestDuelRematch } from './friends_together/duel_intents';
 import type { Lang } from '../constants/i18n';
@@ -62,6 +62,13 @@ type DuelFinish =
   | Readonly<{ kind: 'result'; move: DuelMove; outcome: DuelOutcome; theirs: TheirMove }>
   | Readonly<{ kind: 'rejected'; move: DuelMove; title: string; body: string }>;
 
+/** Итог у вызвавшего по строке «Итог дуэли»: решает телефон одной функцией; расхождение с серверным — в журнал. */
+function resultOutcome(result: Readonly<{ outcome: DuelOutcome; mine: Readonly<{ correct: number; elapsedMs: number }>; theirs: Readonly<{ correct: number; elapsedMs: number }> }>): DuelOutcome {
+  const local = duelOutcomeByScore(result.mine, result.theirs);
+  if (local !== result.outcome) warn(`result: сервер=${result.outcome} телефон=${local} — показываем телефонный (решает телефон)`);
+  return local;
+}
+
 /** Что показать после ответа сервера на вызов. ok — остаёмся на «Ход отправлен». */
 function finishAfterChallenge(res: DuelChallengeResult, move: DuelMove, lang: Lang): DuelFinish | null {
   if (res.ok) return null;
@@ -73,9 +80,10 @@ function finishAfterChallenge(res: DuelChallengeResult, move: DuelMove, lang: La
 /** Что показать после ответа сервера на ход друга: итог, «Ход готов» без сети или почему не принят. */
 function finishAfterMove(res: DuelMoveResult, move: DuelMove, lang: Lang): DuelFinish {
   if (res.ok) {
+    // зачем (закон владельца 22.10 «сервер для сохранения, а не решений»): итог решает телефон по обоим ходам; серверный — только сверка в журнал
     const local = duelOutcome(move, { results: res.theirs.results, elapsedMs: res.theirs.elapsedMs });
-    if (local !== res.outcome) warn(`outcome: сервер=${res.outcome} телефон=${local} — показываем серверный (решает сервер)`);
-    return { kind: 'result', move, outcome: res.outcome, theirs: res.theirs };
+    if (local !== res.outcome) warn(`outcome: сервер=${res.outcome} телефон=${local} — показываем телефонный (решает телефон)`);
+    return { kind: 'result', move, outcome: local, theirs: res.theirs };
   }
   if (res.reason === 'network' || res.reason === 'no_sender') return { kind: 'offline', move };
   if (res.reason === 'expired') return { kind: 'rejected', move, title: duelPlayCopy(lang, 'expiredTitle'), body: '' };
@@ -155,10 +163,16 @@ function FriendsDuelScreen() {
     // Optimistic UI: «Ход отправлен» и свои отметки — сразу; сеть догоняет фоном и поправит на «Ход готов» или итог.
     setFinish({ kind: 'waiting', move });
     if (launch.mode === 'challenge') {
+      // зачем (закон владельца 22.10: лимит «три в день» решает телефон): вызов учтён в журнале СРАЗУ — второй вызов этому другу
+      // закрыт мгновенно, не дожидаясь сети; отказ сервера по целостности снимает запись (откат), сеть — запись остаётся
+      const sentAtMs = Date.now();
+      void recordSentDuel(launch.friendUid, sentAtMs);
       void submitDuelChallenge({ friendUid: launch.friendUid, phraseIds: launch.phraseIds, move })
         .then((res) => {
-          // зачем (лимит «три в день», «дуэль уже идёт»): вызов ушёл или ждёт сети на телефоне — шторка вызова узнает об этом без сервера
-          if (res.ok || res.reason === 'network' || res.reason === 'no_sender') void recordSentDuel(launch.friendUid);
+          if (!res.ok && res.reason !== 'network' && res.reason !== 'no_sender') {
+            log(`challenge: отказ ${res.reason} → откат записи вызова`);
+            void forgetSentDuel(launch.friendUid, sentAtMs);
+          }
           applyServer(finishAfterChallenge(res, move, lang), 'challenge');
         })
         .catch((error: unknown) => {
@@ -211,7 +225,8 @@ function FriendsDuelScreen() {
       mineCorrect: launch.result.mine.correct,
       mineMs: launch.result.mine.elapsedMs,
       mineResults: launch.result.mine.results,
-      outcome: launch.result.outcome,
+      // зачем (закон владельца 22.10): итог у вызвавшего тоже решает телефон — по счёту обоих из строки «Итог дуэли»
+      outcome: resultOutcome(launch.result),
       theirs: launch.result.theirs,
     }
     : finish

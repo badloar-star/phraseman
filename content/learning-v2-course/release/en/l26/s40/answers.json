@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-40:word:refrigerator",
+    "correctText": "refrigerator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i01",
+    "correctText": "The milk is in the refrigerator.",
+    "correctResponseId": "en:lesson-26:session-40:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i02",
+    "correctText": "We will make pancakes if we have milk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:word:mixer",
+    "correctText": "mixer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i03",
+    "correctText": "Where is the mixer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i04",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-26:session-40:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i05",
+    "correctText": "Have you washed the potatoes yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:word:grater",
+    "correctText": "grater",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i06",
+    "correctText": "Could you pass me the grater?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i07",
+    "correctText": "I have already washed them.",
+    "correctResponseId": "en:lesson-26:session-40:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:word:peeler",
+    "correctText": "peeler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i08",
+    "correctText": "The peeler is in the drawer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i09",
+    "correctText": "wash",
+    "correctResponseId": "en:lesson-26:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i10",
+    "correctText": "I will open it for you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i11",
+    "correctText": "set",
+    "correctResponseId": "en:lesson-26:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i12",
+    "correctText": "If the potatoes are hard, we can wait.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i13",
+    "correctText": "Would you like some more?",
+    "correctResponseId": "en:lesson-26:session-40:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-40:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i15",
+    "correctText": "No, thank you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-40:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-40:i17",
+    "correctText": "Thanks for your help.",
+    "correctResponseId": null
+  }
+]

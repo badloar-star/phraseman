@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-40",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-40:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-40:intro1:r2": {
+          "ru": "После when здесь are без will.",
+          "uk": "Після when тут are без will."
+        },
+        "en:lesson-26:session-40:intro1:r3": {
+          "ru": "С you нужно are.",
+          "uk": "З you потрібно are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-40:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-40:intro2:r2": {
+          "ru": "После have нужна форма washed.",
+          "uk": "Після have потрібна форма washed."
+        },
+        "en:lesson-26:session-40:intro2:r3": {
+          "ru": "Для результата сейчас нужно have washed.",
+          "uk": "Для результату зараз потрібно have washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-40:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-40:intro3:r2": {
+          "ru": "Arrived задаёт прошлое; более раннее действие — had finished.",
+          "uk": "Arrived задає минуле; раніша дія — had finished."
+        },
+        "en:lesson-26:session-40:intro3:r3": {
+          "ru": "После had нужна форма finished.",
+          "uk": "Після had потрібна форма finished."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "458a80638c3c66a0df79ec0fdc005d40e81f90df83d61b16132b899aca03456a"
+}

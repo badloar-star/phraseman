@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-39:intro1:r2": {
+          "ru": "С I нужно leave без -s.",
+          "uk": "З I потрібно leave без -s."
+        },
+        "en:lesson-26:session-39:intro1:r3": {
+          "ru": "Для привычки нужна форма leave.",
+          "uk": "Для звички потрібна форма leave."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-39:intro2:r2": {
+          "ru": "Unless меняет условие: если в комнате не темно.",
+          "uk": "Unless змінює умову: якщо в кімнаті не темно."
+        },
+        "en:lesson-26:session-39:intro2:r3": {
+          "ru": "В этом условии после if нужно is без will.",
+          "uk": "У цій умові після if потрібно is без will."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-39:intro3:r2": {
+          "ru": "Arrived задаёт прошлое; более раннее действие — had made.",
+          "uk": "Arrived задає минуле; раніша дія — had made."
+        },
+        "en:lesson-26:session-39:intro3:r3": {
+          "ru": "После had нужна форма made.",
+          "uk": "Після had потрібна форма made."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "be8916e0f89a156554b1a1d3828ca5ae2e90b1c25027005e17ac04584233c6e4"
+}

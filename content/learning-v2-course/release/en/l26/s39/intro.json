@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; just, already, yet; by the time",
+    "uk": "if, when, unless; just, already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Войти с занятыми руками",
+        "uk": "Зайти із зайнятими руками"
+      },
+      "bodyByLocale": {
+        "ru": "Doorknob — круглая дверная ручка, которую поворачивают. I cannot turn the doorknob — я не могу повернуть дверную ручку. Если руки заняты сумками, попросите: Could you open the door for me? — можешь открыть мне дверь? Hallway — прихожая или коридор внутри здания. Leave the bags in the hallway — оставь сумки в прихожей. Для обычного действия: I leave my shoes there when I come in — я оставляю там обувь, когда захожу. Здесь оба действия в Present Simple.",
+        "uk": "Doorknob — кругла дверна ручка, яку повертають. I cannot turn the doorknob — я не можу повернути дверну ручку. Якщо руки зайняті сумками, попросіть: Could you open the door for me? — можеш відчинити мені двері? Hallway — передпокій або коридор усередині будівлі. Leave the bags in the hallway — залиш сумки в передпокої. Для звичайної дії: I leave my shoes there when I come in — я залишаю там взуття, коли заходжу. Тут обидві дії в Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-39:intro1:r1",
+              "text": "I leave my shoes there when I come in."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro1:r2",
+              "text": "I leaves my shoes there when I come in."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro1:r3",
+              "text": "I leaving my shoes there when I come in."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-39:intro1:r1",
+              "text": "I leave my shoes there when I come in."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro1:r2",
+              "text": "I leaves my shoes there when I come in."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro1:r3",
+              "text": "I leaving my shoes there when I come in."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поискать в комнате",
+        "uk": "Пошукати в кімнаті"
+      },
+      "bodyByLocale": {
+        "ru": "Couch — диван, другое обычное название sofa. Look under the couch — посмотри под диваном. Have you found your keys yet? — ты уже нашёл ключи? I have already looked there — я уже там посмотрел. I have just found them — я только что их нашёл. Yet в вопросе проверяет результат сейчас; already и just уточняют, что уже произошло. Если нужен свет: If the room is dark, I will turn on the light — если в комнате темно, я включу свет. Условие можно поставить в конец без изменения смысла.",
+        "uk": "Couch — диван, інша звичайна назва sofa. Look under the couch — подивися під диваном. Have you found your keys yet? — ти вже знайшов ключі? I have already looked there — я вже там подивився. I have just found them — я щойно їх знайшов. Yet у запитанні перевіряє результат зараз; already і just уточнюють, що вже сталося. Якщо потрібне світло: If the room is dark, I will turn on the light — якщо в кімнаті темно, я ввімкну світло. Умову можна поставити в кінець без зміни змісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-39:intro2:r1",
+              "text": "I will turn on the light if the room is dark."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro2:r2",
+              "text": "I will turn on the light unless the room is dark."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro2:r3",
+              "text": "I will turn on the light if the room will be dark."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-39:intro2:r1",
+              "text": "I will turn on the light if the room is dark."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro2:r2",
+              "text": "I will turn on the light unless the room is dark."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro2:r3",
+              "text": "I will turn on the light if the room will be dark."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подготовить место гостю",
+        "uk": "Підготувати місце гостю"
+      },
+      "bodyByLocale": {
+        "ru": "Comforter — тёплое стёганое одеяло. There is a comforter on the bed — на кровати лежит тёплое одеяло. Вы объясняете вчерашнюю подготовку: I had made the bed by the time she arrived — я застелил кровать к тому времени, как она приехала. Had made показывает более раннее действие. О сегодняшней встрече: I will show you the room when you arrive — я покажу тебе комнату, когда ты приедешь. После when здесь arrive без will. Предложить помощь можно условно: I will bring another blanket if you are cold — я принесу ещё одно одеяло, если тебе холодно.",
+        "uk": "Comforter — тепла стьобана ковдра. There is a comforter on the bed — на ліжку лежить тепла ковдра. Ви пояснюєте вчорашню підготовку: I had made the bed by the time she arrived — я застелив ліжко до того часу, як вона приїхала. Had made показує ранішу дію. Про сьогоднішню зустріч: I will show you the room when you arrive — я покажу тобі кімнату, коли ти приїдеш. Після when тут arrive без will. Запропонувати допомогу можна умовно: I will bring another blanket if you are cold — я принесу ще одну ковдру, якщо тобі холодно."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-39:intro3:r1",
+              "text": "I had made the bed by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro3:r2",
+              "text": "I have made the bed by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro3:r3",
+              "text": "I had make the bed by the time she arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-39:intro3:r1",
+              "text": "I had made the bed by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro3:r2",
+              "text": "I have made the bed by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-39:intro3:r3",
+              "text": "I had make the bed by the time she arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f6c9adb8faaaeb6620312722b8ca48893911100a3b6f018dd7f47fd859fa2518"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-39:word:doorknob",
+    "correctText": "doorknob",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i01",
+    "correctText": "I cannot turn the doorknob.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i02",
+    "correctText": "Could you open the door for me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:word:hallway",
+    "correctText": "hallway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i03",
+    "correctText": "Leave the bags in the hallway.",
+    "correctResponseId": "en:lesson-26:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i04",
+    "correctText": "leave",
+    "correctResponseId": "en:lesson-26:session-39:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i05",
+    "correctText": "Have you found your keys yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:word:couch",
+    "correctText": "couch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i06",
+    "correctText": "Look under the couch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i07",
+    "correctText": "I have already looked there.",
+    "correctResponseId": "en:lesson-26:session-39:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i08",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-26:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:word:comforter",
+    "correctText": "comforter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i09",
+    "correctText": "There is a comforter on the bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i10",
+    "correctText": "Are you cold?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i11",
+    "correctText": "I will turn on the light if the room is dark.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i12",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i13",
+    "correctText": "The towels are beside the bed.",
+    "correctResponseId": "en:lesson-26:session-39:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i14",
+    "correctText": "arrive",
+    "correctResponseId": "en:lesson-26:session-39:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i15",
+    "correctText": "I will bring another blanket if you are cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-39:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-39:i17",
+    "correctText": "Make yourself at home.",
+    "correctResponseId": null
+  }
+]

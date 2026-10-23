@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-14:word:gargle",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gargle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:word:gargle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gargle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:word:gargle:audio",
+          "transcript": "gargle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-14:word:gargle:r1",
+            "targetText": "gargle",
+            "meaningByLocale": {
+              "ru": "полоскать горло.",
+              "uk": "полоскати горло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gargle",
+          "definitionByLocale": {
+            "ru": "полоскать горло.",
+            "uk": "полоскати горло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У ті часи я зазвичай полоскав горло водою щоранку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У ті часи я зазвичай полоскав горло водою щоранку.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "In those days I would gargle with water every morning.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В те времена я обычно полоскал горло водой каждое утро.»",
+          "uk": "Скажіть: «У ті часи я зазвичай полоскав горло водою щоранку.»"
+        },
+        "orderedTokens": [
+          "In",
+          "those",
+          "days",
+          "I",
+          "would",
+          "gargle",
+          "with",
+          "water",
+          "every",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть спогад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i02:r1",
+          "text": "gargle"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i02:r2",
+          "text": "gargled"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i02:r3",
+          "text": "gargling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть спогад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "In those days I would ___ with water every morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-14:i02:r1",
+            "text": "gargle"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i02:r2",
+            "text": "gargled"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i02:r3",
+            "text": "gargling"
+          }
+        ],
+        "testedDimension": "Доповніть спогад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i03:r1",
+          "text": "In those days I would gargle with water every morning."
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i03:r2",
+          "text": "In those days he would gargle with water every morning."
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i03:r3",
+          "text": "In those days I would gargle with water every evening."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i03:audio",
+          "transcript": "In those days I would gargle with water every morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-14:i03:r1",
+            "targetText": "In those days I would gargle with water every morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i03:r2",
+            "targetText": "In those days he would gargle with water every morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i03:r3",
+            "targetText": "In those days I would gargle with water every evening.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In those days I would gargle with water every morning.",
+              "uk": "У записі звучить In those days I would gargle with water every morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In those days I would gargle with water every morning.",
+              "uk": "У записі звучить In those days I would gargle with water every morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:word:massage",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — massage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:word:massage:audio"
+      ],
+      "accessibilityLabel": "Картка слова — massage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:word:massage:audio",
+          "transcript": "massage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-14:word:massage:r1",
+            "targetText": "massage",
+            "meaningByLocale": {
+              "ru": "массировать.",
+              "uk": "масажувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "massage",
+          "definitionByLocale": {
+            "ru": "массировать.",
+            "uk": "масажувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Після роботи вона зазвичай масажувала собі плечі.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Після роботи вона зазвичай масажувала собі плечі.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "After work she would massage her shoulders.",
+        "localizedMeaning": {
+          "ru": "Скажите: «После работы она обычно массировала себе плечи.»",
+          "uk": "Скажіть: «Після роботи вона зазвичай масажувала собі плечі.»"
+        },
+        "orderedTokens": [
+          "After",
+          "work",
+          "she",
+          "would",
+          "massage",
+          "her",
+          "shoulders"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть спогад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i05:r1",
+          "text": "massage"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i05:r2",
+          "text": "massaged"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i05:r3",
+          "text": "massaging"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть спогад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "After work she would ___ her shoulders.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-14:i05:r1",
+            "text": "massage"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i05:r2",
+            "text": "massaged"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i05:r3",
+            "text": "massaging"
+          }
+        ],
+        "testedDimension": "Доповніть спогад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i06:r1",
+          "text": "After work she would massage her shoulders."
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i06:r2",
+          "text": "After work he would massage his shoulders."
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i06:r3",
+          "text": "After work she would massage her feet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i06:audio",
+          "transcript": "After work she would massage her shoulders."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-14:i06:r1",
+            "targetText": "After work she would massage her shoulders.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i06:r2",
+            "targetText": "After work he would massage his shoulders.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i06:r3",
+            "targetText": "After work she would massage her feet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит After work she would massage her shoulders.",
+              "uk": "У записі звучить After work she would massage her shoulders."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит After work she would massage her shoulders.",
+              "uk": "У записі звучить After work she would massage her shoulders."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:word:pluck",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pluck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:word:pluck:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pluck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:word:pluck:audio",
+          "transcript": "pluck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-14:word:pluck:r1",
+            "targetText": "pluck",
+            "meaningByLocale": {
+              "ru": "выщипывать.",
+              "uk": "вищипувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pluck",
+          "definitionByLocale": {
+            "ru": "выщипывать.",
+            "uk": "вищипувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У ті часи вона зазвичай вищипувала брови.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У ті часи вона зазвичай вищипувала брови.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "In those days she would pluck her eyebrows.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В те времена она обычно выщипывала брови.»",
+          "uk": "Скажіть: «У ті часи вона зазвичай вищипувала брови.»"
+        },
+        "orderedTokens": [
+          "In",
+          "those",
+          "days",
+          "she",
+          "would",
+          "pluck",
+          "her",
+          "eyebrows"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть спогад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i08:r1",
+          "text": "pluck"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i08:r2",
+          "text": "plucked"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i08:r3",
+          "text": "plucking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть спогад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "In those days she would ___ her eyebrows.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-14:i08:r1",
+            "text": "pluck"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i08:r2",
+            "text": "plucked"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i08:r3",
+            "text": "plucking"
+          }
+        ],
+        "testedDimension": "Доповніть спогад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i09:r1",
+          "text": "In those days she would pluck her eyebrows."
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i09:r2",
+          "text": "In those days he would pluck his eyebrows."
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i09:r3",
+          "text": "In those days she would pluck her eyebrows carefully."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i09:audio",
+          "transcript": "In those days she would pluck her eyebrows."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-14:i09:r1",
+            "targetText": "In those days she would pluck her eyebrows.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i09:r2",
+            "targetText": "In those days he would pluck his eyebrows.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i09:r3",
+            "targetText": "In those days she would pluck her eyebrows carefully.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In those days she would pluck her eyebrows.",
+              "uk": "У записі звучить In those days she would pluck her eyebrows."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In those days she would pluck her eyebrows.",
+              "uk": "У записі звучить In those days she would pluck her eyebrows."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:word:dye",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dye",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:word:dye:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dye",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:word:dye:audio",
+          "transcript": "dye"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-14:word:dye:r1",
+            "targetText": "dye",
+            "meaningByLocale": {
+              "ru": "красить, окрашивать.",
+              "uk": "фарбувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dye",
+          "definitionByLocale": {
+            "ru": "красить, окрашивать.",
+            "uk": "фарбувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У ті часи ми зазвичай фарбували волосся вдома.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У ті часи ми зазвичай фарбували волосся вдома.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "In those days we would dye our hair at home.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В те времена мы обычно красили волосы дома.»",
+          "uk": "Скажіть: «У ті часи ми зазвичай фарбували волосся вдома.»"
+        },
+        "orderedTokens": [
+          "In",
+          "those",
+          "days",
+          "we",
+          "would",
+          "dye",
+          "our",
+          "hair",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть спогад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i11:r1",
+          "text": "dye"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i11:r2",
+          "text": "dyed"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i11:r3",
+          "text": "dyeing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть спогад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "In those days we would ___ our hair at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-14:i11:r1",
+            "text": "dye"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i11:r2",
+            "text": "dyed"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i11:r3",
+            "text": "dyeing"
+          }
+        ],
+        "testedDimension": "Доповніть спогад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i12:r1",
+          "text": "In those days we would dye our hair at home."
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i12:r2",
+          "text": "In those days they would dye their hair at home."
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i12:r3",
+          "text": "In those days we would dye our clothes at home."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i12:audio",
+          "transcript": "In those days we would dye our hair at home."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-14:i12:r1",
+            "targetText": "In those days we would dye our hair at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i12:r2",
+            "targetText": "In those days they would dye their hair at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i12:r3",
+            "targetText": "In those days we would dye our clothes at home.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In those days we would dye our hair at home.",
+              "uk": "У записі звучить In those days we would dye our hair at home."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In those days we would dye our hair at home.",
+              "uk": "У записі звучить In those days we would dye our hair at home."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-14:i13:p1",
+            "target": "gargle",
+            "meaningByLocale": {
+              "ru": "полоскать горло",
+              "uk": "полоскати горло"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-14:i13:p2",
+            "target": "massage",
+            "meaningByLocale": {
+              "ru": "массировать",
+              "uk": "масажувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-14:i13:p3",
+            "target": "pluck",
+            "meaningByLocale": {
+              "ru": "выщипывать",
+              "uk": "вищипувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-14:i13:p4",
+            "target": "dye",
+            "meaningByLocale": {
+              "ru": "красить, окрашивать",
+              "uk": "фарбувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gargle",
+          "massage",
+          "pluck",
+          "dye"
+        ],
+        "rightColumn": [
+          "полоскати горло",
+          "масажувати",
+          "вищипувати",
+          "фарбувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колишнє місце проживання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Колишнє місце проживання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i14:audio",
+          "transcript": "I used to live by the lake."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I used to live by the lake.",
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "live",
+          "by",
+          "the",
+          "lake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Раніше я був сором’язливим",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Раніше я був сором’язливим",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i15:audio",
+          "transcript": "I used to be shy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I used to be shy.",
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "be",
+          "shy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «У ті часи він зазвичай фарбував волосся вдома».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «У ті часи він зазвичай фарбував волосся вдома».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i16:audio",
+          "transcript": "In those days he would dye his hair at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "In those days he would dye his hair at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Після роботи вони зазвичай масажували собі плечі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Після роботи вони зазвичай масажували собі плечі».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i17:audio",
+          "transcript": "After work they would massage their shoulders."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "After work they would massage their shoulders.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "997892a14b6c01a344d607a9a2318cff90a268f0bafc331568eda3e78250a793"
+}

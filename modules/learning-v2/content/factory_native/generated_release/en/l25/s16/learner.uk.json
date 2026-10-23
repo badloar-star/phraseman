@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-16:word:squint",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — squint",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:word:squint:audio"
+      ],
+      "accessibilityLabel": "Картка слова — squint",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:word:squint:audio",
+          "transcript": "squint"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-16:word:squint:r1",
+            "targetText": "squint",
+            "meaningByLocale": {
+              "ru": "щуриться.",
+              "uk": "мружитися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "squint",
+          "definitionByLocale": {
+            "ru": "щуриться.",
+            "uk": "мружитися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У дитинстві я часто мружився на яскравому сонці.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У дитинстві я часто мружився на яскравому сонці.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "As a child I would squint in bright sunlight.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В детстве я часто щурился на ярком солнце.»",
+          "uk": "Скажіть: «У дитинстві я часто мружився на яскравому сонці.»"
+        },
+        "orderedTokens": [
+          "As",
+          "a",
+          "child",
+          "I",
+          "would",
+          "squint",
+          "in",
+          "bright",
+          "sunlight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть спогад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-16:i02:r1",
+          "text": "squint"
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i02:r2",
+          "text": "squinted"
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i02:r3",
+          "text": "squinting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть спогад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "As a child I would ___ in bright sunlight.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-16:i02:r1",
+            "text": "squint"
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i02:r2",
+            "text": "squinted"
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i02:r3",
+            "text": "squinting"
+          }
+        ],
+        "testedDimension": "Доповніть спогад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-16:i03:r1",
+          "text": "As a child I would squint in bright sunlight."
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i03:r2",
+          "text": "As a child she would squint in bright sunlight."
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i03:r3",
+          "text": "As a child I would squint at the screen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:i03:audio",
+          "transcript": "As a child I would squint in bright sunlight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-16:i03:r1",
+            "targetText": "As a child I would squint in bright sunlight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i03:r2",
+            "targetText": "As a child she would squint in bright sunlight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i03:r3",
+            "targetText": "As a child I would squint at the screen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит As a child I would squint in bright sunlight.",
+              "uk": "У записі звучить As a child I would squint in bright sunlight."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит As a child I would squint in bright sunlight.",
+              "uk": "У записі звучить As a child I would squint in bright sunlight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:word:limp",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — limp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:word:limp:audio"
+      ],
+      "accessibilityLabel": "Картка слова — limp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:word:limp:audio",
+          "transcript": "limp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-16:word:limp:r1",
+            "targetText": "limp",
+            "meaningByLocale": {
+              "ru": "хромать.",
+              "uk": "кульгати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "limp",
+          "definitionByLocale": {
+            "ru": "хромать.",
+            "uk": "кульгати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Після нещасного випадку я зазвичай ішов зі школи додому кульгаючи.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Після нещасного випадку я зазвичай ішов зі школи додому кульгаючи.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "After my accident I would limp home from school.",
+        "localizedMeaning": {
+          "ru": "Скажите: «После несчастного случая я обычно шёл из школы домой хромая.»",
+          "uk": "Скажіть: «Після нещасного випадку я зазвичай ішов зі школи додому кульгаючи.»"
+        },
+        "orderedTokens": [
+          "After",
+          "my",
+          "accident",
+          "I",
+          "would",
+          "limp",
+          "home",
+          "from",
+          "school"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть спогад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-16:i05:r1",
+          "text": "limp"
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i05:r2",
+          "text": "limped"
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i05:r3",
+          "text": "limping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть спогад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "After my accident I would ___ home from school.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-16:i05:r1",
+            "text": "limp"
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i05:r2",
+            "text": "limped"
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i05:r3",
+            "text": "limping"
+          }
+        ],
+        "testedDimension": "Доповніть спогад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-16:i06:r1",
+          "text": "After my accident I would limp home from school."
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i06:r2",
+          "text": "After his accident he would limp home from school."
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i06:r3",
+          "text": "After my accident I would limp home from work."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:i06:audio",
+          "transcript": "After my accident I would limp home from school."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-16:i06:r1",
+            "targetText": "After my accident I would limp home from school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i06:r2",
+            "targetText": "After his accident he would limp home from school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i06:r3",
+            "targetText": "After my accident I would limp home from work.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит After my accident I would limp home from school.",
+              "uk": "У записі звучить After my accident I would limp home from school."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит After my accident I would limp home from school.",
+              "uk": "У записі звучить After my accident I would limp home from school."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:word:stutter",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stutter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:word:stutter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stutter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:word:stutter:audio",
+          "transcript": "stutter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-16:word:stutter:r1",
+            "targetText": "stutter",
+            "meaningByLocale": {
+              "ru": "заикаться.",
+              "uk": "заїкатися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stutter",
+          "definitionByLocale": {
+            "ru": "заикаться.",
+            "uk": "заїкатися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У школі я часто заїкався під час виступів.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У школі я часто заїкався під час виступів.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At school I would stutter during presentations.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В школе я часто заикался во время выступлений.»",
+          "uk": "Скажіть: «У школі я часто заїкався під час виступів.»"
+        },
+        "orderedTokens": [
+          "At",
+          "school",
+          "I",
+          "would",
+          "stutter",
+          "during",
+          "presentations"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть спогад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-16:i08:r1",
+          "text": "stutter"
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i08:r2",
+          "text": "stuttered"
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i08:r3",
+          "text": "stuttering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть спогад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "At school I would ___ during presentations.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-16:i08:r1",
+            "text": "stutter"
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i08:r2",
+            "text": "stuttered"
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i08:r3",
+            "text": "stuttering"
+          }
+        ],
+        "testedDimension": "Доповніть спогад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-16:i09:r1",
+          "text": "At school I would stutter during presentations."
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i09:r2",
+          "text": "At school he would stutter during presentations."
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i09:r3",
+          "text": "At school I would stutter during conversations."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:i09:audio",
+          "transcript": "At school I would stutter during presentations."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-16:i09:r1",
+            "targetText": "At school I would stutter during presentations.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i09:r2",
+            "targetText": "At school he would stutter during presentations.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i09:r3",
+            "targetText": "At school I would stutter during conversations.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At school I would stutter during presentations.",
+              "uk": "У записі звучить At school I would stutter during presentations."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At school I would stutter during presentations.",
+              "uk": "У записі звучить At school I would stutter during presentations."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:word:fidget",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fidget",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:word:fidget:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fidget",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:word:fidget:audio",
+          "transcript": "fidget"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-16:word:fidget:r1",
+            "targetText": "fidget",
+            "meaningByLocale": {
+              "ru": "ёрзать, беспокойно двигаться.",
+              "uk": "соватися, неспокійно рухатися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fidget",
+          "definitionByLocale": {
+            "ru": "ёрзать, беспокойно двигаться.",
+            "uk": "соватися, неспокійно рухатися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У дитинстві він часто совався під час довгих уроків.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У дитинстві він часто совався під час довгих уроків.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "As a child he would fidget during long lessons.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В детстве он часто ёрзал во время длинных уроков.»",
+          "uk": "Скажіть: «У дитинстві він часто совався під час довгих уроків.»"
+        },
+        "orderedTokens": [
+          "As",
+          "a",
+          "child",
+          "he",
+          "would",
+          "fidget",
+          "during",
+          "long",
+          "lessons"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть спогад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-16:i11:r1",
+          "text": "fidget"
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i11:r2",
+          "text": "fidgeted"
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i11:r3",
+          "text": "fidgeting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть спогад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "As a child he would ___ during long lessons.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-16:i11:r1",
+            "text": "fidget"
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i11:r2",
+            "text": "fidgeted"
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i11:r3",
+            "text": "fidgeting"
+          }
+        ],
+        "testedDimension": "Доповніть спогад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть спогад.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма глагола.",
+              "uk": "Після would потрібна базова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-16:i12:r1",
+          "text": "As a child he would fidget during long lessons."
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i12:r2",
+          "text": "As a child she would fidget during long lessons."
+        },
+        {
+          "responseId": "en:lesson-25:session-16:i12:r3",
+          "text": "As a child he would fidget during long journeys."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:i12:audio",
+          "transcript": "As a child he would fidget during long lessons."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-16:i12:r1",
+            "targetText": "As a child he would fidget during long lessons.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i12:r2",
+            "targetText": "As a child she would fidget during long lessons.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i12:r3",
+            "targetText": "As a child he would fidget during long journeys.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит As a child he would fidget during long lessons.",
+              "uk": "У записі звучить As a child he would fidget during long lessons."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит As a child he would fidget during long lessons.",
+              "uk": "У записі звучить As a child he would fidget during long lessons."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-16:i13:p1",
+            "target": "squint",
+            "meaningByLocale": {
+              "ru": "щуриться",
+              "uk": "мружитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-16:i13:p2",
+            "target": "limp",
+            "meaningByLocale": {
+              "ru": "хромать",
+              "uk": "кульгати"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-16:i13:p3",
+            "target": "stutter",
+            "meaningByLocale": {
+              "ru": "заикаться",
+              "uk": "заїкатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-16:i13:p4",
+            "target": "fidget",
+            "meaningByLocale": {
+              "ru": "ёрзать, беспокойно двигаться",
+              "uk": "соватися, неспокійно рухатися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "squint",
+          "limp",
+          "stutter",
+          "fidget"
+        ],
+        "rightColumn": [
+          "мружитися",
+          "кульгати",
+          "заїкатися",
+          "соватися, неспокійно рухатися"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колишнє місце проживання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Колишнє місце проживання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:i14:audio",
+          "transcript": "I used to live by the lake."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I used to live by the lake.",
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "live",
+          "by",
+          "the",
+          "lake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Раніше я був сором’язливим",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Раніше я був сором’язливим",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:i15:audio",
+          "transcript": "I used to be shy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I used to be shy.",
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "be",
+          "shy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «У школі вона часто заїкалася під час виступів».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «У школі вона часто заїкалася під час виступів».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:i16:audio",
+          "transcript": "At school she would stutter during presentations."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "At school she would stutter during presentations.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «У дитинстві вони часто совалися під час довгих уроків».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «У дитинстві вони часто совалися під час довгих уроків».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-16:i17:audio",
+          "transcript": "As children they would fidget during long lessons."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "As children they would fidget during long lessons.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3b4a1715ea3e50184927c8cc0dd3bd48985827794b8a05f382bbc89a5bed5985"
+}

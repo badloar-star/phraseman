@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-15:intro1:r2": {
+          "ru": "После would нужна форма gulp.",
+          "uk": "Після would потрібна форма gulp."
+        },
+        "en:lesson-25:session-15:intro1:r3": {
+          "ru": "Используйте базовую форму gulp.",
+          "uk": "Використайте базову форму gulp."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-15:intro2:r2": {
+          "ru": "После would нужна форма nibble.",
+          "uk": "Після would потрібна форма nibble."
+        },
+        "en:lesson-25:session-15:intro2:r3": {
+          "ru": "Используйте базовую форму nibble.",
+          "uk": "Використайте базову форму nibble."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-15:intro3:r2": {
+          "ru": "После would нужна форма slurp.",
+          "uk": "Після would потрібна форма slurp."
+        },
+        "en:lesson-25:session-15:intro3:r3": {
+          "ru": "Используйте базовую форму slurp.",
+          "uk": "Використайте базову форму slurp."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "94a0ab562ac5e445fdfd2f73da2a931540ce6f8bbc528a94e5ac57cfb275668e"
+}

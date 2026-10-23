@@ -141,11 +141,11 @@ wildlife — дикие животные в природе · scenery — пей
 <!-- interaction_id: en:lesson-25:session-09:i15; family: listen_build_dictation -->
 🔊 *I used to be shy.* Плитки: `shy` `be` `to` `used` `I` → **I used to be shy.**
 
-**20 · Скажите: «В те времена мы обычно фотографировали пейзажи».**
+**20 · Скажите: «В те времена она обычно фотографировала пейзажи».**
 <!-- interaction_id: en:lesson-25:session-09:i16; family: scripted_repeat_compare -->
-🎙 **In those days we would photograph the scenery.**
+🎙 **In those days she would photograph the scenery.**
 
-**21 · Скажите: «В моей прежней школе мы регулярно обсуждали окружающую среду».**
+**21 · Скажите: «В моей прежней школе они регулярно обсуждали окружающую среду».**
 <!-- interaction_id: en:lesson-25:session-09:i17; family: scripted_repeat_compare -->
-🎙 **At my old school we would discuss the environment.**
+🎙 **At my old school they would discuss the environment.**
 

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-13:intro1:r2": {
+          "ru": "После would нужна форма grab.",
+          "uk": "Після would потрібна форма grab."
+        },
+        "en:lesson-25:session-13:intro1:r3": {
+          "ru": "Используйте базовую форму grab.",
+          "uk": "Використайте базову форму grab."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-13:intro2:r2": {
+          "ru": "После would нужна форма tiptoe.",
+          "uk": "Після would потрібна форма tiptoe."
+        },
+        "en:lesson-25:session-13:intro2:r3": {
+          "ru": "Используйте базовую форму tiptoe.",
+          "uk": "Використайте базову форму tiptoe."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-13:intro3:r2": {
+          "ru": "После would нужна форма imitate.",
+          "uk": "Після would потрібна форма imitate."
+        },
+        "en:lesson-25:session-13:intro3:r3": {
+          "ru": "Используйте базовую форму imitate.",
+          "uk": "Використайте базову форму imitate."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dc01a6afdd41c35cf564962ed6a20433a8d7bc079f784dd3445ea9c3043ccf86"
+}

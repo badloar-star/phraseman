@@ -3,6 +3,6 @@
 /** Сколько занятий с начала курса (урок 1 занятие 1) подряд собираются из бандла. */
 export const LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1 = 1335;
 /** Сколько строк манифеста собираются вообще (справка). */
-export const LEARNING_V2_BUNDLE_BUILDABLE_TOTAL_V1 = 1351;
+export const LEARNING_V2_BUNDLE_BUILDABLE_TOTAL_V1 = 1359;
 /** Сколько строк в манифесте фабрики (справка). */
-export const LEARNING_V2_BUNDLE_MANIFEST_TOTAL_V1 = 1352;
+export const LEARNING_V2_BUNDLE_MANIFEST_TOTAL_V1 = 1361;

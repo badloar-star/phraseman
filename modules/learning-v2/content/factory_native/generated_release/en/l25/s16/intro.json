@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "past context + would + action verb",
+    "uk": "past context + would + action verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "На ярком солнце",
+        "uk": "На яскравому сонці"
+      },
+      "bodyByLocale": {
+        "ru": "Squint — щуриться, слегка прикрывать глаза. As a child I would squint in bright sunlight — в детстве я часто щурился на ярком солнце. As a child задаёт прошлый период, would squint описывает повторявшееся действие. Bright sunlight — яркий солнечный свет. После would используем squint.",
+        "uk": "Squint — мружитися, трохи прикривати очі. As a child I would squint in bright sunlight — у дитинстві я часто мружився на яскравому сонці. As a child задає минулий період, would squint описує дію, що повторювалася. Bright sunlight — яскраве сонячне світло. Після would використовуємо squint."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-16:intro1:r1",
+              "text": "As a child I would squint in bright sunlight."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro1:r2",
+              "text": "As a child I would squinted in bright sunlight."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro1:r3",
+              "text": "As a child I would squinting in bright sunlight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-16:intro1:r1",
+              "text": "As a child I would squint in bright sunlight."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro1:r2",
+              "text": "As a child I would squinted in bright sunlight."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro1:r3",
+              "text": "As a child I would squinting in bright sunlight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Движение и речь",
+        "uk": "Рух і мовлення"
+      },
+      "bodyByLocale": {
+        "ru": "Limp — хромать. After my accident I would limp home from school — после несчастного случая я обычно шёл из школы домой хромая. Речь о нескольких таких возвращениях в тот период, не об одном походе. Stutter — заикаться. At school I would stutter during presentations — в школе я часто заикался во время выступлений. Это описание речи человека, без оценки его способностей. После would нужны limp и stutter.",
+        "uk": "Limp — кульгати. After my accident I would limp home from school — після нещасного випадку я зазвичай ішов зі школи додому кульгаючи. Ідеться про кілька таких повернень у той період, не про одну дорогу додому. Stutter — заїкатися. At school I would stutter during presentations — у школі я часто заїкався під час виступів. Це опис мовлення людини, без оцінки її здібностей. Після would потрібні limp і stutter."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-16:intro2:r1",
+              "text": "After my accident I would limp home from school."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro2:r2",
+              "text": "After my accident I would limped home from school."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro2:r3",
+              "text": "After my accident I would limping home from school."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-16:intro2:r1",
+              "text": "After my accident I would limp home from school."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro2:r2",
+              "text": "After my accident I would limped home from school."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro2:r3",
+              "text": "After my accident I would limping home from school."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "На длинном уроке",
+        "uk": "На довгому уроці"
+      },
+      "bodyByLocale": {
+        "ru": "Fidget — ёрзать или делать мелкие беспокойные движения. As a child he would fidget during long lessons — в детстве он часто ёрзал во время длинных уроков. During long lessons называет ситуацию, as a child — период в прошлом. Would fidget передаёт повторявшееся поведение; это не диагноз и не объяснение его причины.",
+        "uk": "Fidget — соватися або робити дрібні неспокійні рухи. As a child he would fidget during long lessons — у дитинстві він часто совався під час довгих уроків. During long lessons називає ситуацію, as a child — період у минулому. Would fidget передає поведінку, що повторювалася; це не діагноз і не пояснення її причини."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-16:intro3:r1",
+              "text": "As a child he would fidget during long lessons."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro3:r2",
+              "text": "As a child he would fidgeted during long lessons."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro3:r3",
+              "text": "As a child he would fidgeting during long lessons."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-16:intro3:r1",
+              "text": "As a child he would fidget during long lessons."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro3:r2",
+              "text": "As a child he would fidgeted during long lessons."
+            },
+            {
+              "responseId": "en:lesson-25:session-16:intro3:r3",
+              "text": "As a child he would fidgeting during long lessons."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9c752155cafbf6bb341b64bc3684cf813375641a6c90c9970cf69cb574e85939"
+}

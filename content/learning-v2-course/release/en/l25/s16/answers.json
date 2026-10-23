@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-16:word:squint",
+    "correctText": "squint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i01",
+    "correctText": "As a child I would squint in bright sunlight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i02",
+    "correctText": "squint",
+    "correctResponseId": "en:lesson-25:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i03",
+    "correctText": "As a child I would squint in bright sunlight.",
+    "correctResponseId": "en:lesson-25:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:word:limp",
+    "correctText": "limp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i04",
+    "correctText": "After my accident I would limp home from school.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i05",
+    "correctText": "limp",
+    "correctResponseId": "en:lesson-25:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i06",
+    "correctText": "After my accident I would limp home from school.",
+    "correctResponseId": "en:lesson-25:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:word:stutter",
+    "correctText": "stutter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i07",
+    "correctText": "At school I would stutter during presentations.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i08",
+    "correctText": "stutter",
+    "correctResponseId": "en:lesson-25:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i09",
+    "correctText": "At school I would stutter during presentations.",
+    "correctResponseId": "en:lesson-25:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:word:fidget",
+    "correctText": "fidget",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i10",
+    "correctText": "As a child he would fidget during long lessons.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i11",
+    "correctText": "fidget",
+    "correctResponseId": "en:lesson-25:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i12",
+    "correctText": "As a child he would fidget during long lessons.",
+    "correctResponseId": "en:lesson-25:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i13",
+    "correctText": "en:lesson-25:session-16:i13:p1=squint\nen:lesson-25:session-16:i13:p2=limp\nen:lesson-25:session-16:i13:p3=stutter\nen:lesson-25:session-16:i13:p4=fidget",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i14",
+    "correctText": "I used to live by the lake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i15",
+    "correctText": "I used to be shy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i16",
+    "correctText": "At school she would stutter during presentations.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-16:i17",
+    "correctText": "As children they would fidget during long lessons.",
+    "correctResponseId": null
+  }
+]

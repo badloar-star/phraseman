@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-10:intro1:r2": {
+          "ru": "После would нужна форма cheer.",
+          "uk": "Після would потрібна форма cheer."
+        },
+        "en:lesson-25:session-10:intro1:r3": {
+          "ru": "Используйте базовую форму cheer.",
+          "uk": "Використайте базову форму cheer."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-10:intro2:r2": {
+          "ru": "После would нужна форма comfort.",
+          "uk": "Після would потрібна форма comfort."
+        },
+        "en:lesson-25:session-10:intro2:r3": {
+          "ru": "Используйте базовую форму comfort.",
+          "uk": "Використайте базову форму comfort."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-10:intro3:r2": {
+          "ru": "После would нужна форма play.",
+          "uk": "Після would потрібна форма play."
+        },
+        "en:lesson-25:session-10:intro3:r3": {
+          "ru": "Используйте базовую форму play.",
+          "uk": "Використайте базову форму play."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ceb51ecfde8d0cc3cb6be63b8f889354b8afaf066b4f83581060c907ad49a7f6"
+}

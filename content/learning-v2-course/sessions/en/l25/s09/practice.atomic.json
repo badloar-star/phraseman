@@ -1060,21 +1060,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «В те времена мы обычно фотографировали пейзажи».",
+        "prompt": "Скажите: «В те времена она обычно фотографировала пейзажи».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-09:i16:audio"
         ],
-        "accessibilityLabel": "Скажите: «В те времена мы обычно фотографировали пейзажи».",
+        "accessibilityLabel": "Скажите: «В те времена она обычно фотографировала пейзажи».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-09:i16:audio",
-            "transcript": "In those days we would photograph the scenery."
+            "transcript": "In those days she would photograph the scenery."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "In those days we would photograph the scenery.",
+          "targetPhrase": "In those days she would photograph the scenery.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1093,21 +1093,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «В моей прежней школе мы регулярно обсуждали окружающую среду».",
+        "prompt": "Скажите: «В моей прежней школе они регулярно обсуждали окружающую среду».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-09:i17:audio"
         ],
-        "accessibilityLabel": "Скажите: «В моей прежней школе мы регулярно обсуждали окружающую среду».",
+        "accessibilityLabel": "Скажите: «В моей прежней школе они регулярно обсуждали окружающую среду».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-09:i17:audio",
-            "transcript": "At my old school we would discuss the environment."
+            "transcript": "At my old school they would discuss the environment."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "At my old school we would discuss the environment.",
+          "targetPhrase": "At my old school they would discuss the environment.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2179,21 +2179,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «У ті часи ми зазвичай фотографували краєвиди».",
+        "prompt": "Скажіть: «У ті часи вона зазвичай фотографувала краєвиди».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-09:i16:audio"
         ],
-        "accessibilityLabel": "Скажіть: «У ті часи ми зазвичай фотографували краєвиди».",
+        "accessibilityLabel": "Скажіть: «У ті часи вона зазвичай фотографувала краєвиди».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-09:i16:audio",
-            "transcript": "In those days we would photograph the scenery."
+            "transcript": "In those days she would photograph the scenery."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "In those days we would photograph the scenery.",
+          "targetPhrase": "In those days she would photograph the scenery.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2212,21 +2212,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «У моїй колишній школі ми регулярно обговорювали довкілля».",
+        "prompt": "Скажіть: «У моїй колишній школі вони регулярно обговорювали довкілля».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-09:i17:audio"
         ],
-        "accessibilityLabel": "Скажіть: «У моїй колишній школі ми регулярно обговорювали довкілля».",
+        "accessibilityLabel": "Скажіть: «У моїй колишній школі вони регулярно обговорювали довкілля».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-09:i17:audio",
-            "transcript": "At my old school we would discuss the environment."
+            "transcript": "At my old school they would discuss the environment."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "At my old school we would discuss the environment.",
+          "targetPhrase": "At my old school they would discuss the environment.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2339,12 +2339,12 @@
     },
     {
       "interactionId": "en:lesson-25:session-09:i16",
-      "correctText": "In those days we would photograph the scenery.",
+      "correctText": "In those days she would photograph the scenery.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-09:i17",
-      "correctText": "At my old school we would discuss the environment.",
+      "correctText": "At my old school they would discuss the environment.",
       "correctResponseId": null
     }
   ]

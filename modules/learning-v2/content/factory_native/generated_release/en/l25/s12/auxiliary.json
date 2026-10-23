@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-12:intro1:r2": {
+          "ru": "После would нужна форма peek.",
+          "uk": "Після would потрібна форма peek."
+        },
+        "en:lesson-25:session-12:intro1:r3": {
+          "ru": "Используйте базовую форму peek.",
+          "uk": "Використайте базову форму peek."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-12:intro2:r2": {
+          "ru": "После would нужна форма poke.",
+          "uk": "Після would потрібна форма poke."
+        },
+        "en:lesson-25:session-12:intro2:r3": {
+          "ru": "Используйте базовую форму poke.",
+          "uk": "Використайте базову форму poke."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-12:intro3:r2": {
+          "ru": "После would нужна форма nudge.",
+          "uk": "Після would потрібна форма nudge."
+        },
+        "en:lesson-25:session-12:intro3:r3": {
+          "ru": "Используйте базовую форму nudge.",
+          "uk": "Використайте базову форму nudge."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e6889c83b3082762e7b2e6b0f72c79ba65d517dae3b41cd1efa109622713e2e9"
+}

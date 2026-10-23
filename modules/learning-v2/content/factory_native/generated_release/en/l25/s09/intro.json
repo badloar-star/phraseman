@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "past context + would + action verb",
+    "uk": "past context + would + action verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Лето у озера",
+        "uk": "Літо біля озера"
+      },
+      "bodyByLocale": {
+        "ru": "Вспомните лето у озера: In those days we would watch wildlife — в те времена мы часто наблюдали за дикими животными. Wildlife — дикие животные в природе. In those days — «в те времена» — задаёт прошлое. Would watch означает действие, которое тогда повторялось. Здесь would не значит «будем» или «наблюдали бы»: мы рассказываем о реальных прежних привычках.",
+        "uk": "Згадайте літо біля озера: In those days we would watch wildlife — у ті часи ми часто спостерігали за дикими тваринами. Wildlife — дикі тварини в природі. In those days — «у ті часи» — задає минуле. Would watch означає дію, яка тоді повторювалася. Тут would не означає «будемо» або «спостерігали б»: ми розповідаємо про справжні колишні звички."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-09:intro1:r1",
+              "text": "In those days we would watch wildlife."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro1:r2",
+              "text": "In those days we would to watch wildlife."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro1:r3",
+              "text": "In those days we would watched wildlife."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-09:intro1:r1",
+              "text": "In those days we would watch wildlife."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro1:r2",
+              "text": "In those days we would to watch wildlife."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro1:r3",
+              "text": "In those days we would watched wildlife."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Привычки в отпуске",
+        "uk": "Звички у відпустці"
+      },
+      "bodyByLocale": {
+        "ru": "Scenery — пейзаж, виды природы. In those days we would photograph the scenery — в те времена мы обычно фотографировали пейзажи. Atmosphere — атмосфера, обстановка. On our old holidays we would enjoy the quiet atmosphere — во время прежних отпусков мы наслаждались спокойной атмосферой. После would нужен глагол без -ed и без to: would photograph, would enjoy.",
+        "uk": "Scenery — краєвид, види природи. In those days we would photograph the scenery — у ті часи ми зазвичай фотографували краєвиди. Atmosphere — атмосфера, обстановка. On our old holidays we would enjoy the quiet atmosphere — під час колишніх відпусток ми насолоджувалися спокійною атмосферою. Після would потрібне дієслово без -ed і без to: would photograph, would enjoy."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-09:intro2:r1",
+              "text": "In those days we would photograph the scenery."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro2:r2",
+              "text": "In those days we would to photograph the scenery."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro2:r3",
+              "text": "In those days we would photographed the scenery."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-09:intro2:r1",
+              "text": "In those days we would photograph the scenery."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro2:r2",
+              "text": "In those days we would to photograph the scenery."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro2:r3",
+              "text": "In those days we would photographed the scenery."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Разговоры в школе",
+        "uk": "Розмови в школі"
+      },
+      "bodyByLocale": {
+        "ru": "Environment — окружающая среда: воздух, вода, земля и жизнь вокруг нас. At my old school we would discuss the environment — в моей прежней школе мы регулярно обсуждали окружающую среду. Would discuss — повторявшееся действие. Для прежнего состояния или места проживания сохраняем знакомое used to: I used to live by the lake. В таком рассказе would не заменяет used to автоматически.",
+        "uk": "Environment — довкілля: повітря, вода, земля й життя навколо нас. At my old school we would discuss the environment — у моїй колишній школі ми регулярно обговорювали довкілля. Would discuss — дія, що повторювалася. Для колишнього стану або місця проживання зберігаємо знайоме used to: I used to live by the lake. У такій розповіді would не замінює used to автоматично."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-09:intro3:r1",
+              "text": "At my old school we would discuss the environment."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro3:r2",
+              "text": "At my old school we would to discuss the environment."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro3:r3",
+              "text": "At my old school we would discussed the environment."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-09:intro3:r1",
+              "text": "At my old school we would discuss the environment."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro3:r2",
+              "text": "At my old school we would to discuss the environment."
+            },
+            {
+              "responseId": "en:lesson-25:session-09:intro3:r3",
+              "text": "At my old school we would discussed the environment."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8fa9c538b5c3d14171c7bc0f5be61171389a1de8f05691a96fdfac822ee33389"
+}

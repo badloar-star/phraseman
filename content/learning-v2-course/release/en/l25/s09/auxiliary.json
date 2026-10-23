@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-09:intro1:r2": {
+          "ru": "После would ставим глагол без to.",
+          "uk": "Після would ставимо дієслово без to."
+        },
+        "en:lesson-25:session-09:intro1:r3": {
+          "ru": "После would нужна базовая форма, без -ed.",
+          "uk": "Після would потрібна базова форма, без -ed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-09:intro2:r2": {
+          "ru": "После would ставим глагол без to.",
+          "uk": "Після would ставимо дієслово без to."
+        },
+        "en:lesson-25:session-09:intro2:r3": {
+          "ru": "После would нужна базовая форма, без -ed.",
+          "uk": "Після would потрібна базова форма, без -ed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-09:intro3:r2": {
+          "ru": "После would ставим глагол без to.",
+          "uk": "Після would ставимо дієслово без to."
+        },
+        "en:lesson-25:session-09:intro3:r3": {
+          "ru": "После would нужна базовая форма, без -ed.",
+          "uk": "Після would потрібна базова форма, без -ed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a68f91dd3e4926b354f77c2f988d5706eedbc0bf205b733f651e7aa38c5a2d35"
+}

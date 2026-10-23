@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-17:intro1:r2": {
+          "ru": "Более раннее действие в прошлом: had + третья форма.",
+          "uk": "Раніша дія в минулому: had + третя форма."
+        },
+        "en:lesson-25:session-17:intro1:r3": {
+          "ru": "Здесь нужно had, а не was.",
+          "uk": "Тут потрібно had, а не was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-17:intro2:r2": {
+          "ru": "Более раннее действие в прошлом: had + третья форма.",
+          "uk": "Раніша дія в минулому: had + третя форма."
+        },
+        "en:lesson-25:session-17:intro2:r3": {
+          "ru": "Здесь нужно had, а не were.",
+          "uk": "Тут потрібно had, а не were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-17:intro3:r2": {
+          "ru": "Более раннее действие в прошлом: had + третья форма.",
+          "uk": "Раніша дія в минулому: had + третя форма."
+        },
+        "en:lesson-25:session-17:intro3:r3": {
+          "ru": "Здесь нужно had, а не was.",
+          "uk": "Тут потрібно had, а не was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "641a1151ba56443382101979b35443619b4765e023346e3209177e42e6c27f69"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-09:word:wildlife",
+    "correctText": "wildlife",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i01",
+    "correctText": "In those days we would watch wildlife.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i02",
+    "correctText": "would",
+    "correctResponseId": "en:lesson-25:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i03",
+    "correctText": "In those days we would watch wildlife.",
+    "correctResponseId": "en:lesson-25:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:word:scenery",
+    "correctText": "scenery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i04",
+    "correctText": "In those days we would photograph the scenery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i05",
+    "correctText": "photograph",
+    "correctResponseId": "en:lesson-25:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i06",
+    "correctText": "In those days we would photograph the scenery.",
+    "correctResponseId": "en:lesson-25:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:word:atmosphere",
+    "correctText": "atmosphere",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i07",
+    "correctText": "On our old holidays we would enjoy the quiet atmosphere.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i08",
+    "correctText": "enjoy",
+    "correctResponseId": "en:lesson-25:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i09",
+    "correctText": "On our old holidays we would enjoy the quiet atmosphere.",
+    "correctResponseId": "en:lesson-25:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:word:environment",
+    "correctText": "environment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i10",
+    "correctText": "At my old school we would discuss the environment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i11",
+    "correctText": "discuss",
+    "correctResponseId": "en:lesson-25:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i12",
+    "correctText": "At my old school we would discuss the environment.",
+    "correctResponseId": "en:lesson-25:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i13",
+    "correctText": "en:lesson-25:session-09:i13:p1=wildlife\nen:lesson-25:session-09:i13:p2=scenery\nen:lesson-25:session-09:i13:p3=atmosphere\nen:lesson-25:session-09:i13:p4=environment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i14",
+    "correctText": "I used to live by the lake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i15",
+    "correctText": "I used to be shy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i16",
+    "correctText": "In those days she would photograph the scenery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-09:i17",
+    "correctText": "At my old school they would discuss the environment.",
+    "correctResponseId": null
+  }
+]

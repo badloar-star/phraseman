@@ -141,11 +141,11 @@ wildlife — дикі тварини в природі · scenery — краєв
 <!-- interaction_id: en:lesson-25:session-09:i15; family: listen_build_dictation -->
 🔊 *I used to be shy.* Плитки: `shy` `be` `to` `used` `I` → **I used to be shy.**
 
-**20 · Скажіть: «У ті часи ми зазвичай фотографували краєвиди».**
+**20 · Скажіть: «У ті часи вона зазвичай фотографувала краєвиди».**
 <!-- interaction_id: en:lesson-25:session-09:i16; family: scripted_repeat_compare -->
-🎙 **In those days we would photograph the scenery.**
+🎙 **In those days she would photograph the scenery.**
 
-**21 · Скажіть: «У моїй колишній школі ми регулярно обговорювали довкілля».**
+**21 · Скажіть: «У моїй колишній школі вони регулярно обговорювали довкілля».**
 <!-- interaction_id: en:lesson-25:session-09:i17; family: scripted_repeat_compare -->
-🎙 **At my old school we would discuss the environment.**
+🎙 **At my old school they would discuss the environment.**
 

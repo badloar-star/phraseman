@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-11:intro1:r2": {
+          "ru": "После would нужна форма dress.",
+          "uk": "Після would потрібна форма dress."
+        },
+        "en:lesson-25:session-11:intro1:r3": {
+          "ru": "Используйте базовую форму dress.",
+          "uk": "Використайте базову форму dress."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-11:intro2:r2": {
+          "ru": "После would нужна форма make.",
+          "uk": "Після would потрібна форма make."
+        },
+        "en:lesson-25:session-11:intro2:r3": {
+          "ru": "Используйте базовую форму make.",
+          "uk": "Використайте базову форму make."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-11:intro3:r2": {
+          "ru": "После would нужна форма build.",
+          "uk": "Після would потрібна форма build."
+        },
+        "en:lesson-25:session-11:intro3:r3": {
+          "ru": "Используйте базовую форму build.",
+          "uk": "Використайте базову форму build."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "379308e7093f0b52638c824107f8cf91e4389ce60b463c4f8fd21c9aa95792fa"
+}

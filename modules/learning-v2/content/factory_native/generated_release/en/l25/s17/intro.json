@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "had + past participle before later past event",
+    "uk": "had + past participle before later past event"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сначала упражнение, потом урок",
+        "uk": "Спочатку вправа, потім урок"
+      },
+      "bodyByLocale": {
+        "ru": "Redo — переделать; третья форма — redone. She had redone the exercise before the lesson began — она переделала упражнение до начала урока. Здесь два события в прошлом: сначала переделала упражнение, потом начался урок. Для более раннего действия используем Past Perfect: had + третья форма глагола. Для более позднего — began, Past Simple. Had одинаково для I, she, we и остальных лиц.",
+        "uk": "Redo — переробити; третя форма — redone. She had redone the exercise before the lesson began — вона переробила вправу до початку уроку. Тут дві події в минулому: спочатку переробила вправу, потім почався урок. Для ранішої дії використовуємо Past Perfect: had + третя форма дієслова. Для пізнішої — began, Past Simple. Had однакове для I, she, we та решти осіб."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-17:intro1:r1",
+              "text": "She had redone the exercise before the lesson began."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro1:r2",
+              "text": "She has redone the exercise before the lesson began."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro1:r3",
+              "text": "She was redone the exercise before the lesson began."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-17:intro1:r1",
+              "text": "She had redone the exercise before the lesson began."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro1:r2",
+              "text": "She has redone the exercise before the lesson began."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro1:r3",
+              "text": "She was redone the exercise before the lesson began."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "До нашего приезда",
+        "uk": "До нашого приїзду"
+      },
+      "bodyByLocale": {
+        "ru": "Rebuild — построить заново; третья форма — rebuilt. They had rebuilt the wall before we arrived — они построили стену заново до нашего приезда. Когда мы приехали, работа уже была закончена. Rewash — постирать заново; третья форма — rewashed. I had rewashed the shirt before I packed my bag — я постирал рубашку заново до того, как собрал сумку. Сначала стирка, потом сборы. Had rebuilt и had rewashed отмечают более ранние действия.",
+        "uk": "Rebuild — збудувати наново; третя форма — rebuilt. They had rebuilt the wall before we arrived — вони збудували стіну наново до нашого приїзду. Коли ми приїхали, робота вже була завершена. Rewash — випрати заново; третя форма — rewashed. I had rewashed the shirt before I packed my bag — я виправ сорочку заново до того, як зібрав сумку. Спочатку прання, потім збори. Had rebuilt і had rewashed позначають раніші дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-17:intro2:r1",
+              "text": "They had rebuilt the wall before we arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro2:r2",
+              "text": "They have rebuilt the wall before we arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro2:r3",
+              "text": "They were rebuilt the wall before we arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-17:intro2:r1",
+              "text": "They had rebuilt the wall before we arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro2:r2",
+              "text": "They have rebuilt the wall before we arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro2:r3",
+              "text": "They were rebuilt the wall before we arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Перед отправкой",
+        "uk": "Перед надсиланням"
+      },
+      "bodyByLocale": {
+        "ru": "Reread — перечитать. Написание третьей формы тоже reread, но её окончание звучит как red, не reed. He had reread the letter before he sent it — он перечитал письмо до того, как отправил его. Перечитал раньше, отправил позже. Для первого действия — had reread, для второго — sent. Past Perfect связывает действие с другим моментом в прошлом; это не просто замена любого Past Simple.",
+        "uk": "Reread — перечитати. Написання третьої форми теж reread, але її закінчення звучить як red, не reed. He had reread the letter before he sent it — він перечитав лист до того, як надіслав його. Перечитав раніше, надіслав пізніше. Для першої дії — had reread, для другої — sent. Past Perfect пов’язує дію з іншим моментом у минулому; це не просто заміна будь-якого Past Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-17:intro3:r1",
+              "text": "He had reread the letter before he sent it."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro3:r2",
+              "text": "He has reread the letter before he sent it."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro3:r3",
+              "text": "He was reread the letter before he sent it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-17:intro3:r1",
+              "text": "He had reread the letter before he sent it."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro3:r2",
+              "text": "He has reread the letter before he sent it."
+            },
+            {
+              "responseId": "en:lesson-25:session-17:intro3:r3",
+              "text": "He was reread the letter before he sent it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1ae8e35534ae718fb801d2c8350040e8bda7d6b4ad85e43e77746e1fa06b57d9"
+}

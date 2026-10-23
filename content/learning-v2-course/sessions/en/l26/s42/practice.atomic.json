@@ -1,0 +1,2231 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-42:word:snowy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snowy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:word:snowy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snowy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:word:snowy:audio",
+            "transcript": "snowy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:word:snowy:r1",
+              "targetText": "snowy",
+              "meaningByLocale": {
+                "ru": "Снежный, покрытый снегом или со снегом.",
+                "uk": "Сніжний, укритий снігом або зі снігом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowy",
+            "definitionByLocale": {
+              "ru": "Снежный, покрытый снегом или со снегом.",
+              "uk": "Сніжний, укритий снігом або зі снігом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишите утро: «Сегодня снежное утро».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишите утро: «Сегодня снежное утро».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a snowy morning.",
+          "localizedMeaning": {
+            "ru": "Опишите утро: «Сегодня снежное утро».",
+            "uk": "Опишіть ранок: «Сьогодні сніжний ранок»."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "snowy",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i02:r1",
+            "text": "Where are my boots?"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i02:r2",
+            "text": "Where are my gloves?"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i02:r3",
+            "text": "Where is my coat?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i02:audio",
+            "transcript": "Where are my boots?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:i02:r1",
+              "targetText": "Where are my boots?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i02:r2",
+              "targetText": "Where are my gloves?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i02:r3",
+              "targetText": "Where is my coat?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Where are my boots?",
+                "uk": "У записі звучить Where are my boots?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Where are my boots?",
+                "uk": "У записі звучить Where are my boots?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i03",
+        "ordinal": 7,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг собирается выходить. Попросите подождать вас.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i03:audio"
+        ],
+        "accessibilityLabel": "Друг собирается выходить. Попросите подождать вас.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i03:audio",
+            "transcript": "Please wait for me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please wait for me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:word:misty",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — misty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:word:misty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — misty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:word:misty:audio",
+            "transcript": "misty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:word:misty:r1",
+              "targetText": "misty",
+              "meaningByLocale": {
+                "ru": "Туманный, с лёгким туманом.",
+                "uk": "Туманний, із легким туманом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "misty",
+            "definitionByLocale": {
+              "ru": "Туманный, с лёгким туманом.",
+              "uk": "Туманний, із легким туманом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i04:r1",
+            "text": "It is misty outside."
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i04:r2",
+            "text": "It is sunny outside."
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i04:r3",
+            "text": "It was misty yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i04:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i04:audio",
+            "transcript": "It is misty outside."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:i04:r1",
+              "targetText": "It is misty outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i04:r2",
+              "targetText": "It is sunny outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i04:r3",
+              "targetText": "It was misty yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i04:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is misty outside.",
+                "uk": "У записі звучить It is misty outside."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i04:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is misty outside.",
+                "uk": "У записі звучить It is misty outside."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Опишите привычку смотреть погоду после пробуждения.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i05:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i05:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i05:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишите привычку смотреть погоду после пробуждения.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Опишите привычку смотреть погоду после пробуждения.",
+            "uk": "Опишіть звичку дивитися погоду після пробудження."
+          },
+          "gappedTargetPhrase": "I ___ the weather when I wake up.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-42:i05:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i05:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i05:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Опишите привычку смотреть погоду после пробуждения.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Опишите привычку смотреть погоду после пробуждения.",
+              "feedbackByLocale": {
+                "ru": "С I нужно check без -s.",
+                "uk": "З I потрібно check без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Опишите привычку смотреть погоду после пробуждения.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужна форма check.",
+                "uk": "Для звички потрібна форма check."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:word:snowfall",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snowfall",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:word:snowfall:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snowfall",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:word:snowfall:audio",
+            "transcript": "snowfall"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:word:snowfall:r1",
+              "targetText": "snowfall",
+              "meaningByLocale": {
+                "ru": "Снегопад, выпадение снега.",
+                "uk": "Снігопад, випадання снігу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowfall",
+            "definitionByLocale": {
+              "ru": "Снегопад, выпадение снега.",
+              "uk": "Снігопад, випадання снігу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте сообщение о прекратившемся снегопаде.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i06:audio"
+        ],
+        "accessibilityLabel": "Услышьте сообщение о прекратившемся снегопаде.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i06:audio",
+            "transcript": "The snowfall has stopped."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The snowfall has stopped.",
+          "orderedTokens": [
+            "The",
+            "snowfall",
+            "has",
+            "stopped"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы уже посмотрели расписание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i07:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i07:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i07:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уже посмотрели расписание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже посмотрели расписание.",
+            "uk": "Ви вже подивилися розклад."
+          },
+          "gappedTargetPhrase": "I have already ___ the bus times.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-42:i07:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i07:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i07:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Вы уже посмотрели расписание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i07:r2",
+              "correct": false,
+              "testedDimension": "Вы уже посмотрели расписание.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма checked.",
+                "uk": "Після have потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i07:r3",
+              "correct": false,
+              "testedDimension": "Вы уже посмотрели расписание.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно checked, не checking.",
+                "uk": "Тут потрібно checked, не checking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:word:windshield",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — windshield",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:word:windshield:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — windshield",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:word:windshield:audio",
+            "transcript": "windshield"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:word:windshield:r1",
+              "targetText": "windshield",
+              "meaningByLocale": {
+                "ru": "Лобовое стекло автомобиля; другое название windscreen.",
+                "uk": "Лобове скло автомобіля; інша назва windscreen."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "windshield",
+            "definitionByLocale": {
+              "ru": "Лобовое стекло автомобиля; другое название windscreen.",
+              "uk": "Лобове скло автомобіля; інша назва windscreen."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что на лобовом стекле снег.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Скажите, что на лобовом стекле снег.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i08:audio",
+            "transcript": "There is snow on the windshield."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is snow on the windshield.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ещё не ответил. Спросите, посмотрел ли он расписание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ещё не ответил. Спросите, посмотрел ли он расписание.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you checked the bus times yet?",
+          "localizedMeaning": {
+            "ru": "Друг ещё не ответил. Спросите, посмотрел ли он расписание.",
+            "uk": "Друг ще не відповів. Запитайте, чи подивився він розклад."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "checked",
+            "the",
+            "bus",
+            "times",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i10:r1",
+            "text": "I have just checked them."
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i10:r2",
+            "text": "I have just missed it."
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i10:r3",
+            "text": "I have not checked them yet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i10:audio",
+            "transcript": "I have just checked them."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:i10:r1",
+              "targetText": "I have just checked them.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i10:r2",
+              "targetText": "I have just missed it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i10:r3",
+              "targetText": "I have not checked them yet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just checked them.",
+                "uk": "У записі звучить I have just checked them."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just checked them.",
+                "uk": "У записі звучить I have just checked them."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с условия: We can walk if the path is clear.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с условия: We can walk if the path is clear.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If the path is clear, we can walk.",
+          "localizedMeaning": {
+            "ru": "Начните с условия: We can walk if the path is clear.",
+            "uk": "Почніть з умови: We can walk if the path is clear."
+          },
+          "orderedTokens": [
+            "If",
+            "the",
+            "path",
+            "is",
+            "clear,",
+            "we",
+            "can",
+            "walk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы выйдете, когда приедет автобус.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i12:r1",
+            "text": "arrives"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i12:r2",
+            "text": "will arrive"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i12:r3",
+            "text": "arrive"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы выйдете, когда приедет автобус.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы выйдете, когда приедет автобус.",
+            "uk": "Ви вийдете, коли приїде автобус."
+          },
+          "gappedTargetPhrase": "We will leave when the bus ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-42:i12:r1",
+              "text": "arrives"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i12:r2",
+              "text": "will arrive"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i12:r3",
+              "text": "arrive"
+            }
+          ],
+          "testedDimension": "Вы выйдете, когда приедет автобус.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы выйдете, когда приедет автобус.",
+              "feedbackByLocale": {
+                "ru": "После when здесь arrives без will.",
+                "uk": "Після when тут arrives без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы выйдете, когда приедет автобус.",
+              "feedbackByLocale": {
+                "ru": "С the bus нужна форма arrives.",
+                "uk": "З the bus потрібна форма arrives."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите встретиться у кафе.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i13:audio"
+        ],
+        "accessibilityLabel": "Предложите встретиться у кафе.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i13:audio",
+            "transcript": "Let us meet outside the cafe."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Let us meet outside the cafe.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера снег растаял ещё до вашей встречи.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера снег растаял ещё до вашей встречи.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера снег растаял ещё до вашей встречи.",
+            "uk": "Учора сніг розтанув ще до вашої зустрічі."
+          },
+          "gappedTargetPhrase": "The snow ___ melted by the time we met.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-42:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вчера снег растаял ещё до вашей встречи.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i14:r2",
+              "correct": false,
+              "testedDimension": "Вчера снег растаял ещё до вашей встречи.",
+              "feedbackByLocale": {
+                "ru": "Has относится к результату сейчас; met задаёт прошлое.",
+                "uk": "Has стосується результату зараз; met задає минуле."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i14:r3",
+              "correct": false,
+              "testedDimension": "Вчера снег растаял ещё до вашей встречи.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно had melted для более раннего события.",
+                "uk": "Тут потрібно had melted для ранішої події."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте вопрос о времени встречи.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Услышьте вопрос о времени встречи.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i15:audio",
+            "transcript": "What time shall we meet?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "What time shall we meet?",
+          "orderedTokens": [
+            "What",
+            "time",
+            "shall",
+            "we",
+            "meet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы останетесь дома, если друг не позвонит.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i16:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы останетесь дома, если друг не позвонит.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы останетесь дома, если друг не позвонит.",
+            "uk": "Ви залишитеся вдома, якщо друг не зателефонує."
+          },
+          "gappedTargetPhrase": "We will stay home ___ you call.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-42:i16:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i16:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i16:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Вы останетесь дома, если друг не позвонит.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы останетесь дома, если друг не позвонит.",
+              "feedbackByLocale": {
+                "ru": "If означало бы остаться дома именно после звонка.",
+                "uk": "If означало б залишитися вдома саме після дзвінка."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы останетесь дома, если друг не позвонит.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы звонок причиной остаться дома.",
+                "uk": "Because зробило б дзвінок причиною залишитися вдома."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг сообщает, что задержится. Ответьте, что спешить не нужно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Друг сообщает, что задержится. Ответьте, что спешить не нужно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i17:audio",
+            "transcript": "Take your time."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Take your time.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-42:word:snowy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snowy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:word:snowy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snowy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:word:snowy:audio",
+            "transcript": "snowy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:word:snowy:r1",
+              "targetText": "snowy",
+              "meaningByLocale": {
+                "ru": "Снежный, покрытый снегом или со снегом.",
+                "uk": "Сніжний, укритий снігом або зі снігом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowy",
+            "definitionByLocale": {
+              "ru": "Снежный, покрытый снегом или со снегом.",
+              "uk": "Сніжний, укритий снігом або зі снігом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишіть ранок: «Сьогодні сніжний ранок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишіть ранок: «Сьогодні сніжний ранок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a snowy morning.",
+          "localizedMeaning": {
+            "ru": "Опишите утро: «Сегодня снежное утро».",
+            "uk": "Опишіть ранок: «Сьогодні сніжний ранок»."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "snowy",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i02:r1",
+            "text": "Where are my boots?"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i02:r2",
+            "text": "Where are my gloves?"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i02:r3",
+            "text": "Where is my coat?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i02:audio",
+            "transcript": "Where are my boots?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:i02:r1",
+              "targetText": "Where are my boots?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i02:r2",
+              "targetText": "Where are my gloves?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i02:r3",
+              "targetText": "Where is my coat?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Where are my boots?",
+                "uk": "У записі звучить Where are my boots?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Where are my boots?",
+                "uk": "У записі звучить Where are my boots?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i03",
+        "ordinal": 7,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг збирається виходити. Попросіть зачекати на вас.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i03:audio"
+        ],
+        "accessibilityLabel": "Друг збирається виходити. Попросіть зачекати на вас.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i03:audio",
+            "transcript": "Please wait for me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please wait for me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:word:misty",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — misty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:word:misty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — misty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:word:misty:audio",
+            "transcript": "misty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:word:misty:r1",
+              "targetText": "misty",
+              "meaningByLocale": {
+                "ru": "Туманный, с лёгким туманом.",
+                "uk": "Туманний, із легким туманом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "misty",
+            "definitionByLocale": {
+              "ru": "Туманный, с лёгким туманом.",
+              "uk": "Туманний, із легким туманом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i04:r1",
+            "text": "It is misty outside."
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i04:r2",
+            "text": "It is sunny outside."
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i04:r3",
+            "text": "It was misty yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i04:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i04:audio",
+            "transcript": "It is misty outside."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:i04:r1",
+              "targetText": "It is misty outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i04:r2",
+              "targetText": "It is sunny outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i04:r3",
+              "targetText": "It was misty yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i04:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is misty outside.",
+                "uk": "У записі звучить It is misty outside."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i04:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is misty outside.",
+                "uk": "У записі звучить It is misty outside."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Опишіть звичку дивитися погоду після пробудження.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i05:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i05:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i05:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишіть звичку дивитися погоду після пробудження.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Опишите привычку смотреть погоду после пробуждения.",
+            "uk": "Опишіть звичку дивитися погоду після пробудження."
+          },
+          "gappedTargetPhrase": "I ___ the weather when I wake up.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-42:i05:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i05:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i05:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Опишіть звичку дивитися погоду після пробудження.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Опишіть звичку дивитися погоду після пробудження.",
+              "feedbackByLocale": {
+                "ru": "С I нужно check без -s.",
+                "uk": "З I потрібно check без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Опишіть звичку дивитися погоду після пробудження.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужна форма check.",
+                "uk": "Для звички потрібна форма check."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:word:snowfall",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snowfall",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:word:snowfall:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snowfall",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:word:snowfall:audio",
+            "transcript": "snowfall"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:word:snowfall:r1",
+              "targetText": "snowfall",
+              "meaningByLocale": {
+                "ru": "Снегопад, выпадение снега.",
+                "uk": "Снігопад, випадання снігу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowfall",
+            "definitionByLocale": {
+              "ru": "Снегопад, выпадение снега.",
+              "uk": "Снігопад, випадання снігу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте повідомлення про снігопад, що припинився.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i06:audio"
+        ],
+        "accessibilityLabel": "Почуйте повідомлення про снігопад, що припинився.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i06:audio",
+            "transcript": "The snowfall has stopped."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The snowfall has stopped.",
+          "orderedTokens": [
+            "The",
+            "snowfall",
+            "has",
+            "stopped"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вже подивилися розклад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i07:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i07:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i07:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вже подивилися розклад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже посмотрели расписание.",
+            "uk": "Ви вже подивилися розклад."
+          },
+          "gappedTargetPhrase": "I have already ___ the bus times.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-42:i07:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i07:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i07:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Ви вже подивилися розклад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i07:r2",
+              "correct": false,
+              "testedDimension": "Ви вже подивилися розклад.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма checked.",
+                "uk": "Після have потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i07:r3",
+              "correct": false,
+              "testedDimension": "Ви вже подивилися розклад.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно checked, не checking.",
+                "uk": "Тут потрібно checked, не checking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:word:windshield",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — windshield",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:word:windshield:audio"
+        ],
+        "accessibilityLabel": "Картка слова — windshield",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:word:windshield:audio",
+            "transcript": "windshield"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:word:windshield:r1",
+              "targetText": "windshield",
+              "meaningByLocale": {
+                "ru": "Лобовое стекло автомобиля; другое название windscreen.",
+                "uk": "Лобове скло автомобіля; інша назва windscreen."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "windshield",
+            "definitionByLocale": {
+              "ru": "Лобовое стекло автомобиля; другое название windscreen.",
+              "uk": "Лобове скло автомобіля; інша назва windscreen."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що на лобовому склі сніг.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що на лобовому склі сніг.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i08:audio",
+            "transcript": "There is snow on the windshield."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is snow on the windshield.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ще не відповів. Запитайте, чи подивився він розклад.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ще не відповів. Запитайте, чи подивився він розклад.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you checked the bus times yet?",
+          "localizedMeaning": {
+            "ru": "Друг ещё не ответил. Спросите, посмотрел ли он расписание.",
+            "uk": "Друг ще не відповів. Запитайте, чи подивився він розклад."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "checked",
+            "the",
+            "bus",
+            "times",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i10:r1",
+            "text": "I have just checked them."
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i10:r2",
+            "text": "I have just missed it."
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i10:r3",
+            "text": "I have not checked them yet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i10:audio",
+            "transcript": "I have just checked them."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-42:i10:r1",
+              "targetText": "I have just checked them.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i10:r2",
+              "targetText": "I have just missed it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i10:r3",
+              "targetText": "I have not checked them yet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just checked them.",
+                "uk": "У записі звучить I have just checked them."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just checked them.",
+                "uk": "У записі звучить I have just checked them."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть з умови: We can walk if the path is clear.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть з умови: We can walk if the path is clear.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If the path is clear, we can walk.",
+          "localizedMeaning": {
+            "ru": "Начните с условия: We can walk if the path is clear.",
+            "uk": "Почніть з умови: We can walk if the path is clear."
+          },
+          "orderedTokens": [
+            "If",
+            "the",
+            "path",
+            "is",
+            "clear,",
+            "we",
+            "can",
+            "walk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вийдете, коли приїде автобус.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i12:r1",
+            "text": "arrives"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i12:r2",
+            "text": "will arrive"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i12:r3",
+            "text": "arrive"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вийдете, коли приїде автобус.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы выйдете, когда приедет автобус.",
+            "uk": "Ви вийдете, коли приїде автобус."
+          },
+          "gappedTargetPhrase": "We will leave when the bus ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-42:i12:r1",
+              "text": "arrives"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i12:r2",
+              "text": "will arrive"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i12:r3",
+              "text": "arrive"
+            }
+          ],
+          "testedDimension": "Ви вийдете, коли приїде автобус.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви вийдете, коли приїде автобус.",
+              "feedbackByLocale": {
+                "ru": "После when здесь arrives без will.",
+                "uk": "Після when тут arrives без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви вийдете, коли приїде автобус.",
+              "feedbackByLocale": {
+                "ru": "С the bus нужна форма arrives.",
+                "uk": "З the bus потрібна форма arrives."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте зустрітися біля кафе.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i13:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте зустрітися біля кафе.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i13:audio",
+            "transcript": "Let us meet outside the cafe."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Let us meet outside the cafe.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора сніг розтанув ще до вашої зустрічі.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора сніг розтанув ще до вашої зустрічі.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера снег растаял ещё до вашей встречи.",
+            "uk": "Учора сніг розтанув ще до вашої зустрічі."
+          },
+          "gappedTargetPhrase": "The snow ___ melted by the time we met.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-42:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Учора сніг розтанув ще до вашої зустрічі.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i14:r2",
+              "correct": false,
+              "testedDimension": "Учора сніг розтанув ще до вашої зустрічі.",
+              "feedbackByLocale": {
+                "ru": "Has относится к результату сейчас; met задаёт прошлое.",
+                "uk": "Has стосується результату зараз; met задає минуле."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i14:r3",
+              "correct": false,
+              "testedDimension": "Учора сніг розтанув ще до вашої зустрічі.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно had melted для более раннего события.",
+                "uk": "Тут потрібно had melted для ранішої події."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте запитання про час зустрічі.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Почуйте запитання про час зустрічі.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i15:audio",
+            "transcript": "What time shall we meet?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "What time shall we meet?",
+          "orderedTokens": [
+            "What",
+            "time",
+            "shall",
+            "we",
+            "meet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви залишитеся вдома, якщо друг не зателефонує.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-42:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-42:i16:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви залишитеся вдома, якщо друг не зателефонує.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы останетесь дома, если друг не позвонит.",
+            "uk": "Ви залишитеся вдома, якщо друг не зателефонує."
+          },
+          "gappedTargetPhrase": "We will stay home ___ you call.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-42:i16:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i16:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i16:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Ви залишитеся вдома, якщо друг не зателефонує.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-42:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви залишитеся вдома, якщо друг не зателефонує.",
+              "feedbackByLocale": {
+                "ru": "If означало бы остаться дома именно после звонка.",
+                "uk": "If означало б залишитися вдома саме після дзвінка."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-42:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви залишитеся вдома, якщо друг не зателефонує.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы звонок причиной остаться дома.",
+                "uk": "Because зробило б дзвінок причиною залишитися вдома."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг повідомляє, що затримається. Дайте відповідь, що поспішати не потрібно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Друг повідомляє, що затримається. Дайте відповідь, що поспішати не потрібно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-42:i17:audio",
+            "transcript": "Take your time."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Take your time.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-42:word:snowy",
+      "correctText": "snowy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i01",
+      "correctText": "It is a snowy morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i02",
+      "correctText": "Where are my boots?",
+      "correctResponseId": "en:lesson-26:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i03",
+      "correctText": "Please wait for me.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:word:misty",
+      "correctText": "misty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i04",
+      "correctText": "It is misty outside.",
+      "correctResponseId": "en:lesson-26:session-42:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i05",
+      "correctText": "check",
+      "correctResponseId": "en:lesson-26:session-42:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:word:snowfall",
+      "correctText": "snowfall",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i06",
+      "correctText": "The snowfall has stopped.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i07",
+      "correctText": "checked",
+      "correctResponseId": "en:lesson-26:session-42:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:word:windshield",
+      "correctText": "windshield",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i08",
+      "correctText": "There is snow on the windshield.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i09",
+      "correctText": "Have you checked the bus times yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i10",
+      "correctText": "I have just checked them.",
+      "correctResponseId": "en:lesson-26:session-42:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i11",
+      "correctText": "If the path is clear, we can walk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i12",
+      "correctText": "arrives",
+      "correctResponseId": "en:lesson-26:session-42:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i13",
+      "correctText": "Let us meet outside the cafe.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i14",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-42:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i15",
+      "correctText": "What time shall we meet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i16",
+      "correctText": "unless",
+      "correctResponseId": "en:lesson-26:session-42:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:i17",
+      "correctText": "Take your time.",
+      "correctResponseId": null
+    }
+  ]
+}

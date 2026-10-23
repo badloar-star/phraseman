@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-42:word:snowy",
+    "correctText": "snowy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i01",
+    "correctText": "It is a snowy morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i02",
+    "correctText": "Where are my boots?",
+    "correctResponseId": "en:lesson-26:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i03",
+    "correctText": "Please wait for me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:word:misty",
+    "correctText": "misty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i04",
+    "correctText": "It is misty outside.",
+    "correctResponseId": "en:lesson-26:session-42:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i05",
+    "correctText": "check",
+    "correctResponseId": "en:lesson-26:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:word:snowfall",
+    "correctText": "snowfall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i06",
+    "correctText": "The snowfall has stopped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i07",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-26:session-42:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:word:windshield",
+    "correctText": "windshield",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i08",
+    "correctText": "There is snow on the windshield.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i09",
+    "correctText": "Have you checked the bus times yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i10",
+    "correctText": "I have just checked them.",
+    "correctResponseId": "en:lesson-26:session-42:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i11",
+    "correctText": "If the path is clear, we can walk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i12",
+    "correctText": "arrives",
+    "correctResponseId": "en:lesson-26:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i13",
+    "correctText": "Let us meet outside the cafe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-42:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i15",
+    "correctText": "What time shall we meet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-42:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-42:i17",
+    "correctText": "Take your time.",
+    "correctResponseId": null
+  }
+]

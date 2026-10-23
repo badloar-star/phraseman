@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; just, already, yet; by the time",
+    "uk": "if, when, unless; just, already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разобрать вещи",
+        "uk": "Розібрати речі"
+      },
+      "bodyByLocale": {
+        "ru": "Hamper — корзина для белья. Put the clothes in the hamper — положи одежду в корзину для белья. Dustbin — мусорное ведро или бак. The dustbin is full — мусорное ведро полное. Если речь о результате сейчас: I have just emptied it — я только что его опустошил. Have you taken the rubbish out yet? — ты уже вынес мусор? Just указывает на недавнее действие, yet в вопросе проверяет, сделано ли оно к настоящему моменту.",
+        "uk": "Hamper — кошик для білизни. Put the clothes in the hamper — поклади одяг у кошик для білизни. Dustbin — сміттєве відро або бак. The dustbin is full — сміттєве відро повне. Якщо йдеться про результат зараз: I have just emptied it — я щойно його спорожнив. Have you taken the rubbish out yet? — ти вже виніс сміття? Just указує на недавню дію, yet у запитанні перевіряє, чи зроблено її на теперішній момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-41:intro1:r1",
+              "text": "I have just emptied it."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro1:r2",
+              "text": "I have just empty it."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro1:r3",
+              "text": "I just emptying it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-41:intro1:r1",
+              "text": "I have just emptied it."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro1:r2",
+              "text": "I have just empty it."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro1:r3",
+              "text": "I just emptying it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбрать нужную ткань",
+        "uk": "Вибрати потрібну тканину"
+      },
+      "bodyByLocale": {
+        "ru": "Washcloth — небольшая тканевая салфетка для мытья лица или тела. Dishtowel — кухонное полотенце для вытирания посуды. Не путайте их назначение: A washcloth is for washing your face; a dishtowel is for drying dishes — одной салфеткой умываются, другим полотенцем вытирают посуду. Could I have a clean washcloth? — можно мне чистую салфетку для умывания? Для будущей помощи: I will bring one when I come back — я принесу одну, когда вернусь. После when здесь come без will.",
+        "uk": "Washcloth — невелика тканинна серветка для миття обличчя або тіла. Dishtowel — кухонний рушник для витирання посуду. Не плутайте їхнє призначення: A washcloth is for washing your face; a dishtowel is for drying dishes — однією серветкою вмиваються, іншим рушником витирають посуд. Could I have a clean washcloth? — можна мені чисту серветку для вмивання? Для майбутньої допомоги: I will bring one when I come back — я принесу одну, коли повернуся. Після when тут come без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-41:intro2:r1",
+              "text": "I will bring one when I come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro2:r2",
+              "text": "I will bring one when I will come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro2:r3",
+              "text": "I will bring one when I comes back."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-41:intro2:r1",
+              "text": "I will bring one when I come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro2:r2",
+              "text": "I will bring one when I will come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro2:r3",
+              "text": "I will bring one when I comes back."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оставить полезную вещь",
+        "uk": "Залишити корисну річ"
+      },
+      "bodyByLocale": {
+        "ru": "We reuse jars at home — мы используем банки повторно дома. Keep that jar — оставь эту банку. Можно поставить условие первым: If the jar is clean, we can use it — если банка чистая, мы можем её использовать. Или в конце: We can use it if the jar is clean. Смысл одинаковый. О привычке: I put clothes away when they are dry — я убираю одежду, когда она сухая. О вчерашней стирке: I had hung up the washing by the time she called — я развесил бельё к тому времени, как она позвонила. Had hung up показывает более раннее действие.",
+        "uk": "We reuse jars at home — ми використовуємо банки повторно вдома. Keep that jar — залиш цю банку. Можна поставити умову першою: If the jar is clean, we can use it — якщо банка чиста, ми можемо її використати. Або в кінці: We can use it if the jar is clean. Зміст однаковий. Про звичку: I put clothes away when they are dry — я прибираю одяг, коли він сухий. Про вчорашнє прання: I had hung up the washing by the time she called — я розвісив білизну до того часу, як вона зателефонувала. Had hung up показує ранішу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-41:intro3:r1",
+              "text": "I had hung up the washing by the time she called."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro3:r2",
+              "text": "I have hung up the washing by the time she called."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro3:r3",
+              "text": "I had hang up the washing by the time she called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-41:intro3:r1",
+              "text": "I had hung up the washing by the time she called."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro3:r2",
+              "text": "I have hung up the washing by the time she called."
+            },
+            {
+              "responseId": "en:lesson-26:session-41:intro3:r3",
+              "text": "I had hang up the washing by the time she called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dd590abb303aa6e502d6e11bf1d7ab4a4912b6788d77c431e3d8126b1798d320"
+}

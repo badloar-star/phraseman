@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-41:intro1:r2": {
+          "ru": "После have нужна форма emptied.",
+          "uk": "Після have потрібна форма emptied."
+        },
+        "en:lesson-26:session-41:intro1:r3": {
+          "ru": "Результат сейчас выражаем через have emptied.",
+          "uk": "Результат зараз виражаємо через have emptied."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-41:intro2:r2": {
+          "ru": "После when здесь come без will.",
+          "uk": "Після when тут come без will."
+        },
+        "en:lesson-26:session-41:intro2:r3": {
+          "ru": "С I нужно come без -s.",
+          "uk": "З I потрібно come без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-41:intro3:r2": {
+          "ru": "Called задаёт прошлое; более раннее действие — had hung up.",
+          "uk": "Called задає минуле; раніша дія — had hung up."
+        },
+        "en:lesson-26:session-41:intro3:r3": {
+          "ru": "После had нужна форма hung.",
+          "uk": "Після had потрібна форма hung."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7b50f0a1bffbf62da8f7bc6dad9b4844750e49c212c7480379b6f80be9a014a5"
+}

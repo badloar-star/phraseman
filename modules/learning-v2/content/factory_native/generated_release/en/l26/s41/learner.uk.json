@@ -1,0 +1,1068 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-41:word:hamper",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hamper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:word:hamper:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hamper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:word:hamper:audio",
+          "transcript": "hamper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-41:word:hamper:r1",
+            "targetText": "hamper",
+            "meaningByLocale": {
+              "ru": "Корзина для белья.",
+              "uk": "Кошик для білизни."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hamper",
+          "definitionByLocale": {
+            "ru": "Корзина для белья.",
+            "uk": "Кошик для білизни."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-41:i01:r1",
+          "text": "Put the clothes in the hamper."
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i01:r2",
+          "text": "Put the towels on the bed."
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i01:r3",
+          "text": "Put the clothes in the drawer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:i01:audio",
+          "transcript": "Put the clothes in the hamper."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-41:i01:r1",
+            "targetText": "Put the clothes in the hamper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i01:r2",
+            "targetText": "Put the towels on the bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i01:r3",
+            "targetText": "Put the clothes in the drawer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-41:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Put the clothes in the hamper.",
+              "uk": "У записі звучить Put the clothes in the hamper."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Put the clothes in the hamper.",
+              "uk": "У записі звучить Put the clothes in the hamper."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви тримаєте кілька речей і не знаєте, куди їх покласти. Запитайте.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Ви тримаєте кілька речей і не знаєте, куди їх покласти. Запитайте.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:i02:audio",
+          "transcript": "Where should I put these?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where should I put these?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:word:dustbin",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dustbin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:word:dustbin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dustbin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:word:dustbin:audio",
+          "transcript": "dustbin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-41:word:dustbin:r1",
+            "targetText": "dustbin",
+            "meaningByLocale": {
+              "ru": "Мусорное ведро или бак.",
+              "uk": "Сміттєве відро або бак."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dustbin",
+          "definitionByLocale": {
+            "ru": "Мусорное ведро или бак.",
+            "uk": "Сміттєве відро або бак."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що сміттєве відро повне.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що сміттєве відро повне.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The dustbin is full.",
+        "localizedMeaning": {
+          "ru": "Скажите, что мусорное ведро полное.",
+          "uk": "Скажіть, що сміттєве відро повне."
+        },
+        "orderedTokens": [
+          "The",
+          "dustbin",
+          "is",
+          "full"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви щойно його спорожнили.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-41:i04:r1",
+          "text": "emptied"
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i04:r2",
+          "text": "empty"
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i04:r3",
+          "text": "emptying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви щойно його спорожнили.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы только что его опустошили.",
+          "uk": "Ви щойно його спорожнили."
+        },
+        "gappedTargetPhrase": "I have just ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-41:i04:r1",
+            "text": "emptied"
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i04:r2",
+            "text": "empty"
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i04:r3",
+            "text": "emptying"
+          }
+        ],
+        "testedDimension": "Ви щойно його спорожнили.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-41:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви щойно його спорожнили.",
+            "feedbackByLocale": {
+              "ru": "После have нужна форма emptied.",
+              "uk": "Після have потрібна форма emptied."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви щойно його спорожнили.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно emptied, не emptying.",
+              "uk": "Тут потрібно emptied, не emptying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запитання про винесене сміття.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Почуйте запитання про винесене сміття.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:i05:audio",
+          "transcript": "Have you taken the rubbish out yet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you taken the rubbish out yet?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "taken",
+          "the",
+          "rubbish",
+          "out",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:word:washcloth",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — washcloth",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:word:washcloth:audio"
+      ],
+      "accessibilityLabel": "Картка слова — washcloth",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:word:washcloth:audio",
+          "transcript": "washcloth"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-41:word:washcloth:r1",
+            "targetText": "washcloth",
+            "meaningByLocale": {
+              "ru": "Небольшая тканевая салфетка для мытья лица или тела.",
+              "uk": "Невелика тканинна серветка для миття обличчя або тіла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "washcloth",
+          "definitionByLocale": {
+            "ru": "Небольшая тканевая салфетка для мытья лица или тела.",
+            "uk": "Невелика тканинна серветка для миття обличчя або тіла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть чисту серветку для вмивання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:i06:audio"
+      ],
+      "accessibilityLabel": "Попросіть чисту серветку для вмивання.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:i06:audio",
+          "transcript": "Could I have a clean washcloth?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have a clean washcloth?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви принесете її після повернення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-41:i07:r1",
+          "text": "come"
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i07:r2",
+          "text": "will come"
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i07:r3",
+          "text": "comes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви принесете її після повернення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы принесёте её после возвращения.",
+          "uk": "Ви принесете її після повернення."
+        },
+        "gappedTargetPhrase": "I will bring one when I ___ back.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-41:i07:r1",
+            "text": "come"
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i07:r2",
+            "text": "will come"
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i07:r3",
+            "text": "comes"
+          }
+        ],
+        "testedDimension": "Ви принесете її після повернення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-41:i07:r2",
+            "correct": false,
+            "testedDimension": "Ви принесете її після повернення.",
+            "feedbackByLocale": {
+              "ru": "После when здесь come без will.",
+              "uk": "Після when тут come без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i07:r3",
+            "correct": false,
+            "testedDimension": "Ви принесете її після повернення.",
+            "feedbackByLocale": {
+              "ru": "С I нужно come без -s.",
+              "uk": "З I потрібно come без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:word:dishtowel",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dishtowel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:word:dishtowel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dishtowel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:word:dishtowel:audio",
+          "transcript": "dishtowel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-41:word:dishtowel:r1",
+            "targetText": "dishtowel",
+            "meaningByLocale": {
+              "ru": "Кухонное полотенце для вытирания посуды.",
+              "uk": "Кухонний рушник для витирання посуду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dishtowel",
+          "definitionByLocale": {
+            "ru": "Кухонное полотенце для вытирания посуды.",
+            "uk": "Кухонний рушник для витирання посуду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-41:i08:r1",
+          "text": "Use the dishtowel to dry the plates."
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i08:r2",
+          "text": "Use the dishtowel to dry your face."
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i08:r3",
+          "text": "Leave the dishtowel in the drawer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:i08:audio",
+          "transcript": "Use the dishtowel to dry the plates."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-41:i08:r1",
+            "targetText": "Use the dishtowel to dry the plates.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i08:r2",
+            "targetText": "Use the dishtowel to dry your face.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i08:r3",
+            "targetText": "Leave the dishtowel in the drawer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Use the dishtowel to dry the plates.",
+              "uk": "У записі звучить Use the dishtowel to dry the plates."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Use the dishtowel to dry the plates.",
+              "uk": "У записі звучить Use the dishtowel to dry the plates."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг пропонує викинути банку. Попросіть залишити її.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг пропонує викинути банку. Попросіть залишити її.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Keep that jar.",
+        "localizedMeaning": {
+          "ru": "Друг предлагает выбросить банку. Попросите оставить её.",
+          "uk": "Друг пропонує викинути банку. Попросіть залишити її."
+        },
+        "orderedTokens": [
+          "Keep",
+          "that",
+          "jar"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви зазвичай прибираєте одяг після висихання.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-41:i10:r1",
+          "text": "put"
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i10:r2",
+          "text": "puts"
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i10:r3",
+          "text": "putting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зазвичай прибираєте одяг після висихання.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы обычно убираете одежду после высыхания.",
+          "uk": "Ви зазвичай прибираєте одяг після висихання."
+        },
+        "gappedTargetPhrase": "I ___ clothes away when they are dry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-41:i10:r1",
+            "text": "put"
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i10:r2",
+            "text": "puts"
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i10:r3",
+            "text": "putting"
+          }
+        ],
+        "testedDimension": "Ви зазвичай прибираєте одяг після висихання.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-41:i10:r2",
+            "correct": false,
+            "testedDimension": "Ви зазвичай прибираєте одяг після висихання.",
+            "feedbackByLocale": {
+              "ru": "С I нужно put без -s.",
+              "uk": "З I потрібно put без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i10:r3",
+            "correct": false,
+            "testedDimension": "Ви зазвичай прибираєте одяг після висихання.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужна форма put.",
+              "uk": "Для звички потрібна форма put."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте, яку справу вже закінчено.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Почуйте, яку справу вже закінчено.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:i11:audio",
+          "transcript": "I have already folded the towels."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have already folded the towels.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "folded",
+          "the",
+          "towels"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Почніть з умови: We can use it if the jar is clean.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Почніть з умови: We can use it if the jar is clean.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:i12:audio",
+          "transcript": "If the jar is clean, we can use it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "If the jar is clean, we can use it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора білизну було розвішено ще до дзвінка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-41:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i13:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора білизну було розвішено ще до дзвінка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера бельё было развешено ещё до звонка.",
+          "uk": "Учора білизну було розвішено ще до дзвінка."
+        },
+        "gappedTargetPhrase": "I ___ hung up the washing by the time she called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-41:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i13:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Учора білизну було розвішено ще до дзвінка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-41:i13:r2",
+            "correct": false,
+            "testedDimension": "Учора білизну було розвішено ще до дзвінка.",
+            "feedbackByLocale": {
+              "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+              "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i13:r3",
+            "correct": false,
+            "testedDimension": "Учора білизну було розвішено ще до дзвінка.",
+            "feedbackByLocale": {
+              "ru": "Am hung up не означает, что я развесил бельё.",
+              "uk": "Am hung up не означає, що я розвісив білизну."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-41:i14:r1",
+          "text": "The clean towels are upstairs."
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i14:r2",
+          "text": "The clean towels are downstairs."
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i14:r3",
+          "text": "The dirty towels are upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:i14:audio",
+          "transcript": "The clean towels are upstairs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-41:i14:r1",
+            "targetText": "The clean towels are upstairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i14:r2",
+            "targetText": "The clean towels are downstairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i14:r3",
+            "targetText": "The dirty towels are upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-41:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The clean towels are upstairs.",
+              "uk": "У записі звучить The clean towels are upstairs."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The clean towels are upstairs.",
+              "uk": "У записі звучить The clean towels are upstairs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви залишите коробку, окрім випадку, коли друг попросить її викинути.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-41:i15:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i15:r2",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-26:session-41:i15:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви залишите коробку, окрім випадку, коли друг попросить її викинути.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы оставите коробку, кроме случая, когда друг попросит её выбросить.",
+          "uk": "Ви залишите коробку, окрім випадку, коли друг попросить її викинути."
+        },
+        "gappedTargetPhrase": "I will keep the box ___ you ask me to throw it away.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-41:i15:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i15:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i15:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Ви залишите коробку, окрім випадку, коли друг попросить її викинути.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-41:i15:r2",
+            "correct": false,
+            "testedDimension": "Ви залишите коробку, окрім випадку, коли друг попросить її викинути.",
+            "feedbackByLocale": {
+              "ru": "If означало бы сохранить коробку именно по просьбе выбросить её.",
+              "uk": "If означало б зберегти коробку саме на прохання викинути її."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-41:i15:r3",
+            "correct": false,
+            "testedDimension": "Ви залишите коробку, окрім випадку, коли друг попросить її викинути.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы просьбу выбросить причиной сохранить.",
+              "uk": "Because зробило б прохання викинути причиною зберегти."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте допомогу з важким кошиком.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте допомогу з важким кошиком.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let me help you carry it.",
+        "localizedMeaning": {
+          "ru": "Предложите помощь с тяжёлой корзиной.",
+          "uk": "Запропонуйте допомогу з важким кошиком."
+        },
+        "orderedTokens": [
+          "Let",
+          "me",
+          "help",
+          "you",
+          "carry",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Справи закінчено. Запропонуйте зробити перерву.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Справи закінчено. Запропонуйте зробити перерву.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-41:i17:audio",
+          "transcript": "Let us take a break."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us take a break.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "650d02af6ce2819bc6099e5bfbfedcc08986b17b39ad45d1e1ba24084347ce74"
+}

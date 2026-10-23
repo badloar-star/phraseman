@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-42:intro1:r2": {
+          "ru": "Unless меняет условие: если дорожка не свободна.",
+          "uk": "Unless змінює умову: якщо доріжка не вільна."
+        },
+        "en:lesson-26:session-42:intro1:r3": {
+          "ru": "В этом условии после if нужно is без will.",
+          "uk": "У цій умові після if потрібно is без will."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-42:intro2:r2": {
+          "ru": "После have нужна форма checked.",
+          "uk": "Після have потрібна форма checked."
+        },
+        "en:lesson-26:session-42:intro2:r3": {
+          "ru": "Результат сейчас выражается через have checked.",
+          "uk": "Результат зараз виражається через have checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-42:intro3:r2": {
+          "ru": "Met задаёт прошлое; более раннее событие — had melted.",
+          "uk": "Met задає минуле; раніша подія — had melted."
+        },
+        "en:lesson-26:session-42:intro3:r3": {
+          "ru": "После had нужна форма melted.",
+          "uk": "Після had потрібна форма melted."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bc3a5f0843faf8e5422577abc2314f0741d72a686706d450fbd9cce24d744e6f"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-41:word:hamper",
+    "correctText": "hamper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i01",
+    "correctText": "Put the clothes in the hamper.",
+    "correctResponseId": "en:lesson-26:session-41:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i02",
+    "correctText": "Where should I put these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:word:dustbin",
+    "correctText": "dustbin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i03",
+    "correctText": "The dustbin is full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i04",
+    "correctText": "emptied",
+    "correctResponseId": "en:lesson-26:session-41:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i05",
+    "correctText": "Have you taken the rubbish out yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:word:washcloth",
+    "correctText": "washcloth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i06",
+    "correctText": "Could I have a clean washcloth?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i07",
+    "correctText": "come",
+    "correctResponseId": "en:lesson-26:session-41:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:word:dishtowel",
+    "correctText": "dishtowel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i08",
+    "correctText": "Use the dishtowel to dry the plates.",
+    "correctResponseId": "en:lesson-26:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i09",
+    "correctText": "Keep that jar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i10",
+    "correctText": "put",
+    "correctResponseId": "en:lesson-26:session-41:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i11",
+    "correctText": "I have already folded the towels.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i12",
+    "correctText": "If the jar is clean, we can use it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-41:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i14",
+    "correctText": "The clean towels are upstairs.",
+    "correctResponseId": "en:lesson-26:session-41:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i15",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-41:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i16",
+    "correctText": "Let me help you carry it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-41:i17",
+    "correctText": "Let us take a break.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-41:word:fearless",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fearless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:word:fearless:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fearless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:word:fearless:audio",
+          "transcript": "fearless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-41:word:fearless:r1",
+            "targetText": "fearless",
+            "meaningByLocale": {
+              "ru": "Бесстрашный. Fearless — не испытывающий или не показывающий страха.",
+              "uk": "Безстрашний. Fearless — той, хто не відчуває або не показує страху."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fearless",
+          "definitionByLocale": {
+            "ru": "Бесстрашный. Fearless — не испытывающий или не показывающий страха.",
+            "uk": "Безстрашний. Fearless — той, хто не відчуває або не показує страху."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «В детстве я был бесстрашным.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «В детстве я был бесстрашным.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used to be fearless as a child.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В детстве я был бесстрашным.»",
+          "uk": "Скажіть: «У дитинстві я був безстрашним.»"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "be",
+          "fearless",
+          "as",
+          "a",
+          "child"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, как было раньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i02:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i02:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i02:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, как было раньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "I ___ to be fearless as a child.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-41:i02:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i02:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i02:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Вспомните, как было раньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i03:r1",
+          "text": "I used to be fearless as a child."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i03:r2",
+          "text": "She used to be fearless as a child."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i03:r3",
+          "text": "I used to be fearless at school."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i03:audio",
+          "transcript": "I used to be fearless as a child."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-41:i03:r1",
+            "targetText": "I used to be fearless as a child.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i03:r2",
+            "targetText": "She used to be fearless as a child.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i03:r3",
+            "targetText": "I used to be fearless at school.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to be fearless as a child.",
+              "uk": "У записі звучить I used to be fearless as a child."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to be fearless as a child.",
+              "uk": "У записі звучить I used to be fearless as a child."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:word:helpless",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — helpless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:word:helpless:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — helpless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:word:helpless:audio",
+          "transcript": "helpless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-41:word:helpless:r1",
+            "targetText": "helpless",
+            "meaningByLocale": {
+              "ru": "Беспомощный. Helpless — не способный справиться без помощи.",
+              "uk": "Безпорадний. Helpless — той, хто не може впоратися без допомоги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "helpless",
+          "definitionByLocale": {
+            "ru": "Беспомощный. Helpless — не способный справиться без помощи.",
+            "uk": "Безпорадний. Helpless — той, хто не може впоратися без допомоги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Раньше он чувствовал себя беспомощным на кухне.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Раньше он чувствовал себя беспомощным на кухне.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He used to feel helpless in the kitchen.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше он чувствовал себя беспомощным на кухне.»",
+          "uk": "Скажіть: «Раніше він почувався безпорадним на кухні.»"
+        },
+        "orderedTokens": [
+          "He",
+          "used",
+          "to",
+          "feel",
+          "helpless",
+          "in",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, как было раньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i05:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i05:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i05:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, как было раньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "He ___ to feel helpless in the kitchen.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-41:i05:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i05:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i05:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Вспомните, как было раньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i06:r1",
+          "text": "He used to feel helpless in the kitchen."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i06:r2",
+          "text": "She used to feel helpless in the kitchen."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i06:r3",
+          "text": "He used to feel helpless at school."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i06:audio",
+          "transcript": "He used to feel helpless in the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-41:i06:r1",
+            "targetText": "He used to feel helpless in the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i06:r2",
+            "targetText": "She used to feel helpless in the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i06:r3",
+            "targetText": "He used to feel helpless at school.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used to feel helpless in the kitchen.",
+              "uk": "У записі звучить He used to feel helpless in the kitchen."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used to feel helpless in the kitchen.",
+              "uk": "У записі звучить He used to feel helpless in the kitchen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:word:outgoing",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — outgoing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:word:outgoing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — outgoing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:word:outgoing:audio",
+          "transcript": "outgoing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-41:word:outgoing:r1",
+            "targetText": "outgoing",
+            "meaningByLocale": {
+              "ru": "Общительный. Outgoing — легко общающийся и знакомящийся с людьми.",
+              "uk": "Товариський. Outgoing — той, хто легко спілкується й знайомиться з людьми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "outgoing",
+          "definitionByLocale": {
+            "ru": "Общительный. Outgoing — легко общающийся и знакомящийся с людьми.",
+            "uk": "Товариський. Outgoing — той, хто легко спілкується й знайомиться з людьми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «В школе она была общительной.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «В школе она была общительной.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She used to be outgoing at school.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В школе она была общительной.»",
+          "uk": "Скажіть: «У школі вона була товариською.»"
+        },
+        "orderedTokens": [
+          "She",
+          "used",
+          "to",
+          "be",
+          "outgoing",
+          "at",
+          "school"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, как было раньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i08:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i08:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i08:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, как было раньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "She ___ to be outgoing at school.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-41:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i08:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i08:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Вспомните, как было раньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i09:r1",
+          "text": "She used to be outgoing at school."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i09:r2",
+          "text": "He used to be outgoing at school."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i09:r3",
+          "text": "She used to be outgoing at work."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i09:audio",
+          "transcript": "She used to be outgoing at school."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-41:i09:r1",
+            "targetText": "She used to be outgoing at school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i09:r2",
+            "targetText": "He used to be outgoing at school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i09:r3",
+            "targetText": "She used to be outgoing at work.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used to be outgoing at school.",
+              "uk": "У записі звучить She used to be outgoing at school."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used to be outgoing at school.",
+              "uk": "У записі звучить She used to be outgoing at school."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:word:carefree",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — carefree",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:word:carefree:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — carefree",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:word:carefree:audio",
+          "transcript": "carefree"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-41:word:carefree:r1",
+            "targetText": "carefree",
+            "meaningByLocale": {
+              "ru": "Беззаботный. Carefree — не обременённый заботами.",
+              "uk": "Безтурботний. Carefree — не обтяжений турботами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carefree",
+          "definitionByLocale": {
+            "ru": "Беззаботный. Carefree — не обременённый заботами.",
+            "uk": "Безтурботний. Carefree — не обтяжений турботами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Раньше на каникулах мы были беззаботными.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Раньше на каникулах мы были беззаботными.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used to be carefree during the holidays.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше на каникулах мы были беззаботными.»",
+          "uk": "Скажіть: «Раніше на канікулах ми були безтурботними.»"
+        },
+        "orderedTokens": [
+          "We",
+          "used",
+          "to",
+          "be",
+          "carefree",
+          "during",
+          "the",
+          "holidays"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, как было раньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i11:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i11:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i11:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, как было раньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "We ___ to be carefree during the holidays.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-41:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i11:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Вспомните, как было раньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i12:r1",
+          "text": "We used to be carefree during the holidays."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i12:r2",
+          "text": "They used to be carefree during the holidays."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i12:r3",
+          "text": "We used to be carefree during the summer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i12:audio",
+          "transcript": "We used to be carefree during the holidays."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-41:i12:r1",
+            "targetText": "We used to be carefree during the holidays.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i12:r2",
+            "targetText": "They used to be carefree during the holidays.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i12:r3",
+            "targetText": "We used to be carefree during the summer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to be carefree during the holidays.",
+              "uk": "У записі звучить We used to be carefree during the holidays."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to be carefree during the holidays.",
+              "uk": "У записі звучить We used to be carefree during the holidays."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-41:i13:p1",
+            "target": "fearless",
+            "meaningByLocale": {
+              "ru": "бесстрашный",
+              "uk": "безстрашний"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-41:i13:p2",
+            "target": "helpless",
+            "meaningByLocale": {
+              "ru": "беспомощный",
+              "uk": "безпорадний"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-41:i13:p3",
+            "target": "outgoing",
+            "meaningByLocale": {
+              "ru": "общительный",
+              "uk": "товариський"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-41:i13:p4",
+            "target": "carefree",
+            "meaningByLocale": {
+              "ru": "беззаботный",
+              "uk": "безтурботний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fearless",
+          "helpless",
+          "outgoing",
+          "carefree"
+        ],
+        "rightColumn": [
+          "бесстрашный",
+          "беспомощный",
+          "общительный",
+          "беззаботный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже закончила к моему звонку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Уже закончила к моему звонку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i14:audio",
+          "transcript": "She had finished before I called."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She had finished before I called.",
+        "orderedTokens": [
+          "She",
+          "had",
+          "finished",
+          "before",
+          "I",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Раньше ездил на машине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Раньше ездил на машине",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i15:audio",
+          "transcript": "I used to drive to work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I used to drive to work.",
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "drive",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Раньше она чувствовала себя беспомощной на работе».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Раньше она чувствовала себя беспомощной на работе».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i16:audio",
+          "transcript": "She used to feel helpless at work."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She used to feel helpless at work.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «В детстве мы были беззаботными».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «В детстве мы были беззаботными».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i17:audio",
+          "transcript": "We used to be carefree as children."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We used to be carefree as children.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f6b261403b2211ea7d7a4336e9f7fdcb407169f206852fd9ba6d06a01bf6c435"
+}

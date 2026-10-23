@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-43:word:among",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — among",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:word:among:audio"
+      ],
+      "accessibilityLabel": "Картка слова — among",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:word:among:audio",
+          "transcript": "among"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-43:word:among:r1",
+            "targetText": "among",
+            "meaningByLocale": {
+              "ru": "Среди. Among — внутри группы людей или вещей.",
+              "uk": "Серед. Among — усередині групи людей або речей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "among",
+          "definitionByLocale": {
+            "ru": "Среди. Among — внутри группы людей или вещей.",
+            "uk": "Серед. Among — усередині групи людей або речей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше вона зазвичай сиділа серед своїх друзів.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше вона зазвичай сиділа серед своїх друзів.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She used to sit among her friends.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше она обычно сидела среди своих друзей.»",
+          "uk": "Скажіть: «Раніше вона зазвичай сиділа серед своїх друзів.»"
+        },
+        "orderedTokens": [
+          "She",
+          "used",
+          "to",
+          "sit",
+          "among",
+          "her",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пригадайте, як було раніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-43:i02:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i02:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i02:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пригадайте, як було раніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "She ___ to sit among her friends.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-43:i02:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i02:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i02:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Пригадайте, як було раніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-43:i03:r1",
+          "text": "She used to sit among her friends."
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i03:r2",
+          "text": "He used to sit among his friends."
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i03:r3",
+          "text": "She used to sit among her neighbours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:i03:audio",
+          "transcript": "She used to sit among her friends."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-43:i03:r1",
+            "targetText": "She used to sit among her friends.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i03:r2",
+            "targetText": "He used to sit among his friends.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i03:r3",
+            "targetText": "She used to sit among her neighbours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used to sit among her friends.",
+              "uk": "У записі звучить She used to sit among her friends."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used to sit among her friends.",
+              "uk": "У записі звучить She used to sit among her friends."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:word:opposite",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — opposite",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:word:opposite:audio"
+      ],
+      "accessibilityLabel": "Картка слова — opposite",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:word:opposite:audio",
+          "transcript": "opposite"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-43:word:opposite:r1",
+            "targetText": "opposite",
+            "meaningByLocale": {
+              "ru": "Напротив. Opposite здесь — на противоположной стороне от чего-то.",
+              "uk": "Навпроти. Opposite тут — на протилежному боці від чогось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "opposite",
+          "definitionByLocale": {
+            "ru": "Напротив. Opposite здесь — на противоположной стороне от чего-то.",
+            "uk": "Навпроти. Opposite тут — на протилежному боці від чогось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше я жив навпроти школи.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше я жив навпроти школи.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used to live opposite the school.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше я жил напротив школы.»",
+          "uk": "Скажіть: «Раніше я жив навпроти школи.»"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "live",
+          "opposite",
+          "the",
+          "school"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пригадайте, як було раніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-43:i05:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i05:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i05:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пригадайте, як було раніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "I ___ to live opposite the school.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-43:i05:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i05:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i05:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Пригадайте, як було раніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-43:i06:r1",
+          "text": "I used to live opposite the school."
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i06:r2",
+          "text": "She used to live opposite the school."
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i06:r3",
+          "text": "I used to live opposite the park."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:i06:audio",
+          "transcript": "I used to live opposite the school."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-43:i06:r1",
+            "targetText": "I used to live opposite the school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i06:r2",
+            "targetText": "She used to live opposite the school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i06:r3",
+            "targetText": "I used to live opposite the park.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to live opposite the school.",
+              "uk": "У записі звучить I used to live opposite the school."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to live opposite the school.",
+              "uk": "У записі звучить I used to live opposite the school."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:word:beyond",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — beyond",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:word:beyond:audio"
+      ],
+      "accessibilityLabel": "Картка слова — beyond",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:word:beyond:audio",
+          "transcript": "beyond"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-43:word:beyond:r1",
+            "targetText": "beyond",
+            "meaningByLocale": {
+              "ru": "Дальше, за. Beyond — дальше указанного места или границы.",
+              "uk": "Далі, за. Beyond — далі за вказане місце чи межу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beyond",
+          "definitionByLocale": {
+            "ru": "Дальше, за. Beyond — дальше указанного места или границы.",
+            "uk": "Далі, за. Beyond — далі за вказане місце чи межу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше ми зазвичай ходили далі за міст.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше ми зазвичай ходили далі за міст.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used to walk beyond the bridge.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше мы обычно ходили дальше моста.»",
+          "uk": "Скажіть: «Раніше ми зазвичай ходили далі за міст.»"
+        },
+        "orderedTokens": [
+          "We",
+          "used",
+          "to",
+          "walk",
+          "beyond",
+          "the",
+          "bridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пригадайте, як було раніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-43:i08:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i08:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i08:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пригадайте, як було раніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "We ___ to walk beyond the bridge.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-43:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i08:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i08:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Пригадайте, як було раніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-43:i09:r1",
+          "text": "We used to walk beyond the bridge."
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i09:r2",
+          "text": "They used to walk beyond the bridge."
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i09:r3",
+          "text": "We used to walk beyond the village."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:i09:audio",
+          "transcript": "We used to walk beyond the bridge."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-43:i09:r1",
+            "targetText": "We used to walk beyond the bridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i09:r2",
+            "targetText": "They used to walk beyond the bridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i09:r3",
+            "targetText": "We used to walk beyond the village.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to walk beyond the bridge.",
+              "uk": "У записі звучить We used to walk beyond the bridge."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to walk beyond the bridge.",
+              "uk": "У записі звучить We used to walk beyond the bridge."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:word:within",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — within",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:word:within:audio"
+      ],
+      "accessibilityLabel": "Картка слова — within",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:word:within:audio",
+          "transcript": "within"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-43:word:within:r1",
+            "targetText": "within",
+            "meaningByLocale": {
+              "ru": "В пределах. Within — внутри указанных границ.",
+              "uk": "У межах. Within — усередині вказаних меж."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "within",
+          "definitionByLocale": {
+            "ru": "В пределах. Within — внутри указанных границ.",
+            "uk": "У межах. Within — усередині вказаних меж."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше ми зазвичай залишалися в межах села.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше ми зазвичай залишалися в межах села.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used to stay within the village.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше мы обычно оставались в пределах деревни.»",
+          "uk": "Скажіть: «Раніше ми зазвичай залишалися в межах села.»"
+        },
+        "orderedTokens": [
+          "We",
+          "used",
+          "to",
+          "stay",
+          "within",
+          "the",
+          "village"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пригадайте, як було раніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-43:i11:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i11:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i11:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пригадайте, як було раніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "We ___ to stay within the village.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-43:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i11:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Пригадайте, як було раніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние: used to + начальная форма.",
+              "uk": "Колишній стан: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-43:i12:r1",
+          "text": "We used to stay within the village."
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i12:r2",
+          "text": "They used to stay within the village."
+        },
+        {
+          "responseId": "en:lesson-25:session-43:i12:r3",
+          "text": "We used to stay within the town."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:i12:audio",
+          "transcript": "We used to stay within the village."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-43:i12:r1",
+            "targetText": "We used to stay within the village.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i12:r2",
+            "targetText": "They used to stay within the village.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i12:r3",
+            "targetText": "We used to stay within the town.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to stay within the village.",
+              "uk": "У записі звучить We used to stay within the village."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to stay within the village.",
+              "uk": "У записі звучить We used to stay within the village."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-43:i13:p1",
+            "target": "among",
+            "meaningByLocale": {
+              "ru": "среди",
+              "uk": "серед"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-43:i13:p2",
+            "target": "opposite",
+            "meaningByLocale": {
+              "ru": "напротив",
+              "uk": "навпроти"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-43:i13:p3",
+            "target": "beyond",
+            "meaningByLocale": {
+              "ru": "дальше, за",
+              "uk": "далі, за"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-43:i13:p4",
+            "target": "within",
+            "meaningByLocale": {
+              "ru": "в пределах",
+              "uk": "у межах"
+            }
+          }
+        ],
+        "leftColumn": [
+          "among",
+          "opposite",
+          "beyond",
+          "within"
+        ],
+        "rightColumn": [
+          "серед",
+          "навпроти",
+          "далі, за",
+          "у межах"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже закінчила до мого дзвінка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Уже закінчила до мого дзвінка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:i14:audio",
+          "transcript": "She had finished before I called."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She had finished before I called.",
+        "orderedTokens": [
+          "She",
+          "had",
+          "finished",
+          "before",
+          "I",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Раніше їздив машиною",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Раніше їздив машиною",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:i15:audio",
+          "transcript": "I used to drive to work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I used to drive to work.",
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "drive",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Раніше вони жили навпроти парку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Раніше вони жили навпроти парку».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:i16:audio",
+          "transcript": "They used to live opposite the park."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They used to live opposite the park.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-43:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Раніше я зазвичай залишався в межах села».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Раніше я зазвичай залишався в межах села».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-43:i17:audio",
+          "transcript": "I used to stay within the village."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I used to stay within the village.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cddf1d7f36946172f2d1e80c2190185392b27fd4a90645f684b709fb7c5a1626"
+}

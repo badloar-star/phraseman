@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-42:word:purr",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — purr",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:word:purr:audio"
+      ],
+      "accessibilityLabel": "Картка слова — purr",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:word:purr:audio",
+          "transcript": "purr"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-42:word:purr:r1",
+            "targetText": "purr",
+            "meaningByLocale": {
+              "ru": "Мурлыкать. Purr — издавать тихий вибрирующий звук, как кот.",
+              "uk": "Муркотіти. Purr — видавати тихий вібруючий звук, як кіт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "purr",
+          "definitionByLocale": {
+            "ru": "Мурлыкать. Purr — издавать тихий вибрирующий звук, как кот.",
+            "uk": "Муркотіти. Purr — видавати тихий вібруючий звук, як кіт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше наш кіт щовечора муркотів поруч зі мною.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше наш кіт щовечора муркотів поруч зі мною.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our cat would purr beside me every evening.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше наш кот каждый вечер мурлыкал рядом со мной.»",
+          "uk": "Скажіть: «Раніше наш кіт щовечора муркотів поруч зі мною.»"
+        },
+        "orderedTokens": [
+          "Our",
+          "cat",
+          "would",
+          "purr",
+          "beside",
+          "me",
+          "every",
+          "evening"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продовжте спогад про дитинство.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-42:i02:r1",
+          "text": "purr"
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i02:r2",
+          "text": "purred"
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i02:r3",
+          "text": "purring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продовжте спогад про дитинство.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продолжите воспоминание о детстве.",
+          "uk": "Продовжте спогад про дитинство."
+        },
+        "gappedTargetPhrase": "Our cat would ___ beside me every evening.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-42:i02:r1",
+            "text": "purr"
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i02:r2",
+            "text": "purred"
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i02:r3",
+            "text": "purring"
+          }
+        ],
+        "testedDimension": "Продовжте спогад про дитинство.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Продовжте спогад про дитинство.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма purr.",
+              "uk": "Після would потрібна початкова форма purr."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Продовжте спогад про дитинство.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма purr.",
+              "uk": "Після would потрібна початкова форма purr."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-42:i03:r1",
+          "text": "Our cat would purr beside me every evening."
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i03:r2",
+          "text": "Our cat would purr beside her every evening."
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i03:r3",
+          "text": "Our cat would purr beside me every morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:i03:audio",
+          "transcript": "Our cat would purr beside me every evening."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-42:i03:r1",
+            "targetText": "Our cat would purr beside me every evening.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i03:r2",
+            "targetText": "Our cat would purr beside her every evening.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i03:r3",
+            "targetText": "Our cat would purr beside me every morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our cat would purr beside me every evening.",
+              "uk": "У записі звучить Our cat would purr beside me every evening."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our cat would purr beside me every evening.",
+              "uk": "У записі звучить Our cat would purr beside me every evening."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:word:growl",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — growl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:word:growl:audio"
+      ],
+      "accessibilityLabel": "Картка слова — growl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:word:growl:audio",
+          "transcript": "growl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-42:word:growl:r1",
+            "targetText": "growl",
+            "meaningByLocale": {
+              "ru": "Рычать. Growl — издавать низкий угрожающий звук.",
+              "uk": "Гарчати. Growl — видавати низький загрозливий звук."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "growl",
+          "definitionByLocale": {
+            "ru": "Рычать. Growl — издавать низкий угрожающий звук.",
+            "uk": "Гарчати. Growl — видавати низький загрозливий звук."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше наш собака зазвичай гарчав на інших собак.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше наш собака зазвичай гарчав на інших собак.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our dog would growl at other dogs.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше наша собака обычно рычала на других собак.»",
+          "uk": "Скажіть: «Раніше наш собака зазвичай гарчав на інших собак.»"
+        },
+        "orderedTokens": [
+          "Our",
+          "dog",
+          "would",
+          "growl",
+          "at",
+          "other",
+          "dogs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продовжте спогад про дитинство.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-42:i05:r1",
+          "text": "growl"
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i05:r2",
+          "text": "growled"
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i05:r3",
+          "text": "growling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продовжте спогад про дитинство.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продолжите воспоминание о детстве.",
+          "uk": "Продовжте спогад про дитинство."
+        },
+        "gappedTargetPhrase": "Our dog would ___ at other dogs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-42:i05:r1",
+            "text": "growl"
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i05:r2",
+            "text": "growled"
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i05:r3",
+            "text": "growling"
+          }
+        ],
+        "testedDimension": "Продовжте спогад про дитинство.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-42:i05:r2",
+            "correct": false,
+            "testedDimension": "Продовжте спогад про дитинство.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма growl.",
+              "uk": "Після would потрібна початкова форма growl."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i05:r3",
+            "correct": false,
+            "testedDimension": "Продовжте спогад про дитинство.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма growl.",
+              "uk": "Після would потрібна початкова форма growl."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-42:i06:r1",
+          "text": "Our dog would growl at other dogs."
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i06:r2",
+          "text": "Their dog would growl at other dogs."
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i06:r3",
+          "text": "Our dog would growl at the cat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:i06:audio",
+          "transcript": "Our dog would growl at other dogs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-42:i06:r1",
+            "targetText": "Our dog would growl at other dogs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i06:r2",
+            "targetText": "Their dog would growl at other dogs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i06:r3",
+            "targetText": "Our dog would growl at the cat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our dog would growl at other dogs.",
+              "uk": "У записі звучить Our dog would growl at other dogs."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our dog would growl at other dogs.",
+              "uk": "У записі звучить Our dog would growl at other dogs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:word:hiss",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hiss",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:word:hiss:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hiss",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:word:hiss:audio",
+          "transcript": "hiss"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-42:word:hiss:r1",
+            "targetText": "hiss",
+            "meaningByLocale": {
+              "ru": "Шипеть. Hiss — издавать протяжный звук, похожий на «с-с-с».",
+              "uk": "Шипіти. Hiss — видавати протяжний звук, схожий на «с-с-с»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hiss",
+          "definitionByLocale": {
+            "ru": "Шипеть. Hiss — издавать протяжный звук, похожий на «с-с-с».",
+            "uk": "Шипіти. Hiss — видавати протяжний звук, схожий на «с-с-с»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше кіт зазвичай шипів на нашого собаку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше кіт зазвичай шипів на нашого собаку.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cat would hiss at our dog.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше кот обычно шипел на нашу собаку.»",
+          "uk": "Скажіть: «Раніше кіт зазвичай шипів на нашого собаку.»"
+        },
+        "orderedTokens": [
+          "The",
+          "cat",
+          "would",
+          "hiss",
+          "at",
+          "our",
+          "dog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продовжте спогад про дитинство.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-42:i08:r1",
+          "text": "hiss"
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i08:r2",
+          "text": "hissed"
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i08:r3",
+          "text": "hissing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продовжте спогад про дитинство.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продолжите воспоминание о детстве.",
+          "uk": "Продовжте спогад про дитинство."
+        },
+        "gappedTargetPhrase": "The cat would ___ at our dog.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-42:i08:r1",
+            "text": "hiss"
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i08:r2",
+            "text": "hissed"
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i08:r3",
+            "text": "hissing"
+          }
+        ],
+        "testedDimension": "Продовжте спогад про дитинство.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Продовжте спогад про дитинство.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма hiss.",
+              "uk": "Після would потрібна початкова форма hiss."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Продовжте спогад про дитинство.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма hiss.",
+              "uk": "Після would потрібна початкова форма hiss."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-42:i09:r1",
+          "text": "The cat would hiss at our dog."
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i09:r2",
+          "text": "The cat would hiss at their dog."
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i09:r3",
+          "text": "Our cat would hiss at the dog."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:i09:audio",
+          "transcript": "The cat would hiss at our dog."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-42:i09:r1",
+            "targetText": "The cat would hiss at our dog.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i09:r2",
+            "targetText": "The cat would hiss at their dog.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i09:r3",
+            "targetText": "Our cat would hiss at the dog.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cat would hiss at our dog.",
+              "uk": "У записі звучить The cat would hiss at our dog."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cat would hiss at our dog.",
+              "uk": "У записі звучить The cat would hiss at our dog."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:word:howl",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — howl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:word:howl:audio"
+      ],
+      "accessibilityLabel": "Картка слова — howl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:word:howl:audio",
+          "transcript": "howl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-42:word:howl:r1",
+            "targetText": "howl",
+            "meaningByLocale": {
+              "ru": "Выть. Howl — издавать долгий громкий вой.",
+              "uk": "Вити. Howl — видавати довге гучне виття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "howl",
+          "definitionByLocale": {
+            "ru": "Выть. Howl — издавать долгий громкий вой.",
+            "uk": "Вити. Howl — видавати довге гучне виття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше собака зазвичай вив уночі.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше собака зазвичай вив уночі.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The dog would howl at night.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше собака обычно выла по ночам.»",
+          "uk": "Скажіть: «Раніше собака зазвичай вив уночі.»"
+        },
+        "orderedTokens": [
+          "The",
+          "dog",
+          "would",
+          "howl",
+          "at",
+          "night"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продовжте спогад про дитинство.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-42:i11:r1",
+          "text": "howl"
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i11:r2",
+          "text": "howled"
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i11:r3",
+          "text": "howling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продовжте спогад про дитинство.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продолжите воспоминание о детстве.",
+          "uk": "Продовжте спогад про дитинство."
+        },
+        "gappedTargetPhrase": "The dog would ___ at night.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-42:i11:r1",
+            "text": "howl"
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i11:r2",
+            "text": "howled"
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i11:r3",
+            "text": "howling"
+          }
+        ],
+        "testedDimension": "Продовжте спогад про дитинство.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Продовжте спогад про дитинство.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма howl.",
+              "uk": "Після would потрібна початкова форма howl."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Продовжте спогад про дитинство.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма howl.",
+              "uk": "Після would потрібна початкова форма howl."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-42:i12:r1",
+          "text": "The dog would howl at night."
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i12:r2",
+          "text": "The dog would howl in the morning."
+        },
+        {
+          "responseId": "en:lesson-25:session-42:i12:r3",
+          "text": "Their dog would howl at night."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:i12:audio",
+          "transcript": "The dog would howl at night."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-42:i12:r1",
+            "targetText": "The dog would howl at night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i12:r2",
+            "targetText": "The dog would howl in the morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i12:r3",
+            "targetText": "Their dog would howl at night.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dog would howl at night.",
+              "uk": "У записі звучить The dog would howl at night."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dog would howl at night.",
+              "uk": "У записі звучить The dog would howl at night."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-42:i13:p1",
+            "target": "purr",
+            "meaningByLocale": {
+              "ru": "мурлыкать",
+              "uk": "муркотіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-42:i13:p2",
+            "target": "growl",
+            "meaningByLocale": {
+              "ru": "рычать",
+              "uk": "гарчати"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-42:i13:p3",
+            "target": "hiss",
+            "meaningByLocale": {
+              "ru": "шипеть",
+              "uk": "шипіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-42:i13:p4",
+            "target": "howl",
+            "meaningByLocale": {
+              "ru": "выть",
+              "uk": "вити"
+            }
+          }
+        ],
+        "leftColumn": [
+          "purr",
+          "growl",
+          "hiss",
+          "howl"
+        ],
+        "rightColumn": [
+          "муркотіти",
+          "гарчати",
+          "шипіти",
+          "вити"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колишня звичка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Колишня звичка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:i14:audio",
+          "transcript": "I used to drive to work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I used to drive to work.",
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "drive",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторювалося щовечора в минулому",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Повторювалося щовечора в минулому",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:i15:audio",
+          "transcript": "We would play outside every evening."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We would play outside every evening.",
+        "orderedTokens": [
+          "We",
+          "would",
+          "play",
+          "outside",
+          "every",
+          "evening"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Раніше їхній кіт зазвичай муркотів поруч зі мною».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Раніше їхній кіт зазвичай муркотів поруч зі мною».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:i16:audio",
+          "transcript": "Their cat would purr beside me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Their cat would purr beside me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Раніше наш собака зазвичай вив вечорами».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Раніше наш собака зазвичай вив вечорами».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-42:i17:audio",
+          "transcript": "Our dog would howl in the evening."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Our dog would howl in the evening.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e65085b8bb03fcd69b920cc262ee9b75e2349eec74468a33cfaec81c3ef13e35"
+}

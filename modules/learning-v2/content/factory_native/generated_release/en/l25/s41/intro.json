@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb for past states",
+    "uk": "used to + base verb for past states"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Каким я был в детстве",
+        "uk": "Яким я був у дитинстві"
+      },
+      "bodyByLocale": {
+        "ru": "Fearless — бесстрашный. I used to be fearless as a child — в детстве я был бесстрашным. Used to be описывает прежнее состояние и подразумевает, что теперь всё иначе. После used to ставим начальную форму be, а не was. Это не рассказ о единственном смелом поступке: речь о том, каким я был в тот период.",
+        "uk": "Fearless — безстрашний. I used to be fearless as a child — у дитинстві я був безстрашним. Used to be описує колишній стан і передбачає, що тепер усе інакше. Після used to ставимо початкову форму be, а не was. Це не розповідь про єдиний сміливий учинок: ідеться про те, яким я був у той період."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-41:intro1:r1",
+              "text": "I used to be fearless as a child."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro1:r2",
+              "text": "I use to be fearless as a child."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro1:r3",
+              "text": "I using to be fearless as a child."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-41:intro1:r1",
+              "text": "I used to be fearless as a child."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro1:r2",
+              "text": "I use to be fearless as a child."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro1:r3",
+              "text": "I using to be fearless as a child."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Раньше чувствовал себя иначе",
+        "uk": "Раніше почувався інакше"
+      },
+      "bodyByLocale": {
+        "ru": "Helpless — беспомощный, не способный справиться без помощи. He used to feel helpless in the kitchen — раньше он чувствовал себя беспомощным на кухне. Например, не умел готовить, а теперь научился. Outgoing — общительный, легко знакомящийся с людьми. She used to be outgoing at school — в школе она была общительной. Used to подходит и для чувств, и для черт характера в прошлом: used to feel, used to be.",
+        "uk": "Helpless — безпорадний, той, хто не може впоратися без допомоги. He used to feel helpless in the kitchen — раніше він почувався безпорадним на кухні. Наприклад, не вмів готувати, а тепер навчився. Outgoing — товариський, той, хто легко знайомиться з людьми. She used to be outgoing at school — у школі вона була товариською. Used to підходить і для почуттів, і для рис характеру в минулому: used to feel, used to be."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-41:intro2:r1",
+              "text": "He used to feel helpless in the kitchen."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro2:r2",
+              "text": "He use to feel helpless in the kitchen."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro2:r3",
+              "text": "He using to feel helpless in the kitchen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-41:intro2:r1",
+              "text": "He used to feel helpless in the kitchen."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro2:r2",
+              "text": "He use to feel helpless in the kitchen."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro2:r3",
+              "text": "He using to feel helpless in the kitchen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Без забот, а не без внимания",
+        "uk": "Без турбот, а не без уваги"
+      },
+      "bodyByLocale": {
+        "ru": "Carefree — беззаботный. We used to be carefree during the holidays — раньше на каникулах мы были беззаботными. Carefree не равно знакомому careless: carefree — без забот, careless — невнимательный или неосторожный. Здесь описываем прежнее состояние, поэтому used to be. Привычное would из прошлых занятий подходит для повторяющихся действий, но в таком описании состояния выбираем used to.",
+        "uk": "Carefree — безтурботний. We used to be carefree during the holidays — раніше на канікулах ми були безтурботними. Carefree не дорівнює знайомому careless: carefree — без турбот, careless — неуважний чи необережний. Тут описуємо колишній стан, тому used to be. Звичне would з попередніх занять підходить для повторюваних дій, але в такому описі стану вибираємо used to."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-41:intro3:r1",
+              "text": "We used to be carefree during the holidays."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro3:r2",
+              "text": "We use to be carefree during the holidays."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro3:r3",
+              "text": "We using to be carefree during the holidays."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-41:intro3:r1",
+              "text": "We used to be carefree during the holidays."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro3:r2",
+              "text": "We use to be carefree during the holidays."
+            },
+            {
+              "responseId": "en:lesson-25:session-41:intro3:r3",
+              "text": "We using to be carefree during the holidays."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "727d1378433f40a50a1b32dda9c13725c275387a52824e5aeb0509d1c171f02d"
+}

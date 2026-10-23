@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "past context + would + action verb",
+    "uk": "past context + would + action verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кот из моего детства",
+        "uk": "Кіт із мого дитинства"
+      },
+      "bodyByLocale": {
+        "ru": "Вспоминаем домашних животных, которые жили с нами в детстве. Purr — мурлыкать. Our cat would purr beside me every evening — наш кот каждый вечер мурлыкал рядом со мной. Прошлое уже задано воспоминанием о детстве. Would purr показывает повторявшееся действие, а every evening — как часто оно происходило. После would ставим начальную форму purr.",
+        "uk": "Згадуємо домашніх тварин, які жили з нами в дитинстві. Purr — муркотіти. Our cat would purr beside me every evening — наш кіт щовечора муркотів поруч зі мною. Минуле вже задане спогадом про дитинство. Would purr показує повторювану дію, а every evening — як часто вона відбувалася. Після would ставимо початкову форму purr."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-42:intro1:r1",
+              "text": "Our cat would purr beside me every evening."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro1:r2",
+              "text": "Our cat would purred beside me every evening."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro1:r3",
+              "text": "Our cat would purring beside me every evening."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-42:intro1:r1",
+              "text": "Our cat would purr beside me every evening."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro1:r2",
+              "text": "Our cat would purred beside me every evening."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro1:r3",
+              "text": "Our cat would purring beside me every evening."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "На кого они сердились",
+        "uk": "На кого вони сердилися"
+      },
+      "bodyByLocale": {
+        "ru": "Growl — рычать низким угрожающим голосом. Our dog would growl at other dogs — наша собака обычно рычала на других собак. Hiss — шипеть. The cat would hiss at our dog — кот обычно шипел на нашу собаку. Оба примера продолжают рассказ о животных из детства. At показывает, на кого направлен звук: growl at other dogs, hiss at our dog.",
+        "uk": "Growl — гарчати низьким загрозливим голосом. Our dog would growl at other dogs — наш собака зазвичай гарчав на інших собак. Hiss — шипіти. The cat would hiss at our dog — кіт зазвичай шипів на нашого собаку. Обидва приклади продовжують розповідь про тварин із дитинства. At показує, на кого спрямований звук: growl at other dogs, hiss at our dog."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-42:intro2:r1",
+              "text": "Our dog would growl at other dogs."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro2:r2",
+              "text": "Our dog would growled at other dogs."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro2:r3",
+              "text": "Our dog would growling at other dogs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-42:intro2:r1",
+              "text": "Our dog would growl at other dogs."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro2:r2",
+              "text": "Our dog would growled at other dogs."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro2:r3",
+              "text": "Our dog would growling at other dogs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что повторялось по ночам",
+        "uk": "Що повторювалося вночі"
+      },
+      "bodyByLocale": {
+        "ru": "Howl — выть, издавать долгий громкий вой. The dog would howl at night — собака обычно выла по ночам. Здесь would относится к повторявшемуся действию в уже заданном прошлом. Это не одно событие вчера и не обещание на будущее. Growl — низкое рычание, howl — протяжный вой; оба глагола после would остаются в начальной форме.",
+        "uk": "Howl — вити, видавати довге гучне виття. The dog would howl at night — собака зазвичай вив уночі. Тут would стосується повторюваної дії в уже заданому минулому. Це не одна подія вчора й не обіцянка на майбутнє. Growl — низьке гарчання, howl — протяжне виття; обидва дієслова після would залишаються в початковій формі."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-42:intro3:r1",
+              "text": "The dog would howl at night."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro3:r2",
+              "text": "The dog would howled at night."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro3:r3",
+              "text": "The dog would howling at night."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-42:intro3:r1",
+              "text": "The dog would howl at night."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro3:r2",
+              "text": "The dog would howled at night."
+            },
+            {
+              "responseId": "en:lesson-25:session-42:intro3:r3",
+              "text": "The dog would howling at night."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5f18fdbc3c59bf495b8c5a44576a6c402051af9a1e4db67bded3d2c61ec2eb44"
+}

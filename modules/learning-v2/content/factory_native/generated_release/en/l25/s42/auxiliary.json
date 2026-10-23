@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-42:intro1:r2": {
+          "ru": "После would нужна начальная форма purr.",
+          "uk": "Після would потрібна початкова форма purr."
+        },
+        "en:lesson-25:session-42:intro1:r3": {
+          "ru": "Прошлое передаёт would; окончание к глаголу не добавляем.",
+          "uk": "Минуле передає would; закінчення до дієслова не додаємо."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-42:intro2:r2": {
+          "ru": "После would нужна начальная форма growl.",
+          "uk": "Після would потрібна початкова форма growl."
+        },
+        "en:lesson-25:session-42:intro2:r3": {
+          "ru": "Прошлое передаёт would; окончание к глаголу не добавляем.",
+          "uk": "Минуле передає would; закінчення до дієслова не додаємо."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-42:intro3:r2": {
+          "ru": "После would нужна начальная форма howl.",
+          "uk": "Після would потрібна початкова форма howl."
+        },
+        "en:lesson-25:session-42:intro3:r3": {
+          "ru": "Прошлое передаёт would; окончание к глаголу не добавляем.",
+          "uk": "Минуле передає would; закінчення до дієслова не додаємо."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "faec9e87ef7d9bfe23a2beb905680ca299d449066434a2e69eaad6dd492823d4"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Среди друзей",
+        "uk": "Серед друзів"
+      },
+      "bodyByLocale": {
+        "ru": "Among — среди, внутри группы. She used to sit among her friends — раньше она обычно сидела среди своих друзей. Она была в группе друзей, а не обязательно ровно между двумя людьми. Used to sit описывает повторявшееся положение в прошлом. После used to нужен sit, не sat.",
+        "uk": "Among — серед, усередині групи. She used to sit among her friends — раніше вона зазвичай сиділа серед своїх друзів. Вона була в групі друзів, а не обов’язково рівно між двома людьми. Used to sit описує повторюване положення в минулому. Після used to потрібне sit, не sat."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-43:intro1:r1",
+              "text": "She used to sit among her friends."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro1:r2",
+              "text": "She use to sit among her friends."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro1:r3",
+              "text": "She using to sit among her friends."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-43:intro1:r1",
+              "text": "She used to sit among her friends."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro1:r2",
+              "text": "She use to sit among her friends."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro1:r3",
+              "text": "She using to sit among her friends."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Напротив и дальше",
+        "uk": "Навпроти й далі"
+      },
+      "bodyByLocale": {
+        "ru": "Opposite — напротив. I used to live opposite the school — раньше я жил напротив школы. Например, школа была через дорогу от моего дома. Beyond — дальше указанного места, за ним. We used to walk beyond the bridge — раньше мы обычно ходили дальше моста. Мы не останавливались у моста, а шли дальше. Used to live описывает прежнее место жительства, used to walk — прежнюю привычку.",
+        "uk": "Opposite — навпроти. I used to live opposite the school — раніше я жив навпроти школи. Наприклад, школа була через дорогу від мого будинку. Beyond — далі за вказане місце, за ним. We used to walk beyond the bridge — раніше ми зазвичай ходили далі за міст. Ми не зупинялися біля мосту, а йшли далі. Used to live описує колишнє місце проживання, used to walk — колишню звичку."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-43:intro2:r1",
+              "text": "I used to live opposite the school."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro2:r2",
+              "text": "I use to live opposite the school."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro2:r3",
+              "text": "I using to live opposite the school."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-43:intro2:r1",
+              "text": "I used to live opposite the school."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro2:r2",
+              "text": "I use to live opposite the school."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro2:r3",
+              "text": "I using to live opposite the school."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Внутри границ",
+        "uk": "Усередині меж"
+      },
+      "bodyByLocale": {
+        "ru": "Within — в пределах, внутри границ. We used to stay within the village — раньше мы обычно оставались в пределах деревни. Здесь мы не выходили за её границы. Beyond указывает на место дальше границы, within — на место внутри неё. В этом примере stay не обязательно значит «жить»: можно оставаться в деревне во время прогулок и не уходить далеко.",
+        "uk": "Within — у межах, усередині меж. We used to stay within the village — раніше ми зазвичай залишалися в межах села. Тут ми не виходили за його межі. Beyond указує на місце далі за межу, within — на місце всередині неї. У цьому прикладі stay не обов’язково означає «жити»: можна залишатися в селі під час прогулянок і не йти далеко."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-43:intro3:r1",
+              "text": "We used to stay within the village."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro3:r2",
+              "text": "We use to stay within the village."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro3:r3",
+              "text": "We using to stay within the village."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-43:intro3:r1",
+              "text": "We used to stay within the village."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro3:r2",
+              "text": "We use to stay within the village."
+            },
+            {
+              "responseId": "en:lesson-25:session-43:intro3:r3",
+              "text": "We using to stay within the village."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "837cff6a7351a86efb704c2533750b31f822ca5692f6efd25db1bfdcb80dc5f7"
+}

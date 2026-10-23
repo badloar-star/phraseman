@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + for duration; since starting point",
+    "uk": "present perfect + for duration; since starting point"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Год в другой стране",
+        "uk": "Рік в іншій країні"
+      },
+      "bodyByLocale": {
+        "ru": "Canada — Канада, India — Индия. Названия пишем с большой буквы. I have lived in Canada for a year — я живу в Канаде уже год и продолжаю жить там сейчас. Перед Canada здесь нет the. Год прошёл, а зимняя куртка всё ещё полезна.",
+        "uk": "Canada — Канада, India — Індія. Назви пишемо з великої літери. I have lived in Canada for a year — я живу в Канаді вже рік і продовжую жити там зараз. Перед Canada тут немає the. Рік минув, а зимова куртка все ще корисна."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-05:intro1:r1",
+              "text": "I have lived in Canada for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro1:r2",
+              "text": "I have lived in Canada since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro1:r3",
+              "text": "I has lived in Canada for a year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-05:intro1:r1",
+              "text": "I have lived in Canada for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro1:r2",
+              "text": "I have lived in Canada since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro1:r3",
+              "text": "I has lived in Canada for a year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Работа и поездка",
+        "uk": "Робота й подорож"
+      },
+      "bodyByLocale": {
+        "ru": "She has worked in India since May — она работает в Индии с мая. Since May отвечает, когда всё началось. Egypt — Египет. We have stayed in Egypt for three weeks — мы находимся в Египте уже три недели. Stay здесь означает временно находиться, например во время поездки; for three weeks показывает, сколько времени уже прошло.",
+        "uk": "She has worked in India since May — вона працює в Індії з травня. Since May відповідає, коли все почалося. Egypt — Єгипет. We have stayed in Egypt for three weeks — ми перебуваємо в Єгипті вже три тижні. Stay тут означає тимчасово перебувати, наприклад під час подорожі; for three weeks показує, скільки часу вже минуло."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-05:intro2:r1",
+              "text": "She has worked in India since May."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro2:r2",
+              "text": "She has worked in India for May."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro2:r3",
+              "text": "She have worked in India since May."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-05:intro2:r1",
+              "text": "She has worked in India since May."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro2:r2",
+              "text": "She has worked in India for May."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro2:r3",
+              "text": "She have worked in India since May."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "С какого года",
+        "uk": "З якого року"
+      },
+      "bodyByLocale": {
+        "ru": "Australia — Австралия. He has lived in Australia since 2020 — он живёт в Австралии с 2020 года. Название страны после in, а начало срока после since: in Australia since 2020. Если называем длительность, используем for: for six years.",
+        "uk": "Australia — Австралія. He has lived in Australia since 2020 — він живе в Австралії з 2020 року. Назва країни після in, а початок строку після since: in Australia since 2020. Якщо називаємо тривалість, використовуємо for: for six years."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-05:intro3:r1",
+              "text": "He has lived in Australia since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro3:r2",
+              "text": "He has lived in Australia for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro3:r3",
+              "text": "He have lived in Australia since 2020."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-05:intro3:r1",
+              "text": "He has lived in Australia since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro3:r2",
+              "text": "He has lived in Australia for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-05:intro3:r3",
+              "text": "He have lived in Australia since 2020."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "369e50973888c514f55427613d763035221b3c9b4a316905eaf5239e9b278778"
+}

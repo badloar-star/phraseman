@@ -1,0 +1,2345 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-06",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-06:word:Spain",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — Spain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:word:Spain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — Spain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:word:Spain:audio",
+            "transcript": "Spain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:word:Spain:r1",
+              "targetText": "Spain",
+              "meaningByLocale": {
+                "ru": "Испания.",
+                "uk": "Іспанія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Spain",
+            "definitionByLocale": {
+              "ru": "Испания.",
+              "uk": "Іспанія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я работаю в Испании уже два года.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я работаю в Испании уже два года.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have worked in Spain for two years.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я работаю в Испании уже два года.»",
+            "uk": "Скажіть: «Я працюю в Іспанії вже два роки.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "worked",
+            "in",
+            "Spain",
+            "for",
+            "two",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком или началом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i02:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i02:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i02:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "I have worked in Spain ___ two years.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-06:i02:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i02:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i02:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком или началом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i03:r1",
+            "text": "I have worked in Spain for two years."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i03:r2",
+            "text": "We have worked in Spain for two years."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i03:r3",
+            "text": "I have worked in Spain for three years."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i03:audio",
+            "transcript": "I have worked in Spain for two years."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:i03:r1",
+              "targetText": "I have worked in Spain for two years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i03:r2",
+              "targetText": "We have worked in Spain for two years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i03:r3",
+              "targetText": "I have worked in Spain for three years.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have worked in Spain for two years.",
+                "uk": "У записі звучить I have worked in Spain for two years."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have worked in Spain for two years.",
+                "uk": "У записі звучить I have worked in Spain for two years."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:word:Italy",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — Italy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:word:Italy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — Italy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:word:Italy:audio",
+            "transcript": "Italy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:word:Italy:r1",
+              "targetText": "Italy",
+              "meaningByLocale": {
+                "ru": "Италия.",
+                "uk": "Італія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Italy",
+            "definitionByLocale": {
+              "ru": "Италия.",
+              "uk": "Італія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она живёт в Италии с июня.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она живёт в Италии с июня.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has lived in Italy since June.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она живёт в Италии с июня.»",
+            "uk": "Скажіть: «Вона живе в Італії з червня.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "lived",
+            "in",
+            "Italy",
+            "since",
+            "June"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком или началом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i05:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i05:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i05:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "She has lived in Italy ___ June.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-06:i05:r1",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i05:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i05:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком или началом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i05:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i05:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i06:r1",
+            "text": "She has lived in Italy since June."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i06:r2",
+            "text": "He has lived in Italy since June."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i06:r3",
+            "text": "She has lived in Italy since May."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i06:audio",
+            "transcript": "She has lived in Italy since June."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:i06:r1",
+              "targetText": "She has lived in Italy since June.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i06:r2",
+              "targetText": "He has lived in Italy since June.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i06:r3",
+              "targetText": "She has lived in Italy since May.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has lived in Italy since June.",
+                "uk": "У записі звучить She has lived in Italy since June."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has lived in Italy since June.",
+                "uk": "У записі звучить She has lived in Italy since June."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:word:France",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — France",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:word:France:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — France",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:word:France:audio",
+            "transcript": "France"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:word:France:r1",
+              "targetText": "France",
+              "meaningByLocale": {
+                "ru": "Франция.",
+                "uk": "Франція."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "France",
+            "definitionByLocale": {
+              "ru": "Франция.",
+              "uk": "Франція."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы учимся во Франции уже год.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы учимся во Франции уже год.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have studied in France for a year.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы учимся во Франции уже год.»",
+            "uk": "Скажіть: «Ми навчаємося у Франції вже рік.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "studied",
+            "in",
+            "France",
+            "for",
+            "a",
+            "year"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком или началом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i08:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i08:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i08:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "We have studied in France ___ a year.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-06:i08:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i08:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i08:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком или началом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i09:r1",
+            "text": "We have studied in France for a year."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i09:r2",
+            "text": "They have studied in France for a year."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i09:r3",
+            "text": "We have studied in France for two years."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i09:audio",
+            "transcript": "We have studied in France for a year."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:i09:r1",
+              "targetText": "We have studied in France for a year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i09:r2",
+              "targetText": "They have studied in France for a year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i09:r3",
+              "targetText": "We have studied in France for two years.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied in France for a year.",
+                "uk": "У записі звучить We have studied in France for a year."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied in France for a year.",
+                "uk": "У записі звучить We have studied in France for a year."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:word:Germany",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — Germany",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:word:Germany:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — Germany",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:word:Germany:audio",
+            "transcript": "Germany"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:word:Germany:r1",
+              "targetText": "Germany",
+              "meaningByLocale": {
+                "ru": "Германия.",
+                "uk": "Німеччина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Germany",
+            "definitionByLocale": {
+              "ru": "Германия.",
+              "uk": "Німеччина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он работает в Германии с 2020 года.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он работает в Германии с 2020 года.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has worked in Germany since 2020.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он работает в Германии с 2020 года.»",
+            "uk": "Скажіть: «Він працює в Німеччині з 2020 року.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "worked",
+            "in",
+            "Germany",
+            "since",
+            "2020"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком или началом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i11:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i11:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i11:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "He has worked in Germany ___ 2020.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-06:i11:r1",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i11:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i11:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком или началом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i12:r1",
+            "text": "He has worked in Germany since 2020."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i12:r2",
+            "text": "She has worked in Germany since 2020."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i12:r3",
+            "text": "He has worked in Germany since 2021."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i12:audio",
+            "transcript": "He has worked in Germany since 2020."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:i12:r1",
+              "targetText": "He has worked in Germany since 2020.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i12:r2",
+              "targetText": "She has worked in Germany since 2020.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i12:r3",
+              "targetText": "He has worked in Germany since 2021.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has worked in Germany since 2020.",
+                "uk": "У записі звучить He has worked in Germany since 2020."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has worked in Germany since 2020.",
+                "uk": "У записі звучить He has worked in Germany since 2020."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-06:i13:p1",
+              "target": "Spain",
+              "meaningByLocale": {
+                "ru": "Испания",
+                "uk": "Іспанія"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-06:i13:p2",
+              "target": "Italy",
+              "meaningByLocale": {
+                "ru": "Италия",
+                "uk": "Італія"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-06:i13:p3",
+              "target": "France",
+              "meaningByLocale": {
+                "ru": "Франция",
+                "uk": "Франція"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-06:i13:p4",
+              "target": "Germany",
+              "meaningByLocale": {
+                "ru": "Германия",
+                "uk": "Німеччина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "Spain",
+            "Italy",
+            "France",
+            "Germany"
+          ],
+          "rightColumn": [
+            "Испания",
+            "Италия",
+            "Франция",
+            "Германия"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Срок: два года",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Срок: два года",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i14:audio",
+            "transcript": "I have lived here for two years."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have lived here for two years.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "lived",
+            "here",
+            "for",
+            "two",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начало: июнь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Начало: июнь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i15:audio",
+            "transcript": "She has worked here since June."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has worked here since June.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "worked",
+            "here",
+            "since",
+            "June"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я живу в Германии уже год».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я живу в Германии уже год».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i16:audio",
+            "transcript": "I have lived in Germany for a year."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have lived in Germany for a year.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы работаем в Италии с мая».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы работаем в Италии с мая».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i17:audio",
+            "transcript": "We have worked in Italy since May."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have worked in Italy since May.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-06:word:Spain",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — Spain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:word:Spain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — Spain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:word:Spain:audio",
+            "transcript": "Spain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:word:Spain:r1",
+              "targetText": "Spain",
+              "meaningByLocale": {
+                "ru": "Испания.",
+                "uk": "Іспанія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Spain",
+            "definitionByLocale": {
+              "ru": "Испания.",
+              "uk": "Іспанія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я працюю в Іспанії вже два роки.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я працюю в Іспанії вже два роки.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have worked in Spain for two years.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я работаю в Испании уже два года.»",
+            "uk": "Скажіть: «Я працюю в Іспанії вже два роки.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "worked",
+            "in",
+            "Spain",
+            "for",
+            "two",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i02:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i02:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i02:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "I have worked in Spain ___ two years.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-06:i02:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i02:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i02:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i03:r1",
+            "text": "I have worked in Spain for two years."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i03:r2",
+            "text": "We have worked in Spain for two years."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i03:r3",
+            "text": "I have worked in Spain for three years."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i03:audio",
+            "transcript": "I have worked in Spain for two years."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:i03:r1",
+              "targetText": "I have worked in Spain for two years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i03:r2",
+              "targetText": "We have worked in Spain for two years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i03:r3",
+              "targetText": "I have worked in Spain for three years.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have worked in Spain for two years.",
+                "uk": "У записі звучить I have worked in Spain for two years."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have worked in Spain for two years.",
+                "uk": "У записі звучить I have worked in Spain for two years."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:word:Italy",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — Italy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:word:Italy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — Italy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:word:Italy:audio",
+            "transcript": "Italy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:word:Italy:r1",
+              "targetText": "Italy",
+              "meaningByLocale": {
+                "ru": "Италия.",
+                "uk": "Італія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Italy",
+            "definitionByLocale": {
+              "ru": "Италия.",
+              "uk": "Італія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона живе в Італії з червня.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона живе в Італії з червня.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has lived in Italy since June.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она живёт в Италии с июня.»",
+            "uk": "Скажіть: «Вона живе в Італії з червня.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "lived",
+            "in",
+            "Italy",
+            "since",
+            "June"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i05:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i05:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i05:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "She has lived in Italy ___ June.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-06:i05:r1",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i05:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i05:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i05:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i05:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i06:r1",
+            "text": "She has lived in Italy since June."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i06:r2",
+            "text": "He has lived in Italy since June."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i06:r3",
+            "text": "She has lived in Italy since May."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i06:audio",
+            "transcript": "She has lived in Italy since June."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:i06:r1",
+              "targetText": "She has lived in Italy since June.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i06:r2",
+              "targetText": "He has lived in Italy since June.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i06:r3",
+              "targetText": "She has lived in Italy since May.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has lived in Italy since June.",
+                "uk": "У записі звучить She has lived in Italy since June."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has lived in Italy since June.",
+                "uk": "У записі звучить She has lived in Italy since June."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:word:France",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — France",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:word:France:audio"
+        ],
+        "accessibilityLabel": "Картка слова — France",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:word:France:audio",
+            "transcript": "France"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:word:France:r1",
+              "targetText": "France",
+              "meaningByLocale": {
+                "ru": "Франция.",
+                "uk": "Франція."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "France",
+            "definitionByLocale": {
+              "ru": "Франция.",
+              "uk": "Франція."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми навчаємося у Франції вже рік.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми навчаємося у Франції вже рік.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have studied in France for a year.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы учимся во Франции уже год.»",
+            "uk": "Скажіть: «Ми навчаємося у Франції вже рік.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "studied",
+            "in",
+            "France",
+            "for",
+            "a",
+            "year"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i08:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i08:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i08:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "We have studied in France ___ a year.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-06:i08:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i08:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i08:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i09:r1",
+            "text": "We have studied in France for a year."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i09:r2",
+            "text": "They have studied in France for a year."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i09:r3",
+            "text": "We have studied in France for two years."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i09:audio",
+            "transcript": "We have studied in France for a year."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:i09:r1",
+              "targetText": "We have studied in France for a year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i09:r2",
+              "targetText": "They have studied in France for a year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i09:r3",
+              "targetText": "We have studied in France for two years.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied in France for a year.",
+                "uk": "У записі звучить We have studied in France for a year."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied in France for a year.",
+                "uk": "У записі звучить We have studied in France for a year."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:word:Germany",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — Germany",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:word:Germany:audio"
+        ],
+        "accessibilityLabel": "Картка слова — Germany",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:word:Germany:audio",
+            "transcript": "Germany"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:word:Germany:r1",
+              "targetText": "Germany",
+              "meaningByLocale": {
+                "ru": "Германия.",
+                "uk": "Німеччина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Germany",
+            "definitionByLocale": {
+              "ru": "Германия.",
+              "uk": "Німеччина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він працює в Німеччині з 2020 року.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він працює в Німеччині з 2020 року.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has worked in Germany since 2020.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он работает в Германии с 2020 года.»",
+            "uk": "Скажіть: «Він працює в Німеччині з 2020 року.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "worked",
+            "in",
+            "Germany",
+            "since",
+            "2020"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i11:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i11:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i11:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "He has worked in Germany ___ 2020.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-06:i11:r1",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i11:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i11:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-06:i12:r1",
+            "text": "He has worked in Germany since 2020."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i12:r2",
+            "text": "She has worked in Germany since 2020."
+          },
+          {
+            "responseId": "en:lesson-24:session-06:i12:r3",
+            "text": "He has worked in Germany since 2021."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i12:audio",
+            "transcript": "He has worked in Germany since 2020."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-06:i12:r1",
+              "targetText": "He has worked in Germany since 2020.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i12:r2",
+              "targetText": "She has worked in Germany since 2020.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i12:r3",
+              "targetText": "He has worked in Germany since 2021.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-06:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has worked in Germany since 2020.",
+                "uk": "У записі звучить He has worked in Germany since 2020."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-06:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has worked in Germany since 2020.",
+                "uk": "У записі звучить He has worked in Germany since 2020."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-06:i13:p1",
+              "target": "Spain",
+              "meaningByLocale": {
+                "ru": "Испания",
+                "uk": "Іспанія"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-06:i13:p2",
+              "target": "Italy",
+              "meaningByLocale": {
+                "ru": "Италия",
+                "uk": "Італія"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-06:i13:p3",
+              "target": "France",
+              "meaningByLocale": {
+                "ru": "Франция",
+                "uk": "Франція"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-06:i13:p4",
+              "target": "Germany",
+              "meaningByLocale": {
+                "ru": "Германия",
+                "uk": "Німеччина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "Spain",
+            "Italy",
+            "France",
+            "Germany"
+          ],
+          "rightColumn": [
+            "Іспанія",
+            "Італія",
+            "Франція",
+            "Німеччина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тривалість: два роки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Тривалість: два роки",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i14:audio",
+            "transcript": "I have lived here for two years."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have lived here for two years.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "lived",
+            "here",
+            "for",
+            "two",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Початок: червень",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Початок: червень",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i15:audio",
+            "transcript": "She has worked here since June."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has worked here since June.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "worked",
+            "here",
+            "since",
+            "June"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я живу в Німеччині вже рік».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я живу в Німеччині вже рік».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i16:audio",
+            "transcript": "I have lived in Germany for a year."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have lived in Germany for a year.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-06:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми працюємо в Італії з травня».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми працюємо в Італії з травня».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-06:i17:audio",
+            "transcript": "We have worked in Italy since May."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have worked in Italy since May.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-06:word:Spain",
+      "correctText": "Spain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i01",
+      "correctText": "I have worked in Spain for two years.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i02",
+      "correctText": "for",
+      "correctResponseId": "en:lesson-24:session-06:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i03",
+      "correctText": "I have worked in Spain for two years.",
+      "correctResponseId": "en:lesson-24:session-06:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:word:Italy",
+      "correctText": "Italy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i04",
+      "correctText": "She has lived in Italy since June.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i05",
+      "correctText": "since",
+      "correctResponseId": "en:lesson-24:session-06:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i06",
+      "correctText": "She has lived in Italy since June.",
+      "correctResponseId": "en:lesson-24:session-06:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:word:France",
+      "correctText": "France",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i07",
+      "correctText": "We have studied in France for a year.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i08",
+      "correctText": "for",
+      "correctResponseId": "en:lesson-24:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i09",
+      "correctText": "We have studied in France for a year.",
+      "correctResponseId": "en:lesson-24:session-06:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:word:Germany",
+      "correctText": "Germany",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i10",
+      "correctText": "He has worked in Germany since 2020.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i11",
+      "correctText": "since",
+      "correctResponseId": "en:lesson-24:session-06:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i12",
+      "correctText": "He has worked in Germany since 2020.",
+      "correctResponseId": "en:lesson-24:session-06:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i14",
+      "correctText": "I have lived here for two years.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i15",
+      "correctText": "She has worked here since June.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i16",
+      "correctText": "I have lived in Germany for a year.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-06:i17",
+      "correctText": "We have worked in Italy since May.",
+      "correctResponseId": null
+    }
+  ]
+}

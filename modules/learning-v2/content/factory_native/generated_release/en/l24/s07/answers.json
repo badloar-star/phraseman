@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-07:word:England",
+    "correctText": "England",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i01",
+    "correctText": "I have lived in England for five years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i02",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i03",
+    "correctText": "I have lived in England for five years.",
+    "correctResponseId": "en:lesson-24:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:word:Scotland",
+    "correctText": "Scotland",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i04",
+    "correctText": "She has worked in Scotland since June.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i05",
+    "correctText": "since",
+    "correctResponseId": "en:lesson-24:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i06",
+    "correctText": "She has worked in Scotland since June.",
+    "correctResponseId": "en:lesson-24:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:word:Wales",
+    "correctText": "Wales",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i07",
+    "correctText": "We have lived in Wales for a year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i08",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i09",
+    "correctText": "We have lived in Wales for a year.",
+    "correctResponseId": "en:lesson-24:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:word:Ireland",
+    "correctText": "Ireland",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i10",
+    "correctText": "He has studied in Ireland since 2020.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i11",
+    "correctText": "since",
+    "correctResponseId": "en:lesson-24:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i12",
+    "correctText": "He has studied in Ireland since 2020.",
+    "correctResponseId": "en:lesson-24:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i13",
+    "correctText": "en:lesson-24:session-07:i13:p1=England\nen:lesson-24:session-07:i13:p2=Scotland\nen:lesson-24:session-07:i13:p3=Wales\nen:lesson-24:session-07:i13:p4=Ireland",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i14",
+    "correctText": "I have lived here for two years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i15",
+    "correctText": "She has worked here since June.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i16",
+    "correctText": "I have lived in Ireland for a year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-07:i17",
+    "correctText": "We have worked in England since May.",
+    "correctResponseId": null
+  }
+]

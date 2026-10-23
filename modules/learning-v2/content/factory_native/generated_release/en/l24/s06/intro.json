@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + for duration; since starting point",
+    "uk": "present perfect + for duration; since starting point"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Страна и язык",
+        "uk": "Країна й мова"
+      },
+      "bodyByLocale": {
+        "ru": "Spain — Испания. Spanish вы уже знаете: это испанский язык или «испанский». I have worked in Spain for two years — я работаю в Испании уже два года. Страна — Spain, язык — Spanish: название языка не подойдёт вместо страны после in. Кофе вы уже умеете заказывать, осталось привыкнуть к новому расписанию.",
+        "uk": "Spain — Іспанія. Spanish ви вже знаєте: це іспанська мова або «іспанський». I have worked in Spain for two years — я працюю в Іспанії вже два роки. Країна — Spain, мова — Spanish: назва мови не підійде замість країни після in. Каву ви вже вмієте замовляти, залишилося звикнути до нового розкладу."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-06:intro1:r1",
+              "text": "I have worked in Spain for two years."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro1:r2",
+              "text": "I have worked in Spain since two years."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro1:r3",
+              "text": "I has worked in Spain for two years."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-06:intro1:r1",
+              "text": "I have worked in Spain for two years."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro1:r2",
+              "text": "I have worked in Spain since two years."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro1:r3",
+              "text": "I has worked in Spain for two years."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где вы учитесь",
+        "uk": "Де ви навчаєтеся"
+      },
+      "bodyByLocale": {
+        "ru": "Italy — Италия, France — Франция. She has lived in Italy since June — она живёт в Италии с июня. We have studied in France for a year — мы учимся во Франции уже год. Здесь study in France означает учиться во Франции, а study French — изучать французский.",
+        "uk": "Italy — Італія, France — Франція. She has lived in Italy since June — вона живе в Італії з червня. We have studied in France for a year — ми навчаємося у Франції вже рік. Тут study in France означає навчатися у Франції, а study French — вивчати французьку."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-06:intro2:r1",
+              "text": "We have studied in France for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro2:r2",
+              "text": "We have studied in France since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro2:r3",
+              "text": "We has studied in France for a year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-06:intro2:r1",
+              "text": "We have studied in France for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro2:r2",
+              "text": "We have studied in France since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro2:r3",
+              "text": "We has studied in France for a year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Работа за границей",
+        "uk": "Робота за кордоном"
+      },
+      "bodyByLocale": {
+        "ru": "Germany — Германия, German — немецкий язык. He has worked in Germany since 2020 — он работает в Германии с 2020 года. Во всех четырёх названиях стран этого занятия нет the: in Spain, in Italy, in France, in Germany. For показывает длительность, since — начало.",
+        "uk": "Germany — Німеччина, German — німецька мова. He has worked in Germany since 2020 — він працює в Німеччині з 2020 року. У всіх чотирьох назвах країн цього заняття немає the: in Spain, in Italy, in France, in Germany. For показує тривалість, since — початок."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-06:intro3:r1",
+              "text": "He has worked in Germany since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro3:r2",
+              "text": "He has worked in Germany for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro3:r3",
+              "text": "He have worked in Germany since 2020."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-06:intro3:r1",
+              "text": "He has worked in Germany since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro3:r2",
+              "text": "He has worked in Germany for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-06:intro3:r3",
+              "text": "He have worked in Germany since 2020."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "00d91f16f3b797c8fb321aa715d3f7b4b1cf8df419d7f85afaf716cefaa6b778"
+}

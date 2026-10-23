@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + for duration; since starting point",
+    "uk": "present perfect + for duration; since starting point"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где вы живёте",
+        "uk": "Де ви живете"
+      },
+      "bodyByLocale": {
+        "ru": "England — Англия, Scotland — Шотландия. I have lived in England for five years — я живу в Англии уже пять лет. Английский язык — English, Англия — England. Назвать язык вместо места жительства не получится, даже если вы говорите на нём весь день.",
+        "uk": "England — Англія, Scotland — Шотландія. I have lived in England for five years — я живу в Англії вже п’ять років. Англійська мова — English, Англія — England. Назвати мову замість місця проживання не вийде, навіть якщо ви говорите нею весь день."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-07:intro1:r1",
+              "text": "I have lived in England for five years."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro1:r2",
+              "text": "I have lived in England since five years."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro1:r3",
+              "text": "I has lived in England for five years."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-07:intro1:r1",
+              "text": "I have lived in England for five years."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro1:r2",
+              "text": "I have lived in England since five years."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro1:r3",
+              "text": "I has lived in England for five years."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сколько времени прошло",
+        "uk": "Скільки часу минуло"
+      },
+      "bodyByLocale": {
+        "ru": "She has worked in Scotland since June — она работает в Шотландии с июня. Wales — Уэльс. We have lived in Wales for a year — мы живём в Уэльсе уже год. В этих фразах работа и жизнь в новом месте продолжаются. For a year — срок в год; since June — начало в июне.",
+        "uk": "She has worked in Scotland since June — вона працює в Шотландії з червня. Wales — Уельс. We have lived in Wales for a year — ми живемо в Уельсі вже рік. У цих фразах робота й життя в новому місці тривають. For a year — строк у рік; since June — початок у червні."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-07:intro2:r1",
+              "text": "We have lived in Wales for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro2:r2",
+              "text": "We have lived in Wales since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro2:r3",
+              "text": "We has lived in Wales for a year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-07:intro2:r1",
+              "text": "We have lived in Wales for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro2:r2",
+              "text": "We have lived in Wales since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro2:r3",
+              "text": "We has lived in Wales for a year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Учёба в Ирландии",
+        "uk": "Навчання в Ірландії"
+      },
+      "bodyByLocale": {
+        "ru": "Ireland — Ирландия. He has studied in Ireland since 2020 — он учится в Ирландии с 2020 года. Перед этими названиями используем in без the: in England, in Scotland, in Wales, in Ireland. В Wales конечная s — часть названия, а не признак множественного числа.",
+        "uk": "Ireland — Ірландія. He has studied in Ireland since 2020 — він навчається в Ірландії з 2020 року. Перед цими назвами використовуємо in без the: in England, in Scotland, in Wales, in Ireland. У Wales кінцева s — частина назви, а не ознака множини."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-07:intro3:r1",
+              "text": "He has studied in Ireland since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro3:r2",
+              "text": "He has studied in Ireland for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro3:r3",
+              "text": "He have studied in Ireland since 2020."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-07:intro3:r1",
+              "text": "He has studied in Ireland since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro3:r2",
+              "text": "He has studied in Ireland for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-07:intro3:r3",
+              "text": "He have studied in Ireland since 2020."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f5a65015aa43f0eb6e899b10ac91cdfdd953892099e20898d337c9275d34e545"
+}

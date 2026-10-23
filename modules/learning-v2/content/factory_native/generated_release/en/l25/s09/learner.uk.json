@@ -4,232 +4,8 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-25:session-09:word:wildlife",
-      "ordinal": 4,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — wildlife",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-09:word:wildlife:audio"
-      ],
-      "accessibilityLabel": "Картка слова — wildlife",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-09:word:wildlife:audio",
-          "transcript": "wildlife"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-09:word:wildlife:r1",
-            "targetText": "wildlife",
-            "meaningByLocale": {
-              "ru": "дикие животные в природе.",
-              "uk": "дикі тварини в природі."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "wildlife",
-          "definitionByLocale": {
-            "ru": "дикие животные в природе.",
-            "uk": "дикі тварини в природі."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-09:i01",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У ті часи ми часто спостерігали за дикими тваринами.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У ті часи ми часто спостерігали за дикими тваринами.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "In those days we would watch wildlife.",
-        "localizedMeaning": {
-          "ru": "Скажите: «В те времена мы часто наблюдали за дикими животными.»",
-          "uk": "Скажіть: «У ті часи ми часто спостерігали за дикими тваринами.»"
-        },
-        "orderedTokens": [
-          "In",
-          "those",
-          "days",
-          "we",
-          "would",
-          "watch",
-          "wildlife"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-09:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-09:i02:r1",
-          "text": "would"
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i02:r2",
-          "text": "will"
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i02:r3",
-          "text": "did"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "In those days we ___ watch wildlife.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-09:i02:r1",
-            "text": "would"
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i02:r2",
-            "text": "will"
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i02:r3",
-            "text": "did"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-09:i02:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "В этом воспоминании повторявшееся действие передаём через would watch.",
-              "uk": "У цьому спогаді дію, що повторювалася, передаємо через would watch."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i02:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "В этом воспоминании повторявшееся действие передаём через would watch.",
-              "uk": "У цьому спогаді дію, що повторювалася, передаємо через would watch."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-09:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-09:i03:r1",
-          "text": "In those days we would watch wildlife."
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i03:r2",
-          "text": "In those days they would watch wildlife."
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i03:r3",
-          "text": "In those days we would photograph wildlife."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-09:i03:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-09:i03:audio",
-          "transcript": "In those days we would watch wildlife."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-09:i03:r1",
-            "targetText": "In those days we would watch wildlife.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i03:r2",
-            "targetText": "In those days they would watch wildlife.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i03:r3",
-            "targetText": "In those days we would photograph wildlife.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-09:i03:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит In those days we would watch wildlife.",
-              "uk": "У записі звучить In those days we would watch wildlife."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i03:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит In those days we would watch wildlife.",
-              "uk": "У записі звучить In those days we would watch wildlife."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-09:word:scenery",
-      "ordinal": 8,
+      "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -252,8 +28,8 @@
             "responseId": "en:lesson-25:session-09:word:scenery:r1",
             "targetText": "scenery",
             "meaningByLocale": {
-              "ru": "пейзаж, виды природы.",
-              "uk": "краєвид, види природи."
+              "ru": "пейзаж, виды природы",
+              "uk": "краєвид, види природи"
             }
           }
         ],
@@ -263,30 +39,218 @@
         "wordCard": {
           "word": "scenery",
           "definitionByLocale": {
-            "ru": "пейзаж, виды природы.",
-            "uk": "краєвид, види природи."
+            "ru": "пейзаж, виды природы",
+            "uk": "краєвид, види природи"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-09:i04",
-      "ordinal": 9,
+      "interactionId": "en:lesson-25:session-09:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-09:i01:r1",
+          "text": "On those trips we would stop to admire the scenery."
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i01:r2",
+          "text": "On those trips we would stop to photograph the scenery."
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i01:r3",
+          "text": "On those trips they would stop to admire the scenery."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-09:i01:audio",
+          "transcript": "On those trips we would stop to admire the scenery."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-09:i01:r1",
+            "targetText": "On those trips we would stop to admire the scenery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i01:r2",
+            "targetText": "On those trips we would stop to photograph the scenery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i01:r3",
+            "targetText": "On those trips they would stop to admire the scenery.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-09:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит On those trips we would stop to admire the scenery.",
+              "uk": "У записі звучить On those trips we would stop to admire the scenery."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит On those trips we would stop to admire the scenery.",
+              "uk": "У записі звучить On those trips we would stop to admire the scenery."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-09:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ідеться про повторювану прогулянку в дитинстві. Доповніть форму після would.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-09:i02:r1",
+          "text": "walk"
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i02:r2",
+          "text": "walked"
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i02:r3",
+          "text": "to walk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ідеться про повторювану прогулянку в дитинстві. Доповніть форму після would.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о повторявшейся прогулке в детстве. Дополните форму после would.",
+          "uk": "Ідеться про повторювану прогулянку в дитинстві. Доповніть форму після would."
+        },
+        "gappedTargetPhrase": "As children we would ___ by the river.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-09:i02:r1",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i02:r2",
+            "text": "walked"
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i02:r3",
+            "text": "to walk"
+          }
+        ],
+        "testedDimension": "Ідеться про повторювану прогулянку в дитинстві. Доповніть форму після would.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Ідеться про повторювану прогулянку в дитинстві. Доповніть форму після would.",
+            "feedbackByLocale": {
+              "ru": "Would требует базовую форму walk.",
+              "uk": "Would потребує базової форми walk."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Ідеться про повторювану прогулянку в дитинстві. Доповніть форму після would.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-09:word:wildlife",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wildlife",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-09:word:wildlife:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wildlife",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-09:word:wildlife:audio",
+          "transcript": "wildlife"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-09:word:wildlife:r1",
+            "targetText": "wildlife",
+            "meaningByLocale": {
+              "ru": "дикие животные в природе",
+              "uk": "дикі тварини в природі"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wildlife",
+          "definitionByLocale": {
+            "ru": "дикие животные в природе",
+            "uk": "дикі тварини в природі"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-09:i03",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У ті часи ми зазвичай фотографували краєвиди.»",
+      "prompt": "Згадайте ранкові прогулянки: «У ті часи ми спостерігали за дикими тваринами рано-вранці». Використайте would.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У ті часи ми зазвичай фотографували краєвиди.»",
+      "accessibilityLabel": "Згадайте ранкові прогулянки: «У ті часи ми спостерігали за дикими тваринами рано-вранці». Використайте would.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "In those days we would photograph the scenery.",
+        "targetPhrase": "In those days we would watch wildlife early in the morning.",
         "localizedMeaning": {
-          "ru": "Скажите: «В те времена мы обычно фотографировали пейзажи.»",
-          "uk": "Скажіть: «У ті часи ми зазвичай фотографували краєвиди.»"
+          "ru": "Вспомните утренние прогулки: «В те времена мы наблюдали за дикими животными рано утром». Используйте would.",
+          "uk": "Згадайте ранкові прогулянки: «У ті часи ми спостерігали за дикими тваринами рано-вранці». Використайте would."
         },
         "orderedTokens": [
           "In",
@@ -294,9 +258,12 @@
           "days",
           "we",
           "would",
-          "photograph",
+          "watch",
+          "wildlife",
+          "early",
+          "in",
           "the",
-          "scenery"
+          "morning"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -308,142 +275,106 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-09:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-09:i05:r1",
-          "text": "photograph"
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i05:r2",
-          "text": "photographed"
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i05:r3",
-          "text": "photographing"
-        }
-      ],
+      "interactionId": "en:lesson-25:session-09:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про місце проживання, а не повторювану дію: «Раніше я жив поруч із лісом».",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
+      "audioTargetIds": [
+        "en:lesson-25:session-09:i04:audio"
+      ],
+      "accessibilityLabel": "Скажіть про місце проживання, а не повторювану дію: «Раніше я жив поруч із лісом».",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-09:i04:audio",
+          "transcript": "I used to live near a forest."
         },
-        "gappedTargetPhrase": "In those days we would ___ the scenery.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-09:i05:r1",
-            "text": "photograph"
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i05:r2",
-            "text": "photographed"
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i05:r3",
-            "text": "photographing"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-09:i05:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i05:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "I used to live near a forest.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-09:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-25:session-09:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-09:i06:r1",
-          "text": "In those days we would photograph the scenery."
+          "responseId": "en:lesson-25:session-09:i05:r1",
+          "text": "Last summer I saw a fox."
         },
         {
-          "responseId": "en:lesson-25:session-09:i06:r2",
-          "text": "In those days they would photograph the scenery."
+          "responseId": "en:lesson-25:session-09:i05:r2",
+          "text": "Last summer I saw a deer."
         },
         {
-          "responseId": "en:lesson-25:session-09:i06:r3",
-          "text": "In those days we would paint the scenery."
+          "responseId": "en:lesson-25:session-09:i05:r3",
+          "text": "Last winter I saw a fox."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-09:i06:audio"
+        "en:lesson-25:session-09:i05:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-09:i06:audio",
-          "transcript": "In those days we would photograph the scenery."
+          "audioTargetId": "en:lesson-25:session-09:i05:audio",
+          "transcript": "Last summer I saw a fox."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-09:i06:r1",
-            "targetText": "In those days we would photograph the scenery.",
+            "responseId": "en:lesson-25:session-09:i05:r1",
+            "targetText": "Last summer I saw a fox.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-09:i06:r2",
-            "targetText": "In those days they would photograph the scenery.",
+            "responseId": "en:lesson-25:session-09:i05:r2",
+            "targetText": "Last summer I saw a deer.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-09:i06:r3",
-            "targetText": "In those days we would paint the scenery.",
+            "responseId": "en:lesson-25:session-09:i05:r3",
+            "targetText": "Last winter I saw a fox.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-09:i06:r2",
+            "responseId": "en:lesson-25:session-09:i05:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит In those days we would photograph the scenery.",
-              "uk": "У записі звучить In those days we would photograph the scenery."
+              "ru": "В записи звучит Last summer I saw a fox.",
+              "uk": "У записі звучить Last summer I saw a fox."
             }
           },
           {
-            "responseId": "en:lesson-25:session-09:i06:r3",
+            "responseId": "en:lesson-25:session-09:i05:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит In those days we would photograph the scenery.",
-              "uk": "У записі звучить In those days we would photograph the scenery."
+              "ru": "В записи звучит Last summer I saw a fox.",
+              "uk": "У записі звучить Last summer I saw a fox."
             }
           }
         ],
@@ -454,7 +385,7 @@
     },
     {
       "interactionId": "en:lesson-25:session-09:word:atmosphere",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -477,8 +408,8 @@
             "responseId": "en:lesson-25:session-09:word:atmosphere:r1",
             "targetText": "atmosphere",
             "meaningByLocale": {
-              "ru": "атмосфера, обстановка.",
-              "uk": "атмосфера, обстановка."
+              "ru": "атмосфера, обстановка",
+              "uk": "атмосфера, обстановка"
             }
           }
         ],
@@ -488,41 +419,40 @@
         "wordCard": {
           "word": "atmosphere",
           "definitionByLocale": {
-            "ru": "атмосфера, обстановка.",
-            "uk": "атмосфера, обстановка."
+            "ru": "атмосфера, обстановка",
+            "uk": "атмосфера, обстановка"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-09:i07",
-      "ordinal": 13,
+      "interactionId": "en:lesson-25:session-09:i06",
+      "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Під час колишніх відпусток ми зазвичай насолоджувалися спокійною атмосферою.»",
+      "prompt": "Почуйте враження від місця.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Під час колишніх відпусток ми зазвичай насолоджувалися спокійною атмосферою.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-09:i06:audio"
+      ],
+      "accessibilityLabel": "Почуйте враження від місця.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "On our old holidays we would enjoy the quiet atmosphere.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Во время прежних отпусков мы обычно наслаждались спокойной атмосферой.»",
-          "uk": "Скажіть: «Під час колишніх відпусток ми зазвичай насолоджувалися спокійною атмосферою.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-09:i06:audio",
+          "transcript": "The cafe had a friendly atmosphere."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cafe had a friendly atmosphere.",
         "orderedTokens": [
-          "On",
-          "our",
-          "old",
-          "holidays",
-          "we",
-          "would",
-          "enjoy",
-          "the",
-          "quiet",
+          "The",
+          "cafe",
+          "had",
+          "a",
+          "friendly",
           "atmosphere"
         ],
         "authoredDistractorTokens": [],
@@ -535,68 +465,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-09:i08",
-      "ordinal": 14,
+      "interactionId": "en:lesson-25:session-09:i07",
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
+      "prompt": "Ви описуєте обстановку всередині кафе — музика, розмови, настрій.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-09:i08:r1",
-          "text": "enjoy"
+          "responseId": "en:lesson-25:session-09:i07:r1",
+          "text": "atmosphere"
         },
         {
-          "responseId": "en:lesson-25:session-09:i08:r2",
-          "text": "enjoyed"
+          "responseId": "en:lesson-25:session-09:i07:r2",
+          "text": "wildlife"
         },
         {
-          "responseId": "en:lesson-25:session-09:i08:r3",
-          "text": "enjoying"
+          "responseId": "en:lesson-25:session-09:i07:r3",
+          "text": "scenery"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
+      "accessibilityLabel": "Ви описуєте обстановку всередині кафе — музика, розмови, настрій.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
+          "ru": "Вы описываете обстановку внутри кафе — музыка, разговоры, настроение.",
+          "uk": "Ви описуєте обстановку всередині кафе — музика, розмови, настрій."
         },
-        "gappedTargetPhrase": "On our old holidays we would ___ the quiet atmosphere.",
+        "gappedTargetPhrase": "I loved the ___ in that cafe.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-09:i08:r1",
-            "text": "enjoy"
+            "responseId": "en:lesson-25:session-09:i07:r1",
+            "text": "atmosphere"
           },
           {
-            "responseId": "en:lesson-25:session-09:i08:r2",
-            "text": "enjoyed"
+            "responseId": "en:lesson-25:session-09:i07:r2",
+            "text": "wildlife"
           },
           {
-            "responseId": "en:lesson-25:session-09:i08:r3",
-            "text": "enjoying"
+            "responseId": "en:lesson-25:session-09:i07:r3",
+            "text": "scenery"
           }
         ],
-        "testedDimension": "Доповніть спогад.",
+        "testedDimension": "Ви описуєте обстановку всередині кафе — музика, розмови, настрій.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-09:i08:r2",
+            "responseId": "en:lesson-25:session-09:i07:r2",
             "correct": false,
-            "testedDimension": "Доповніть спогад.",
+            "testedDimension": "Ви описуєте обстановку всередині кафе — музика, розмови, настрій.",
             "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
+              "ru": "Wildlife — дикие животные, а не обстановка кафе.",
+              "uk": "Wildlife — дикі тварини, а не обстановка кав’ярні."
             }
           },
           {
-            "responseId": "en:lesson-25:session-09:i08:r3",
+            "responseId": "en:lesson-25:session-09:i07:r3",
             "correct": false,
-            "testedDimension": "Доповніть спогад.",
+            "testedDimension": "Ви описуєте обстановку всередині кафе — музика, розмови, настрій.",
             "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
+              "ru": "Scenery — природные виды; здесь речь об обстановке внутри.",
+              "uk": "Scenery — природні краєвиди; тут ідеться про обстановку всередині."
             }
           }
         ]
@@ -604,84 +534,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-09:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-09:i09:r1",
-          "text": "On our old holidays we would enjoy the quiet atmosphere."
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i09:r2",
-          "text": "On our old holidays they would enjoy the quiet atmosphere."
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i09:r3",
-          "text": "On our old holidays we would enjoy the lively atmosphere."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-09:i09:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-09:i09:audio",
-          "transcript": "On our old holidays we would enjoy the quiet atmosphere."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-09:i09:r1",
-            "targetText": "On our old holidays we would enjoy the quiet atmosphere.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i09:r2",
-            "targetText": "On our old holidays they would enjoy the quiet atmosphere.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i09:r3",
-            "targetText": "On our old holidays we would enjoy the lively atmosphere.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-09:i09:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит On our old holidays we would enjoy the quiet atmosphere.",
-              "uk": "У записі звучить On our old holidays we would enjoy the quiet atmosphere."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i09:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит On our old holidays we would enjoy the quiet atmosphere.",
-              "uk": "У записі звучить On our old holidays we would enjoy the quiet atmosphere."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-09:word:environment",
-      "ordinal": 16,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -704,8 +558,8 @@
             "responseId": "en:lesson-25:session-09:word:environment:r1",
             "targetText": "environment",
             "meaningByLocale": {
-              "ru": "окружающая среда.",
-              "uk": "довкілля."
+              "ru": "окружающая среда",
+              "uk": "довкілля"
             }
           }
         ],
@@ -715,41 +569,117 @@
         "wordCard": {
           "word": "environment",
           "definitionByLocale": {
-            "ru": "окружающая среда.",
-            "uk": "довкілля."
+            "ru": "окружающая среда",
+            "uk": "довкілля"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-09:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-09:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-09:i08:r1",
+          "text": "At school we would learn about the environment."
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i08:r2",
+          "text": "At school we would read about the environment."
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i08:r3",
+          "text": "At home we would learn about the environment."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-09:i08:audio",
+          "transcript": "At school we would learn about the environment."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-09:i08:r1",
+            "targetText": "At school we would learn about the environment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i08:r2",
+            "targetText": "At school we would read about the environment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i08:r3",
+            "targetText": "At home we would learn about the environment.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At school we would learn about the environment.",
+              "uk": "У записі звучить At school we would learn about the environment."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At school we would learn about the environment.",
+              "uk": "У записі звучить At school we would learn about the environment."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-09:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У моїй колишній школі ми регулярно обговорювали довкілля.»",
+      "prompt": "Раніше щосуботи ви прибирали пляж. Зберіть: «Тоді щосуботи ми прибирали пляж».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У моїй колишній школі ми регулярно обговорювали довкілля.»",
+      "accessibilityLabel": "Раніше щосуботи ви прибирали пляж. Зберіть: «Тоді щосуботи ми прибирали пляж».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "At my old school we would discuss the environment.",
+        "targetPhrase": "Back then we would clean the beach on Saturdays.",
         "localizedMeaning": {
-          "ru": "Скажите: «В моей прежней школе мы регулярно обсуждали окружающую среду.»",
-          "uk": "Скажіть: «У моїй колишній школі ми регулярно обговорювали довкілля.»"
+          "ru": "Раньше по субботам вы убирали пляж. Соберите: «Тогда по субботам мы убирали пляж».",
+          "uk": "Раніше щосуботи ви прибирали пляж. Зберіть: «Тоді щосуботи ми прибирали пляж»."
         },
         "orderedTokens": [
-          "At",
-          "my",
-          "old",
-          "school",
+          "Back",
+          "then",
           "we",
           "would",
-          "discuss",
+          "clean",
           "the",
-          "environment"
+          "beach",
+          "on",
+          "Saturdays"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -761,166 +691,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-09:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-09:i11:r1",
-          "text": "discuss"
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i11:r2",
-          "text": "discussed"
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i11:r3",
-          "text": "discussing"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "At my old school we would ___ the environment.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-09:i11:r1",
-            "text": "discuss"
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i11:r2",
-            "text": "discussed"
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i11:r3",
-            "text": "discussing"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-09:i11:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i11:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-09:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-09:i12:r1",
-          "text": "At my old school we would discuss the environment."
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i12:r2",
-          "text": "At my old school they would discuss the environment."
-        },
-        {
-          "responseId": "en:lesson-25:session-09:i12:r3",
-          "text": "At my old school we would study the environment."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-09:i12:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-09:i12:audio",
-          "transcript": "At my old school we would discuss the environment."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-09:i12:r1",
-            "targetText": "At my old school we would discuss the environment.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i12:r2",
-            "targetText": "At my old school they would discuss the environment.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i12:r3",
-            "targetText": "At my old school we would study the environment.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-09:i12:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит At my old school we would discuss the environment.",
-              "uk": "У записі звучить At my old school we would discuss the environment."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-09:i12:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит At my old school we would discuss the environment.",
-              "uk": "У записі звучить At my old school we would discuss the environment."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-09:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-25:session-09:i10",
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Поєднайте слова з перекладом",
+      "prompt": "Зіставте природу й обстановку з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "accessibilityLabel": "Зіставте природу й обстановку з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-09:i13:p1",
+            "pairId": "en:lesson-25:session-09:i10:p1",
             "target": "wildlife",
             "meaningByLocale": {
               "ru": "дикие животные в природе",
@@ -928,7 +713,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-09:i13:p2",
+            "pairId": "en:lesson-25:session-09:i10:p2",
             "target": "scenery",
             "meaningByLocale": {
               "ru": "пейзаж, виды природы",
@@ -936,7 +721,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-09:i13:p3",
+            "pairId": "en:lesson-25:session-09:i10:p3",
             "target": "atmosphere",
             "meaningByLocale": {
               "ru": "атмосфера, обстановка",
@@ -944,7 +729,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-09:i13:p4",
+            "pairId": "en:lesson-25:session-09:i10:p4",
             "target": "environment",
             "meaningByLocale": {
               "ru": "окружающая среда",
@@ -979,102 +764,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-09:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Колишнє місце проживання",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-09:i14:audio"
-      ],
-      "accessibilityLabel": "Колишнє місце проживання",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-09:i14:audio",
-          "transcript": "I used to live by the lake."
+      "interactionId": "en:lesson-25:session-09:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ідеться про один учорашній похід, не про колишню звичку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-09:i11:r1",
+          "text": "walked"
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to live by the lake.",
-        "orderedTokens": [
-          "I",
-          "used",
-          "to",
-          "live",
-          "by",
-          "the",
-          "lake"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        {
+          "responseId": "en:lesson-25:session-09:i11:r2",
+          "text": "have walked"
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i11:r3",
+          "text": "would walk"
         }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ідеться про один учорашній похід, не про колишню звичку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном вчерашнем походе, не о прежней привычке.",
+          "uk": "Ідеться про один учорашній похід, не про колишню звичку."
+        },
+        "gappedTargetPhrase": "We ___ to the lake yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-09:i11:r1",
+            "text": "walked"
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i11:r2",
+            "text": "have walked"
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i11:r3",
+            "text": "would walk"
+          }
+        ],
+        "testedDimension": "Ідеться про один учорашній похід, не про колишню звичку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-09:i11:r2",
+            "correct": false,
+            "testedDimension": "Ідеться про один учорашній похід, не про колишню звичку.",
+            "feedbackByLocale": {
+              "ru": "Yesterday — завершённое время: выбираем walked.",
+              "uk": "Yesterday — завершений час: вибираємо walked."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i11:r3",
+            "correct": false,
+            "testedDimension": "Ідеться про один учорашній похід, не про колишню звичку.",
+            "feedbackByLocale": {
+              "ru": "Для одного вчерашнего похода нужен Past Simple; would walk здесь не передаёт нужное событие.",
+              "uk": "Для одного вчорашнього походу потрібен Past Simple; would walk тут не передає потрібну подію."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-09:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Раніше я був сором’язливим",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-09:i15:audio"
-      ],
-      "accessibilityLabel": "Раніше я був сором’язливим",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-09:i15:audio",
-          "transcript": "I used to be shy."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to be shy.",
-        "orderedTokens": [
-          "I",
-          "used",
-          "to",
-          "be",
-          "shy"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-09:i16",
-      "ordinal": 23,
+      "interactionId": "en:lesson-25:session-09:i12",
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «У ті часи вона зазвичай фотографувала краєвиди».",
+      "prompt": "Запропонуйте відвідати ще один парк: «Давай відвідаємо ще один парк».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-09:i16:audio"
+        "en:lesson-25:session-09:i12:audio"
       ],
-      "accessibilityLabel": "Скажіть: «У ті часи вона зазвичай фотографувала краєвиди».",
+      "accessibilityLabel": "Запропонуйте відвідати ще один парк: «Давай відвідаємо ще один парк».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-09:i16:audio",
-          "transcript": "In those days she would photograph the scenery."
+          "audioTargetId": "en:lesson-25:session-09:i12:audio",
+          "transcript": "Let us visit another park."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "In those days she would photograph the scenery.",
+        "targetPhrase": "Let us visit another park.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1088,26 +866,246 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-09:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте повторюване вечірнє заняття в минулому.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Почуйте повторюване вечірнє заняття в минулому.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-09:i13:audio",
+          "transcript": "During those holidays we would play cards every evening."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "During those holidays we would play cards every evening.",
+        "orderedTokens": [
+          "During",
+          "those",
+          "holidays",
+          "we",
+          "would",
+          "play",
+          "cards",
+          "every",
+          "evening"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-09:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-09:i14:r1",
+          "text": "Have you ever slept in a tent?"
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i14:r2",
+          "text": "Have you ever stayed in a hotel?"
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i14:r3",
+          "text": "Have they ever slept in a tent?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-09:i14:audio",
+          "transcript": "Have you ever slept in a tent?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-09:i14:r1",
+            "targetText": "Have you ever slept in a tent?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i14:r2",
+            "targetText": "Have you ever stayed in a hotel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i14:r3",
+            "targetText": "Have they ever slept in a tent?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-09:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you ever slept in a tent?",
+              "uk": "У записі звучить Have you ever slept in a tent?"
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you ever slept in a tent?",
+              "uk": "У записі звучить Have you ever slept in a tent?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-09:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви говорите про досвід поїздок до сьогодні.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-09:i15:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i15:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-25:session-09:i15:r3",
+          "text": "visiting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви говорите про досвід поїздок до сьогодні.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите об опыте поездок до сегодняшнего дня.",
+          "uk": "Ви говорите про досвід поїздок до сьогодні."
+        },
+        "gappedTargetPhrase": "I have ___ that lake twice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-09:i15:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i15:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i15:r3",
+            "text": "visiting"
+          }
+        ],
+        "testedDimension": "Ви говорите про досвід поїздок до сьогодні.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-09:i15:r2",
+            "correct": false,
+            "testedDimension": "Ви говорите про досвід поїздок до сьогодні.",
+            "feedbackByLocale": {
+              "ru": "После have нужна третья форма visited.",
+              "uk": "Після have потрібна третя форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-09:i15:r3",
+            "correct": false,
+            "testedDimension": "Ви говорите про досвід поїздок до сьогодні.",
+            "feedbackByLocale": {
+              "ru": "Have visiting не образует Present Perfect.",
+              "uk": "Have visiting не утворює Present Perfect."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-09:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На інших берегах залишалося сміття. Скажіть: «Інші пляжі теж потребували прибирання».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На інших берегах залишалося сміття. Скажіть: «Інші пляжі теж потребували прибирання».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Other beaches needed cleaning too.",
+        "localizedMeaning": {
+          "ru": "На других берегах оставался мусор. Скажите: «Другие пляжи тоже нуждались в уборке».",
+          "uk": "На інших берегах залишалося сміття. Скажіть: «Інші пляжі теж потребували прибирання»."
+        },
+        "orderedTokens": [
+          "Other",
+          "beaches",
+          "needed",
+          "cleaning",
+          "too"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-09:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «У моїй колишній школі вони регулярно обговорювали довкілля».",
+      "prompt": "Розкажіть про сімейний ритуал: «У ті часи ми слухали розповіді дідуся». Використайте would.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-09:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «У моїй колишній школі вони регулярно обговорювали довкілля».",
+      "accessibilityLabel": "Розкажіть про сімейний ритуал: «У ті часи ми слухали розповіді дідуся». Використайте would.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-09:i17:audio",
-          "transcript": "At my old school they would discuss the environment."
+          "transcript": "In those days we would listen to our grandfather’s stories."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "At my old school they would discuss the environment.",
+        "targetPhrase": "In those days we would listen to our grandfather’s stories.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1127,5 +1125,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3bc1247dea0b62e7803a27ed10873aed45a15360ddd963ccdb9322dd36970010"
+  "learnerFingerprint": "183cec401a42e037c96aa10e078d531a6a6fcbae350beb4fb04299050d4a02cb"
 }

@@ -4,231 +4,8 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-25:session-08:word:envy",
-      "ordinal": 4,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — envy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-08:word:envy:audio"
-      ],
-      "accessibilityLabel": "Картка слова — envy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-08:word:envy:audio",
-          "transcript": "envy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-08:word:envy:r1",
-            "targetText": "envy",
-            "meaningByLocale": {
-              "ru": "завидовать.",
-              "uk": "заздрити."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "envy",
-          "definitionByLocale": {
-            "ru": "завидовать.",
-            "uk": "заздрити."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-08:i01",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше я заздрив своєму братові.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше я заздрив своєму братові.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I used to envy my brother.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Раньше я завидовал своему брату.»",
-          "uk": "Скажіть: «Раніше я заздрив своєму братові.»"
-        },
-        "orderedTokens": [
-          "I",
-          "used",
-          "to",
-          "envy",
-          "my",
-          "brother"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-08:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-08:i02:r1",
-          "text": "envy"
-        },
-        {
-          "responseId": "en:lesson-25:session-08:i02:r2",
-          "text": "envied"
-        },
-        {
-          "responseId": "en:lesson-25:session-08:i02:r3",
-          "text": "envying"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "I used to ___ my brother.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-08:i02:r1",
-            "text": "envy"
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i02:r2",
-            "text": "envied"
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i02:r3",
-            "text": "envying"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-08:i02:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма envy.",
-              "uk": "Після used to потрібна форма envy."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i02:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма envy.",
-              "uk": "Після used to потрібна форма envy."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-08:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-08:i03:r1",
-          "text": "I used to envy my brother."
-        },
-        {
-          "responseId": "en:lesson-25:session-08:i03:r2",
-          "text": "We used to envy my brother."
-        },
-        {
-          "responseId": "en:lesson-25:session-08:i03:r3",
-          "text": "I used to envy my sister."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-08:i03:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-08:i03:audio",
-          "transcript": "I used to envy my brother."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-08:i03:r1",
-            "targetText": "I used to envy my brother.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i03:r2",
-            "targetText": "We used to envy my brother.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i03:r3",
-            "targetText": "I used to envy my sister.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-08:i03:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I used to envy my brother.",
-              "uk": "У записі звучить I used to envy my brother."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i03:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I used to envy my brother.",
-              "uk": "У записі звучить I used to envy my brother."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-08:word:reward",
-      "ordinal": 8,
+      "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -251,8 +28,8 @@
             "responseId": "en:lesson-25:session-08:word:reward:r1",
             "targetText": "reward",
             "meaningByLocale": {
-              "ru": "награждать, поощрять.",
-              "uk": "нагороджувати, заохочувати."
+              "ru": "награждать, поощрять",
+              "uk": "нагороджувати, заохочувати"
             }
           }
         ],
@@ -262,185 +39,81 @@
         "wordCard": {
           "word": "reward",
           "definitionByLocale": {
-            "ru": "награждать, поощрять.",
-            "uk": "нагороджувати, заохочувати."
+            "ru": "награждать, поощрять",
+            "uk": "нагороджувати, заохочувати"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-08:i04",
-      "ordinal": 9,
+      "interactionId": "en:lesson-25:session-08:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше вона заохочувала гарну роботу.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше вона заохочувала гарну роботу.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She used to reward good work.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Раньше она поощряла хорошую работу.»",
-          "uk": "Скажіть: «Раніше вона заохочувала гарну роботу.»"
-        },
-        "orderedTokens": [
-          "She",
-          "used",
-          "to",
-          "reward",
-          "good",
-          "work"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-08:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-08:i05:r1",
-          "text": "reward"
-        },
-        {
-          "responseId": "en:lesson-25:session-08:i05:r2",
-          "text": "rewarded"
-        },
-        {
-          "responseId": "en:lesson-25:session-08:i05:r3",
-          "text": "rewarding"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "She used to ___ good work.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-08:i05:r1",
-            "text": "reward"
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i05:r2",
-            "text": "rewarded"
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i05:r3",
-            "text": "rewarding"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-08:i05:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма reward.",
-              "uk": "Після used to потрібна форма reward."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i05:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма reward.",
-              "uk": "Після used to потрібна форма reward."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-08:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-08:i06:r1",
-          "text": "She used to reward good work."
+          "responseId": "en:lesson-25:session-08:i01:r1",
+          "text": "Our teacher used to reward hard work."
         },
         {
-          "responseId": "en:lesson-25:session-08:i06:r2",
-          "text": "He used to reward good work."
+          "responseId": "en:lesson-25:session-08:i01:r2",
+          "text": "Our teacher used to reward good behaviour."
         },
         {
-          "responseId": "en:lesson-25:session-08:i06:r3",
-          "text": "She used to reward good behaviour."
+          "responseId": "en:lesson-25:session-08:i01:r3",
+          "text": "Our parents used to reward hard work."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-08:i06:audio"
+        "en:lesson-25:session-08:i01:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-08:i06:audio",
-          "transcript": "She used to reward good work."
+          "audioTargetId": "en:lesson-25:session-08:i01:audio",
+          "transcript": "Our teacher used to reward hard work."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-08:i06:r1",
-            "targetText": "She used to reward good work.",
+            "responseId": "en:lesson-25:session-08:i01:r1",
+            "targetText": "Our teacher used to reward hard work.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-08:i06:r2",
-            "targetText": "He used to reward good work.",
+            "responseId": "en:lesson-25:session-08:i01:r2",
+            "targetText": "Our teacher used to reward good behaviour.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-08:i06:r3",
-            "targetText": "She used to reward good behaviour.",
+            "responseId": "en:lesson-25:session-08:i01:r3",
+            "targetText": "Our parents used to reward hard work.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-08:i06:r2",
+            "responseId": "en:lesson-25:session-08:i01:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She used to reward good work.",
-              "uk": "У записі звучить She used to reward good work."
+              "ru": "В записи звучит Our teacher used to reward hard work.",
+              "uk": "У записі звучить Our teacher used to reward hard work."
             }
           },
           {
-            "responseId": "en:lesson-25:session-08:i06:r3",
+            "responseId": "en:lesson-25:session-08:i01:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She used to reward good work.",
-              "uk": "У записі звучить She used to reward good work."
+              "ru": "В записи звучит Our teacher used to reward hard work.",
+              "uk": "У записі звучить Our teacher used to reward hard work."
             }
           }
         ],
@@ -451,8 +124,8 @@
     },
     {
       "interactionId": "en:lesson-25:session-08:word:punish",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 6,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Картка слова — punish",
@@ -474,8 +147,8 @@
             "responseId": "en:lesson-25:session-08:word:punish:r1",
             "targetText": "punish",
             "meaningByLocale": {
-              "ru": "наказывать.",
-              "uk": "карати."
+              "ru": "наказывать",
+              "uk": "карати"
             }
           }
         ],
@@ -485,39 +158,109 @@
         "wordCard": {
           "word": "punish",
           "definitionByLocale": {
-            "ru": "наказывать.",
-            "uk": "карати."
+            "ru": "наказывать",
+            "uk": "карати"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-08:i07",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-25:session-08:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "За брехню дитині забороняли грати. Це покарання, не нагорода.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-08:i02:r1",
+          "text": "punish"
+        },
+        {
+          "responseId": "en:lesson-25:session-08:i02:r2",
+          "text": "reward"
+        },
+        {
+          "responseId": "en:lesson-25:session-08:i02:r3",
+          "text": "thank"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "За брехню дитині забороняли грати. Це покарання, не нагорода.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "За ложь ребёнку запрещали играть. Это наказание, не награда.",
+          "uk": "За брехню дитині забороняли грати. Це покарання, не нагорода."
+        },
+        "gappedTargetPhrase": "His parents used to ___ him for lying.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-08:i02:r1",
+            "text": "punish"
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i02:r2",
+            "text": "reward"
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i02:r3",
+            "text": "thank"
+          }
+        ],
+        "testedDimension": "За брехню дитині забороняли грати. Це покарання, не нагорода.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "За брехню дитині забороняли грати. Це покарання, не нагорода.",
+            "feedbackByLocale": {
+              "ru": "Reward означает поощрять, а здесь описано наказание.",
+              "uk": "Reward означає заохочувати, а тут описано покарання."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "За брехню дитині забороняли грати. Це покарання, не нагорода.",
+            "feedbackByLocale": {
+              "ru": "Thank означает благодарить; за ложь здесь наказывали.",
+              "uk": "Thank означає дякувати; за брехню тут карали."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-08:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Наш учитель раніше карав за погану поведінку.»",
+      "prompt": "Скажіть про колишнє шкільне правило: «Раніше нас карали за запізнення». Використайте «Вони».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Наш учитель раніше карав за погану поведінку.»",
+      "accessibilityLabel": "Скажіть про колишнє шкільне правило: «Раніше нас карали за запізнення». Використайте «Вони».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Our teacher used to punish bad behaviour.",
+        "targetPhrase": "They used to punish us for being late.",
         "localizedMeaning": {
-          "ru": "Скажите: «Наш учитель раньше наказывал за плохое поведение.»",
-          "uk": "Скажіть: «Наш учитель раніше карав за погану поведінку.»"
+          "ru": "Скажите о прежнем школьном правиле: «Раньше нас наказывали за опоздания». Используйте «Они».",
+          "uk": "Скажіть про колишнє шкільне правило: «Раніше нас карали за запізнення». Використайте «Вони»."
         },
         "orderedTokens": [
-          "Our",
-          "teacher",
+          "They",
           "used",
           "to",
           "punish",
-          "bad",
-          "behaviour"
+          "us",
+          "for",
+          "being",
+          "late"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -529,68 +272,180 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-08:i08",
-      "ordinal": 14,
+      "interactionId": "en:lesson-25:session-08:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте, що сталося вчора.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-08:i04:audio"
+      ],
+      "accessibilityLabel": "Почуйте, що сталося вчора.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-08:i04:audio",
+          "transcript": "I arrived late yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I arrived late yesterday.",
+        "orderedTokens": [
+          "I",
+          "arrived",
+          "late",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-08:word:envy",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — envy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-08:word:envy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — envy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-08:word:envy:audio",
+          "transcript": "envy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-08:word:envy:r1",
+            "targetText": "envy",
+            "meaningByLocale": {
+              "ru": "завидовать",
+              "uk": "заздрити"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "envy",
+          "definitionByLocale": {
+            "ru": "завидовать",
+            "uk": "заздрити"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-08:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг розповів про довгі канікули. Відповідайте: «Я тобі заздрю».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Друг розповів про довгі канікули. Відповідайте: «Я тобі заздрю».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-08:i05:audio",
+          "transcript": "I envy you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I envy you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-08:i06",
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
+      "prompt": "Раніше ви заздрили чужим іграшкам; тепер це минуло.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-08:i08:r1",
-          "text": "punish"
+          "responseId": "en:lesson-25:session-08:i06:r1",
+          "text": "envy"
         },
         {
-          "responseId": "en:lesson-25:session-08:i08:r2",
-          "text": "punished"
+          "responseId": "en:lesson-25:session-08:i06:r2",
+          "text": "envied"
         },
         {
-          "responseId": "en:lesson-25:session-08:i08:r3",
-          "text": "punishing"
+          "responseId": "en:lesson-25:session-08:i06:r3",
+          "text": "envying"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
+      "accessibilityLabel": "Раніше ви заздрили чужим іграшкам; тепер це минуло.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
+          "ru": "Раньше вы завидовали чужим игрушкам; теперь это прошло.",
+          "uk": "Раніше ви заздрили чужим іграшкам; тепер це минуло."
         },
-        "gappedTargetPhrase": "Our teacher used to ___ bad behaviour.",
+        "gappedTargetPhrase": "I used to ___ other children.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-08:i08:r1",
-            "text": "punish"
+            "responseId": "en:lesson-25:session-08:i06:r1",
+            "text": "envy"
           },
           {
-            "responseId": "en:lesson-25:session-08:i08:r2",
-            "text": "punished"
+            "responseId": "en:lesson-25:session-08:i06:r2",
+            "text": "envied"
           },
           {
-            "responseId": "en:lesson-25:session-08:i08:r3",
-            "text": "punishing"
+            "responseId": "en:lesson-25:session-08:i06:r3",
+            "text": "envying"
           }
         ],
-        "testedDimension": "Доповніть спогад.",
+        "testedDimension": "Раніше ви заздрили чужим іграшкам; тепер це минуло.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-08:i08:r2",
+            "responseId": "en:lesson-25:session-08:i06:r2",
             "correct": false,
-            "testedDimension": "Доповніть спогад.",
+            "testedDimension": "Раніше ви заздрили чужим іграшкам; тепер це минуло.",
             "feedbackByLocale": {
-              "ru": "После used to нужна форма punish.",
-              "uk": "Після used to потрібна форма punish."
+              "ru": "Used to уже относит привычку к прошлому; нужен envy без -ed.",
+              "uk": "Used to вже відносить звичку до минулого; потрібне envy без -ed."
             }
           },
           {
-            "responseId": "en:lesson-25:session-08:i08:r3",
+            "responseId": "en:lesson-25:session-08:i06:r3",
             "correct": false,
-            "testedDimension": "Доповніть спогад.",
+            "testedDimension": "Раніше ви заздрили чужим іграшкам; тепер це минуло.",
             "feedbackByLocale": {
-              "ru": "После used to нужна форма punish.",
-              "uk": "Після used to потрібна форма punish."
+              "ru": "После used to нужна базовая форма envy, не envying.",
+              "uk": "Після used to потрібна базова форма envy, не envying."
             }
           }
         ]
@@ -598,73 +453,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-08:i09",
-      "ordinal": 15,
+      "interactionId": "en:lesson-25:session-08:i07",
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-08:i09:r1",
-          "text": "Our teacher used to punish bad behaviour."
+          "responseId": "en:lesson-25:session-08:i07:r1",
+          "text": "My friend used to have a red bike."
         },
         {
-          "responseId": "en:lesson-25:session-08:i09:r2",
-          "text": "Their teacher used to punish bad behaviour."
+          "responseId": "en:lesson-25:session-08:i07:r2",
+          "text": "My friend used to have a blue bike."
         },
         {
-          "responseId": "en:lesson-25:session-08:i09:r3",
-          "text": "Our teacher used to ignore bad behaviour."
+          "responseId": "en:lesson-25:session-08:i07:r3",
+          "text": "My brother used to have a red bike."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-08:i09:audio"
+        "en:lesson-25:session-08:i07:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-08:i09:audio",
-          "transcript": "Our teacher used to punish bad behaviour."
+          "audioTargetId": "en:lesson-25:session-08:i07:audio",
+          "transcript": "My friend used to have a red bike."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-08:i09:r1",
-            "targetText": "Our teacher used to punish bad behaviour.",
+            "responseId": "en:lesson-25:session-08:i07:r1",
+            "targetText": "My friend used to have a red bike.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-08:i09:r2",
-            "targetText": "Their teacher used to punish bad behaviour.",
+            "responseId": "en:lesson-25:session-08:i07:r2",
+            "targetText": "My friend used to have a blue bike.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-08:i09:r3",
-            "targetText": "Our teacher used to ignore bad behaviour.",
+            "responseId": "en:lesson-25:session-08:i07:r3",
+            "targetText": "My brother used to have a red bike.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-08:i09:r2",
+            "responseId": "en:lesson-25:session-08:i07:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Our teacher used to punish bad behaviour.",
-              "uk": "У записі звучить Our teacher used to punish bad behaviour."
+              "ru": "В записи звучит My friend used to have a red bike.",
+              "uk": "У записі звучить My friend used to have a red bike."
             }
           },
           {
-            "responseId": "en:lesson-25:session-08:i09:r3",
+            "responseId": "en:lesson-25:session-08:i07:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Our teacher used to punish bad behaviour.",
-              "uk": "У записі звучить Our teacher used to punish bad behaviour."
+              "ru": "В записи звучит My friend used to have a red bike.",
+              "uk": "У записі звучить My friend used to have a red bike."
             }
           }
         ],
@@ -675,7 +530,7 @@
     },
     {
       "interactionId": "en:lesson-25:session-08:word:demand",
-      "ordinal": 16,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -698,8 +553,8 @@
             "responseId": "en:lesson-25:session-08:word:demand:r1",
             "targetText": "demand",
             "meaningByLocale": {
-              "ru": "требовать.",
-              "uk": "вимагати."
+              "ru": "требовать",
+              "uk": "вимагати"
             }
           }
         ],
@@ -709,38 +564,36 @@
         "wordCard": {
           "word": "demand",
           "definitionByLocale": {
-            "ru": "требовать.",
-            "uk": "вимагати."
+            "ru": "требовать",
+            "uk": "вимагати"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-08:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-08:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше він вимагав відповіді.»",
+      "prompt": "Ви наполягаєте на поясненні: «Я вимагаю пояснення».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше він вимагав відповіді.»",
+      "accessibilityLabel": "Ви наполягаєте на поясненні: «Я вимагаю пояснення».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He used to demand an answer.",
+        "targetPhrase": "I demand an explanation.",
         "localizedMeaning": {
-          "ru": "Скажите: «Раньше он требовал ответа.»",
-          "uk": "Скажіть: «Раніше він вимагав відповіді.»"
+          "ru": "Вы настаиваете на объяснении: «Я требую объяснения».",
+          "uk": "Ви наполягаєте на поясненні: «Я вимагаю пояснення»."
         },
         "orderedTokens": [
-          "He",
-          "used",
-          "to",
+          "I",
           "demand",
           "an",
-          "answer"
+          "explanation"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -752,142 +605,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-08:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-08:i11:r1",
-          "text": "demand"
-        },
-        {
-          "responseId": "en:lesson-25:session-08:i11:r2",
-          "text": "demanded"
-        },
-        {
-          "responseId": "en:lesson-25:session-08:i11:r3",
-          "text": "demanding"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "He used to ___ an answer.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-08:i11:r1",
-            "text": "demand"
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i11:r2",
-            "text": "demanded"
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i11:r3",
-            "text": "demanding"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-08:i11:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма demand.",
-              "uk": "Після used to потрібна форма demand."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-08:i11:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма demand.",
-              "uk": "Після used to потрібна форма demand."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-08:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-08:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-08:i12:r1",
-          "text": "He used to demand an answer."
+          "responseId": "en:lesson-25:session-08:i09:r1",
+          "text": "The customer demanded a refund."
         },
         {
-          "responseId": "en:lesson-25:session-08:i12:r2",
-          "text": "She used to demand an answer."
+          "responseId": "en:lesson-25:session-08:i09:r2",
+          "text": "The customer demanded an apology."
         },
         {
-          "responseId": "en:lesson-25:session-08:i12:r3",
-          "text": "He used to demand an apology."
+          "responseId": "en:lesson-25:session-08:i09:r3",
+          "text": "The manager demanded a refund."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-08:i12:audio"
+        "en:lesson-25:session-08:i09:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-08:i12:audio",
-          "transcript": "He used to demand an answer."
+          "audioTargetId": "en:lesson-25:session-08:i09:audio",
+          "transcript": "The customer demanded a refund."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-08:i12:r1",
-            "targetText": "He used to demand an answer.",
+            "responseId": "en:lesson-25:session-08:i09:r1",
+            "targetText": "The customer demanded a refund.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-08:i12:r2",
-            "targetText": "She used to demand an answer.",
+            "responseId": "en:lesson-25:session-08:i09:r2",
+            "targetText": "The customer demanded an apology.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-08:i12:r3",
-            "targetText": "He used to demand an apology.",
+            "responseId": "en:lesson-25:session-08:i09:r3",
+            "targetText": "The manager demanded a refund.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-08:i12:r2",
+            "responseId": "en:lesson-25:session-08:i09:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит He used to demand an answer.",
-              "uk": "У записі звучить He used to demand an answer."
+              "ru": "В записи звучит The customer demanded a refund.",
+              "uk": "У записі звучить The customer demanded a refund."
             }
           },
           {
-            "responseId": "en:lesson-25:session-08:i12:r3",
+            "responseId": "en:lesson-25:session-08:i09:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит He used to demand an answer.",
-              "uk": "У записі звучить He used to demand an answer."
+              "ru": "В записи звучит The customer demanded a refund.",
+              "uk": "У записі звучить The customer demanded a refund."
             }
           }
         ],
@@ -897,21 +681,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-08:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-25:session-08:i10",
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Поєднайте слова з перекладом",
+      "prompt": "Розрізніть почуття, вимоги й реакції дорослих",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "accessibilityLabel": "Розрізніть почуття, вимоги й реакції дорослих",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-08:i13:p1",
+            "pairId": "en:lesson-25:session-08:i10:p1",
             "target": "envy",
             "meaningByLocale": {
               "ru": "завидовать",
@@ -919,7 +703,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-08:i13:p2",
+            "pairId": "en:lesson-25:session-08:i10:p2",
             "target": "reward",
             "meaningByLocale": {
               "ru": "награждать, поощрять",
@@ -927,7 +711,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-08:i13:p3",
+            "pairId": "en:lesson-25:session-08:i10:p3",
             "target": "punish",
             "meaningByLocale": {
               "ru": "наказывать",
@@ -935,7 +719,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-08:i13:p4",
+            "pairId": "en:lesson-25:session-08:i10:p4",
             "target": "demand",
             "meaningByLocale": {
               "ru": "требовать",
@@ -970,101 +754,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-08:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Знайшов іншу роботу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-08:i14:audio"
-      ],
-      "accessibilityLabel": "Знайшов іншу роботу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-08:i14:audio",
-          "transcript": "I have found another job."
+      "interactionId": "en:lesson-25:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора ви вибачилися перед учителем. Виберіть завершену подію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-08:i11:r1",
+          "text": "apologised"
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I have found another job.",
-        "orderedTokens": [
-          "I",
-          "have",
-          "found",
-          "another",
-          "job"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        {
+          "responseId": "en:lesson-25:session-08:i11:r2",
+          "text": "have apologised"
+        },
+        {
+          "responseId": "en:lesson-25:session-08:i11:r3",
+          "text": "used to apologise"
         }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора ви вибачилися перед учителем. Виберіть завершену подію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера вы извинились перед учителем. Выберите завершённое событие.",
+          "uk": "Учора ви вибачилися перед учителем. Виберіть завершену подію."
+        },
+        "gappedTargetPhrase": "I ___ to my teacher yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-08:i11:r1",
+            "text": "apologised"
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i11:r2",
+            "text": "have apologised"
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i11:r3",
+            "text": "used to apologise"
+          }
+        ],
+        "testedDimension": "Учора ви вибачилися перед учителем. Виберіть завершену подію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Учора ви вибачилися перед учителем. Виберіть завершену подію.",
+            "feedbackByLocale": {
+              "ru": "Yesterday требует Past Simple, не Present Perfect.",
+              "uk": "Yesterday потребує Past Simple, не Present Perfect."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Учора ви вибачилися перед учителем. Виберіть завершену подію.",
+            "feedbackByLocale": {
+              "ru": "Used to описывает повторявшуюся привычку, а не один вчерашний случай.",
+              "uk": "Used to описує повторювану звичку, а не один учорашній випадок."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-08:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Інші сім’ї переїхали",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-08:i15:audio"
-      ],
-      "accessibilityLabel": "Інші сім’ї переїхали",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-08:i15:audio",
-          "transcript": "The other families moved last year."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The other families moved last year.",
-        "orderedTokens": [
-          "The",
-          "other",
-          "families",
-          "moved",
-          "last",
-          "year"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-08:i16",
-      "ordinal": 23,
+      "interactionId": "en:lesson-25:session-08:i12",
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Ми раніше заздрили своєму братові».",
+      "prompt": "Попросіть ще одну можливість: «Можна мені спробувати ще раз?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-08:i16:audio"
+        "en:lesson-25:session-08:i12:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Ми раніше заздрили своєму братові».",
+      "accessibilityLabel": "Попросіть ще одну можливість: «Можна мені спробувати ще раз?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-08:i16:audio",
-          "transcript": "We used to envy our brother."
+          "audioTargetId": "en:lesson-25:session-08:i12:audio",
+          "transcript": "Can I have another try?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We used to envy our brother.",
+        "targetPhrase": "Can I have another try?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1078,26 +856,247 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Відновіть спогад про школу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-08:i13:audio"
+      ],
+      "accessibilityLabel": "Відновіть спогад про школу.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-08:i13:audio",
+          "transcript": "We used to be afraid of our teacher."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We used to be afraid of our teacher.",
+        "orderedTokens": [
+          "We",
+          "used",
+          "to",
+          "be",
+          "afraid",
+          "of",
+          "our",
+          "teacher"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-08:i14:r1",
+          "text": "explained"
+        },
+        {
+          "responseId": "en:lesson-25:session-08:i14:r2",
+          "text": "explain"
+        },
+        {
+          "responseId": "en:lesson-25:session-08:i14:r3",
+          "text": "explaining"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Объяснение уже получено, сейчас вы его понимаете. Дополните Present Perfect.",
+          "uk": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect."
+        },
+        "gappedTargetPhrase": "She has ___ the rule to me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-08:i14:r1",
+            "text": "explained"
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i14:r2",
+            "text": "explain"
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i14:r3",
+            "text": "explaining"
+          }
+        ],
+        "testedDimension": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-08:i14:r2",
+            "correct": false,
+            "testedDimension": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect.",
+            "feedbackByLocale": {
+              "ru": "После has нужна третья форма explained.",
+              "uk": "Після has потрібна третя форма explained."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i14:r3",
+            "correct": false,
+            "testedDimension": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect.",
+            "feedbackByLocale": {
+              "ru": "Has explaining не образует Present Perfect; нужно has explained.",
+              "uk": "Has explaining не утворює Present Perfect; потрібно has explained."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-08:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-08:i15:r1",
+          "text": "Do you remember our old school?"
+        },
+        {
+          "responseId": "en:lesson-25:session-08:i15:r2",
+          "text": "Do you remember our old house?"
+        },
+        {
+          "responseId": "en:lesson-25:session-08:i15:r3",
+          "text": "Do they remember our old school?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-08:i15:audio",
+          "transcript": "Do you remember our old school?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-08:i15:r1",
+            "targetText": "Do you remember our old school?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i15:r2",
+            "targetText": "Do you remember our old house?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i15:r3",
+            "targetText": "Do they remember our old school?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-08:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you remember our old school?",
+              "uk": "У записі звучить Do you remember our old school?"
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-08:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you remember our old school?",
+              "uk": "У записі звучить Do you remember our old school?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-08:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Раніше ви ділилися іграшками. Скажіть: «Раніше я ділився з іншими дітьми».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Раніше ви ділилися іграшками. Скажіть: «Раніше я ділився з іншими дітьми».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used to share with other children.",
+        "localizedMeaning": {
+          "ru": "Раньше вы делились игрушками. Скажите: «Раньше я делился с другими детьми».",
+          "uk": "Раніше ви ділилися іграшками. Скажіть: «Раніше я ділився з іншими дітьми»."
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "share",
+          "with",
+          "other",
+          "children"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-08:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Вона раніше вимагала відповіді».",
+      "prompt": "Один випадок уже розповів друг. Скажіть про свій досвід: «Я теж припускався помилок». Використайте Present Perfect.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-08:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Вона раніше вимагала відповіді».",
+      "accessibilityLabel": "Один випадок уже розповів друг. Скажіть про свій досвід: «Я теж припускався помилок». Використайте Present Perfect.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-08:i17:audio",
-          "transcript": "She used to demand an answer."
+          "transcript": "I have made mistakes too."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She used to demand an answer.",
+        "targetPhrase": "I have made mistakes too.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1117,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8d96535745cb0a3d4fac23266088fff381b399dd0b52ba9f0babdd1c73e75a21"
+  "learnerFingerprint": "bc97a20b82429df0fb053b39685106247c3fc9b12d2646c7ebeaaa6facd1f442"
 }

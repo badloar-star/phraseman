@@ -51,101 +51,101 @@ Errands — дрібні справи, заради яких потрібно к
 
 **1 · Картка слова — hunger**
 <!-- interaction_id: en:lesson-25:session-07:word:hunger; family: word_card -->
-> **hunger** — голод.
+> **hunger** — голод
 
-**2 · Скажіть: «Раніше я не звертав уваги на голод.»**
-<!-- interaction_id: en:lesson-25:session-07:i01; family: phrase_builder -->
-Плитки: `hunger` `my` `ignore` `to` `used` `I` → **I used to ignore my hunger.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-07:i01; family: listen_choose -->
+🔊 *I used to feel hunger before lunch.* → **I used to feel hunger before lunch.** · I used to feel hunger after lunch. · I used to feel hunger before dinner.
+- I used to feel hunger after lunch. — *У записі звучить I used to feel hunger before lunch.*
+- I used to feel hunger before dinner. — *У записі звучить I used to feel hunger before lunch.*
 
-**3 · Доповніть спогад.**
+**3 · Ідеться про відчуття, не про опис людини: «Мій голод минув».**
 <!-- interaction_id: en:lesson-25:session-07:i02; family: context_gap_grammar -->
-I used to ___ my hunger. → **ignore** · ignored · ignoring
-- ignored — *Після used to потрібна форма ignore.*
-- ignoring — *Після used to потрібна форма ignore.*
+My ___ has gone. → **hunger** · hungry · hungrier
+- hungry — *Hungry — прикметник; після my тут потрібен іменник — назва відчуття.*
+- hungrier — *Hungrier означає «більш голодний»; порівняння тут немає.*
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-07:i03; family: listen_choose -->
-🔊 *I used to ignore my hunger.* → **I used to ignore my hunger.** · We used to ignore our hunger. · I used to notice my hunger.
-- We used to ignore our hunger. — *У записі звучить I used to ignore my hunger.*
-- I used to notice my hunger. — *У записі звучить I used to ignore my hunger.*
-
-**5 · Картка слова — thirst**
-<!-- interaction_id: en:lesson-25:session-07:word:thirst; family: word_card -->
-> **thirst** — спрага.
-
-**6 · Скажіть: «Раніше вона прокидалася із сильною спрагою.»**
-<!-- interaction_id: en:lesson-25:session-07:i04; family: phrase_builder -->
-Плитки: `thirst` `terrible` `a` `with` `up` `wake` `to` `used` `She` → **She used to wake up with a terrible thirst.**
-
-**7 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-07:i05; family: context_gap_grammar -->
-She used to ___ up with a terrible thirst. → **wake** · woke · waking
-- woke — *Після used to потрібна форма wake.*
-- waking — *Після used to потрібна форма wake.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-07:i06; family: listen_choose -->
-🔊 *She used to wake up with a terrible thirst.* → **She used to wake up with a terrible thirst.** · He used to wake up with a terrible thirst. · She used to wake up with a slight thirst.
-- He used to wake up with a terrible thirst. — *У записі звучить She used to wake up with a terrible thirst.*
-- She used to wake up with a slight thirst. — *У записі звучить She used to wake up with a terrible thirst.*
-
-**9 · Картка слова — chores**
+**4 · Картка слова — chores**
 <!-- interaction_id: en:lesson-25:session-07:word:chores; family: word_card -->
-> **chores** — домашні обов’язки.
+> **chores** — домашні обов’язки
 
-**10 · Скажіть: «Раніше ми ділили домашні обов’язки.»**
-<!-- interaction_id: en:lesson-25:session-07:i07; family: phrase_builder -->
-Плитки: `chores` `the` `share` `to` `used` `We` → **We used to share the chores.**
+**5 · Згадайте правило в родині: «Раніше ми робили домашні справи разом».**
+<!-- interaction_id: en:lesson-25:session-07:i03; family: phrase_builder -->
+Плитки: `together` `chores` `the` `do` `to` `used` `We` → **We used to do the chores together.**
 
-**11 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-07:i08; family: context_gap_grammar -->
-We used to ___ the chores. → **share** · shared · sharing
-- shared — *Після used to потрібна форма share.*
-- sharing — *Після used to потрібна форма share.*
+**6 · Ви вже закінчили прибирання. Скажіть: «Я вже зробив свої домашні справи».**
+<!-- interaction_id: en:lesson-25:session-07:i04; family: scripted_repeat_compare -->
+🎙 **I have already done my chores.**
+
+**7 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-07:i05; family: listen_choose -->
+🔊 *My brother used to wash the dishes.* → **My brother used to wash the dishes.** · My brother used to dry the dishes. · My sister used to wash the dishes.
+- My brother used to dry the dishes. — *У записі звучить My brother used to wash the dishes.*
+- My sister used to wash the dishes. — *У записі звучить My brother used to wash the dishes.*
+
+**8 · Картка слова — thirst**
+<!-- interaction_id: en:lesson-25:session-07:word:thirst; family: word_card -->
+> **thirst** — спрага
+
+**9 · Відновіть почуте про напій.**
+<!-- interaction_id: en:lesson-25:session-07:i06; family: listen_build_dictation -->
+🔊 *Cold water helps with my thirst.* Плитки: `thirst` `my` `with` `helps` `water` `Cold` → **Cold water helps with my thirst.**
+
+**10 · Раніше ви завжди носили воду; тепер купуєте її дорогою.**
+<!-- interaction_id: en:lesson-25:session-07:i07; family: context_gap_grammar -->
+I used to ___ water with me. → **carry** · carried · carrying
+- carried — *Після used to потрібна базова форма carry.*
+- carrying — *Тут used to + carry описує колишню звичку.*
+
+**11 · Картка слова — errands**
+<!-- interaction_id: en:lesson-25:session-07:word:errands; family: word_card -->
+> **errands** — дрібні справи поза домом
 
 **12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-07:i09; family: listen_choose -->
-🔊 *We used to share the chores.* → **We used to share the chores.** · They used to share the chores. · We used to avoid the chores.
-- They used to share the chores. — *У записі звучить We used to share the chores.*
-- We used to avoid the chores. — *У записі звучить We used to share the chores.*
+<!-- interaction_id: en:lesson-25:session-07:i08; family: listen_choose -->
+🔊 *We used to run errands on Saturdays.* → **We used to run errands on Saturdays.** · We used to run errands on Sundays. · We used to run errands on Fridays.
+- We used to run errands on Sundays. — *У записі звучить We used to run errands on Saturdays.*
+- We used to run errands on Fridays. — *У записі звучить We used to run errands on Saturdays.*
 
-**13 · Картка слова — errands**
-<!-- interaction_id: en:lesson-25:session-07:word:errands; family: word_card -->
-> **errands** — дрібні справи поза домом.
+**13 · Потрібно забрати посилку й купити хліб. Виберіть назву таких справ поза домом.**
+<!-- interaction_id: en:lesson-25:session-07:i09; family: context_gap_grammar -->
+I have a few ___ to run. → **errands** · chores · meals
+- chores — *Chores — регулярні обов’язки, зазвичай удома; run errands — сходити в дрібних справах.*
+- meals — *Meals — прийоми їжі; run meals тут не підходить.*
 
-**14 · Скажіть: «Раніше після роботи він ходив у дрібних справах.»**
+**14 · Одна сумка вже повна. Скажіть: «Мені потрібна ще одна сумка».**
 <!-- interaction_id: en:lesson-25:session-07:i10; family: phrase_builder -->
-Плитки: `work` `after` `errands` `run` `to` `used` `He` → **He used to run errands after work.**
+Плитки: `bag` `another` `need` `I` → **I need another bag.**
 
-**15 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-07:i11; family: context_gap_grammar -->
-He used to ___ errands after work. → **run** · ran · running
-- ran — *Після used to потрібна форма run.*
-- running — *Після used to потрібна форма run.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-07:i12; family: listen_choose -->
-🔊 *He used to run errands after work.* → **He used to run errands after work.** · She used to run errands after work. · He used to run errands before work.
-- She used to run errands after work. — *У записі звучить He used to run errands after work.*
-- He used to run errands before work. — *У записі звучить He used to run errands after work.*
-
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-07:i13; family: speed_match -->
+**15 · Зіставте відчуття та справи з перекладом**
+<!-- interaction_id: en:lesson-25:session-07:i11; family: speed_match -->
 hunger — голод · thirst — спрага · chores — домашні обов’язки · errands — дрібні справи поза домом
 
-**18 · Знайшов іншу роботу**
-<!-- interaction_id: en:lesson-25:session-07:i14; family: listen_build_dictation -->
-🔊 *I have found another job.* Плитки: `job` `another` `found` `have` `I` → **I have found another job.**
+**16 · Послухайте, як раніше розподіляли обов’язки.**
+<!-- interaction_id: en:lesson-25:session-07:i12; family: listen_build_dictation -->
+🔊 *My sister used to take out the rubbish.* Плитки: `rubbish` `the` `out` `take` `to` `used` `sister` `My` → **My sister used to take out the rubbish.**
 
-**19 · Інші сім’ї переїхали**
-<!-- interaction_id: en:lesson-25:session-07:i15; family: listen_build_dictation -->
-🔊 *The other families moved last year.* Плитки: `year` `last` `moved` `families` `other` `The` → **The other families moved last year.**
+**17 · Це сталося один раз учора, а не було колишньою звичкою.**
+<!-- interaction_id: en:lesson-25:session-07:i13; family: context_gap_grammar -->
+I ___ the parcel yesterday. → **collected** · have collected · used to collect
+- have collected — *Yesterday вказує на завершене минуле; потрібен Past Simple.*
+- used to collect — *Used to collect позначає звичку, а тут одна завершена справа.*
 
-**20 · Скажіть: «Вони раніше ділили домашні обов’язки».**
-<!-- interaction_id: en:lesson-25:session-07:i16; family: scripted_repeat_compare -->
-🎙 **They used to share the chores.**
+**18 · Порівняйте свою колишню звичку з теперішньою: «Раніше я пропускав сніданок».**
+<!-- interaction_id: en:lesson-25:session-07:i14; family: scripted_repeat_compare -->
+🎙 **I used to skip breakfast.**
 
-**21 · Скажіть: «Вона раніше ходила у дрібних справах після роботи».**
+**19 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-07:i15; family: listen_choose -->
+🔊 *Have you finished your chores?* → **Have you finished your chores?** · Have you started your chores? · Have they finished their chores?
+- Have you started your chores? — *У записі звучить Have you finished your chores?*
+- Have they finished their chores? — *У записі звучить Have you finished your chores?*
+
+**20 · Ви зробили свою частину. Скажіть: «Інші справи можуть зачекати».**
+<!-- interaction_id: en:lesson-25:session-07:i16; family: phrase_builder -->
+Плитки: `wait` `can` `chores` `other` `The` → **The other chores can wait.**
+
+**21 · Тепер до крамниці далеко. Скажіть про минуле: «Раніше я жив поруч із крамницею».**
 <!-- interaction_id: en:lesson-25:session-07:i17; family: scripted_repeat_compare -->
-🎙 **She used to run errands after work.**
+🎙 **I used to live near the shop.**
 

@@ -6,38 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-07:i01",
-    "correctText": "I used to ignore my hunger.",
-    "correctResponseId": null
+    "correctText": "I used to feel hunger before lunch.",
+    "correctResponseId": "en:lesson-25:session-07:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-07:i02",
-    "correctText": "ignore",
+    "correctText": "hunger",
     "correctResponseId": "en:lesson-25:session-07:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-07:i03",
-    "correctText": "I used to ignore my hunger.",
-    "correctResponseId": "en:lesson-25:session-07:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-07:word:thirst",
-    "correctText": "thirst",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-07:i04",
-    "correctText": "She used to wake up with a terrible thirst.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-07:i05",
-    "correctText": "wake",
-    "correctResponseId": "en:lesson-25:session-07:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-07:i06",
-    "correctText": "She used to wake up with a terrible thirst.",
-    "correctResponseId": "en:lesson-25:session-07:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-07:word:chores",
@@ -45,19 +20,34 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-07:i07",
-    "correctText": "We used to share the chores.",
+    "interactionId": "en:lesson-25:session-07:i03",
+    "correctText": "We used to do the chores together.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-07:i08",
-    "correctText": "share",
-    "correctResponseId": "en:lesson-25:session-07:i08:r1"
+    "interactionId": "en:lesson-25:session-07:i04",
+    "correctText": "I have already done my chores.",
+    "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-07:i09",
-    "correctText": "We used to share the chores.",
-    "correctResponseId": "en:lesson-25:session-07:i09:r1"
+    "interactionId": "en:lesson-25:session-07:i05",
+    "correctText": "My brother used to wash the dishes.",
+    "correctResponseId": "en:lesson-25:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:word:thirst",
+    "correctText": "thirst",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i06",
+    "correctText": "Cold water helps with my thirst.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i07",
+    "correctText": "carry",
+    "correctResponseId": "en:lesson-25:session-07:i07:r1"
   },
   {
     "interactionId": "en:lesson-25:session-07:word:errands",
@@ -65,43 +55,53 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-07:i08",
+    "correctText": "We used to run errands on Saturdays.",
+    "correctResponseId": "en:lesson-25:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i09",
+    "correctText": "errands",
+    "correctResponseId": "en:lesson-25:session-07:i09:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-07:i10",
-    "correctText": "He used to run errands after work.",
+    "correctText": "I need another bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i11",
-    "correctText": "run",
-    "correctResponseId": "en:lesson-25:session-07:i11:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-07:i12",
-    "correctText": "He used to run errands after work.",
-    "correctResponseId": "en:lesson-25:session-07:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-07:i13",
-    "correctText": "en:lesson-25:session-07:i13:p1=hunger\nen:lesson-25:session-07:i13:p2=thirst\nen:lesson-25:session-07:i13:p3=chores\nen:lesson-25:session-07:i13:p4=errands",
+    "correctText": "en:lesson-25:session-07:i11:p1=hunger\nen:lesson-25:session-07:i11:p2=thirst\nen:lesson-25:session-07:i11:p3=chores\nen:lesson-25:session-07:i11:p4=errands",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-07:i12",
+    "correctText": "My sister used to take out the rubbish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i13",
+    "correctText": "collected",
+    "correctResponseId": "en:lesson-25:session-07:i13:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-07:i14",
-    "correctText": "I have found another job.",
+    "correctText": "I used to skip breakfast.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i15",
-    "correctText": "The other families moved last year.",
-    "correctResponseId": null
+    "correctText": "Have you finished your chores?",
+    "correctResponseId": "en:lesson-25:session-07:i15:r1"
   },
   {
     "interactionId": "en:lesson-25:session-07:i16",
-    "correctText": "They used to share the chores.",
+    "correctText": "The other chores can wait.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i17",
-    "correctText": "She used to run errands after work.",
+    "correctText": "I used to live near the shop.",
     "correctResponseId": null
   }
 ]

@@ -49,103 +49,103 @@ Demand — требовать. He used to demand an answer — раньше он
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — envy**
-<!-- interaction_id: en:lesson-25:session-08:word:envy; family: word_card -->
-> **envy** — завидовать.
-
-**2 · Скажите: «Раньше я завидовал своему брату.»**
-<!-- interaction_id: en:lesson-25:session-08:i01; family: phrase_builder -->
-Плитки: `brother` `my` `envy` `to` `used` `I` → **I used to envy my brother.**
-
-**3 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-08:i02; family: context_gap_grammar -->
-I used to ___ my brother. → **envy** · envied · envying
-- envied — *После used to нужна форма envy.*
-- envying — *После used to нужна форма envy.*
-
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-08:i03; family: listen_choose -->
-🔊 *I used to envy my brother.* → **I used to envy my brother.** · We used to envy my brother. · I used to envy my sister.
-- We used to envy my brother. — *В записи звучит I used to envy my brother.*
-- I used to envy my sister. — *В записи звучит I used to envy my brother.*
-
-**5 · Карточка слова — reward**
+**1 · Карточка слова — reward**
 <!-- interaction_id: en:lesson-25:session-08:word:reward; family: word_card -->
-> **reward** — награждать, поощрять.
+> **reward** — награждать, поощрять
 
-**6 · Скажите: «Раньше она поощряла хорошую работу.»**
-<!-- interaction_id: en:lesson-25:session-08:i04; family: phrase_builder -->
-Плитки: `work` `good` `reward` `to` `used` `She` → **She used to reward good work.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-08:i01; family: listen_choose -->
+🔊 *Our teacher used to reward hard work.* → **Our teacher used to reward hard work.** · Our teacher used to reward good behaviour. · Our parents used to reward hard work.
+- Our teacher used to reward good behaviour. — *В записи звучит Our teacher used to reward hard work.*
+- Our parents used to reward hard work. — *В записи звучит Our teacher used to reward hard work.*
 
-**7 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-08:i05; family: context_gap_grammar -->
-She used to ___ good work. → **reward** · rewarded · rewarding
-- rewarded — *После used to нужна форма reward.*
-- rewarding — *После used to нужна форма reward.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-08:i06; family: listen_choose -->
-🔊 *She used to reward good work.* → **She used to reward good work.** · He used to reward good work. · She used to reward good behaviour.
-- He used to reward good work. — *В записи звучит She used to reward good work.*
-- She used to reward good behaviour. — *В записи звучит She used to reward good work.*
-
-**9 · Карточка слова — punish**
+**3 · Карточка слова — punish**
 <!-- interaction_id: en:lesson-25:session-08:word:punish; family: word_card -->
-> **punish** — наказывать.
+> **punish** — наказывать
 
-**10 · Скажите: «Наш учитель раньше наказывал за плохое поведение.»**
-<!-- interaction_id: en:lesson-25:session-08:i07; family: phrase_builder -->
-Плитки: `behaviour` `bad` `punish` `to` `used` `teacher` `Our` → **Our teacher used to punish bad behaviour.**
+**4 · За ложь ребёнку запрещали играть. Это наказание, не награда.**
+<!-- interaction_id: en:lesson-25:session-08:i02; family: context_gap_grammar -->
+His parents used to ___ him for lying. → **punish** · reward · thank
+- reward — *Reward означает поощрять, а здесь описано наказание.*
+- thank — *Thank означает благодарить; за ложь здесь наказывали.*
 
-**11 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-08:i08; family: context_gap_grammar -->
-Our teacher used to ___ bad behaviour. → **punish** · punished · punishing
-- punished — *После used to нужна форма punish.*
-- punishing — *После used to нужна форма punish.*
+**5 · Скажите о прежнем школьном правиле: «Раньше нас наказывали за опоздания». Используйте «Они».**
+<!-- interaction_id: en:lesson-25:session-08:i03; family: phrase_builder -->
+Плитки: `late` `being` `for` `us` `punish` `to` `used` `They` → **They used to punish us for being late.**
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-08:i09; family: listen_choose -->
-🔊 *Our teacher used to punish bad behaviour.* → **Our teacher used to punish bad behaviour.** · Their teacher used to punish bad behaviour. · Our teacher used to ignore bad behaviour.
-- Their teacher used to punish bad behaviour. — *В записи звучит Our teacher used to punish bad behaviour.*
-- Our teacher used to ignore bad behaviour. — *В записи звучит Our teacher used to punish bad behaviour.*
+**6 · Услышьте, что случилось вчера.**
+<!-- interaction_id: en:lesson-25:session-08:i04; family: listen_build_dictation -->
+🔊 *I arrived late yesterday.* Плитки: `yesterday` `late` `arrived` `I` → **I arrived late yesterday.**
 
-**13 · Карточка слова — demand**
+**7 · Карточка слова — envy**
+<!-- interaction_id: en:lesson-25:session-08:word:envy; family: word_card -->
+> **envy** — завидовать
+
+**8 · Друг рассказал о длинных каникулах. Ответьте: «Я тебе завидую».**
+<!-- interaction_id: en:lesson-25:session-08:i05; family: scripted_repeat_compare -->
+🎙 **I envy you.**
+
+**9 · Раньше вы завидовали чужим игрушкам; теперь это прошло.**
+<!-- interaction_id: en:lesson-25:session-08:i06; family: context_gap_grammar -->
+I used to ___ other children. → **envy** · envied · envying
+- envied — *Used to уже относит привычку к прошлому; нужен envy без -ed.*
+- envying — *После used to нужна базовая форма envy, не envying.*
+
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-08:i07; family: listen_choose -->
+🔊 *My friend used to have a red bike.* → **My friend used to have a red bike.** · My friend used to have a blue bike. · My brother used to have a red bike.
+- My friend used to have a blue bike. — *В записи звучит My friend used to have a red bike.*
+- My brother used to have a red bike. — *В записи звучит My friend used to have a red bike.*
+
+**11 · Карточка слова — demand**
 <!-- interaction_id: en:lesson-25:session-08:word:demand; family: word_card -->
-> **demand** — требовать.
+> **demand** — требовать
 
-**14 · Скажите: «Раньше он требовал ответа.»**
-<!-- interaction_id: en:lesson-25:session-08:i10; family: phrase_builder -->
-Плитки: `answer` `an` `demand` `to` `used` `He` → **He used to demand an answer.**
+**12 · Вы настаиваете на объяснении: «Я требую объяснения».**
+<!-- interaction_id: en:lesson-25:session-08:i08; family: phrase_builder -->
+Плитки: `explanation` `an` `demand` `I` → **I demand an explanation.**
 
-**15 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-08:i11; family: context_gap_grammar -->
-He used to ___ an answer. → **demand** · demanded · demanding
-- demanded — *После used to нужна форма demand.*
-- demanding — *После used to нужна форма demand.*
+**13 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-08:i09; family: listen_choose -->
+🔊 *The customer demanded a refund.* → **The customer demanded a refund.** · The customer demanded an apology. · The manager demanded a refund.
+- The customer demanded an apology. — *В записи звучит The customer demanded a refund.*
+- The manager demanded a refund. — *В записи звучит The customer demanded a refund.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-08:i12; family: listen_choose -->
-🔊 *He used to demand an answer.* → **He used to demand an answer.** · She used to demand an answer. · He used to demand an apology.
-- She used to demand an answer. — *В записи звучит He used to demand an answer.*
-- He used to demand an apology. — *В записи звучит He used to demand an answer.*
-
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-08:i13; family: speed_match -->
+**14 · Различите чувства, требования и реакции взрослых**
+<!-- interaction_id: en:lesson-25:session-08:i10; family: speed_match -->
 envy — завидовать · reward — награждать, поощрять · punish — наказывать · demand — требовать
 
-**18 · Нашёл другую работу**
-<!-- interaction_id: en:lesson-25:session-08:i14; family: listen_build_dictation -->
-🔊 *I have found another job.* Плитки: `job` `another` `found` `have` `I` → **I have found another job.**
+**15 · Вчера вы извинились перед учителем. Выберите завершённое событие.**
+<!-- interaction_id: en:lesson-25:session-08:i11; family: context_gap_grammar -->
+I ___ to my teacher yesterday. → **apologised** · have apologised · used to apologise
+- have apologised — *Yesterday требует Past Simple, не Present Perfect.*
+- used to apologise — *Used to описывает повторявшуюся привычку, а не один вчерашний случай.*
 
-**19 · Другие семьи переехали**
-<!-- interaction_id: en:lesson-25:session-08:i15; family: listen_build_dictation -->
-🔊 *The other families moved last year.* Плитки: `year` `last` `moved` `families` `other` `The` → **The other families moved last year.**
+**16 · Попросите ещё одну возможность: «Можно мне попробовать ещё раз?»**
+<!-- interaction_id: en:lesson-25:session-08:i12; family: scripted_repeat_compare -->
+🎙 **Can I have another try?**
 
-**20 · Скажите: «Мы раньше завидовали своему брату».**
-<!-- interaction_id: en:lesson-25:session-08:i16; family: scripted_repeat_compare -->
-🎙 **We used to envy our brother.**
+**17 · Восстановите воспоминание о школе.**
+<!-- interaction_id: en:lesson-25:session-08:i13; family: listen_build_dictation -->
+🔊 *We used to be afraid of our teacher.* Плитки: `teacher` `our` `of` `afraid` `be` `to` `used` `We` → **We used to be afraid of our teacher.**
 
-**21 · Скажите: «Она раньше требовала ответа».**
+**18 · Объяснение уже получено, сейчас вы его понимаете. Дополните Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-08:i14; family: context_gap_grammar -->
+She has ___ the rule to me. → **explained** · explain · explaining
+- explain — *После has нужна третья форма explained.*
+- explaining — *Has explaining не образует Present Perfect; нужно has explained.*
+
+**19 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-08:i15; family: listen_choose -->
+🔊 *Do you remember our old school?* → **Do you remember our old school?** · Do you remember our old house? · Do they remember our old school?
+- Do you remember our old house? — *В записи звучит Do you remember our old school?*
+- Do they remember our old school? — *В записи звучит Do you remember our old school?*
+
+**20 · Раньше вы делились игрушками. Скажите: «Раньше я делился с другими детьми».**
+<!-- interaction_id: en:lesson-25:session-08:i16; family: phrase_builder -->
+Плитки: `children` `other` `with` `share` `to` `used` `I` → **I used to share with other children.**
+
+**21 · Один случай уже рассказал друг. Скажите о своём опыте: «Я тоже совершал ошибки». Используйте Present Perfect.**
 <!-- interaction_id: en:lesson-25:session-08:i17; family: scripted_repeat_compare -->
-🎙 **She used to demand an answer.**
+🎙 **I have made mistakes too.**
 

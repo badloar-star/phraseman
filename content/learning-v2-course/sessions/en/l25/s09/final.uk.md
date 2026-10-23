@@ -49,103 +49,103 @@ Environment — довкілля: повітря, вода, земля й жит
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — wildlife**
-<!-- interaction_id: en:lesson-25:session-09:word:wildlife; family: word_card -->
-> **wildlife** — дикі тварини в природі.
-
-**2 · Скажіть: «У ті часи ми часто спостерігали за дикими тваринами.»**
-<!-- interaction_id: en:lesson-25:session-09:i01; family: phrase_builder -->
-Плитки: `wildlife` `watch` `would` `we` `days` `those` `In` → **In those days we would watch wildlife.**
-
-**3 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-09:i02; family: context_gap_grammar -->
-In those days we ___ watch wildlife. → **would** · will · did
-- will — *У цьому спогаді дію, що повторювалася, передаємо через would watch.*
-- did — *У цьому спогаді дію, що повторювалася, передаємо через would watch.*
-
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-09:i03; family: listen_choose -->
-🔊 *In those days we would watch wildlife.* → **In those days we would watch wildlife.** · In those days they would watch wildlife. · In those days we would photograph wildlife.
-- In those days they would watch wildlife. — *У записі звучить In those days we would watch wildlife.*
-- In those days we would photograph wildlife. — *У записі звучить In those days we would watch wildlife.*
-
-**5 · Картка слова — scenery**
+**1 · Картка слова — scenery**
 <!-- interaction_id: en:lesson-25:session-09:word:scenery; family: word_card -->
-> **scenery** — краєвид, види природи.
+> **scenery** — краєвид, види природи
 
-**6 · Скажіть: «У ті часи ми зазвичай фотографували краєвиди.»**
-<!-- interaction_id: en:lesson-25:session-09:i04; family: phrase_builder -->
-Плитки: `scenery` `the` `photograph` `would` `we` `days` `those` `In` → **In those days we would photograph the scenery.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-09:i01; family: listen_choose -->
+🔊 *On those trips we would stop to admire the scenery.* → **On those trips we would stop to admire the scenery.** · On those trips we would stop to photograph the scenery. · On those trips they would stop to admire the scenery.
+- On those trips we would stop to photograph the scenery. — *У записі звучить On those trips we would stop to admire the scenery.*
+- On those trips they would stop to admire the scenery. — *У записі звучить On those trips we would stop to admire the scenery.*
 
-**7 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-09:i05; family: context_gap_grammar -->
-In those days we would ___ the scenery. → **photograph** · photographed · photographing
-- photographed — *Після would потрібна базова форма дієслова.*
-- photographing — *Після would потрібна базова форма дієслова.*
+**3 · Ідеться про повторювану прогулянку в дитинстві. Доповніть форму після would.**
+<!-- interaction_id: en:lesson-25:session-09:i02; family: context_gap_grammar -->
+As children we would ___ by the river. → **walk** · walked · to walk
+- walked — *Would потребує базової форми walk.*
+- to walk — *Після would не ставимо to.*
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-09:i06; family: listen_choose -->
-🔊 *In those days we would photograph the scenery.* → **In those days we would photograph the scenery.** · In those days they would photograph the scenery. · In those days we would paint the scenery.
-- In those days they would photograph the scenery. — *У записі звучить In those days we would photograph the scenery.*
-- In those days we would paint the scenery. — *У записі звучить In those days we would photograph the scenery.*
+**4 · Картка слова — wildlife**
+<!-- interaction_id: en:lesson-25:session-09:word:wildlife; family: word_card -->
+> **wildlife** — дикі тварини в природі
 
-**9 · Картка слова — atmosphere**
+**5 · Згадайте ранкові прогулянки: «У ті часи ми спостерігали за дикими тваринами рано-вранці». Використайте would.**
+<!-- interaction_id: en:lesson-25:session-09:i03; family: phrase_builder -->
+Плитки: `morning` `the` `in` `early` `wildlife` `watch` `would` `we` `days` `those` `In` → **In those days we would watch wildlife early in the morning.**
+
+**6 · Скажіть про місце проживання, а не повторювану дію: «Раніше я жив поруч із лісом».**
+<!-- interaction_id: en:lesson-25:session-09:i04; family: scripted_repeat_compare -->
+🎙 **I used to live near a forest.**
+
+**7 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-09:i05; family: listen_choose -->
+🔊 *Last summer I saw a fox.* → **Last summer I saw a fox.** · Last summer I saw a deer. · Last winter I saw a fox.
+- Last summer I saw a deer. — *У записі звучить Last summer I saw a fox.*
+- Last winter I saw a fox. — *У записі звучить Last summer I saw a fox.*
+
+**8 · Картка слова — atmosphere**
 <!-- interaction_id: en:lesson-25:session-09:word:atmosphere; family: word_card -->
-> **atmosphere** — атмосфера, обстановка.
+> **atmosphere** — атмосфера, обстановка
 
-**10 · Скажіть: «Під час колишніх відпусток ми зазвичай насолоджувалися спокійною атмосферою.»**
-<!-- interaction_id: en:lesson-25:session-09:i07; family: phrase_builder -->
-Плитки: `atmosphere` `quiet` `the` `enjoy` `would` `we` `holidays` `old` `our` `On` → **On our old holidays we would enjoy the quiet atmosphere.**
+**9 · Почуйте враження від місця.**
+<!-- interaction_id: en:lesson-25:session-09:i06; family: listen_build_dictation -->
+🔊 *The cafe had a friendly atmosphere.* Плитки: `atmosphere` `friendly` `a` `had` `cafe` `The` → **The cafe had a friendly atmosphere.**
 
-**11 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-09:i08; family: context_gap_grammar -->
-On our old holidays we would ___ the quiet atmosphere. → **enjoy** · enjoyed · enjoying
-- enjoyed — *Після would потрібна базова форма дієслова.*
-- enjoying — *Після would потрібна базова форма дієслова.*
+**10 · Ви описуєте обстановку всередині кафе — музика, розмови, настрій.**
+<!-- interaction_id: en:lesson-25:session-09:i07; family: context_gap_grammar -->
+I loved the ___ in that cafe. → **atmosphere** · wildlife · scenery
+- wildlife — *Wildlife — дикі тварини, а не обстановка кав’ярні.*
+- scenery — *Scenery — природні краєвиди; тут ідеться про обстановку всередині.*
+
+**11 · Картка слова — environment**
+<!-- interaction_id: en:lesson-25:session-09:word:environment; family: word_card -->
+> **environment** — довкілля
 
 **12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-09:i09; family: listen_choose -->
-🔊 *On our old holidays we would enjoy the quiet atmosphere.* → **On our old holidays we would enjoy the quiet atmosphere.** · On our old holidays they would enjoy the quiet atmosphere. · On our old holidays we would enjoy the lively atmosphere.
-- On our old holidays they would enjoy the quiet atmosphere. — *У записі звучить On our old holidays we would enjoy the quiet atmosphere.*
-- On our old holidays we would enjoy the lively atmosphere. — *У записі звучить On our old holidays we would enjoy the quiet atmosphere.*
+<!-- interaction_id: en:lesson-25:session-09:i08; family: listen_choose -->
+🔊 *At school we would learn about the environment.* → **At school we would learn about the environment.** · At school we would read about the environment. · At home we would learn about the environment.
+- At school we would read about the environment. — *У записі звучить At school we would learn about the environment.*
+- At home we would learn about the environment. — *У записі звучить At school we would learn about the environment.*
 
-**13 · Картка слова — environment**
-<!-- interaction_id: en:lesson-25:session-09:word:environment; family: word_card -->
-> **environment** — довкілля.
+**13 · Раніше щосуботи ви прибирали пляж. Зберіть: «Тоді щосуботи ми прибирали пляж».**
+<!-- interaction_id: en:lesson-25:session-09:i09; family: phrase_builder -->
+Плитки: `Saturdays` `on` `beach` `the` `clean` `would` `we` `then` `Back` → **Back then we would clean the beach on Saturdays.**
 
-**14 · Скажіть: «У моїй колишній школі ми регулярно обговорювали довкілля.»**
-<!-- interaction_id: en:lesson-25:session-09:i10; family: phrase_builder -->
-Плитки: `environment` `the` `discuss` `would` `we` `school` `old` `my` `At` → **At my old school we would discuss the environment.**
-
-**15 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-09:i11; family: context_gap_grammar -->
-At my old school we would ___ the environment. → **discuss** · discussed · discussing
-- discussed — *Після would потрібна базова форма дієслова.*
-- discussing — *Після would потрібна базова форма дієслова.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-09:i12; family: listen_choose -->
-🔊 *At my old school we would discuss the environment.* → **At my old school we would discuss the environment.** · At my old school they would discuss the environment. · At my old school we would study the environment.
-- At my old school they would discuss the environment. — *У записі звучить At my old school we would discuss the environment.*
-- At my old school we would study the environment. — *У записі звучить At my old school we would discuss the environment.*
-
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-09:i13; family: speed_match -->
+**14 · Зіставте природу й обстановку з перекладом**
+<!-- interaction_id: en:lesson-25:session-09:i10; family: speed_match -->
 wildlife — дикі тварини в природі · scenery — краєвид, види природи · atmosphere — атмосфера, обстановка · environment — довкілля
 
-**18 · Колишнє місце проживання**
-<!-- interaction_id: en:lesson-25:session-09:i14; family: listen_build_dictation -->
-🔊 *I used to live by the lake.* Плитки: `lake` `the` `by` `live` `to` `used` `I` → **I used to live by the lake.**
+**15 · Ідеться про один учорашній похід, не про колишню звичку.**
+<!-- interaction_id: en:lesson-25:session-09:i11; family: context_gap_grammar -->
+We ___ to the lake yesterday. → **walked** · have walked · would walk
+- have walked — *Yesterday — завершений час: вибираємо walked.*
+- would walk — *Для одного вчорашнього походу потрібен Past Simple; would walk тут не передає потрібну подію.*
 
-**19 · Раніше я був сором’язливим**
-<!-- interaction_id: en:lesson-25:session-09:i15; family: listen_build_dictation -->
-🔊 *I used to be shy.* Плитки: `shy` `be` `to` `used` `I` → **I used to be shy.**
+**16 · Запропонуйте відвідати ще один парк: «Давай відвідаємо ще один парк».**
+<!-- interaction_id: en:lesson-25:session-09:i12; family: scripted_repeat_compare -->
+🎙 **Let us visit another park.**
 
-**20 · Скажіть: «У ті часи вона зазвичай фотографувала краєвиди».**
-<!-- interaction_id: en:lesson-25:session-09:i16; family: scripted_repeat_compare -->
-🎙 **In those days she would photograph the scenery.**
+**17 · Почуйте повторюване вечірнє заняття в минулому.**
+<!-- interaction_id: en:lesson-25:session-09:i13; family: listen_build_dictation -->
+🔊 *During those holidays we would play cards every evening.* Плитки: `evening` `every` `cards` `play` `would` `we` `holidays` `those` `During` → **During those holidays we would play cards every evening.**
 
-**21 · Скажіть: «У моїй колишній школі вони регулярно обговорювали довкілля».**
+**18 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-09:i14; family: listen_choose -->
+🔊 *Have you ever slept in a tent?* → **Have you ever slept in a tent?** · Have you ever stayed in a hotel? · Have they ever slept in a tent?
+- Have you ever stayed in a hotel? — *У записі звучить Have you ever slept in a tent?*
+- Have they ever slept in a tent? — *У записі звучить Have you ever slept in a tent?*
+
+**19 · Ви говорите про досвід поїздок до сьогодні.**
+<!-- interaction_id: en:lesson-25:session-09:i15; family: context_gap_grammar -->
+I have ___ that lake twice. → **visited** · visit · visiting
+- visit — *Після have потрібна третя форма visited.*
+- visiting — *Have visiting не утворює Present Perfect.*
+
+**20 · На інших берегах залишалося сміття. Скажіть: «Інші пляжі теж потребували прибирання».**
+<!-- interaction_id: en:lesson-25:session-09:i16; family: phrase_builder -->
+Плитки: `too` `cleaning` `needed` `beaches` `Other` → **Other beaches needed cleaning too.**
+
+**21 · Розкажіть про сімейний ритуал: «У ті часи ми слухали розповіді дідуся». Використайте would.**
 <!-- interaction_id: en:lesson-25:session-09:i17; family: scripted_repeat_compare -->
-🎙 **At my old school they would discuss the environment.**
+🎙 **In those days we would listen to our grandfather’s stories.**
 

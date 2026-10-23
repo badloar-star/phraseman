@@ -28,8 +28,8 @@
             "responseId": "en:lesson-25:session-07:word:hunger:r1",
             "targetText": "hunger",
             "meaningByLocale": {
-              "ru": "голод.",
-              "uk": "голод."
+              "ru": "голод",
+              "uk": "голод"
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "hunger",
           "definitionByLocale": {
-            "ru": "голод.",
-            "uk": "голод."
+            "ru": "голод",
+            "uk": "голод"
           }
         }
       },
@@ -50,34 +50,75 @@
       "interactionId": "en:lesson-25:session-07:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше я не звертав уваги на голод.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше я не звертав уваги на голод.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I used to ignore my hunger.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Раньше я не обращал внимания на голод.»",
-          "uk": "Скажіть: «Раніше я не звертав уваги на голод.»"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-07:i01:r1",
+          "text": "I used to feel hunger before lunch."
         },
-        "orderedTokens": [
-          "I",
-          "used",
-          "to",
-          "ignore",
-          "my",
-          "hunger"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        {
+          "responseId": "en:lesson-25:session-07:i01:r2",
+          "text": "I used to feel hunger after lunch."
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i01:r3",
+          "text": "I used to feel hunger before dinner."
         }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-07:i01:audio",
+          "transcript": "I used to feel hunger before lunch."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-07:i01:r1",
+            "targetText": "I used to feel hunger before lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i01:r2",
+            "targetText": "I used to feel hunger after lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i01:r3",
+            "targetText": "I used to feel hunger before dinner.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-07:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to feel hunger before lunch.",
+              "uk": "У записі звучить I used to feel hunger before lunch."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to feel hunger before lunch.",
+              "uk": "У записі звучить I used to feel hunger before lunch."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -87,375 +128,73 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
+      "prompt": "Ідеться про відчуття, не про опис людини: «Мій голод минув».",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-07:i02:r1",
-          "text": "ignore"
+          "text": "hunger"
         },
         {
           "responseId": "en:lesson-25:session-07:i02:r2",
-          "text": "ignored"
+          "text": "hungry"
         },
         {
           "responseId": "en:lesson-25:session-07:i02:r3",
-          "text": "ignoring"
+          "text": "hungrier"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
+      "accessibilityLabel": "Ідеться про відчуття, не про опис людини: «Мій голод минув».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
+          "ru": "Речь о чувстве, не об описании человека: «Мой голод прошёл».",
+          "uk": "Ідеться про відчуття, не про опис людини: «Мій голод минув»."
         },
-        "gappedTargetPhrase": "I used to ___ my hunger.",
+        "gappedTargetPhrase": "My ___ has gone.",
         "gapOptions": [
           {
             "responseId": "en:lesson-25:session-07:i02:r1",
-            "text": "ignore"
+            "text": "hunger"
           },
           {
             "responseId": "en:lesson-25:session-07:i02:r2",
-            "text": "ignored"
+            "text": "hungry"
           },
           {
             "responseId": "en:lesson-25:session-07:i02:r3",
-            "text": "ignoring"
+            "text": "hungrier"
           }
         ],
-        "testedDimension": "Доповніть спогад.",
+        "testedDimension": "Ідеться про відчуття, не про опис людини: «Мій голод минув».",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-25:session-07:i02:r2",
             "correct": false,
-            "testedDimension": "Доповніть спогад.",
+            "testedDimension": "Ідеться про відчуття, не про опис людини: «Мій голод минув».",
             "feedbackByLocale": {
-              "ru": "После used to нужна форма ignore.",
-              "uk": "Після used to потрібна форма ignore."
+              "ru": "Hungry — прилагательное; после my здесь нужно существительное — название чувства.",
+              "uk": "Hungry — прикметник; після my тут потрібен іменник — назва відчуття."
             }
           },
           {
             "responseId": "en:lesson-25:session-07:i02:r3",
             "correct": false,
-            "testedDimension": "Доповніть спогад.",
+            "testedDimension": "Ідеться про відчуття, не про опис людини: «Мій голод минув».",
             "feedbackByLocale": {
-              "ru": "После used to нужна форма ignore.",
-              "uk": "Після used to потрібна форма ignore."
+              "ru": "Hungrier означает «более голодный»; сравнения здесь нет.",
+              "uk": "Hungrier означає «більш голодний»; порівняння тут немає."
             }
           }
         ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-07:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-07:i03:r1",
-          "text": "I used to ignore my hunger."
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i03:r2",
-          "text": "We used to ignore our hunger."
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i03:r3",
-          "text": "I used to notice my hunger."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-07:i03:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-07:i03:audio",
-          "transcript": "I used to ignore my hunger."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-07:i03:r1",
-            "targetText": "I used to ignore my hunger.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i03:r2",
-            "targetText": "We used to ignore our hunger.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i03:r3",
-            "targetText": "I used to notice my hunger.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-07:i03:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I used to ignore my hunger.",
-              "uk": "У записі звучить I used to ignore my hunger."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i03:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I used to ignore my hunger.",
-              "uk": "У записі звучить I used to ignore my hunger."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-07:word:thirst",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — thirst",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-07:word:thirst:audio"
-      ],
-      "accessibilityLabel": "Картка слова — thirst",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-07:word:thirst:audio",
-          "transcript": "thirst"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-07:word:thirst:r1",
-            "targetText": "thirst",
-            "meaningByLocale": {
-              "ru": "жажда.",
-              "uk": "спрага."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "thirst",
-          "definitionByLocale": {
-            "ru": "жажда.",
-            "uk": "спрага."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-07:i04",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше вона прокидалася із сильною спрагою.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше вона прокидалася із сильною спрагою.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She used to wake up with a terrible thirst.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Раньше она просыпалась с сильной жаждой.»",
-          "uk": "Скажіть: «Раніше вона прокидалася із сильною спрагою.»"
-        },
-        "orderedTokens": [
-          "She",
-          "used",
-          "to",
-          "wake",
-          "up",
-          "with",
-          "a",
-          "terrible",
-          "thirst"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-07:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-07:i05:r1",
-          "text": "wake"
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i05:r2",
-          "text": "woke"
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i05:r3",
-          "text": "waking"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "She used to ___ up with a terrible thirst.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-07:i05:r1",
-            "text": "wake"
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i05:r2",
-            "text": "woke"
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i05:r3",
-            "text": "waking"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-07:i05:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма wake.",
-              "uk": "Після used to потрібна форма wake."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i05:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма wake.",
-              "uk": "Після used to потрібна форма wake."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-07:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-07:i06:r1",
-          "text": "She used to wake up with a terrible thirst."
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i06:r2",
-          "text": "He used to wake up with a terrible thirst."
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i06:r3",
-          "text": "She used to wake up with a slight thirst."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-07:i06:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-07:i06:audio",
-          "transcript": "She used to wake up with a terrible thirst."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-07:i06:r1",
-            "targetText": "She used to wake up with a terrible thirst.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i06:r2",
-            "targetText": "He used to wake up with a terrible thirst.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i06:r3",
-            "targetText": "She used to wake up with a slight thirst.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-07:i06:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит She used to wake up with a terrible thirst.",
-              "uk": "У записі звучить She used to wake up with a terrible thirst."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i06:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит She used to wake up with a terrible thirst.",
-              "uk": "У записі звучить She used to wake up with a terrible thirst."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-25:session-07:word:chores",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 7,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Картка слова — chores",
@@ -477,8 +216,8 @@
             "responseId": "en:lesson-25:session-07:word:chores:r1",
             "targetText": "chores",
             "meaningByLocale": {
-              "ru": "домашние обязанности.",
-              "uk": "домашні обов’язки."
+              "ru": "домашние обязанности",
+              "uk": "домашні обов’язки"
             }
           }
         ],
@@ -488,38 +227,39 @@
         "wordCard": {
           "word": "chores",
           "definitionByLocale": {
-            "ru": "домашние обязанности.",
-            "uk": "домашні обов’язки."
+            "ru": "домашние обязанности",
+            "uk": "домашні обов’язки"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-07:i07",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-25:session-07:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше ми ділили домашні обов’язки.»",
+      "prompt": "Згадайте правило в родині: «Раніше ми робили домашні справи разом».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше ми ділили домашні обов’язки.»",
+      "accessibilityLabel": "Згадайте правило в родині: «Раніше ми робили домашні справи разом».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We used to share the chores.",
+        "targetPhrase": "We used to do the chores together.",
         "localizedMeaning": {
-          "ru": "Скажите: «Раньше мы делили домашние обязанности.»",
-          "uk": "Скажіть: «Раніше ми ділили домашні обов’язки.»"
+          "ru": "Вспомните правило в семье: «Раньше мы делали домашние дела вместе».",
+          "uk": "Згадайте правило в родині: «Раніше ми робили домашні справи разом»."
         },
         "orderedTokens": [
           "We",
           "used",
           "to",
-          "share",
+          "do",
           "the",
-          "chores"
+          "chores",
+          "together"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -531,142 +271,106 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-07:i08",
-      "ordinal": 14,
+      "interactionId": "en:lesson-25:session-07:i04",
+      "ordinal": 9,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-07:i08:r1",
-          "text": "share"
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i08:r2",
-          "text": "shared"
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i08:r3",
-          "text": "sharing"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви вже закінчили прибирання. Скажіть: «Я вже зробив свої домашні справи».",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
+      "audioTargetIds": [
+        "en:lesson-25:session-07:i04:audio"
+      ],
+      "accessibilityLabel": "Ви вже закінчили прибирання. Скажіть: «Я вже зробив свої домашні справи».",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-07:i04:audio",
+          "transcript": "I have already done my chores."
         },
-        "gappedTargetPhrase": "We used to ___ the chores.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-07:i08:r1",
-            "text": "share"
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i08:r2",
-            "text": "shared"
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i08:r3",
-            "text": "sharing"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-07:i08:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма share.",
-              "uk": "Після used to потрібна форма share."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i08:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма share.",
-              "uk": "Після used to потрібна форма share."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have already done my chores.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-07:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-25:session-07:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-07:i09:r1",
-          "text": "We used to share the chores."
+          "responseId": "en:lesson-25:session-07:i05:r1",
+          "text": "My brother used to wash the dishes."
         },
         {
-          "responseId": "en:lesson-25:session-07:i09:r2",
-          "text": "They used to share the chores."
+          "responseId": "en:lesson-25:session-07:i05:r2",
+          "text": "My brother used to dry the dishes."
         },
         {
-          "responseId": "en:lesson-25:session-07:i09:r3",
-          "text": "We used to avoid the chores."
+          "responseId": "en:lesson-25:session-07:i05:r3",
+          "text": "My sister used to wash the dishes."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-07:i09:audio"
+        "en:lesson-25:session-07:i05:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-07:i09:audio",
-          "transcript": "We used to share the chores."
+          "audioTargetId": "en:lesson-25:session-07:i05:audio",
+          "transcript": "My brother used to wash the dishes."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-07:i09:r1",
-            "targetText": "We used to share the chores.",
+            "responseId": "en:lesson-25:session-07:i05:r1",
+            "targetText": "My brother used to wash the dishes.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-07:i09:r2",
-            "targetText": "They used to share the chores.",
+            "responseId": "en:lesson-25:session-07:i05:r2",
+            "targetText": "My brother used to dry the dishes.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-07:i09:r3",
-            "targetText": "We used to avoid the chores.",
+            "responseId": "en:lesson-25:session-07:i05:r3",
+            "targetText": "My sister used to wash the dishes.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-07:i09:r2",
+            "responseId": "en:lesson-25:session-07:i05:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We used to share the chores.",
-              "uk": "У записі звучить We used to share the chores."
+              "ru": "В записи звучит My brother used to wash the dishes.",
+              "uk": "У записі звучить My brother used to wash the dishes."
             }
           },
           {
-            "responseId": "en:lesson-25:session-07:i09:r3",
+            "responseId": "en:lesson-25:session-07:i05:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We used to share the chores.",
-              "uk": "У записі звучить We used to share the chores."
+              "ru": "В записи звучит My brother used to wash the dishes.",
+              "uk": "У записі звучить My brother used to wash the dishes."
             }
           }
         ],
@@ -676,8 +380,158 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-07:word:thirst",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — thirst",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-07:word:thirst:audio"
+      ],
+      "accessibilityLabel": "Картка слова — thirst",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-07:word:thirst:audio",
+          "transcript": "thirst"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-07:word:thirst:r1",
+            "targetText": "thirst",
+            "meaningByLocale": {
+              "ru": "жажда",
+              "uk": "спрага"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thirst",
+          "definitionByLocale": {
+            "ru": "жажда",
+            "uk": "спрага"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Відновіть почуте про напій.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-07:i06:audio"
+      ],
+      "accessibilityLabel": "Відновіть почуте про напій.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-07:i06:audio",
+          "transcript": "Cold water helps with my thirst."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Cold water helps with my thirst.",
+        "orderedTokens": [
+          "Cold",
+          "water",
+          "helps",
+          "with",
+          "my",
+          "thirst"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Раніше ви завжди носили воду; тепер купуєте її дорогою.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-07:i07:r1",
+          "text": "carry"
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i07:r2",
+          "text": "carried"
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i07:r3",
+          "text": "carrying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Раніше ви завжди носили воду; тепер купуєте її дорогою.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прежде вы всегда носили воду; сейчас покупаете её по дороге.",
+          "uk": "Раніше ви завжди носили воду; тепер купуєте її дорогою."
+        },
+        "gappedTargetPhrase": "I used to ___ water with me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i07:r1",
+            "text": "carry"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i07:r2",
+            "text": "carried"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i07:r3",
+            "text": "carrying"
+          }
+        ],
+        "testedDimension": "Раніше ви завжди носили воду; тепер купуєте її дорогою.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-07:i07:r2",
+            "correct": false,
+            "testedDimension": "Раніше ви завжди носили воду; тепер купуєте її дорогою.",
+            "feedbackByLocale": {
+              "ru": "После used to нужна базовая форма carry.",
+              "uk": "Після used to потрібна базова форма carry."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i07:r3",
+            "correct": false,
+            "testedDimension": "Раніше ви завжди носили воду; тепер купуєте її дорогою.",
+            "feedbackByLocale": {
+              "ru": "Здесь used to + carry описывает прежнюю привычку.",
+              "uk": "Тут used to + carry описує колишню звичку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-07:word:errands",
-      "ordinal": 16,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -700,8 +554,8 @@
             "responseId": "en:lesson-25:session-07:word:errands:r1",
             "targetText": "errands",
             "meaningByLocale": {
-              "ru": "мелкие дела вне дома.",
-              "uk": "дрібні справи поза домом."
+              "ru": "мелкие дела вне дома",
+              "uk": "дрібні справи поза домом"
             }
           }
         ],
@@ -711,10 +565,155 @@
         "wordCard": {
           "word": "errands",
           "definitionByLocale": {
-            "ru": "мелкие дела вне дома.",
-            "uk": "дрібні справи поза домом."
+            "ru": "мелкие дела вне дома",
+            "uk": "дрібні справи поза домом"
           }
         }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-07:i08:r1",
+          "text": "We used to run errands on Saturdays."
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i08:r2",
+          "text": "We used to run errands on Sundays."
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i08:r3",
+          "text": "We used to run errands on Fridays."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-07:i08:audio",
+          "transcript": "We used to run errands on Saturdays."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-07:i08:r1",
+            "targetText": "We used to run errands on Saturdays.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i08:r2",
+            "targetText": "We used to run errands on Sundays.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i08:r3",
+            "targetText": "We used to run errands on Fridays.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to run errands on Saturdays.",
+              "uk": "У записі звучить We used to run errands on Saturdays."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to run errands on Saturdays.",
+              "uk": "У записі звучить We used to run errands on Saturdays."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Потрібно забрати посилку й купити хліб. Виберіть назву таких справ поза домом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-07:i09:r1",
+          "text": "errands"
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i09:r2",
+          "text": "chores"
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i09:r3",
+          "text": "meals"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Потрібно забрати посилку й купити хліб. Виберіть назву таких справ поза домом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Нужно забрать посылку и купить хлеб. Выберите название таких дел вне дома.",
+          "uk": "Потрібно забрати посилку й купити хліб. Виберіть назву таких справ поза домом."
+        },
+        "gappedTargetPhrase": "I have a few ___ to run.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i09:r1",
+            "text": "errands"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i09:r2",
+            "text": "chores"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i09:r3",
+            "text": "meals"
+          }
+        ],
+        "testedDimension": "Потрібно забрати посилку й купити хліб. Виберіть назву таких справ поза домом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Потрібно забрати посилку й купити хліб. Виберіть назву таких справ поза домом.",
+            "feedbackByLocale": {
+              "ru": "Chores — регулярные обязанности, обычно дома; run errands — сходить по мелким делам.",
+              "uk": "Chores — регулярні обов’язки, зазвичай удома; run errands — сходити в дрібних справах."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Потрібно забрати посилку й купити хліб. Виберіть назву таких справ поза домом.",
+            "feedbackByLocale": {
+              "ru": "Meals — приёмы пищи; run meals здесь не подходит.",
+              "uk": "Meals — прийоми їжі; run meals тут не підходить."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -724,26 +723,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше після роботи він ходив у дрібних справах.»",
+      "prompt": "Одна сумка вже повна. Скажіть: «Мені потрібна ще одна сумка».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше після роботи він ходив у дрібних справах.»",
+      "accessibilityLabel": "Одна сумка вже повна. Скажіть: «Мені потрібна ще одна сумка».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He used to run errands after work.",
+        "targetPhrase": "I need another bag.",
         "localizedMeaning": {
-          "ru": "Скажите: «Раньше после работы он ходил по мелким делам.»",
-          "uk": "Скажіть: «Раніше після роботи він ходив у дрібних справах.»"
+          "ru": "Одна сумка уже полна. Скажите: «Мне нужна ещё одна сумка».",
+          "uk": "Одна сумка вже повна. Скажіть: «Мені потрібна ще одна сумка»."
         },
         "orderedTokens": [
-          "He",
-          "used",
-          "to",
-          "run",
-          "errands",
-          "after",
-          "work"
+          "I",
+          "need",
+          "another",
+          "bag"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -758,163 +754,18 @@
       "interactionId": "en:lesson-25:session-07:i11",
       "ordinal": 18,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-07:i11:r1",
-          "text": "run"
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i11:r2",
-          "text": "ran"
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i11:r3",
-          "text": "running"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "He used to ___ errands after work.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-07:i11:r1",
-            "text": "run"
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i11:r2",
-            "text": "ran"
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i11:r3",
-            "text": "running"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-07:i11:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма run.",
-              "uk": "Після used to потрібна форма run."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i11:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма run.",
-              "uk": "Після used to потрібна форма run."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-07:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-07:i12:r1",
-          "text": "He used to run errands after work."
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i12:r2",
-          "text": "She used to run errands after work."
-        },
-        {
-          "responseId": "en:lesson-25:session-07:i12:r3",
-          "text": "He used to run errands before work."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-07:i12:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-07:i12:audio",
-          "transcript": "He used to run errands after work."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-07:i12:r1",
-            "targetText": "He used to run errands after work.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i12:r2",
-            "targetText": "She used to run errands after work.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i12:r3",
-            "targetText": "He used to run errands before work.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-07:i12:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит He used to run errands after work.",
-              "uk": "У записі звучить He used to run errands after work."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-07:i12:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит He used to run errands after work.",
-              "uk": "У записі звучить He used to run errands after work."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-07:i13",
-      "ordinal": 20,
-      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Поєднайте слова з перекладом",
+      "prompt": "Зіставте відчуття та справи з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "accessibilityLabel": "Зіставте відчуття та справи з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-07:i13:p1",
+            "pairId": "en:lesson-25:session-07:i11:p1",
             "target": "hunger",
             "meaningByLocale": {
               "ru": "голод",
@@ -922,7 +773,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-07:i13:p2",
+            "pairId": "en:lesson-25:session-07:i11:p2",
             "target": "thirst",
             "meaningByLocale": {
               "ru": "жажда",
@@ -930,7 +781,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-07:i13:p3",
+            "pairId": "en:lesson-25:session-07:i11:p3",
             "target": "chores",
             "meaningByLocale": {
               "ru": "домашние обязанности",
@@ -938,7 +789,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-07:i13:p4",
+            "pairId": "en:lesson-25:session-07:i11:p4",
             "target": "errands",
             "meaningByLocale": {
               "ru": "мелкие дела вне дома",
@@ -973,101 +824,135 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-07:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-25:session-07:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Знайшов іншу роботу",
+      "prompt": "Послухайте, як раніше розподіляли обов’язки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-07:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте, як раніше розподіляли обов’язки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-07:i12:audio",
+          "transcript": "My sister used to take out the rubbish."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My sister used to take out the rubbish.",
+        "orderedTokens": [
+          "My",
+          "sister",
+          "used",
+          "to",
+          "take",
+          "out",
+          "the",
+          "rubbish"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Це сталося один раз учора, а не було колишньою звичкою.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-07:i13:r1",
+          "text": "collected"
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i13:r2",
+          "text": "have collected"
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i13:r3",
+          "text": "used to collect"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Це сталося один раз учора, а не було колишньою звичкою.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это произошло один раз вчера, а не было прежней привычкой.",
+          "uk": "Це сталося один раз учора, а не було колишньою звичкою."
+        },
+        "gappedTargetPhrase": "I ___ the parcel yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i13:r1",
+            "text": "collected"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i13:r2",
+            "text": "have collected"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i13:r3",
+            "text": "used to collect"
+          }
+        ],
+        "testedDimension": "Це сталося один раз учора, а не було колишньою звичкою.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-07:i13:r2",
+            "correct": false,
+            "testedDimension": "Це сталося один раз учора, а не було колишньою звичкою.",
+            "feedbackByLocale": {
+              "ru": "Yesterday указывает на завершённое прошлое; нужен Past Simple.",
+              "uk": "Yesterday вказує на завершене минуле; потрібен Past Simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i13:r3",
+            "correct": false,
+            "testedDimension": "Це сталося один раз учора, а не було колишньою звичкою.",
+            "feedbackByLocale": {
+              "ru": "Used to collect обозначает привычку, а здесь одно завершённое дело.",
+              "uk": "Used to collect позначає звичку, а тут одна завершена справа."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i14",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Порівняйте свою колишню звичку з теперішньою: «Раніше я пропускав сніданок».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-07:i14:audio"
       ],
-      "accessibilityLabel": "Знайшов іншу роботу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-07:i14:audio",
-          "transcript": "I have found another job."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I have found another job.",
-        "orderedTokens": [
-          "I",
-          "have",
-          "found",
-          "another",
-          "job"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-07:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Інші сім’ї переїхали",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-07:i15:audio"
-      ],
-      "accessibilityLabel": "Інші сім’ї переїхали",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-07:i15:audio",
-          "transcript": "The other families moved last year."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The other families moved last year.",
-        "orderedTokens": [
-          "The",
-          "other",
-          "families",
-          "moved",
-          "last",
-          "year"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-07:i16",
-      "ordinal": 23,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Вони раніше ділили домашні обов’язки».",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-07:i16:audio"
-      ],
-      "accessibilityLabel": "Скажіть: «Вони раніше ділили домашні обов’язки».",
+      "accessibilityLabel": "Порівняйте свою колишню звичку з теперішньою: «Раніше я пропускав сніданок».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-07:i16:audio",
-          "transcript": "They used to share the chores."
+          "audioTargetId": "en:lesson-25:session-07:i14:audio",
+          "transcript": "I used to skip breakfast."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They used to share the chores.",
+        "targetPhrase": "I used to skip breakfast.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1081,26 +966,136 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-07:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-07:i15:r1",
+          "text": "Have you finished your chores?"
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i15:r2",
+          "text": "Have you started your chores?"
+        },
+        {
+          "responseId": "en:lesson-25:session-07:i15:r3",
+          "text": "Have they finished their chores?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-07:i15:audio",
+          "transcript": "Have you finished your chores?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-07:i15:r1",
+            "targetText": "Have you finished your chores?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i15:r2",
+            "targetText": "Have you started your chores?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i15:r3",
+            "targetText": "Have they finished their chores?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-07:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you finished your chores?",
+              "uk": "У записі звучить Have you finished your chores?"
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you finished your chores?",
+              "uk": "У записі звучить Have you finished your chores?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви зробили свою частину. Скажіть: «Інші справи можуть зачекати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зробили свою частину. Скажіть: «Інші справи можуть зачекати».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The other chores can wait.",
+        "localizedMeaning": {
+          "ru": "Вы сделали свою часть. Скажите: «Другие дела могут подождать».",
+          "uk": "Ви зробили свою частину. Скажіть: «Інші справи можуть зачекати»."
+        },
+        "orderedTokens": [
+          "The",
+          "other",
+          "chores",
+          "can",
+          "wait"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-07:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Вона раніше ходила у дрібних справах після роботи».",
+      "prompt": "Тепер до крамниці далеко. Скажіть про минуле: «Раніше я жив поруч із крамницею».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-07:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Вона раніше ходила у дрібних справах після роботи».",
+      "accessibilityLabel": "Тепер до крамниці далеко. Скажіть про минуле: «Раніше я жив поруч із крамницею».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-07:i17:audio",
-          "transcript": "She used to run errands after work."
+          "transcript": "I used to live near the shop."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She used to run errands after work.",
+        "targetPhrase": "I used to live near the shop.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1120,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "81fe4043f27d1ad823472d9739590deebc08abfef179cdce5898129d7bc3987e"
+  "learnerFingerprint": "9ea04c3c9e18b7e9438a0492db897737a39e09cfa0d7a50c7788ca6f5ab3c73a"
 }

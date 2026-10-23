@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-25:intro1:r2": {
+          "ru": "После unless в этом будущем условии нужен Present Simple: rains.",
+          "uk": "Після unless у цій майбутній умові потрібен Present Simple: rains."
+        },
+        "en:lesson-26:session-25:intro1:r3": {
+          "ru": "Дополнительное not меняет смысл: получится исключение, когда дождя нет.",
+          "uk": "Додаткове not змінює зміст: вийде виняток, коли дощу немає."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-25:intro2:r2": {
+          "ru": "После unless здесь is без will.",
+          "uk": "Після unless тут is без will."
+        },
+        "en:lesson-26:session-25:intro2:r3": {
+          "ru": "Not после unless здесь перевернёт условие: слишком сладкий пирог станет допустимым.",
+          "uk": "Not після unless тут переверне умову: надто солодкий пиріг стане допустимим."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-25:intro3:r2": {
+          "ru": "После unless в этом условии is без will.",
+          "uk": "Після unless у цій умові is без will."
+        },
+        "en:lesson-26:session-25:intro3:r3": {
+          "ru": "Дополнительное not меняет обязательное условие на противоположное.",
+          "uk": "Додаткове not змінює обов’язкову умову на протилежну."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "98f16d6c165ea750beb700c121b998fa7a969a404c4d91b8068e950a37038c81"
+}

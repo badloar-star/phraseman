@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-25:word:unless",
+    "correctText": "unless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i01",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-25:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i02",
+    "correctText": "I will come unless I am busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:word:moist",
+    "correctText": "moist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i03",
+    "correctText": "The cake is soft and moist.",
+    "correctResponseId": "en:lesson-26:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i04",
+    "correctText": "We will not start unless everyone is ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:word:gooey",
+    "correctText": "gooey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i05",
+    "correctText": "The middle is still gooey.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-26:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:word:grubby",
+    "correctText": "grubby",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i07",
+    "correctText": "My hands are grubby.",
+    "correctResponseId": "en:lesson-26:session-25:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i08",
+    "correctText": "Please wash your hands.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i09",
+    "correctText": "when",
+    "correctResponseId": "en:lesson-26:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i10",
+    "correctText": "It is still moist.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i11",
+    "correctText": "We will walk unless it rains.",
+    "correctResponseId": "en:lesson-26:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i12",
+    "correctText": "I will help you if you need help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i13",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-26:session-25:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i14",
+    "correctText": "The chocolate is warm and gooey.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i15",
+    "correctText": "My shirt is grubby now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i16",
+    "correctText": "We will take a detour if the road is closed.",
+    "correctResponseId": "en:lesson-26:session-25:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-25:i17",
+    "correctText": "I will stay at home unless my friend calls.",
+    "correctResponseId": null
+  }
+]

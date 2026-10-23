@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-26:word:vomit",
+    "correctText": "vomit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i01",
+    "correctText": "Did you vomit on the bus?",
+    "correctResponseId": "en:lesson-26:session-26:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i02",
+    "correctText": "I will call when I get home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:word:sprain",
+    "correctText": "sprain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i03",
+    "correctText": "I do not want to sprain my ankle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i04",
+    "correctText": "will",
+    "correctResponseId": "en:lesson-26:session-26:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:word:stitch",
+    "correctText": "stitch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i05",
+    "correctText": "This stitch is loose.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i06",
+    "correctText": "yet",
+    "correctResponseId": "en:lesson-26:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:word:gasp",
+    "correctText": "gasp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i07",
+    "correctText": "Did she gasp when she saw the cake?",
+    "correctResponseId": "en:lesson-26:session-26:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i08",
+    "correctText": "Please wait outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i09",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i10",
+    "correctText": "I have already repaired it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i11",
+    "correctText": "Did you sprain your ankle yesterday?",
+    "correctResponseId": "en:lesson-26:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i12",
+    "correctText": "Tell me if she calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-26:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i14",
+    "correctText": "Did you vomit during the journey?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i15",
+    "correctText": "She gasped in surprise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i16",
+    "correctText": "repair",
+    "correctResponseId": "en:lesson-26:session-26:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-26:i17",
+    "correctText": "I will stay unless I need to go.",
+    "correctResponseId": null
+  }
+]

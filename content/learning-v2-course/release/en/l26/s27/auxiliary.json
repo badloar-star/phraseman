@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-27:intro1:r2": {
+          "ru": "С I нужна форма get без -s.",
+          "uk": "З I потрібна форма get без -s."
+        },
+        "en:lesson-26:session-27:intro1:r3": {
+          "ru": "Для привычки нужен get, не отдельное getting.",
+          "uk": "Для звички потрібне get, не окреме getting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-27:intro2:r2": {
+          "ru": "После have нужна форма apologised.",
+          "uk": "Після have потрібна форма apologised."
+        },
+        "en:lesson-26:session-27:intro2:r3": {
+          "ru": "Для результата сейчас здесь нужно have already apologised.",
+          "uk": "Для результату зараз тут потрібно have already apologised."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-27:intro3:r2": {
+          "ru": "После unless в этом условии have без will.",
+          "uk": "Після unless у цій умові have без will."
+        },
+        "en:lesson-26:session-27:intro3:r3": {
+          "ru": "С I используется have, не has.",
+          "uk": "З I вживається have, не has."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6201dbd11a735cc917e90176bb6ebeecd9f84e93e888a91465f39a19f35923c3"
+}

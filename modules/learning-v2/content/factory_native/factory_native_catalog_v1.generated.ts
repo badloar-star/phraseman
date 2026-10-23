@@ -9975,4 +9975,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future time clauses; zero and first conditional; already, yet; past perfect","uk":"future time clauses; zero and first conditional; already, yet; past perfect"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 25,
+    sourceFingerprint: "4cdbd587c886b5093e5986aa48c6c363995190d2ce2a8c9ca975b54d0da4677b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if, when, unless + present clause","uk":"if, when, unless + present clause"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 26,
+    sourceFingerprint: "622f5d1da864c26886b518d382aedc531998cd294b8b40952ddae2dd641cc28e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if, when, unless; already, yet; by the time","uk":"if, when, unless; already, yet; by the time"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 27,
+    sourceFingerprint: "06430f31e375a14aa582a90214e0706fd4482f918471ddfd2a0c7fe992d8c857",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if, when, unless; already, yet; by the time","uk":"if, when, unless; already, yet; by the time"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
 ]);

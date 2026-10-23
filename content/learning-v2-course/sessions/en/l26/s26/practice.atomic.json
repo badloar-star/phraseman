@@ -1,0 +1,2231 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-26",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-26:word:vomit",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — vomit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:word:vomit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — vomit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:word:vomit:audio",
+            "transcript": "vomit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:word:vomit:r1",
+              "targetText": "vomit",
+              "meaningByLocale": {
+                "ru": "Рвать, испытывать рвоту; прямое описание симптома.",
+                "uk": "Блювати; прямий опис симптому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vomit",
+            "definitionByLocale": {
+              "ru": "Рвать, испытывать рвоту; прямое описание симптома.",
+              "uk": "Блювати; прямий опис симптому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i01:r1",
+            "text": "Did you vomit on the bus?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i01:r2",
+            "text": "Did you vomit on the train?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i01:r3",
+            "text": "Did you sleep on the bus?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i01:audio",
+            "transcript": "Did you vomit on the bus?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:i01:r1",
+              "targetText": "Did you vomit on the bus?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i01:r2",
+              "targetText": "Did you vomit on the train?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i01:r3",
+              "targetText": "Did you sleep on the bus?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you vomit on the bus?",
+                "uk": "У записі звучить Did you vomit on the bus?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you vomit on the bus?",
+                "uk": "У записі звучить Did you vomit on the bus?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ждёт звонка. Пообещайте: «Я позвоню, когда доберусь домой».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ждёт звонка. Пообещайте: «Я позвоню, когда доберусь домой».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will call when I get home.",
+          "localizedMeaning": {
+            "ru": "Друг ждёт звонка. Пообещайте: «Я позвоню, когда доберусь домой».",
+            "uk": "Друг чекає дзвінка. Пообіцяйте: «Я зателефоную, коли дістануся додому»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "call",
+            "when",
+            "I",
+            "get",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:word:sprain",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sprain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:word:sprain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sprain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:word:sprain:audio",
+            "transcript": "sprain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:word:sprain:r1",
+              "targetText": "sprain",
+              "meaningByLocale": {
+                "ru": "Растянуть связки сустава. Sprain an ankle — растянуть связки голеностопа.",
+                "uk": "Розтягнути зв’язки суглоба. Sprain an ankle — розтягнути зв’язки гомілкостопа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sprain",
+            "definitionByLocale": {
+              "ru": "Растянуть связки сустава. Sprain an ankle — растянуть связки голеностопа.",
+              "uk": "Розтягнути зв’язки суглоба. Sprain an ankle — розтягнути зв’язки гомілкостопа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i03",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг предлагает прыгнуть с высокой ступеньки. Откажитесь: «Я не хочу растянуть связки голеностопа».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i03:audio"
+        ],
+        "accessibilityLabel": "Друг предлагает прыгнуть с высокой ступеньки. Откажитесь: «Я не хочу растянуть связки голеностопа».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i03:audio",
+            "transcript": "I do not want to sprain my ankle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I do not want to sprain my ankle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг согласен перенести встречу при необходимости. Дополните обещание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i04:r1",
+            "text": "will"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i04:r2",
+            "text": "would"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i04:r3",
+            "text": "did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг согласен перенести встречу при необходимости. Дополните обещание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг согласен перенести встречу при необходимости. Дополните обещание.",
+            "uk": "Друг згоден перенести зустріч за потреби. Доповніть обіцянку."
+          },
+          "gappedTargetPhrase": "If you need more time, we ___ wait.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-26:i04:r1",
+              "text": "will"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i04:r2",
+              "text": "would"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i04:r3",
+              "text": "did"
+            }
+          ],
+          "testedDimension": "Друг согласен перенести встречу при необходимости. Дополните обещание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i04:r2",
+              "correct": false,
+              "testedDimension": "Друг согласен перенести встречу при необходимости. Дополните обещание.",
+              "feedbackByLocale": {
+                "ru": "Здесь реальное будущее обещание: will wait.",
+                "uk": "Тут реальна майбутня обіцянка: will wait."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i04:r3",
+              "correct": false,
+              "testedDimension": "Друг согласен перенести встречу при необходимости. Дополните обещание.",
+              "feedbackByLocale": {
+                "ru": "Did относится к прошлому, а речь о будущем ожидании.",
+                "uk": "Did стосується минулого, а йдеться про майбутнє очікування."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:word:stitch",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stitch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:word:stitch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stitch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:word:stitch:audio",
+            "transcript": "stitch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:word:stitch:r1",
+              "targetText": "stitch",
+              "meaningByLocale": {
+                "ru": "Стежок, отдельный элемент шва при шитье.",
+                "uk": "Стібок, окремий елемент шва під час шиття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stitch",
+            "definitionByLocale": {
+              "ru": "Стежок, отдельный элемент шва при шитье.",
+              "uk": "Стібок, окремий елемент шва під час шиття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте описание шва на кармане.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Услышьте описание шва на кармане.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i05:audio",
+            "transcript": "This stitch is loose."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This stitch is loose.",
+          "orderedTokens": [
+            "This",
+            "stitch",
+            "is",
+            "loose"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы спрашиваете, готов ли ремонт к настоящему моменту. Дополните вопрос.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i06:r1",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i06:r2",
+            "text": "yesterday"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i06:r3",
+            "text": "ago"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете, готов ли ремонт к настоящему моменту. Дополните вопрос.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете, готов ли ремонт к настоящему моменту. Дополните вопрос.",
+            "uk": "Ви запитуєте, чи завершено ремонт на цей момент. Доповніть запитання."
+          },
+          "gappedTargetPhrase": "Have you repaired the pocket ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-26:i06:r1",
+              "text": "yet"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i06:r2",
+              "text": "yesterday"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i06:r3",
+              "text": "ago"
+            }
+          ],
+          "testedDimension": "Вы спрашиваете, готов ли ремонт к настоящему моменту. Дополните вопрос.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете, готов ли ремонт к настоящему моменту. Дополните вопрос.",
+              "feedbackByLocale": {
+                "ru": "Yesterday задаёт завершённое прошлое, а здесь вопрос с have repaired.",
+                "uk": "Yesterday задає завершене минуле, а тут запитання з have repaired."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете, готов ли ремонт к настоящему моменту. Дополните вопрос.",
+              "feedbackByLocale": {
+                "ru": "Ago требует указания давности и не подходит к этому вопросу.",
+                "uk": "Ago потребує вказівки давності й не підходить до цього запитання."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:word:gasp",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gasp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:word:gasp:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gasp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:word:gasp:audio",
+            "transcript": "gasp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:word:gasp:r1",
+              "targetText": "gasp",
+              "meaningByLocale": {
+                "ru": "Резко вдохнуть, ахнуть, в том числе от удивления.",
+                "uk": "Різко вдихнути, ахнути, зокрема від подиву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gasp",
+            "definitionByLocale": {
+              "ru": "Резко вдохнуть, ахнуть, в том числе от удивления.",
+              "uk": "Різко вдихнути, ахнути, зокрема від подиву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i07:r1",
+            "text": "Did she gasp when she saw the cake?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i07:r2",
+            "text": "Did she laugh when she saw the cake?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i07:r3",
+            "text": "Did she gasp when she saw the cat?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i07:audio",
+            "transcript": "Did she gasp when she saw the cake?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:i07:r1",
+              "targetText": "Did she gasp when she saw the cake?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i07:r2",
+              "targetText": "Did she laugh when she saw the cake?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i07:r3",
+              "targetText": "Did she gasp when she saw the cat?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i07:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she gasp when she saw the cake?",
+                "uk": "У записі звучить Did she gasp when she saw the cake?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i07:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she gasp when she saw the cake?",
+                "uk": "У записі звучить Did she gasp when she saw the cake?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат хочет заглянуть в коробку с подарком. Попросите: «Пожалуйста, подожди снаружи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хочет заглянуть в коробку с подарком. Попросите: «Пожалуйста, подожди снаружи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please wait outside.",
+          "localizedMeaning": {
+            "ru": "Брат хочет заглянуть в коробку с подарком. Попросите: «Пожалуйста, подожди снаружи».",
+            "uk": "Брат хоче зазирнути в коробку з подарунком. Попросіть: «Будь ласка, зачекай надворі»."
+          },
+          "orderedTokens": [
+            "Please",
+            "wait",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Открывать коробку можно только с вашего разрешения. Выберите «если не».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i09:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i09:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i09:r3",
+            "text": "after"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Открывать коробку можно только с вашего разрешения. Выберите «если не».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Открывать коробку можно только с вашего разрешения. Выберите «если не».",
+            "uk": "Відкривати коробку можна лише з вашого дозволу. Виберіть «якщо не»."
+          },
+          "gappedTargetPhrase": "Do not open it ___ I say so.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-26:i09:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i09:r2",
+              "text": "because"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i09:r3",
+              "text": "after"
+            }
+          ],
+          "testedDimension": "Открывать коробку можно только с вашего разрешения. Выберите «если не».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Открывать коробку можно только с вашего разрешения. Выберите «если не».",
+              "feedbackByLocale": {
+                "ru": "Because объясняет причину, но здесь нужно условие разрешения.",
+                "uk": "Because пояснює причину, але тут потрібна умова дозволу."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Открывать коробку можно только с вашего разрешения. Выберите «если не».",
+              "feedbackByLocale": {
+                "ru": "After запретило бы открывать после разрешения — смысл противоположный.",
+                "uk": "After заборонило б відкривати після дозволу — зміст протилежний."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i10",
+        "ordinal": 17,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает про карман. Ответьте: «Я уже починил его».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i10:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает про карман. Ответьте: «Я уже починил его».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i10:audio",
+            "transcript": "I have already repaired it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already repaired it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i11:r1",
+            "text": "Did you sprain your ankle yesterday?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i11:r2",
+            "text": "Did you sprain your wrist yesterday?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i11:r3",
+            "text": "Did you sprain your ankle today?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i11:audio",
+            "transcript": "Did you sprain your ankle yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:i11:r1",
+              "targetText": "Did you sprain your ankle yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i11:r2",
+              "targetText": "Did you sprain your wrist yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i11:r3",
+              "targetText": "Did you sprain your ankle today?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you sprain your ankle yesterday?",
+                "uk": "У записі звучить Did you sprain your ankle yesterday?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you sprain your ankle yesterday?",
+                "uk": "У записі звучить Did you sprain your ankle yesterday?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите брата сообщить о звонке: «Если она позвонит, скажи мне».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите брата сообщить о звонке: «Если она позвонит, скажи мне».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Tell me if she calls.",
+          "localizedMeaning": {
+            "ru": "Попросите брата сообщить о звонке: «Если она позвонит, скажи мне».",
+            "uk": "Попросіть брата повідомити про дзвінок: «Якщо вона зателефонує, скажи мені»."
+          },
+          "orderedTokens": [
+            "Tell",
+            "me",
+            "if",
+            "she",
+            "calls"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подарок был завёрнут раньше, чем пришли гости. Дополните раннее действие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i13:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подарок был завёрнут раньше, чем пришли гости. Дополните раннее действие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подарок был завёрнут раньше, чем пришли гости. Дополните раннее действие.",
+            "uk": "Подарунок було загорнуто раніше, ніж прийшли гості. Доповніть ранішу дію."
+          },
+          "gappedTargetPhrase": "I ___ wrapped it by the time everyone arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-26:i13:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i13:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i13:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Подарок был завёрнут раньше, чем пришли гости. Дополните раннее действие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i13:r2",
+              "correct": false,
+              "testedDimension": "Подарок был завёрнут раньше, чем пришли гости. Дополните раннее действие.",
+              "feedbackByLocale": {
+                "ru": "Arrived задаёт прошлое; более раннее действие — had wrapped.",
+                "uk": "Arrived задає минуле; раніша дія — had wrapped."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i13:r3",
+              "correct": false,
+              "testedDimension": "Подарок был завёрнут раньше, чем пришли гости. Дополните раннее действие.",
+              "feedbackByLocale": {
+                "ru": "Am не образует здесь нужное прошедшее действие.",
+                "uk": "Am не утворює тут потрібної минулої дії."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте вопрос о самочувствии в поездке.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i14:audio"
+        ],
+        "accessibilityLabel": "Услышьте вопрос о самочувствии в поездке.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i14:audio",
+            "transcript": "Did you vomit during the journey?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did you vomit during the journey?",
+          "orderedTokens": [
+            "Did",
+            "you",
+            "vomit",
+            "during",
+            "the",
+            "journey"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, как сестра отреагировала на подарок. Ответьте: «Она ахнула от удивления».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, как сестра отреагировала на подарок. Ответьте: «Она ахнула от удивления».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i15:audio",
+            "transcript": "She gasped in surprise."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She gasped in surprise.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы описываете свою обычную привычку при ремонте одежды.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i16:r1",
+            "text": "repair"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i16:r2",
+            "text": "repairs"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i16:r3",
+            "text": "repairing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы описываете свою обычную привычку при ремонте одежды.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы описываете свою обычную привычку при ремонте одежды.",
+            "uk": "Ви описуєте свою звичку під час ремонту одягу."
+          },
+          "gappedTargetPhrase": "If a stitch comes loose, I ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-26:i16:r1",
+              "text": "repair"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i16:r2",
+              "text": "repairs"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i16:r3",
+              "text": "repairing"
+            }
+          ],
+          "testedDimension": "Вы описываете свою обычную привычку при ремонте одежды.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы описываете свою обычную привычку при ремонте одежды.",
+              "feedbackByLocale": {
+                "ru": "С I используется repair без -s.",
+                "uk": "З I вживається repair без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы описываете свою обычную привычку при ремонте одежды.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен repair, а не отдельное repairing.",
+                "uk": "Для звички потрібне repair, а не окреме repairing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы останетесь на встрече, если не потребуется уйти раньше. Скажите с unless: «Я останусь, если мне не нужно будет идти».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы останетесь на встрече, если не потребуется уйти раньше. Скажите с unless: «Я останусь, если мне не нужно будет идти».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will stay unless I need to go.",
+          "localizedMeaning": {
+            "ru": "Вы останетесь на встрече, если не потребуется уйти раньше. Скажите с unless: «Я останусь, если мне не нужно будет идти».",
+            "uk": "Ви залишитесь на зустрічі, якщо не потрібно буде піти раніше. Скажіть з unless: «Я залишусь, якщо мені не потрібно буде йти»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "stay",
+            "unless",
+            "I",
+            "need",
+            "to",
+            "go"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-26:word:vomit",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — vomit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:word:vomit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — vomit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:word:vomit:audio",
+            "transcript": "vomit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:word:vomit:r1",
+              "targetText": "vomit",
+              "meaningByLocale": {
+                "ru": "Рвать, испытывать рвоту; прямое описание симптома.",
+                "uk": "Блювати; прямий опис симптому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vomit",
+            "definitionByLocale": {
+              "ru": "Рвать, испытывать рвоту; прямое описание симптома.",
+              "uk": "Блювати; прямий опис симптому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i01:r1",
+            "text": "Did you vomit on the bus?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i01:r2",
+            "text": "Did you vomit on the train?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i01:r3",
+            "text": "Did you sleep on the bus?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i01:audio",
+            "transcript": "Did you vomit on the bus?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:i01:r1",
+              "targetText": "Did you vomit on the bus?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i01:r2",
+              "targetText": "Did you vomit on the train?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i01:r3",
+              "targetText": "Did you sleep on the bus?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you vomit on the bus?",
+                "uk": "У записі звучить Did you vomit on the bus?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you vomit on the bus?",
+                "uk": "У записі звучить Did you vomit on the bus?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг чекає дзвінка. Пообіцяйте: «Я зателефоную, коли дістануся додому».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг чекає дзвінка. Пообіцяйте: «Я зателефоную, коли дістануся додому».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will call when I get home.",
+          "localizedMeaning": {
+            "ru": "Друг ждёт звонка. Пообещайте: «Я позвоню, когда доберусь домой».",
+            "uk": "Друг чекає дзвінка. Пообіцяйте: «Я зателефоную, коли дістануся додому»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "call",
+            "when",
+            "I",
+            "get",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:word:sprain",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sprain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:word:sprain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sprain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:word:sprain:audio",
+            "transcript": "sprain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:word:sprain:r1",
+              "targetText": "sprain",
+              "meaningByLocale": {
+                "ru": "Растянуть связки сустава. Sprain an ankle — растянуть связки голеностопа.",
+                "uk": "Розтягнути зв’язки суглоба. Sprain an ankle — розтягнути зв’язки гомілкостопа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sprain",
+            "definitionByLocale": {
+              "ru": "Растянуть связки сустава. Sprain an ankle — растянуть связки голеностопа.",
+              "uk": "Розтягнути зв’язки суглоба. Sprain an ankle — розтягнути зв’язки гомілкостопа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i03",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг пропонує стрибнути з високої сходинки. Відмовтеся: «Я не хочу розтягнути зв’язки гомілкостопа».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i03:audio"
+        ],
+        "accessibilityLabel": "Друг пропонує стрибнути з високої сходинки. Відмовтеся: «Я не хочу розтягнути зв’язки гомілкостопа».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i03:audio",
+            "transcript": "I do not want to sprain my ankle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I do not want to sprain my ankle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг згоден перенести зустріч за потреби. Доповніть обіцянку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i04:r1",
+            "text": "will"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i04:r2",
+            "text": "would"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i04:r3",
+            "text": "did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг згоден перенести зустріч за потреби. Доповніть обіцянку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг согласен перенести встречу при необходимости. Дополните обещание.",
+            "uk": "Друг згоден перенести зустріч за потреби. Доповніть обіцянку."
+          },
+          "gappedTargetPhrase": "If you need more time, we ___ wait.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-26:i04:r1",
+              "text": "will"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i04:r2",
+              "text": "would"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i04:r3",
+              "text": "did"
+            }
+          ],
+          "testedDimension": "Друг згоден перенести зустріч за потреби. Доповніть обіцянку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i04:r2",
+              "correct": false,
+              "testedDimension": "Друг згоден перенести зустріч за потреби. Доповніть обіцянку.",
+              "feedbackByLocale": {
+                "ru": "Здесь реальное будущее обещание: will wait.",
+                "uk": "Тут реальна майбутня обіцянка: will wait."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i04:r3",
+              "correct": false,
+              "testedDimension": "Друг згоден перенести зустріч за потреби. Доповніть обіцянку.",
+              "feedbackByLocale": {
+                "ru": "Did относится к прошлому, а речь о будущем ожидании.",
+                "uk": "Did стосується минулого, а йдеться про майбутнє очікування."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:word:stitch",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stitch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:word:stitch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stitch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:word:stitch:audio",
+            "transcript": "stitch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:word:stitch:r1",
+              "targetText": "stitch",
+              "meaningByLocale": {
+                "ru": "Стежок, отдельный элемент шва при шитье.",
+                "uk": "Стібок, окремий елемент шва під час шиття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stitch",
+            "definitionByLocale": {
+              "ru": "Стежок, отдельный элемент шва при шитье.",
+              "uk": "Стібок, окремий елемент шва під час шиття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте опис шва на кишені.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Почуйте опис шва на кишені.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i05:audio",
+            "transcript": "This stitch is loose."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This stitch is loose.",
+          "orderedTokens": [
+            "This",
+            "stitch",
+            "is",
+            "loose"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви запитуєте, чи завершено ремонт на цей момент. Доповніть запитання.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i06:r1",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i06:r2",
+            "text": "yesterday"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i06:r3",
+            "text": "ago"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви запитуєте, чи завершено ремонт на цей момент. Доповніть запитання.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете, готов ли ремонт к настоящему моменту. Дополните вопрос.",
+            "uk": "Ви запитуєте, чи завершено ремонт на цей момент. Доповніть запитання."
+          },
+          "gappedTargetPhrase": "Have you repaired the pocket ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-26:i06:r1",
+              "text": "yet"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i06:r2",
+              "text": "yesterday"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i06:r3",
+              "text": "ago"
+            }
+          ],
+          "testedDimension": "Ви запитуєте, чи завершено ремонт на цей момент. Доповніть запитання.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви запитуєте, чи завершено ремонт на цей момент. Доповніть запитання.",
+              "feedbackByLocale": {
+                "ru": "Yesterday задаёт завершённое прошлое, а здесь вопрос с have repaired.",
+                "uk": "Yesterday задає завершене минуле, а тут запитання з have repaired."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви запитуєте, чи завершено ремонт на цей момент. Доповніть запитання.",
+              "feedbackByLocale": {
+                "ru": "Ago требует указания давности и не подходит к этому вопросу.",
+                "uk": "Ago потребує вказівки давності й не підходить до цього запитання."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:word:gasp",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gasp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:word:gasp:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gasp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:word:gasp:audio",
+            "transcript": "gasp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:word:gasp:r1",
+              "targetText": "gasp",
+              "meaningByLocale": {
+                "ru": "Резко вдохнуть, ахнуть, в том числе от удивления.",
+                "uk": "Різко вдихнути, ахнути, зокрема від подиву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gasp",
+            "definitionByLocale": {
+              "ru": "Резко вдохнуть, ахнуть, в том числе от удивления.",
+              "uk": "Різко вдихнути, ахнути, зокрема від подиву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i07:r1",
+            "text": "Did she gasp when she saw the cake?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i07:r2",
+            "text": "Did she laugh when she saw the cake?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i07:r3",
+            "text": "Did she gasp when she saw the cat?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i07:audio",
+            "transcript": "Did she gasp when she saw the cake?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:i07:r1",
+              "targetText": "Did she gasp when she saw the cake?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i07:r2",
+              "targetText": "Did she laugh when she saw the cake?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i07:r3",
+              "targetText": "Did she gasp when she saw the cat?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i07:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she gasp when she saw the cake?",
+                "uk": "У записі звучить Did she gasp when she saw the cake?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i07:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she gasp when she saw the cake?",
+                "uk": "У записі звучить Did she gasp when she saw the cake?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат хоче зазирнути в коробку з подарунком. Попросіть: «Будь ласка, зачекай надворі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хоче зазирнути в коробку з подарунком. Попросіть: «Будь ласка, зачекай надворі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please wait outside.",
+          "localizedMeaning": {
+            "ru": "Брат хочет заглянуть в коробку с подарком. Попросите: «Пожалуйста, подожди снаружи».",
+            "uk": "Брат хоче зазирнути в коробку з подарунком. Попросіть: «Будь ласка, зачекай надворі»."
+          },
+          "orderedTokens": [
+            "Please",
+            "wait",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Відкривати коробку можна лише з вашого дозволу. Виберіть «якщо не».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i09:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i09:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i09:r3",
+            "text": "after"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Відкривати коробку можна лише з вашого дозволу. Виберіть «якщо не».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Открывать коробку можно только с вашего разрешения. Выберите «если не».",
+            "uk": "Відкривати коробку можна лише з вашого дозволу. Виберіть «якщо не»."
+          },
+          "gappedTargetPhrase": "Do not open it ___ I say so.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-26:i09:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i09:r2",
+              "text": "because"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i09:r3",
+              "text": "after"
+            }
+          ],
+          "testedDimension": "Відкривати коробку можна лише з вашого дозволу. Виберіть «якщо не».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Відкривати коробку можна лише з вашого дозволу. Виберіть «якщо не».",
+              "feedbackByLocale": {
+                "ru": "Because объясняет причину, но здесь нужно условие разрешения.",
+                "uk": "Because пояснює причину, але тут потрібна умова дозволу."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Відкривати коробку можна лише з вашого дозволу. Виберіть «якщо не».",
+              "feedbackByLocale": {
+                "ru": "After запретило бы открывать после разрешения — смысл противоположный.",
+                "uk": "After заборонило б відкривати після дозволу — зміст протилежний."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i10",
+        "ordinal": 17,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра запитує про кишеню. Дайте відповідь: «Я вже її полагодив».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i10:audio"
+        ],
+        "accessibilityLabel": "Сестра запитує про кишеню. Дайте відповідь: «Я вже її полагодив».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i10:audio",
+            "transcript": "I have already repaired it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already repaired it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i11:r1",
+            "text": "Did you sprain your ankle yesterday?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i11:r2",
+            "text": "Did you sprain your wrist yesterday?"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i11:r3",
+            "text": "Did you sprain your ankle today?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i11:audio",
+            "transcript": "Did you sprain your ankle yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-26:i11:r1",
+              "targetText": "Did you sprain your ankle yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i11:r2",
+              "targetText": "Did you sprain your wrist yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i11:r3",
+              "targetText": "Did you sprain your ankle today?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you sprain your ankle yesterday?",
+                "uk": "У записі звучить Did you sprain your ankle yesterday?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you sprain your ankle yesterday?",
+                "uk": "У записі звучить Did you sprain your ankle yesterday?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть брата повідомити про дзвінок: «Якщо вона зателефонує, скажи мені».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть брата повідомити про дзвінок: «Якщо вона зателефонує, скажи мені».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Tell me if she calls.",
+          "localizedMeaning": {
+            "ru": "Попросите брата сообщить о звонке: «Если она позвонит, скажи мне».",
+            "uk": "Попросіть брата повідомити про дзвінок: «Якщо вона зателефонує, скажи мені»."
+          },
+          "orderedTokens": [
+            "Tell",
+            "me",
+            "if",
+            "she",
+            "calls"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подарунок було загорнуто раніше, ніж прийшли гості. Доповніть ранішу дію.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i13:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подарунок було загорнуто раніше, ніж прийшли гості. Доповніть ранішу дію.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подарок был завёрнут раньше, чем пришли гости. Дополните раннее действие.",
+            "uk": "Подарунок було загорнуто раніше, ніж прийшли гості. Доповніть ранішу дію."
+          },
+          "gappedTargetPhrase": "I ___ wrapped it by the time everyone arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-26:i13:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i13:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i13:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Подарунок було загорнуто раніше, ніж прийшли гості. Доповніть ранішу дію.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i13:r2",
+              "correct": false,
+              "testedDimension": "Подарунок було загорнуто раніше, ніж прийшли гості. Доповніть ранішу дію.",
+              "feedbackByLocale": {
+                "ru": "Arrived задаёт прошлое; более раннее действие — had wrapped.",
+                "uk": "Arrived задає минуле; раніша дія — had wrapped."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i13:r3",
+              "correct": false,
+              "testedDimension": "Подарунок було загорнуто раніше, ніж прийшли гості. Доповніть ранішу дію.",
+              "feedbackByLocale": {
+                "ru": "Am не образует здесь нужное прошедшее действие.",
+                "uk": "Am не утворює тут потрібної минулої дії."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте запитання про самопочуття в поїздці.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i14:audio"
+        ],
+        "accessibilityLabel": "Почуйте запитання про самопочуття в поїздці.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i14:audio",
+            "transcript": "Did you vomit during the journey?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did you vomit during the journey?",
+          "orderedTokens": [
+            "Did",
+            "you",
+            "vomit",
+            "during",
+            "the",
+            "journey"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, як сестра відреагувала на подарунок. Дайте відповідь: «Вона ахнула від подиву».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, як сестра відреагувала на подарунок. Дайте відповідь: «Вона ахнула від подиву».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-26:i15:audio",
+            "transcript": "She gasped in surprise."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She gasped in surprise.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви описуєте свою звичку під час ремонту одягу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-26:i16:r1",
+            "text": "repair"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i16:r2",
+            "text": "repairs"
+          },
+          {
+            "responseId": "en:lesson-26:session-26:i16:r3",
+            "text": "repairing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви описуєте свою звичку під час ремонту одягу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы описываете свою обычную привычку при ремонте одежды.",
+            "uk": "Ви описуєте свою звичку під час ремонту одягу."
+          },
+          "gappedTargetPhrase": "If a stitch comes loose, I ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-26:i16:r1",
+              "text": "repair"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i16:r2",
+              "text": "repairs"
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i16:r3",
+              "text": "repairing"
+            }
+          ],
+          "testedDimension": "Ви описуєте свою звичку під час ремонту одягу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-26:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви описуєте свою звичку під час ремонту одягу.",
+              "feedbackByLocale": {
+                "ru": "С I используется repair без -s.",
+                "uk": "З I вживається repair без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-26:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви описуєте свою звичку під час ремонту одягу.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен repair, а не отдельное repairing.",
+                "uk": "Для звички потрібне repair, а не окреме repairing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-26:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви залишитесь на зустрічі, якщо не потрібно буде піти раніше. Скажіть з unless: «Я залишусь, якщо мені не потрібно буде йти».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви залишитесь на зустрічі, якщо не потрібно буде піти раніше. Скажіть з unless: «Я залишусь, якщо мені не потрібно буде йти».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will stay unless I need to go.",
+          "localizedMeaning": {
+            "ru": "Вы останетесь на встрече, если не потребуется уйти раньше. Скажите с unless: «Я останусь, если мне не нужно будет идти».",
+            "uk": "Ви залишитесь на зустрічі, якщо не потрібно буде піти раніше. Скажіть з unless: «Я залишусь, якщо мені не потрібно буде йти»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "stay",
+            "unless",
+            "I",
+            "need",
+            "to",
+            "go"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-26:word:vomit",
+      "correctText": "vomit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i01",
+      "correctText": "Did you vomit on the bus?",
+      "correctResponseId": "en:lesson-26:session-26:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i02",
+      "correctText": "I will call when I get home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:word:sprain",
+      "correctText": "sprain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i03",
+      "correctText": "I do not want to sprain my ankle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i04",
+      "correctText": "will",
+      "correctResponseId": "en:lesson-26:session-26:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:word:stitch",
+      "correctText": "stitch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i05",
+      "correctText": "This stitch is loose.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i06",
+      "correctText": "yet",
+      "correctResponseId": "en:lesson-26:session-26:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:word:gasp",
+      "correctText": "gasp",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i07",
+      "correctText": "Did she gasp when she saw the cake?",
+      "correctResponseId": "en:lesson-26:session-26:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i08",
+      "correctText": "Please wait outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i09",
+      "correctText": "unless",
+      "correctResponseId": "en:lesson-26:session-26:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i10",
+      "correctText": "I have already repaired it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i11",
+      "correctText": "Did you sprain your ankle yesterday?",
+      "correctResponseId": "en:lesson-26:session-26:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i12",
+      "correctText": "Tell me if she calls.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i13",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-26:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i14",
+      "correctText": "Did you vomit during the journey?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i15",
+      "correctText": "She gasped in surprise.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i16",
+      "correctText": "repair",
+      "correctResponseId": "en:lesson-26:session-26:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:i17",
+      "correctText": "I will stay unless I need to go.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-27:word:moody",
+    "correctText": "moody",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i01",
+    "correctText": "I get moody when I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i02",
+    "correctText": "Let us take a break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:word:fussy",
+    "correctText": "fussy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i03",
+    "correctText": "I am not fussy about food.",
+    "correctResponseId": "en:lesson-26:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i04",
+    "correctText": "do not eat",
+    "correctResponseId": "en:lesson-26:session-27:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:word:cheeky",
+    "correctText": "cheeky",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i05",
+    "correctText": "That was a cheeky joke.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i06",
+    "correctText": "I am sorry for what I said.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:word:genuine",
+    "correctText": "genuine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i07",
+    "correctText": "genuine",
+    "correctResponseId": "en:lesson-26:session-27:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i08",
+    "correctText": "Have you spoken to her yet?",
+    "correctResponseId": "en:lesson-26:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i09",
+    "correctText": "I have already apologised.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i10",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-27:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i11",
+    "correctText": "Is this genuine leather?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i12",
+    "correctText": "I am not fussy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-27:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i14",
+    "correctText": "He looks moody today.",
+    "correctResponseId": "en:lesson-26:session-27:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i15",
+    "correctText": "We will eat when everyone arrives.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i16",
+    "correctText": "laugh",
+    "correctResponseId": "en:lesson-26:session-27:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-27:i17",
+    "correctText": "Let me know if your plans change.",
+    "correctResponseId": null
+  }
+]

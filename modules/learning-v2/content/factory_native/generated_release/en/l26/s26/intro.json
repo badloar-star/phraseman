@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, yet; by the time",
+    "uk": "if, when, unless; already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Объяснить, что произошло",
+        "uk": "Пояснити, що сталося"
+      },
+      "bodyByLocale": {
+        "ru": "Vomit — рвать, испытывать рвоту. Это прямое слово для описания симптома: I vomited on the bus — меня вырвало в автобусе. Sprain — растянуть связки сустава: I have sprained my ankle — я растянул связки голеностопа. Здесь Present Perfect сообщает о случившемся и его результате сейчас. Вы можете сообщить другу об изменении планов: I will call you when I get home — я позвоню, когда доберусь домой. После when в этом будущем придаточном — get, без will.",
+        "uk": "Vomit — блювати. Це пряме слово для опису симптому: I vomited on the bus — мене знудило в автобусі. Sprain — розтягнути зв’язки суглоба: I have sprained my ankle — я розтягнув зв’язки гомілкостопа. Тут Present Perfect повідомляє про подію та її результат зараз. Можна повідомити другові про зміну планів: I will call you when I get home — я зателефоную, коли дістануся додому. Після when у цьому майбутньому підрядному — get, без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-26:intro1:r1",
+              "text": "I will call you when I get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro1:r2",
+              "text": "I will call you when I will get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro1:r3",
+              "text": "I will call you when I getting home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-26:intro1:r1",
+              "text": "I will call you when I get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro1:r2",
+              "text": "I will call you when I will get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro1:r3",
+              "text": "I will call you when I getting home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Починить одежду",
+        "uk": "Полагодити одяг"
+      },
+      "bodyByLocale": {
+        "ru": "Stitch — стежок, один элемент шва. This stitch is loose — этот стежок ослаб. Вы спрашиваете, починили ли карман: Have you repaired it yet? — ты уже его починил? Ответ: I have already repaired it — я уже его починил. Если речь о работе, завершённой раньше другого события в прошлом: I had repaired it by the time Dad came home — я починил его к тому времени, как папа вернулся домой.",
+        "uk": "Stitch — стібок, один елемент шва. This stitch is loose — цей стібок ослаб. Ви запитуєте, чи полагодили кишеню: Have you repaired it yet? — ти вже її полагодив? Відповідь: I have already repaired it — я вже її полагодив. Якщо йдеться про роботу, завершену раніше за іншу подію в минулому: I had repaired it by the time Dad came home — я полагодив її до того часу, як тато повернувся додому."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-26:intro2:r1",
+              "text": "I had repaired it by the time Dad came home."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro2:r2",
+              "text": "I have repaired it by the time Dad came home."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro2:r3",
+              "text": "I was repaired it by the time Dad came home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-26:intro2:r1",
+              "text": "I had repaired it by the time Dad came home."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro2:r2",
+              "text": "I have repaired it by the time Dad came home."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro2:r3",
+              "text": "I was repaired it by the time Dad came home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не испортить сюрприз",
+        "uk": "Не зіпсувати сюрприз"
+      },
+      "bodyByLocale": {
+        "ru": "Gasp — резко вдохнуть, ахнуть, например от удивления. She gasped when she saw the cake — она ахнула, когда увидела торт. Вы готовите сюрприз и просите брата не открывать коробку без разрешения: Do not open it unless I say so — не открывай, если я не скажу. Unless здесь вводит необходимое условие разрешения. Внутри условия say без will; отрицание уже стоит в просьбе do not open.",
+        "uk": "Gasp — різко вдихнути, ахнути, наприклад від подиву. She gasped when she saw the cake — вона ахнула, коли побачила торт. Ви готуєте сюрприз і просите брата не відкривати коробку без дозволу: Do not open it unless I say so — не відкривай, якщо я не скажу. Unless тут вводить необхідну умову дозволу. Усередині умови say без will; заперечення вже стоїть у проханні do not open."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-26:intro3:r1",
+              "text": "Do not open it unless I say so."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro3:r2",
+              "text": "Do not open it unless I will say so."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro3:r3",
+              "text": "Do not open it unless I says so."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-26:intro3:r1",
+              "text": "Do not open it unless I say so."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro3:r2",
+              "text": "Do not open it unless I will say so."
+            },
+            {
+              "responseId": "en:lesson-26:session-26:intro3:r3",
+              "text": "Do not open it unless I says so."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c88f76706502074ff4ea1b68a0d7968452b88f3cd97d1b98dc88b75ffd1fc48b"
+}

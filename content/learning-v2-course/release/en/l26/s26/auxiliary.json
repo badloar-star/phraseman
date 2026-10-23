@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-26:intro1:r2": {
+          "ru": "После when здесь get без will.",
+          "uk": "Після when тут get без will."
+        },
+        "en:lesson-26:session-26:intro1:r3": {
+          "ru": "После I нужен глагол get, а не отдельное getting.",
+          "uk": "Після I потрібне дієслово get, а не окреме getting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-26:intro2:r2": {
+          "ru": "Came задаёт прошлый момент; более ранняя работа — had repaired.",
+          "uk": "Came задає минулий момент; раніша робота — had repaired."
+        },
+        "en:lesson-26:session-26:intro2:r3": {
+          "ru": "Для действия, которое выполнил я, здесь нужно had repaired.",
+          "uk": "Для дії, яку виконав я, тут потрібно had repaired."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-26:intro3:r2": {
+          "ru": "После unless здесь say без will.",
+          "uk": "Після unless тут say без will."
+        },
+        "en:lesson-26:session-26:intro3:r3": {
+          "ru": "С I используется say без -s.",
+          "uk": "З I вживається say без -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9758b4c6bba63a1a5be44d36ad425f1e93b68c16a34110df63cf6c915aa77c01"
+}

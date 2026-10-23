@@ -1,0 +1,1066 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-27:word:moody",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — moody",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:word:moody:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — moody",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:word:moody:audio",
+          "transcript": "moody"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-27:word:moody:r1",
+            "targetText": "moody",
+            "meaningByLocale": {
+              "ru": "С переменчивым настроением; иногда угрюмый.",
+              "uk": "З мінливим настроєм; іноді похмурий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "moody",
+          "definitionByLocale": {
+            "ru": "С переменчивым настроением; иногда угрюмый.",
+            "uk": "З мінливим настроєм; іноді похмурий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объясните другу свою привычную реакцию на усталость: «У меня портится настроение, когда я устал». Используйте moody.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Объясните другу свою привычную реакцию на усталость: «У меня портится настроение, когда я устал». Используйте moody.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:i01:audio",
+          "transcript": "I get moody when I am tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I get moody when I am tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг устал после дороги. Предложите: «Давай сделаем перерыв».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг устал после дороги. Предложите: «Давай сделаем перерыв».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let us take a break.",
+        "localizedMeaning": {
+          "ru": "Друг устал после дороги. Предложите: «Давай сделаем перерыв».",
+          "uk": "Друг утомився після дороги. Запропонуйте: «Давай зробимо перерву»."
+        },
+        "orderedTokens": [
+          "Let",
+          "us",
+          "take",
+          "a",
+          "break"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:word:fussy",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fussy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:word:fussy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fussy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:word:fussy:audio",
+          "transcript": "fussy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-27:word:fussy:r1",
+            "targetText": "fussy",
+            "meaningByLocale": {
+              "ru": "Привередливый, требовательный к мелочам. Fussy about food — привередливый в еде.",
+              "uk": "Вередливий, прискіпливий до дрібниць. Fussy about food — перебірливий у їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fussy",
+          "definitionByLocale": {
+            "ru": "Привередливый, требовательный к мелочам. Fussy about food — привередливый в еде.",
+            "uk": "Вередливий, прискіпливий до дрібниць. Fussy about food — перебірливий у їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-27:i03:r1",
+          "text": "I am not fussy about food."
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i03:r2",
+          "text": "I am not worried about food."
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i03:r3",
+          "text": "I am not fussy about clothes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:i03:audio",
+          "transcript": "I am not fussy about food."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-27:i03:r1",
+            "targetText": "I am not fussy about food.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i03:r2",
+            "targetText": "I am not worried about food.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i03:r3",
+            "targetText": "I am not fussy about clothes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am not fussy about food.",
+              "uk": "У записі звучить I am not fussy about food."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am not fussy about food.",
+              "uk": "У записі звучить I am not fussy about food."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы пообещаете приготовить другое блюдо, если гость не ест рыбу. Дополните условие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-27:i04:r1",
+          "text": "do not eat"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i04:r2",
+          "text": "will not eat"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i04:r3",
+          "text": "does not eat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пообещаете приготовить другое блюдо, если гость не ест рыбу. Дополните условие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пообещаете приготовить другое блюдо, если гость не ест рыбу. Дополните условие.",
+          "uk": "Ви пообіцяєте приготувати іншу страву, якщо гість не їсть риби. Доповніть умову."
+        },
+        "gappedTargetPhrase": "If you ___ fish, I will make something else.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-27:i04:r1",
+            "text": "do not eat"
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i04:r2",
+            "text": "will not eat"
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i04:r3",
+            "text": "does not eat"
+          }
+        ],
+        "testedDimension": "Вы пообещаете приготовить другое блюдо, если гость не ест рыбу. Дополните условие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-27:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы пообещаете приготовить другое блюдо, если гость не ест рыбу. Дополните условие.",
+            "feedbackByLocale": {
+              "ru": "В этом условии после if нужен Present Simple: do not eat.",
+              "uk": "У цій умові після if потрібен Present Simple: do not eat."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы пообещаете приготовить другое блюдо, если гость не ест рыбу. Дополните условие.",
+            "feedbackByLocale": {
+              "ru": "С you нужно do, не does.",
+              "uk": "З you потрібно do, не does."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:word:cheeky",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cheeky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:word:cheeky:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cheeky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:word:cheeky:audio",
+          "transcript": "cheeky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-27:word:cheeky:r1",
+            "targetText": "cheeky",
+            "meaningByLocale": {
+              "ru": "Дерзкий, нахальный; иногда с оттенком забавной смелости.",
+              "uk": "Зухвалий, нахабний; іноді з відтінком кумедної сміливості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cheeky",
+          "definitionByLocale": {
+            "ru": "Дерзкий, нахальный; иногда с оттенком забавной смелости.",
+            "uk": "Зухвалий, нахабний; іноді з відтінком кумедної сміливості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте оценку шутки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте оценку шутки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:i05:audio",
+          "transcript": "That was a cheeky joke."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That was a cheeky joke.",
+        "orderedTokens": [
+          "That",
+          "was",
+          "a",
+          "cheeky",
+          "joke"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ваша шутка задела друга. Скажите: «Прости за то, что я сказал».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:i06:audio"
+      ],
+      "accessibilityLabel": "Ваша шутка задела друга. Скажите: «Прости за то, что я сказал».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:i06:audio",
+          "transcript": "I am sorry for what I said."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am sorry for what I said.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:word:genuine",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — genuine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:word:genuine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — genuine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:word:genuine:audio",
+          "transcript": "genuine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-27:word:genuine:r1",
+            "targetText": "genuine",
+            "meaningByLocale": {
+              "ru": "Настоящий, искренний. A genuine apology — искреннее извинение.",
+              "uk": "Справжній, щирий. A genuine apology — щире вибачення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "genuine",
+          "definitionByLocale": {
+            "ru": "Настоящий, искренний. A genuine apology — искреннее извинение.",
+            "uk": "Справжній, щирий. A genuine apology — щире вибачення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы считаете извинение искренним. Выберите подходящее описание.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-27:i07:r1",
+          "text": "genuine"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i07:r2",
+          "text": "wooden"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i07:r3",
+          "text": "empty"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы считаете извинение искренним. Выберите подходящее описание.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы считаете извинение искренним. Выберите подходящее описание.",
+          "uk": "Ви вважаєте вибачення щирим. Виберіть відповідний опис."
+        },
+        "gappedTargetPhrase": "It was a ___ apology.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-27:i07:r1",
+            "text": "genuine"
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i07:r2",
+            "text": "wooden"
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i07:r3",
+            "text": "empty"
+          }
+        ],
+        "testedDimension": "Вы считаете извинение искренним. Выберите подходящее описание.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-27:i07:r2",
+            "correct": false,
+            "testedDimension": "Вы считаете извинение искренним. Выберите подходящее описание.",
+            "feedbackByLocale": {
+              "ru": "Wooden описывает что-то деревянное или неестественное, а здесь искренность.",
+              "uk": "Wooden описує щось дерев’яне або неприродне, а тут щирість."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i07:r3",
+            "correct": false,
+            "testedDimension": "Вы считаете извинение искренним. Выберите подходящее описание.",
+            "feedbackByLocale": {
+              "ru": "Empty apology — пустое извинение; это противоположная оценка.",
+              "uk": "Empty apology — порожнє вибачення; це протилежна оцінка."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-27:i08:r1",
+          "text": "Have you spoken to her yet?"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i08:r2",
+          "text": "Have you written to her yet?"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i08:r3",
+          "text": "Have you spoken to him yet?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:i08:audio",
+          "transcript": "Have you spoken to her yet?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-27:i08:r1",
+            "targetText": "Have you spoken to her yet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i08:r2",
+            "targetText": "Have you written to her yet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i08:r3",
+            "targetText": "Have you spoken to him yet?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you spoken to her yet?",
+              "uk": "У записі звучить Have you spoken to her yet?"
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you spoken to her yet?",
+              "uk": "У записі звучить Have you spoken to her yet?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает, извинились ли вы. Ответьте: «Я уже извинился».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, извинились ли вы. Ответьте: «Я уже извинился».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already apologised.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, извинились ли вы. Ответьте: «Я уже извинился».",
+          "uk": "Друг запитує, чи вибачилися ви. Дайте відповідь: «Я вже вибачився»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "apologised"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы придёте на ужин, если работа не помешает. Выберите исключение из плана.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-27:i10:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i10:r2",
+          "text": "when"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i10:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы придёте на ужин, если работа не помешает. Выберите исключение из плана.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы придёте на ужин, если работа не помешает. Выберите исключение из плана.",
+          "uk": "Ви прийдете на вечерю, якщо робота не завадить. Виберіть виняток із плану."
+        },
+        "gappedTargetPhrase": "I will come ___ I have to work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-27:i10:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i10:r2",
+            "text": "when"
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i10:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Вы придёте на ужин, если работа не помешает. Выберите исключение из плана.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-27:i10:r2",
+            "correct": false,
+            "testedDimension": "Вы придёте на ужин, если работа не помешает. Выберите исключение из плана.",
+            "feedbackByLocale": {
+              "ru": "When означало бы прийти именно тогда, когда нужно работать.",
+              "uk": "When означало б прийти саме тоді, коли потрібно працювати."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i10:r3",
+            "correct": false,
+            "testedDimension": "Вы придёте на ужин, если работа не помешает. Выберите исключение из плана.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы работу причиной прихода, а она мешает плану.",
+              "uk": "Because зробило б роботу причиною приходу, а вона заважає плану."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос покупателя о материале сумки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос покупателя о материале сумки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:i11:audio",
+          "transcript": "Is this genuine leather?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is this genuine leather?",
+        "orderedTokens": [
+          "Is",
+          "this",
+          "genuine",
+          "leather"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Выбираете кафе с другом и готовы к любому варианту. Скажите: «Я не привередлив».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:i12:audio"
+      ],
+      "accessibilityLabel": "Выбираете кафе с другом и готовы к любому варианту. Скажите: «Я не привередлив».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:i12:audio",
+          "transcript": "I am not fussy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not fussy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ужин был готов до прихода гостей. Дополните более раннее действие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-27:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i13:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ужин был готов до прихода гостей. Дополните более раннее действие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ужин был готов до прихода гостей. Дополните более раннее действие.",
+          "uk": "Вечеря була готова до приходу гостей. Доповніть ранішу дію."
+        },
+        "gappedTargetPhrase": "I ___ cooked dinner by the time they arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-27:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i13:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ужин был готов до прихода гостей. Дополните более раннее действие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-27:i13:r2",
+            "correct": false,
+            "testedDimension": "Ужин был готов до прихода гостей. Дополните более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Arrived задаёт прошлое; более раннее действие — had cooked.",
+              "uk": "Arrived задає минуле; раніша дія — had cooked."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i13:r3",
+            "correct": false,
+            "testedDimension": "Ужин был готов до прихода гостей. Дополните более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Для завершённого ранее действия здесь нужно had cooked.",
+              "uk": "Для завершеної раніше дії тут потрібно had cooked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-27:i14:r1",
+          "text": "He looks moody today."
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i14:r2",
+          "text": "He looks cheerful today."
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i14:r3",
+          "text": "She looks moody today."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:i14:audio",
+          "transcript": "He looks moody today."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-27:i14:r1",
+            "targetText": "He looks moody today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i14:r2",
+            "targetText": "He looks cheerful today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i14:r3",
+            "targetText": "She looks moody today.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-27:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He looks moody today.",
+              "uk": "У записі звучить He looks moody today."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He looks moody today.",
+              "uk": "У записі звучить He looks moody today."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пообещайте гостям: «Мы поедим, когда все придут».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообещайте гостям: «Мы поедим, когда все придут».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We will eat when everyone arrives.",
+        "localizedMeaning": {
+          "ru": "Пообещайте гостям: «Мы поедим, когда все придут».",
+          "uk": "Пообіцяйте гостям: «Ми поїмо, коли всі прийдуть»."
+        },
+        "orderedTokens": [
+          "We",
+          "will",
+          "eat",
+          "when",
+          "everyone",
+          "arrives"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы описываете обычную реакцию на шутки сестры.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-27:i16:r1",
+          "text": "laugh"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i16:r2",
+          "text": "laughs"
+        },
+        {
+          "responseId": "en:lesson-26:session-27:i16:r3",
+          "text": "laughing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы описываете обычную реакцию на шутки сестры.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете обычную реакцию на шутки сестры.",
+          "uk": "Ви описуєте звичну реакцію на жарти сестри."
+        },
+        "gappedTargetPhrase": "If my sister makes a cheeky joke, I usually ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-27:i16:r1",
+            "text": "laugh"
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i16:r2",
+            "text": "laughs"
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i16:r3",
+            "text": "laughing"
+          }
+        ],
+        "testedDimension": "Вы описываете обычную реакцию на шутки сестры.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-27:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы описываете обычную реакцию на шутки сестры.",
+            "feedbackByLocale": {
+              "ru": "С I нужно laugh без -s.",
+              "uk": "З I потрібно laugh без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-27:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы описываете обычную реакцию на шутки сестры.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужна личная форма laugh.",
+              "uk": "Для звички потрібна особова форма laugh."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-27:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг не уверен, что успеет. Попросите: «Сообщи мне, если твои планы изменятся».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Друг не уверен, что успеет. Попросите: «Сообщи мне, если твои планы изменятся».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-27:i17:audio",
+          "transcript": "Let me know if your plans change."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let me know if your plans change.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1d58db7109c9b4fb93446e0ff8f77fc1fa24ddc9a39eef0c6b7b9875674fc81e"
+}

@@ -1,0 +1,1084 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-25:word:unless",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:word:unless:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:word:unless:audio",
+          "transcript": "unless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-25:word:unless:r1",
+            "targetText": "unless",
+            "meaningByLocale": {
+              "ru": "Если не, если только не. Unless it rains — если не пойдёт дождь; обычное условие без дополнительного not.",
+              "uk": "Якщо не, якщо тільки не. Unless it rains — якщо не піде дощ; звичайна умова без додаткового not."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unless",
+          "definitionByLocale": {
+            "ru": "Если не, если только не. Unless it rains — если не пойдёт дождь; обычное условие без дополнительного not.",
+            "uk": "Якщо не, якщо тільки не. Unless it rains — якщо не піде дощ; звичайна умова без додаткового not."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Обычно вы поедите на улице. Дождь — единственное названное исключение. Выберите «если не».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-25:i01:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i01:r2",
+          "text": "when"
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i01:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Обычно вы поедите на улице. Дождь — единственное названное исключение. Выберите «если не».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Обычно вы поедите на улице. Дождь — единственное названное исключение. Выберите «если не».",
+          "uk": "Зазвичай ви поїсте надворі. Дощ — єдиний названий виняток. Виберіть «якщо не»."
+        },
+        "gappedTargetPhrase": "We will eat outside ___ it rains.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-25:i01:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i01:r2",
+            "text": "when"
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i01:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Обычно вы поедите на улице. Дождь — единственное названное исключение. Выберите «если не».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-25:i01:r2",
+            "correct": false,
+            "testedDimension": "Обычно вы поедите на улице. Дождь — единственное названное исключение. Выберите «если не».",
+            "feedbackByLocale": {
+              "ru": "When означало бы есть на улице именно во время дождя.",
+              "uk": "When означало б їсти надворі саме під час дощу."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i01:r3",
+            "correct": false,
+            "testedDimension": "Обычно вы поедите на улице. Дождь — единственное названное исключение. Выберите «если не».",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы дождь причиной еды на улице, а он мешает плану.",
+              "uk": "Because зробило б дощ причиною їсти надворі, а він заважає плану."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пообещайте другу: «Я приду, если не буду занят». Используйте unless.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообещайте другу: «Я приду, если не буду занят». Используйте unless.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will come unless I am busy.",
+        "localizedMeaning": {
+          "ru": "Пообещайте другу: «Я приду, если не буду занят». Используйте unless.",
+          "uk": "Пообіцяйте другові: «Я прийду, якщо не буду зайнятий». Використайте unless."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "come",
+          "unless",
+          "I",
+          "am",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:word:moist",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — moist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:word:moist:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — moist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:word:moist:audio",
+          "transcript": "moist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-25:word:moist:r1",
+            "targetText": "moist",
+            "meaningByLocale": {
+              "ru": "Слегка влажный, не сухой. A moist cake — влажный пирог, часто положительная оценка.",
+              "uk": "Злегка вологий, не сухий. A moist cake — вологий пиріг, часто позитивна оцінка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "moist",
+          "definitionByLocale": {
+            "ru": "Слегка влажный, не сухой. A moist cake — влажный пирог, часто положительная оценка.",
+            "uk": "Злегка вологий, не сухий. A moist cake — вологий пиріг, часто позитивна оцінка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-25:i03:r1",
+          "text": "The cake is soft and moist."
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i03:r2",
+          "text": "The cake is soft and sweet."
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i03:r3",
+          "text": "The bread is soft and moist."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:i03:audio",
+          "transcript": "The cake is soft and moist."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-25:i03:r1",
+            "targetText": "The cake is soft and moist.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i03:r2",
+            "targetText": "The cake is soft and sweet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i03:r3",
+            "targetText": "The bread is soft and moist.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cake is soft and moist.",
+              "uk": "У записі звучить The cake is soft and moist."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cake is soft and moist.",
+              "uk": "У записі звучить The cake is soft and moist."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг просит дождаться остальных. Скажите: «Мы не начнём, если не все готовы». Используйте unless.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:i04:audio"
+      ],
+      "accessibilityLabel": "Друг просит дождаться остальных. Скажите: «Мы не начнём, если не все готовы». Используйте unless.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:i04:audio",
+          "transcript": "We will not start unless everyone is ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We will not start unless everyone is ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:word:gooey",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gooey",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:word:gooey:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gooey",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:word:gooey:audio",
+          "transcript": "gooey"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-25:word:gooey:r1",
+            "targetText": "gooey",
+            "meaningByLocale": {
+              "ru": "Мягкий и липкий, тягучий; например о шоколадной начинке.",
+              "uk": "М’який і липкий, тягучий; наприклад про шоколадну начинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gooey",
+          "definitionByLocale": {
+            "ru": "Мягкий и липкий, тягучий; например о шоколадной начинке.",
+            "uk": "М’який і липкий, тягучий; наприклад про шоколадну начинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте описание середины пирога.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте описание середины пирога.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:i05:audio",
+          "transcript": "The middle is still gooey."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The middle is still gooey.",
+        "orderedTokens": [
+          "The",
+          "middle",
+          "is",
+          "still",
+          "gooey"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Слишком сладкий десерт вы пробовать не хотите. Дополните исключение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-25:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i06:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i06:r3",
+          "text": "is not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Слишком сладкий десерт вы пробовать не хотите. Дополните исключение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Слишком сладкий десерт вы пробовать не хотите. Дополните исключение.",
+          "uk": "Надто солодкий десерт ви куштувати не хочете. Доповніть виняток."
+        },
+        "gappedTargetPhrase": "I will try it unless it ___ too sweet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-25:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i06:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i06:r3",
+            "text": "is not"
+          }
+        ],
+        "testedDimension": "Слишком сладкий десерт вы пробовать не хотите. Дополните исключение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Слишком сладкий десерт вы пробовать не хотите. Дополните исключение.",
+            "feedbackByLocale": {
+              "ru": "После unless в этом условии нужна форма is без will.",
+              "uk": "Після unless у цій умові потрібна форма is без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Слишком сладкий десерт вы пробовать не хотите. Дополните исключение.",
+            "feedbackByLocale": {
+              "ru": "Is not перевернёт условие: вы откажетесь от несладкого десерта.",
+              "uk": "Is not переверне умову: ви відмовитеся від несолодкого десерту."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:word:grubby",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grubby",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:word:grubby:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grubby",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:word:grubby:audio",
+          "transcript": "grubby"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-25:word:grubby:r1",
+            "targetText": "grubby",
+            "meaningByLocale": {
+              "ru": "Грязноватый, замаранный. Grubby hands — грязные руки.",
+              "uk": "Бруднуватий, замурзаний. Grubby hands — брудні руки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grubby",
+          "definitionByLocale": {
+            "ru": "Грязноватый, замаранный. Grubby hands — грязные руки.",
+            "uk": "Бруднуватий, замурзаний. Grubby hands — брудні руки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-25:i07:r1",
+          "text": "My hands are grubby."
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i07:r2",
+          "text": "My shoes are grubby."
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i07:r3",
+          "text": "My hands are clean."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:i07:audio",
+          "transcript": "My hands are grubby."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-25:i07:r1",
+            "targetText": "My hands are grubby.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i07:r2",
+            "targetText": "My shoes are grubby.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i07:r3",
+            "targetText": "My hands are clean.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-25:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My hands are grubby.",
+              "uk": "У записі звучить My hands are grubby."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My hands are grubby.",
+              "uk": "У записі звучить My hands are grubby."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите ребёнка перед готовкой: «Пожалуйста, вымой руки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите ребёнка перед готовкой: «Пожалуйста, вымой руки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please wash your hands.",
+        "localizedMeaning": {
+          "ru": "Попросите ребёнка перед готовкой: «Пожалуйста, вымой руки».",
+          "uk": "Попросіть дитину перед готуванням: «Будь ласка, помий руки»."
+        },
+        "orderedTokens": [
+          "Please",
+          "wash",
+          "your",
+          "hands"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ожидаете, что руки будут вымыты, и называете момент начала. Выберите «когда».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-25:i09:r1",
+          "text": "when"
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i09:r2",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i09:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ожидаете, что руки будут вымыты, и называете момент начала. Выберите «когда».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ожидаете, что руки будут вымыты, и называете момент начала. Выберите «когда».",
+          "uk": "Ви очікуєте, що руки буде помито, й називаєте момент початку. Виберіть «коли»."
+        },
+        "gappedTargetPhrase": "We will start ___ your hands are clean.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-25:i09:r1",
+            "text": "when"
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i09:r2",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i09:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Вы ожидаете, что руки будут вымыты, и называете момент начала. Выберите «когда».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы ожидаете, что руки будут вымыты, и называете момент начала. Выберите «когда».",
+            "feedbackByLocale": {
+              "ru": "Unless означало бы начать, если руки не чистые, — противоположный смысл.",
+              "uk": "Unless означало б почати, якщо руки не чисті, — протилежний зміст."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы ожидаете, что руки будут вымыты, и называете момент начала. Выберите «когда».",
+            "feedbackByLocale": {
+              "ru": "Because называет причину, а здесь нужен ожидаемый момент.",
+              "uk": "Because називає причину, а тут потрібен очікуваний момент."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра спрашивает, каким получился пирог. Ответьте: «Он ещё влажный». Используйте moist.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:i10:audio"
+      ],
+      "accessibilityLabel": "Сестра спрашивает, каким получился пирог. Ответьте: «Он ещё влажный». Используйте moist.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:i10:audio",
+          "transcript": "It is still moist."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is still moist.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-25:i11:r1",
+          "text": "We will walk unless it rains."
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i11:r2",
+          "text": "We will walk when it rains."
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i11:r3",
+          "text": "We will wait unless it rains."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:i11:audio",
+          "transcript": "We will walk unless it rains."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-25:i11:r1",
+            "targetText": "We will walk unless it rains.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i11:r2",
+            "targetText": "We will walk when it rains.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i11:r3",
+            "targetText": "We will wait unless it rains.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will walk unless it rains.",
+              "uk": "У записі звучить We will walk unless it rains."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will walk unless it rains.",
+              "uk": "У записі звучить We will walk unless it rains."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Предложите помощь только при необходимости: «Я помогу тебе, если тебе нужна помощь». Используйте if.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите помощь только при необходимости: «Я помогу тебе, если тебе нужна помощь». Используйте if.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will help you if you need help.",
+        "localizedMeaning": {
+          "ru": "Предложите помощь только при необходимости: «Я помогу тебе, если тебе нужна помощь». Используйте if.",
+          "uk": "Запропонуйте допомогу лише за потреби: «Я допоможу тобі, якщо тобі потрібна допомога». Використайте if."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "help",
+          "you",
+          "if",
+          "you",
+          "need",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Билеты обязательны. Без них вы не поедете. Дополните условие с unless.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-25:i13:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i13:r2",
+          "text": "will have"
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i13:r3",
+          "text": "do not have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Билеты обязательны. Без них вы не поедете. Дополните условие с unless.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Билеты обязательны. Без них вы не поедете. Дополните условие с unless.",
+          "uk": "Квитки обов’язкові. Без них ви не поїдете. Доповніть умову з unless."
+        },
+        "gappedTargetPhrase": "We will not go unless we ___ tickets.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-25:i13:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i13:r2",
+            "text": "will have"
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i13:r3",
+            "text": "do not have"
+          }
+        ],
+        "testedDimension": "Билеты обязательны. Без них вы не поедете. Дополните условие с unless.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-25:i13:r2",
+            "correct": false,
+            "testedDimension": "Билеты обязательны. Без них вы не поедете. Дополните условие с unless.",
+            "feedbackByLocale": {
+              "ru": "После unless в этом условии have без will.",
+              "uk": "Після unless у цій умові have без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i13:r3",
+            "correct": false,
+            "testedDimension": "Билеты обязательны. Без них вы не поедете. Дополните условие с unless.",
+            "feedbackByLocale": {
+              "ru": "Do not have меняет условие на обратное: отсутствие билетов разрешало бы поездку.",
+              "uk": "Do not have змінює умову на зворотну: відсутність квитків дозволяла б поїздку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте описание шоколада в печенье.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте описание шоколада в печенье.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:i14:audio",
+          "transcript": "The chocolate is warm and gooey."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The chocolate is warm and gooey.",
+        "orderedTokens": [
+          "The",
+          "chocolate",
+          "is",
+          "warm",
+          "and",
+          "gooey"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы пролили что-то на рубашку. Скажите: «Моя рубашка теперь замаранная».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Вы пролили что-то на рубашку. Скажите: «Моя рубашка теперь замаранная».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:i15:audio",
+          "transcript": "My shirt is grubby now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My shirt is grubby now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-25:i16:r1",
+          "text": "We will take a detour if the road is closed."
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i16:r2",
+          "text": "We will take a detour when the road opens."
+        },
+        {
+          "responseId": "en:lesson-26:session-25:i16:r3",
+          "text": "We will take a taxi if the road is closed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-25:i16:audio",
+          "transcript": "We will take a detour if the road is closed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-25:i16:r1",
+            "targetText": "We will take a detour if the road is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i16:r2",
+            "targetText": "We will take a detour when the road opens.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i16:r3",
+            "targetText": "We will take a taxi if the road is closed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-25:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will take a detour if the road is closed.",
+              "uk": "У записі звучить We will take a detour if the road is closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-25:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will take a detour if the road is closed.",
+              "uk": "У записі звучить We will take a detour if the road is closed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-25:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы останетесь дома, если друг не позвонит. Скажите это с unless.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы останетесь дома, если друг не позвонит. Скажите это с unless.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will stay at home unless my friend calls.",
+        "localizedMeaning": {
+          "ru": "Вы останетесь дома, если друг не позвонит. Скажите это с unless.",
+          "uk": "Ви залишитесь удома, якщо друг не зателефонує. Скажіть це з unless."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "stay",
+          "at",
+          "home",
+          "unless",
+          "my",
+          "friend",
+          "calls"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c1db99ca3224abbfaaddbdc94c3f87e0d12a401536ea8d781639185ee3603819"
+}

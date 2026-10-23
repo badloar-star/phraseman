@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, yet; by the time",
+    "uk": "if, when, unless; already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Настроение и предпочтения",
+        "uk": "Настрій і вподобання"
+      },
+      "bodyByLocale": {
+        "ru": "Moody — с переменчивым настроением, иногда угрюмый. I get moody when I am tired — у меня портится настроение, когда я устал. Это привычная связь: Present Simple в обеих частях. Fussy — привередливый, требовательный к мелочам. I am not fussy about food — я не привередлив в еде. Эти слова помогают описать себя и предпочтения; они не объясняют автоматически причины чужого поведения.",
+        "uk": "Moody — з мінливим настроєм, іноді похмурий. I get moody when I am tired — у мене псується настрій, коли я втомлений. Це звичний зв’язок: Present Simple в обох частинах. Fussy — вередливий, прискіпливий до дрібниць. I am not fussy about food — я не перебірливий у їжі. Ці слова допомагають описати себе та вподобання; вони не пояснюють автоматично причин чужої поведінки."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-27:intro1:r1",
+              "text": "I get moody when I am tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro1:r2",
+              "text": "I gets moody when I am tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro1:r3",
+              "text": "I getting moody when I am tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-27:intro1:r1",
+              "text": "I get moody when I am tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro1:r2",
+              "text": "I gets moody when I am tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro1:r3",
+              "text": "I getting moody when I am tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шутка и извинение",
+        "uk": "Жарт і вибачення"
+      },
+      "bodyByLocale": {
+        "ru": "Cheeky — дерзкий, нахальный, иногда с оттенком забавной смелости. A cheeky joke — дерзкая шутка. Genuine — настоящий, искренний: a genuine apology — искреннее извинение. Значение зависит от существительного: genuine leather — натуральная кожа. Если шутка задела друга, можно сказать I have already apologised — я уже извинился. Already показывает, что действие уже выполнено к настоящему моменту.",
+        "uk": "Cheeky — зухвалий, нахабний, іноді з відтінком кумедної сміливості. A cheeky joke — зухвалий жарт. Genuine — справжній, щирий: a genuine apology — щире вибачення. Значення залежить від іменника: genuine leather — натуральна шкіра. Якщо жарт зачепив друга, можна сказати I have already apologised — я вже вибачився. Already показує, що дію вже виконано на цей момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-27:intro2:r1",
+              "text": "I have already apologised."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro2:r2",
+              "text": "I have already apologise."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro2:r3",
+              "text": "I already apologising."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-27:intro2:r1",
+              "text": "I have already apologised."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro2:r2",
+              "text": "I have already apologise."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro2:r3",
+              "text": "I already apologising."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договориться о встрече",
+        "uk": "Домовитися про зустріч"
+      },
+      "bodyByLocale": {
+        "ru": "На встречу можно поставить условие: I will come unless I have to work — я приду, если мне не придётся работать. После unless здесь have без will. Ожидаемое время обозначаем иначе: We will eat when everyone arrives — поедим, когда все придут. When называет ожидаемый момент; unless — исключение из плана. Если ужин приготовлен до прихода гостей, можно сказать I had cooked dinner by the time they arrived — я приготовил ужин к тому времени, как они пришли.",
+        "uk": "Для зустрічі можна поставити умову: I will come unless I have to work — я прийду, якщо мені не доведеться працювати. Після unless тут have без will. Очікуваний час позначаємо інакше: We will eat when everyone arrives — поїмо, коли всі прийдуть. When називає очікуваний момент; unless — виняток із плану. Якщо вечерю приготовлено до приходу гостей, можна сказати I had cooked dinner by the time they arrived — я приготував вечерю до того часу, як вони прийшли."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-27:intro3:r1",
+              "text": "I will come unless I have to work."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro3:r2",
+              "text": "I will come unless I will have to work."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro3:r3",
+              "text": "I will come unless I has to work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-27:intro3:r1",
+              "text": "I will come unless I have to work."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro3:r2",
+              "text": "I will come unless I will have to work."
+            },
+            {
+              "responseId": "en:lesson-26:session-27:intro3:r3",
+              "text": "I will come unless I has to work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "253c1fc87829243e06b765b2f6d0cc8afd13a3d7f3987025f015bfcdf05ac849"
+}

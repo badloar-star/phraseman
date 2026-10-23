@@ -53,99 +53,99 @@ Whine — ныть, жаловаться плаксивым голосом. The 
 <!-- interaction_id: en:lesson-25:session-26:word:grumbled; family: word_card -->
 > **grumbled** — Ворчал. Grumble — ворчать, недовольно жаловаться; grumbled — прошедшая форма.
 
-**2 · Скажите: «Он ворчал после того, как увидел счёт.»**
-<!-- interaction_id: en:lesson-25:session-26:i01; family: phrase_builder -->
-Плитки: `bill` `the` `saw` `he` `after` `grumbled` `He` → **He grumbled after he saw the bill.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-26:i01; family: listen_choose -->
+🔊 *We grumbled after the bus arrived late.* → **We grumbled after the bus arrived late.** · We grumbled after the train arrived late. · They grumbled after the bus arrived late.
+- We grumbled after the train arrived late. — *В записи звучит We grumbled after the bus arrived late.*
+- They grumbled after the bus arrived late. — *В записи звучит We grumbled after the bus arrived late.*
 
-**3 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-26:i02; family: context_gap_grammar -->
-He ___ after he saw the bill. → **grumbled** · grumble · grumbling
-- grumble — *Для законченного события нужна прошедшая форма grumbled.*
-- grumbling — *Для законченного события нужна прошедшая форма grumbled.*
+**3 · Уточните причину недовольства: «Что случилось?»**
+<!-- interaction_id: en:lesson-25:session-26:i02; family: scripted_repeat_compare -->
+🎙 **What happened?**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-26:i03; family: listen_choose -->
-🔊 *He grumbled after he saw the bill.* → **He grumbled after he saw the bill.** · She grumbled after she saw the bill. · He grumbled after he saw the price.
-- She grumbled after she saw the bill. — *В записи звучит He grumbled after he saw the bill.*
-- He grumbled after he saw the price. — *В записи звучит He grumbled after he saw the bill.*
-
-**5 · Карточка слова — nagged**
-<!-- interaction_id: en:lesson-25:session-26:word:nagged; family: word_card -->
-> **nagged** — Пилила. Nag — надоедать повторными упрёками или просьбами; nagged — прошедшая форма.
-
-**6 · Скажите: «Она пилила меня до того, как я убрал свою комнату.»**
-<!-- interaction_id: en:lesson-25:session-26:i04; family: phrase_builder -->
-Плитки: `room` `my` `cleaned` `I` `before` `me` `nagged` `She` → **She nagged me before I cleaned my room.**
-
-**7 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-26:i05; family: context_gap_grammar -->
-She ___ me before I cleaned my room. → **nagged** · nag · nagging
-- nag — *Для законченного события нужна прошедшая форма nagged.*
-- nagging — *Для законченного события нужна прошедшая форма nagged.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-26:i06; family: listen_choose -->
-🔊 *She nagged me before I cleaned my room.* → **She nagged me before I cleaned my room.** · He nagged me before I cleaned my room. · She nagged me before I cleaned the kitchen.
-- He nagged me before I cleaned my room. — *В записи звучит She nagged me before I cleaned my room.*
-- She nagged me before I cleaned the kitchen. — *В записи звучит She nagged me before I cleaned my room.*
-
-**9 · Карточка слова — scolded**
+**4 · Карточка слова — scolded**
 <!-- interaction_id: en:lesson-25:session-26:word:scolded; family: word_card -->
 > **scolded** — Отругал. Scold — сердито ругать за поступок; scolded — прошедшая форма.
 
-**10 · Скажите: «Он отругал меня после того, как я разбил чашку.»**
-<!-- interaction_id: en:lesson-25:session-26:i07; family: phrase_builder -->
-Плитки: `cup` `the` `broke` `I` `after` `me` `scolded` `He` → **He scolded me after I broke the cup.**
+**5 · Учитель отругал вас после опоздания: «Учитель отругал меня после того, как я опоздал».**
+<!-- interaction_id: en:lesson-25:session-26:i03; family: phrase_builder -->
+Плитки: `late` `arrived` `I` `after` `me` `scolded` `teacher` `The` → **The teacher scolded me after I arrived late.**
 
-**11 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-26:i08; family: context_gap_grammar -->
-He ___ me after I broke the cup. → **scolded** · scold · scolding
-- scold — *Для законченного события нужна прошедшая форма scolded.*
-- scolding — *Для законченного события нужна прошедшая форма scolded.*
+**6 · Сначала вы разбили чашку, потом извинились.**
+<!-- interaction_id: en:lesson-25:session-26:i04; family: context_gap_grammar -->
+I apologised ___ I broke the cup. → **after** · before · until
+- before — *Before означало бы извинение до происшествия; здесь оно было позже.*
+- until — *Until означает «до тех пор пока», а нужно «после того как».*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-26:i09; family: listen_choose -->
-🔊 *He scolded me after I broke the cup.* → **He scolded me after I broke the cup.** · She scolded me after I broke the cup. · He scolded me after I broke the plate.
-- She scolded me after I broke the cup. — *В записи звучит He scolded me after I broke the cup.*
-- He scolded me after I broke the plate. — *В записи звучит He scolded me after I broke the cup.*
+**7 · Карточка слова — nagged**
+<!-- interaction_id: en:lesson-25:session-26:word:nagged; family: word_card -->
+> **nagged** — Пилила. Nag — надоедать повторными упрёками или просьбами; nagged — прошедшая форма.
 
-**13 · Карточка слова — whined**
+**8 · Услышьте рассказ о повторных просьбах.**
+<!-- interaction_id: en:lesson-25:session-26:i05; family: listen_build_dictation -->
+🔊 *My brother nagged me before I returned his book.* Плитки: `book` `his` `returned` `I` `before` `me` `nagged` `brother` `My` → **My brother nagged me before I returned his book.**
+
+**9 · Вы услышали просьбу и хотите спокойно ответить: «Я уже тебя услышал».**
+<!-- interaction_id: en:lesson-25:session-26:i06; family: scripted_repeat_compare -->
+🎙 **I have already heard you.**
+
+**10 · Карточка слова — whined**
 <!-- interaction_id: en:lesson-25:session-26:word:whined; family: word_card -->
 > **whined** — Ныл. Whine — ныть, жаловаться плаксивым голосом; whined — прошедшая форма.
 
-**14 · Скажите: «Ребёнок ныл после того, как мы ушли из парка.»**
-<!-- interaction_id: en:lesson-25:session-26:i10; family: phrase_builder -->
-Плитки: `park` `the` `left` `we` `after` `whined` `child` `The` → **The child whined after we left the park.**
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-26:i07; family: listen_choose -->
+🔊 *The child whined after the game ended.* → **The child whined after the game ended.** · The child whined before the game ended. · The child cried after the game ended.
+- The child whined before the game ended. — *В записи звучит The child whined after the game ended.*
+- The child cried after the game ended. — *В записи звучит The child whined after the game ended.*
 
-**15 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-26:i11; family: context_gap_grammar -->
-The child ___ after we left the park. → **whined** · whine · whining
-- whine — *Для законченного события нужна прошедшая форма whined.*
-- whining — *Для законченного события нужна прошедшая форма whined.*
+**12 · Ребёнок жаловался плаксивым голосом, а не смеялся и не спал.**
+<!-- interaction_id: en:lesson-25:session-26:i08; family: context_gap_grammar -->
+The child ___ after we said no. → **whined** · laughed · slept
+- laughed — *Laughed — смеялся; здесь ребёнок ныл.*
+- slept — *Slept — спал, а здесь слышались плаксивые жалобы.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-26:i12; family: listen_choose -->
-🔊 *The child whined after we left the park.* → **The child whined after we left the park.** · The child whined after we left the shop. · The child whined after they left the park.
-- The child whined after we left the shop. — *В записи звучит The child whined after we left the park.*
-- The child whined after they left the park. — *В записи звучит The child whined after we left the park.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-26:i13; family: speed_match -->
+**13 · Различите виды недовольной речи**
+<!-- interaction_id: en:lesson-25:session-26:i09; family: speed_match -->
 grumbled — ворчал · nagged — пилила · scolded — отругал · whined — ныл
 
-**18 · Поели перед отъездом**
-<!-- interaction_id: en:lesson-25:session-26:i14; family: listen_build_dictation -->
-🔊 *We ate before we left.* Плитки: `left` `we` `before` `ate` `We` → **We ate before we left.**
+**14 · Сначала вы выслушали друга, потом ответили: «Я выслушал друга до того, как ответил».**
+<!-- interaction_id: en:lesson-25:session-26:i10; family: phrase_builder -->
+Плитки: `answered` `I` `before` `friend` `my` `to` `listened` `I` → **I listened to my friend before I answered.**
 
-**19 · Начали после её прихода**
-<!-- interaction_id: en:lesson-25:session-26:i15; family: listen_build_dictation -->
-🔊 *We started after she arrived.* Плитки: `arrived` `she` `after` `started` `We` → **We started after she arrived.**
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-26:i11; family: listen_choose -->
+🔊 *I used to get angry very quickly.* → **I used to get angry very quickly.** · I used to get tired very quickly. · She used to get angry very quickly.
+- I used to get tired very quickly. — *В записи звучит I used to get angry very quickly.*
+- She used to get angry very quickly. — *В записи звучит I used to get angry very quickly.*
 
-**20 · Скажите: «Она ворчала после того, как мы ушли».**
-<!-- interaction_id: en:lesson-25:session-26:i16; family: scripted_repeat_compare -->
-🎙 **She grumbled after we left.**
+**16 · Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.**
+<!-- interaction_id: en:lesson-25:session-26:i12; family: context_gap_grammar -->
+I ___ cleaned my room before my mother came home. → **had** · have · was
+- have — *Have cleaned связано с настоящим; здесь уборка предшествует прошлому приходу.*
+- was — *Нужна форма had cleaned для завершённого более раннего действия.*
 
-**21 · Скажите: «Они отругали меня после того, как я разбил тарелку».**
+**17 · Услышьте прежнюю привычку решать споры.**
+<!-- interaction_id: en:lesson-25:session-26:i13; family: listen_build_dictation -->
+🔊 *In those days we would talk after dinner.* Плитки: `dinner` `after` `talk` `would` `we` `days` `those` `In` → **In those days we would talk after dinner.**
+
+**18 · Предложите ещё одну попытку: «Давай попробуем другой способ».**
+<!-- interaction_id: en:lesson-25:session-26:i14; family: scripted_repeat_compare -->
+🎙 **Let us try another way.**
+
+**19 · Вы поговорили об этом один раз вчера.**
+<!-- interaction_id: en:lesson-25:session-26:i15; family: context_gap_grammar -->
+We ___ about it yesterday. → **talked** · have talked · would talk
+- have talked — *Yesterday требует Past Simple talked.*
+- would talk — *Would talk описывает прежнюю привычку, не один вчерашний разговор.*
+
+**20 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-26:i16; family: listen_choose -->
+🔊 *What did the other children say?* → **What did the other children say?** · What did the other parents say? · What did the other child say?
+- What did the other parents say? — *В записи звучит What did the other children say?*
+- What did the other child say? — *В записи звучит What did the other children say?*
+
+**21 · Скажите, что готовы начать заново: «Я готов попробовать ещё раз».**
 <!-- interaction_id: en:lesson-25:session-26:i17; family: scripted_repeat_compare -->
-🎙 **They scolded me after I broke the plate.**
+🎙 **I am ready to try again.**
 

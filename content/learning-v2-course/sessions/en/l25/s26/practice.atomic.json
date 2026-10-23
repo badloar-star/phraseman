@@ -50,28 +50,181 @@
         "interactionId": "en:lesson-25:session-26:i01",
         "ordinal": 5,
         "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i01:r1",
+            "text": "We grumbled after the bus arrived late."
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i01:r2",
+            "text": "We grumbled after the train arrived late."
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i01:r3",
+            "text": "They grumbled after the bus arrived late."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i01:audio",
+            "transcript": "We grumbled after the bus arrived late."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-26:i01:r1",
+              "targetText": "We grumbled after the bus arrived late.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i01:r2",
+              "targetText": "We grumbled after the train arrived late.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i01:r3",
+              "targetText": "They grumbled after the bus arrived late.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We grumbled after the bus arrived late.",
+                "uk": "У записі звучить We grumbled after the bus arrived late."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We grumbled after the bus arrived late.",
+                "uk": "У записі звучить We grumbled after the bus arrived late."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните причину недовольства: «Что случилось?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Уточните причину недовольства: «Что случилось?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i02:audio",
+            "transcript": "What happened?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "What happened?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:word:scolded",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scolded",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:word:scolded:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scolded",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:word:scolded:audio",
+            "transcript": "scolded"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-26:word:scolded:r1",
+              "targetText": "scolded",
+              "meaningByLocale": {
+                "ru": "Отругал. Scold — сердито ругать за поступок; scolded — прошедшая форма.",
+                "uk": "Насварив. Scold — сердито сварити за вчинок; scolded — минула форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scolded",
+            "definitionByLocale": {
+              "ru": "Отругал. Scold — сердито ругать за поступок; scolded — прошедшая форма.",
+              "uk": "Насварив. Scold — сердито сварити за вчинок; scolded — минула форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Он ворчал после того, как увидел счёт.»",
+        "prompt": "Учитель отругал вас после опоздания: «Учитель отругал меня после того, как я опоздал».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Он ворчал после того, как увидел счёт.»",
+        "accessibilityLabel": "Учитель отругал вас после опоздания: «Учитель отругал меня после того, как я опоздал».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He grumbled after he saw the bill.",
+          "targetPhrase": "The teacher scolded me after I arrived late.",
           "localizedMeaning": {
-            "ru": "Скажите: «Он ворчал после того, как увидел счёт.»",
-            "uk": "Скажіть: «Він бурчав після того, як побачив рахунок.»"
+            "ru": "Учитель отругал вас после опоздания: «Учитель отругал меня после того, как я опоздал».",
+            "uk": "Учитель насварив вас після запізнення: «Учитель насварив мене після того, як я запізнився»."
           },
           "orderedTokens": [
-            "He",
-            "grumbled",
+            "The",
+            "teacher",
+            "scolded",
+            "me",
             "after",
-            "he",
-            "saw",
-            "the",
-            "bill"
+            "I",
+            "arrived",
+            "late"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -83,68 +236,68 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i02",
-        "ordinal": 6,
+        "interactionId": "en:lesson-25:session-26:i04",
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дополните рассказ.",
+        "prompt": "Сначала вы разбили чашку, потом извинились.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-26:i02:r1",
-            "text": "grumbled"
+            "responseId": "en:lesson-25:session-26:i04:r1",
+            "text": "after"
           },
           {
-            "responseId": "en:lesson-25:session-26:i02:r2",
-            "text": "grumble"
+            "responseId": "en:lesson-25:session-26:i04:r2",
+            "text": "before"
           },
           {
-            "responseId": "en:lesson-25:session-26:i02:r3",
-            "text": "grumbling"
+            "responseId": "en:lesson-25:session-26:i04:r3",
+            "text": "until"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ.",
+        "accessibilityLabel": "Сначала вы разбили чашку, потом извинились.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
+            "ru": "Сначала вы разбили чашку, потом извинились.",
+            "uk": "Спочатку ви розбили чашку, потім вибачилися."
           },
-          "gappedTargetPhrase": "He ___ after he saw the bill.",
+          "gappedTargetPhrase": "I apologised ___ I broke the cup.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-26:i02:r1",
-              "text": "grumbled"
+              "responseId": "en:lesson-25:session-26:i04:r1",
+              "text": "after"
             },
             {
-              "responseId": "en:lesson-25:session-26:i02:r2",
-              "text": "grumble"
+              "responseId": "en:lesson-25:session-26:i04:r2",
+              "text": "before"
             },
             {
-              "responseId": "en:lesson-25:session-26:i02:r3",
-              "text": "grumbling"
+              "responseId": "en:lesson-25:session-26:i04:r3",
+              "text": "until"
             }
           ],
-          "testedDimension": "Дополните рассказ.",
+          "testedDimension": "Сначала вы разбили чашку, потом извинились.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-26:i02:r2",
+              "responseId": "en:lesson-25:session-26:i04:r2",
               "correct": false,
-              "testedDimension": "Дополните рассказ.",
+              "testedDimension": "Сначала вы разбили чашку, потом извинились.",
               "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма grumbled.",
-                "uk": "Для завершеної події потрібна минула форма grumbled."
+                "ru": "Before означало бы извинение до происшествия; здесь оно было позже.",
+                "uk": "Before означало б вибачення до події; тут воно було пізніше."
               }
             },
             {
-              "responseId": "en:lesson-25:session-26:i02:r3",
+              "responseId": "en:lesson-25:session-26:i04:r3",
               "correct": false,
-              "testedDimension": "Дополните рассказ.",
+              "testedDimension": "Сначала вы разбили чашку, потом извинились.",
               "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма grumbled.",
-                "uk": "Для завершеної події потрібна минула форма grumbled."
+                "ru": "Until означает «до тех пор пока», а нужно «после того как».",
+                "uk": "Until означає «доки», а потрібно «після того як»."
               }
             }
           ]
@@ -152,84 +305,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i03:r1",
-            "text": "He grumbled after he saw the bill."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i03:r2",
-            "text": "She grumbled after she saw the bill."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i03:r3",
-            "text": "He grumbled after he saw the price."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-26:i03:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i03:audio",
-            "transcript": "He grumbled after he saw the bill."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-26:i03:r1",
-              "targetText": "He grumbled after he saw the bill.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i03:r2",
-              "targetText": "She grumbled after she saw the bill.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i03:r3",
-              "targetText": "He grumbled after he saw the price.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i03:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He grumbled after he saw the bill.",
-                "uk": "У записі звучить He grumbled after he saw the bill."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i03:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He grumbled after he saw the bill.",
-                "uk": "У записі звучить He grumbled after he saw the bill."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-26:word:nagged",
-        "ordinal": 8,
+        "ordinal": 10,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -271,32 +348,36 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
+        "interactionId": "en:lesson-25:session-26:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Она пилила меня до того, как я убрал свою комнату.»",
+        "prompt": "Услышьте рассказ о повторных просьбах.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Она пилила меня до того, как я убрал свою комнату.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Услышьте рассказ о повторных просьбах.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "She nagged me before I cleaned my room.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Она пилила меня до того, как я убрал свою комнату.»",
-            "uk": "Скажіть: «Вона пиляла мене до того, як я прибрав свою кімнату.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i05:audio",
+            "transcript": "My brother nagged me before I returned his book."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My brother nagged me before I returned his book.",
           "orderedTokens": [
-            "She",
+            "My",
+            "brother",
             "nagged",
             "me",
             "before",
             "I",
-            "cleaned",
-            "my",
-            "room"
+            "returned",
+            "his",
+            "book"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -304,382 +385,45 @@
             "ru": "",
             "uk": ""
           }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i05:r1",
-            "text": "nagged"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i05:r2",
-            "text": "nag"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i05:r3",
-            "text": "nagging"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "She ___ me before I cleaned my room.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-26:i05:r1",
-              "text": "nagged"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i05:r2",
-              "text": "nag"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i05:r3",
-              "text": "nagging"
-            }
-          ],
-          "testedDimension": "Дополните рассказ.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i05:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма nagged.",
-                "uk": "Для завершеної події потрібна минула форма nagged."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i05:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма nagged.",
-                "uk": "Для завершеної події потрібна минула форма nagged."
-              }
-            }
-          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-26:i06",
-        "ordinal": 11,
+        "ordinal": 12,
         "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i06:r1",
-            "text": "She nagged me before I cleaned my room."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i06:r2",
-            "text": "He nagged me before I cleaned my room."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i06:r3",
-            "text": "She nagged me before I cleaned the kitchen."
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы услышали просьбу и хотите спокойно ответить: «Я уже тебя услышал».",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-26:i06:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Вы услышали просьбу и хотите спокойно ответить: «Я уже тебя услышал».",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-26:i06:audio",
-            "transcript": "She nagged me before I cleaned my room."
+            "transcript": "I have already heard you."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-26:i06:r1",
-              "targetText": "She nagged me before I cleaned my room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i06:r2",
-              "targetText": "He nagged me before I cleaned my room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i06:r3",
-              "targetText": "She nagged me before I cleaned the kitchen.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i06:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит She nagged me before I cleaned my room.",
-                "uk": "У записі звучить She nagged me before I cleaned my room."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i06:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит She nagged me before I cleaned my room.",
-                "uk": "У записі звучить She nagged me before I cleaned my room."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:word:scolded",
-        "ordinal": 12,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — scolded",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-26:word:scolded:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — scolded",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:word:scolded:audio",
-            "transcript": "scolded"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-26:word:scolded:r1",
-              "targetText": "scolded",
-              "meaningByLocale": {
-                "ru": "Отругал. Scold — сердито ругать за поступок; scolded — прошедшая форма.",
-                "uk": "Насварив. Scold — сердито сварити за вчинок; scolded — минула форма."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "scolded",
-            "definitionByLocale": {
-              "ru": "Отругал. Scold — сердито ругать за поступок; scolded — прошедшая форма.",
-              "uk": "Насварив. Scold — сердито сварити за вчинок; scolded — минула форма."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Он отругал меня после того, как я разбил чашку.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Он отругал меня после того, как я разбил чашку.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "He scolded me after I broke the cup.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Он отругал меня после того, как я разбил чашку.»",
-            "uk": "Скажіть: «Він насварив мене після того, як я розбив чашку.»"
-          },
-          "orderedTokens": [
-            "He",
-            "scolded",
-            "me",
-            "after",
-            "I",
-            "broke",
-            "the",
-            "cup"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i08:r1",
-            "text": "scolded"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i08:r2",
-            "text": "scold"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i08:r3",
-            "text": "scolding"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "He ___ me after I broke the cup.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-26:i08:r1",
-              "text": "scolded"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i08:r2",
-              "text": "scold"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i08:r3",
-              "text": "scolding"
-            }
-          ],
-          "testedDimension": "Дополните рассказ.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i08:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма scolded.",
-                "uk": "Для завершеної події потрібна минула форма scolded."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i08:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма scolded.",
-                "uk": "Для завершеної події потрібна минула форма scolded."
-              }
-            }
+          "targetPhrase": "I have already heard you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i09",
-        "ordinal": 15,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i09:r1",
-            "text": "He scolded me after I broke the cup."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i09:r2",
-            "text": "She scolded me after I broke the cup."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i09:r3",
-            "text": "He scolded me after I broke the plate."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-26:i09:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i09:audio",
-            "transcript": "He scolded me after I broke the cup."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-26:i09:r1",
-              "targetText": "He scolded me after I broke the cup.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i09:r2",
-              "targetText": "She scolded me after I broke the cup.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i09:r3",
-              "targetText": "He scolded me after I broke the plate.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i09:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He scolded me after I broke the cup.",
-                "uk": "У записі звучить He scolded me after I broke the cup."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i09:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He scolded me after I broke the cup.",
-                "uk": "У записі звучить He scolded me after I broke the cup."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-26:word:whined",
-        "ordinal": 16,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -721,179 +465,73 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Ребёнок ныл после того, как мы ушли из парка.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Ребёнок ныл после того, как мы ушли из парка.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "The child whined after we left the park.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Ребёнок ныл после того, как мы ушли из парка.»",
-            "uk": "Скажіть: «Дитина скиглила після того, як ми пішли з парку.»"
-          },
-          "orderedTokens": [
-            "The",
-            "child",
-            "whined",
-            "after",
-            "we",
-            "left",
-            "the",
-            "park"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i11:r1",
-            "text": "whined"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i11:r2",
-            "text": "whine"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i11:r3",
-            "text": "whining"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "The child ___ after we left the park.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-26:i11:r1",
-              "text": "whined"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i11:r2",
-              "text": "whine"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i11:r3",
-              "text": "whining"
-            }
-          ],
-          "testedDimension": "Дополните рассказ.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i11:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма whined.",
-                "uk": "Для завершеної події потрібна минула форма whined."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i11:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма whined.",
-                "uk": "Для завершеної події потрібна минула форма whined."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-26:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-26:i12:r1",
-            "text": "The child whined after we left the park."
+            "responseId": "en:lesson-25:session-26:i07:r1",
+            "text": "The child whined after the game ended."
           },
           {
-            "responseId": "en:lesson-25:session-26:i12:r2",
-            "text": "The child whined after we left the shop."
+            "responseId": "en:lesson-25:session-26:i07:r2",
+            "text": "The child whined before the game ended."
           },
           {
-            "responseId": "en:lesson-25:session-26:i12:r3",
-            "text": "The child whined after they left the park."
+            "responseId": "en:lesson-25:session-26:i07:r3",
+            "text": "The child cried after the game ended."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-26:i12:audio"
+          "en:lesson-25:session-26:i07:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i12:audio",
-            "transcript": "The child whined after we left the park."
+            "audioTargetId": "en:lesson-25:session-26:i07:audio",
+            "transcript": "The child whined after the game ended."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-26:i12:r1",
-              "targetText": "The child whined after we left the park.",
+              "responseId": "en:lesson-25:session-26:i07:r1",
+              "targetText": "The child whined after the game ended.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-26:i12:r2",
-              "targetText": "The child whined after we left the shop.",
+              "responseId": "en:lesson-25:session-26:i07:r2",
+              "targetText": "The child whined before the game ended.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-26:i12:r3",
-              "targetText": "The child whined after they left the park.",
+              "responseId": "en:lesson-25:session-26:i07:r3",
+              "targetText": "The child cried after the game ended.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-26:i12:r2",
+              "responseId": "en:lesson-25:session-26:i07:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The child whined after we left the park.",
-                "uk": "У записі звучить The child whined after we left the park."
+                "ru": "В записи звучит The child whined after the game ended.",
+                "uk": "У записі звучить The child whined after the game ended."
               }
             },
             {
-              "responseId": "en:lesson-25:session-26:i12:r3",
+              "responseId": "en:lesson-25:session-26:i07:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The child whined after we left the park.",
-                "uk": "У записі звучить The child whined after we left the park."
+                "ru": "В записи звучит The child whined after the game ended.",
+                "uk": "У записі звучить The child whined after the game ended."
               }
             }
           ],
@@ -903,21 +541,90 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-26:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ребёнок жаловался плаксивым голосом, а не смеялся и не спал.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i08:r1",
+            "text": "whined"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i08:r2",
+            "text": "laughed"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i08:r3",
+            "text": "slept"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ребёнок жаловался плаксивым голосом, а не смеялся и не спал.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ребёнок жаловался плаксивым голосом, а не смеялся и не спал.",
+            "uk": "Дитина скаржилася плаксивим голосом, а не сміялася й не спала."
+          },
+          "gappedTargetPhrase": "The child ___ after we said no.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-26:i08:r1",
+              "text": "whined"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i08:r2",
+              "text": "laughed"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i08:r3",
+              "text": "slept"
+            }
+          ],
+          "testedDimension": "Ребёнок жаловался плаксивым голосом, а не смеялся и не спал.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Ребёнок жаловался плаксивым голосом, а не смеялся и не спал.",
+              "feedbackByLocale": {
+                "ru": "Laughed — смеялся; здесь ребёнок ныл.",
+                "uk": "Laughed — сміявся; тут дитина скиглила."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Ребёнок жаловался плаксивым голосом, а не смеялся и не спал.",
+              "feedbackByLocale": {
+                "ru": "Slept — спал, а здесь слышались плаксивые жалобы.",
+                "uk": "Slept — спав, а тут було чути плаксиві скарги."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините формы с переводом",
+        "prompt": "Различите виды недовольной речи",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините формы с переводом",
+        "accessibilityLabel": "Различите виды недовольной речи",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-26:i13:p1",
+              "pairId": "en:lesson-25:session-26:i09:p1",
               "target": "grumbled",
               "meaningByLocale": {
                 "ru": "ворчал",
@@ -925,7 +632,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-26:i13:p2",
+              "pairId": "en:lesson-25:session-26:i09:p2",
               "target": "nagged",
               "meaningByLocale": {
                 "ru": "пилила",
@@ -933,7 +640,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-26:i13:p3",
+              "pairId": "en:lesson-25:session-26:i09:p3",
               "target": "scolded",
               "meaningByLocale": {
                 "ru": "отругал",
@@ -941,7 +648,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-26:i13:p4",
+              "pairId": "en:lesson-25:session-26:i09:p4",
               "target": "whined",
               "meaningByLocale": {
                 "ru": "ныл",
@@ -976,100 +683,248 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
+        "interactionId": "en:lesson-25:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сначала вы выслушали друга, потом ответили: «Я выслушал друга до того, как ответил».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сначала вы выслушали друга, потом ответили: «Я выслушал друга до того, как ответил».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I listened to my friend before I answered.",
+          "localizedMeaning": {
+            "ru": "Сначала вы выслушали друга, потом ответили: «Я выслушал друга до того, как ответил».",
+            "uk": "Спочатку ви вислухали друга, потім відповіли: «Я вислухав друга до того, як відповів»."
+          },
+          "orderedTokens": [
+            "I",
+            "listened",
+            "to",
+            "my",
+            "friend",
+            "before",
+            "I",
+            "answered"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i11:r1",
+            "text": "I used to get angry very quickly."
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i11:r2",
+            "text": "I used to get tired very quickly."
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i11:r3",
+            "text": "She used to get angry very quickly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i11:audio",
+            "transcript": "I used to get angry very quickly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-26:i11:r1",
+              "targetText": "I used to get angry very quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i11:r2",
+              "targetText": "I used to get tired very quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i11:r3",
+              "targetText": "She used to get angry very quickly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to get angry very quickly.",
+                "uk": "У записі звучить I used to get angry very quickly."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to get angry very quickly.",
+                "uk": "У записі звучить I used to get angry very quickly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i12:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.",
+            "uk": "Ви вже прибрали кімнату до приходу мами. Доповніть Past Perfect."
+          },
+          "gappedTargetPhrase": "I ___ cleaned my room before my mother came home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-26:i12:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i12:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i12:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.",
+              "feedbackByLocale": {
+                "ru": "Have cleaned связано с настоящим; здесь уборка предшествует прошлому приходу.",
+                "uk": "Have cleaned пов’язане з теперішнім; тут прибирання передує минулому приходу."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма had cleaned для завершённого более раннего действия.",
+                "uk": "Потрібна форма had cleaned для завершеної ранішої дії."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Поели перед отъездом",
+        "prompt": "Услышьте прежнюю привычку решать споры.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i13:audio"
+        ],
+        "accessibilityLabel": "Услышьте прежнюю привычку решать споры.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i13:audio",
+            "transcript": "In those days we would talk after dinner."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "In those days we would talk after dinner.",
+          "orderedTokens": [
+            "In",
+            "those",
+            "days",
+            "we",
+            "would",
+            "talk",
+            "after",
+            "dinner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите ещё одну попытку: «Давай попробуем другой способ».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-26:i14:audio"
         ],
-        "accessibilityLabel": "Поели перед отъездом",
-        "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i14:audio",
-            "transcript": "We ate before we left."
-          },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We ate before we left.",
-          "orderedTokens": [
-            "We",
-            "ate",
-            "before",
-            "we",
-            "left"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i15",
-        "ordinal": 22,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Начали после её прихода",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-26:i15:audio"
-        ],
-        "accessibilityLabel": "Начали после её прихода",
-        "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i15:audio",
-            "transcript": "We started after she arrived."
-          },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We started after she arrived.",
-          "orderedTokens": [
-            "We",
-            "started",
-            "after",
-            "she",
-            "arrived"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i16",
-        "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Она ворчала после того, как мы ушли».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-26:i16:audio"
-        ],
-        "accessibilityLabel": "Скажите: «Она ворчала после того, как мы ушли».",
+        "accessibilityLabel": "Предложите ещё одну попытку: «Давай попробуем другой способ».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i16:audio",
-            "transcript": "She grumbled after we left."
+            "audioTargetId": "en:lesson-25:session-26:i14:audio",
+            "transcript": "Let us try another way."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "She grumbled after we left.",
+          "targetPhrase": "Let us try another way.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1083,26 +938,171 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы поговорили об этом один раз вчера.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i15:r1",
+            "text": "talked"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i15:r2",
+            "text": "have talked"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i15:r3",
+            "text": "would talk"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы поговорили об этом один раз вчера.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы поговорили об этом один раз вчера.",
+            "uk": "Ви поговорили про це один раз учора."
+          },
+          "gappedTargetPhrase": "We ___ about it yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-26:i15:r1",
+              "text": "talked"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i15:r2",
+              "text": "have talked"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i15:r3",
+              "text": "would talk"
+            }
+          ],
+          "testedDimension": "Вы поговорили об этом один раз вчера.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i15:r2",
+              "correct": false,
+              "testedDimension": "Вы поговорили об этом один раз вчера.",
+              "feedbackByLocale": {
+                "ru": "Yesterday требует Past Simple talked.",
+                "uk": "Yesterday потребує Past Simple talked."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i15:r3",
+              "correct": false,
+              "testedDimension": "Вы поговорили об этом один раз вчера.",
+              "feedbackByLocale": {
+                "ru": "Would talk описывает прежнюю привычку, не один вчерашний разговор.",
+                "uk": "Would talk описує колишню звичку, не одну вчорашню розмову."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i16:r1",
+            "text": "What did the other children say?"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i16:r2",
+            "text": "What did the other parents say?"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i16:r3",
+            "text": "What did the other child say?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i16:audio",
+            "transcript": "What did the other children say?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-26:i16:r1",
+              "targetText": "What did the other children say?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i16:r2",
+              "targetText": "What did the other parents say?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i16:r3",
+              "targetText": "What did the other child say?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i16:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит What did the other children say?",
+                "uk": "У записі звучить What did the other children say?"
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i16:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит What did the other children say?",
+                "uk": "У записі звучить What did the other children say?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-26:i17",
         "ordinal": 24,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Они отругали меня после того, как я разбил тарелку».",
+        "prompt": "Скажите, что готовы начать заново: «Я готов попробовать ещё раз».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-26:i17:audio"
         ],
-        "accessibilityLabel": "Скажите: «Они отругали меня после того, как я разбил тарелку».",
+        "accessibilityLabel": "Скажите, что готовы начать заново: «Я готов попробовать ещё раз».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-26:i17:audio",
-            "transcript": "They scolded me after I broke the plate."
+            "transcript": "I am ready to try again."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "They scolded me after I broke the plate.",
+          "targetPhrase": "I am ready to try again.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1164,28 +1164,181 @@
         "interactionId": "en:lesson-25:session-26:i01",
         "ordinal": 5,
         "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i01:r1",
+            "text": "We grumbled after the bus arrived late."
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i01:r2",
+            "text": "We grumbled after the train arrived late."
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i01:r3",
+            "text": "They grumbled after the bus arrived late."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i01:audio",
+            "transcript": "We grumbled after the bus arrived late."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-26:i01:r1",
+              "targetText": "We grumbled after the bus arrived late.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i01:r2",
+              "targetText": "We grumbled after the train arrived late.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i01:r3",
+              "targetText": "They grumbled after the bus arrived late.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We grumbled after the bus arrived late.",
+                "uk": "У записі звучить We grumbled after the bus arrived late."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We grumbled after the bus arrived late.",
+                "uk": "У записі звучить We grumbled after the bus arrived late."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть причину невдоволення: «Що сталося?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Уточніть причину невдоволення: «Що сталося?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i02:audio",
+            "transcript": "What happened?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "What happened?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:word:scolded",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scolded",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:word:scolded:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scolded",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:word:scolded:audio",
+            "transcript": "scolded"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-26:word:scolded:r1",
+              "targetText": "scolded",
+              "meaningByLocale": {
+                "ru": "Отругал. Scold — сердито ругать за поступок; scolded — прошедшая форма.",
+                "uk": "Насварив. Scold — сердито сварити за вчинок; scolded — минула форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scolded",
+            "definitionByLocale": {
+              "ru": "Отругал. Scold — сердито ругать за поступок; scolded — прошедшая форма.",
+              "uk": "Насварив. Scold — сердито сварити за вчинок; scolded — минула форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Він бурчав після того, як побачив рахунок.»",
+        "prompt": "Учитель насварив вас після запізнення: «Учитель насварив мене після того, як я запізнився».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Він бурчав після того, як побачив рахунок.»",
+        "accessibilityLabel": "Учитель насварив вас після запізнення: «Учитель насварив мене після того, як я запізнився».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He grumbled after he saw the bill.",
+          "targetPhrase": "The teacher scolded me after I arrived late.",
           "localizedMeaning": {
-            "ru": "Скажите: «Он ворчал после того, как увидел счёт.»",
-            "uk": "Скажіть: «Він бурчав після того, як побачив рахунок.»"
+            "ru": "Учитель отругал вас после опоздания: «Учитель отругал меня после того, как я опоздал».",
+            "uk": "Учитель насварив вас після запізнення: «Учитель насварив мене після того, як я запізнився»."
           },
           "orderedTokens": [
-            "He",
-            "grumbled",
+            "The",
+            "teacher",
+            "scolded",
+            "me",
             "after",
-            "he",
-            "saw",
-            "the",
-            "bill"
+            "I",
+            "arrived",
+            "late"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1197,68 +1350,68 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i02",
-        "ordinal": 6,
+        "interactionId": "en:lesson-25:session-26:i04",
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь.",
+        "prompt": "Спочатку ви розбили чашку, потім вибачилися.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-26:i02:r1",
-            "text": "grumbled"
+            "responseId": "en:lesson-25:session-26:i04:r1",
+            "text": "after"
           },
           {
-            "responseId": "en:lesson-25:session-26:i02:r2",
-            "text": "grumble"
+            "responseId": "en:lesson-25:session-26:i04:r2",
+            "text": "before"
           },
           {
-            "responseId": "en:lesson-25:session-26:i02:r3",
-            "text": "grumbling"
+            "responseId": "en:lesson-25:session-26:i04:r3",
+            "text": "until"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь.",
+        "accessibilityLabel": "Спочатку ви розбили чашку, потім вибачилися.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
+            "ru": "Сначала вы разбили чашку, потом извинились.",
+            "uk": "Спочатку ви розбили чашку, потім вибачилися."
           },
-          "gappedTargetPhrase": "He ___ after he saw the bill.",
+          "gappedTargetPhrase": "I apologised ___ I broke the cup.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-26:i02:r1",
-              "text": "grumbled"
+              "responseId": "en:lesson-25:session-26:i04:r1",
+              "text": "after"
             },
             {
-              "responseId": "en:lesson-25:session-26:i02:r2",
-              "text": "grumble"
+              "responseId": "en:lesson-25:session-26:i04:r2",
+              "text": "before"
             },
             {
-              "responseId": "en:lesson-25:session-26:i02:r3",
-              "text": "grumbling"
+              "responseId": "en:lesson-25:session-26:i04:r3",
+              "text": "until"
             }
           ],
-          "testedDimension": "Доповніть розповідь.",
+          "testedDimension": "Спочатку ви розбили чашку, потім вибачилися.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-26:i02:r2",
+              "responseId": "en:lesson-25:session-26:i04:r2",
               "correct": false,
-              "testedDimension": "Доповніть розповідь.",
+              "testedDimension": "Спочатку ви розбили чашку, потім вибачилися.",
               "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма grumbled.",
-                "uk": "Для завершеної події потрібна минула форма grumbled."
+                "ru": "Before означало бы извинение до происшествия; здесь оно было позже.",
+                "uk": "Before означало б вибачення до події; тут воно було пізніше."
               }
             },
             {
-              "responseId": "en:lesson-25:session-26:i02:r3",
+              "responseId": "en:lesson-25:session-26:i04:r3",
               "correct": false,
-              "testedDimension": "Доповніть розповідь.",
+              "testedDimension": "Спочатку ви розбили чашку, потім вибачилися.",
               "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма grumbled.",
-                "uk": "Для завершеної події потрібна минула форма grumbled."
+                "ru": "Until означает «до тех пор пока», а нужно «после того как».",
+                "uk": "Until означає «доки», а потрібно «після того як»."
               }
             }
           ]
@@ -1266,84 +1419,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i03:r1",
-            "text": "He grumbled after he saw the bill."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i03:r2",
-            "text": "She grumbled after she saw the bill."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i03:r3",
-            "text": "He grumbled after he saw the price."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-26:i03:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i03:audio",
-            "transcript": "He grumbled after he saw the bill."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-26:i03:r1",
-              "targetText": "He grumbled after he saw the bill.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i03:r2",
-              "targetText": "She grumbled after she saw the bill.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i03:r3",
-              "targetText": "He grumbled after he saw the price.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i03:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He grumbled after he saw the bill.",
-                "uk": "У записі звучить He grumbled after he saw the bill."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i03:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He grumbled after he saw the bill.",
-                "uk": "У записі звучить He grumbled after he saw the bill."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-26:word:nagged",
-        "ordinal": 8,
+        "ordinal": 10,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1385,32 +1462,36 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
+        "interactionId": "en:lesson-25:session-26:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Вона пиляла мене до того, як я прибрав свою кімнату.»",
+        "prompt": "Почуйте розповідь про повторні прохання.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Вона пиляла мене до того, як я прибрав свою кімнату.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Почуйте розповідь про повторні прохання.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "She nagged me before I cleaned my room.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Она пилила меня до того, как я убрал свою комнату.»",
-            "uk": "Скажіть: «Вона пиляла мене до того, як я прибрав свою кімнату.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i05:audio",
+            "transcript": "My brother nagged me before I returned his book."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My brother nagged me before I returned his book.",
           "orderedTokens": [
-            "She",
+            "My",
+            "brother",
             "nagged",
             "me",
             "before",
             "I",
-            "cleaned",
-            "my",
-            "room"
+            "returned",
+            "his",
+            "book"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1418,382 +1499,45 @@
             "ru": "",
             "uk": ""
           }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i05:r1",
-            "text": "nagged"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i05:r2",
-            "text": "nag"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i05:r3",
-            "text": "nagging"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "She ___ me before I cleaned my room.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-26:i05:r1",
-              "text": "nagged"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i05:r2",
-              "text": "nag"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i05:r3",
-              "text": "nagging"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i05:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма nagged.",
-                "uk": "Для завершеної події потрібна минула форма nagged."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i05:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма nagged.",
-                "uk": "Для завершеної події потрібна минула форма nagged."
-              }
-            }
-          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-26:i06",
-        "ordinal": 11,
+        "ordinal": 12,
         "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i06:r1",
-            "text": "She nagged me before I cleaned my room."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i06:r2",
-            "text": "He nagged me before I cleaned my room."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i06:r3",
-            "text": "She nagged me before I cleaned the kitchen."
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви почули прохання й хочете спокійно відповісти: «Я вже тебе почув».",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-26:i06:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть",
+        "accessibilityLabel": "Ви почули прохання й хочете спокійно відповісти: «Я вже тебе почув».",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-26:i06:audio",
-            "transcript": "She nagged me before I cleaned my room."
+            "transcript": "I have already heard you."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-26:i06:r1",
-              "targetText": "She nagged me before I cleaned my room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i06:r2",
-              "targetText": "He nagged me before I cleaned my room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i06:r3",
-              "targetText": "She nagged me before I cleaned the kitchen.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i06:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит She nagged me before I cleaned my room.",
-                "uk": "У записі звучить She nagged me before I cleaned my room."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i06:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит She nagged me before I cleaned my room.",
-                "uk": "У записі звучить She nagged me before I cleaned my room."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:word:scolded",
-        "ordinal": 12,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — scolded",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-26:word:scolded:audio"
-        ],
-        "accessibilityLabel": "Картка слова — scolded",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:word:scolded:audio",
-            "transcript": "scolded"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-26:word:scolded:r1",
-              "targetText": "scolded",
-              "meaningByLocale": {
-                "ru": "Отругал. Scold — сердито ругать за поступок; scolded — прошедшая форма.",
-                "uk": "Насварив. Scold — сердито сварити за вчинок; scolded — минула форма."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "scolded",
-            "definitionByLocale": {
-              "ru": "Отругал. Scold — сердито ругать за поступок; scolded — прошедшая форма.",
-              "uk": "Насварив. Scold — сердито сварити за вчинок; scolded — минула форма."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Він насварив мене після того, як я розбив чашку.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Він насварив мене після того, як я розбив чашку.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "He scolded me after I broke the cup.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Он отругал меня после того, как я разбил чашку.»",
-            "uk": "Скажіть: «Він насварив мене після того, як я розбив чашку.»"
-          },
-          "orderedTokens": [
-            "He",
-            "scolded",
-            "me",
-            "after",
-            "I",
-            "broke",
-            "the",
-            "cup"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i08:r1",
-            "text": "scolded"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i08:r2",
-            "text": "scold"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i08:r3",
-            "text": "scolding"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "He ___ me after I broke the cup.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-26:i08:r1",
-              "text": "scolded"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i08:r2",
-              "text": "scold"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i08:r3",
-              "text": "scolding"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i08:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма scolded.",
-                "uk": "Для завершеної події потрібна минула форма scolded."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i08:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма scolded.",
-                "uk": "Для завершеної події потрібна минула форма scolded."
-              }
-            }
+          "targetPhrase": "I have already heard you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i09",
-        "ordinal": 15,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i09:r1",
-            "text": "He scolded me after I broke the cup."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i09:r2",
-            "text": "She scolded me after I broke the cup."
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i09:r3",
-            "text": "He scolded me after I broke the plate."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-26:i09:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i09:audio",
-            "transcript": "He scolded me after I broke the cup."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-26:i09:r1",
-              "targetText": "He scolded me after I broke the cup.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i09:r2",
-              "targetText": "She scolded me after I broke the cup.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i09:r3",
-              "targetText": "He scolded me after I broke the plate.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i09:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He scolded me after I broke the cup.",
-                "uk": "У записі звучить He scolded me after I broke the cup."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i09:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He scolded me after I broke the cup.",
-                "uk": "У записі звучить He scolded me after I broke the cup."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-26:word:whined",
-        "ordinal": 16,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1835,179 +1579,73 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Дитина скиглила після того, як ми пішли з парку.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Дитина скиглила після того, як ми пішли з парку.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "The child whined after we left the park.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Ребёнок ныл после того, как мы ушли из парка.»",
-            "uk": "Скажіть: «Дитина скиглила після того, як ми пішли з парку.»"
-          },
-          "orderedTokens": [
-            "The",
-            "child",
-            "whined",
-            "after",
-            "we",
-            "left",
-            "the",
-            "park"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-26:i11:r1",
-            "text": "whined"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i11:r2",
-            "text": "whine"
-          },
-          {
-            "responseId": "en:lesson-25:session-26:i11:r3",
-            "text": "whining"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "The child ___ after we left the park.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-26:i11:r1",
-              "text": "whined"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i11:r2",
-              "text": "whine"
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i11:r3",
-              "text": "whining"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-26:i11:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма whined.",
-                "uk": "Для завершеної події потрібна минула форма whined."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-26:i11:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма whined.",
-                "uk": "Для завершеної події потрібна минула форма whined."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-26:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-26:i12:r1",
-            "text": "The child whined after we left the park."
+            "responseId": "en:lesson-25:session-26:i07:r1",
+            "text": "The child whined after the game ended."
           },
           {
-            "responseId": "en:lesson-25:session-26:i12:r2",
-            "text": "The child whined after we left the shop."
+            "responseId": "en:lesson-25:session-26:i07:r2",
+            "text": "The child whined before the game ended."
           },
           {
-            "responseId": "en:lesson-25:session-26:i12:r3",
-            "text": "The child whined after they left the park."
+            "responseId": "en:lesson-25:session-26:i07:r3",
+            "text": "The child cried after the game ended."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-26:i12:audio"
+          "en:lesson-25:session-26:i07:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i12:audio",
-            "transcript": "The child whined after we left the park."
+            "audioTargetId": "en:lesson-25:session-26:i07:audio",
+            "transcript": "The child whined after the game ended."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-26:i12:r1",
-              "targetText": "The child whined after we left the park.",
+              "responseId": "en:lesson-25:session-26:i07:r1",
+              "targetText": "The child whined after the game ended.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-26:i12:r2",
-              "targetText": "The child whined after we left the shop.",
+              "responseId": "en:lesson-25:session-26:i07:r2",
+              "targetText": "The child whined before the game ended.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-26:i12:r3",
-              "targetText": "The child whined after they left the park.",
+              "responseId": "en:lesson-25:session-26:i07:r3",
+              "targetText": "The child cried after the game ended.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-26:i12:r2",
+              "responseId": "en:lesson-25:session-26:i07:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The child whined after we left the park.",
-                "uk": "У записі звучить The child whined after we left the park."
+                "ru": "В записи звучит The child whined after the game ended.",
+                "uk": "У записі звучить The child whined after the game ended."
               }
             },
             {
-              "responseId": "en:lesson-25:session-26:i12:r3",
+              "responseId": "en:lesson-25:session-26:i07:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The child whined after we left the park.",
-                "uk": "У записі звучить The child whined after we left the park."
+                "ru": "В записи звучит The child whined after the game ended.",
+                "uk": "У записі звучить The child whined after the game ended."
               }
             }
           ],
@@ -2017,21 +1655,90 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-26:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дитина скаржилася плаксивим голосом, а не сміялася й не спала.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i08:r1",
+            "text": "whined"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i08:r2",
+            "text": "laughed"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i08:r3",
+            "text": "slept"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дитина скаржилася плаксивим голосом, а не сміялася й не спала.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ребёнок жаловался плаксивым голосом, а не смеялся и не спал.",
+            "uk": "Дитина скаржилася плаксивим голосом, а не сміялася й не спала."
+          },
+          "gappedTargetPhrase": "The child ___ after we said no.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-26:i08:r1",
+              "text": "whined"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i08:r2",
+              "text": "laughed"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i08:r3",
+              "text": "slept"
+            }
+          ],
+          "testedDimension": "Дитина скаржилася плаксивим голосом, а не сміялася й не спала.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Дитина скаржилася плаксивим голосом, а не сміялася й не спала.",
+              "feedbackByLocale": {
+                "ru": "Laughed — смеялся; здесь ребёнок ныл.",
+                "uk": "Laughed — сміявся; тут дитина скиглила."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Дитина скаржилася плаксивим голосом, а не сміялася й не спала.",
+              "feedbackByLocale": {
+                "ru": "Slept — спал, а здесь слышались плаксивые жалобы.",
+                "uk": "Slept — спав, а тут було чути плаксиві скарги."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Поєднайте форми з перекладом",
+        "prompt": "Розрізніть види невдоволеного мовлення",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "accessibilityLabel": "Розрізніть види невдоволеного мовлення",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-26:i13:p1",
+              "pairId": "en:lesson-25:session-26:i09:p1",
               "target": "grumbled",
               "meaningByLocale": {
                 "ru": "ворчал",
@@ -2039,7 +1746,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-26:i13:p2",
+              "pairId": "en:lesson-25:session-26:i09:p2",
               "target": "nagged",
               "meaningByLocale": {
                 "ru": "пилила",
@@ -2047,7 +1754,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-26:i13:p3",
+              "pairId": "en:lesson-25:session-26:i09:p3",
               "target": "scolded",
               "meaningByLocale": {
                 "ru": "отругал",
@@ -2055,7 +1762,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-26:i13:p4",
+              "pairId": "en:lesson-25:session-26:i09:p4",
               "target": "whined",
               "meaningByLocale": {
                 "ru": "ныл",
@@ -2090,100 +1797,248 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-26:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
+        "interactionId": "en:lesson-25:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спочатку ви вислухали друга, потім відповіли: «Я вислухав друга до того, як відповів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спочатку ви вислухали друга, потім відповіли: «Я вислухав друга до того, як відповів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I listened to my friend before I answered.",
+          "localizedMeaning": {
+            "ru": "Сначала вы выслушали друга, потом ответили: «Я выслушал друга до того, как ответил».",
+            "uk": "Спочатку ви вислухали друга, потім відповіли: «Я вислухав друга до того, як відповів»."
+          },
+          "orderedTokens": [
+            "I",
+            "listened",
+            "to",
+            "my",
+            "friend",
+            "before",
+            "I",
+            "answered"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i11:r1",
+            "text": "I used to get angry very quickly."
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i11:r2",
+            "text": "I used to get tired very quickly."
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i11:r3",
+            "text": "She used to get angry very quickly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i11:audio",
+            "transcript": "I used to get angry very quickly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-26:i11:r1",
+              "targetText": "I used to get angry very quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i11:r2",
+              "targetText": "I used to get tired very quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i11:r3",
+              "targetText": "She used to get angry very quickly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to get angry very quickly.",
+                "uk": "У записі звучить I used to get angry very quickly."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to get angry very quickly.",
+                "uk": "У записі звучить I used to get angry very quickly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вже прибрали кімнату до приходу мами. Доповніть Past Perfect.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i12:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вже прибрали кімнату до приходу мами. Доповніть Past Perfect.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.",
+            "uk": "Ви вже прибрали кімнату до приходу мами. Доповніть Past Perfect."
+          },
+          "gappedTargetPhrase": "I ___ cleaned my room before my mother came home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-26:i12:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i12:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i12:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Ви вже прибрали кімнату до приходу мами. Доповніть Past Perfect.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви вже прибрали кімнату до приходу мами. Доповніть Past Perfect.",
+              "feedbackByLocale": {
+                "ru": "Have cleaned связано с настоящим; здесь уборка предшествует прошлому приходу.",
+                "uk": "Have cleaned пов’язане з теперішнім; тут прибирання передує минулому приходу."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви вже прибрали кімнату до приходу мами. Доповніть Past Perfect.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма had cleaned для завершённого более раннего действия.",
+                "uk": "Потрібна форма had cleaned для завершеної ранішої дії."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Поїли перед від’їздом",
+        "prompt": "Почуйте колишню звичку розв’язувати суперечки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i13:audio"
+        ],
+        "accessibilityLabel": "Почуйте колишню звичку розв’язувати суперечки.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i13:audio",
+            "transcript": "In those days we would talk after dinner."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "In those days we would talk after dinner.",
+          "orderedTokens": [
+            "In",
+            "those",
+            "days",
+            "we",
+            "would",
+            "talk",
+            "after",
+            "dinner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте ще одну спробу: «Давай спробуємо інший спосіб».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-26:i14:audio"
         ],
-        "accessibilityLabel": "Поїли перед від’їздом",
-        "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i14:audio",
-            "transcript": "We ate before we left."
-          },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We ate before we left.",
-          "orderedTokens": [
-            "We",
-            "ate",
-            "before",
-            "we",
-            "left"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i15",
-        "ordinal": 22,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Почали після її приходу",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-26:i15:audio"
-        ],
-        "accessibilityLabel": "Почали після її приходу",
-        "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i15:audio",
-            "transcript": "We started after she arrived."
-          },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We started after she arrived.",
-          "orderedTokens": [
-            "We",
-            "started",
-            "after",
-            "she",
-            "arrived"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-26:i16",
-        "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Вона бурчала після того, як ми пішли».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-26:i16:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «Вона бурчала після того, як ми пішли».",
+        "accessibilityLabel": "Запропонуйте ще одну спробу: «Давай спробуємо інший спосіб».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-26:i16:audio",
-            "transcript": "She grumbled after we left."
+            "audioTargetId": "en:lesson-25:session-26:i14:audio",
+            "transcript": "Let us try another way."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "She grumbled after we left.",
+          "targetPhrase": "Let us try another way.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2197,26 +2052,171 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви поговорили про це один раз учора.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i15:r1",
+            "text": "talked"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i15:r2",
+            "text": "have talked"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i15:r3",
+            "text": "would talk"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви поговорили про це один раз учора.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы поговорили об этом один раз вчера.",
+            "uk": "Ви поговорили про це один раз учора."
+          },
+          "gappedTargetPhrase": "We ___ about it yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-26:i15:r1",
+              "text": "talked"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i15:r2",
+              "text": "have talked"
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i15:r3",
+              "text": "would talk"
+            }
+          ],
+          "testedDimension": "Ви поговорили про це один раз учора.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i15:r2",
+              "correct": false,
+              "testedDimension": "Ви поговорили про це один раз учора.",
+              "feedbackByLocale": {
+                "ru": "Yesterday требует Past Simple talked.",
+                "uk": "Yesterday потребує Past Simple talked."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i15:r3",
+              "correct": false,
+              "testedDimension": "Ви поговорили про це один раз учора.",
+              "feedbackByLocale": {
+                "ru": "Would talk описывает прежнюю привычку, не один вчерашний разговор.",
+                "uk": "Would talk описує колишню звичку, не одну вчорашню розмову."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-26:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-26:i16:r1",
+            "text": "What did the other children say?"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i16:r2",
+            "text": "What did the other parents say?"
+          },
+          {
+            "responseId": "en:lesson-25:session-26:i16:r3",
+            "text": "What did the other child say?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-26:i16:audio",
+            "transcript": "What did the other children say?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-26:i16:r1",
+              "targetText": "What did the other children say?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i16:r2",
+              "targetText": "What did the other parents say?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i16:r3",
+              "targetText": "What did the other child say?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-26:i16:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит What did the other children say?",
+                "uk": "У записі звучить What did the other children say?"
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-26:i16:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит What did the other children say?",
+                "uk": "У записі звучить What did the other children say?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-26:i17",
         "ordinal": 24,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Вони насварили мене після того, як я розбив тарілку».",
+        "prompt": "Скажіть, що готові почати наново: «Я готовий спробувати ще раз».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-26:i17:audio"
         ],
-        "accessibilityLabel": "Скажіть: «Вони насварили мене після того, як я розбив тарілку».",
+        "accessibilityLabel": "Скажіть, що готові почати наново: «Я готовий спробувати ще раз».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-26:i17:audio",
-            "transcript": "They scolded me after I broke the plate."
+            "transcript": "I am ready to try again."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "They scolded me after I broke the plate.",
+          "targetPhrase": "I am ready to try again.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2239,38 +2239,13 @@
     },
     {
       "interactionId": "en:lesson-25:session-26:i01",
-      "correctText": "He grumbled after he saw the bill.",
-      "correctResponseId": null
+      "correctText": "We grumbled after the bus arrived late.",
+      "correctResponseId": "en:lesson-25:session-26:i01:r1"
     },
     {
       "interactionId": "en:lesson-25:session-26:i02",
-      "correctText": "grumbled",
-      "correctResponseId": "en:lesson-25:session-26:i02:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-26:i03",
-      "correctText": "He grumbled after he saw the bill.",
-      "correctResponseId": "en:lesson-25:session-26:i03:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-26:word:nagged",
-      "correctText": "nagged",
+      "correctText": "What happened?",
       "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-26:i04",
-      "correctText": "She nagged me before I cleaned my room.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-26:i05",
-      "correctText": "nagged",
-      "correctResponseId": "en:lesson-25:session-26:i05:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-26:i06",
-      "correctText": "She nagged me before I cleaned my room.",
-      "correctResponseId": "en:lesson-25:session-26:i06:r1"
     },
     {
       "interactionId": "en:lesson-25:session-26:word:scolded",
@@ -2278,19 +2253,29 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-26:i07",
-      "correctText": "He scolded me after I broke the cup.",
+      "interactionId": "en:lesson-25:session-26:i03",
+      "correctText": "The teacher scolded me after I arrived late.",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-26:i08",
-      "correctText": "scolded",
-      "correctResponseId": "en:lesson-25:session-26:i08:r1"
+      "interactionId": "en:lesson-25:session-26:i04",
+      "correctText": "after",
+      "correctResponseId": "en:lesson-25:session-26:i04:r1"
     },
     {
-      "interactionId": "en:lesson-25:session-26:i09",
-      "correctText": "He scolded me after I broke the cup.",
-      "correctResponseId": "en:lesson-25:session-26:i09:r1"
+      "interactionId": "en:lesson-25:session-26:word:nagged",
+      "correctText": "nagged",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-26:i05",
+      "correctText": "My brother nagged me before I returned his book.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-26:i06",
+      "correctText": "I have already heard you.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-26:word:whined",
@@ -2298,43 +2283,58 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-26:i10",
-      "correctText": "The child whined after we left the park.",
-      "correctResponseId": null
+      "interactionId": "en:lesson-25:session-26:i07",
+      "correctText": "The child whined after the game ended.",
+      "correctResponseId": "en:lesson-25:session-26:i07:r1"
     },
     {
-      "interactionId": "en:lesson-25:session-26:i11",
+      "interactionId": "en:lesson-25:session-26:i08",
       "correctText": "whined",
-      "correctResponseId": "en:lesson-25:session-26:i11:r1"
+      "correctResponseId": "en:lesson-25:session-26:i08:r1"
     },
     {
-      "interactionId": "en:lesson-25:session-26:i12",
-      "correctText": "The child whined after we left the park.",
-      "correctResponseId": "en:lesson-25:session-26:i12:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-26:i13",
+      "interactionId": "en:lesson-25:session-26:i09",
       "correctText": "",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-26:i10",
+      "correctText": "I listened to my friend before I answered.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-26:i11",
+      "correctText": "I used to get angry very quickly.",
+      "correctResponseId": "en:lesson-25:session-26:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-26:i12",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-26:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-26:i13",
+      "correctText": "In those days we would talk after dinner.",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-25:session-26:i14",
-      "correctText": "We ate before we left.",
+      "correctText": "Let us try another way.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-26:i15",
-      "correctText": "We started after she arrived.",
-      "correctResponseId": null
+      "correctText": "talked",
+      "correctResponseId": "en:lesson-25:session-26:i15:r1"
     },
     {
       "interactionId": "en:lesson-25:session-26:i16",
-      "correctText": "She grumbled after we left.",
-      "correctResponseId": null
+      "correctText": "What did the other children say?",
+      "correctResponseId": "en:lesson-25:session-26:i16:r1"
     },
     {
       "interactionId": "en:lesson-25:session-26:i17",
-      "correctText": "They scolded me after I broke the plate.",
+      "correctText": "I am ready to try again.",
       "correctResponseId": null
     }
   ]

@@ -53,99 +53,99 @@ Stink — сильно й неприємно пахнути, «смердіти�
 <!-- interaction_id: en:lesson-25:session-27:word:rotten; family: word_card -->
 > **rotten** — Гниле. Rotten описує те, що згнило.
 
-**2 · Скажіть: «Яблуко було гнилим ще до того, як я його розрізав.»**
+**2 · Ви показуєте зіпсоване яблуко: «Це яблуко гниле».**
 <!-- interaction_id: en:lesson-25:session-27:i01; family: phrase_builder -->
-Плитки: `it` `cut` `I` `before` `rotten` `was` `apple` `The` → **The apple was rotten before I cut it.**
+Плитки: `rotten` `is` `apple` `This` → **This apple is rotten.**
 
-**3 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-27:i02; family: context_gap_grammar -->
-The apple ___ rotten before I cut it. → **was** · is · be
-- is — *Для завершеної події потрібна минула форма was.*
-- be — *Для завершеної події потрібна минула форма was.*
+**3 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-27:i02; family: listen_choose -->
+🔊 *I noticed the smell after I opened the bag.* → **I noticed the smell after I opened the bag.** · I noticed the smell before I opened the bag. · She noticed the smell after she opened the bag.
+- I noticed the smell before I opened the bag. — *У записі звучить I noticed the smell after I opened the bag.*
+- She noticed the smell after she opened the bag. — *У записі звучить I noticed the smell after I opened the bag.*
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-27:i03; family: listen_choose -->
-🔊 *The apple was rotten before I cut it.* → **The apple was rotten before I cut it.** · The pear was rotten before I cut it. · The apple was rotten before she cut it.
-- The pear was rotten before I cut it. — *У записі звучить The apple was rotten before I cut it.*
-- The apple was rotten before she cut it. — *У записі звучить The apple was rotten before I cut it.*
-
-**5 · Картка слова — mouldy**
+**4 · Картка слова — mouldy**
 <!-- interaction_id: en:lesson-25:session-27:word:mouldy; family: word_card -->
 > **mouldy** — Запліснявілий. Mouldy — вкритий пліснявою.
 
-**6 · Скажіть: «Хліб був запліснявілим ще до того, як я відкрив пакет.»**
-<!-- interaction_id: en:lesson-25:session-27:i04; family: phrase_builder -->
-Плитки: `bag` `the` `opened` `I` `before` `mouldy` `was` `bread` `The` → **The bread was mouldy before I opened the bag.**
+**5 · На хлібі видно плісняву. Виберіть слово, що описує саме її.**
+<!-- interaction_id: en:lesson-25:session-27:i03; family: context_gap_grammar -->
+The bread is ___. → **mouldy** · fresh · warm
+- fresh — *Fresh — свіжий; хліб укритий пліснявою.*
+- warm — *Warm — теплий, це температура, а не пліснява.*
 
-**7 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-27:i05; family: context_gap_grammar -->
-The bread ___ mouldy before I opened the bag. → **was** · is · be
-- is — *Для завершеної події потрібна минула форма was.*
-- be — *Для завершеної події потрібна минула форма was.*
+**6 · Ви хочете повернути покупку. Скажіть: «Я купив це вчора».**
+<!-- interaction_id: en:lesson-25:session-27:i04; family: scripted_repeat_compare -->
+🎙 **I bought this yesterday.**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-27:i06; family: listen_choose -->
-🔊 *The bread was mouldy before I opened the bag.* → **The bread was mouldy before I opened the bag.** · The cheese was mouldy before I opened the bag. · The bread was mouldy before she opened the bag.
-- The cheese was mouldy before I opened the bag. — *У записі звучить The bread was mouldy before I opened the bag.*
-- The bread was mouldy before she opened the bag. — *У записі звучить The bread was mouldy before I opened the bag.*
-
-**9 · Картка слова — spoiled**
+**7 · Картка слова — spoiled**
 <!-- interaction_id: en:lesson-25:session-27:word:spoiled; family: word_card -->
 > **spoiled** — Зіпсувалося. Spoil — псуватися; spoiled — минула форма.
 
-**10 · Скажіть: «Молоко зіпсувалося після того, як ми залишили його надворі.»**
-<!-- interaction_id: en:lesson-25:session-27:i07; family: phrase_builder -->
-Плитки: `outside` `it` `left` `we` `after` `spoiled` `milk` `The` → **The milk spoiled after we left it outside.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-27:i05; family: listen_choose -->
+🔊 *The milk spoiled after the fridge broke.* → **The milk spoiled after the fridge broke.** · The cream spoiled after the fridge broke. · The milk spoiled before the fridge broke.
+- The cream spoiled after the fridge broke. — *У записі звучить The milk spoiled after the fridge broke.*
+- The milk spoiled before the fridge broke. — *У записі звучить The milk spoiled after the fridge broke.*
 
-**11 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-27:i08; family: context_gap_grammar -->
-The milk ___ after we left it outside. → **spoiled** · spoil · spoiling
-- spoil — *Для завершеної події потрібна минула форма spoiled.*
-- spoiling — *Для завершеної події потрібна минула форма spoiled.*
+**9 · Почуйте, коли помітили проблему.**
+<!-- interaction_id: en:lesson-25:session-27:i06; family: listen_build_dictation -->
+🔊 *I checked the fridge after I came home.* Плитки: `home` `came` `I` `after` `fridge` `the` `checked` `I` → **I checked the fridge after I came home.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-27:i09; family: listen_choose -->
-🔊 *The milk spoiled after we left it outside.* → **The milk spoiled after we left it outside.** · The milk spoiled after they left it outside. · The milk spoiled after we left it here.
-- The milk spoiled after they left it outside. — *У записі звучить The milk spoiled after we left it outside.*
-- The milk spoiled after we left it here. — *У записі звучить The milk spoiled after we left it outside.*
-
-**13 · Картка слова — stank**
+**10 · Картка слова — stank**
 <!-- interaction_id: en:lesson-25:session-27:word:stank; family: word_card -->
 > **stank** — Смерділо. Stink — сильно й неприємно пахнути; stank — минула форма.
 
-**14 · Скажіть: «На кухні смерділо після того, як ми відкрили сміттєве відро.»**
-<!-- interaction_id: en:lesson-25:session-27:i10; family: phrase_builder -->
-Плитки: `bin` `the` `opened` `we` `after` `stank` `kitchen` `The` → **The kitchen stank after we opened the bin.**
+**11 · Опишіть учорашню ситуацію: «На кухні смерділо до того, як я виніс сміття».**
+<!-- interaction_id: en:lesson-25:session-27:i07; family: phrase_builder -->
+Плитки: `rubbish` `the` `out` `took` `I` `before` `stank` `kitchen` `The` → **The kitchen stank before I took out the rubbish.**
 
-**15 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-27:i11; family: context_gap_grammar -->
-The kitchen ___ after we opened the bin. → **stank** · stink · stinking
-- stink — *Для завершеної події потрібна минула форма stank.*
-- stinking — *Для завершеної події потрібна минула форма stank.*
+**12 · Спочатку ви викинули сміття, потім помили відро.**
+<!-- interaction_id: en:lesson-25:session-27:i08; family: context_gap_grammar -->
+I washed the bin ___ I emptied it. → **after** · before · until
+- before — *Before змінить послідовність: в умові спочатку викинули сміття.*
+- until — *Until означає «доки», а тут потрібно «після того як».*
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-27:i12; family: listen_choose -->
-🔊 *The kitchen stank after we opened the bin.* → **The kitchen stank after we opened the bin.** · The kitchen stank after they opened the bin. · The room stank after we opened the bin.
-- The kitchen stank after they opened the bin. — *У записі звучить The kitchen stank after we opened the bin.*
-- The room stank after we opened the bin. — *У записі звучить The kitchen stank after we opened the bin.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-27:i13; family: speed_match -->
+**13 · Зіставте стан продуктів і запах із перекладом**
+<!-- interaction_id: en:lesson-25:session-27:i09; family: speed_match -->
 rotten — гниле · mouldy — запліснявілий · spoiled — зіпсувалося · stank — смерділо
 
-**18 · Поїли перед від’їздом**
-<!-- interaction_id: en:lesson-25:session-27:i14; family: listen_build_dictation -->
-🔊 *We ate before we left.* Плитки: `left` `we` `before` `ate` `We` → **We ate before we left.**
+**14 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-27:i10; family: listen_choose -->
+🔊 *Do you still have the receipt?* → **Do you still have the receipt?** · Do you still have the bag? · Does she still have the receipt?
+- Do you still have the bag? — *У записі звучить Do you still have the receipt?*
+- Does she still have the receipt? — *У записі звучить Do you still have the receipt?*
 
-**19 · Почали після її приходу**
-<!-- interaction_id: en:lesson-25:session-27:i15; family: listen_build_dictation -->
-🔊 *We started after she arrived.* Плитки: `arrived` `she` `after` `started` `We` → **We started after she arrived.**
+**15 · Попросіть замінити покупку: «Можна мені іншу упаковку?»**
+<!-- interaction_id: en:lesson-25:session-27:i11; family: scripted_repeat_compare -->
+🎙 **Can I have another packet?**
 
-**20 · Скажіть: «Молоко зіпсувалося після того, як я залишив його надворі».**
-<!-- interaction_id: en:lesson-25:session-27:i16; family: scripted_repeat_compare -->
-🎙 **The milk spoiled after I left it outside.**
+**16 · Ви вже прибрали холодильник до повернення родини. Доповніть Past Perfect.**
+<!-- interaction_id: en:lesson-25:session-27:i12; family: context_gap_grammar -->
+I ___ cleaned the fridge before my family returned. → **had** · have · was
+- have — *Have cleaned пов’язане з теперішнім; тут прибирання завершилося до іншої минулої події.*
+- was — *Потрібно had cleaned для завершеної ранішої дії.*
 
-**21 · Скажіть: «На кухні смерділо після того, як вона відкрила сміттєве відро».**
+**17 · Почуйте колишній спосіб купувати продукти.**
+<!-- interaction_id: en:lesson-25:session-27:i13; family: listen_build_dictation -->
+🔊 *We used to buy bread from a small shop.* Плитки: `shop` `small` `a` `from` `bread` `buy` `to` `used` `We` → **We used to buy bread from a small shop.**
+
+**18 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-27:i14; family: listen_choose -->
+🔊 *In those days we would go shopping on Fridays.* → **In those days we would go shopping on Fridays.** · In those days we would go shopping on Saturdays. · In those days they would go shopping on Fridays.
+- In those days we would go shopping on Saturdays. — *У записі звучить In those days we would go shopping on Fridays.*
+- In those days they would go shopping on Fridays. — *У записі звучить In those days we would go shopping on Fridays.*
+
+**19 · Одна полиця вільна, решта зайнята. Скажіть: «Інші полиці повні».**
+<!-- interaction_id: en:lesson-25:session-27:i15; family: phrase_builder -->
+Плитки: `full` `are` `shelves` `other` `The` → **The other shelves are full.**
+
+**20 · Ви вже перевірили покупки. Доповніть Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-27:i16; family: context_gap_grammar -->
+I have already ___ everything. → **checked** · check · checking
+- check — *Після have потрібна форма checked.*
+- checking — *Have checking не утворює Present Perfect.*
+
+**21 · Уточніть, коли продукти доставили: «О котрій приїхала доставка?»**
 <!-- interaction_id: en:lesson-25:session-27:i17; family: scripted_repeat_compare -->
-🎙 **The kitchen stank after she opened the bin.**
+🎙 **What time did the delivery arrive?**
 

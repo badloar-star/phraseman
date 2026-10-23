@@ -53,99 +53,99 @@ Collide — стикатися. After the cars collided, we called for help — 
 <!-- interaction_id: en:lesson-25:session-25:word:reversed; family: word_card -->
 > **reversed** — Здав назад. Reverse — рухатися заднім ходом; reversed — минула форма.
 
-**2 · Скажіть: «Після того як я здав назад, я зупинився.»**
-<!-- interaction_id: en:lesson-25:session-25:i01; family: phrase_builder -->
-Плитки: `reversed` `I` `after` `stopped` `I` → **I stopped after I reversed.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-25:i01; family: listen_choose -->
+🔊 *I checked behind me before I reversed.* → **I checked behind me before I reversed.** · I checked beside me before I reversed. · She checked behind her before she reversed.
+- I checked beside me before I reversed. — *У записі звучить I checked behind me before I reversed.*
+- She checked behind her before she reversed. — *У записі звучить I checked behind me before I reversed.*
 
-**3 · Доповніть розповідь.**
+**3 · Спочатку ви пристебнули пасок, потім рушили. Виберіть сполучник.**
 <!-- interaction_id: en:lesson-25:session-25:i02; family: context_gap_grammar -->
-I stopped after I ___. → **reversed** · reverse · reversing
-- reverse — *Для завершеної події потрібна минула форма reversed.*
-- reversing — *Для завершеної події потрібна минула форма reversed.*
+I put on my seat belt ___ I started driving. → **before** · after · because
+- after — *After змінить порядок: вийде, що пасок пристебнули вже після початку руху.*
+- because — *Because пояснює причину, а тут потрібно вказати «до того як».*
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-25:i03; family: listen_choose -->
-🔊 *I stopped after I reversed.* → **I stopped after I reversed.** · She stopped after she reversed. · I waited after I reversed.
-- She stopped after she reversed. — *У записі звучить I stopped after I reversed.*
-- I waited after I reversed. — *У записі звучить I stopped after I reversed.*
-
-**5 · Картка слова — overtook**
+**4 · Картка слова — overtook**
 <!-- interaction_id: en:lesson-25:session-25:word:overtook; family: word_card -->
 > **overtook** — Обігнав. Overtake — обганяти; overtook — минула форма.
 
-**6 · Скажіть: «Перш ніж обігнати автобус, він подивився в дзеркало.»**
-<!-- interaction_id: en:lesson-25:session-25:i04; family: phrase_builder -->
-Плитки: `bus` `the` `overtook` `he` `before` `mirror` `his` `checked` `He` → **He checked his mirror before he overtook the bus.**
+**5 · Спочатку автобус зупинився, потім машина його обігнала: «Машина обігнала автобус після того, як він зупинився».**
+<!-- interaction_id: en:lesson-25:session-25:i03; family: phrase_builder -->
+Плитки: `stopped` `it` `after` `bus` `the` `overtook` `car` `The` → **The car overtook the bus after it stopped.**
 
-**7 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-25:i05; family: context_gap_grammar -->
-He checked his mirror before he ___ the bus. → **overtook** · overtake · overtaking
-- overtake — *Для завершеної події потрібна минула форма overtook.*
-- overtaking — *Для завершеної події потрібна минула форма overtook.*
+**6 · Розкажіть про підготовку: «Я перевірив адресу до того, як вийшов».**
+<!-- interaction_id: en:lesson-25:session-25:i04; family: scripted_repeat_compare -->
+🎙 **I checked the address before I left.**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-25:i06; family: listen_choose -->
-🔊 *He checked his mirror before he overtook the bus.* → **He checked his mirror before he overtook the bus.** · She checked her mirror before she overtook the bus. · He checked his mirror before he overtook the car.
-- She checked her mirror before she overtook the bus. — *У записі звучить He checked his mirror before he overtook the bus.*
-- He checked his mirror before he overtook the car. — *У записі звучить He checked his mirror before he overtook the bus.*
-
-**9 · Картка слова — skidded**
+**7 · Картка слова — skidded**
 <!-- interaction_id: en:lesson-25:session-25:word:skidded; family: word_card -->
 > **skidded** — Пішла юзом. Skid — ковзати боком або юзом; skidded — минула форма.
 
-**10 · Скажіть: «Після того як машина пішла юзом, водій зупинився.»**
-<!-- interaction_id: en:lesson-25:session-25:i07; family: phrase_builder -->
-Плитки: `skidded` `car` `the` `after` `stopped` `driver` `The` → **The driver stopped after the car skidded.**
-
-**11 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-25:i08; family: context_gap_grammar -->
-The driver stopped after the car ___. → **skidded** · skid · skidding
-- skid — *Для завершеної події потрібна минула форма skidded.*
-- skidding — *Для завершеної події потрібна минула форма skidded.*
-
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-25:i09; family: listen_choose -->
-🔊 *The driver stopped after the car skidded.* → **The driver stopped after the car skidded.** · The driver stopped after the bus skidded. · The driver called us after the car skidded.
-- The driver stopped after the bus skidded. — *У записі звучить The driver stopped after the car skidded.*
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-25:i05; family: listen_choose -->
+🔊 *The driver stopped after the car skidded.* → **The driver stopped after the car skidded.** · The driver called us after the car skidded. · The driver stopped after the bus skidded.
 - The driver called us after the car skidded. — *У записі звучить The driver stopped after the car skidded.*
+- The driver stopped after the bus skidded. — *У записі звучить The driver stopped after the car skidded.*
 
-**13 · Картка слова — collided**
+**9 · Машина пішла юзом, потім ви зателефонували другові. Ідеться про завершену подію.**
+<!-- interaction_id: en:lesson-25:session-25:i06; family: context_gap_grammar -->
+I called my friend after the car ___. → **skidded** · skid · skidding
+- skid — *У розповіді про минуле потрібна форма skidded.*
+- skidding — *Після підмета the car потрібна особова форма skidded, не skidding.*
+
+**10 · Картка слова — collided**
 <!-- interaction_id: en:lesson-25:session-25:word:collided; family: word_card -->
 > **collided** — Зіткнулися. Collide — стикатися; collided — минула форма.
 
-**14 · Скажіть: «Після того як машини зіткнулися, ми покликали на допомогу.»**
-<!-- interaction_id: en:lesson-25:session-25:i10; family: phrase_builder -->
-Плитки: `collided` `cars` `the` `after` `help` `for` `called` `We` → **We called for help after the cars collided.**
+**11 · Почуйте порядок подій на дорозі.**
+<!-- interaction_id: en:lesson-25:session-25:i07; family: listen_build_dictation -->
+🔊 *We called for help after the cars collided.* Плитки: `collided` `cars` `the` `after` `help` `for` `called` `We` → **We called for help after the cars collided.**
 
-**15 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-25:i11; family: context_gap_grammar -->
-We called for help after the cars ___. → **collided** · collide · colliding
-- collide — *Для завершеної події потрібна минула форма collided.*
-- colliding — *Для завершеної події потрібна минула форма collided.*
+**12 · Поясніть, що зробили перед поїздкою: «Я зарядив телефон до виходу з дому».**
+<!-- interaction_id: en:lesson-25:session-25:i08; family: scripted_repeat_compare -->
+🎙 **I charged my phone before I left home.**
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-25:i12; family: listen_choose -->
-🔊 *We called for help after the cars collided.* → **We called for help after the cars collided.** · They called for help after the cars collided. · We called for help after the bikes collided.
-- They called for help after the cars collided. — *У записі звучить We called for help after the cars collided.*
-- We called for help after the bikes collided. — *У записі звучить We called for help after the cars collided.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-25:i13; family: speed_match -->
+**13 · Зіставте дорожні події з перекладом**
+<!-- interaction_id: en:lesson-25:session-25:i09; family: speed_match -->
 reversed — здав назад · overtook — обігнав · skidded — пішла юзом · collided — зіткнулися
 
-**18 · Поїли перед від’їздом**
-<!-- interaction_id: en:lesson-25:session-25:i14; family: listen_build_dictation -->
-🔊 *We ate before we left.* Плитки: `left` `we` `before` `ate` `We` → **We ate before we left.**
+**14 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-25:i10; family: listen_choose -->
+🔊 *We ate after we arrived.* → **We ate after we arrived.** · We ate before we arrived. · They ate after they arrived.
+- We ate before we arrived. — *У записі звучить We ate after we arrived.*
+- They ate after they arrived. — *У записі звучить We ate after we arrived.*
 
-**19 · Почали після її приходу**
-<!-- interaction_id: en:lesson-25:session-25:i15; family: listen_build_dictation -->
-🔊 *We started after she arrived.* Плитки: `arrived` `she` `after` `started` `We` → **We started after she arrived.**
+**15 · Спочатку ви знайшли вільне місце, потім припаркувалися.**
+<!-- interaction_id: en:lesson-25:session-25:i11; family: context_gap_grammar -->
+I parked ___ I found a space. → **after** · before · until
+- before — *Before змінить порядок подій: тут місце знайшли першим.*
+- until — *Until означає «доки»; тут потрібно «після того як».*
 
-**20 · Скажіть: «Після того як він здав назад, він зупинився».**
+**16 · Спочатку купили квитки, потім сіли в автобус: «Ми купили квитки до того, як сіли в автобус».**
+<!-- interaction_id: en:lesson-25:session-25:i12; family: phrase_builder -->
+Плитки: `bus` `the` `on` `got` `we` `before` `tickets` `bought` `We` → **We bought tickets before we got on the bus.**
+
+**17 · Почуйте, коли ви зателефонували додому.**
+<!-- interaction_id: en:lesson-25:session-25:i13; family: listen_build_dictation -->
+🔊 *I called home after I reached the station.* Плитки: `station` `the` `reached` `I` `after` `home` `called` `I` → **I called home after I reached the station.**
+
+**18 · Ви зачинили вікно раніше за початок дощу.**
+<!-- interaction_id: en:lesson-25:session-25:i14; family: context_gap_grammar -->
+I closed the window ___ the rain started. → **before** · after · because
+- after — *After означало б, що дощ уже почався, коли зачинили вікно.*
+- because — *Because називає причину; потрібен порядок подій «до того як».*
+
+**19 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-25:i15; family: listen_choose -->
+🔊 *We rested after we crossed the bridge.* → **We rested after we crossed the bridge.** · We rested before we crossed the bridge. · We waited after we crossed the bridge.
+- We rested before we crossed the bridge. — *У записі звучить We rested after we crossed the bridge.*
+- We waited after we crossed the bridge. — *У записі звучить We rested after we crossed the bridge.*
+
+**20 · Спочатку вийшли з автобуса, потім зустріли друга: «Я зустрів друга після того, як вийшов з автобуса».**
 <!-- interaction_id: en:lesson-25:session-25:i16; family: scripted_repeat_compare -->
-🎙 **He stopped after he reversed.**
+🎙 **I met my friend after I got off the bus.**
 
-**21 · Скажіть: «Після того як машини зіткнулися, я покликав на допомогу».**
-<!-- interaction_id: en:lesson-25:session-25:i17; family: scripted_repeat_compare -->
-🎙 **I called for help after the cars collided.**
+**21 · Згадайте завершення поїздки: «Ми поговорили до того, як попрощалися».**
+<!-- interaction_id: en:lesson-25:session-25:i17; family: phrase_builder -->
+Плитки: `goodbye` `said` `we` `before` `talked` `We` → **We talked before we said goodbye.**
 

@@ -50,173 +50,70 @@
       "interactionId": "en:lesson-25:session-25:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «После того как я сдал назад, я остановился.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «После того как я сдал назад, я остановился.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I stopped after I reversed.",
-        "localizedMeaning": {
-          "ru": "Скажите: «После того как я сдал назад, я остановился.»",
-          "uk": "Скажіть: «Після того як я здав назад, я зупинився.»"
-        },
-        "orderedTokens": [
-          "I",
-          "stopped",
-          "after",
-          "I",
-          "reversed"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-25:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-25:i02:r1",
-          "text": "reversed"
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i02:r2",
-          "text": "reverse"
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i02:r3",
-          "text": "reversing"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
-        },
-        "gappedTargetPhrase": "I stopped after I ___.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-25:i02:r1",
-            "text": "reversed"
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i02:r2",
-            "text": "reverse"
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i02:r3",
-            "text": "reversing"
-          }
-        ],
-        "testedDimension": "Дополните рассказ.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-25:i02:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма reversed.",
-              "uk": "Для завершеної події потрібна минула форма reversed."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i02:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма reversed.",
-              "uk": "Для завершеної події потрібна минула форма reversed."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-25:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-25:i03:r1",
-          "text": "I stopped after I reversed."
+          "responseId": "en:lesson-25:session-25:i01:r1",
+          "text": "I checked behind me before I reversed."
         },
         {
-          "responseId": "en:lesson-25:session-25:i03:r2",
-          "text": "She stopped after she reversed."
+          "responseId": "en:lesson-25:session-25:i01:r2",
+          "text": "I checked beside me before I reversed."
         },
         {
-          "responseId": "en:lesson-25:session-25:i03:r3",
-          "text": "I waited after I reversed."
+          "responseId": "en:lesson-25:session-25:i01:r3",
+          "text": "She checked behind her before she reversed."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-25:i03:audio"
+        "en:lesson-25:session-25:i01:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-25:i03:audio",
-          "transcript": "I stopped after I reversed."
+          "audioTargetId": "en:lesson-25:session-25:i01:audio",
+          "transcript": "I checked behind me before I reversed."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-25:i03:r1",
-            "targetText": "I stopped after I reversed.",
+            "responseId": "en:lesson-25:session-25:i01:r1",
+            "targetText": "I checked behind me before I reversed.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-25:i03:r2",
-            "targetText": "She stopped after she reversed.",
+            "responseId": "en:lesson-25:session-25:i01:r2",
+            "targetText": "I checked beside me before I reversed.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-25:i03:r3",
-            "targetText": "I waited after I reversed.",
+            "responseId": "en:lesson-25:session-25:i01:r3",
+            "targetText": "She checked behind her before she reversed.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-25:i03:r2",
+            "responseId": "en:lesson-25:session-25:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I stopped after I reversed.",
-              "uk": "У записі звучить I stopped after I reversed."
+              "ru": "В записи звучит I checked behind me before I reversed.",
+              "uk": "У записі звучить I checked behind me before I reversed."
             }
           },
           {
-            "responseId": "en:lesson-25:session-25:i03:r3",
+            "responseId": "en:lesson-25:session-25:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I stopped after I reversed.",
-              "uk": "У записі звучить I stopped after I reversed."
+              "ru": "В записи звучит I checked behind me before I reversed.",
+              "uk": "У записі звучить I checked behind me before I reversed."
             }
           }
         ],
@@ -226,8 +123,77 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сначала вы пристегнули ремень, потом тронулись. Выберите союз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-25:i02:r1",
+          "text": "before"
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i02:r2",
+          "text": "after"
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i02:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сначала вы пристегнули ремень, потом тронулись. Выберите союз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сначала вы пристегнули ремень, потом тронулись. Выберите союз.",
+          "uk": "Спочатку ви пристебнули пасок, потім рушили. Виберіть сполучник."
+        },
+        "gappedTargetPhrase": "I put on my seat belt ___ I started driving.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-25:i02:r1",
+            "text": "before"
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i02:r2",
+            "text": "after"
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i02:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Сначала вы пристегнули ремень, потом тронулись. Выберите союз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Сначала вы пристегнули ремень, потом тронулись. Выберите союз.",
+            "feedbackByLocale": {
+              "ru": "After поменяет порядок: получится, что ремень пристегнули уже после начала движения.",
+              "uk": "After змінить порядок: вийде, що пасок пристебнули вже після початку руху."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Сначала вы пристегнули ремень, потом тронулись. Выберите союз.",
+            "feedbackByLocale": {
+              "ru": "Because объясняет причину, а здесь нужно указать «до того как».",
+              "uk": "Because пояснює причину, а тут потрібно вказати «до того як»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-25:word:overtook",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -269,33 +235,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-25:i04",
-      "ordinal": 9,
+      "interactionId": "en:lesson-25:session-25:i03",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Прежде чем обогнать автобус, он посмотрел в зеркало.»",
+      "prompt": "Сначала автобус остановился, потом машина его обогнала: «Машина обогнала автобус после того, как он остановился».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Прежде чем обогнать автобус, он посмотрел в зеркало.»",
+      "accessibilityLabel": "Сначала автобус остановился, потом машина его обогнала: «Машина обогнала автобус после того, как он остановился».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He checked his mirror before he overtook the bus.",
+        "targetPhrase": "The car overtook the bus after it stopped.",
         "localizedMeaning": {
-          "ru": "Скажите: «Прежде чем обогнать автобус, он посмотрел в зеркало.»",
-          "uk": "Скажіть: «Перш ніж обігнати автобус, він подивився в дзеркало.»"
+          "ru": "Сначала автобус остановился, потом машина его обогнала: «Машина обогнала автобус после того, как он остановился».",
+          "uk": "Спочатку автобус зупинився, потім машина його обігнала: «Машина обігнала автобус після того, як він зупинився»."
         },
         "orderedTokens": [
-          "He",
-          "checked",
-          "his",
-          "mirror",
-          "before",
-          "he",
+          "The",
+          "car",
           "overtook",
           "the",
-          "bus"
+          "bus",
+          "after",
+          "it",
+          "stopped"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -307,154 +272,42 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-25:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-25:i05:r1",
-          "text": "overtook"
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i05:r2",
-          "text": "overtake"
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i05:r3",
-          "text": "overtaking"
-        }
-      ],
+      "interactionId": "en:lesson-25:session-25:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Расскажите о подготовке: «Я проверил адрес до того, как вышел».",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ.",
+      "audioTargetIds": [
+        "en:lesson-25:session-25:i04:audio"
+      ],
+      "accessibilityLabel": "Расскажите о подготовке: «Я проверил адрес до того, как вышел».",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-25:i04:audio",
+          "transcript": "I checked the address before I left."
         },
-        "gappedTargetPhrase": "He checked his mirror before he ___ the bus.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-25:i05:r1",
-            "text": "overtook"
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i05:r2",
-            "text": "overtake"
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i05:r3",
-            "text": "overtaking"
-          }
-        ],
-        "testedDimension": "Дополните рассказ.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-25:i05:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма overtook.",
-              "uk": "Для завершеної події потрібна минула форма overtook."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i05:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма overtook.",
-              "uk": "Для завершеної події потрібна минула форма overtook."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "I checked the address before I left.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-25:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-25:i06:r1",
-          "text": "He checked his mirror before he overtook the bus."
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i06:r2",
-          "text": "She checked her mirror before she overtook the bus."
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i06:r3",
-          "text": "He checked his mirror before he overtook the car."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-25:i06:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-25:i06:audio",
-          "transcript": "He checked his mirror before he overtook the bus."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-25:i06:r1",
-            "targetText": "He checked his mirror before he overtook the bus.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i06:r2",
-            "targetText": "She checked her mirror before she overtook the bus.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i06:r3",
-            "targetText": "He checked his mirror before he overtook the car.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-25:i06:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит He checked his mirror before he overtook the bus.",
-              "uk": "У записі звучить He checked his mirror before he overtook the bus."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит He checked his mirror before he overtook the bus.",
-              "uk": "У записі звучить He checked his mirror before he overtook the bus."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-25:word:skidded",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Карточка слова — skidded",
@@ -495,164 +348,59 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-25:i07",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «После того как машина пошла юзом, водитель остановился.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «После того как машина пошла юзом, водитель остановился.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The driver stopped after the car skidded.",
-        "localizedMeaning": {
-          "ru": "Скажите: «После того как машина пошла юзом, водитель остановился.»",
-          "uk": "Скажіть: «Після того як машина пішла юзом, водій зупинився.»"
-        },
-        "orderedTokens": [
-          "The",
-          "driver",
-          "stopped",
-          "after",
-          "the",
-          "car",
-          "skidded"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-25:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-25:i08:r1",
-          "text": "skidded"
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i08:r2",
-          "text": "skid"
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i08:r3",
-          "text": "skidding"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
-        },
-        "gappedTargetPhrase": "The driver stopped after the car ___.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-25:i08:r1",
-            "text": "skidded"
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i08:r2",
-            "text": "skid"
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i08:r3",
-            "text": "skidding"
-          }
-        ],
-        "testedDimension": "Дополните рассказ.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-25:i08:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма skidded.",
-              "uk": "Для завершеної події потрібна минула форма skidded."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i08:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма skidded.",
-              "uk": "Для завершеної події потрібна минула форма skidded."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-25:i09",
-      "ordinal": 15,
+      "interactionId": "en:lesson-25:session-25:i05",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-25:i09:r1",
+          "responseId": "en:lesson-25:session-25:i05:r1",
           "text": "The driver stopped after the car skidded."
         },
         {
-          "responseId": "en:lesson-25:session-25:i09:r2",
-          "text": "The driver stopped after the bus skidded."
+          "responseId": "en:lesson-25:session-25:i05:r2",
+          "text": "The driver called us after the car skidded."
         },
         {
-          "responseId": "en:lesson-25:session-25:i09:r3",
-          "text": "The driver called us after the car skidded."
+          "responseId": "en:lesson-25:session-25:i05:r3",
+          "text": "The driver stopped after the bus skidded."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-25:i09:audio"
+        "en:lesson-25:session-25:i05:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-25:i09:audio",
+          "audioTargetId": "en:lesson-25:session-25:i05:audio",
           "transcript": "The driver stopped after the car skidded."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-25:i09:r1",
+            "responseId": "en:lesson-25:session-25:i05:r1",
             "targetText": "The driver stopped after the car skidded.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-25:i09:r2",
-            "targetText": "The driver stopped after the bus skidded.",
+            "responseId": "en:lesson-25:session-25:i05:r2",
+            "targetText": "The driver called us after the car skidded.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-25:i09:r3",
-            "targetText": "The driver called us after the car skidded.",
+            "responseId": "en:lesson-25:session-25:i05:r3",
+            "targetText": "The driver stopped after the bus skidded.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-25:i09:r2",
+            "responseId": "en:lesson-25:session-25:i05:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
@@ -661,7 +409,7 @@
             }
           },
           {
-            "responseId": "en:lesson-25:session-25:i09:r3",
+            "responseId": "en:lesson-25:session-25:i05:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
@@ -676,8 +424,77 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-25:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Машина пошла юзом, затем вы позвонили другу. Речь о завершённом событии.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-25:i06:r1",
+          "text": "skidded"
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i06:r2",
+          "text": "skid"
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i06:r3",
+          "text": "skidding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Машина пошла юзом, затем вы позвонили другу. Речь о завершённом событии.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Машина пошла юзом, затем вы позвонили другу. Речь о завершённом событии.",
+          "uk": "Машина пішла юзом, потім ви зателефонували другові. Ідеться про завершену подію."
+        },
+        "gappedTargetPhrase": "I called my friend after the car ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-25:i06:r1",
+            "text": "skidded"
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i06:r2",
+            "text": "skid"
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i06:r3",
+            "text": "skidding"
+          }
+        ],
+        "testedDimension": "Машина пошла юзом, затем вы позвонили другу. Речь о завершённом событии.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Машина пошла юзом, затем вы позвонили другу. Речь о завершённом событии.",
+            "feedbackByLocale": {
+              "ru": "В рассказе о прошлом нужна форма skidded.",
+              "uk": "У розповіді про минуле потрібна форма skidded."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Машина пошла юзом, затем вы позвонили другу. Речь о завершённом событии.",
+            "feedbackByLocale": {
+              "ru": "После подлежащего the car нужна личная форма skidded, не skidding.",
+              "uk": "Після підмета the car потрібна особова форма skidded, не skidding."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-25:word:collided",
-      "ordinal": 16,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -719,23 +536,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-25:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
+      "interactionId": "en:lesson-25:session-25:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «После того как машины столкнулись, мы позвали на помощь.»",
+      "prompt": "Услышьте порядок событий на дороге.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «После того как машины столкнулись, мы позвали на помощь.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Услышьте порядок событий на дороге.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We called for help after the cars collided.",
-        "localizedMeaning": {
-          "ru": "Скажите: «После того как машины столкнулись, мы позвали на помощь.»",
-          "uk": "Скажіть: «Після того як машини зіткнулися, ми покликали на допомогу.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-25:i07:audio",
+          "transcript": "We called for help after the cars collided."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We called for help after the cars collided.",
         "orderedTokens": [
           "We",
           "called",
@@ -756,166 +576,54 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-25:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-25:i11:r1",
-          "text": "collided"
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i11:r2",
-          "text": "collide"
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i11:r3",
-          "text": "colliding"
-        }
-      ],
+      "interactionId": "en:lesson-25:session-25:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объясните, что сделали перед поездкой: «Я зарядил телефон до выхода из дома».",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ.",
+      "audioTargetIds": [
+        "en:lesson-25:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Объясните, что сделали перед поездкой: «Я зарядил телефон до выхода из дома».",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-25:i08:audio",
+          "transcript": "I charged my phone before I left home."
         },
-        "gappedTargetPhrase": "We called for help after the cars ___.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-25:i11:r1",
-            "text": "collided"
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i11:r2",
-            "text": "collide"
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i11:r3",
-            "text": "colliding"
-          }
-        ],
-        "testedDimension": "Дополните рассказ.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-25:i11:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма collided.",
-              "uk": "Для завершеної події потрібна минула форма collided."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i11:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма collided.",
-              "uk": "Для завершеної події потрібна минула форма collided."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "I charged my phone before I left home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-25:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-25:i12:r1",
-          "text": "We called for help after the cars collided."
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i12:r2",
-          "text": "They called for help after the cars collided."
-        },
-        {
-          "responseId": "en:lesson-25:session-25:i12:r3",
-          "text": "We called for help after the bikes collided."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-25:i12:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-25:i12:audio",
-          "transcript": "We called for help after the cars collided."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-25:i12:r1",
-            "targetText": "We called for help after the cars collided.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i12:r2",
-            "targetText": "They called for help after the cars collided.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i12:r3",
-            "targetText": "We called for help after the bikes collided.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-25:i12:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We called for help after the cars collided.",
-              "uk": "У записі звучить We called for help after the cars collided."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-25:i12:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We called for help after the cars collided.",
-              "uk": "У записі звучить We called for help after the cars collided."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-25:i13",
-      "ordinal": 20,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-25:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините формы с переводом",
+      "prompt": "Соотнесите дорожные события с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините формы с переводом",
+      "accessibilityLabel": "Соотнесите дорожные события с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-25:i13:p1",
+            "pairId": "en:lesson-25:session-25:i09:p1",
             "target": "reversed",
             "meaningByLocale": {
               "ru": "сдал назад",
@@ -923,7 +631,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-25:i13:p2",
+            "pairId": "en:lesson-25:session-25:i09:p2",
             "target": "overtook",
             "meaningByLocale": {
               "ru": "обогнал",
@@ -931,7 +639,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-25:i13:p3",
+            "pairId": "en:lesson-25:session-25:i09:p3",
             "target": "skidded",
             "meaningByLocale": {
               "ru": "пошла юзом",
@@ -939,7 +647,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-25:i13:p4",
+            "pairId": "en:lesson-25:session-25:i09:p4",
             "target": "collided",
             "meaningByLocale": {
               "ru": "столкнулись",
@@ -974,32 +682,178 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-25:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Поели перед отъездом",
-      "responseOptions": [],
+      "interactionId": "en:lesson-25:session-25:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-25:i10:r1",
+          "text": "We ate after we arrived."
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i10:r2",
+          "text": "We ate before we arrived."
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i10:r3",
+          "text": "They ate after they arrived."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-25:i14:audio"
+        "en:lesson-25:session-25:i10:audio"
       ],
-      "accessibilityLabel": "Поели перед отъездом",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-25:i14:audio",
-          "transcript": "We ate before we left."
+          "audioTargetId": "en:lesson-25:session-25:i10:audio",
+          "transcript": "We ate after we arrived."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We ate before we left.",
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-25:i10:r1",
+            "targetText": "We ate after we arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i10:r2",
+            "targetText": "We ate before we arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i10:r3",
+            "targetText": "They ate after they arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-25:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ate after we arrived.",
+              "uk": "У записі звучить We ate after we arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ate after we arrived.",
+              "uk": "У записі звучить We ate after we arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сначала вы нашли свободное место, затем припарковались.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-25:i11:r1",
+          "text": "after"
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i11:r2",
+          "text": "before"
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i11:r3",
+          "text": "until"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сначала вы нашли свободное место, затем припарковались.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сначала вы нашли свободное место, затем припарковались.",
+          "uk": "Спочатку ви знайшли вільне місце, потім припаркувалися."
+        },
+        "gappedTargetPhrase": "I parked ___ I found a space.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-25:i11:r1",
+            "text": "after"
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i11:r2",
+            "text": "before"
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i11:r3",
+            "text": "until"
+          }
+        ],
+        "testedDimension": "Сначала вы нашли свободное место, затем припарковались.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Сначала вы нашли свободное место, затем припарковались.",
+            "feedbackByLocale": {
+              "ru": "Before поменяет порядок событий: здесь место нашли первым.",
+              "uk": "Before змінить порядок подій: тут місце знайшли першим."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Сначала вы нашли свободное место, затем припарковались.",
+            "feedbackByLocale": {
+              "ru": "Until означает «до тех пор пока»; здесь нужно «после того как».",
+              "uk": "Until означає «доки»; тут потрібно «після того як»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сначала купили билеты, потом сели в автобус: «Мы купили билеты до того, как сели в автобус».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сначала купили билеты, потом сели в автобус: «Мы купили билеты до того, как сели в автобус».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We bought tickets before we got on the bus.",
+        "localizedMeaning": {
+          "ru": "Сначала купили билеты, потом сели в автобус: «Мы купили билеты до того, как сели в автобус».",
+          "uk": "Спочатку купили квитки, потім сіли в автобус: «Ми купили квитки до того, як сіли в автобус»."
+        },
         "orderedTokens": [
           "We",
-          "ate",
+          "bought",
+          "tickets",
           "before",
           "we",
-          "left"
+          "got",
+          "on",
+          "the",
+          "bus"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1011,32 +865,35 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-25:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-25:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Начали после её прихода",
+      "prompt": "Услышьте, когда вы позвонили домой.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-25:i15:audio"
+        "en:lesson-25:session-25:i13:audio"
       ],
-      "accessibilityLabel": "Начали после её прихода",
+      "accessibilityLabel": "Услышьте, когда вы позвонили домой.",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-25:i15:audio",
-          "transcript": "We started after she arrived."
+          "audioTargetId": "en:lesson-25:session-25:i13:audio",
+          "transcript": "I called home after I reached the station."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We started after she arrived.",
+        "hiddenTargetPhrase": "I called home after I reached the station.",
         "orderedTokens": [
-          "We",
-          "started",
+          "I",
+          "called",
+          "home",
           "after",
-          "she",
-          "arrived"
+          "I",
+          "reached",
+          "the",
+          "station"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1044,6 +901,151 @@
           "ru": "",
           "uk": ""
         }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы закрыли окно раньше начала дождя.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-25:i14:r1",
+          "text": "before"
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i14:r2",
+          "text": "after"
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i14:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы закрыли окно раньше начала дождя.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы закрыли окно раньше начала дождя.",
+          "uk": "Ви зачинили вікно раніше за початок дощу."
+        },
+        "gappedTargetPhrase": "I closed the window ___ the rain started.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-25:i14:r1",
+            "text": "before"
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i14:r2",
+            "text": "after"
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i14:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Вы закрыли окно раньше начала дождя.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-25:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы закрыли окно раньше начала дождя.",
+            "feedbackByLocale": {
+              "ru": "After означало бы, что дождь уже начался, когда закрыли окно.",
+              "uk": "After означало б, що дощ уже почався, коли зачинили вікно."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы закрыли окно раньше начала дождя.",
+            "feedbackByLocale": {
+              "ru": "Because называет причину; нужен порядок событий «до того как».",
+              "uk": "Because називає причину; потрібен порядок подій «до того як»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-25:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-25:i15:r1",
+          "text": "We rested after we crossed the bridge."
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i15:r2",
+          "text": "We rested before we crossed the bridge."
+        },
+        {
+          "responseId": "en:lesson-25:session-25:i15:r3",
+          "text": "We waited after we crossed the bridge."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-25:i15:audio",
+          "transcript": "We rested after we crossed the bridge."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-25:i15:r1",
+            "targetText": "We rested after we crossed the bridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i15:r2",
+            "targetText": "We rested before we crossed the bridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i15:r3",
+            "targetText": "We waited after we crossed the bridge.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-25:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We rested after we crossed the bridge.",
+              "uk": "У записі звучить We rested after we crossed the bridge."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-25:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We rested after we crossed the bridge.",
+              "uk": "У записі звучить We rested after we crossed the bridge."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -1053,21 +1055,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «После того как он сдал назад, он остановился».",
+      "prompt": "Сначала вышли из автобуса, потом встретили друга: «Я встретил друга после того, как вышел из автобуса».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-25:i16:audio"
       ],
-      "accessibilityLabel": "Скажите: «После того как он сдал назад, он остановился».",
+      "accessibilityLabel": "Сначала вышли из автобуса, потом встретили друга: «Я встретил друга после того, как вышел из автобуса».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-25:i16:audio",
-          "transcript": "He stopped after he reversed."
+          "transcript": "I met my friend after I got off the bus."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He stopped after he reversed.",
+        "targetPhrase": "I met my friend after I got off the bus.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1083,33 +1085,35 @@
     {
       "interactionId": "en:lesson-25:session-25:i17",
       "ordinal": 24,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «После того как машины столкнулись, я позвал на помощь».",
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вспомните завершение поездки: «Мы поговорили до того, как попрощались».",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-25:i17:audio"
-      ],
-      "accessibilityLabel": "Скажите: «После того как машины столкнулись, я позвал на помощь».",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните завершение поездки: «Мы поговорили до того, как попрощались».",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-25:i17:audio",
-          "transcript": "I called for help after the cars collided."
+        "family": "phrase_builder",
+        "targetPhrase": "We talked before we said goodbye.",
+        "localizedMeaning": {
+          "ru": "Вспомните завершение поездки: «Мы поговорили до того, как попрощались».",
+          "uk": "Згадайте завершення поїздки: «Ми поговорили до того, як попрощалися»."
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I called for help after the cars collided.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "We",
+          "talked",
+          "before",
+          "we",
+          "said",
+          "goodbye"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     }
@@ -1120,5 +1124,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b5692524c41cbf0d64de494f2efa39345ffc324a97724fe811e66988e2eb10dc"
+  "learnerFingerprint": "13e13aad843f6f9e6818f54c2b34d6972421068c3cc852491b8d1bfe70e7f8d4"
 }

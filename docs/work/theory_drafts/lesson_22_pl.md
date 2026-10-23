@@ -22,6 +22,9 @@ Ta lekcja jest o krótkich słowach zamiast imion i rzeczy: «mogę mu doradzić
 | I want the hooded one. | Chcę ten z kapturem. | one |
 | I need another payment method. | Potrzebuję innej metody płatności. | another |
 
+**tip**
+Słowa z wyjaśnień błędów: zaimek to krótkie słowo zamiast imienia (him, it, them); dzierżawczy — słowo «czyj»: my, mine, yours.
+
 ---
 
 ## 02 · him, her, them — po czynności *(otwarta od razu)*

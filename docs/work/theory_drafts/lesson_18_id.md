@@ -24,6 +24,9 @@ Pelajaran ini tentang membandingkan: «kamar ini lebih murah dari kamar kita», 
 | This cabin bag is too big. | Tas kabin ini terlalu besar. | too big |
 | We have such a good relationship. | Hubungan kita baik sekali. | such a |
 
+**tip**
+Di penjelasan kesalahan, «kata sifat» adalah ciri: cheap, big, kind. Ke kata itulah -er dan -est ditambahkan.
+
 ---
 
 ## 02 · -er than — «lebih murah dari» *(terbuka sejak awal)*

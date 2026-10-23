@@ -22,6 +22,9 @@
 | I was cleaning my ankle boots when you called. | Sen aradığında botlarımı temizliyordum. | when |
 | She was sniffing the flowers while I was talking. | Ben konuşurken çiçekleri kokluyordu. | while |
 
+**tip**
+Hata açıklamalarında «özne», cümlenin başındaki «kim» sorusunun cevabıdır: I, she, the children. was mı were mı, özneye bağlıdır.
+
 ---
 
 ## 02 · was / were + -ing'li eylem *(baştan açık)*

@@ -22,6 +22,9 @@
 | I was cleaning my ankle boots when you called. | Tôi đang lau đôi bốt thì bạn gọi. | when |
 | She was sniffing the flowers while I was talking. | Cô ấy ngửi hoa trong khi tôi đang nói. | while |
 
+**tip**
+Trong phần giải thích lỗi, «chủ ngữ» là «ai» ở đầu câu: I, she, the children. Chủ ngữ quyết định dùng was hay were.
+
 ---
 
 ## 02 · was / were + hành động có -ing *(mở sẵn)*

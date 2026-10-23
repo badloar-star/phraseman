@@ -22,6 +22,9 @@ Na lição 9 você dizia o que acontece agora: I am reading. Agora vai contar o 
 | I was cleaning my ankle boots when you called. | Eu estava limpando minhas botinhas quando você ligou. | when |
 | She was sniffing the flowers while I was talking. | Ela cheirava as flores enquanto eu falava. | while |
 
+**tip**
+Nas correções, o «sujeito» é o «quem» no começo da frase: I, she, the children. Dele depende was ou were.
+
 ---
 
 ## 02 · was / were + ação com -ing *(aberta de início)*

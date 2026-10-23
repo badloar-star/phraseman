@@ -23,6 +23,9 @@ Di pelajaran 9 kamu bilang apa yang sedang terjadi sekarang: I am reading. Sekar
 | I was cleaning my ankle boots when you called. | Aku sedang membersihkan sepatu botku waktu kamu menelepon. | when |
 | She was sniffing the flowers while I was talking. | Dia mencium bunga sementara aku sedang bicara. | while |
 
+**tip**
+Di penjelasan kesalahan, «subjek» adalah «siapa» di awal kalimat: I, she, the children. Subjek menentukan was atau were.
+
 ---
 
 ## 02 · was / were + kegiatan dengan -ing *(terbuka sejak awal)*

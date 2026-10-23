@@ -23,6 +23,9 @@ This lesson is about short words that replace people and things: him and her aft
 | I want the hooded one. | the item with a hood | one |
 | I need another payment method. | a different way to pay | another |
 
+**tip**
+Words from feedback: a pronoun is a short word instead of a name (him, it, them); a possessive is a «whose» word: my, mine, yours.
+
 ---
 
 ## 02 · him, her, them — after the action *(open from the start)*

@@ -23,6 +23,9 @@ Pelajaran ini tentang kata pendek pengganti nama dan barang: «aku bisa menasiha
 | I want the hooded one. | Aku mau yang ada tudungnya. | one |
 | I need another payment method. | Aku perlu cara bayar lain. | another |
 
+**tip**
+Kata di penjelasan kesalahan: kata ganti adalah kata pendek pengganti nama (him, it, them); kata kepunyaan menjawab «punya siapa»: my, mine, yours.
+
 ---
 
 ## 02 · him, her, them — setelah tindakan *(terbuka sejak awal)*

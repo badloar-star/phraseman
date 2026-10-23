@@ -23,6 +23,9 @@ Esta lección es sobre palabras cortas en vez de nombres y cosas: «puedo aconse
 | I want the hooded one. | Quiero la de capucha. | one |
 | I need another payment method. | Necesito otro método de pago. | another |
 
+**tip**
+Palabras de las correcciones: pronombre es una palabra corta en lugar de un nombre (him, it, them); posesivo, una palabra de «de quién»: my, mine, yours.
+
 ---
 
 ## 02 · him, her, them — después de la acción *(abierta al inicio)*

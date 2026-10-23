@@ -23,6 +23,9 @@ Bu ders isim ve eşya yerine kullanılan kısa kelimelerle ilgili: «ona tavsiye
 | I want the hooded one. | Kapüşonlu olanı istiyorum. | one |
 | I need another payment method. | Başka bir ödeme yöntemi lazım. | another |
 
+**tip**
+Hata açıklamalarındaki kelimeler: zamir, isim yerine kullanılan kısa kelimedir (him, it, them); iyelik «kimin» sorusunu karşılar: my, mine, yours.
+
 ---
 
 ## 02 · him, her, them — eylemden sonra *(baştan açık)*

@@ -23,6 +23,9 @@ Ta lekcja jest o porównywaniu: «ten pokój jest tańszy od naszego», «ten sk
 | This cabin bag is too big. | Ta torba podręczna jest za duża. | too big |
 | We have such a good relationship. | Mamy taką dobrą relację. | such a |
 
+**tip**
+W wyjaśnieniach błędów «przymiotnik» to cecha: cheap, big, kind. To do niego dodaje się -er i -est.
+
 ---
 
 ## 02 · -er than — «tańszy niż» *(otwarta od razu)*

@@ -24,6 +24,9 @@ Bu ders karşılaştırma üzerine: «bu oda bizimkinden ucuz», «bu mağazanı
 | This cabin bag is too big. | Bu kabin çantası fazla büyük. | too big |
 | We have such a good relationship. | Aramız öyle iyi ki. | such a |
 
+**tip**
+Hata açıklamalarında «sıfat» bir özelliktir: cheap, big, kind. -er ve -est ona eklenir.
+
 ---
 
 ## 02 · -er than — «-den daha ucuz» *(baştan açık)*

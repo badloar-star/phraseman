@@ -22,6 +22,9 @@ W lekcji 9 mówiłeś, co dzieje się teraz: I am reading. Teraz — co działo 
 | I was cleaning my ankle boots when you called. | Czyściłem botki, kiedy zadzwoniłeś. | when |
 | She was sniffing the flowers while I was talking. | Wąchała kwiaty, podczas gdy ja mówiłem. | while |
 
+**tip**
+W wyjaśnieniach błędów «podmiot» to «kto» na początku zdania: I, she, the children. Od niego zależy was albo were.
+
 ---
 
 ## 02 · was / were + czynność z -ing *(otwarta od razu)*

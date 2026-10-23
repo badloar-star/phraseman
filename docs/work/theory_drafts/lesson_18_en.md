@@ -23,6 +23,9 @@ This lesson is about comparing: cheaper than ours, the shortest delivery time, a
 | This cabin bag is too big. | it is a problem, it will not fit | too big |
 | We have such a good relationship. | a very good one | such a |
 
+**tip**
+In feedback, an «adjective» is a describing word: cheap, big, kind. That is where -er and -est go.
+
 ---
 
 ## 02 · -er than — comparing two *(open from the start)*

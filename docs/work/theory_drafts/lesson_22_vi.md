@@ -23,6 +23,9 @@ Bài này về những từ ngắn thay cho tên người và đồ vật: «tô
 | I want the hooded one. | Tôi muốn cái có mũ. | one |
 | I need another payment method. | Tôi cần một cách thanh toán khác. | another |
 
+**tip**
+Từ trong phần giải thích lỗi: đại từ là từ ngắn thay cho tên (him, it, them); từ sở hữu là từ chỉ «của ai»: my, mine, yours.
+
 ---
 
 ## 02 · him, her, them — sau hành động *(mở sẵn)*

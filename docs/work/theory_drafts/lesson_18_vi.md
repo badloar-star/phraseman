@@ -23,6 +23,9 @@ Bài này về so sánh: «phòng này rẻ hơn phòng mình», «cửa hàng n
 | This cabin bag is too big. | Cái túi xách tay này to quá. | too big |
 | We have such a good relationship. | Chúng mình có mối quan hệ tốt đến thế. | such a |
 
+**tip**
+Trong phần giải thích lỗi, «tính từ» là từ chỉ đặc điểm: cheap, big, kind. -er và -est được thêm vào nó.
+
 ---
 
 ## 02 · -er than — «rẻ hơn» *(mở sẵn)*

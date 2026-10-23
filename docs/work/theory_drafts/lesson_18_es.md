@@ -24,6 +24,9 @@ Esta lección es para comparar: «este cuarto es más barato que el nuestro», �
 | This cabin bag is too big. | Esta maleta de mano es demasiado grande. | too big |
 | We have such a good relationship. | Tenemos una relación tan buena. | such a |
 
+**tip**
+En las correcciones, el «adjetivo» es la cualidad: cheap, big, kind. A él se le añade -er y -est.
+
 ---
 
 ## 02 · -er than — «más barato que» *(abierta al inicio)*

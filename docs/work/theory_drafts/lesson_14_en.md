@@ -23,6 +23,9 @@ In lesson 9 you said what is happening now: I am reading. Now you'll say what wa
 | I was cleaning my ankle boots when you called. | Your call came in the middle of my cleaning. | when |
 | She was sniffing the flowers while I was talking. | Both things went on at the same time. | while |
 
+**tip**
+In feedback, the «subject» is the «who» at the start of the sentence: I, she, the children. It decides was or were.
+
 ---
 
 ## 02 · was / were + action with -ing *(open at start)*

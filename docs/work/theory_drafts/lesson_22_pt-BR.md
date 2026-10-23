@@ -23,6 +23,9 @@ Esta lição é sobre palavras curtas no lugar de nomes e coisas: «posso aconse
 | I want the hooded one. | Quero a de capuz. | one |
 | I need another payment method. | Preciso de outra forma de pagamento. | another |
 
+**tip**
+Palavras das correções: pronome é uma palavra curta no lugar de um nome (him, it, them); possessivo, a palavra de «de quem»: my, mine, yours.
+
 ---
 
 ## 02 · him, her, them — depois da ação *(aberta de início)*

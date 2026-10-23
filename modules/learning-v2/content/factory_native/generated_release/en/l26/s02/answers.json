@@ -6,17 +6,17 @@
   },
   {
     "interactionId": "en:lesson-26:session-02:i01",
-    "correctText": "My shoes squeak when the floor is wet.",
+    "correctText": "Do your shoes squeak when you walk?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-02:i02",
-    "correctText": "squeak",
+    "correctText": "I hear a noise when I open this door.",
     "correctResponseId": "en:lesson-26:session-02:i02:r1"
   },
   {
     "interactionId": "en:lesson-26:session-02:i03",
-    "correctText": "My shoes squeak when the floor is wet.",
+    "correctText": "squeaks",
     "correctResponseId": "en:lesson-26:session-02:i03:r1"
   },
   {
@@ -26,18 +26,13 @@
   },
   {
     "interactionId": "en:lesson-26:session-02:i04",
-    "correctText": "The leaves rustle when the wind blows.",
-    "correctResponseId": null
+    "correctText": "The bags rustle when I carry them.",
+    "correctResponseId": "en:lesson-26:session-02:i04:r1"
   },
   {
     "interactionId": "en:lesson-26:session-02:i05",
-    "correctText": "rustle",
-    "correctResponseId": "en:lesson-26:session-02:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-26:session-02:i06",
-    "correctText": "The leaves rustle when the wind blows.",
-    "correctResponseId": "en:lesson-26:session-02:i06:r1"
+    "correctText": "I listen carefully when I hear a strange noise.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-02:word:squeal",
@@ -45,19 +40,19 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-26:session-02:i07",
-    "correctText": "My children squeal when they get excited.",
+    "interactionId": "en:lesson-26:session-02:i06",
+    "correctText": "My children squeal when they see a puppy.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-26:session-02:i08",
-    "correctText": "squeal",
-    "correctResponseId": "en:lesson-26:session-02:i08:r1"
+    "interactionId": "en:lesson-26:session-02:i07",
+    "correctText": "do not",
+    "correctResponseId": "en:lesson-26:session-02:i07:r1"
   },
   {
-    "interactionId": "en:lesson-26:session-02:i09",
-    "correctText": "My children squeal when they get excited.",
-    "correctResponseId": "en:lesson-26:session-02:i09:r1"
+    "interactionId": "en:lesson-26:session-02:i08",
+    "correctText": "The dog barks when someone knocks.",
+    "correctResponseId": "en:lesson-26:session-02:i08:r1"
   },
   {
     "interactionId": "en:lesson-26:session-02:word:roars",
@@ -65,43 +60,48 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-26:session-02:i09",
+    "correctText": "My vacuum cleaner roars when I turn it on.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-26:session-02:i10",
-    "correctText": "The engine roars when I press the pedal.",
+    "correctText": "en:lesson-26:session-02:i10:p1=squeak\nen:lesson-26:session-02:i10:p2=rustle\nen:lesson-26:session-02:i10:p3=squeal\nen:lesson-26:session-02:i10:p4=roars",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-02:i11",
-    "correctText": "roars",
+    "correctText": "blows",
     "correctResponseId": "en:lesson-26:session-02:i11:r1"
   },
   {
     "interactionId": "en:lesson-26:session-02:i12",
-    "correctText": "The engine roars when I press the pedal.",
-    "correctResponseId": "en:lesson-26:session-02:i12:r1"
+    "correctText": "What do you do when you hear a loud noise?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-02:i13",
-    "correctText": "en:lesson-26:session-02:i13:p1=squeak\nen:lesson-26:session-02:i13:p2=rustle\nen:lesson-26:session-02:i13:p3=squeal\nen:lesson-26:session-02:i13:p4=roars",
+    "correctText": "I cover my ears when the music is too loud.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-02:i14",
-    "correctText": "I rest when I am tired.",
-    "correctResponseId": null
+    "correctText": "I close the window when the street is noisy.",
+    "correctResponseId": "en:lesson-26:session-02:i14:r1"
   },
   {
     "interactionId": "en:lesson-26:session-02:i15",
-    "correctText": "I stay home if it rains.",
-    "correctResponseId": null
+    "correctText": "noisy",
+    "correctResponseId": "en:lesson-26:session-02:i15:r1"
   },
   {
     "interactionId": "en:lesson-26:session-02:i16",
-    "correctText": "Her shoes squeak when the floor is dry.",
+    "correctText": "I take off my headphones when someone talks to me.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-02:i17",
-    "correctText": "The engine roars when he presses the pedal.",
+    "correctText": "I jump when the door slams.",
     "correctResponseId": null
   }
 ]

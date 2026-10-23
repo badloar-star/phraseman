@@ -49,103 +49,103 @@ Flutter — легко колыхаться или трепетать. The curta
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — vibrates**
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-03:i01; family: listen_choose -->
+🔊 *I notice the noise when the room is quiet.* → **I notice the noise when the room is quiet.** · I notice the noise when the room is busy. · I notice the smell when the room is quiet.
+- I notice the noise when the room is busy. — *В записи звучит I notice the noise when the room is quiet.*
+- I notice the smell when the room is quiet. — *В записи звучит I notice the noise when the room is quiet.*
+
+**2 · Карточка слова — vibrates**
 <!-- interaction_id: en:lesson-26:session-03:word:vibrates; family: word_card -->
 > **vibrates** — Вибрирует. Vibrate — быстро и мелко дрожать.
 
-**2 · Скажите: «Мой телефон вибрирует, когда кто-нибудь звонит.»**
-<!-- interaction_id: en:lesson-26:session-03:i01; family: phrase_builder -->
-Плитки: `calls` `someone` `when` `vibrates` `phone` `My` → **My phone vibrates when someone calls.**
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-03:i02; family: listen_choose -->
+🔊 *My washing machine vibrates when it spins.* → **My washing machine vibrates when it spins.** · My washing machine vibrates when it stops. · My phone vibrates when someone calls.
+- My washing machine vibrates when it stops. — *В записи звучит My washing machine vibrates when it spins.*
+- My phone vibrates when someone calls. — *В записи звучит My washing machine vibrates when it spins.*
 
-**3 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-03:i02; family: context_gap_grammar -->
-My phone ___ when someone calls. → **vibrates** · vibrate · vibrating
-- vibrate — *Обычная закономерность: Present Simple. Нужна форма vibrates.*
-- vibrating — *Обычная закономерность: Present Simple. Нужна форма vibrates.*
+**4 · Восстановите услышанное условие.**
+<!-- interaction_id: en:lesson-26:session-03:i03; family: listen_build_dictation -->
+🔊 *I answer the phone when I hear it ring.* Плитки: `ring` `it` `hear` `I` `when` `phone` `the` `answer` `I` → **I answer the phone when I hear it ring.**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-03:i03; family: listen_choose -->
-🔊 *My phone vibrates when someone calls.* → **My phone vibrates when someone calls.** · Her phone vibrates when someone calls. · My phone vibrates when someone texts.
-- Her phone vibrates when someone calls. — *В записи звучит My phone vibrates when someone calls.*
-- My phone vibrates when someone texts. — *В записи звучит My phone vibrates when someone calls.*
+**5 · Речь о вашем обычном действии. Дополните условие: вы ничего не слышите.**
+<!-- interaction_id: en:lesson-26:session-03:i04; family: context_gap_grammar -->
+I check my phone if I ___ hear it. → **cannot** · does not · not
+- does not — *С I нельзя использовать does not; для «не могу слышать» нужно cannot hear.*
+- not — *Одного not недостаточно: нужна форма cannot hear.*
 
-**5 · Карточка слова — rotates**
+**6 · Карточка слова — rotates**
 <!-- interaction_id: en:lesson-26:session-03:word:rotates; family: word_card -->
 > **rotates** — Вращается. Rotate — двигаться вокруг оси.
 
-**6 · Скажите: «Барабан вращается, когда я включаю стиральную машину.»**
-<!-- interaction_id: en:lesson-26:session-03:i04; family: phrase_builder -->
-Плитки: `machine` `washing` `the` `start` `I` `when` `rotates` `drum` `The` → **The drum rotates when I start the washing machine.**
-
-**7 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-03:i05; family: context_gap_grammar -->
-The drum ___ when I start the washing machine. → **rotates** · rotate · rotating
-- rotate — *Обычная закономерность: Present Simple. Нужна форма rotates.*
-- rotating — *Обычная закономерность: Present Simple. Нужна форма rotates.*
+**7 · Опишите свою микроволновку: «Тарелка вращается, когда я включаю микроволновку».**
+<!-- interaction_id: en:lesson-26:session-03:i05; family: phrase_builder -->
+Плитки: `microwave` `my` `on` `turn` `I` `when` `rotates` `plate` `The` → **The plate rotates when I turn on my microwave.**
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-03:i06; family: listen_choose -->
-🔊 *The drum rotates when I start the washing machine.* → **The drum rotates when I start the washing machine.** · The drum rotates when she starts the washing machine. · The drum rotates when I restart the washing machine.
-- The drum rotates when she starts the washing machine. — *В записи звучит The drum rotates when I start the washing machine.*
-- The drum rotates when I restart the washing machine. — *В записи звучит The drum rotates when I start the washing machine.*
+🔊 *I turn off the fan when I feel cold.* → **I turn off the fan when I feel cold.** · I turn on the fan when I feel cold. · I turn off the fan when I feel hot.
+- I turn on the fan when I feel cold. — *В записи звучит I turn off the fan when I feel cold.*
+- I turn off the fan when I feel hot. — *В записи звучит I turn off the fan when I feel cold.*
 
 **9 · Карточка слова — sway**
 <!-- interaction_id: en:lesson-26:session-03:word:sway; family: word_card -->
 > **sway** — Качаются. Sway — плавно двигаться из стороны в сторону.
 
-**10 · Скажите: «Деревья качаются, когда дует ветер.»**
+**10 · Опишите движение ветвей: «Ветви качаются, когда дует ветер».**
 <!-- interaction_id: en:lesson-26:session-03:i07; family: phrase_builder -->
-Плитки: `blows` `wind` `the` `when` `sway` `trees` `The` → **The trees sway when the wind blows.**
+Плитки: `blows` `wind` `the` `when` `sway` `branches` `The` → **The branches sway when the wind blows.**
 
-**11 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-03:i08; family: context_gap_grammar -->
-The trees ___ when the wind blows. → **sway** · sways · swaying
-- sways — *Обычная закономерность: Present Simple. Нужна форма sway.*
-- swaying — *Обычная закономерность: Present Simple. Нужна форма sway.*
+**11 · Спросите друга: «Что ты замечаешь, когда смотришь в окно?»**
+<!-- interaction_id: en:lesson-26:session-03:i08; family: scripted_repeat_compare -->
+🎙 **What do you notice when you look out of the window?**
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-03:i09; family: listen_choose -->
-🔊 *The trees sway when the wind blows.* → **The trees sway when the wind blows.** · The trees sway when the wind gets stronger. · The branches sway when the wind blows.
-- The trees sway when the wind gets stronger. — *В записи звучит The trees sway when the wind blows.*
-- The branches sway when the wind blows. — *В записи звучит The trees sway when the wind blows.*
+**12 · Услышьте личную привычку говорящего.**
+<!-- interaction_id: en:lesson-26:session-03:i09; family: listen_build_dictation -->
+🔊 *I sit inside when the wind is strong.* Плитки: `strong` `is` `wind` `the` `when` `inside` `sit` `I` → **I sit inside when the wind is strong.**
 
 **13 · Карточка слова — flutter**
 <!-- interaction_id: en:lesson-26:session-03:word:flutter; family: word_card -->
 > **flutter** — Колышутся. Flutter — легко и быстро двигаться, например о ткани на ветру.
 
-**14 · Скажите: «Шторы колышутся, когда я открываю окно.»**
-<!-- interaction_id: en:lesson-26:session-03:i10; family: phrase_builder -->
-Плитки: `window` `the` `open` `I` `when` `flutter` `curtains` `The` → **The curtains flutter when I open the window.**
+**14 · Шторы легко двигаются от сквозняка. Дополните действие во множественном числе.**
+<!-- interaction_id: en:lesson-26:session-03:i10; family: context_gap_grammar -->
+The curtains ___ when air comes through the door. → **flutter** · flutters · fluttering
+- flutters — *Curtains — множественное число: flutter без -s.*
+- fluttering — *Здесь нужен Present Simple: flutter.*
 
-**15 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-03:i11; family: context_gap_grammar -->
-The curtains ___ when I open the window. → **flutter** · flutters · fluttering
-- flutters — *Обычная закономерность: Present Simple. Нужна форма flutter.*
-- fluttering — *Обычная закономерность: Present Simple. Нужна форма flutter.*
+**15 · Различите виды движения**
+<!-- interaction_id: en:lesson-26:session-03:i11; family: speed_match -->
+vibrates — вибрирует · rotates — вращается · sway — качаются · flutter — колышутся
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-03:i12; family: listen_choose -->
-🔊 *The curtains flutter when I open the window.* → **The curtains flutter when I open the window.** · The curtains flutter when she opens the window. · The curtains flutter when I open the door.
-- The curtains flutter when she opens the window. — *В записи звучит The curtains flutter when I open the window.*
-- The curtains flutter when I open the door. — *В записи звучит The curtains flutter when I open the window.*
+🔊 *The branches sway when a bird lands on them.* → **The branches sway when a bird lands on them.** · The branches sway when a bird flies past them. · The curtains flutter when a bird lands on them.
+- The branches sway when a bird flies past them. — *В записи звучит The branches sway when a bird lands on them.*
+- The curtains flutter when a bird lands on them. — *В записи звучит The branches sway when a bird lands on them.*
 
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-26:session-03:i13; family: speed_match -->
-vibrates — вибрирует · rotates — вращается · sway — качаются · flutter — колышутся
+**17 · Расскажите о своём выборе: «Я закрываю окно, если комната слишком холодная».**
+<!-- interaction_id: en:lesson-26:session-03:i13; family: phrase_builder -->
+Плитки: `cold` `too` `is` `room` `the` `if` `window` `the` `close` `I` → **I close the window if the room is too cold.**
 
-**18 · Отдыхаю, когда устаю**
-<!-- interaction_id: en:lesson-26:session-03:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**18 · Соседка открывает окно только в душной комнате. Выберите подходящее условие.**
+<!-- interaction_id: en:lesson-26:session-03:i14; family: context_gap_grammar -->
+She opens the window if the room is ___. → **stuffy** · freezing · empty
+- freezing — *Freezing — очень холодная; по ситуации причина — духота.*
+- empty — *Empty — пустая; это не указанная причина открыть окно.*
 
-**19 · Если идёт дождь, остаюсь дома**
+**19 · Услышьте момент завершения действия.**
 <!-- interaction_id: en:lesson-26:session-03:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+🔊 *I take out the clothes when the machine stops.* Плитки: `stops` `machine` `the` `when` `clothes` `the` `out` `take` `I` → **I take out the clothes when the machine stops.**
 
-**20 · Скажите: «Его телефон вибрирует, когда кто-нибудь звонит».**
-<!-- interaction_id: en:lesson-26:session-03:i16; family: scripted_repeat_compare -->
-🎙 **His phone vibrates when someone calls.**
+**20 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-03:i16; family: listen_choose -->
+🔊 *My phone vibrates when the alarm goes off.* → **My phone vibrates when the alarm goes off.** · My phone vibrates when someone calls. · My phone vibrates when a message arrives.
+- My phone vibrates when someone calls. — *В записи звучит My phone vibrates when the alarm goes off.*
+- My phone vibrates when a message arrives. — *В записи звучит My phone vibrates when the alarm goes off.*
 
-**21 · Скажите: «Шторы колышутся, когда он открывает окно».**
+**21 · Опишите личную привычку: «Я убавляю громкость, когда кто-то со мной говорит».**
 <!-- interaction_id: en:lesson-26:session-03:i17; family: scripted_repeat_compare -->
-🎙 **The curtains flutter when he opens the window.**
+🎙 **I turn down the volume when someone speaks to me.**
 

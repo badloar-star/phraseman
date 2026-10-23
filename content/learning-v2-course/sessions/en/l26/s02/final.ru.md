@@ -53,99 +53,99 @@ Roar — реветь, издавать громкий глубокий звук
 <!-- interaction_id: en:lesson-26:session-02:word:squeak; family: word_card -->
 > **squeak** — Пищат, скрипят. Squeak — издавать короткий высокий звук, например при трении.
 
-**2 · Скажите: «Мои туфли скрипят, когда пол мокрый.»**
+**2 · Спросите друга: «Твои туфли скрипят, когда ты ходишь?»**
 <!-- interaction_id: en:lesson-26:session-02:i01; family: phrase_builder -->
-Плитки: `wet` `is` `floor` `the` `when` `squeak` `shoes` `My` → **My shoes squeak when the floor is wet.**
+Плитки: `walk` `you` `when` `squeak` `shoes` `your` `Do` → **Do your shoes squeak when you walk?**
 
-**3 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-02:i02; family: context_gap_grammar -->
-My shoes ___ when the floor is wet. → **squeak** · squeaks · squeaking
-- squeaks — *Обычная закономерность: Present Simple. Нужна форма squeak.*
-- squeaking — *Обычная закономерность: Present Simple. Нужна форма squeak.*
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-02:i02; family: listen_choose -->
+🔊 *I hear a noise when I open this door.* → **I hear a noise when I open this door.** · I hear a noise when I close this door. · I hear a noise when I open this drawer.
+- I hear a noise when I close this door. — *В записи звучит I hear a noise when I open this door.*
+- I hear a noise when I open this drawer. — *В записи звучит I hear a noise when I open this door.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-02:i03; family: listen_choose -->
-🔊 *My shoes squeak when the floor is wet.* → **My shoes squeak when the floor is wet.** · Her shoes squeak when the floor is wet. · My shoes squeak when the floor is dry.
-- Her shoes squeak when the floor is wet. — *В записи звучит My shoes squeak when the floor is wet.*
-- My shoes squeak when the floor is dry. — *В записи звучит My shoes squeak when the floor is wet.*
+**4 · Вы описываете звук своей двери. Дополните результат.**
+<!-- interaction_id: en:lesson-26:session-02:i03; family: context_gap_grammar -->
+The door ___ when I open it. → **squeaks** · squeak · squeaking
+- squeak — *The door — единственное число, поэтому squeaks.*
+- squeaking — *В Present Simple здесь нужно squeaks, не squeaking.*
 
 **5 · Карточка слова — rustle**
 <!-- interaction_id: en:lesson-26:session-02:word:rustle; family: word_card -->
 > **rustle** — Шелестят. Rustle — тихо шуршать, как листья или бумага.
 
-**6 · Скажите: «Листья шелестят, когда дует ветер.»**
-<!-- interaction_id: en:lesson-26:session-02:i04; family: phrase_builder -->
-Плитки: `blows` `wind` `the` `when` `rustle` `leaves` `The` → **The leaves rustle when the wind blows.**
+**6 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-02:i04; family: listen_choose -->
+🔊 *The bags rustle when I carry them.* → **The bags rustle when I carry them.** · The leaves rustle when I carry them. · The bags rustle when I open them.
+- The leaves rustle when I carry them. — *В записи звучит The bags rustle when I carry them.*
+- The bags rustle when I open them. — *В записи звучит The bags rustle when I carry them.*
 
-**7 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-02:i05; family: context_gap_grammar -->
-The leaves ___ when the wind blows. → **rustle** · rustles · rustling
-- rustles — *Обычная закономерность: Present Simple. Нужна форма rustle.*
-- rustling — *Обычная закономерность: Present Simple. Нужна форма rustle.*
+**7 · Восстановите услышанную привычку.**
+<!-- interaction_id: en:lesson-26:session-02:i05; family: listen_build_dictation -->
+🔊 *I listen carefully when I hear a strange noise.* Плитки: `noise` `strange` `a` `hear` `I` `when` `carefully` `listen` `I` → **I listen carefully when I hear a strange noise.**
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-02:i06; family: listen_choose -->
-🔊 *The leaves rustle when the wind blows.* → **The leaves rustle when the wind blows.** · The leaves rustle when the wind stops. · The leaves rustle when the children move.
-- The leaves rustle when the wind stops. — *В записи звучит The leaves rustle when the wind blows.*
-- The leaves rustle when the children move. — *В записи звучит The leaves rustle when the wind blows.*
-
-**9 · Карточка слова — squeal**
+**8 · Карточка слова — squeal**
 <!-- interaction_id: en:lesson-26:session-02:word:squeal; family: word_card -->
 > **squeal** — Визжат. Squeal — издавать громкий высокий крик.
 
-**10 · Скажите: «Мои дети визжат, когда приходят в возбуждение.»**
-<!-- interaction_id: en:lesson-26:session-02:i07; family: phrase_builder -->
-Плитки: `excited` `get` `they` `when` `squeal` `children` `My` → **My children squeal when they get excited.**
+**9 · Расскажите именно о своих детях: «Мои дети визжат, когда видят щенка».**
+<!-- interaction_id: en:lesson-26:session-02:i06; family: phrase_builder -->
+Плитки: `puppy` `a` `see` `they` `when` `squeal` `children` `My` → **My children squeal when they see a puppy.**
 
-**11 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-02:i08; family: context_gap_grammar -->
-My children ___ when they get excited. → **squeal** · squeals · squealing
-- squeals — *Обычная закономерность: Present Simple. Нужна форма squeal.*
-- squealing — *Обычная закономерность: Present Simple. Нужна форма squeal.*
+**10 · Вы не будите ребёнка. Дополните привычное отрицательное действие.**
+<!-- interaction_id: en:lesson-26:session-02:i07; family: context_gap_grammar -->
+I ___ make a noise when the baby is asleep. → **do not** · does not · am not
+- does not — *С I отрицание в Present Simple строится через do not.*
+- am not — *Перед make здесь нужен вспомогательный do not, не am not.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-02:i09; family: listen_choose -->
-🔊 *My children squeal when they get excited.* → **My children squeal when they get excited.** · Her children squeal when they get excited. · My children squeal when they get frightened.
-- Her children squeal when they get excited. — *В записи звучит My children squeal when they get excited.*
-- My children squeal when they get frightened. — *В записи звучит My children squeal when they get excited.*
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-02:i08; family: listen_choose -->
+🔊 *The dog barks when someone knocks.* → **The dog barks when someone knocks.** · The dog barks when someone calls. · The baby cries when someone knocks.
+- The dog barks when someone calls. — *В записи звучит The dog barks when someone knocks.*
+- The baby cries when someone knocks. — *В записи звучит The dog barks when someone knocks.*
 
-**13 · Карточка слова — roars**
+**12 · Карточка слова — roars**
 <!-- interaction_id: en:lesson-26:session-02:word:roars; family: word_card -->
 > **roars** — Ревёт. Roar — издавать громкий глубокий звук; roars — форма с окончанием -s.
 
-**14 · Скажите: «Двигатель ревёт, когда я нажимаю на педаль.»**
-<!-- interaction_id: en:lesson-26:session-02:i10; family: phrase_builder -->
-Плитки: `pedal` `the` `press` `I` `when` `roars` `engine` `The` → **The engine roars when I press the pedal.**
+**13 · Опишите свой пылесос: «Мой пылесос ревёт, когда я его включаю».**
+<!-- interaction_id: en:lesson-26:session-02:i09; family: phrase_builder -->
+Плитки: `on` `it` `turn` `I` `when` `roars` `cleaner` `vacuum` `My` → **My vacuum cleaner roars when I turn it on.**
 
-**15 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-02:i11; family: context_gap_grammar -->
-The engine ___ when I press the pedal. → **roars** · roar · roaring
-- roar — *Обычная закономерность: Present Simple. Нужна форма roars.*
-- roaring — *Обычная закономерность: Present Simple. Нужна форма roars.*
-
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-02:i12; family: listen_choose -->
-🔊 *The engine roars when I press the pedal.* → **The engine roars when I press the pedal.** · The engine roars when she presses the pedal. · The engine roars when I release the pedal.
-- The engine roars when she presses the pedal. — *В записи звучит The engine roars when I press the pedal.*
-- The engine roars when I release the pedal. — *В записи звучит The engine roars when I press the pedal.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-26:session-02:i13; family: speed_match -->
+**14 · Различите четыре звука**
+<!-- interaction_id: en:lesson-26:session-02:i10; family: speed_match -->
 squeak — пищат, скрипят · rustle — шелестят · squeal — визжат · roars — ревёт
 
-**18 · Отдыхаю, когда устаю**
-<!-- interaction_id: en:lesson-26:session-02:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**15 · Листья шуршат в ветреную погоду. Дополните условие.**
+<!-- interaction_id: en:lesson-26:session-02:i11; family: context_gap_grammar -->
+The leaves rustle when the wind ___. → **blows** · blow · blowing
+- blow — *The wind — единственное число: blows.*
+- blowing — *Нужна личная форма blows; blowing без is здесь не подходит.*
 
-**19 · Если идёт дождь, остаюсь дома**
-<!-- interaction_id: en:lesson-26:session-02:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+**16 · Спросите собеседника: «Что ты делаешь, когда слышишь громкий звук?»**
+<!-- interaction_id: en:lesson-26:session-02:i12; family: scripted_repeat_compare -->
+🎙 **What do you do when you hear a loud noise?**
 
-**20 · Скажите: «Её туфли скрипят, когда пол сухой».**
-<!-- interaction_id: en:lesson-26:session-02:i16; family: scripted_repeat_compare -->
-🎙 **Her shoes squeak when the floor is dry.**
+**17 · Услышьте реакцию говорящего.**
+<!-- interaction_id: en:lesson-26:session-02:i13; family: listen_build_dictation -->
+🔊 *I cover my ears when the music is too loud.* Плитки: `loud` `too` `is` `music` `the` `when` `ears` `my` `cover` `I` → **I cover my ears when the music is too loud.**
 
-**21 · Скажите: «Двигатель ревёт, когда он нажимает на педаль».**
+**18 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-02:i14; family: listen_choose -->
+🔊 *I close the window when the street is noisy.* → **I close the window when the street is noisy.** · I open the window when the street is noisy. · I close the door when the street is noisy.
+- I open the window when the street is noisy. — *В записи звучит I close the window when the street is noisy.*
+- I close the door when the street is noisy. — *В записи звучит I close the window when the street is noisy.*
+
+**19 · Вы хотите слышать собеседника и просите его говорить громче, если вокруг шумно. Дополните условие.**
+<!-- interaction_id: en:lesson-26:session-02:i15; family: context_gap_grammar -->
+I ask you to speak louder if the room is ___. → **noisy** · quiet · silent
+- quiet — *Quiet — тихо; по ситуации говорить громче нужно из-за шума.*
+- silent — *Silent — беззвучный; здесь условие noisy — шумный.*
+
+**20 · Объясните свою привычку: «Я снимаю наушники, когда кто-то со мной разговаривает».**
+<!-- interaction_id: en:lesson-26:session-02:i16; family: phrase_builder -->
+Плитки: `me` `to` `talks` `someone` `when` `headphones` `my` `off` `take` `I` → **I take off my headphones when someone talks to me.**
+
+**21 · Расскажите о своей реакции: «Я вздрагиваю, когда дверь хлопает».**
 <!-- interaction_id: en:lesson-26:session-02:i17; family: scripted_repeat_compare -->
-🎙 **The engine roars when he presses the pedal.**
+🎙 **I jump when the door slams.**
 

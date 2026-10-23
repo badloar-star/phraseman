@@ -1,23 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-26:session-03:i01",
+    "correctText": "I notice the noise when the room is quiet.",
+    "correctResponseId": "en:lesson-26:session-03:i01:r1"
+  },
+  {
     "interactionId": "en:lesson-26:session-03:word:vibrates",
     "correctText": "vibrates",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-26:session-03:i01",
-    "correctText": "My phone vibrates when someone calls.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-26:session-03:i02",
-    "correctText": "vibrates",
+    "correctText": "My washing machine vibrates when it spins.",
     "correctResponseId": "en:lesson-26:session-03:i02:r1"
   },
   {
     "interactionId": "en:lesson-26:session-03:i03",
-    "correctText": "My phone vibrates when someone calls.",
-    "correctResponseId": "en:lesson-26:session-03:i03:r1"
+    "correctText": "I answer the phone when I hear it ring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i04",
+    "correctText": "cannot",
+    "correctResponseId": "en:lesson-26:session-03:i04:r1"
   },
   {
     "interactionId": "en:lesson-26:session-03:word:rotates",
@@ -25,18 +30,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-26:session-03:i04",
-    "correctText": "The drum rotates when I start the washing machine.",
+    "interactionId": "en:lesson-26:session-03:i05",
+    "correctText": "The plate rotates when I turn on my microwave.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-26:session-03:i05",
-    "correctText": "rotates",
-    "correctResponseId": "en:lesson-26:session-03:i05:r1"
-  },
-  {
     "interactionId": "en:lesson-26:session-03:i06",
-    "correctText": "The drum rotates when I start the washing machine.",
+    "correctText": "I turn off the fan when I feel cold.",
     "correctResponseId": "en:lesson-26:session-03:i06:r1"
   },
   {
@@ -46,18 +46,18 @@
   },
   {
     "interactionId": "en:lesson-26:session-03:i07",
-    "correctText": "The trees sway when the wind blows.",
+    "correctText": "The branches sway when the wind blows.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-03:i08",
-    "correctText": "sway",
-    "correctResponseId": "en:lesson-26:session-03:i08:r1"
+    "correctText": "What do you notice when you look out of the window?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-03:i09",
-    "correctText": "The trees sway when the wind blows.",
-    "correctResponseId": "en:lesson-26:session-03:i09:r1"
+    "correctText": "I sit inside when the wind is strong.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-03:word:flutter",
@@ -66,42 +66,42 @@
   },
   {
     "interactionId": "en:lesson-26:session-03:i10",
-    "correctText": "The curtains flutter when I open the window.",
-    "correctResponseId": null
+    "correctText": "flutter",
+    "correctResponseId": "en:lesson-26:session-03:i10:r1"
   },
   {
     "interactionId": "en:lesson-26:session-03:i11",
-    "correctText": "flutter",
-    "correctResponseId": "en:lesson-26:session-03:i11:r1"
+    "correctText": "en:lesson-26:session-03:i11:p1=vibrates\nen:lesson-26:session-03:i11:p2=rotates\nen:lesson-26:session-03:i11:p3=sway\nen:lesson-26:session-03:i11:p4=flutter",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-03:i12",
-    "correctText": "The curtains flutter when I open the window.",
+    "correctText": "The branches sway when a bird lands on them.",
     "correctResponseId": "en:lesson-26:session-03:i12:r1"
   },
   {
     "interactionId": "en:lesson-26:session-03:i13",
-    "correctText": "en:lesson-26:session-03:i13:p1=vibrates\nen:lesson-26:session-03:i13:p2=rotates\nen:lesson-26:session-03:i13:p3=sway\nen:lesson-26:session-03:i13:p4=flutter",
+    "correctText": "I close the window if the room is too cold.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-03:i14",
-    "correctText": "I rest when I am tired.",
-    "correctResponseId": null
+    "correctText": "stuffy",
+    "correctResponseId": "en:lesson-26:session-03:i14:r1"
   },
   {
     "interactionId": "en:lesson-26:session-03:i15",
-    "correctText": "I stay home if it rains.",
+    "correctText": "I take out the clothes when the machine stops.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-03:i16",
-    "correctText": "His phone vibrates when someone calls.",
-    "correctResponseId": null
+    "correctText": "My phone vibrates when the alarm goes off.",
+    "correctResponseId": "en:lesson-26:session-03:i16:r1"
   },
   {
     "interactionId": "en:lesson-26:session-03:i17",
-    "correctText": "The curtains flutter when he opens the window.",
+    "correctText": "I turn down the volume when someone speaks to me.",
     "correctResponseId": null
   }
 ]

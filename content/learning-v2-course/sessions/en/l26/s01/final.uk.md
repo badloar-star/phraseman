@@ -53,99 +53,99 @@ Stiffen — ставати жорсткішими, втрачати гнучкі
 <!-- interaction_id: en:lesson-26:session-01:word:evaporates; family: word_card -->
 > **evaporates** — Випаровується. Evaporate — випаровуватися, переходити з рідини в пару; evaporates — форма із закінченням -s.
 
-**2 · Скажіть: «Вода випаровується, коли її залишають у відкритій мисці.»**
+**2 · Опишіть закономірність: «Вода випаровується швидше, коли повітря тепле».**
 <!-- interaction_id: en:lesson-26:session-01:i01; family: phrase_builder -->
-Плитки: `bowl` `open` `an` `in` `it` `leave` `you` `when` `evaporates` `Water` → **Water evaporates when you leave it in an open bowl.**
+Плитки: `warm` `is` `air` `the` `when` `faster` `evaporates` `Water` → **Water evaporates faster when the air is warm.**
 
-**3 · Доповніть звичайну закономірність.**
+**3 · Ви говорите про звичку, а не про завтрашній план. Доповніть звичайний результат.**
 <!-- interaction_id: en:lesson-26:session-01:i02; family: context_gap_grammar -->
-Water ___ when you leave it in an open bowl. → **evaporates** · evaporate · evaporating
-- evaporate — *Звичайна закономірність: Present Simple. Потрібна форма evaporates.*
-- evaporating — *Звичайна закономірність: Present Simple. Потрібна форма evaporates.*
+I ___ a towel when my hands are wet. → **use** · uses · using
+- uses — *Після I у Present Simple потрібно use без -s.*
+- using — *Для звички тут потрібна форма use; using без допоміжного дієслова не підходить.*
 
 **4 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-01:i03; family: listen_choose -->
-🔊 *Water evaporates when you leave it in an open bowl.* → **Water evaporates when you leave it in an open bowl.** · Water evaporates when you leave it in an open pan. · Water evaporates when you leave it in an open cup.
-- Water evaporates when you leave it in an open pan. — *У записі звучить Water evaporates when you leave it in an open bowl.*
-- Water evaporates when you leave it in an open cup. — *У записі звучить Water evaporates when you leave it in an open bowl.*
+🔊 *I open the window when the room feels hot.* → **I open the window when the room feels hot.** · I close the window when the room feels hot. · I open the door when the room feels hot.
+- I close the window when the room feels hot. — *У записі звучить I open the window when the room feels hot.*
+- I open the door when the room feels hot. — *У записі звучить I open the window when the room feels hot.*
 
 **5 · Картка слова — condenses**
 <!-- interaction_id: en:lesson-26:session-01:word:condenses; family: word_card -->
 > **condenses** — Конденсується. Condense тут — перетворюватися з пари на краплі рідини; condenses — форма із закінченням -s.
 
-**6 · Скажіть: «Пара конденсується, коли торкається холодної поверхні.»**
-<!-- interaction_id: en:lesson-26:session-01:i04; family: phrase_builder -->
-Плитки: `surface` `cold` `a` `touches` `it` `when` `condenses` `Steam` → **Steam condenses when it touches a cold surface.**
+**6 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-01:i04; family: listen_choose -->
+🔊 *Steam condenses on the mirror when I take a hot shower.* → **Steam condenses on the mirror when I take a hot shower.** · Steam condenses on the window when I take a hot shower. · Steam condenses on the mirror when I take a hot bath.
+- Steam condenses on the window when I take a hot shower. — *У записі звучить Steam condenses on the mirror when I take a hot shower.*
+- Steam condenses on the mirror when I take a hot bath. — *У записі звучить Steam condenses on the mirror when I take a hot shower.*
 
-**7 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-01:i05; family: context_gap_grammar -->
-Steam ___ when it touches a cold surface. → **condenses** · condense · condensing
-- condense — *Звичайна закономірність: Present Simple. Потрібна форма condenses.*
-- condensing — *Звичайна закономірність: Present Simple. Потрібна форма condenses.*
+**7 · Відновіть почуту звичку.**
+<!-- interaction_id: en:lesson-26:session-01:i05; family: listen_build_dictation -->
+🔊 *I dry my hands when I finish washing them.* Плитки: `them` `washing` `finish` `I` `when` `hands` `my` `dry` `I` → **I dry my hands when I finish washing them.**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-01:i06; family: listen_choose -->
-🔊 *Steam condenses when it touches a cold surface.* → **Steam condenses when it touches a cold surface.** · Steam condenses when it touches a cold window. · Steam condenses when it touches a cold mirror.
-- Steam condenses when it touches a cold window. — *У записі звучить Steam condenses when it touches a cold surface.*
-- Steam condenses when it touches a cold mirror. — *У записі звучить Steam condenses when it touches a cold surface.*
+**8 · Щоразу під час дощу ви берете парасолю. В обох частинах описано звичайну звичку.**
+<!-- interaction_id: en:lesson-26:session-01:i06; family: context_gap_grammar -->
+I take an umbrella when it ___. → **rains** · rain · raining
+- rain — *Після it у Present Simple потрібна форма rains.*
+- raining — *Тут потрібне дієслово rains, а не raining без is.*
 
 **9 · Картка слова — splatters**
 <!-- interaction_id: en:lesson-26:session-01:word:splatters; family: word_card -->
 > **splatters** — Розбризкується. Splatter — розлітатися бризками; splatters — форма із закінченням -s.
 
-**10 · Скажіть: «Гаряча олія розбризкується, коли в сковороду потрапляє вода.»**
+**10 · Опишіть те, що буває на кухні: «Соус розбризкується, коли він кипить надто сильно».**
 <!-- interaction_id: en:lesson-26:session-01:i07; family: phrase_builder -->
-Плитки: `pan` `the` `into` `gets` `water` `when` `splatters` `oil` `Hot` → **Hot oil splatters when water gets into the pan.**
+Плитки: `hard` `too` `boils` `it` `when` `splatters` `sauce` `The` → **The sauce splatters when it boils too hard.**
 
-**11 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-01:i08; family: context_gap_grammar -->
-Hot oil ___ when water gets into the pan. → **splatters** · splatter · splattering
-- splatter — *Звичайна закономірність: Present Simple. Потрібна форма splatters.*
-- splattering — *Звичайна закономірність: Present Simple. Потрібна форма splatters.*
+**11 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-01:i08; family: listen_choose -->
+🔊 *I turn down the heat when the soup starts to boil.* → **I turn down the heat when the soup starts to boil.** · I turn up the heat when the soup starts to boil. · I turn down the heat when the water starts to boil.
+- I turn up the heat when the soup starts to boil. — *У записі звучить I turn down the heat when the soup starts to boil.*
+- I turn down the heat when the water starts to boil. — *У записі звучить I turn down the heat when the soup starts to boil.*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-01:i09; family: listen_choose -->
-🔊 *Hot oil splatters when water gets into the pan.* → **Hot oil splatters when water gets into the pan.** · Hot oil splatters when water gets into the pot. · Hot oil splatters when water gets into it.
-- Hot oil splatters when water gets into the pot. — *У записі звучить Hot oil splatters when water gets into the pan.*
-- Hot oil splatters when water gets into it. — *У записі звучить Hot oil splatters when water gets into the pan.*
-
-**13 · Картка слова — stiffen**
+**12 · Картка слова — stiffen**
 <!-- interaction_id: en:lesson-26:session-01:word:stiffen; family: word_card -->
 > **stiffen** — Дерев’яніють. Stiffen — ставати жорсткішими, втрачати гнучкість.
 
-**14 · Скажіть: «Мої руки дерев’яніють, коли мерзнуть.»**
-<!-- interaction_id: en:lesson-26:session-01:i10; family: phrase_builder -->
-Плитки: `cold` `get` `they` `when` `stiffen` `hands` `My` → **My hands stiffen when they get cold.**
+**13 · Мовець описує свою реакцію на холод. Fingers — множина.**
+<!-- interaction_id: en:lesson-26:session-01:i09; family: context_gap_grammar -->
+My fingers ___ when I work outside in winter. → **stiffen** · stiffens · stiffening
+- stiffens — *Після fingers потрібна форма stiffen без -s.*
+- stiffening — *Тут потрібен Present Simple: stiffen.*
 
-**15 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-01:i11; family: context_gap_grammar -->
-My hands ___ when they get cold. → **stiffen** · stiffens · stiffening
-- stiffens — *Звичайна закономірність: Present Simple. Потрібна форма stiffen.*
-- stiffening — *Звичайна закономірність: Present Simple. Потрібна форма stiffen.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-01:i12; family: listen_choose -->
-🔊 *My hands stiffen when they get cold.* → **My hands stiffen when they get cold.** · My fingers stiffen when they get cold. · Her hands stiffen when they get cold.
-- My fingers stiffen when they get cold. — *У записі звучить My hands stiffen when they get cold.*
-- Her hands stiffen when they get cold. — *У записі звучить My hands stiffen when they get cold.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-26:session-01:i13; family: speed_match -->
+**14 · Пригадайте чотири дії**
+<!-- interaction_id: en:lesson-26:session-01:i10; family: speed_match -->
 evaporates — випаровується · condenses — конденсується · splatters — розбризкується · stiffen — дерев’яніють
 
-**18 · Відпочиваю, коли втомлююся**
+**15 · Опишіть звичку: «Я надягаю рукавички, коли надворі холодно».**
+<!-- interaction_id: en:lesson-26:session-01:i11; family: scripted_repeat_compare -->
+🎙 **I wear gloves when it is cold outside.**
+
+**16 · Поясніть умову своєї звички: «Я поливаю рослини, якщо земля суха».**
+<!-- interaction_id: en:lesson-26:session-01:i12; family: phrase_builder -->
+Плитки: `dry` `is` `soil` `the` `if` `plants` `the` `water` `I` → **I water the plants if the soil is dry.**
+
+**17 · Ви мерзнете надворі й зазвичай надягаєте пальто. Виберіть відповідну умову.**
+<!-- interaction_id: en:lesson-26:session-01:i13; family: context_gap_grammar -->
+I put on a coat if the weather is ___. → **cold** · warm · hot
+- warm — *Warm — тепло; в описаній ситуації мовець мерзне.*
+- hot — *Hot — спекотно; тут потрібна умова cold — холодно.*
+
+**18 · Почуйте, що робить мовець після готування.**
 <!-- interaction_id: en:lesson-26:session-01:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+🔊 *I wipe the cooker when it is cool.* Плитки: `cool` `is` `it` `when` `cooker` `the` `wipe` `I` → **I wipe the cooker when it is cool.**
 
-**19 · Якщо йде дощ, залишаюся вдома**
-<!-- interaction_id: en:lesson-26:session-01:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+**19 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-01:i15; family: listen_choose -->
+🔊 *The floor gets slippery when it is wet.* → **The floor gets slippery when it is wet.** · The floor gets dirty when it is wet. · The floor gets slippery when it is dry.
+- The floor gets dirty when it is wet. — *У записі звучить The floor gets slippery when it is wet.*
+- The floor gets slippery when it is dry. — *У записі звучить The floor gets slippery when it is wet.*
 
-**20 · Скажіть: «Його руки дерев’яніють, коли мерзнуть».**
+**20 · Розкажіть про особисту реакцію: «Я відпочиваю, коли втомлююся».**
 <!-- interaction_id: en:lesson-26:session-01:i16; family: scripted_repeat_compare -->
-🎙 **His hands stiffen when they get cold.**
+🎙 **I rest when I feel tired.**
 
-**21 · Скажіть: «Пара конденсується, коли торкається холодних дверей».**
-<!-- interaction_id: en:lesson-26:session-01:i17; family: scripted_repeat_compare -->
-🎙 **Steam condenses when it touches a cold door.**
+**21 · Поясніть звичайний вибір: «Ми залишаємося вдома, якщо дороги вкриті льодом».**
+<!-- interaction_id: en:lesson-26:session-01:i17; family: phrase_builder -->
+Плитки: `icy` `are` `roads` `the` `if` `home` `stay` `We` → **We stay home if the roads are icy.**
 

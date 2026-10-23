@@ -49,103 +49,103 @@ Flutter — легко колихатися або тріпотіти. The curta
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — vibrates**
+**1 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-03:i01; family: listen_choose -->
+🔊 *I notice the noise when the room is quiet.* → **I notice the noise when the room is quiet.** · I notice the noise when the room is busy. · I notice the smell when the room is quiet.
+- I notice the noise when the room is busy. — *У записі звучить I notice the noise when the room is quiet.*
+- I notice the smell when the room is quiet. — *У записі звучить I notice the noise when the room is quiet.*
+
+**2 · Картка слова — vibrates**
 <!-- interaction_id: en:lesson-26:session-03:word:vibrates; family: word_card -->
 > **vibrates** — Вібрує. Vibrate — швидко й дрібно тремтіти.
 
-**2 · Скажіть: «Мій телефон вібрує, коли хтось телефонує.»**
-<!-- interaction_id: en:lesson-26:session-03:i01; family: phrase_builder -->
-Плитки: `calls` `someone` `when` `vibrates` `phone` `My` → **My phone vibrates when someone calls.**
+**3 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-03:i02; family: listen_choose -->
+🔊 *My washing machine vibrates when it spins.* → **My washing machine vibrates when it spins.** · My washing machine vibrates when it stops. · My phone vibrates when someone calls.
+- My washing machine vibrates when it stops. — *У записі звучить My washing machine vibrates when it spins.*
+- My phone vibrates when someone calls. — *У записі звучить My washing machine vibrates when it spins.*
 
-**3 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-03:i02; family: context_gap_grammar -->
-My phone ___ when someone calls. → **vibrates** · vibrate · vibrating
-- vibrate — *Звичайна закономірність: Present Simple. Потрібна форма vibrates.*
-- vibrating — *Звичайна закономірність: Present Simple. Потрібна форма vibrates.*
+**4 · Відновіть почуту умову.**
+<!-- interaction_id: en:lesson-26:session-03:i03; family: listen_build_dictation -->
+🔊 *I answer the phone when I hear it ring.* Плитки: `ring` `it` `hear` `I` `when` `phone` `the` `answer` `I` → **I answer the phone when I hear it ring.**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-03:i03; family: listen_choose -->
-🔊 *My phone vibrates when someone calls.* → **My phone vibrates when someone calls.** · Her phone vibrates when someone calls. · My phone vibrates when someone texts.
-- Her phone vibrates when someone calls. — *У записі звучить My phone vibrates when someone calls.*
-- My phone vibrates when someone texts. — *У записі звучить My phone vibrates when someone calls.*
+**5 · Йдеться про вашу звичайну дію. Доповніть умову: ви нічого не чуєте.**
+<!-- interaction_id: en:lesson-26:session-03:i04; family: context_gap_grammar -->
+I check my phone if I ___ hear it. → **cannot** · does not · not
+- does not — *З I не можна використовувати does not; для «не можу чути» потрібно cannot hear.*
+- not — *Самого not недостатньо: потрібна форма cannot hear.*
 
-**5 · Картка слова — rotates**
+**6 · Картка слова — rotates**
 <!-- interaction_id: en:lesson-26:session-03:word:rotates; family: word_card -->
 > **rotates** — Обертається. Rotate — рухатися навколо осі.
 
-**6 · Скажіть: «Барабан обертається, коли я вмикаю пральну машину.»**
-<!-- interaction_id: en:lesson-26:session-03:i04; family: phrase_builder -->
-Плитки: `machine` `washing` `the` `start` `I` `when` `rotates` `drum` `The` → **The drum rotates when I start the washing machine.**
-
-**7 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-03:i05; family: context_gap_grammar -->
-The drum ___ when I start the washing machine. → **rotates** · rotate · rotating
-- rotate — *Звичайна закономірність: Present Simple. Потрібна форма rotates.*
-- rotating — *Звичайна закономірність: Present Simple. Потрібна форма rotates.*
+**7 · Опишіть свою мікрохвильовку: «Тарілка обертається, коли я вмикаю мікрохвильовку».**
+<!-- interaction_id: en:lesson-26:session-03:i05; family: phrase_builder -->
+Плитки: `microwave` `my` `on` `turn` `I` `when` `rotates` `plate` `The` → **The plate rotates when I turn on my microwave.**
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-03:i06; family: listen_choose -->
-🔊 *The drum rotates when I start the washing machine.* → **The drum rotates when I start the washing machine.** · The drum rotates when she starts the washing machine. · The drum rotates when I restart the washing machine.
-- The drum rotates when she starts the washing machine. — *У записі звучить The drum rotates when I start the washing machine.*
-- The drum rotates when I restart the washing machine. — *У записі звучить The drum rotates when I start the washing machine.*
+🔊 *I turn off the fan when I feel cold.* → **I turn off the fan when I feel cold.** · I turn on the fan when I feel cold. · I turn off the fan when I feel hot.
+- I turn on the fan when I feel cold. — *У записі звучить I turn off the fan when I feel cold.*
+- I turn off the fan when I feel hot. — *У записі звучить I turn off the fan when I feel cold.*
 
 **9 · Картка слова — sway**
 <!-- interaction_id: en:lesson-26:session-03:word:sway; family: word_card -->
 > **sway** — Гойдаються. Sway — плавно рухатися з боку в бік.
 
-**10 · Скажіть: «Дерева гойдаються, коли дме вітер.»**
+**10 · Опишіть рух гілок: «Гілки гойдаються, коли дме вітер».**
 <!-- interaction_id: en:lesson-26:session-03:i07; family: phrase_builder -->
-Плитки: `blows` `wind` `the` `when` `sway` `trees` `The` → **The trees sway when the wind blows.**
+Плитки: `blows` `wind` `the` `when` `sway` `branches` `The` → **The branches sway when the wind blows.**
 
-**11 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-03:i08; family: context_gap_grammar -->
-The trees ___ when the wind blows. → **sway** · sways · swaying
-- sways — *Звичайна закономірність: Present Simple. Потрібна форма sway.*
-- swaying — *Звичайна закономірність: Present Simple. Потрібна форма sway.*
+**11 · Запитайте друга: «Що ти помічаєш, коли дивишся у вікно?»**
+<!-- interaction_id: en:lesson-26:session-03:i08; family: scripted_repeat_compare -->
+🎙 **What do you notice when you look out of the window?**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-03:i09; family: listen_choose -->
-🔊 *The trees sway when the wind blows.* → **The trees sway when the wind blows.** · The trees sway when the wind gets stronger. · The branches sway when the wind blows.
-- The trees sway when the wind gets stronger. — *У записі звучить The trees sway when the wind blows.*
-- The branches sway when the wind blows. — *У записі звучить The trees sway when the wind blows.*
+**12 · Почуйте особисту звичку мовця.**
+<!-- interaction_id: en:lesson-26:session-03:i09; family: listen_build_dictation -->
+🔊 *I sit inside when the wind is strong.* Плитки: `strong` `is` `wind` `the` `when` `inside` `sit` `I` → **I sit inside when the wind is strong.**
 
 **13 · Картка слова — flutter**
 <!-- interaction_id: en:lesson-26:session-03:word:flutter; family: word_card -->
 > **flutter** — Колишуться. Flutter — легко й швидко рухатися, наприклад про тканину на вітрі.
 
-**14 · Скажіть: «Штори колишуться, коли я відчиняю вікно.»**
-<!-- interaction_id: en:lesson-26:session-03:i10; family: phrase_builder -->
-Плитки: `window` `the` `open` `I` `when` `flutter` `curtains` `The` → **The curtains flutter when I open the window.**
+**14 · Штори легко рухаються від протягу. Доповніть дію в множині.**
+<!-- interaction_id: en:lesson-26:session-03:i10; family: context_gap_grammar -->
+The curtains ___ when air comes through the door. → **flutter** · flutters · fluttering
+- flutters — *Curtains — множина: flutter без -s.*
+- fluttering — *Тут потрібен Present Simple: flutter.*
 
-**15 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-03:i11; family: context_gap_grammar -->
-The curtains ___ when I open the window. → **flutter** · flutters · fluttering
-- flutters — *Звичайна закономірність: Present Simple. Потрібна форма flutter.*
-- fluttering — *Звичайна закономірність: Present Simple. Потрібна форма flutter.*
+**15 · Розрізніть види руху**
+<!-- interaction_id: en:lesson-26:session-03:i11; family: speed_match -->
+vibrates — вібрує · rotates — обертається · sway — гойдаються · flutter — колишуться
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-03:i12; family: listen_choose -->
-🔊 *The curtains flutter when I open the window.* → **The curtains flutter when I open the window.** · The curtains flutter when she opens the window. · The curtains flutter when I open the door.
-- The curtains flutter when she opens the window. — *У записі звучить The curtains flutter when I open the window.*
-- The curtains flutter when I open the door. — *У записі звучить The curtains flutter when I open the window.*
+🔊 *The branches sway when a bird lands on them.* → **The branches sway when a bird lands on them.** · The branches sway when a bird flies past them. · The curtains flutter when a bird lands on them.
+- The branches sway when a bird flies past them. — *У записі звучить The branches sway when a bird lands on them.*
+- The curtains flutter when a bird lands on them. — *У записі звучить The branches sway when a bird lands on them.*
 
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-26:session-03:i13; family: speed_match -->
-vibrates — вібрує · rotates — обертається · sway — гойдаються · flutter — колишуться
+**17 · Розкажіть про свій вибір: «Я зачиняю вікно, якщо кімната надто холодна».**
+<!-- interaction_id: en:lesson-26:session-03:i13; family: phrase_builder -->
+Плитки: `cold` `too` `is` `room` `the` `if` `window` `the` `close` `I` → **I close the window if the room is too cold.**
 
-**18 · Відпочиваю, коли втомлююся**
-<!-- interaction_id: en:lesson-26:session-03:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**18 · Сусідка відчиняє вікно лише в задушливій кімнаті. Виберіть відповідну умову.**
+<!-- interaction_id: en:lesson-26:session-03:i14; family: context_gap_grammar -->
+She opens the window if the room is ___. → **stuffy** · freezing · empty
+- freezing — *Freezing — дуже холодна; за ситуацією причина — задуха.*
+- empty — *Empty — порожня; це не вказана причина відчинити вікно.*
 
-**19 · Якщо йде дощ, залишаюся вдома**
+**19 · Почуйте момент завершення дії.**
 <!-- interaction_id: en:lesson-26:session-03:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+🔊 *I take out the clothes when the machine stops.* Плитки: `stops` `machine` `the` `when` `clothes` `the` `out` `take` `I` → **I take out the clothes when the machine stops.**
 
-**20 · Скажіть: «Його телефон вібрує, коли хтось телефонує».**
-<!-- interaction_id: en:lesson-26:session-03:i16; family: scripted_repeat_compare -->
-🎙 **His phone vibrates when someone calls.**
+**20 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-03:i16; family: listen_choose -->
+🔊 *My phone vibrates when the alarm goes off.* → **My phone vibrates when the alarm goes off.** · My phone vibrates when someone calls. · My phone vibrates when a message arrives.
+- My phone vibrates when someone calls. — *У записі звучить My phone vibrates when the alarm goes off.*
+- My phone vibrates when a message arrives. — *У записі звучить My phone vibrates when the alarm goes off.*
 
-**21 · Скажіть: «Штори колишуться, коли він відчиняє вікно».**
+**21 · Опишіть особисту звичку: «Я зменшую гучність, коли хтось зі мною говорить».**
 <!-- interaction_id: en:lesson-26:session-03:i17; family: scripted_repeat_compare -->
-🎙 **The curtains flutter when he opens the window.**
+🎙 **I turn down the volume when someone speaks to me.**
 

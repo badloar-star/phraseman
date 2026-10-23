@@ -52,27 +52,26 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Мої туфлі скриплять, коли підлога мокра.»",
+      "prompt": "Запитайте друга: «Твої туфлі скриплять, коли ти ходиш?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Мої туфлі скриплять, коли підлога мокра.»",
+      "accessibilityLabel": "Запитайте друга: «Твої туфлі скриплять, коли ти ходиш?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "My shoes squeak when the floor is wet.",
+        "targetPhrase": "Do your shoes squeak when you walk?",
         "localizedMeaning": {
-          "ru": "Скажите: «Мои туфли скрипят, когда пол мокрый.»",
-          "uk": "Скажіть: «Мої туфлі скриплять, коли підлога мокра.»"
+          "ru": "Спросите друга: «Твои туфли скрипят, когда ты ходишь?»",
+          "uk": "Запитайте друга: «Твої туфлі скриплять, коли ти ходиш?»"
         },
         "orderedTokens": [
-          "My",
+          "Do",
+          "your",
           "shoes",
           "squeak",
           "when",
-          "the",
-          "floor",
-          "is",
-          "wet"
+          "you",
+          "walk"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -87,68 +86,75 @@
       "interactionId": "en:lesson-26:session-02:i02",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Доповніть звичайну закономірність.",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-26:session-02:i02:r1",
-          "text": "squeak"
+          "text": "I hear a noise when I open this door."
         },
         {
           "responseId": "en:lesson-26:session-02:i02:r2",
-          "text": "squeaks"
+          "text": "I hear a noise when I close this door."
         },
         {
           "responseId": "en:lesson-26:session-02:i02:r3",
-          "text": "squeaking"
+          "text": "I hear a noise when I open this drawer."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть звичайну закономірність.",
+      "audioTargetIds": [
+        "en:lesson-26:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-02:i02:audio",
+          "transcript": "I hear a noise when I open this door."
         },
-        "gappedTargetPhrase": "My shoes ___ when the floor is wet.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-26:session-02:i02:r1",
-            "text": "squeak"
+            "targetText": "I hear a noise when I open this door.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-26:session-02:i02:r2",
-            "text": "squeaks"
+            "targetText": "I hear a noise when I close this door.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-26:session-02:i02:r3",
-            "text": "squeaking"
+            "targetText": "I hear a noise when I open this drawer.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Доповніть звичайну закономірність.",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-26:session-02:i02:r2",
             "correct": false,
-            "testedDimension": "Доповніть звичайну закономірність.",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма squeak.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма squeak."
+              "ru": "В записи звучит I hear a noise when I open this door.",
+              "uk": "У записі звучить I hear a noise when I open this door."
             }
           },
           {
             "responseId": "en:lesson-26:session-02:i02:r3",
             "correct": false,
-            "testedDimension": "Доповніть звичайну закономірність.",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма squeak.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма squeak."
+              "ru": "В записи звучит I hear a noise when I open this door.",
+              "uk": "У записі звучить I hear a noise when I open this door."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -156,75 +162,68 @@
       "interactionId": "en:lesson-26:session-02:i03",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
+      "prompt": "Ви описуєте звук своїх дверей. Доповніть результат.",
       "responseOptions": [
         {
           "responseId": "en:lesson-26:session-02:i03:r1",
-          "text": "My shoes squeak when the floor is wet."
+          "text": "squeaks"
         },
         {
           "responseId": "en:lesson-26:session-02:i03:r2",
-          "text": "Her shoes squeak when the floor is wet."
+          "text": "squeak"
         },
         {
           "responseId": "en:lesson-26:session-02:i03:r3",
-          "text": "My shoes squeak when the floor is dry."
+          "text": "squeaking"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-02:i03:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви описуєте звук своїх дверей. Доповніть результат.",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-02:i03:audio",
-          "transcript": "My shoes squeak when the floor is wet."
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете звук своей двери. Дополните результат.",
+          "uk": "Ви описуєте звук своїх дверей. Доповніть результат."
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "gappedTargetPhrase": "The door ___ when I open it.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-26:session-02:i03:r1",
-            "targetText": "My shoes squeak when the floor is wet.",
-            "meaningByLocale": null
+            "text": "squeaks"
           },
           {
             "responseId": "en:lesson-26:session-02:i03:r2",
-            "targetText": "Her shoes squeak when the floor is wet.",
-            "meaningByLocale": null
+            "text": "squeak"
           },
           {
             "responseId": "en:lesson-26:session-02:i03:r3",
-            "targetText": "My shoes squeak when the floor is dry.",
-            "meaningByLocale": null
+            "text": "squeaking"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
+        "testedDimension": "Ви описуєте звук своїх дверей. Доповніть результат.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-26:session-02:i03:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть",
+            "testedDimension": "Ви описуєте звук своїх дверей. Доповніть результат.",
             "feedbackByLocale": {
-              "ru": "В записи звучит My shoes squeak when the floor is wet.",
-              "uk": "У записі звучить My shoes squeak when the floor is wet."
+              "ru": "The door — единственное число, поэтому squeaks.",
+              "uk": "The door — однина, тому squeaks."
             }
           },
           {
             "responseId": "en:lesson-26:session-02:i03:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть",
+            "testedDimension": "Ви описуєте звук своїх дверей. Доповніть результат.",
             "feedbackByLocale": {
-              "ru": "В записи звучит My shoes squeak when the floor is wet.",
-              "uk": "У записі звучить My shoes squeak when the floor is wet."
+              "ru": "В Present Simple здесь нужно squeaks, не squeaking.",
+              "uk": "У Present Simple тут потрібно squeaks, не squeaking."
             }
           }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        ]
       },
       "scriptedAlternate": null
     },
@@ -275,28 +274,109 @@
       "interactionId": "en:lesson-26:session-02:i04",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-02:i04:r1",
+          "text": "The bags rustle when I carry them."
+        },
+        {
+          "responseId": "en:lesson-26:session-02:i04:r2",
+          "text": "The leaves rustle when I carry them."
+        },
+        {
+          "responseId": "en:lesson-26:session-02:i04:r3",
+          "text": "The bags rustle when I open them."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-02:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-02:i04:audio",
+          "transcript": "The bags rustle when I carry them."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-02:i04:r1",
+            "targetText": "The bags rustle when I carry them.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i04:r2",
+            "targetText": "The leaves rustle when I carry them.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i04:r3",
+            "targetText": "The bags rustle when I open them.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-02:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bags rustle when I carry them.",
+              "uk": "У записі звучить The bags rustle when I carry them."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bags rustle when I carry them.",
+              "uk": "У записі звучить The bags rustle when I carry them."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-02:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Листя шелестить, коли дме вітер.»",
+      "prompt": "Відновіть почуту звичку.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Листя шелестить, коли дме вітер.»",
+      "audioTargetIds": [
+        "en:lesson-26:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Відновіть почуту звичку.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The leaves rustle when the wind blows.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Листья шелестят, когда дует ветер.»",
-          "uk": "Скажіть: «Листя шелестить, коли дме вітер.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-02:i05:audio",
+          "transcript": "I listen carefully when I hear a strange noise."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I listen carefully when I hear a strange noise.",
         "orderedTokens": [
-          "The",
-          "leaves",
-          "rustle",
+          "I",
+          "listen",
+          "carefully",
           "when",
-          "the",
-          "wind",
-          "blows"
+          "I",
+          "hear",
+          "a",
+          "strange",
+          "noise"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -308,153 +388,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-02:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть звичайну закономірність.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-26:session-02:i05:r1",
-          "text": "rustle"
-        },
-        {
-          "responseId": "en:lesson-26:session-02:i05:r2",
-          "text": "rustles"
-        },
-        {
-          "responseId": "en:lesson-26:session-02:i05:r3",
-          "text": "rustling"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть звичайну закономірність.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
-        },
-        "gappedTargetPhrase": "The leaves ___ when the wind blows.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-26:session-02:i05:r1",
-            "text": "rustle"
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i05:r2",
-            "text": "rustles"
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i05:r3",
-            "text": "rustling"
-          }
-        ],
-        "testedDimension": "Доповніть звичайну закономірність.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-26:session-02:i05:r2",
-            "correct": false,
-            "testedDimension": "Доповніть звичайну закономірність.",
-            "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма rustle.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма rustle."
-            }
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i05:r3",
-            "correct": false,
-            "testedDimension": "Доповніть звичайну закономірність.",
-            "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма rustle.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма rustle."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-02:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-26:session-02:i06:r1",
-          "text": "The leaves rustle when the wind blows."
-        },
-        {
-          "responseId": "en:lesson-26:session-02:i06:r2",
-          "text": "The leaves rustle when the wind stops."
-        },
-        {
-          "responseId": "en:lesson-26:session-02:i06:r3",
-          "text": "The leaves rustle when the children move."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-02:i06:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-02:i06:audio",
-          "transcript": "The leaves rustle when the wind blows."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-26:session-02:i06:r1",
-            "targetText": "The leaves rustle when the wind blows.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i06:r2",
-            "targetText": "The leaves rustle when the wind stops.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i06:r3",
-            "targetText": "The leaves rustle when the children move.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-26:session-02:i06:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The leaves rustle when the wind blows.",
-              "uk": "У записі звучить The leaves rustle when the wind blows."
-            }
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i06:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The leaves rustle when the wind blows.",
-              "uk": "У записі звучить The leaves rustle when the wind blows."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-26:session-02:word:squeal",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -496,22 +431,22 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-02:i07",
-      "ordinal": 13,
+      "interactionId": "en:lesson-26:session-02:i06",
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Мої діти верещать, коли збуджуються.»",
+      "prompt": "Розкажіть саме про своїх дітей: «Мої діти верещать, коли бачать цуценя».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Мої діти верещать, коли збуджуються.»",
+      "accessibilityLabel": "Розкажіть саме про своїх дітей: «Мої діти верещать, коли бачать цуценя».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "My children squeal when they get excited.",
+        "targetPhrase": "My children squeal when they see a puppy.",
         "localizedMeaning": {
-          "ru": "Скажите: «Мои дети визжат, когда приходят в возбуждение.»",
-          "uk": "Скажіть: «Мої діти верещать, коли збуджуються.»"
+          "ru": "Расскажите именно о своих детях: «Мои дети визжат, когда видят щенка».",
+          "uk": "Розкажіть саме про своїх дітей: «Мої діти верещать, коли бачать цуценя»."
         },
         "orderedTokens": [
           "My",
@@ -519,8 +454,9 @@
           "squeal",
           "when",
           "they",
-          "get",
-          "excited"
+          "see",
+          "a",
+          "puppy"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -532,68 +468,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-02:i08",
-      "ordinal": 14,
+      "interactionId": "en:lesson-26:session-02:i07",
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть звичайну закономірність.",
+      "prompt": "Ви не будите дитину. Доповніть звичну заперечну дію.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-26:session-02:i08:r1",
-          "text": "squeal"
+          "responseId": "en:lesson-26:session-02:i07:r1",
+          "text": "do not"
         },
         {
-          "responseId": "en:lesson-26:session-02:i08:r2",
-          "text": "squeals"
+          "responseId": "en:lesson-26:session-02:i07:r2",
+          "text": "does not"
         },
         {
-          "responseId": "en:lesson-26:session-02:i08:r3",
-          "text": "squealing"
+          "responseId": "en:lesson-26:session-02:i07:r3",
+          "text": "am not"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть звичайну закономірність.",
+      "accessibilityLabel": "Ви не будите дитину. Доповніть звичну заперечну дію.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
+          "ru": "Вы не будите ребёнка. Дополните привычное отрицательное действие.",
+          "uk": "Ви не будите дитину. Доповніть звичну заперечну дію."
         },
-        "gappedTargetPhrase": "My children ___ when they get excited.",
+        "gappedTargetPhrase": "I ___ make a noise when the baby is asleep.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-26:session-02:i08:r1",
-            "text": "squeal"
+            "responseId": "en:lesson-26:session-02:i07:r1",
+            "text": "do not"
           },
           {
-            "responseId": "en:lesson-26:session-02:i08:r2",
-            "text": "squeals"
+            "responseId": "en:lesson-26:session-02:i07:r2",
+            "text": "does not"
           },
           {
-            "responseId": "en:lesson-26:session-02:i08:r3",
-            "text": "squealing"
+            "responseId": "en:lesson-26:session-02:i07:r3",
+            "text": "am not"
           }
         ],
-        "testedDimension": "Доповніть звичайну закономірність.",
+        "testedDimension": "Ви не будите дитину. Доповніть звичну заперечну дію.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-26:session-02:i08:r2",
+            "responseId": "en:lesson-26:session-02:i07:r2",
             "correct": false,
-            "testedDimension": "Доповніть звичайну закономірність.",
+            "testedDimension": "Ви не будите дитину. Доповніть звичну заперечну дію.",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма squeal.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма squeal."
+              "ru": "С I отрицание в Present Simple строится через do not.",
+              "uk": "З I заперечення у Present Simple утворюється через do not."
             }
           },
           {
-            "responseId": "en:lesson-26:session-02:i08:r3",
+            "responseId": "en:lesson-26:session-02:i07:r3",
             "correct": false,
-            "testedDimension": "Доповніть звичайну закономірність.",
+            "testedDimension": "Ви не будите дитину. Доповніть звичну заперечну дію.",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма squeal.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма squeal."
+              "ru": "Перед make здесь нужен вспомогательный do not, не am not.",
+              "uk": "Перед make тут потрібне do not, не am not."
             }
           }
         ]
@@ -601,73 +537,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-02:i09",
-      "ordinal": 15,
+      "interactionId": "en:lesson-26:session-02:i08",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-26:session-02:i09:r1",
-          "text": "My children squeal when they get excited."
+          "responseId": "en:lesson-26:session-02:i08:r1",
+          "text": "The dog barks when someone knocks."
         },
         {
-          "responseId": "en:lesson-26:session-02:i09:r2",
-          "text": "Her children squeal when they get excited."
+          "responseId": "en:lesson-26:session-02:i08:r2",
+          "text": "The dog barks when someone calls."
         },
         {
-          "responseId": "en:lesson-26:session-02:i09:r3",
-          "text": "My children squeal when they get frightened."
+          "responseId": "en:lesson-26:session-02:i08:r3",
+          "text": "The baby cries when someone knocks."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-26:session-02:i09:audio"
+        "en:lesson-26:session-02:i08:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-02:i09:audio",
-          "transcript": "My children squeal when they get excited."
+          "audioTargetId": "en:lesson-26:session-02:i08:audio",
+          "transcript": "The dog barks when someone knocks."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-26:session-02:i09:r1",
-            "targetText": "My children squeal when they get excited.",
+            "responseId": "en:lesson-26:session-02:i08:r1",
+            "targetText": "The dog barks when someone knocks.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-26:session-02:i09:r2",
-            "targetText": "Her children squeal when they get excited.",
+            "responseId": "en:lesson-26:session-02:i08:r2",
+            "targetText": "The dog barks when someone calls.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-26:session-02:i09:r3",
-            "targetText": "My children squeal when they get frightened.",
+            "responseId": "en:lesson-26:session-02:i08:r3",
+            "targetText": "The baby cries when someone knocks.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-26:session-02:i09:r2",
+            "responseId": "en:lesson-26:session-02:i08:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит My children squeal when they get excited.",
-              "uk": "У записі звучить My children squeal when they get excited."
+              "ru": "В записи звучит The dog barks when someone knocks.",
+              "uk": "У записі звучить The dog barks when someone knocks."
             }
           },
           {
-            "responseId": "en:lesson-26:session-02:i09:r3",
+            "responseId": "en:lesson-26:session-02:i08:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит My children squeal when they get excited.",
-              "uk": "У записі звучить My children squeal when they get excited."
+              "ru": "В записи звучит The dog barks when someone knocks.",
+              "uk": "У записі звучить The dog barks when someone knocks."
             }
           }
         ],
@@ -678,7 +614,7 @@
     },
     {
       "interactionId": "en:lesson-26:session-02:word:roars",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -720,32 +656,33 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-02:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-26:session-02:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Двигун реве, коли я натискаю на педаль.»",
+      "prompt": "Опишіть свій пилосос: «Мій пилосос реве, коли я його вмикаю».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Двигун реве, коли я натискаю на педаль.»",
+      "accessibilityLabel": "Опишіть свій пилосос: «Мій пилосос реве, коли я його вмикаю».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The engine roars when I press the pedal.",
+        "targetPhrase": "My vacuum cleaner roars when I turn it on.",
         "localizedMeaning": {
-          "ru": "Скажите: «Двигатель ревёт, когда я нажимаю на педаль.»",
-          "uk": "Скажіть: «Двигун реве, коли я натискаю на педаль.»"
+          "ru": "Опишите свой пылесос: «Мой пылесос ревёт, когда я его включаю».",
+          "uk": "Опишіть свій пилосос: «Мій пилосос реве, коли я його вмикаю»."
         },
         "orderedTokens": [
-          "The",
-          "engine",
+          "My",
+          "vacuum",
+          "cleaner",
           "roars",
           "when",
           "I",
-          "press",
-          "the",
-          "pedal"
+          "turn",
+          "it",
+          "on"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -757,166 +694,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-02:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть звичайну закономірність.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-26:session-02:i11:r1",
-          "text": "roars"
-        },
-        {
-          "responseId": "en:lesson-26:session-02:i11:r2",
-          "text": "roar"
-        },
-        {
-          "responseId": "en:lesson-26:session-02:i11:r3",
-          "text": "roaring"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть звичайну закономірність.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
-        },
-        "gappedTargetPhrase": "The engine ___ when I press the pedal.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-26:session-02:i11:r1",
-            "text": "roars"
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i11:r2",
-            "text": "roar"
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i11:r3",
-            "text": "roaring"
-          }
-        ],
-        "testedDimension": "Доповніть звичайну закономірність.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-26:session-02:i11:r2",
-            "correct": false,
-            "testedDimension": "Доповніть звичайну закономірність.",
-            "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма roars.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма roars."
-            }
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i11:r3",
-            "correct": false,
-            "testedDimension": "Доповніть звичайну закономірність.",
-            "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма roars.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма roars."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-02:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-26:session-02:i12:r1",
-          "text": "The engine roars when I press the pedal."
-        },
-        {
-          "responseId": "en:lesson-26:session-02:i12:r2",
-          "text": "The engine roars when she presses the pedal."
-        },
-        {
-          "responseId": "en:lesson-26:session-02:i12:r3",
-          "text": "The engine roars when I release the pedal."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-02:i12:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-02:i12:audio",
-          "transcript": "The engine roars when I press the pedal."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-26:session-02:i12:r1",
-            "targetText": "The engine roars when I press the pedal.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i12:r2",
-            "targetText": "The engine roars when she presses the pedal.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i12:r3",
-            "targetText": "The engine roars when I release the pedal.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-26:session-02:i12:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The engine roars when I press the pedal.",
-              "uk": "У записі звучить The engine roars when I press the pedal."
-            }
-          },
-          {
-            "responseId": "en:lesson-26:session-02:i12:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The engine roars when I press the pedal.",
-              "uk": "У записі звучить The engine roars when I press the pedal."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-02:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-26:session-02:i10",
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Поєднайте форми з перекладом",
+      "prompt": "Розрізніть чотири звуки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте форми з перекладом",
+      "accessibilityLabel": "Розрізніть чотири звуки",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-26:session-02:i13:p1",
+            "pairId": "en:lesson-26:session-02:i10:p1",
             "target": "squeak",
             "meaningByLocale": {
               "ru": "пищат, скрипят",
@@ -924,7 +716,7 @@
             }
           },
           {
-            "pairId": "en:lesson-26:session-02:i13:p2",
+            "pairId": "en:lesson-26:session-02:i10:p2",
             "target": "rustle",
             "meaningByLocale": {
               "ru": "шелестят",
@@ -932,7 +724,7 @@
             }
           },
           {
-            "pairId": "en:lesson-26:session-02:i13:p3",
+            "pairId": "en:lesson-26:session-02:i10:p3",
             "target": "squeal",
             "meaningByLocale": {
               "ru": "визжат",
@@ -940,7 +732,7 @@
             }
           },
           {
-            "pairId": "en:lesson-26:session-02:i13:p4",
+            "pairId": "en:lesson-26:session-02:i10:p4",
             "target": "roars",
             "meaningByLocale": {
               "ru": "ревёт",
@@ -975,102 +767,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-02:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Відпочиваю, коли втомлююся",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-02:i14:audio"
-      ],
-      "accessibilityLabel": "Відпочиваю, коли втомлююся",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-02:i14:audio",
-          "transcript": "I rest when I am tired."
+      "interactionId": "en:lesson-26:session-02:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Листя шарудить у вітряну погоду. Доповніть умову.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-02:i11:r1",
+          "text": "blows"
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I rest when I am tired.",
-        "orderedTokens": [
-          "I",
-          "rest",
-          "when",
-          "I",
-          "am",
-          "tired"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        {
+          "responseId": "en:lesson-26:session-02:i11:r2",
+          "text": "blow"
+        },
+        {
+          "responseId": "en:lesson-26:session-02:i11:r3",
+          "text": "blowing"
         }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Листя шарудить у вітряну погоду. Доповніть умову.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Листья шуршат в ветреную погоду. Дополните условие.",
+          "uk": "Листя шарудить у вітряну погоду. Доповніть умову."
+        },
+        "gappedTargetPhrase": "The leaves rustle when the wind ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-02:i11:r1",
+            "text": "blows"
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i11:r2",
+            "text": "blow"
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i11:r3",
+            "text": "blowing"
+          }
+        ],
+        "testedDimension": "Листя шарудить у вітряну погоду. Доповніть умову.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Листя шарудить у вітряну погоду. Доповніть умову.",
+            "feedbackByLocale": {
+              "ru": "The wind — единственное число: blows.",
+              "uk": "The wind — однина: blows."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Листя шарудить у вітряну погоду. Доповніть умову.",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма blows; blowing без is здесь не подходит.",
+              "uk": "Потрібна особова форма blows; blowing без is тут не підходить."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-02:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Якщо йде дощ, залишаюся вдома",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-02:i15:audio"
-      ],
-      "accessibilityLabel": "Якщо йде дощ, залишаюся вдома",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-02:i15:audio",
-          "transcript": "I stay home if it rains."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I stay home if it rains.",
-        "orderedTokens": [
-          "I",
-          "stay",
-          "home",
-          "if",
-          "it",
-          "rains"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-02:i16",
-      "ordinal": 23,
+      "interactionId": "en:lesson-26:session-02:i12",
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Її туфлі скриплять, коли підлога суха».",
+      "prompt": "Запитайте співрозмовника: «Що ти робиш, коли чуєш гучний звук?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-26:session-02:i16:audio"
+        "en:lesson-26:session-02:i12:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Її туфлі скриплять, коли підлога суха».",
+      "accessibilityLabel": "Запитайте співрозмовника: «Що ти робиш, коли чуєш гучний звук?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-02:i16:audio",
-          "transcript": "Her shoes squeak when the floor is dry."
+          "audioTargetId": "en:lesson-26:session-02:i12:audio",
+          "transcript": "What do you do when you hear a loud noise?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Her shoes squeak when the floor is dry.",
+        "targetPhrase": "What do you do when you hear a loud noise?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1084,26 +869,252 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-26:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте реакцію мовця.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-02:i13:audio"
+      ],
+      "accessibilityLabel": "Почуйте реакцію мовця.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-02:i13:audio",
+          "transcript": "I cover my ears when the music is too loud."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I cover my ears when the music is too loud.",
+        "orderedTokens": [
+          "I",
+          "cover",
+          "my",
+          "ears",
+          "when",
+          "the",
+          "music",
+          "is",
+          "too",
+          "loud"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-02:i14:r1",
+          "text": "I close the window when the street is noisy."
+        },
+        {
+          "responseId": "en:lesson-26:session-02:i14:r2",
+          "text": "I open the window when the street is noisy."
+        },
+        {
+          "responseId": "en:lesson-26:session-02:i14:r3",
+          "text": "I close the door when the street is noisy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-02:i14:audio",
+          "transcript": "I close the window when the street is noisy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-02:i14:r1",
+            "targetText": "I close the window when the street is noisy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i14:r2",
+            "targetText": "I open the window when the street is noisy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i14:r3",
+            "targetText": "I close the door when the street is noisy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-02:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I close the window when the street is noisy.",
+              "uk": "У записі звучить I close the window when the street is noisy."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I close the window when the street is noisy.",
+              "uk": "У записі звучить I close the window when the street is noisy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хочете чути співрозмовника й просите його говорити голосніше, якщо навколо гамірно. Доповніть умову.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-02:i15:r1",
+          "text": "noisy"
+        },
+        {
+          "responseId": "en:lesson-26:session-02:i15:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-26:session-02:i15:r3",
+          "text": "silent"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете чути співрозмовника й просите його говорити голосніше, якщо навколо гамірно. Доповніть умову.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотите слышать собеседника и просите его говорить громче, если вокруг шумно. Дополните условие.",
+          "uk": "Ви хочете чути співрозмовника й просите його говорити голосніше, якщо навколо гамірно. Доповніть умову."
+        },
+        "gappedTargetPhrase": "I ask you to speak louder if the room is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-02:i15:r1",
+            "text": "noisy"
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i15:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i15:r3",
+            "text": "silent"
+          }
+        ],
+        "testedDimension": "Ви хочете чути співрозмовника й просите його говорити голосніше, якщо навколо гамірно. Доповніть умову.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-02:i15:r2",
+            "correct": false,
+            "testedDimension": "Ви хочете чути співрозмовника й просите його говорити голосніше, якщо навколо гамірно. Доповніть умову.",
+            "feedbackByLocale": {
+              "ru": "Quiet — тихо; по ситуации говорить громче нужно из-за шума.",
+              "uk": "Quiet — тихо; за ситуацією говорити голосніше потрібно через шум."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-02:i15:r3",
+            "correct": false,
+            "testedDimension": "Ви хочете чути співрозмовника й просите його говорити голосніше, якщо навколо гамірно. Доповніть умову.",
+            "feedbackByLocale": {
+              "ru": "Silent — беззвучный; здесь условие noisy — шумный.",
+              "uk": "Silent — беззвучний; тут умова noisy — гамірний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-02:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть свою звичку: «Я знімаю навушники, коли хтось зі мною розмовляє».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть свою звичку: «Я знімаю навушники, коли хтось зі мною розмовляє».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I take off my headphones when someone talks to me.",
+        "localizedMeaning": {
+          "ru": "Объясните свою привычку: «Я снимаю наушники, когда кто-то со мной разговаривает».",
+          "uk": "Поясніть свою звичку: «Я знімаю навушники, коли хтось зі мною розмовляє»."
+        },
+        "orderedTokens": [
+          "I",
+          "take",
+          "off",
+          "my",
+          "headphones",
+          "when",
+          "someone",
+          "talks",
+          "to",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-26:session-02:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Двигун реве, коли він натискає на педаль».",
+      "prompt": "Розкажіть про свою реакцію: «Я здригаюся, коли двері грюкають».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-26:session-02:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Двигун реве, коли він натискає на педаль».",
+      "accessibilityLabel": "Розкажіть про свою реакцію: «Я здригаюся, коли двері грюкають».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-26:session-02:i17:audio",
-          "transcript": "The engine roars when he presses the pedal."
+          "transcript": "I jump when the door slams."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The engine roars when he presses the pedal.",
+        "targetPhrase": "I jump when the door slams.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1123,5 +1134,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3dd2394eb7ee078a0ec6e1328e601f4295f6e341c6dc9bd783e62518664ac676"
+  "learnerFingerprint": "79349c7b7b71050d9c49014f63d105a4d9cd9c00901a8797e131b96b0debc599"
 }

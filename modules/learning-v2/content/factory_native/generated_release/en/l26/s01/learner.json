@@ -52,29 +52,27 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Вода испаряется, когда её оставляют в открытой миске.»",
+      "prompt": "Опишите закономерность: «Вода испаряется быстрее, когда воздух тёплый».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Вода испаряется, когда её оставляют в открытой миске.»",
+      "accessibilityLabel": "Опишите закономерность: «Вода испаряется быстрее, когда воздух тёплый».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Water evaporates when you leave it in an open bowl.",
+        "targetPhrase": "Water evaporates faster when the air is warm.",
         "localizedMeaning": {
-          "ru": "Скажите: «Вода испаряется, когда её оставляют в открытой миске.»",
-          "uk": "Скажіть: «Вода випаровується, коли її залишають у відкритій мисці.»"
+          "ru": "Опишите закономерность: «Вода испаряется быстрее, когда воздух тёплый».",
+          "uk": "Опишіть закономірність: «Вода випаровується швидше, коли повітря тепле»."
         },
         "orderedTokens": [
           "Water",
           "evaporates",
+          "faster",
           "when",
-          "you",
-          "leave",
-          "it",
-          "in",
-          "an",
-          "open",
-          "bowl"
+          "the",
+          "air",
+          "is",
+          "warm"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -91,63 +89,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните обычную закономерность.",
+      "prompt": "Вы говорите о привычке, а не о завтрашнем плане. Дополните обычный результат.",
       "responseOptions": [
         {
           "responseId": "en:lesson-26:session-01:i02:r1",
-          "text": "evaporates"
+          "text": "use"
         },
         {
           "responseId": "en:lesson-26:session-01:i02:r2",
-          "text": "evaporate"
+          "text": "uses"
         },
         {
           "responseId": "en:lesson-26:session-01:i02:r3",
-          "text": "evaporating"
+          "text": "using"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните обычную закономерность.",
+      "accessibilityLabel": "Вы говорите о привычке, а не о завтрашнем плане. Дополните обычный результат.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
+          "ru": "Вы говорите о привычке, а не о завтрашнем плане. Дополните обычный результат.",
+          "uk": "Ви говорите про звичку, а не про завтрашній план. Доповніть звичайний результат."
         },
-        "gappedTargetPhrase": "Water ___ when you leave it in an open bowl.",
+        "gappedTargetPhrase": "I ___ a towel when my hands are wet.",
         "gapOptions": [
           {
             "responseId": "en:lesson-26:session-01:i02:r1",
-            "text": "evaporates"
+            "text": "use"
           },
           {
             "responseId": "en:lesson-26:session-01:i02:r2",
-            "text": "evaporate"
+            "text": "uses"
           },
           {
             "responseId": "en:lesson-26:session-01:i02:r3",
-            "text": "evaporating"
+            "text": "using"
           }
         ],
-        "testedDimension": "Дополните обычную закономерность.",
+        "testedDimension": "Вы говорите о привычке, а не о завтрашнем плане. Дополните обычный результат.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-26:session-01:i02:r2",
             "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
+            "testedDimension": "Вы говорите о привычке, а не о завтрашнем плане. Дополните обычный результат.",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма evaporates.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма evaporates."
+              "ru": "После I в Present Simple нужно use без -s.",
+              "uk": "Після I у Present Simple потрібно use без -s."
             }
           },
           {
             "responseId": "en:lesson-26:session-01:i02:r3",
             "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
+            "testedDimension": "Вы говорите о привычке, а не о завтрашнем плане. Дополните обычный результат.",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма evaporates.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма evaporates."
+              "ru": "Для привычки здесь нужна форма use; using без вспомогательного глагола не подходит.",
+              "uk": "Для звички тут потрібна форма use; using без допоміжного дієслова не підходить."
             }
           }
         ]
@@ -164,15 +162,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-26:session-01:i03:r1",
-          "text": "Water evaporates when you leave it in an open bowl."
+          "text": "I open the window when the room feels hot."
         },
         {
           "responseId": "en:lesson-26:session-01:i03:r2",
-          "text": "Water evaporates when you leave it in an open pan."
+          "text": "I close the window when the room feels hot."
         },
         {
           "responseId": "en:lesson-26:session-01:i03:r3",
-          "text": "Water evaporates when you leave it in an open cup."
+          "text": "I open the door when the room feels hot."
         }
       ],
       "mediaIds": [],
@@ -184,23 +182,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-26:session-01:i03:audio",
-          "transcript": "Water evaporates when you leave it in an open bowl."
+          "transcript": "I open the window when the room feels hot."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-26:session-01:i03:r1",
-            "targetText": "Water evaporates when you leave it in an open bowl.",
+            "targetText": "I open the window when the room feels hot.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-26:session-01:i03:r2",
-            "targetText": "Water evaporates when you leave it in an open pan.",
+            "targetText": "I close the window when the room feels hot.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-26:session-01:i03:r3",
-            "targetText": "Water evaporates when you leave it in an open cup.",
+            "targetText": "I open the door when the room feels hot.",
             "meaningByLocale": null
           }
         ],
@@ -211,8 +209,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Water evaporates when you leave it in an open bowl.",
-              "uk": "У записі звучить Water evaporates when you leave it in an open bowl."
+              "ru": "В записи звучит I open the window when the room feels hot.",
+              "uk": "У записі звучить I open the window when the room feels hot."
             }
           },
           {
@@ -220,8 +218,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Water evaporates when you leave it in an open bowl.",
-              "uk": "У записі звучить Water evaporates when you leave it in an open bowl."
+              "ru": "В записи звучит I open the window when the room feels hot.",
+              "uk": "У записі звучить I open the window when the room feels hot."
             }
           }
         ],
@@ -277,29 +275,109 @@
       "interactionId": "en:lesson-26:session-01:i04",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-01:i04:r1",
+          "text": "Steam condenses on the mirror when I take a hot shower."
+        },
+        {
+          "responseId": "en:lesson-26:session-01:i04:r2",
+          "text": "Steam condenses on the window when I take a hot shower."
+        },
+        {
+          "responseId": "en:lesson-26:session-01:i04:r3",
+          "text": "Steam condenses on the mirror when I take a hot bath."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-01:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-01:i04:audio",
+          "transcript": "Steam condenses on the mirror when I take a hot shower."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-01:i04:r1",
+            "targetText": "Steam condenses on the mirror when I take a hot shower.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-01:i04:r2",
+            "targetText": "Steam condenses on the window when I take a hot shower.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-01:i04:r3",
+            "targetText": "Steam condenses on the mirror when I take a hot bath.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Steam condenses on the mirror when I take a hot shower.",
+              "uk": "У записі звучить Steam condenses on the mirror when I take a hot shower."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-01:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Steam condenses on the mirror when I take a hot shower.",
+              "uk": "У записі звучить Steam condenses on the mirror when I take a hot shower."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-01:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Пар конденсируется, когда соприкасается с холодной поверхностью.»",
+      "prompt": "Восстановите услышанную привычку.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Пар конденсируется, когда соприкасается с холодной поверхностью.»",
+      "audioTargetIds": [
+        "en:lesson-26:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Восстановите услышанную привычку.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Steam condenses when it touches a cold surface.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Пар конденсируется, когда соприкасается с холодной поверхностью.»",
-          "uk": "Скажіть: «Пара конденсується, коли торкається холодної поверхні.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-01:i05:audio",
+          "transcript": "I dry my hands when I finish washing them."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I dry my hands when I finish washing them.",
         "orderedTokens": [
-          "Steam",
-          "condenses",
+          "I",
+          "dry",
+          "my",
+          "hands",
           "when",
-          "it",
-          "touches",
-          "a",
-          "cold",
-          "surface"
+          "I",
+          "finish",
+          "washing",
+          "them"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -311,147 +389,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-01:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
+      "interactionId": "en:lesson-26:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните обычную закономерность.",
+      "prompt": "Каждый раз при дожде вы берёте зонт. В обеих частях описывается обычная привычка.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-26:session-01:i05:r1",
-          "text": "condenses"
+          "responseId": "en:lesson-26:session-01:i06:r1",
+          "text": "rains"
         },
         {
-          "responseId": "en:lesson-26:session-01:i05:r2",
-          "text": "condense"
+          "responseId": "en:lesson-26:session-01:i06:r2",
+          "text": "rain"
         },
         {
-          "responseId": "en:lesson-26:session-01:i05:r3",
-          "text": "condensing"
+          "responseId": "en:lesson-26:session-01:i06:r3",
+          "text": "raining"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните обычную закономерность.",
+      "accessibilityLabel": "Каждый раз при дожде вы берёте зонт. В обеих частях описывается обычная привычка.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
+          "ru": "Каждый раз при дожде вы берёте зонт. В обеих частях описывается обычная привычка.",
+          "uk": "Щоразу під час дощу ви берете парасолю. В обох частинах описано звичайну звичку."
         },
-        "gappedTargetPhrase": "Steam ___ when it touches a cold surface.",
+        "gappedTargetPhrase": "I take an umbrella when it ___.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-26:session-01:i05:r1",
-            "text": "condenses"
+            "responseId": "en:lesson-26:session-01:i06:r1",
+            "text": "rains"
           },
           {
-            "responseId": "en:lesson-26:session-01:i05:r2",
-            "text": "condense"
+            "responseId": "en:lesson-26:session-01:i06:r2",
+            "text": "rain"
           },
           {
-            "responseId": "en:lesson-26:session-01:i05:r3",
-            "text": "condensing"
+            "responseId": "en:lesson-26:session-01:i06:r3",
+            "text": "raining"
           }
         ],
-        "testedDimension": "Дополните обычную закономерность.",
+        "testedDimension": "Каждый раз при дожде вы берёте зонт. В обеих частях описывается обычная привычка.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-26:session-01:i05:r2",
+            "responseId": "en:lesson-26:session-01:i06:r2",
             "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
+            "testedDimension": "Каждый раз при дожде вы берёте зонт. В обеих частях описывается обычная привычка.",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма condenses.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма condenses."
+              "ru": "После it в Present Simple нужна форма rains.",
+              "uk": "Після it у Present Simple потрібна форма rains."
             }
           },
           {
-            "responseId": "en:lesson-26:session-01:i05:r3",
+            "responseId": "en:lesson-26:session-01:i06:r3",
             "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
+            "testedDimension": "Каждый раз при дожде вы берёте зонт. В обеих частях описывается обычная привычка.",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма condenses.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма condenses."
+              "ru": "Здесь нужен личный глагол rains, а не raining без is.",
+              "uk": "Тут потрібне дієслово rains, а не raining без is."
             }
           }
         ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-01:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-26:session-01:i06:r1",
-          "text": "Steam condenses when it touches a cold surface."
-        },
-        {
-          "responseId": "en:lesson-26:session-01:i06:r2",
-          "text": "Steam condenses when it touches a cold window."
-        },
-        {
-          "responseId": "en:lesson-26:session-01:i06:r3",
-          "text": "Steam condenses when it touches a cold mirror."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-01:i06:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-01:i06:audio",
-          "transcript": "Steam condenses when it touches a cold surface."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-26:session-01:i06:r1",
-            "targetText": "Steam condenses when it touches a cold surface.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-26:session-01:i06:r2",
-            "targetText": "Steam condenses when it touches a cold window.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-26:session-01:i06:r3",
-            "targetText": "Steam condenses when it touches a cold mirror.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-26:session-01:i06:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит Steam condenses when it touches a cold surface.",
-              "uk": "У записі звучить Steam condenses when it touches a cold surface."
-            }
-          },
-          {
-            "responseId": "en:lesson-26:session-01:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит Steam condenses when it touches a cold surface.",
-              "uk": "У записі звучить Steam condenses when it touches a cold surface."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -504,28 +506,27 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Горячее масло разбрызгивается, когда в сковороду попадает вода.»",
+      "prompt": "Опишите то, что бывает на кухне: «Соус разбрызгивается, когда он кипит слишком сильно».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Горячее масло разбрызгивается, когда в сковороду попадает вода.»",
+      "accessibilityLabel": "Опишите то, что бывает на кухне: «Соус разбрызгивается, когда он кипит слишком сильно».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Hot oil splatters when water gets into the pan.",
+        "targetPhrase": "The sauce splatters when it boils too hard.",
         "localizedMeaning": {
-          "ru": "Скажите: «Горячее масло разбрызгивается, когда в сковороду попадает вода.»",
-          "uk": "Скажіть: «Гаряча олія розбризкується, коли в сковороду потрапляє вода.»"
+          "ru": "Опишите то, что бывает на кухне: «Соус разбрызгивается, когда он кипит слишком сильно».",
+          "uk": "Опишіть те, що буває на кухні: «Соус розбризкується, коли він кипить надто сильно»."
         },
         "orderedTokens": [
-          "Hot",
-          "oil",
+          "The",
+          "sauce",
           "splatters",
           "when",
-          "water",
-          "gets",
-          "into",
-          "the",
-          "pan"
+          "it",
+          "boils",
+          "too",
+          "hard"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -540,139 +541,70 @@
       "interactionId": "en:lesson-26:session-01:i08",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните обычную закономерность.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-26:session-01:i08:r1",
-          "text": "splatters"
-        },
-        {
-          "responseId": "en:lesson-26:session-01:i08:r2",
-          "text": "splatter"
-        },
-        {
-          "responseId": "en:lesson-26:session-01:i08:r3",
-          "text": "splattering"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните обычную закономерность.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
-        },
-        "gappedTargetPhrase": "Hot oil ___ when water gets into the pan.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-26:session-01:i08:r1",
-            "text": "splatters"
-          },
-          {
-            "responseId": "en:lesson-26:session-01:i08:r2",
-            "text": "splatter"
-          },
-          {
-            "responseId": "en:lesson-26:session-01:i08:r3",
-            "text": "splattering"
-          }
-        ],
-        "testedDimension": "Дополните обычную закономерность.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-26:session-01:i08:r2",
-            "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
-            "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма splatters.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма splatters."
-            }
-          },
-          {
-            "responseId": "en:lesson-26:session-01:i08:r3",
-            "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
-            "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма splatters.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма splatters."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-01:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-26:session-01:i09:r1",
-          "text": "Hot oil splatters when water gets into the pan."
+          "responseId": "en:lesson-26:session-01:i08:r1",
+          "text": "I turn down the heat when the soup starts to boil."
         },
         {
-          "responseId": "en:lesson-26:session-01:i09:r2",
-          "text": "Hot oil splatters when water gets into the pot."
+          "responseId": "en:lesson-26:session-01:i08:r2",
+          "text": "I turn up the heat when the soup starts to boil."
         },
         {
-          "responseId": "en:lesson-26:session-01:i09:r3",
-          "text": "Hot oil splatters when water gets into it."
+          "responseId": "en:lesson-26:session-01:i08:r3",
+          "text": "I turn down the heat when the water starts to boil."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-26:session-01:i09:audio"
+        "en:lesson-26:session-01:i08:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-01:i09:audio",
-          "transcript": "Hot oil splatters when water gets into the pan."
+          "audioTargetId": "en:lesson-26:session-01:i08:audio",
+          "transcript": "I turn down the heat when the soup starts to boil."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-26:session-01:i09:r1",
-            "targetText": "Hot oil splatters when water gets into the pan.",
+            "responseId": "en:lesson-26:session-01:i08:r1",
+            "targetText": "I turn down the heat when the soup starts to boil.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-26:session-01:i09:r2",
-            "targetText": "Hot oil splatters when water gets into the pot.",
+            "responseId": "en:lesson-26:session-01:i08:r2",
+            "targetText": "I turn up the heat when the soup starts to boil.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-26:session-01:i09:r3",
-            "targetText": "Hot oil splatters when water gets into it.",
+            "responseId": "en:lesson-26:session-01:i08:r3",
+            "targetText": "I turn down the heat when the water starts to boil.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-26:session-01:i09:r2",
+            "responseId": "en:lesson-26:session-01:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Hot oil splatters when water gets into the pan.",
-              "uk": "У записі звучить Hot oil splatters when water gets into the pan."
+              "ru": "В записи звучит I turn down the heat when the soup starts to boil.",
+              "uk": "У записі звучить I turn down the heat when the soup starts to boil."
             }
           },
           {
-            "responseId": "en:lesson-26:session-01:i09:r3",
+            "responseId": "en:lesson-26:session-01:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Hot oil splatters when water gets into the pan.",
-              "uk": "У записі звучить Hot oil splatters when water gets into the pan."
+              "ru": "В записи звучит I turn down the heat when the soup starts to boil.",
+              "uk": "У записі звучить I turn down the heat when the soup starts to boil."
             }
           }
         ],
@@ -683,7 +615,7 @@
     },
     {
       "interactionId": "en:lesson-26:session-01:word:stiffen",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -725,104 +657,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-01:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Мои руки деревенеют, когда мёрзнут.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Мои руки деревенеют, когда мёрзнут.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "My hands stiffen when they get cold.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Мои руки деревенеют, когда мёрзнут.»",
-          "uk": "Скажіть: «Мої руки дерев’яніють, коли мерзнуть.»"
-        },
-        "orderedTokens": [
-          "My",
-          "hands",
-          "stiffen",
-          "when",
-          "they",
-          "get",
-          "cold"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-01:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-26:session-01:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните обычную закономерность.",
+      "prompt": "Говорящий описывает свою реакцию на холод. Fingers — множественное число.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-26:session-01:i11:r1",
+          "responseId": "en:lesson-26:session-01:i09:r1",
           "text": "stiffen"
         },
         {
-          "responseId": "en:lesson-26:session-01:i11:r2",
+          "responseId": "en:lesson-26:session-01:i09:r2",
           "text": "stiffens"
         },
         {
-          "responseId": "en:lesson-26:session-01:i11:r3",
+          "responseId": "en:lesson-26:session-01:i09:r3",
           "text": "stiffening"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните обычную закономерность.",
+      "accessibilityLabel": "Говорящий описывает свою реакцию на холод. Fingers — множественное число.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
+          "ru": "Говорящий описывает свою реакцию на холод. Fingers — множественное число.",
+          "uk": "Мовець описує свою реакцію на холод. Fingers — множина."
         },
-        "gappedTargetPhrase": "My hands ___ when they get cold.",
+        "gappedTargetPhrase": "My fingers ___ when I work outside in winter.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-26:session-01:i11:r1",
+            "responseId": "en:lesson-26:session-01:i09:r1",
             "text": "stiffen"
           },
           {
-            "responseId": "en:lesson-26:session-01:i11:r2",
+            "responseId": "en:lesson-26:session-01:i09:r2",
             "text": "stiffens"
           },
           {
-            "responseId": "en:lesson-26:session-01:i11:r3",
+            "responseId": "en:lesson-26:session-01:i09:r3",
             "text": "stiffening"
           }
         ],
-        "testedDimension": "Дополните обычную закономерность.",
+        "testedDimension": "Говорящий описывает свою реакцию на холод. Fingers — множественное число.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-26:session-01:i11:r2",
+            "responseId": "en:lesson-26:session-01:i09:r2",
             "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
+            "testedDimension": "Говорящий описывает свою реакцию на холод. Fingers — множественное число.",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма stiffen.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма stiffen."
+              "ru": "После fingers нужна форма stiffen без -s.",
+              "uk": "Після fingers потрібна форма stiffen без -s."
             }
           },
           {
-            "responseId": "en:lesson-26:session-01:i11:r3",
+            "responseId": "en:lesson-26:session-01:i09:r3",
             "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
+            "testedDimension": "Говорящий описывает свою реакцию на холод. Fingers — множественное число.",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма stiffen.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма stiffen."
+              "ru": "Здесь нужен Present Simple: stiffen.",
+              "uk": "Тут потрібен Present Simple: stiffen."
             }
           }
         ]
@@ -830,97 +726,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-01:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-26:session-01:i12:r1",
-          "text": "My hands stiffen when they get cold."
-        },
-        {
-          "responseId": "en:lesson-26:session-01:i12:r2",
-          "text": "My fingers stiffen when they get cold."
-        },
-        {
-          "responseId": "en:lesson-26:session-01:i12:r3",
-          "text": "Her hands stiffen when they get cold."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-01:i12:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-01:i12:audio",
-          "transcript": "My hands stiffen when they get cold."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-26:session-01:i12:r1",
-            "targetText": "My hands stiffen when they get cold.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-26:session-01:i12:r2",
-            "targetText": "My fingers stiffen when they get cold.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-26:session-01:i12:r3",
-            "targetText": "Her hands stiffen when they get cold.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-26:session-01:i12:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит My hands stiffen when they get cold.",
-              "uk": "У записі звучить My hands stiffen when they get cold."
-            }
-          },
-          {
-            "responseId": "en:lesson-26:session-01:i12:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит My hands stiffen when they get cold.",
-              "uk": "У записі звучить My hands stiffen when they get cold."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-01:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-26:session-01:i10",
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините формы с переводом",
+      "prompt": "Вспомните четыре действия",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините формы с переводом",
+      "accessibilityLabel": "Вспомните четыре действия",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-26:session-01:i13:p1",
+            "pairId": "en:lesson-26:session-01:i10:p1",
             "target": "evaporates",
             "meaningByLocale": {
               "ru": "испаряется",
@@ -928,7 +748,7 @@
             }
           },
           {
-            "pairId": "en:lesson-26:session-01:i13:p2",
+            "pairId": "en:lesson-26:session-01:i10:p2",
             "target": "condenses",
             "meaningByLocale": {
               "ru": "конденсируется",
@@ -936,7 +756,7 @@
             }
           },
           {
-            "pairId": "en:lesson-26:session-01:i13:p3",
+            "pairId": "en:lesson-26:session-01:i10:p3",
             "target": "splatters",
             "meaningByLocale": {
               "ru": "разбрызгивается",
@@ -944,7 +764,7 @@
             }
           },
           {
-            "pairId": "en:lesson-26:session-01:i13:p4",
+            "pairId": "en:lesson-26:session-01:i10:p4",
             "target": "stiffen",
             "meaningByLocale": {
               "ru": "деревенеют",
@@ -979,33 +799,175 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-26:session-01:i11",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Опишите привычку: «Я надеваю перчатки, когда на улице холодно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Опишите привычку: «Я надеваю перчатки, когда на улице холодно».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-01:i11:audio",
+          "transcript": "I wear gloves when it is cold outside."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wear gloves when it is cold outside.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните условие своей привычки: «Я поливаю растения, если земля сухая».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните условие своей привычки: «Я поливаю растения, если земля сухая».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I water the plants if the soil is dry.",
+        "localizedMeaning": {
+          "ru": "Объясните условие своей привычки: «Я поливаю растения, если земля сухая».",
+          "uk": "Поясніть умову своєї звички: «Я поливаю рослини, якщо земля суха»."
+        },
+        "orderedTokens": [
+          "I",
+          "water",
+          "the",
+          "plants",
+          "if",
+          "the",
+          "soil",
+          "is",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы мёрзнете на улице и обычно надеваете пальто. Выберите подходящее условие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-01:i13:r1",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-26:session-01:i13:r2",
+          "text": "warm"
+        },
+        {
+          "responseId": "en:lesson-26:session-01:i13:r3",
+          "text": "hot"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы мёрзнете на улице и обычно надеваете пальто. Выберите подходящее условие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы мёрзнете на улице и обычно надеваете пальто. Выберите подходящее условие.",
+          "uk": "Ви мерзнете надворі й зазвичай надягаєте пальто. Виберіть відповідну умову."
+        },
+        "gappedTargetPhrase": "I put on a coat if the weather is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-01:i13:r1",
+            "text": "cold"
+          },
+          {
+            "responseId": "en:lesson-26:session-01:i13:r2",
+            "text": "warm"
+          },
+          {
+            "responseId": "en:lesson-26:session-01:i13:r3",
+            "text": "hot"
+          }
+        ],
+        "testedDimension": "Вы мёрзнете на улице и обычно надеваете пальто. Выберите подходящее условие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-01:i13:r2",
+            "correct": false,
+            "testedDimension": "Вы мёрзнете на улице и обычно надеваете пальто. Выберите подходящее условие.",
+            "feedbackByLocale": {
+              "ru": "Warm — тепло; в описанной ситуации говорящий мёрзнет.",
+              "uk": "Warm — тепло; в описаній ситуації мовець мерзне."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-01:i13:r3",
+            "correct": false,
+            "testedDimension": "Вы мёрзнете на улице и обычно надеваете пальто. Выберите подходящее условие.",
+            "feedbackByLocale": {
+              "ru": "Hot — жарко; здесь нужно условие cold — холодно.",
+              "uk": "Hot — спекотно; тут потрібна умова cold — холодно."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-26:session-01:i14",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Отдыхаю, когда устаю",
+      "prompt": "Услышьте, что делает говорящий после готовки.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-26:session-01:i14:audio"
       ],
-      "accessibilityLabel": "Отдыхаю, когда устаю",
+      "accessibilityLabel": "Услышьте, что делает говорящий после готовки.",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-26:session-01:i14:audio",
-          "transcript": "I rest when I am tired."
+          "transcript": "I wipe the cooker when it is cool."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I rest when I am tired.",
+        "hiddenTargetPhrase": "I wipe the cooker when it is cool.",
         "orderedTokens": [
           "I",
-          "rest",
+          "wipe",
+          "the",
+          "cooker",
           "when",
-          "I",
-          "am",
-          "tired"
+          "it",
+          "is",
+          "cool"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1020,37 +982,75 @@
       "interactionId": "en:lesson-26:session-01:i15",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Если идёт дождь, остаюсь дома",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-01:i15:r1",
+          "text": "The floor gets slippery when it is wet."
+        },
+        {
+          "responseId": "en:lesson-26:session-01:i15:r2",
+          "text": "The floor gets dirty when it is wet."
+        },
+        {
+          "responseId": "en:lesson-26:session-01:i15:r3",
+          "text": "The floor gets slippery when it is dry."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-26:session-01:i15:audio"
       ],
-      "accessibilityLabel": "Если идёт дождь, остаюсь дома",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-26:session-01:i15:audio",
-          "transcript": "I stay home if it rains."
+          "transcript": "The floor gets slippery when it is wet."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I stay home if it rains.",
-        "orderedTokens": [
-          "I",
-          "stay",
-          "home",
-          "if",
-          "it",
-          "rains"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-01:i15:r1",
+            "targetText": "The floor gets slippery when it is wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-01:i15:r2",
+            "targetText": "The floor gets dirty when it is wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-01:i15:r3",
+            "targetText": "The floor gets slippery when it is dry.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-01:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The floor gets slippery when it is wet.",
+              "uk": "У записі звучить The floor gets slippery when it is wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-01:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The floor gets slippery when it is wet.",
+              "uk": "У записі звучить The floor gets slippery when it is wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -1060,21 +1060,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Его руки деревенеют, когда мёрзнут».",
+      "prompt": "Расскажите о личной реакции: «Я отдыхаю, когда устаю».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-26:session-01:i16:audio"
       ],
-      "accessibilityLabel": "Скажите: «Его руки деревенеют, когда мёрзнут».",
+      "accessibilityLabel": "Расскажите о личной реакции: «Я отдыхаю, когда устаю».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-26:session-01:i16:audio",
-          "transcript": "His hands stiffen when they get cold."
+          "transcript": "I rest when I feel tired."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "His hands stiffen when they get cold.",
+        "targetPhrase": "I rest when I feel tired.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1090,33 +1090,37 @@
     {
       "interactionId": "en:lesson-26:session-01:i17",
       "ordinal": 24,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Пар конденсируется, когда соприкасается с холодной дверью».",
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните обычный выбор: «Мы остаёмся дома, если дороги покрыты льдом».",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-01:i17:audio"
-      ],
-      "accessibilityLabel": "Скажите: «Пар конденсируется, когда соприкасается с холодной дверью».",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните обычный выбор: «Мы остаёмся дома, если дороги покрыты льдом».",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-01:i17:audio",
-          "transcript": "Steam condenses when it touches a cold door."
+        "family": "phrase_builder",
+        "targetPhrase": "We stay home if the roads are icy.",
+        "localizedMeaning": {
+          "ru": "Объясните обычный выбор: «Мы остаёмся дома, если дороги покрыты льдом».",
+          "uk": "Поясніть звичайний вибір: «Ми залишаємося вдома, якщо дороги вкриті льодом»."
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Steam condenses when it touches a cold door.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "We",
+          "stay",
+          "home",
+          "if",
+          "the",
+          "roads",
+          "are",
+          "icy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     }
@@ -1127,5 +1131,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1a5598480bb71d3dc35154ca217916fa1c51d6c3769bb067790f6f3b8883fcd4"
+  "learnerFingerprint": "f66044289dada95a158168b9f15a46037d03747a8509c89346ee4932240da03b"
 }

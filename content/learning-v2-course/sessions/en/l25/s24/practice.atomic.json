@@ -1,0 +1,2363 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-24",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-24:word:brightened",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brightened",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:word:brightened:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brightened",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:word:brightened:audio",
+            "transcript": "brightened"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:word:brightened:r1",
+              "targetText": "brightened",
+              "meaningByLocale": {
+                "ru": "Посветлело. Brighten — становиться светлее; brightened — третья форма.",
+                "uk": "Посвітлішало. Brighten — ставати світлішим; brightened — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brightened",
+            "definitionByLocale": {
+              "ru": "Посветлело. Brighten — становиться светлее; brightened — третья форма.",
+              "uk": "Посвітлішало. Brighten — ставати світлішим; brightened — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Небо посветлело до того, как мы вышли из дома.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Небо посветлело до того, как мы вышли из дома.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The sky had brightened before we left the house.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Небо посветлело до того, как мы вышли из дома.»",
+            "uk": "Скажіть: «Небо посвітлішало до того, як ми вийшли з дому.»"
+          },
+          "orderedTokens": [
+            "The",
+            "sky",
+            "had",
+            "brightened",
+            "before",
+            "we",
+            "left",
+            "the",
+            "house"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i02:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The sky ___ brightened before we left the house.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-24:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i02:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i03:r1",
+            "text": "The sky had brightened before we left the house."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i03:r2",
+            "text": "The sky had brightened before they left the house."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i03:r3",
+            "text": "The sky had brightened before we left the hotel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i03:audio",
+            "transcript": "The sky had brightened before we left the house."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:i03:r1",
+              "targetText": "The sky had brightened before we left the house.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i03:r2",
+              "targetText": "The sky had brightened before they left the house.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i03:r3",
+              "targetText": "The sky had brightened before we left the hotel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The sky had brightened before we left the house.",
+                "uk": "У записі звучить The sky had brightened before we left the house."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The sky had brightened before we left the house.",
+                "uk": "У записі звучить The sky had brightened before we left the house."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:word:widened",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — widened",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:word:widened:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — widened",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:word:widened:audio",
+            "transcript": "widened"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:word:widened:r1",
+              "targetText": "widened",
+              "meaningByLocale": {
+                "ru": "Расширили. Widen — делать шире; widened — третья форма.",
+                "uk": "Розширили. Widen — робити ширшим; widened — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "widened",
+            "definitionByLocale": {
+              "ru": "Расширили. Widen — делать шире; widened — третья форма.",
+              "uk": "Розширили. Widen — робити ширшим; widened — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Они расширили дорогу до того, как мы сюда переехали.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Они расширили дорогу до того, как мы сюда переехали.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They had widened the road before we moved here.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Они расширили дорогу до того, как мы сюда переехали.»",
+            "uk": "Скажіть: «Вони розширили дорогу до того, як ми сюди переїхали.»"
+          },
+          "orderedTokens": [
+            "They",
+            "had",
+            "widened",
+            "the",
+            "road",
+            "before",
+            "we",
+            "moved",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i05:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "They ___ widened the road before we moved here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-24:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i05:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i06:r1",
+            "text": "They had widened the road before we moved here."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i06:r2",
+            "text": "We had widened the road before they moved here."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i06:r3",
+            "text": "They had widened the path before we moved here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i06:audio",
+            "transcript": "They had widened the road before we moved here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:i06:r1",
+              "targetText": "They had widened the road before we moved here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i06:r2",
+              "targetText": "We had widened the road before they moved here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i06:r3",
+              "targetText": "They had widened the path before we moved here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They had widened the road before we moved here.",
+                "uk": "У записі звучить They had widened the road before we moved here."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They had widened the road before we moved here.",
+                "uk": "У записі звучить They had widened the road before we moved here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:word:deepened",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — deepened",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:word:deepened:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — deepened",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:word:deepened:audio",
+            "transcript": "deepened"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:word:deepened:r1",
+              "targetText": "deepened",
+              "meaningByLocale": {
+                "ru": "Углубил. Deepen — делать глубже; deepened — третья форма.",
+                "uk": "Поглибив. Deepen — робити глибшим; deepened — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "deepened",
+            "definitionByLocale": {
+              "ru": "Углубил. Deepen — делать глубже; deepened — третья форма.",
+              "uk": "Поглибив. Deepen — робити глибшим; deepened — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он углубил пруд до того, как мы запустили рыбу.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он углубил пруд до того, как мы запустили рыбу.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had deepened the pond before we added the fish.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он углубил пруд до того, как мы запустили рыбу.»",
+            "uk": "Скажіть: «Він поглибив ставок до того, як ми запустили рибу.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "deepened",
+            "the",
+            "pond",
+            "before",
+            "we",
+            "added",
+            "the",
+            "fish"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i08:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ deepened the pond before we added the fish.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-24:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i08:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i09:r1",
+            "text": "He had deepened the pond before we added the fish."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i09:r2",
+            "text": "She had deepened the pond before we added the fish."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i09:r3",
+            "text": "He had deepened the pond before they added the fish."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i09:audio",
+            "transcript": "He had deepened the pond before we added the fish."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:i09:r1",
+              "targetText": "He had deepened the pond before we added the fish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i09:r2",
+              "targetText": "She had deepened the pond before we added the fish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i09:r3",
+              "targetText": "He had deepened the pond before they added the fish.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had deepened the pond before we added the fish.",
+                "uk": "У записі звучить He had deepened the pond before we added the fish."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had deepened the pond before we added the fish.",
+                "uk": "У записі звучить He had deepened the pond before we added the fish."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:word:expanded",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — expanded",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:word:expanded:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — expanded",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:word:expanded:audio",
+            "transcript": "expanded"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:word:expanded:r1",
+              "targetText": "expanded",
+              "meaningByLocale": {
+                "ru": "Увеличилось в объёме. Expand — увеличиваться в размере или объёме; expanded — третья форма.",
+                "uk": "Збільшилося в об’ємі. Expand — збільшуватися в розмірі або об’ємі; expanded — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "expanded",
+            "definitionByLocale": {
+              "ru": "Увеличилось в объёме. Expand — увеличиваться в размере или объёме; expanded — третья форма.",
+              "uk": "Збільшилося в об’ємі. Expand — збільшуватися в розмірі або об’ємі; expanded — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Тесто увеличилось в объёме до того, как она поставила его в духовку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Тесто увеличилось в объёме до того, как она поставила его в духовку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The dough had expanded before she put it in the oven.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Тесто увеличилось в объёме до того, как она поставила его в духовку.»",
+            "uk": "Скажіть: «Тісто збільшилося в об’ємі до того, як вона поставила його в духовку.»"
+          },
+          "orderedTokens": [
+            "The",
+            "dough",
+            "had",
+            "expanded",
+            "before",
+            "she",
+            "put",
+            "it",
+            "in",
+            "the",
+            "oven"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i11:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The dough ___ expanded before she put it in the oven.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-24:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i11:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i12:r1",
+            "text": "The dough had expanded before she put it in the oven."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i12:r2",
+            "text": "The dough had expanded before he put it in the oven."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i12:r3",
+            "text": "The dough had expanded before she put it in the fridge."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i12:audio",
+            "transcript": "The dough had expanded before she put it in the oven."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:i12:r1",
+              "targetText": "The dough had expanded before she put it in the oven.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i12:r2",
+              "targetText": "The dough had expanded before he put it in the oven.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i12:r3",
+              "targetText": "The dough had expanded before she put it in the fridge.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dough had expanded before she put it in the oven.",
+                "uk": "У записі звучить The dough had expanded before she put it in the oven."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dough had expanded before she put it in the oven.",
+                "uk": "У записі звучить The dough had expanded before she put it in the oven."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините формы с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините формы с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-24:i13:p1",
+              "target": "brightened",
+              "meaningByLocale": {
+                "ru": "посветлело",
+                "uk": "посвітлішало"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-24:i13:p2",
+              "target": "widened",
+              "meaningByLocale": {
+                "ru": "расширили",
+                "uk": "розширили"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-24:i13:p3",
+              "target": "deepened",
+              "meaningByLocale": {
+                "ru": "углубил",
+                "uk": "поглибив"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-24:i13:p4",
+              "target": "expanded",
+              "meaningByLocale": {
+                "ru": "увеличилось в объёме",
+                "uk": "збільшилося в об’ємі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brightened",
+            "widened",
+            "deepened",
+            "expanded"
+          ],
+          "rightColumn": [
+            "посветлело",
+            "расширили",
+            "углубил",
+            "увеличилось в объёме"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закончил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закончил",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поезд уже ушёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Поезд уже ушёл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Небо посветлело до того, как я вышел из дома».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Небо посветлело до того, как я вышел из дома».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i16:audio",
+            "transcript": "The sky had brightened before I left the house."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The sky had brightened before I left the house.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы углубили пруд до того, как они запустили рыбу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы углубили пруд до того, как они запустили рыбу».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i17:audio",
+            "transcript": "We had deepened the pond before they added the fish."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We had deepened the pond before they added the fish.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-24:word:brightened",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brightened",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:word:brightened:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brightened",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:word:brightened:audio",
+            "transcript": "brightened"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:word:brightened:r1",
+              "targetText": "brightened",
+              "meaningByLocale": {
+                "ru": "Посветлело. Brighten — становиться светлее; brightened — третья форма.",
+                "uk": "Посвітлішало. Brighten — ставати світлішим; brightened — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brightened",
+            "definitionByLocale": {
+              "ru": "Посветлело. Brighten — становиться светлее; brightened — третья форма.",
+              "uk": "Посвітлішало. Brighten — ставати світлішим; brightened — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Небо посвітлішало до того, як ми вийшли з дому.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Небо посвітлішало до того, як ми вийшли з дому.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The sky had brightened before we left the house.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Небо посветлело до того, как мы вышли из дома.»",
+            "uk": "Скажіть: «Небо посвітлішало до того, як ми вийшли з дому.»"
+          },
+          "orderedTokens": [
+            "The",
+            "sky",
+            "had",
+            "brightened",
+            "before",
+            "we",
+            "left",
+            "the",
+            "house"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i02:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The sky ___ brightened before we left the house.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-24:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i02:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i03:r1",
+            "text": "The sky had brightened before we left the house."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i03:r2",
+            "text": "The sky had brightened before they left the house."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i03:r3",
+            "text": "The sky had brightened before we left the hotel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i03:audio",
+            "transcript": "The sky had brightened before we left the house."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:i03:r1",
+              "targetText": "The sky had brightened before we left the house.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i03:r2",
+              "targetText": "The sky had brightened before they left the house.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i03:r3",
+              "targetText": "The sky had brightened before we left the hotel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The sky had brightened before we left the house.",
+                "uk": "У записі звучить The sky had brightened before we left the house."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The sky had brightened before we left the house.",
+                "uk": "У записі звучить The sky had brightened before we left the house."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:word:widened",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — widened",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:word:widened:audio"
+        ],
+        "accessibilityLabel": "Картка слова — widened",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:word:widened:audio",
+            "transcript": "widened"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:word:widened:r1",
+              "targetText": "widened",
+              "meaningByLocale": {
+                "ru": "Расширили. Widen — делать шире; widened — третья форма.",
+                "uk": "Розширили. Widen — робити ширшим; widened — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "widened",
+            "definitionByLocale": {
+              "ru": "Расширили. Widen — делать шире; widened — третья форма.",
+              "uk": "Розширили. Widen — робити ширшим; widened — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вони розширили дорогу до того, як ми сюди переїхали.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вони розширили дорогу до того, як ми сюди переїхали.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They had widened the road before we moved here.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Они расширили дорогу до того, как мы сюда переехали.»",
+            "uk": "Скажіть: «Вони розширили дорогу до того, як ми сюди переїхали.»"
+          },
+          "orderedTokens": [
+            "They",
+            "had",
+            "widened",
+            "the",
+            "road",
+            "before",
+            "we",
+            "moved",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i05:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "They ___ widened the road before we moved here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-24:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i05:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i06:r1",
+            "text": "They had widened the road before we moved here."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i06:r2",
+            "text": "We had widened the road before they moved here."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i06:r3",
+            "text": "They had widened the path before we moved here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i06:audio",
+            "transcript": "They had widened the road before we moved here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:i06:r1",
+              "targetText": "They had widened the road before we moved here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i06:r2",
+              "targetText": "We had widened the road before they moved here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i06:r3",
+              "targetText": "They had widened the path before we moved here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They had widened the road before we moved here.",
+                "uk": "У записі звучить They had widened the road before we moved here."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They had widened the road before we moved here.",
+                "uk": "У записі звучить They had widened the road before we moved here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:word:deepened",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — deepened",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:word:deepened:audio"
+        ],
+        "accessibilityLabel": "Картка слова — deepened",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:word:deepened:audio",
+            "transcript": "deepened"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:word:deepened:r1",
+              "targetText": "deepened",
+              "meaningByLocale": {
+                "ru": "Углубил. Deepen — делать глубже; deepened — третья форма.",
+                "uk": "Поглибив. Deepen — робити глибшим; deepened — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "deepened",
+            "definitionByLocale": {
+              "ru": "Углубил. Deepen — делать глубже; deepened — третья форма.",
+              "uk": "Поглибив. Deepen — робити глибшим; deepened — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він поглибив ставок до того, як ми запустили рибу.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він поглибив ставок до того, як ми запустили рибу.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had deepened the pond before we added the fish.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он углубил пруд до того, как мы запустили рыбу.»",
+            "uk": "Скажіть: «Він поглибив ставок до того, як ми запустили рибу.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "deepened",
+            "the",
+            "pond",
+            "before",
+            "we",
+            "added",
+            "the",
+            "fish"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i08:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ deepened the pond before we added the fish.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-24:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i08:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i09:r1",
+            "text": "He had deepened the pond before we added the fish."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i09:r2",
+            "text": "She had deepened the pond before we added the fish."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i09:r3",
+            "text": "He had deepened the pond before they added the fish."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i09:audio",
+            "transcript": "He had deepened the pond before we added the fish."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:i09:r1",
+              "targetText": "He had deepened the pond before we added the fish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i09:r2",
+              "targetText": "She had deepened the pond before we added the fish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i09:r3",
+              "targetText": "He had deepened the pond before they added the fish.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had deepened the pond before we added the fish.",
+                "uk": "У записі звучить He had deepened the pond before we added the fish."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had deepened the pond before we added the fish.",
+                "uk": "У записі звучить He had deepened the pond before we added the fish."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:word:expanded",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — expanded",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:word:expanded:audio"
+        ],
+        "accessibilityLabel": "Картка слова — expanded",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:word:expanded:audio",
+            "transcript": "expanded"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:word:expanded:r1",
+              "targetText": "expanded",
+              "meaningByLocale": {
+                "ru": "Увеличилось в объёме. Expand — увеличиваться в размере или объёме; expanded — третья форма.",
+                "uk": "Збільшилося в об’ємі. Expand — збільшуватися в розмірі або об’ємі; expanded — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "expanded",
+            "definitionByLocale": {
+              "ru": "Увеличилось в объёме. Expand — увеличиваться в размере или объёме; expanded — третья форма.",
+              "uk": "Збільшилося в об’ємі. Expand — збільшуватися в розмірі або об’ємі; expanded — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Тісто збільшилося в об’ємі до того, як вона поставила його в духовку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Тісто збільшилося в об’ємі до того, як вона поставила його в духовку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The dough had expanded before she put it in the oven.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Тесто увеличилось в объёме до того, как она поставила его в духовку.»",
+            "uk": "Скажіть: «Тісто збільшилося в об’ємі до того, як вона поставила його в духовку.»"
+          },
+          "orderedTokens": [
+            "The",
+            "dough",
+            "had",
+            "expanded",
+            "before",
+            "she",
+            "put",
+            "it",
+            "in",
+            "the",
+            "oven"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i11:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The dough ___ expanded before she put it in the oven.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-24:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i11:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-24:i12:r1",
+            "text": "The dough had expanded before she put it in the oven."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i12:r2",
+            "text": "The dough had expanded before he put it in the oven."
+          },
+          {
+            "responseId": "en:lesson-25:session-24:i12:r3",
+            "text": "The dough had expanded before she put it in the fridge."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i12:audio",
+            "transcript": "The dough had expanded before she put it in the oven."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-24:i12:r1",
+              "targetText": "The dough had expanded before she put it in the oven.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i12:r2",
+              "targetText": "The dough had expanded before he put it in the oven.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i12:r3",
+              "targetText": "The dough had expanded before she put it in the fridge.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-24:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dough had expanded before she put it in the oven.",
+                "uk": "У записі звучить The dough had expanded before she put it in the oven."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-24:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dough had expanded before she put it in the oven.",
+                "uk": "У записі звучить The dough had expanded before she put it in the oven."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте форми з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-24:i13:p1",
+              "target": "brightened",
+              "meaningByLocale": {
+                "ru": "посветлело",
+                "uk": "посвітлішало"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-24:i13:p2",
+              "target": "widened",
+              "meaningByLocale": {
+                "ru": "расширили",
+                "uk": "розширили"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-24:i13:p3",
+              "target": "deepened",
+              "meaningByLocale": {
+                "ru": "углубил",
+                "uk": "поглибив"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-24:i13:p4",
+              "target": "expanded",
+              "meaningByLocale": {
+                "ru": "увеличилось в объёме",
+                "uk": "збільшилося в об’ємі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brightened",
+            "widened",
+            "deepened",
+            "expanded"
+          ],
+          "rightColumn": [
+            "посвітлішало",
+            "розширили",
+            "поглибив",
+            "збільшилося в об’ємі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закінчив",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закінчив",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Потяг уже поїхав",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Потяг уже поїхав",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Небо посвітлішало до того, як я вийшов із дому».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Небо посвітлішало до того, як я вийшов із дому».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i16:audio",
+            "transcript": "The sky had brightened before I left the house."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The sky had brightened before I left the house.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-24:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми поглибили ставок до того, як вони запустили рибу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми поглибили ставок до того, як вони запустили рибу».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-24:i17:audio",
+            "transcript": "We had deepened the pond before they added the fish."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We had deepened the pond before they added the fish.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-24:word:brightened",
+      "correctText": "brightened",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i01",
+      "correctText": "The sky had brightened before we left the house.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i02",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-24:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i03",
+      "correctText": "The sky had brightened before we left the house.",
+      "correctResponseId": "en:lesson-25:session-24:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:word:widened",
+      "correctText": "widened",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i04",
+      "correctText": "They had widened the road before we moved here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i05",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-24:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i06",
+      "correctText": "They had widened the road before we moved here.",
+      "correctResponseId": "en:lesson-25:session-24:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:word:deepened",
+      "correctText": "deepened",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i07",
+      "correctText": "He had deepened the pond before we added the fish.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i08",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-24:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i09",
+      "correctText": "He had deepened the pond before we added the fish.",
+      "correctResponseId": "en:lesson-25:session-24:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:word:expanded",
+      "correctText": "expanded",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i10",
+      "correctText": "The dough had expanded before she put it in the oven.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i11",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-24:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i12",
+      "correctText": "The dough had expanded before she put it in the oven.",
+      "correctResponseId": "en:lesson-25:session-24:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i14",
+      "correctText": "She had finished before I called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i15",
+      "correctText": "The train had left when we arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i16",
+      "correctText": "The sky had brightened before I left the house.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-24:i17",
+      "correctText": "We had deepened the pond before they added the fish.",
+      "correctResponseId": null
+    }
+  ]
+}

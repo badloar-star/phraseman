@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-24:word:brightened",
+    "correctText": "brightened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i01",
+    "correctText": "The sky had brightened before we left the house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i03",
+    "correctText": "The sky had brightened before we left the house.",
+    "correctResponseId": "en:lesson-25:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:word:widened",
+    "correctText": "widened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i04",
+    "correctText": "They had widened the road before we moved here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i05",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i06",
+    "correctText": "They had widened the road before we moved here.",
+    "correctResponseId": "en:lesson-25:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:word:deepened",
+    "correctText": "deepened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i07",
+    "correctText": "He had deepened the pond before we added the fish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i09",
+    "correctText": "He had deepened the pond before we added the fish.",
+    "correctResponseId": "en:lesson-25:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:word:expanded",
+    "correctText": "expanded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i10",
+    "correctText": "The dough had expanded before she put it in the oven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i12",
+    "correctText": "The dough had expanded before she put it in the oven.",
+    "correctResponseId": "en:lesson-25:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i13",
+    "correctText": "en:lesson-25:session-24:i13:p1=brightened\nen:lesson-25:session-24:i13:p2=widened\nen:lesson-25:session-24:i13:p3=deepened\nen:lesson-25:session-24:i13:p4=expanded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i15",
+    "correctText": "The train had left when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i16",
+    "correctText": "The sky had brightened before I left the house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-24:i17",
+    "correctText": "We had deepened the pond before they added the fish.",
+    "correctResponseId": null
+  }
+]

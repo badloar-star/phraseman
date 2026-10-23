@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "had + past participle before later past event",
+    "uk": "had + past participle before later past event"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Утро стало светлее",
+        "uk": "Ранок став світлішим"
+      },
+      "bodyByLocale": {
+        "ru": "Brighten — становиться светлее. The sky had brightened before we left the house — небо посветлело до того, как мы вышли из дома. Сначала стало светлее, потом мы вышли. Had brightened показывает изменение, уже произошедшее к тому моменту в прошлом.",
+        "uk": "Brighten — ставати світлішим. The sky had brightened before we left the house — небо посвітлішало до того, як ми вийшли з дому. Спочатку стало світліше, потім ми вийшли. Had brightened показує зміну, що вже відбулася до того моменту в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-24:intro1:r1",
+              "text": "The sky had brightened before we left the house."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro1:r2",
+              "text": "The sky has brightened before we left the house."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro1:r3",
+              "text": "The sky was brightened before we left the house."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-24:intro1:r1",
+              "text": "The sky had brightened before we left the house."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro1:r2",
+              "text": "The sky has brightened before we left the house."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro1:r3",
+              "text": "The sky was brightened before we left the house."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шире и глубже",
+        "uk": "Ширше й глибше"
+      },
+      "bodyByLocale": {
+        "ru": "Widen — делать шире. They had widened the road before we moved here — они расширили дорогу до того, как мы сюда переехали. Deepen — делать глубже. He had deepened the pond before we added the fish — он углубил пруд до того, как мы запустили рыбу. Widen связано с шириной, deepen — с глубиной. В обоих примерах работа завершилась до следующего события, поэтому had widened и had deepened.",
+        "uk": "Widen — робити ширшим. They had widened the road before we moved here — вони розширили дорогу до того, як ми сюди переїхали. Deepen — робити глибшим. He had deepened the pond before we added the fish — він поглибив ставок до того, як ми запустили рибу. Widen пов’язане з шириною, deepen — з глибиною. В обох прикладах робота завершилася до наступної події, тому had widened і had deepened."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-24:intro2:r1",
+              "text": "They had widened the road before we moved here."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro2:r2",
+              "text": "They have widened the road before we moved here."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro2:r3",
+              "text": "They were widened the road before we moved here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-24:intro2:r1",
+              "text": "They had widened the road before we moved here."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro2:r2",
+              "text": "They have widened the road before we moved here."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro2:r3",
+              "text": "They were widened the road before we moved here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Тесто поднялось",
+        "uk": "Тісто піднялося"
+      },
+      "bodyByLocale": {
+        "ru": "Expand — увеличиваться в размере или объёме. The dough had expanded before she put it in the oven — тесто увеличилось в объёме до того, как она поставила его в духовку. Сначала тесто поднялось, затем она поставила его выпекаться. Had expanded — более раннее событие. Put здесь стоит в Past Simple: написание этой формы совпадает с начальной.",
+        "uk": "Expand — збільшуватися в розмірі або об’ємі. The dough had expanded before she put it in the oven — тісто збільшилося в об’ємі до того, як вона поставила його в духовку. Спочатку тісто піднялося, потім вона поставила його випікатися. Had expanded — раніша подія. Put тут стоїть у Past Simple: написання цієї форми збігається з початковою."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-24:intro3:r1",
+              "text": "The dough had expanded before she put it in the oven."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro3:r2",
+              "text": "The dough has expanded before she put it in the oven."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro3:r3",
+              "text": "The dough was expanded before she put it in the oven."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-24:intro3:r1",
+              "text": "The dough had expanded before she put it in the oven."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro3:r2",
+              "text": "The dough has expanded before she put it in the oven."
+            },
+            {
+              "responseId": "en:lesson-25:session-24:intro3:r3",
+              "text": "The dough was expanded before she put it in the oven."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e0453937a13c635faa8819417ceeeca7143cc826494b66722a2018443c3ff9c8"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-23:word:landed",
+    "correctText": "landed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i01",
+    "correctText": "The bird had landed on the roof before I opened the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i03",
+    "correctText": "The bird had landed on the roof before I opened the window.",
+    "correctResponseId": "en:lesson-25:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:word:fled",
+    "correctText": "fled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i04",
+    "correctText": "The mouse had fled before the cat entered the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i05",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i06",
+    "correctText": "The mouse had fled before the cat entered the room.",
+    "correctResponseId": "en:lesson-25:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:word:hunted",
+    "correctText": "hunted",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i07",
+    "correctText": "The cat had hunted mice before we brought it home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i09",
+    "correctText": "The cat had hunted mice before we brought it home.",
+    "correctResponseId": "en:lesson-25:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:word:released",
+    "correctText": "released",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i10",
+    "correctText": "We had released the bird before the rain began.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i12",
+    "correctText": "We had released the bird before the rain began.",
+    "correctResponseId": "en:lesson-25:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i13",
+    "correctText": "en:lesson-25:session-23:i13:p1=landed\nen:lesson-25:session-23:i13:p2=fled\nen:lesson-25:session-23:i13:p3=hunted\nen:lesson-25:session-23:i13:p4=released",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i15",
+    "correctText": "The train had left when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i16",
+    "correctText": "I had released the bird before the rain began.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-23:i17",
+    "correctText": "The bird had landed on the roof before we opened the window.",
+    "correctResponseId": null
+  }
+]

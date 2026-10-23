@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "had + past participle before later past event",
+    "uk": "had + past participle before later past event"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Птица на крыше",
+        "uk": "Птах на даху"
+      },
+      "bodyByLocale": {
+        "ru": "Land — приземляться. Так можно сказать о птице или самолёте. The bird had landed on the roof before I opened the window — птица приземлилась на крышу до того, как я открыл окно. Сначала птица села на крышу, затем я открыл окно. Had landed показывает более раннее действие; on the roof — место посадки.",
+        "uk": "Land — приземлятися. Так можна сказати про птаха або літак. The bird had landed on the roof before I opened the window — птах приземлився на дах до того, як я відчинив вікно. Спочатку птах сів на дах, потім я відчинив вікно. Had landed показує ранішу дію; on the roof — місце приземлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-23:intro1:r1",
+              "text": "The bird had landed on the roof before I opened the window."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro1:r2",
+              "text": "The bird has landed on the roof before I opened the window."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro1:r3",
+              "text": "The bird was landed on the roof before I opened the window."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-23:intro1:r1",
+              "text": "The bird had landed on the roof before I opened the window."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro1:r2",
+              "text": "The bird has landed on the roof before I opened the window."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro1:r3",
+              "text": "The bird was landed on the roof before I opened the window."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мышь и кошка",
+        "uk": "Миша й кішка"
+      },
+      "bodyByLocale": {
+        "ru": "Flee — убегать от опасности; третья форма — fled. The mouse had fled before the cat entered the room — мышь убежала до того, как кошка вошла в комнату. Hunt — охотиться. The cat had hunted mice before we brought it home — кошка охотилась на мышей до того, как мы принесли её домой. Mice — множественное число mouse. Had fled и had hunted относят действия к моменту раньше следующего события в прошлом.",
+        "uk": "Flee — тікати від небезпеки; третя форма — fled. The mouse had fled before the cat entered the room — миша втекла до того, як кішка увійшла до кімнати. Hunt — полювати. The cat had hunted mice before we brought it home — кішка полювала на мишей до того, як ми принесли її додому. Mice — множина mouse. Had fled і had hunted відносять дії до моменту раніше за наступну подію в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-23:intro2:r1",
+              "text": "The mouse had fled before the cat entered the room."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro2:r2",
+              "text": "The mouse has fled before the cat entered the room."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro2:r3",
+              "text": "The mouse was fled before the cat entered the room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-23:intro2:r1",
+              "text": "The mouse had fled before the cat entered the room."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro2:r2",
+              "text": "The mouse has fled before the cat entered the room."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro2:r3",
+              "text": "The mouse was fled before the cat entered the room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Птица снова на свободе",
+        "uk": "Птах знову на волі"
+      },
+      "bodyByLocale": {
+        "ru": "Release — выпускать на свободу. We had released the bird before the rain began — мы выпустили птицу до начала дождя. Например, птица залетела в дом, а мы помогли ей выбраться наружу. Сначала выпустили птицу, затем начался дождь. После had нужна форма released; после before здесь стоит began, Past Simple от begin.",
+        "uk": "Release — випускати на волю. We had released the bird before the rain began — ми випустили птаха до початку дощу. Наприклад, птах залетів у дім, а ми допомогли йому вибратися назовні. Спочатку випустили птаха, потім почався дощ. Після had потрібна форма released; після before тут стоїть began, Past Simple від begin."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-23:intro3:r1",
+              "text": "We had released the bird before the rain began."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro3:r2",
+              "text": "We have released the bird before the rain began."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro3:r3",
+              "text": "We were released the bird before the rain began."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-23:intro3:r1",
+              "text": "We had released the bird before the rain began."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro3:r2",
+              "text": "We have released the bird before the rain began."
+            },
+            {
+              "responseId": "en:lesson-25:session-23:intro3:r3",
+              "text": "We were released the bird before the rain began."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2ee700a153ad442ceb2dbe25b0aad23058be6966ddf8ec7172a97e6cae398a25"
+}

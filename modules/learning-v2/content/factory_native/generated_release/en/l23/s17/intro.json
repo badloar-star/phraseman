@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + present result",
+    "uk": "present perfect + present result"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Важно, что изменилось сейчас",
+        "uk": "Важливо, що змінилося зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Раньше мы рассказывали об опыте за всю жизнь. Теперь выделяем результат прямо сейчас. I have torn my shirt — я порвал рубашку, и на ней теперь дыра. Tear — рвать; формы tear — tore — torn. После have нужна torn.",
+        "uk": "Раніше ми розповідали про досвід за все життя. Тепер виділяємо результат просто зараз. I have torn my shirt — я порвав сорочку, і на ній тепер дірка. Tear — рвати; форми tear — tore — torn. Після have потрібна torn."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-17:intro1:r1",
+              "text": "I have torn my shirt."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro1:r2",
+              "text": "I has torn my shirt."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro1:r3",
+              "text": "I have tore my shirt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-17:intro1:r1",
+              "text": "I have torn my shirt."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro1:r2",
+              "text": "I has torn my shirt."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro1:r3",
+              "text": "I have tore my shirt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Осколки и засор",
+        "uk": "Скалки й засмічення"
+      },
+      "bodyByLocale": {
+        "ru": "Shatter — разбиться на много осколков. The glass has shattered: стакан разбился, и осколки сейчас на полу. Clog — засоряться. Знакомое unclog означает прочистить засор, а clog — засориться. В clogged буква g удваивается.",
+        "uk": "Shatter — розбитися на багато скалок. The glass has shattered: склянка розбилася, і скалки зараз на підлозі. Clog — засмічуватися. Знайоме unclog означає прочистити засмічення, а clog — засмітитися. У clogged літера g подвоюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-17:intro2:r1",
+              "text": "The glass has shattered."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro2:r2",
+              "text": "The glass have shattered."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro2:r3",
+              "text": "The glass has shatter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-17:intro2:r1",
+              "text": "The glass has shattered."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro2:r2",
+              "text": "The glass have shattered."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro2:r3",
+              "text": "The glass has shatter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Цвет стал бледнее",
+        "uk": "Колір став блідішим"
+      },
+      "bodyByLocale": {
+        "ru": "Fade — выцветать, терять яркость. The colour has faded: цвет сейчас бледнее прежнего. Здесь colour — британское написание; color — американское. Present Perfect связывает изменение с тем, что мы видим сейчас; время вроде yesterday не называем.",
+        "uk": "Fade — вицвітати, втрачати яскравість. The colour has faded: колір зараз блідіший, ніж раніше. Тут colour — британське написання; color — американське. Present Perfect пов’язує зміну з тим, що ми бачимо зараз; час на зразок yesterday не називаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-17:intro3:r1",
+              "text": "The colour has faded."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro3:r2",
+              "text": "The colour have faded."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro3:r3",
+              "text": "The colour has fade."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-17:intro3:r1",
+              "text": "The colour has faded."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro3:r2",
+              "text": "The colour have faded."
+            },
+            {
+              "responseId": "en:lesson-23:session-17:intro3:r3",
+              "text": "The colour has fade."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "12268ca701278ca5bc7b257fb0e34b7fa8976583806f90cc22e2ee555f356eb3"
+}

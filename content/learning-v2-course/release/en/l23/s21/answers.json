@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-21:word:volleyball",
+    "correctText": "volleyball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i01",
+    "correctText": "I have played volleyball.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i02",
+    "correctText": "I have played volleyball.",
+    "correctResponseId": "en:lesson-23:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i03",
+    "correctText": "played",
+    "correctResponseId": "en:lesson-23:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:word:badminton",
+    "correctText": "badminton",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i04",
+    "correctText": "She has played badminton.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i05",
+    "correctText": "She has played badminton.",
+    "correctResponseId": "en:lesson-23:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i06",
+    "correctText": "played",
+    "correctResponseId": "en:lesson-23:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:word:basketball",
+    "correctText": "basketball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i07",
+    "correctText": "We have played basketball.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i08",
+    "correctText": "We have played basketball.",
+    "correctResponseId": "en:lesson-23:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i09",
+    "correctText": "played",
+    "correctResponseId": "en:lesson-23:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:word:hockey",
+    "correctText": "hockey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i10",
+    "correctText": "He has played hockey.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i11",
+    "correctText": "He has played hockey.",
+    "correctResponseId": "en:lesson-23:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i12",
+    "correctText": "played",
+    "correctResponseId": "en:lesson-23:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i13",
+    "correctText": "en:lesson-23:session-21:i13:p1=volleyball\nen:lesson-23:session-21:i13:p2=badminton\nen:lesson-23:session-21:i13:p3=basketball\nen:lesson-23:session-21:i13:p4=hockey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i14",
+    "correctText": "We can try another game.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i15",
+    "correctText": "You mustn't push the other players.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i16",
+    "correctText": "I have played basketball.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-21:i17",
+    "correctText": "We have played badminton.",
+    "correctResponseId": null
+  }
+]

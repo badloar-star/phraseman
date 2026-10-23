@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-17:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        },
+        "en:lesson-23:session-17:intro1:r3": {
+          "ru": "Третья форма — torn, не tore.",
+          "uk": "Третя форма — torn, не tore."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-17:intro2:r2": {
+          "ru": "Один стакан: has.",
+          "uk": "Одна склянка: has."
+        },
+        "en:lesson-23:session-17:intro2:r3": {
+          "ru": "После have или has нужна третья форма.",
+          "uk": "Після have або has потрібна третя форма."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-17:intro3:r2": {
+          "ru": "С the colour нужно has.",
+          "uk": "Із the colour потрібно has."
+        },
+        "en:lesson-23:session-17:intro3:r3": {
+          "ru": "После have или has нужна третья форма.",
+          "uk": "Після have або has потрібна третя форма."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0ab7054b83b718f57a0d2a1a55ecd7708b4372029b2824b15fc2ad0fd294cda6"
+}

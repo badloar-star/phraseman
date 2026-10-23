@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-18:word:melon",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — melon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:word:melon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — melon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:word:melon:audio",
+          "transcript": "melon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-18:word:melon:r1",
+            "targetText": "melon",
+            "meaningByLocale": {
+              "ru": "дыня.",
+              "uk": "диня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "melon",
+          "definitionByLocale": {
+            "ru": "дыня.",
+            "uk": "диня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Я куштував диню.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Я куштував диню.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have tried melon.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я пробовал дыню.»",
+          "uk": "Розкажіть про досвід: «Я куштував диню.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "tried",
+          "melon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-18:i02:r1",
+          "text": "I have tried melon."
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i02:r2",
+          "text": "You have tried melon."
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i02:r3",
+          "text": "They have tried melon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:i02:audio",
+          "transcript": "I have tried melon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-18:i02:r1",
+            "targetText": "I have tried melon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i02:r2",
+            "targetText": "You have tried melon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i02:r3",
+            "targetText": "They have tried melon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have tried melon.",
+              "uk": "У записі звучить I have tried melon."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have tried melon.",
+              "uk": "У записі звучить I have tried melon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-18:i03:r1",
+          "text": "tried"
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i03:r2",
+          "text": "try"
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i03:r3",
+          "text": "tries"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ melon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-18:i03:r1",
+            "text": "tried"
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i03:r2",
+            "text": "try"
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i03:r3",
+            "text": "tries"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:word:watermelon",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — watermelon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:word:watermelon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — watermelon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:word:watermelon:audio",
+          "transcript": "watermelon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-18:word:watermelon:r1",
+            "targetText": "watermelon",
+            "meaningByLocale": {
+              "ru": "арбуз.",
+              "uk": "кавун."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "watermelon",
+          "definitionByLocale": {
+            "ru": "арбуз.",
+            "uk": "кавун."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Вона їла кавун.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Вона їла кавун.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has eaten watermelon.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она ела арбуз.»",
+          "uk": "Розкажіть про досвід: «Вона їла кавун.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "eaten",
+          "watermelon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-18:i05:r1",
+          "text": "She has eaten watermelon."
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i05:r2",
+          "text": "You have eaten watermelon."
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i05:r3",
+          "text": "They have eaten watermelon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:i05:audio",
+          "transcript": "She has eaten watermelon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-18:i05:r1",
+            "targetText": "She has eaten watermelon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i05:r2",
+            "targetText": "You have eaten watermelon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i05:r3",
+            "targetText": "They have eaten watermelon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has eaten watermelon.",
+              "uk": "У записі звучить She has eaten watermelon."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has eaten watermelon.",
+              "uk": "У записі звучить She has eaten watermelon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-18:i06:r1",
+          "text": "eaten"
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i06:r2",
+          "text": "eat"
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i06:r3",
+          "text": "ate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ watermelon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-18:i06:r1",
+            "text": "eaten"
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i06:r2",
+            "text": "eat"
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i06:r3",
+            "text": "ate"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:word:pineapple",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pineapple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:word:pineapple:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pineapple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:word:pineapple:audio",
+          "transcript": "pineapple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-18:word:pineapple:r1",
+            "targetText": "pineapple",
+            "meaningByLocale": {
+              "ru": "ананас.",
+              "uk": "ананас."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pineapple",
+          "definitionByLocale": {
+            "ru": "ананас.",
+            "uk": "ананас."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Ми розрізали ананас.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Ми розрізали ананас.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have cut a pineapple.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы разрезали ананас.»",
+          "uk": "Розкажіть про досвід: «Ми розрізали ананас.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "cut",
+          "a",
+          "pineapple"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-18:i08:r1",
+          "text": "We have cut a pineapple."
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i08:r2",
+          "text": "You have cut a pineapple."
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i08:r3",
+          "text": "They have cut a pineapple."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:i08:audio",
+          "transcript": "We have cut a pineapple."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-18:i08:r1",
+            "targetText": "We have cut a pineapple.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i08:r2",
+            "targetText": "You have cut a pineapple.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i08:r3",
+            "targetText": "They have cut a pineapple.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have cut a pineapple.",
+              "uk": "У записі звучить We have cut a pineapple."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have cut a pineapple.",
+              "uk": "У записі звучить We have cut a pineapple."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-18:i09:r1",
+          "text": "cut"
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i09:r2",
+          "text": "cuts"
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i09:r3",
+          "text": "cutting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ a pineapple.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-18:i09:r1",
+            "text": "cut"
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i09:r2",
+            "text": "cuts"
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i09:r3",
+            "text": "cutting"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:word:mango",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mango",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:word:mango:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mango",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:word:mango:audio",
+          "transcript": "mango"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-18:word:mango:r1",
+            "targetText": "mango",
+            "meaningByLocale": {
+              "ru": "манго.",
+              "uk": "манго."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mango",
+          "definitionByLocale": {
+            "ru": "манго.",
+            "uk": "манго."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Він чистив манго.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Він чистив манго.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has peeled a mango.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он чистил манго.»",
+          "uk": "Розкажіть про досвід: «Він чистив манго.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "peeled",
+          "a",
+          "mango"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-18:i11:r1",
+          "text": "He has peeled a mango."
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i11:r2",
+          "text": "You have peeled a mango."
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i11:r3",
+          "text": "They have peeled a mango."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:i11:audio",
+          "transcript": "He has peeled a mango."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-18:i11:r1",
+            "targetText": "He has peeled a mango.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i11:r2",
+            "targetText": "You have peeled a mango.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i11:r3",
+            "targetText": "They have peeled a mango.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has peeled a mango.",
+              "uk": "У записі звучить He has peeled a mango."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has peeled a mango.",
+              "uk": "У записі звучить He has peeled a mango."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-18:i12:r1",
+          "text": "peeled"
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i12:r2",
+          "text": "peel"
+        },
+        {
+          "responseId": "en:lesson-23:session-18:i12:r3",
+          "text": "peels"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ a mango.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-18:i12:r1",
+            "text": "peeled"
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i12:r2",
+            "text": "peel"
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i12:r3",
+            "text": "peels"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-18:i13:p1",
+            "target": "melon",
+            "meaningByLocale": {
+              "ru": "дыня",
+              "uk": "диня"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-18:i13:p2",
+            "target": "watermelon",
+            "meaningByLocale": {
+              "ru": "арбуз",
+              "uk": "кавун"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-18:i13:p3",
+            "target": "pineapple",
+            "meaningByLocale": {
+              "ru": "ананас",
+              "uk": "ананас"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-18:i13:p4",
+            "target": "mango",
+            "meaningByLocale": {
+              "ru": "манго",
+              "uk": "манго"
+            }
+          }
+        ],
+        "leftColumn": [
+          "melon",
+          "watermelon",
+          "pineapple",
+          "mango"
+        ],
+        "rightColumn": [
+          "диня",
+          "кавун",
+          "ананас",
+          "манго"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: another та other",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: another та other",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:i14:audio",
+          "transcript": "I would like another piece."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I would like another piece.",
+        "orderedTokens": [
+          "I",
+          "would",
+          "like",
+          "another",
+          "piece"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:i15:audio",
+          "transcript": "You mustn't leave the knife on the floor."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the knife on the floor.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "knife",
+          "on",
+          "the",
+          "floor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми куштували диню.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми куштували диню.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:i16:audio",
+          "transcript": "We have tried melon."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have tried melon.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-18:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я чистив манго.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я чистив манго.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-18:i17:audio",
+          "transcript": "I have peeled a mango."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have peeled a mango.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "170bd33fa7167edf3abee8e98e1ecce40dff0a3f04f83af2471be74da2b403c9"
+}

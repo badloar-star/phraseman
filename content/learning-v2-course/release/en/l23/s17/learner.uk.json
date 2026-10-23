@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-17:word:tear",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:word:tear:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:word:tear:audio",
+          "transcript": "tear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-17:word:tear:r1",
+            "targetText": "tear",
+            "meaningByLocale": {
+              "ru": "рвать.",
+              "uk": "рвати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tear",
+          "definitionByLocale": {
+            "ru": "рвать.",
+            "uk": "рвати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму для результату зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-17:i01:r1",
+          "text": "torn"
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i01:r2",
+          "text": "tear"
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i01:r3",
+          "text": "tore"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму для результату зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму для результата сейчас.",
+          "uk": "Виберіть третю форму для результату зараз."
+        },
+        "gappedTargetPhrase": "I have ___ my shirt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-17:i01:r1",
+            "text": "torn"
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i01:r2",
+            "text": "tear"
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i01:r3",
+            "text": "tore"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму для результату зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-17:i01:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму для результату зараз.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i01:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму для результату зараз.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На сорочці тепер дірка. Скажіть: «Я порвав сорочку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На сорочці тепер дірка. Скажіть: «Я порвав сорочку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have torn my shirt.",
+        "localizedMeaning": {
+          "ru": "На рубашке теперь дыра. Скажите: «Я порвал рубашку».",
+          "uk": "На сорочці тепер дірка. Скажіть: «Я порвав сорочку»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "torn",
+          "my",
+          "shirt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-17:i03:r1",
+          "text": "I have torn my shirt."
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i03:r2",
+          "text": "I have torn my jacket."
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i03:r3",
+          "text": "I have torn my trousers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:i03:audio",
+          "transcript": "I have torn my shirt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-17:i03:r1",
+            "targetText": "I have torn my shirt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i03:r2",
+            "targetText": "I have torn my jacket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i03:r3",
+            "targetText": "I have torn my trousers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have torn my shirt.",
+              "uk": "У записі звучить I have torn my shirt."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have torn my shirt.",
+              "uk": "У записі звучить I have torn my shirt."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:word:shatter",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shatter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:word:shatter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shatter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:word:shatter:audio",
+          "transcript": "shatter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-17:word:shatter:r1",
+            "targetText": "shatter",
+            "meaningByLocale": {
+              "ru": "разбиться на осколки.",
+              "uk": "розбитися на скалки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shatter",
+          "definitionByLocale": {
+            "ru": "разбиться на осколки.",
+            "uk": "розбитися на скалки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму для результату зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-17:i04:r1",
+          "text": "shattered"
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i04:r2",
+          "text": "shatter"
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i04:r3",
+          "text": "shatters"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму для результату зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму для результата сейчас.",
+          "uk": "Виберіть третю форму для результату зараз."
+        },
+        "gappedTargetPhrase": "The glass has ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-17:i04:r1",
+            "text": "shattered"
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i04:r2",
+            "text": "shatter"
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i04:r3",
+            "text": "shatters"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму для результату зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-17:i04:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму для результату зараз.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i04:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму для результату зараз.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На підлозі скалки. Скажіть: «Склянка розбилася».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На підлозі скалки. Скажіть: «Склянка розбилася».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The glass has shattered.",
+        "localizedMeaning": {
+          "ru": "На полу осколки. Скажите: «Стакан разбился».",
+          "uk": "На підлозі скалки. Скажіть: «Склянка розбилася»."
+        },
+        "orderedTokens": [
+          "The",
+          "glass",
+          "has",
+          "shattered"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-17:i06:r1",
+          "text": "The glass has shattered."
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i06:r2",
+          "text": "The plate has shattered."
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i06:r3",
+          "text": "The cup has shattered."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:i06:audio",
+          "transcript": "The glass has shattered."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-17:i06:r1",
+            "targetText": "The glass has shattered.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i06:r2",
+            "targetText": "The plate has shattered.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i06:r3",
+            "targetText": "The cup has shattered.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The glass has shattered.",
+              "uk": "У записі звучить The glass has shattered."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The glass has shattered.",
+              "uk": "У записі звучить The glass has shattered."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:word:clog",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — clog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:word:clog:audio"
+      ],
+      "accessibilityLabel": "Картка слова — clog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:word:clog:audio",
+          "transcript": "clog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-17:word:clog:r1",
+            "targetText": "clog",
+            "meaningByLocale": {
+              "ru": "засоряться.",
+              "uk": "засмічуватися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clog",
+          "definitionByLocale": {
+            "ru": "засоряться.",
+            "uk": "засмічуватися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму для результату зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-17:i07:r1",
+          "text": "clogged"
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i07:r2",
+          "text": "clog"
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i07:r3",
+          "text": "clogs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму для результату зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму для результата сейчас.",
+          "uk": "Виберіть третю форму для результату зараз."
+        },
+        "gappedTargetPhrase": "The drain has ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-17:i07:r1",
+            "text": "clogged"
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i07:r2",
+            "text": "clog"
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i07:r3",
+            "text": "clogs"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму для результату зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-17:i07:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму для результату зараз.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i07:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму для результату зараз.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вода тепер не стікає. Скажіть: «Злив засмітився».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вода тепер не стікає. Скажіть: «Злив засмітився».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The drain has clogged.",
+        "localizedMeaning": {
+          "ru": "Вода теперь не уходит. Скажите: «Слив засорился».",
+          "uk": "Вода тепер не стікає. Скажіть: «Злив засмітився»."
+        },
+        "orderedTokens": [
+          "The",
+          "drain",
+          "has",
+          "clogged"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-17:i09:r1",
+          "text": "The drain has clogged."
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i09:r2",
+          "text": "The toilet has clogged."
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i09:r3",
+          "text": "The pipe has clogged."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:i09:audio",
+          "transcript": "The drain has clogged."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-17:i09:r1",
+            "targetText": "The drain has clogged.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i09:r2",
+            "targetText": "The toilet has clogged.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i09:r3",
+            "targetText": "The pipe has clogged.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The drain has clogged.",
+              "uk": "У записі звучить The drain has clogged."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The drain has clogged.",
+              "uk": "У записі звучить The drain has clogged."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:word:fade",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:word:fade:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fade",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:word:fade:audio",
+          "transcript": "fade"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-17:word:fade:r1",
+            "targetText": "fade",
+            "meaningByLocale": {
+              "ru": "выцветать.",
+              "uk": "вицвітати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fade",
+          "definitionByLocale": {
+            "ru": "выцветать.",
+            "uk": "вицвітати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму для результату зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-17:i10:r1",
+          "text": "faded"
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i10:r2",
+          "text": "fade"
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i10:r3",
+          "text": "fades"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму для результату зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму для результата сейчас.",
+          "uk": "Виберіть третю форму для результату зараз."
+        },
+        "gappedTargetPhrase": "The colour has ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-17:i10:r1",
+            "text": "faded"
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i10:r2",
+            "text": "fade"
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i10:r3",
+            "text": "fades"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму для результату зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-17:i10:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму для результату зараз.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i10:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму для результату зараз.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колір тепер блідіший. Скажіть: «Колір вицвів».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колір тепер блідіший. Скажіть: «Колір вицвів».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The colour has faded.",
+        "localizedMeaning": {
+          "ru": "Цвет теперь бледнее. Скажите: «Цвет выцвел».",
+          "uk": "Колір тепер блідіший. Скажіть: «Колір вицвів»."
+        },
+        "orderedTokens": [
+          "The",
+          "colour",
+          "has",
+          "faded"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-17:i12:r1",
+          "text": "The colour has faded."
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i12:r2",
+          "text": "The paint has faded."
+        },
+        {
+          "responseId": "en:lesson-23:session-17:i12:r3",
+          "text": "The photo has faded."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:i12:audio",
+          "transcript": "The colour has faded."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-17:i12:r1",
+            "targetText": "The colour has faded.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i12:r2",
+            "targetText": "The paint has faded.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i12:r3",
+            "targetText": "The photo has faded.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-17:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The colour has faded.",
+              "uk": "У записі звучить The colour has faded."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-17:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The colour has faded.",
+              "uk": "У записі звучить The colour has faded."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-17:i13:p1",
+            "target": "tear",
+            "meaningByLocale": {
+              "ru": "рвать",
+              "uk": "рвати"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-17:i13:p2",
+            "target": "shatter",
+            "meaningByLocale": {
+              "ru": "разбиться на осколки",
+              "uk": "розбитися на скалки"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-17:i13:p3",
+            "target": "clog",
+            "meaningByLocale": {
+              "ru": "засоряться",
+              "uk": "засмічуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-17:i13:p4",
+            "target": "fade",
+            "meaningByLocale": {
+              "ru": "выцветать",
+              "uk": "вицвітати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tear",
+          "shatter",
+          "clog",
+          "fade"
+        ],
+        "rightColumn": [
+          "рвати",
+          "розбитися на скалки",
+          "засмічуватися",
+          "вицвітати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інша сорочка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інша сорочка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:i14:audio",
+          "transcript": "I need another shirt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need another shirt.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "another",
+          "shirt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:i15:audio",
+          "transcript": "You mustn't touch the broken glass."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't touch the broken glass.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "touch",
+          "the",
+          "broken",
+          "glass"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я порвав пальто».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я порвав пальто».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:i16:audio",
+          "transcript": "I have torn my coat."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have torn my coat.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-17:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Кольори вицвіли».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-17:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Кольори вицвіли».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-17:i17:audio",
+          "transcript": "The colours have faded."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The colours have faded.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b288de0bb28abb3b2070d08ecfc9fb1affc90beffd947c1e1fe89a4378b6681d"
+}

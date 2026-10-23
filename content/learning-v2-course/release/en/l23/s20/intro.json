@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Avocado — авокадо. An avocado — один плод: an нужен перед гласным звуком. I have cut an avocado сообщает, что вы уже разрезали авокадо. У cut третья форма тоже cut, без -ed.",
+        "uk": "Avocado — авокадо. An avocado — один плід: an потрібен перед голосним звуком. I have cut an avocado повідомляє, що ви вже розрізали авокадо. У cut третя форма теж cut, без -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-20:intro1:r1",
+              "text": "I have cut an avocado."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro1:r2",
+              "text": "I has cut an avocado."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro1:r3",
+              "text": "I have cutted an avocado."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-20:intro1:r1",
+              "text": "I have cut an avocado."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro1:r2",
+              "text": "I has cut an avocado."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro1:r3",
+              "text": "I have cutted an avocado."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Названия продуктов",
+        "uk": "Назви продуктів"
+      },
+      "bodyByLocale": {
+        "ru": "Lettuce — листовой салат, растение, а не готовое блюдо salad. She has grown lettuce — она выращивала салат. Здесь lettuce неисчисляемое и без a. Tangerine — мандарин; peel a tangerine — очистить мандарин от кожуры.",
+        "uk": "Lettuce — листковий салат, рослина, а не готова страва salad. She has grown lettuce — вона вирощувала салат. Тут lettuce незлічуване й без a. Tangerine — мандарин; peel a tangerine — очистити мандарин від шкірки."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-20:intro2:r1",
+              "text": "She has grown lettuce."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro2:r2",
+              "text": "She have grown lettuce."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro2:r3",
+              "text": "She has grow lettuce."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-20:intro2:r1",
+              "text": "She has grown lettuce."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro2:r2",
+              "text": "She have grown lettuce."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro2:r3",
+              "text": "She has grow lettuce."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что вы уже делали",
+        "uk": "Що ви вже робили"
+      },
+      "bodyByLocale": {
+        "ru": "Lime — лайм, обычно зелёный цитрусовый плод. Squeeze a lime — выжать сок из лайма. He has squeezed a lime: он уже делал это. С he нужна форма has; squeezed — третья форма squeeze.",
+        "uk": "Lime — лайм, зазвичай зелений цитрусовий плід. Squeeze a lime — вичавити сік із лайма. He has squeezed a lime: він уже робив це. Із he потрібна форма has; squeezed — третя форма squeeze."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-20:intro3:r1",
+              "text": "He has squeezed a lime."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro3:r2",
+              "text": "He have squeezed a lime."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro3:r3",
+              "text": "He has squeeze a lime."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-20:intro3:r1",
+              "text": "He has squeezed a lime."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro3:r2",
+              "text": "He have squeezed a lime."
+            },
+            {
+              "responseId": "en:lesson-23:session-20:intro3:r3",
+              "text": "He has squeeze a lime."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5c0b6280d0c6e0cba03ef20389d288d94fa0c26c7fc505ae80297ec7b6957d6f"
+}

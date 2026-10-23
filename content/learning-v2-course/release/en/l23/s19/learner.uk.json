@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-19:word:strawberries",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — strawberries",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:word:strawberries:audio"
+      ],
+      "accessibilityLabel": "Картка слова — strawberries",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:word:strawberries:audio",
+          "transcript": "strawberries"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-19:word:strawberries:r1",
+            "targetText": "strawberries",
+            "meaningByLocale": {
+              "ru": "клубника.",
+              "uk": "полуниці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "strawberries",
+          "definitionByLocale": {
+            "ru": "клубника.",
+            "uk": "полуниці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Я збирав полуниці.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Я збирав полуниці.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have picked strawberries.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я собирал клубнику.»",
+          "uk": "Розкажіть про досвід: «Я збирав полуниці.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "picked",
+          "strawberries"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-19:i02:r1",
+          "text": "I have picked strawberries."
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i02:r2",
+          "text": "You have picked strawberries."
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i02:r3",
+          "text": "They have picked strawberries."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:i02:audio",
+          "transcript": "I have picked strawberries."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-19:i02:r1",
+            "targetText": "I have picked strawberries.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i02:r2",
+            "targetText": "You have picked strawberries.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i02:r3",
+            "targetText": "They have picked strawberries.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have picked strawberries.",
+              "uk": "У записі звучить I have picked strawberries."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have picked strawberries.",
+              "uk": "У записі звучить I have picked strawberries."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-19:i03:r1",
+          "text": "picked"
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i03:r2",
+          "text": "pick"
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i03:r3",
+          "text": "picks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ strawberries.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-19:i03:r1",
+            "text": "picked"
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i03:r2",
+            "text": "pick"
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i03:r3",
+            "text": "picks"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-19:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:word:raspberries",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — raspberries",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:word:raspberries:audio"
+      ],
+      "accessibilityLabel": "Картка слова — raspberries",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:word:raspberries:audio",
+          "transcript": "raspberries"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-19:word:raspberries:r1",
+            "targetText": "raspberries",
+            "meaningByLocale": {
+              "ru": "малина.",
+              "uk": "малина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "raspberries",
+          "definitionByLocale": {
+            "ru": "малина.",
+            "uk": "малина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Вона вирощувала малину.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Вона вирощувала малину.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has grown raspberries.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она выращивала малину.»",
+          "uk": "Розкажіть про досвід: «Вона вирощувала малину.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "grown",
+          "raspberries"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-19:i05:r1",
+          "text": "She has grown raspberries."
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i05:r2",
+          "text": "You have grown raspberries."
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i05:r3",
+          "text": "They have grown raspberries."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:i05:audio",
+          "transcript": "She has grown raspberries."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-19:i05:r1",
+            "targetText": "She has grown raspberries.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i05:r2",
+            "targetText": "You have grown raspberries.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i05:r3",
+            "targetText": "They have grown raspberries.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-19:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has grown raspberries.",
+              "uk": "У записі звучить She has grown raspberries."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has grown raspberries.",
+              "uk": "У записі звучить She has grown raspberries."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-19:i06:r1",
+          "text": "grown"
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i06:r2",
+          "text": "grow"
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i06:r3",
+          "text": "grew"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ raspberries.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-19:i06:r1",
+            "text": "grown"
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i06:r2",
+            "text": "grow"
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i06:r3",
+            "text": "grew"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-19:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:word:blueberries",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — blueberries",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:word:blueberries:audio"
+      ],
+      "accessibilityLabel": "Картка слова — blueberries",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:word:blueberries:audio",
+          "transcript": "blueberries"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-19:word:blueberries:r1",
+            "targetText": "blueberries",
+            "meaningByLocale": {
+              "ru": "голубика.",
+              "uk": "лохина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blueberries",
+          "definitionByLocale": {
+            "ru": "голубика.",
+            "uk": "лохина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Ми їли лохину.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Ми їли лохину.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have eaten blueberries.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы ели голубику.»",
+          "uk": "Розкажіть про досвід: «Ми їли лохину.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "eaten",
+          "blueberries"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-19:i08:r1",
+          "text": "We have eaten blueberries."
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i08:r2",
+          "text": "You have eaten blueberries."
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i08:r3",
+          "text": "They have eaten blueberries."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:i08:audio",
+          "transcript": "We have eaten blueberries."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-19:i08:r1",
+            "targetText": "We have eaten blueberries.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i08:r2",
+            "targetText": "You have eaten blueberries.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i08:r3",
+            "targetText": "They have eaten blueberries.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have eaten blueberries.",
+              "uk": "У записі звучить We have eaten blueberries."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have eaten blueberries.",
+              "uk": "У записі звучить We have eaten blueberries."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-19:i09:r1",
+          "text": "eaten"
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i09:r2",
+          "text": "eat"
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i09:r3",
+          "text": "ate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ blueberries.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-19:i09:r1",
+            "text": "eaten"
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i09:r2",
+            "text": "eat"
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i09:r3",
+            "text": "ate"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:word:kiwi",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — kiwi",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:word:kiwi:audio"
+      ],
+      "accessibilityLabel": "Картка слова — kiwi",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:word:kiwi:audio",
+          "transcript": "kiwi"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-19:word:kiwi:r1",
+            "targetText": "kiwi",
+            "meaningByLocale": {
+              "ru": "киви.",
+              "uk": "ківі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kiwi",
+          "definitionByLocale": {
+            "ru": "киви.",
+            "uk": "ківі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Він куштував ківі.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Він куштував ківі.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has tried a kiwi.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он пробовал киви.»",
+          "uk": "Розкажіть про досвід: «Він куштував ківі.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "tried",
+          "a",
+          "kiwi"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-19:i11:r1",
+          "text": "He has tried a kiwi."
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i11:r2",
+          "text": "You have tried a kiwi."
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i11:r3",
+          "text": "They have tried a kiwi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:i11:audio",
+          "transcript": "He has tried a kiwi."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-19:i11:r1",
+            "targetText": "He has tried a kiwi.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i11:r2",
+            "targetText": "You have tried a kiwi.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i11:r3",
+            "targetText": "They have tried a kiwi.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-19:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has tried a kiwi.",
+              "uk": "У записі звучить He has tried a kiwi."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has tried a kiwi.",
+              "uk": "У записі звучить He has tried a kiwi."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-19:i12:r1",
+          "text": "tried"
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i12:r2",
+          "text": "try"
+        },
+        {
+          "responseId": "en:lesson-23:session-19:i12:r3",
+          "text": "tries"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ a kiwi.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-19:i12:r1",
+            "text": "tried"
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i12:r2",
+            "text": "try"
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i12:r3",
+            "text": "tries"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-19:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-19:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-19:i13:p1",
+            "target": "strawberries",
+            "meaningByLocale": {
+              "ru": "клубника",
+              "uk": "полуниці"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-19:i13:p2",
+            "target": "raspberries",
+            "meaningByLocale": {
+              "ru": "малина",
+              "uk": "малина"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-19:i13:p3",
+            "target": "blueberries",
+            "meaningByLocale": {
+              "ru": "голубика",
+              "uk": "лохина"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-19:i13:p4",
+            "target": "kiwi",
+            "meaningByLocale": {
+              "ru": "киви",
+              "uk": "ківі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "strawberries",
+          "raspberries",
+          "blueberries",
+          "kiwi"
+        ],
+        "rightColumn": [
+          "полуниці",
+          "малина",
+          "лохина",
+          "ківі"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: another та other",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: another та other",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:i14:audio",
+          "transcript": "The other berries are in the fridge."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The other berries are in the fridge.",
+        "orderedTokens": [
+          "The",
+          "other",
+          "berries",
+          "are",
+          "in",
+          "the",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:i15:audio",
+          "transcript": "You mustn't leave the knife on the floor."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the knife on the floor.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "knife",
+          "on",
+          "the",
+          "floor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми збирали полуниці.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми збирали полуниці.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:i16:audio",
+          "transcript": "We have picked strawberries."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have picked strawberries.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-19:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я куштував ківі.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я куштував ківі.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-19:i17:audio",
+          "transcript": "I have tried a kiwi."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have tried a kiwi.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7ef64844ba3fb09a8e3ae62b6e8e68095a05503b14b8c97c1830dea5e0065013"
+}

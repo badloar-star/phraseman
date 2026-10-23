@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Strawberries — клубника. Одна ягода — a strawberry, несколько — strawberries: y меняется на ies. Pick strawberries — собирать клубнику. I have picked strawberries говорит об опыте, а не о дате сбора.",
+        "uk": "Strawberries — полуниці. Одна ягода — a strawberry, кілька — strawberries: y змінюється на ies. Pick strawberries — збирати полуниці. I have picked strawberries говорить про досвід, а не про дату збирання."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-19:intro1:r1",
+              "text": "I have picked strawberries."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro1:r2",
+              "text": "I has picked strawberries."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro1:r3",
+              "text": "I have pick strawberries."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-19:intro1:r1",
+              "text": "I have picked strawberries."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro1:r2",
+              "text": "I has picked strawberries."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro1:r3",
+              "text": "I have pick strawberries."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Названия продуктов",
+        "uk": "Назви продуктів"
+      },
+      "bodyByLocale": {
+        "ru": "Raspberries — малина, blueberries — голубика. Английские слова здесь во множественном числе, поэтому перед ними нет a. She has grown raspberries — она выращивала малину. Третья форма grow — grown, не grew.",
+        "uk": "Raspberries — малина, blueberries — лохина. Англійські слова тут у множині, тому перед ними немає a. She has grown raspberries — вона вирощувала малину. Третя форма grow — grown, не grew."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-19:intro2:r1",
+              "text": "She has grown raspberries."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro2:r2",
+              "text": "She have grown raspberries."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro2:r3",
+              "text": "She has grow raspberries."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-19:intro2:r1",
+              "text": "She has grown raspberries."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro2:r2",
+              "text": "She have grown raspberries."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro2:r3",
+              "text": "She has grow raspberries."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что вы уже делали",
+        "uk": "Що ви вже робили"
+      },
+      "bodyByLocale": {
+        "ru": "Kiwi здесь — фрукт киви. A kiwi — один плод. He has tried a kiwi — он пробовал киви. В этих примерах have/has помогают рассказать об опыте: picked, grown, eaten и tried — третьи формы.",
+        "uk": "Kiwi тут — фрукт ківі. A kiwi — один плід. He has tried a kiwi — він куштував ківі. У цих прикладах have/has допомагають розповісти про досвід: picked, grown, eaten і tried — треті форми."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-19:intro3:r1",
+              "text": "He has tried a kiwi."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro3:r2",
+              "text": "He have tried a kiwi."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro3:r3",
+              "text": "He has try a kiwi."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-19:intro3:r1",
+              "text": "He has tried a kiwi."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro3:r2",
+              "text": "He have tried a kiwi."
+            },
+            {
+              "responseId": "en:lesson-23:session-19:intro3:r3",
+              "text": "He has try a kiwi."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a2a203a2c9bfa733a745b3ff4d534d93b7af76474766f0a79f5441f88dfb5f56"
+}

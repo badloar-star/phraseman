@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Во что вы играли",
+        "uk": "У що ви грали"
+      },
+      "bodyByLocale": {
+        "ru": "Volleyball — волейбол. Badminton — бадминтон. I have played volleyball рассказывает об опыте: я играл в волейбол. После play название спорта идёт без предлога и без the: play volleyball, play badminton.",
+        "uk": "Volleyball — волейбол. Badminton — бадмінтон. I have played volleyball розповідає про досвід: я грав у волейбол. Після play назва спорту йде без прийменника й без the: play volleyball, play badminton."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-21:intro1:r1",
+              "text": "I have played volleyball."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro1:r2",
+              "text": "I has played volleyball."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro1:r3",
+              "text": "I have play volleyball."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-21:intro1:r1",
+              "text": "I have played volleyball."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro1:r2",
+              "text": "I has played volleyball."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro1:r3",
+              "text": "I have play volleyball."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Игра с мячом",
+        "uk": "Гра з м’ячем"
+      },
+      "bodyByLocale": {
+        "ru": "Basketball — баскетбол, игра, в которой мяч бросают в корзину. We have played basketball — мы играли в баскетбол. Это сообщает о нашем опыте, но не называет конкретный день игры. Played — третья форма play.",
+        "uk": "Basketball — баскетбол, гра, у якій м’яч кидають у кошик. We have played basketball — ми грали в баскетбол. Це повідомляє про наш досвід, але не називає конкретний день гри. Played — третя форма play."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-21:intro2:r1",
+              "text": "We have played basketball."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro2:r2",
+              "text": "We has played basketball."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro2:r3",
+              "text": "We have play basketball."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-21:intro2:r1",
+              "text": "We have played basketball."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro2:r2",
+              "text": "We has played basketball."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro2:r3",
+              "text": "We have play basketball."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хоккей",
+        "uk": "Хокей"
+      },
+      "bodyByLocale": {
+        "ru": "Hockey — хоккей. Ice hockey уточняет, что это хоккей на льду; field hockey — на траве. В этом занятии учим общее слово hockey. He has played hockey: у него есть опыт игры. С he используем has.",
+        "uk": "Hockey — хокей. Ice hockey уточнює, що це хокей на льоду; field hockey — на траві. У цьому занятті вчимо загальне слово hockey. He has played hockey: він має досвід гри. Із he використовуємо has."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-21:intro3:r1",
+              "text": "He has played hockey."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro3:r2",
+              "text": "He have played hockey."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro3:r3",
+              "text": "He has play hockey."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-21:intro3:r1",
+              "text": "He has played hockey."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro3:r2",
+              "text": "He have played hockey."
+            },
+            {
+              "responseId": "en:lesson-23:session-21:intro3:r3",
+              "text": "He has play hockey."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5dbcec23f7648a07e42c4f47021aec8e6d87683c910229a2f898dc09c26961bb"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-17:word:tear",
+    "correctText": "tear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i01",
+    "correctText": "torn",
+    "correctResponseId": "en:lesson-23:session-17:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i02",
+    "correctText": "I have torn my shirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i03",
+    "correctText": "I have torn my shirt.",
+    "correctResponseId": "en:lesson-23:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:word:shatter",
+    "correctText": "shatter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i04",
+    "correctText": "shattered",
+    "correctResponseId": "en:lesson-23:session-17:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i05",
+    "correctText": "The glass has shattered.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i06",
+    "correctText": "The glass has shattered.",
+    "correctResponseId": "en:lesson-23:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:word:clog",
+    "correctText": "clog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i07",
+    "correctText": "clogged",
+    "correctResponseId": "en:lesson-23:session-17:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i08",
+    "correctText": "The drain has clogged.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i09",
+    "correctText": "The drain has clogged.",
+    "correctResponseId": "en:lesson-23:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:word:fade",
+    "correctText": "fade",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i10",
+    "correctText": "faded",
+    "correctResponseId": "en:lesson-23:session-17:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i11",
+    "correctText": "The colour has faded.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i12",
+    "correctText": "The colour has faded.",
+    "correctResponseId": "en:lesson-23:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i13",
+    "correctText": "en:lesson-23:session-17:i13:p1=tear\nen:lesson-23:session-17:i13:p2=shatter\nen:lesson-23:session-17:i13:p3=clog\nen:lesson-23:session-17:i13:p4=fade",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i14",
+    "correctText": "I need another shirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i15",
+    "correctText": "You mustn't touch the broken glass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i16",
+    "correctText": "I have torn my coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-17:i17",
+    "correctText": "The colours have faded.",
+    "correctResponseId": null
+  }
+]

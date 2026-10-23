@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-19:word:strawberries",
+    "correctText": "strawberries",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i01",
+    "correctText": "I have picked strawberries.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i02",
+    "correctText": "I have picked strawberries.",
+    "correctResponseId": "en:lesson-23:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i03",
+    "correctText": "picked",
+    "correctResponseId": "en:lesson-23:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:word:raspberries",
+    "correctText": "raspberries",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i04",
+    "correctText": "She has grown raspberries.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i05",
+    "correctText": "She has grown raspberries.",
+    "correctResponseId": "en:lesson-23:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i06",
+    "correctText": "grown",
+    "correctResponseId": "en:lesson-23:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:word:blueberries",
+    "correctText": "blueberries",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i07",
+    "correctText": "We have eaten blueberries.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i08",
+    "correctText": "We have eaten blueberries.",
+    "correctResponseId": "en:lesson-23:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i09",
+    "correctText": "eaten",
+    "correctResponseId": "en:lesson-23:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:word:kiwi",
+    "correctText": "kiwi",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i10",
+    "correctText": "He has tried a kiwi.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i11",
+    "correctText": "He has tried a kiwi.",
+    "correctResponseId": "en:lesson-23:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i12",
+    "correctText": "tried",
+    "correctResponseId": "en:lesson-23:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i13",
+    "correctText": "en:lesson-23:session-19:i13:p1=strawberries\nen:lesson-23:session-19:i13:p2=raspberries\nen:lesson-23:session-19:i13:p3=blueberries\nen:lesson-23:session-19:i13:p4=kiwi",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i14",
+    "correctText": "The other berries are in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i15",
+    "correctText": "You mustn't leave the knife on the floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i16",
+    "correctText": "We have picked strawberries.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-19:i17",
+    "correctText": "I have tried a kiwi.",
+    "correctResponseId": null
+  }
+]

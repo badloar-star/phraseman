@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-21:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        },
+        "en:lesson-23:session-21:intro1:r3": {
+          "ru": "После have или has нужна третья форма played.",
+          "uk": "Після have або has потрібна третя форма played."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-21:intro2:r2": {
+          "ru": "С we нужно have.",
+          "uk": "Із we потрібно have."
+        },
+        "en:lesson-23:session-21:intro2:r3": {
+          "ru": "После have или has нужна третья форма played.",
+          "uk": "Після have або has потрібна третя форма played."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-21:intro3:r2": {
+          "ru": "С he нужно has.",
+          "uk": "Із he потрібно has."
+        },
+        "en:lesson-23:session-21:intro3:r3": {
+          "ru": "После have или has нужна третья форма played.",
+          "uk": "Після have або has потрібна третя форма played."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dc7ddccb91e6d30c33c14cc5afc29fb71055f63c620eb42f7b9e9d1e322dc864"
+}

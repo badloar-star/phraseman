@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Melon — дыня, watermelon — арбуз. I have tried melon — я пробовал дыню. Здесь melon означает еду, а не один целый плод, поэтому без a. Это рассказ о том, что вы уже пробовали в жизни.",
+        "uk": "Melon — диня, watermelon — кавун. I have tried melon — я куштував диню. Тут melon означає їжу, а не один цілий плід, тому без a. Це розповідь про те, що ви вже куштували в житті."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-18:intro1:r1",
+              "text": "I have tried melon."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro1:r2",
+              "text": "I has tried melon."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro1:r3",
+              "text": "I have try melon."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-18:intro1:r1",
+              "text": "I have tried melon."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro1:r2",
+              "text": "I has tried melon."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro1:r3",
+              "text": "I have try melon."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Названия продуктов",
+        "uk": "Назви продуктів"
+      },
+      "bodyByLocale": {
+        "ru": "Pineapple — ананас. We have cut a pineapple — мы разрезали один ананас. Здесь нужен a, потому что речь о целом плоде. У cut все три формы одинаковые: cut — cut — cut. После have форма тоже cut.",
+        "uk": "Pineapple — ананас. We have cut a pineapple — ми розрізали один ананас. Тут потрібен a, бо йдеться про цілий плід. У cut усі три форми однакові: cut — cut — cut. Після have форма теж cut."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-18:intro2:r1",
+              "text": "We have cut a pineapple."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro2:r2",
+              "text": "We has cut a pineapple."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro2:r3",
+              "text": "We have cutted a pineapple."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-18:intro2:r1",
+              "text": "We have cut a pineapple."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro2:r2",
+              "text": "We has cut a pineapple."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro2:r3",
+              "text": "We have cutted a pineapple."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что вы уже делали",
+        "uk": "Що ви вже робили"
+      },
+      "bodyByLocale": {
+        "ru": "Mango — манго. Peel a mango — очистить манго от кожуры. He has peeled a mango: он уже делал это, у него есть такой опыт. Английское mango исчисляемое, поэтому a mango, хотя русский перевод «манго» не меняется.",
+        "uk": "Mango — манго. Peel a mango — очистити манго від шкірки. He has peeled a mango: він уже робив це, має такий досвід. Англійське mango злічуване, тому a mango, хоча український переклад «манго» не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-18:intro3:r1",
+              "text": "He has peeled a mango."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro3:r2",
+              "text": "He have peeled a mango."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro3:r3",
+              "text": "He has peel a mango."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-18:intro3:r1",
+              "text": "He has peeled a mango."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro3:r2",
+              "text": "He have peeled a mango."
+            },
+            {
+              "responseId": "en:lesson-23:session-18:intro3:r3",
+              "text": "He has peel a mango."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "27db8b1a730d11eab70166261dc651ff93dbfd64799beb429d4c54e97bac9608"
+}

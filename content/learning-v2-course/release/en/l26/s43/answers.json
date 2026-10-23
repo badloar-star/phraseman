@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-43:word:sprinkler",
+    "correctText": "sprinkler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i01",
+    "correctText": "The sprinkler is on.",
+    "correctResponseId": "en:lesson-26:session-43:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i02",
+    "correctText": "Could you turn it off?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:word:showerhead",
+    "correctText": "showerhead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i03",
+    "correctText": "The showerhead is dripping.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i04",
+    "correctText": "turn",
+    "correctResponseId": "en:lesson-26:session-43:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i05",
+    "correctText": "Have you watered the plants yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:word:backyard",
+    "correctText": "backyard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i06",
+    "correctText": "The chairs are in the backyard.",
+    "correctResponseId": "en:lesson-26:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i07",
+    "correctText": "Can you help me carry this chair?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:word:greenhouse",
+    "correctText": "greenhouse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i08",
+    "correctText": "The pots are in the greenhouse.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i09",
+    "correctText": "watered",
+    "correctResponseId": "en:lesson-26:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i10",
+    "correctText": "We can sit outside if the chairs are dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i11",
+    "correctText": "I have just put the hose away.",
+    "correctResponseId": "en:lesson-26:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i12",
+    "correctText": "finish",
+    "correctResponseId": "en:lesson-26:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i13",
+    "correctText": "Please leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-43:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i15",
+    "correctText": "Shall I get another chair?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-43:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-43:i17",
+    "correctText": "Come and sit with us.",
+    "correctResponseId": null
+  }
+]

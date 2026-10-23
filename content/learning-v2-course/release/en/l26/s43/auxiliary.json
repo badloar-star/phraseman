@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-43:intro1:r2": {
+          "ru": "После when здесь finish без will.",
+          "uk": "Після when тут finish без will."
+        },
+        "en:lesson-26:session-43:intro1:r3": {
+          "ru": "С I нужно finish без -s.",
+          "uk": "З I потрібно finish без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-43:intro2:r2": {
+          "ru": "Unless меняет условие: если стулья не сухие.",
+          "uk": "Unless змінює умову: якщо стільці не сухі."
+        },
+        "en:lesson-26:session-43:intro2:r3": {
+          "ru": "После if здесь are без will.",
+          "uk": "Після if тут are без will."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-43:intro3:r2": {
+          "ru": "Started задаёт прошлое; более раннее действие — had put.",
+          "uk": "Started задає минуле; раніша дія — had put."
+        },
+        "en:lesson-26:session-43:intro3:r3": {
+          "ru": "После had здесь put, не putting.",
+          "uk": "Після had тут put, не putting."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b46777b3c37fadeb0c9cdcd9c8998fa602b3975185b51ef90a257f22c1abc660"
+}

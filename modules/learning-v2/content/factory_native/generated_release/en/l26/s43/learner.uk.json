@@ -1,0 +1,1075 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-43:word:sprinkler",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sprinkler",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:word:sprinkler:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sprinkler",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:word:sprinkler:audio",
+          "transcript": "sprinkler"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-43:word:sprinkler:r1",
+            "targetText": "sprinkler",
+            "meaningByLocale": {
+              "ru": "Разбрызгиватель для полива.",
+              "uk": "Розбризкувач для поливу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sprinkler",
+          "definitionByLocale": {
+            "ru": "Разбрызгиватель для полива.",
+            "uk": "Розбризкувач для поливу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-43:i01:r1",
+          "text": "The sprinkler is on."
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i01:r2",
+          "text": "The sprinkler is off."
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i01:r3",
+          "text": "The tap is on."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:i01:audio",
+          "transcript": "The sprinkler is on."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-43:i01:r1",
+            "targetText": "The sprinkler is on.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i01:r2",
+            "targetText": "The sprinkler is off.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i01:r3",
+            "targetText": "The tap is on.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-43:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sprinkler is on.",
+              "uk": "У записі звучить The sprinkler is on."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sprinkler is on.",
+              "uk": "У записі звучить The sprinkler is on."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть вимкнути воду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Попросіть вимкнути воду.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:i02:audio",
+          "transcript": "Could you turn it off?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you turn it off?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:word:showerhead",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — showerhead",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:word:showerhead:audio"
+      ],
+      "accessibilityLabel": "Картка слова — showerhead",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:word:showerhead:audio",
+          "transcript": "showerhead"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-43:word:showerhead:r1",
+            "targetText": "showerhead",
+            "meaningByLocale": {
+              "ru": "Душевая лейка.",
+              "uk": "Душова лійка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "showerhead",
+          "definitionByLocale": {
+            "ru": "Душевая лейка.",
+            "uk": "Душова лійка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте, що із душової лійки крапає.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте, що із душової лійки крапає.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The showerhead is dripping.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что из душевой лейки капает.",
+          "uk": "Повідомте, що із душової лійки крапає."
+        },
+        "orderedTokens": [
+          "The",
+          "showerhead",
+          "is",
+          "dripping"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Опишіть звичку закривати кран після справи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-43:i04:r1",
+          "text": "turn"
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i04:r2",
+          "text": "turns"
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i04:r3",
+          "text": "turning"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишіть звичку закривати кран після справи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Опишите привычку закрывать кран после дела.",
+          "uk": "Опишіть звичку закривати кран після справи."
+        },
+        "gappedTargetPhrase": "I ___ off the tap when I finish.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-43:i04:r1",
+            "text": "turn"
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i04:r2",
+            "text": "turns"
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i04:r3",
+            "text": "turning"
+          }
+        ],
+        "testedDimension": "Опишіть звичку закривати кран після справи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-43:i04:r2",
+            "correct": false,
+            "testedDimension": "Опишіть звичку закривати кран після справи.",
+            "feedbackByLocale": {
+              "ru": "С I нужно turn без -s.",
+              "uk": "З I потрібно turn без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i04:r3",
+            "correct": false,
+            "testedDimension": "Опишіть звичку закривати кран після справи.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужна форма turn.",
+              "uk": "Для звички потрібна форма turn."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запитання про политі рослини.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Почуйте запитання про политі рослини.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:i05:audio",
+          "transcript": "Have you watered the plants yet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you watered the plants yet?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "watered",
+          "the",
+          "plants",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:word:backyard",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — backyard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:word:backyard:audio"
+      ],
+      "accessibilityLabel": "Картка слова — backyard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:word:backyard:audio",
+          "transcript": "backyard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-43:word:backyard:r1",
+            "targetText": "backyard",
+            "meaningByLocale": {
+              "ru": "Задний двор.",
+              "uk": "Заднє подвір’я."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "backyard",
+          "definitionByLocale": {
+            "ru": "Задний двор.",
+            "uk": "Заднє подвір’я."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-43:i06:r1",
+          "text": "The chairs are in the backyard."
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i06:r2",
+          "text": "The chairs are in the kitchen."
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i06:r3",
+          "text": "The tools are in the backyard."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:i06:audio",
+          "transcript": "The chairs are in the backyard."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-43:i06:r1",
+            "targetText": "The chairs are in the backyard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i06:r2",
+            "targetText": "The chairs are in the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i06:r3",
+            "targetText": "The tools are in the backyard.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chairs are in the backyard.",
+              "uk": "У записі звучить The chairs are in the backyard."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chairs are in the backyard.",
+              "uk": "У записі звучить The chairs are in the backyard."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Один стілець важкий. Попросіть допомогти його перенести.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:i07:audio"
+      ],
+      "accessibilityLabel": "Один стілець важкий. Попросіть допомогти його перенести.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:i07:audio",
+          "transcript": "Can you help me carry this chair?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can you help me carry this chair?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:word:greenhouse",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — greenhouse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:word:greenhouse:audio"
+      ],
+      "accessibilityLabel": "Картка слова — greenhouse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:word:greenhouse:audio",
+          "transcript": "greenhouse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-43:word:greenhouse:r1",
+            "targetText": "greenhouse",
+            "meaningByLocale": {
+              "ru": "Теплица.",
+              "uk": "Теплиця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "greenhouse",
+          "definitionByLocale": {
+            "ru": "Теплица.",
+            "uk": "Теплиця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте, де стоять горщики.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Почуйте, де стоять горщики.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:i08:audio",
+          "transcript": "The pots are in the greenhouse."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The pots are in the greenhouse.",
+        "orderedTokens": [
+          "The",
+          "pots",
+          "are",
+          "in",
+          "the",
+          "greenhouse"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Рослини вже политі вами.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-43:i09:r1",
+          "text": "watered"
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i09:r2",
+          "text": "water"
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i09:r3",
+          "text": "watering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рослини вже политі вами.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Растения уже политы вами.",
+          "uk": "Рослини вже политі вами."
+        },
+        "gappedTargetPhrase": "I have already ___ them.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-43:i09:r1",
+            "text": "watered"
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i09:r2",
+            "text": "water"
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i09:r3",
+            "text": "watering"
+          }
+        ],
+        "testedDimension": "Рослини вже политі вами.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Рослини вже политі вами.",
+            "feedbackByLocale": {
+              "ru": "После have нужна форма watered.",
+              "uk": "Після have потрібна форма watered."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Рослини вже политі вами.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно watered, не watering.",
+              "uk": "Тут потрібно watered, не watering."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почніть із рішення: If the chairs are dry, we can sit outside.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть із рішення: If the chairs are dry, we can sit outside.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can sit outside if the chairs are dry.",
+        "localizedMeaning": {
+          "ru": "Начните с решения: If the chairs are dry, we can sit outside.",
+          "uk": "Почніть із рішення: If the chairs are dry, we can sit outside."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "sit",
+          "outside",
+          "if",
+          "the",
+          "chairs",
+          "are",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-43:i11:r1",
+          "text": "I have just put the hose away."
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i11:r2",
+          "text": "I have just put the tools away."
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i11:r3",
+          "text": "I have already used the hose."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:i11:audio",
+          "transcript": "I have just put the hose away."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-43:i11:r1",
+            "targetText": "I have just put the hose away.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i11:r2",
+            "targetText": "I have just put the tools away.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i11:r3",
+            "targetText": "I have already used the hose.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just put the hose away.",
+              "uk": "У записі звучить I have just put the hose away."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just put the hose away.",
+              "uk": "У записі звучить I have just put the hose away."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви допоможете, коли закінчите свою справу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-43:i12:r1",
+          "text": "finish"
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i12:r2",
+          "text": "will finish"
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i12:r3",
+          "text": "finishes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви допоможете, коли закінчите свою справу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы поможете, когда закончите своё дело.",
+          "uk": "Ви допоможете, коли закінчите свою справу."
+        },
+        "gappedTargetPhrase": "I will help when I ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-43:i12:r1",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i12:r2",
+            "text": "will finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i12:r3",
+            "text": "finishes"
+          }
+        ],
+        "testedDimension": "Ви допоможете, коли закінчите свою справу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви допоможете, коли закінчите свою справу.",
+            "feedbackByLocale": {
+              "ru": "После when здесь finish без will.",
+              "uk": "Після when тут finish без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви допоможете, коли закінчите свою справу.",
+            "feedbackByLocale": {
+              "ru": "С I нужно finish без -s.",
+              "uk": "З I потрібно finish без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть залишити двері відчиненими.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Попросіть залишити двері відчиненими.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:i13:audio",
+          "transcript": "Please leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please leave the door open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора інструменти були прибрані до початку дощу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-43:i14:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i14:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора інструменти були прибрані до початку дощу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера инструменты были убраны до начала дождя.",
+          "uk": "Учора інструменти були прибрані до початку дощу."
+        },
+        "gappedTargetPhrase": "We ___ put the tools away by the time it started raining.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-43:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Учора інструменти були прибрані до початку дощу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-43:i14:r2",
+            "correct": false,
+            "testedDimension": "Учора інструменти були прибрані до початку дощу.",
+            "feedbackByLocale": {
+              "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+              "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i14:r3",
+            "correct": false,
+            "testedDimension": "Учора інструменти були прибрані до початку дощу.",
+            "feedbackByLocale": {
+              "ru": "Are put не выражает более раннее выполненное нами действие.",
+              "uk": "Are put не виражає ранішу виконану нами дію."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте пропозицію взяти ще один стілець.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Почуйте пропозицію взяти ще один стілець.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:i15:audio",
+          "transcript": "Shall I get another chair?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Shall I get another chair?",
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "get",
+          "another",
+          "chair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви питимете чай надворі, якщо не піде дощ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-43:i16:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i16:r2",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-26:session-43:i16:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви питимете чай надворі, якщо не піде дощ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы будете пить чай снаружи, если не пойдёт дождь.",
+          "uk": "Ви питимете чай надворі, якщо не піде дощ."
+        },
+        "gappedTargetPhrase": "We will have tea outside ___ it rains.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-43:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i16:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Ви питимете чай надворі, якщо не піде дощ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-43:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви питимете чай надворі, якщо не піде дощ.",
+            "feedbackByLocale": {
+              "ru": "If означало бы чай снаружи именно во время дождя.",
+              "uk": "If означало б чай надворі саме під час дощу."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-43:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви питимете чай надворі, якщо не піде дощ.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы дождь причиной остаться снаружи.",
+              "uk": "Because зробило б дощ причиною залишитися надворі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-43:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покличте друга сісти з вами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Покличте друга сісти з вами.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-43:i17:audio",
+          "transcript": "Come and sit with us."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Come and sit with us.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cbda5795f29b5971dbdb6ac0d0f256a06cefdaee9ba7ea6becb3806b439c44d9"
+}

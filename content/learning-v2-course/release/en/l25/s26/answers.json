@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-26:word:grumbled",
+    "correctText": "grumbled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i01",
+    "correctText": "He grumbled after he saw the bill.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i02",
+    "correctText": "grumbled",
+    "correctResponseId": "en:lesson-25:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i03",
+    "correctText": "He grumbled after he saw the bill.",
+    "correctResponseId": "en:lesson-25:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:word:nagged",
+    "correctText": "nagged",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i04",
+    "correctText": "She nagged me before I cleaned my room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i05",
+    "correctText": "nagged",
+    "correctResponseId": "en:lesson-25:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i06",
+    "correctText": "She nagged me before I cleaned my room.",
+    "correctResponseId": "en:lesson-25:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:word:scolded",
+    "correctText": "scolded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i07",
+    "correctText": "He scolded me after I broke the cup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i08",
+    "correctText": "scolded",
+    "correctResponseId": "en:lesson-25:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i09",
+    "correctText": "He scolded me after I broke the cup.",
+    "correctResponseId": "en:lesson-25:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:word:whined",
+    "correctText": "whined",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i10",
+    "correctText": "The child whined after we left the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i11",
+    "correctText": "whined",
+    "correctResponseId": "en:lesson-25:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i12",
+    "correctText": "The child whined after we left the park.",
+    "correctResponseId": "en:lesson-25:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i13",
+    "correctText": "en:lesson-25:session-26:i13:p1=grumbled\nen:lesson-25:session-26:i13:p2=nagged\nen:lesson-25:session-26:i13:p3=scolded\nen:lesson-25:session-26:i13:p4=whined",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i14",
+    "correctText": "We ate before we left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i15",
+    "correctText": "We started after she arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i16",
+    "correctText": "She grumbled after we left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-26:i17",
+    "correctText": "They scolded me after I broke the plate.",
+    "correctResponseId": null
+  }
+]

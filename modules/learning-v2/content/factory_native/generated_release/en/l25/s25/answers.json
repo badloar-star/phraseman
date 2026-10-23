@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-25:word:reversed",
+    "correctText": "reversed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i01",
+    "correctText": "I stopped after I reversed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i02",
+    "correctText": "reversed",
+    "correctResponseId": "en:lesson-25:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i03",
+    "correctText": "I stopped after I reversed.",
+    "correctResponseId": "en:lesson-25:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:word:overtook",
+    "correctText": "overtook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i04",
+    "correctText": "He checked his mirror before he overtook the bus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i05",
+    "correctText": "overtook",
+    "correctResponseId": "en:lesson-25:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i06",
+    "correctText": "He checked his mirror before he overtook the bus.",
+    "correctResponseId": "en:lesson-25:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:word:skidded",
+    "correctText": "skidded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i07",
+    "correctText": "The driver stopped after the car skidded.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i08",
+    "correctText": "skidded",
+    "correctResponseId": "en:lesson-25:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i09",
+    "correctText": "The driver stopped after the car skidded.",
+    "correctResponseId": "en:lesson-25:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:word:collided",
+    "correctText": "collided",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i10",
+    "correctText": "We called for help after the cars collided.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i11",
+    "correctText": "collided",
+    "correctResponseId": "en:lesson-25:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i12",
+    "correctText": "We called for help after the cars collided.",
+    "correctResponseId": "en:lesson-25:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i13",
+    "correctText": "en:lesson-25:session-25:i13:p1=reversed\nen:lesson-25:session-25:i13:p2=overtook\nen:lesson-25:session-25:i13:p3=skidded\nen:lesson-25:session-25:i13:p4=collided",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i14",
+    "correctText": "We ate before we left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i15",
+    "correctText": "We started after she arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i16",
+    "correctText": "He stopped after he reversed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-25:i17",
+    "correctText": "I called for help after the cars collided.",
+    "correctResponseId": null
+  }
+]

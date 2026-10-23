@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-27:word:rotten",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rotten",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:word:rotten:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rotten",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:word:rotten:audio",
+          "transcript": "rotten"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-27:word:rotten:r1",
+            "targetText": "rotten",
+            "meaningByLocale": {
+              "ru": "Гнилой. Rotten описывает то, что сгнило.",
+              "uk": "Гниле. Rotten описує те, що згнило."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rotten",
+          "definitionByLocale": {
+            "ru": "Гнилой. Rotten описывает то, что сгнило.",
+            "uk": "Гниле. Rotten описує те, що згнило."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Яблоко было гнилым ещё до того, как я его разрезал.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Яблоко было гнилым ещё до того, как я его разрезал.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The apple was rotten before I cut it.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Яблоко было гнилым ещё до того, как я его разрезал.»",
+          "uk": "Скажіть: «Яблуко було гнилим ще до того, як я його розрізав.»"
+        },
+        "orderedTokens": [
+          "The",
+          "apple",
+          "was",
+          "rotten",
+          "before",
+          "I",
+          "cut",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-27:i02:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i02:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i02:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "The apple ___ rotten before I cut it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-27:i02:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i02:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i02:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма was.",
+              "uk": "Для завершеної події потрібна минула форма was."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма was.",
+              "uk": "Для завершеної події потрібна минула форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-27:i03:r1",
+          "text": "The apple was rotten before I cut it."
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i03:r2",
+          "text": "The pear was rotten before I cut it."
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i03:r3",
+          "text": "The apple was rotten before she cut it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:i03:audio",
+          "transcript": "The apple was rotten before I cut it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-27:i03:r1",
+            "targetText": "The apple was rotten before I cut it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i03:r2",
+            "targetText": "The pear was rotten before I cut it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i03:r3",
+            "targetText": "The apple was rotten before she cut it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The apple was rotten before I cut it.",
+              "uk": "У записі звучить The apple was rotten before I cut it."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The apple was rotten before I cut it.",
+              "uk": "У записі звучить The apple was rotten before I cut it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:word:mouldy",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mouldy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:word:mouldy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mouldy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:word:mouldy:audio",
+          "transcript": "mouldy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-27:word:mouldy:r1",
+            "targetText": "mouldy",
+            "meaningByLocale": {
+              "ru": "Заплесневелый. Mouldy — покрытый плесенью.",
+              "uk": "Запліснявілий. Mouldy — вкритий пліснявою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mouldy",
+          "definitionByLocale": {
+            "ru": "Заплесневелый. Mouldy — покрытый плесенью.",
+            "uk": "Запліснявілий. Mouldy — вкритий пліснявою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Хлеб был заплесневелым ещё до того, как я открыл пакет.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Хлеб был заплесневелым ещё до того, как я открыл пакет.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bread was mouldy before I opened the bag.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Хлеб был заплесневелым ещё до того, как я открыл пакет.»",
+          "uk": "Скажіть: «Хліб був запліснявілим ще до того, як я відкрив пакет.»"
+        },
+        "orderedTokens": [
+          "The",
+          "bread",
+          "was",
+          "mouldy",
+          "before",
+          "I",
+          "opened",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-27:i05:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i05:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i05:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "The bread ___ mouldy before I opened the bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-27:i05:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i05:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i05:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-27:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма was.",
+              "uk": "Для завершеної події потрібна минула форма was."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма was.",
+              "uk": "Для завершеної події потрібна минула форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-27:i06:r1",
+          "text": "The bread was mouldy before I opened the bag."
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i06:r2",
+          "text": "The cheese was mouldy before I opened the bag."
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i06:r3",
+          "text": "The bread was mouldy before she opened the bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:i06:audio",
+          "transcript": "The bread was mouldy before I opened the bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-27:i06:r1",
+            "targetText": "The bread was mouldy before I opened the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i06:r2",
+            "targetText": "The cheese was mouldy before I opened the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i06:r3",
+            "targetText": "The bread was mouldy before she opened the bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bread was mouldy before I opened the bag.",
+              "uk": "У записі звучить The bread was mouldy before I opened the bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bread was mouldy before I opened the bag.",
+              "uk": "У записі звучить The bread was mouldy before I opened the bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:word:spoiled",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spoiled",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:word:spoiled:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spoiled",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:word:spoiled:audio",
+          "transcript": "spoiled"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-27:word:spoiled:r1",
+            "targetText": "spoiled",
+            "meaningByLocale": {
+              "ru": "Испортилось. Spoil — портиться; spoiled — прошедшая форма.",
+              "uk": "Зіпсувалося. Spoil — псуватися; spoiled — минула форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spoiled",
+          "definitionByLocale": {
+            "ru": "Испортилось. Spoil — портиться; spoiled — прошедшая форма.",
+            "uk": "Зіпсувалося. Spoil — псуватися; spoiled — минула форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Молоко испортилось после того, как мы оставили его снаружи.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Молоко испортилось после того, как мы оставили его снаружи.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The milk spoiled after we left it outside.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Молоко испортилось после того, как мы оставили его снаружи.»",
+          "uk": "Скажіть: «Молоко зіпсувалося після того, як ми залишили його надворі.»"
+        },
+        "orderedTokens": [
+          "The",
+          "milk",
+          "spoiled",
+          "after",
+          "we",
+          "left",
+          "it",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-27:i08:r1",
+          "text": "spoiled"
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i08:r2",
+          "text": "spoil"
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i08:r3",
+          "text": "spoiling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "The milk ___ after we left it outside.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-27:i08:r1",
+            "text": "spoiled"
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i08:r2",
+            "text": "spoil"
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i08:r3",
+            "text": "spoiling"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма spoiled.",
+              "uk": "Для завершеної події потрібна минула форма spoiled."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма spoiled.",
+              "uk": "Для завершеної події потрібна минула форма spoiled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-27:i09:r1",
+          "text": "The milk spoiled after we left it outside."
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i09:r2",
+          "text": "The milk spoiled after they left it outside."
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i09:r3",
+          "text": "The milk spoiled after we left it here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:i09:audio",
+          "transcript": "The milk spoiled after we left it outside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-27:i09:r1",
+            "targetText": "The milk spoiled after we left it outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i09:r2",
+            "targetText": "The milk spoiled after they left it outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i09:r3",
+            "targetText": "The milk spoiled after we left it here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The milk spoiled after we left it outside.",
+              "uk": "У записі звучить The milk spoiled after we left it outside."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The milk spoiled after we left it outside.",
+              "uk": "У записі звучить The milk spoiled after we left it outside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:word:stank",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stank",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:word:stank:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stank",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:word:stank:audio",
+          "transcript": "stank"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-27:word:stank:r1",
+            "targetText": "stank",
+            "meaningByLocale": {
+              "ru": "Воняло. Stink — сильно и неприятно пахнуть; stank — прошедшая форма.",
+              "uk": "Смерділо. Stink — сильно й неприємно пахнути; stank — минула форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stank",
+          "definitionByLocale": {
+            "ru": "Воняло. Stink — сильно и неприятно пахнуть; stank — прошедшая форма.",
+            "uk": "Смерділо. Stink — сильно й неприємно пахнути; stank — минула форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «На кухне воняло после того, как мы открыли мусорное ведро.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «На кухне воняло после того, как мы открыли мусорное ведро.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The kitchen stank after we opened the bin.",
+        "localizedMeaning": {
+          "ru": "Скажите: «На кухне воняло после того, как мы открыли мусорное ведро.»",
+          "uk": "Скажіть: «На кухні смерділо після того, як ми відкрили сміттєве відро.»"
+        },
+        "orderedTokens": [
+          "The",
+          "kitchen",
+          "stank",
+          "after",
+          "we",
+          "opened",
+          "the",
+          "bin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-27:i11:r1",
+          "text": "stank"
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i11:r2",
+          "text": "stink"
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i11:r3",
+          "text": "stinking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "The kitchen ___ after we opened the bin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-27:i11:r1",
+            "text": "stank"
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i11:r2",
+            "text": "stink"
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i11:r3",
+            "text": "stinking"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма stank.",
+              "uk": "Для завершеної події потрібна минула форма stank."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма stank.",
+              "uk": "Для завершеної події потрібна минула форма stank."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-27:i12:r1",
+          "text": "The kitchen stank after we opened the bin."
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i12:r2",
+          "text": "The kitchen stank after they opened the bin."
+        },
+        {
+          "responseId": "en:lesson-25:session-27:i12:r3",
+          "text": "The room stank after we opened the bin."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:i12:audio",
+          "transcript": "The kitchen stank after we opened the bin."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-27:i12:r1",
+            "targetText": "The kitchen stank after we opened the bin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i12:r2",
+            "targetText": "The kitchen stank after they opened the bin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i12:r3",
+            "targetText": "The room stank after we opened the bin.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The kitchen stank after we opened the bin.",
+              "uk": "У записі звучить The kitchen stank after we opened the bin."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The kitchen stank after we opened the bin.",
+              "uk": "У записі звучить The kitchen stank after we opened the bin."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините формы с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините формы с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-27:i13:p1",
+            "target": "rotten",
+            "meaningByLocale": {
+              "ru": "гнилой",
+              "uk": "гниле"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-27:i13:p2",
+            "target": "mouldy",
+            "meaningByLocale": {
+              "ru": "заплесневелый",
+              "uk": "запліснявілий"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-27:i13:p3",
+            "target": "spoiled",
+            "meaningByLocale": {
+              "ru": "испортилось",
+              "uk": "зіпсувалося"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-27:i13:p4",
+            "target": "stank",
+            "meaningByLocale": {
+              "ru": "воняло",
+              "uk": "смерділо"
+            }
+          }
+        ],
+        "leftColumn": [
+          "rotten",
+          "mouldy",
+          "spoiled",
+          "stank"
+        ],
+        "rightColumn": [
+          "гнилой",
+          "заплесневелый",
+          "испортилось",
+          "воняло"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поели перед отъездом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Поели перед отъездом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:i14:audio",
+          "transcript": "We ate before we left."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We ate before we left.",
+        "orderedTokens": [
+          "We",
+          "ate",
+          "before",
+          "we",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начали после её прихода",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Начали после её прихода",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:i15:audio",
+          "transcript": "We started after she arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We started after she arrived.",
+        "orderedTokens": [
+          "We",
+          "started",
+          "after",
+          "she",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Молоко испортилось после того, как я оставил его снаружи».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Молоко испортилось после того, как я оставил его снаружи».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:i16:audio",
+          "transcript": "The milk spoiled after I left it outside."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The milk spoiled after I left it outside.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-27:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «На кухне воняло после того, как она открыла мусорное ведро».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «На кухне воняло после того, как она открыла мусорное ведро».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-27:i17:audio",
+          "transcript": "The kitchen stank after she opened the bin."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The kitchen stank after she opened the bin.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b464406c81e26c6c49acd8cd4f6230dc527faab894b7175ea90c146a183f4c3d"
+}

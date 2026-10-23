@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-25:intro1:r2": {
+          "ru": "Рассказ о прошлом: нужна форма reversed.",
+          "uk": "Розповідь про минуле: потрібна форма reversed."
+        },
+        "en:lesson-25:session-25:intro1:r3": {
+          "ru": "Здесь нужен Past Simple: reversed.",
+          "uk": "Тут потрібен Past Simple: reversed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-25:intro2:r2": {
+          "ru": "Рассказ о прошлом: нужна форма overtook.",
+          "uk": "Розповідь про минуле: потрібна форма overtook."
+        },
+        "en:lesson-25:session-25:intro2:r3": {
+          "ru": "Здесь нужен Past Simple: overtook.",
+          "uk": "Тут потрібен Past Simple: overtook."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-25:intro3:r2": {
+          "ru": "Рассказ о прошлом: нужна форма collided.",
+          "uk": "Розповідь про минуле: потрібна форма collided."
+        },
+        "en:lesson-25:session-25:intro3:r3": {
+          "ru": "Здесь нужен Past Simple: collided.",
+          "uk": "Тут потрібен Past Simple: collided."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "22a28d42ddc7949821290306f7979ce90e5032ac74f95aff5173a4ff6e763154"
+}

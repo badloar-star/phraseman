@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "before|after + past clause",
+    "uk": "before|after + past clause"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Испорченное яблоко",
+        "uk": "Зіпсоване яблуко"
+      },
+      "bodyByLocale": {
+        "ru": "Rotten — гнилой. The apple was rotten before I cut it — яблоко было гнилым ещё до того, как я его разрезал. Before показывает, что яблоко уже было таким до разрезания. Rotten — описание состояния, поэтому перед ним стоит was. Cut здесь — прошедшая форма, которая пишется так же, как начальная.",
+        "uk": "Rotten — гнилий. The apple was rotten before I cut it — яблуко було гнилим ще до того, як я його розрізав. Before показує, що яблуко вже було таким до розрізання. Rotten — опис стану, тому перед ним стоїть was. Cut тут — минула форма, яка пишеться так само, як початкова."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-27:intro1:r1",
+              "text": "The apple was rotten before I cut it."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro1:r2",
+              "text": "The apple is rotten before I cut it."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro1:r3",
+              "text": "The apple be rotten before I cut it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-27:intro1:r1",
+              "text": "The apple was rotten before I cut it."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro1:r2",
+              "text": "The apple is rotten before I cut it."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro1:r3",
+              "text": "The apple be rotten before I cut it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что мы обнаружили дома",
+        "uk": "Що ми виявили вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Mouldy — заплесневелый. The bread was mouldy before I opened the bag — хлеб был заплесневелым ещё до того, как я открыл пакет. Плесень появилась раньше: открытие пакета не было её причиной. Spoil — портиться. The milk spoiled after we left it outside — молоко испортилось после того, как мы оставили его снаружи. Was mouldy описывает состояние; spoiled называет произошедшее изменение.",
+        "uk": "Mouldy — запліснявілий. The bread was mouldy before I opened the bag — хліб був запліснявілим ще до того, як я відкрив пакет. Пліснява з’явилася раніше: відкриття пакета не було її причиною. Spoil — псуватися. The milk spoiled after we left it outside — молоко зіпсувалося після того, як ми залишили його надворі. Was mouldy описує стан; spoiled називає зміну, що відбулася."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-27:intro2:r1",
+              "text": "The bread was mouldy before I opened the bag."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro2:r2",
+              "text": "The bread is mouldy before I opened the bag."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro2:r3",
+              "text": "The bread be mouldy before I opened the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-27:intro2:r1",
+              "text": "The bread was mouldy before I opened the bag."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro2:r2",
+              "text": "The bread is mouldy before I opened the bag."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro2:r3",
+              "text": "The bread be mouldy before I opened the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Неприятный запах",
+        "uk": "Неприємний запах"
+      },
+      "bodyByLocale": {
+        "ru": "Stink — сильно и неприятно пахнуть, «вонять». Прошедшая форма — stank. The kitchen stank after we opened the bin — на кухне воняло после того, как мы открыли мусорное ведро. Сначала открыли ведро, затем почувствовали сильный запах. Stank — самостоятельный глагол: was перед ним не ставим. Это более резкое слово, чем знакомое smell.",
+        "uk": "Stink — сильно й неприємно пахнути, «смердіти». Минула форма — stank. The kitchen stank after we opened the bin — на кухні смерділо після того, як ми відкрили сміттєве відро. Спочатку відкрили відро, потім відчули сильний запах. Stank — самостійне дієслово: was перед ним не ставимо. Це різкіше слово, ніж знайоме smell."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-27:intro3:r1",
+              "text": "The kitchen stank after we opened the bin."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro3:r2",
+              "text": "The kitchen stink after we opened the bin."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro3:r3",
+              "text": "The kitchen stinking after we opened the bin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-27:intro3:r1",
+              "text": "The kitchen stank after we opened the bin."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro3:r2",
+              "text": "The kitchen stink after we opened the bin."
+            },
+            {
+              "responseId": "en:lesson-25:session-27:intro3:r3",
+              "text": "The kitchen stinking after we opened the bin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "500bfa9229784b95cab547f2e3353ccd4acb45d770102ebf33e00d3c4bc912bf"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-26:intro1:r2": {
+          "ru": "Для события в прошлом нужна форма grumbled.",
+          "uk": "Для події в минулому потрібна форма grumbled."
+        },
+        "en:lesson-25:session-26:intro1:r3": {
+          "ru": "Здесь используем Past Simple: grumbled.",
+          "uk": "Тут використовуємо Past Simple: grumbled."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-26:intro2:r2": {
+          "ru": "Для события в прошлом нужна форма nagged.",
+          "uk": "Для події в минулому потрібна форма nagged."
+        },
+        "en:lesson-25:session-26:intro2:r3": {
+          "ru": "Здесь используем Past Simple: nagged.",
+          "uk": "Тут використовуємо Past Simple: nagged."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-26:intro3:r2": {
+          "ru": "Для события в прошлом нужна форма whined.",
+          "uk": "Для події в минулому потрібна форма whined."
+        },
+        "en:lesson-25:session-26:intro3:r3": {
+          "ru": "Здесь используем Past Simple: whined.",
+          "uk": "Тут використовуємо Past Simple: whined."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2514f5ff2d7cea0ae37026f058c91c82878ec01bc9277daca3c85544d6bdf1f1"
+}

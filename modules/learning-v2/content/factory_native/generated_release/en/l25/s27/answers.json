@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-27:word:rotten",
+    "correctText": "rotten",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i01",
+    "correctText": "The apple was rotten before I cut it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i02",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-25:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i03",
+    "correctText": "The apple was rotten before I cut it.",
+    "correctResponseId": "en:lesson-25:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:word:mouldy",
+    "correctText": "mouldy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i04",
+    "correctText": "The bread was mouldy before I opened the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i05",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-25:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i06",
+    "correctText": "The bread was mouldy before I opened the bag.",
+    "correctResponseId": "en:lesson-25:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:word:spoiled",
+    "correctText": "spoiled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i07",
+    "correctText": "The milk spoiled after we left it outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i08",
+    "correctText": "spoiled",
+    "correctResponseId": "en:lesson-25:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i09",
+    "correctText": "The milk spoiled after we left it outside.",
+    "correctResponseId": "en:lesson-25:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:word:stank",
+    "correctText": "stank",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i10",
+    "correctText": "The kitchen stank after we opened the bin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i11",
+    "correctText": "stank",
+    "correctResponseId": "en:lesson-25:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i12",
+    "correctText": "The kitchen stank after we opened the bin.",
+    "correctResponseId": "en:lesson-25:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i13",
+    "correctText": "en:lesson-25:session-27:i13:p1=rotten\nen:lesson-25:session-27:i13:p2=mouldy\nen:lesson-25:session-27:i13:p3=spoiled\nen:lesson-25:session-27:i13:p4=stank",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i14",
+    "correctText": "We ate before we left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i15",
+    "correctText": "We started after she arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i16",
+    "correctText": "The milk spoiled after I left it outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-27:i17",
+    "correctText": "The kitchen stank after she opened the bin.",
+    "correctResponseId": null
+  }
+]

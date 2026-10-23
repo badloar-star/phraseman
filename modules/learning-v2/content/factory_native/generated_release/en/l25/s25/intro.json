@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "before|after + past clause",
+    "uk": "before|after + past clause"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сначала и потом",
+        "uk": "Спочатку й потім"
+      },
+      "bodyByLocale": {
+        "ru": "Reverse — двигаться задним ходом. After I reversed, I stopped — после того как я сдал назад, я остановился. After означает «после того как»: сначала сдал назад, потом остановился. Before означает «до того как»: I stopped before I left — я остановился до того, как уехал. После before и after можно поставить целую часть предложения с подлежащим и глаголом. В рассказе о законченных событиях здесь используем Past Simple. Если часть с after стоит первой, после неё ставим запятую.",
+        "uk": "Reverse — рухатися заднім ходом. After I reversed, I stopped — після того як я здав назад, я зупинився. After означає «після того як»: спочатку здав назад, потім зупинився. Before означає «до того як»: I stopped before I left — я зупинився до того, як поїхав. Після before та after можна поставити цілу частину речення з підметом і дієсловом. У розповіді про завершені події тут використовуємо Past Simple. Якщо частина з after стоїть першою, після неї ставимо кому."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-25:intro1:r1",
+              "text": "I stopped after I reversed."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro1:r2",
+              "text": "I stopped after I reverse."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro1:r3",
+              "text": "I stopped after I reversing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-25:intro1:r1",
+              "text": "I stopped after I reversed."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro1:r2",
+              "text": "I stopped after I reverse."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro1:r3",
+              "text": "I stopped after I reversing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Before меняет порядок рассказа",
+        "uk": "Before змінює порядок розповіді"
+      },
+      "bodyByLocale": {
+        "ru": "Overtake — обгонять; прошедшая форма — overtook. Before he overtook the bus, he checked his mirror — прежде чем обогнать автобус, он посмотрел в зеркало. Сначала посмотрел в зеркало, затем обогнал автобус: часть с before называет более позднее событие, хотя стоит первой в предложении. Skid — скользить боком или юзом. After the car skidded, the driver stopped — после того как машина пошла юзом, водитель остановился. Здесь скольжение было раньше остановки. В skidded удваиваем d.",
+        "uk": "Overtake — обганяти; минула форма — overtook. Before he overtook the bus, he checked his mirror — перш ніж обігнати автобус, він подивився в дзеркало. Спочатку подивився в дзеркало, потім обігнав автобус: частина з before називає пізнішу подію, хоча стоїть першою в реченні. Skid — ковзати боком або юзом. After the car skidded, the driver stopped — після того як машина пішла юзом, водій зупинився. Тут ковзання було раніше за зупинку. У skidded подвоюємо d."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-25:intro2:r1",
+              "text": "He checked his mirror before he overtook the bus."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro2:r2",
+              "text": "He checked his mirror before he overtake the bus."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro2:r3",
+              "text": "He checked his mirror before he overtaking the bus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-25:intro2:r1",
+              "text": "He checked his mirror before he overtook the bus."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro2:r2",
+              "text": "He checked his mirror before he overtake the bus."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro2:r3",
+              "text": "He checked his mirror before he overtaking the bus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Переставляем части",
+        "uk": "Переставляємо частини"
+      },
+      "bodyByLocale": {
+        "ru": "Collide — сталкиваться. After the cars collided, we called for help — после того как машины столкнулись, мы позвали на помощь. Сначала произошло столкновение, затем мы позвали на помощь. Можно поменять местами части, сохранив порядок событий: We called for help after the cars collided. В таком порядке запятая обычно не нужна. Before и after помогают понять последовательность; Past Perfect здесь не обязателен.",
+        "uk": "Collide — стикатися. After the cars collided, we called for help — після того як машини зіткнулися, ми покликали на допомогу. Спочатку сталося зіткнення, потім ми покликали на допомогу. Можна поміняти частини місцями, зберігши порядок подій: We called for help after the cars collided. У такому порядку кома зазвичай не потрібна. Before та after допомагають зрозуміти послідовність; Past Perfect тут не обов’язковий."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-25:intro3:r1",
+              "text": "We called for help after the cars collided."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro3:r2",
+              "text": "We called for help after the cars collide."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro3:r3",
+              "text": "We called for help after the cars colliding."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-25:intro3:r1",
+              "text": "We called for help after the cars collided."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro3:r2",
+              "text": "We called for help after the cars collide."
+            },
+            {
+              "responseId": "en:lesson-25:session-25:intro3:r3",
+              "text": "We called for help after the cars colliding."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3b13597160b3473db6baace91b888ef704e572afbb855697358fd22db9222d41"
+}

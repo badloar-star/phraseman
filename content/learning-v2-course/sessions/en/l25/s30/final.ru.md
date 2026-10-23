@@ -53,99 +53,99 @@ Gathering — встреча, на которую собрались люди. T
 <!-- interaction_id: en:lesson-25:session-30:word:greeting; family: word_card -->
 > **greeting** — Приветствие. Greeting — слова или жест при встрече.
 
-**2 · Скажите: «Её приветствие было дружелюбным, когда мы приехали.»**
-<!-- interaction_id: en:lesson-25:session-30:i01; family: phrase_builder -->
-Плитки: `arrived` `we` `when` `friendly` `was` `greeting` `Her` → **Her greeting was friendly when we arrived.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-30:i01; family: listen_choose -->
+🔊 *She gave us a warm greeting when we arrived.* → **She gave us a warm greeting when we arrived.** · She gave them a warm greeting when they arrived. · He gave us a warm greeting when we arrived.
+- She gave them a warm greeting when they arrived. — *В записи звучит She gave us a warm greeting when we arrived.*
+- He gave us a warm greeting when we arrived. — *В записи звучит She gave us a warm greeting when we arrived.*
 
-**3 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-30:i02; family: context_gap_grammar -->
-Her greeting ___ friendly when we arrived. → **was** · is · be
-- is — *Для законченного события нужна прошедшая форма was.*
-- be — *Для законченного события нужна прошедшая форма was.*
+**3 · Поздоровайтесь с человеком, которого давно не видели: «Как приятно снова тебя видеть!»**
+<!-- interaction_id: en:lesson-25:session-30:i02; family: scripted_repeat_compare -->
+🎙 **It is lovely to see you again.**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-30:i03; family: listen_choose -->
-🔊 *Her greeting was friendly when we arrived.* → **Her greeting was friendly when we arrived.** · His greeting was friendly when we arrived. · Her greeting was friendly when they arrived.
-- His greeting was friendly when we arrived. — *В записи звучит Her greeting was friendly when we arrived.*
-- Her greeting was friendly when they arrived. — *В записи звучит Her greeting was friendly when we arrived.*
-
-**5 · Карточка слова — handshake**
+**4 · Карточка слова — handshake**
 <!-- interaction_id: en:lesson-25:session-30:word:handshake; family: word_card -->
 > **handshake** — Рукопожатие. Handshake — приветствие, при котором люди пожимают друг другу руки.
 
-**6 · Скажите: «Он пожал мне руку перед тем, как ушёл.»**
-<!-- interaction_id: en:lesson-25:session-30:i04; family: phrase_builder -->
-Плитки: `left` `he` `before` `handshake` `a` `me` `gave` `He` → **He gave me a handshake before he left.**
+**5 · Вспомните прощание: «Я пожал ему руку перед тем, как ушёл».**
+<!-- interaction_id: en:lesson-25:session-30:i03; family: phrase_builder -->
+Плитки: `left` `I` `before` `handshake` `a` `him` `gave` `I` → **I gave him a handshake before I left.**
 
-**7 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-30:i05; family: context_gap_grammar -->
-He ___ me a handshake before he left. → **gave** · give · giving
-- give — *Для законченного события нужна прошедшая форма gave.*
-- giving — *Для законченного события нужна прошедшая форма gave.*
+**6 · Сначала вы поздоровались с гостями, потом сели.**
+<!-- interaction_id: en:lesson-25:session-30:i04; family: context_gap_grammar -->
+We sat down ___ we said hello. → **after** · before · until
+- before — *Before поменяет порядок: в условии приветствие было первым.*
+- until — *Until означает «до тех пор пока», а здесь нужно «после того как».*
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-30:i06; family: listen_choose -->
-🔊 *He gave me a handshake before he left.* → **He gave me a handshake before he left.** · She gave me a handshake before she left. · He gave her a handshake before he left.
-- She gave me a handshake before she left. — *В записи звучит He gave me a handshake before he left.*
-- He gave her a handshake before he left. — *В записи звучит He gave me a handshake before he left.*
-
-**9 · Карточка слова — outing**
+**7 · Карточка слова — outing**
 <!-- interaction_id: en:lesson-25:session-30:word:outing; family: word_card -->
 > **outing** — Поездка на отдых. Outing — короткая прогулка или поездка ради удовольствия.
 
-**10 · Скажите: «Мы запланировали поездку на отдых до того, как позвонили друзьям.»**
-<!-- interaction_id: en:lesson-25:session-30:i07; family: phrase_builder -->
-Плитки: `friends` `our` `called` `we` `before` `outing` `an` `planned` `We` → **We planned an outing before we called our friends.**
+**8 · Предложите совместную поездку: «Давай запланируем семейную прогулку».**
+<!-- interaction_id: en:lesson-25:session-30:i05; family: scripted_repeat_compare -->
+🎙 **Let us plan a family outing.**
 
-**11 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-30:i08; family: context_gap_grammar -->
-We ___ an outing before we called our friends. → **planned** · plan · planning
-- plan — *Для законченного события нужна прошедшая форма planned.*
-- planning — *Для законченного события нужна прошедшая форма planned.*
+**9 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-30:i06; family: listen_choose -->
+🔊 *We checked the weather before our outing.* → **We checked the weather before our outing.** · We checked the weather after our outing. · They checked the weather before their outing.
+- We checked the weather after our outing. — *В записи звучит We checked the weather before our outing.*
+- They checked the weather before their outing. — *В записи звучит We checked the weather before our outing.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-30:i09; family: listen_choose -->
-🔊 *We planned an outing before we called our friends.* → **We planned an outing before we called our friends.** · They planned an outing before they called our friends. · We planned an outing before we called our neighbours.
-- They planned an outing before they called our friends. — *В записи звучит We planned an outing before we called our friends.*
-- We planned an outing before we called our neighbours. — *В записи звучит We planned an outing before we called our friends.*
-
-**13 · Карточка слова — gathering**
+**10 · Карточка слова — gathering**
 <!-- interaction_id: en:lesson-25:session-30:word:gathering; family: word_card -->
 > **gathering** — Встреча людей. Gathering — событие, на которое собираются люди, например друзья или родственники.
 
-**14 · Скажите: «Встреча закончилась после того, как мы поели.»**
-<!-- interaction_id: en:lesson-25:session-30:i10; family: phrase_builder -->
-Плитки: `ate` `we` `after` `ended` `gathering` `The` → **The gathering ended after we ate.**
+**11 · Услышьте, где встретились родственники.**
+<!-- interaction_id: en:lesson-25:session-30:i07; family: listen_build_dictation -->
+🔊 *The family gathering was at my aunt’s house.* Плитки: `house` `aunt’s` `my` `at` `was` `gathering` `family` `The` → **The family gathering was at my aunt’s house.**
 
-**15 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-30:i11; family: context_gap_grammar -->
-The gathering ___ after we ate. → **ended** · end · ending
-- end — *Для законченного события нужна прошедшая форма ended.*
-- ending — *Для законченного события нужна прошедшая форма ended.*
+**12 · Друзья пришли домой на встречу, а не отправились на прогулку.**
+<!-- interaction_id: en:lesson-25:session-30:i08; family: context_gap_grammar -->
+We had a small ___ at home. → **gathering** · outing · handshake
+- outing — *Outing — прогулка или поездка вне дома; встреча проходила дома.*
+- handshake — *Handshake — рукопожатие, не название встречи людей.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-30:i12; family: listen_choose -->
-🔊 *The gathering ended after we ate.* → **The gathering ended after we ate.** · The gathering ended after they ate. · The gathering ended after we danced.
-- The gathering ended after they ate. — *В записи звучит The gathering ended after we ate.*
-- The gathering ended after we danced. — *В записи звучит The gathering ended after we ate.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-30:i13; family: speed_match -->
+**13 · Различите приветствие и виды встреч**
+<!-- interaction_id: en:lesson-25:session-30:i09; family: speed_match -->
 greeting — приветствие · handshake — рукопожатие · outing — поездка на отдых · gathering — встреча людей
 
-**18 · Поели перед отъездом**
+**14 · Сначала приготовили еду, потом пришли гости: «Мы приготовили еду до прихода гостей». Используйте had.**
+<!-- interaction_id: en:lesson-25:session-30:i10; family: phrase_builder -->
+Плитки: `arrived` `guests` `the` `before` `food` `the` `prepared` `had` `We` → **We had prepared the food before the guests arrived.**
+
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-30:i11; family: listen_choose -->
+🔊 *We used to meet at my grandmother’s house.* → **We used to meet at my grandmother’s house.** · We used to meet at my grandfather’s shop. · They used to meet at my grandmother’s house.
+- We used to meet at my grandfather’s shop. — *В записи звучит We used to meet at my grandmother’s house.*
+- They used to meet at my grandmother’s house. — *В записи звучит We used to meet at my grandmother’s house.*
+
+**16 · Пригласите ещё одного друга: «Могу я привести ещё одного друга?»**
+<!-- interaction_id: en:lesson-25:session-30:i12; family: scripted_repeat_compare -->
+🎙 **Can I bring another friend?**
+
+**17 · Вы поговорили с тётей вчера, в законченное время.**
+<!-- interaction_id: en:lesson-25:session-30:i13; family: context_gap_grammar -->
+I ___ to my aunt yesterday. → **spoke** · have spoken · would speak
+- have spoken — *Yesterday требует Past Simple spoke.*
+- would speak — *Would speak описывает прежнюю привычку; здесь один разговор.*
+
+**18 · Услышьте прежнюю традицию на встречах.**
 <!-- interaction_id: en:lesson-25:session-30:i14; family: listen_build_dictation -->
-🔊 *We ate before we left.* Плитки: `left` `we` `before` `ate` `We` → **We ate before we left.**
+🔊 *At family parties we would dance after dinner.* Плитки: `dinner` `after` `dance` `would` `we` `parties` `family` `At` → **At family parties we would dance after dinner.**
 
-**19 · Начали после её прихода**
-<!-- interaction_id: en:lesson-25:session-30:i15; family: listen_build_dictation -->
-🔊 *We started after she arrived.* Плитки: `arrived` `she` `after` `started` `We` → **We started after she arrived.**
+**19 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-30:i15; family: listen_choose -->
+🔊 *I have already invited the neighbours.* → **I have already invited the neighbours.** · I have already called the neighbours. · She has already invited the neighbours.
+- I have already called the neighbours. — *В записи звучит I have already invited the neighbours.*
+- She has already invited the neighbours. — *В записи звучит I have already invited the neighbours.*
 
-**20 · Скажите: «Она пожала мне руку перед уходом».**
-<!-- interaction_id: en:lesson-25:session-30:i16; family: scripted_repeat_compare -->
-🎙 **She gave me a handshake before she left.**
+**20 · Одни гости пришли, остальные ещё в дороге.**
+<!-- interaction_id: en:lesson-25:session-30:i16; family: context_gap_grammar -->
+The ___ guests are on their way. → **other** · another · others
+- another — *Another относится к единственному числу, не guests.*
+- others — *Перед guests нужно other без -s.*
 
-**21 · Скажите: «Встреча закончилась после того, как мы потанцевали».**
+**21 · Поблагодарите хозяев перед уходом: «Спасибо, что пригласили меня».**
 <!-- interaction_id: en:lesson-25:session-30:i17; family: scripted_repeat_compare -->
-🎙 **The gathering ended after we danced.**
+🎙 **Thank you for inviting me.**
 

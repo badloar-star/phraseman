@@ -49,103 +49,103 @@ Fireplace — камін. We cleaned the fireplace after the fire went out — �
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — flame**
-<!-- interaction_id: en:lesson-25:session-31:word:flame; family: word_card -->
-> **flame** — Полум’я. Flame — видима палаюча частина вогню.
-
-**2 · Скажіть: «Полум’я згасло до того, як ми пішли.»**
-<!-- interaction_id: en:lesson-25:session-31:i01; family: phrase_builder -->
-Плитки: `left` `we` `before` `out` `went` `flame` `The` → **The flame went out before we left.**
-
-**3 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-31:i02; family: context_gap_grammar -->
-The flame ___ out before we left. → **went** · go · going
-- go — *Для завершеної події потрібна минула форма went.*
-- going — *Для завершеної події потрібна минула форма went.*
-
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-31:i03; family: listen_choose -->
-🔊 *The flame went out before we left.* → **The flame went out before we left.** · The flame went out before they left. · The flame went out before we ate.
-- The flame went out before they left. — *У записі звучить The flame went out before we left.*
-- The flame went out before we ate. — *У записі звучить The flame went out before we left.*
-
-**5 · Картка слова — ash**
-<!-- interaction_id: en:lesson-25:session-31:word:ash; family: word_card -->
-> **ash** — Попіл. Ash — порошок, що залишається після горіння.
-
-**6 · Скажіть: «Попіл був холодним до того, як я прибрав кімнату.»**
-<!-- interaction_id: en:lesson-25:session-31:i04; family: phrase_builder -->
-Плитки: `room` `the` `cleaned` `I` `before` `cold` `was` `ash` `The` → **The ash was cold before I cleaned the room.**
-
-**7 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-31:i05; family: context_gap_grammar -->
-The ash ___ cold before I cleaned the room. → **was** · is · be
-- is — *Для завершеної події потрібна минула форма was.*
-- be — *Для завершеної події потрібна минула форма was.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-31:i06; family: listen_choose -->
-🔊 *The ash was cold before I cleaned the room.* → **The ash was cold before I cleaned the room.** · The ash was cold before she cleaned the room. · The ash was cold before I cleaned the floor.
-- The ash was cold before she cleaned the room. — *У записі звучить The ash was cold before I cleaned the room.*
-- The ash was cold before I cleaned the floor. — *У записі звучить The ash was cold before I cleaned the room.*
-
-**9 · Картка слова — log**
-<!-- interaction_id: en:lesson-25:session-31:word:log; family: word_card -->
-> **log** — Поліно. Log — товстий шматок дерева, наприклад для вогню.
-
-**10 · Скажіть: «Ми додали ще одне поліно після того, як вогонь став слабшим.»**
-<!-- interaction_id: en:lesson-25:session-31:i07; family: phrase_builder -->
-Плитки: `low` `got` `fire` `the` `after` `log` `another` `added` `We` → **We added another log after the fire got low.**
-
-**11 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-31:i08; family: context_gap_grammar -->
-We ___ another log after the fire got low. → **added** · add · adding
-- add — *Для завершеної події потрібна минула форма added.*
-- adding — *Для завершеної події потрібна минула форма added.*
-
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-31:i09; family: listen_choose -->
-🔊 *We added another log after the fire got low.* → **We added another log after the fire got low.** · They added another log after the fire got low. · We added another log after the room got cold.
-- They added another log after the fire got low. — *У записі звучить We added another log after the fire got low.*
-- We added another log after the room got cold. — *У записі звучить We added another log after the fire got low.*
-
-**13 · Картка слова — fireplace**
+**1 · Картка слова — fireplace**
 <!-- interaction_id: en:lesson-25:session-31:word:fireplace; family: word_card -->
 > **fireplace** — Камін. Fireplace — місце для вогню в кімнаті з виходом диму в димохід.
 
-**14 · Скажіть: «Ми почистили камін після того, як вогонь згас.»**
-<!-- interaction_id: en:lesson-25:session-31:i10; family: phrase_builder -->
-Плитки: `out` `went` `fire` `the` `after` `fireplace` `the` `cleaned` `We` → **We cleaned the fireplace after the fire went out.**
+**2 · Уточніть зручності кімнати: «У цій кімнаті є камін?»**
+<!-- interaction_id: en:lesson-25:session-31:i01; family: scripted_repeat_compare -->
+🎙 **Does this room have a fireplace?**
 
-**15 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-31:i11; family: context_gap_grammar -->
-We ___ the fireplace after the fire went out. → **cleaned** · clean · cleaning
-- clean — *Для завершеної події потрібна минула форма cleaned.*
-- cleaning — *Для завершеної події потрібна минула форма cleaned.*
+**3 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-31:i02; family: listen_choose -->
+🔊 *We sat by the fireplace after dinner.* → **We sat by the fireplace after dinner.** · We sat by the window after dinner. · They sat by the fireplace after dinner.
+- We sat by the window after dinner. — *У записі звучить We sat by the fireplace after dinner.*
+- They sat by the fireplace after dinner. — *У записі звучить We sat by the fireplace after dinner.*
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-31:i12; family: listen_choose -->
-🔊 *We cleaned the fireplace after the fire went out.* → **We cleaned the fireplace after the fire went out.** · They cleaned the fireplace after the fire went out. · We cleaned the fireplace after the guests left.
-- They cleaned the fireplace after the fire went out. — *У записі звучить We cleaned the fireplace after the fire went out.*
-- We cleaned the fireplace after the guests left. — *У записі звучить We cleaned the fireplace after the fire went out.*
+**4 · Картка слова — log**
+<!-- interaction_id: en:lesson-25:session-31:word:log; family: word_card -->
+> **log** — Поліно. Log — товстий шматок дерева, наприклад для вогню.
 
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-31:i13; family: speed_match -->
+**5 · Опишіть місце для поліна: «На підлозі лежало поліно».**
+<!-- interaction_id: en:lesson-25:session-31:i03; family: phrase_builder -->
+Плитки: `floor` `the` `on` `log` `a` `was` `There` → **There was a log on the floor.**
+
+**6 · Спочатку ви принесли дрова в дім, потім почався дощ.**
+<!-- interaction_id: en:lesson-25:session-31:i04; family: context_gap_grammar -->
+We brought the wood inside ___ it started raining. → **before** · after · because
+- after — *After змінить порядок: дрова були всередині раніше за дощ.*
+- because — *Because пояснює причину; тут потрібно вказати «до того як».*
+
+**7 · Картка слова — flame**
+<!-- interaction_id: en:lesson-25:session-31:word:flame; family: word_card -->
+> **flame** — Полум’я. Flame — видима палаюча частина вогню.
+
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-31:i05; family: listen_choose -->
+🔊 *The candle’s flame went out after we opened the window.* → **The candle’s flame went out after we opened the window.** · The candle’s flame went out before we opened the window. · The candle’s flame went out after they opened the window.
+- The candle’s flame went out before we opened the window. — *У записі звучить The candle’s flame went out after we opened the window.*
+- The candle’s flame went out after they opened the window. — *У записі звучить The candle’s flame went out after we opened the window.*
+
+**9 · Картка слова — ash**
+<!-- interaction_id: en:lesson-25:session-31:word:ash; family: word_card -->
+> **ash** — Попіл. Ash — порошок, що залишається після горіння.
+
+**10 · Почуйте опис того, що залишилося.**
+<!-- interaction_id: en:lesson-25:session-31:i06; family: listen_build_dictation -->
+🔊 *There was ash in the old fireplace.* Плитки: `fireplace` `old` `the` `in` `ash` `was` `There` → **There was ash in the old fireplace.**
+
+**11 · Ви описуєте порошок, що залишився від згорілого дерева.**
+<!-- interaction_id: en:lesson-25:session-31:i07; family: context_gap_grammar -->
+There was grey ___ in the fireplace. → **ash** · flame · water
+- flame — *Flame — полум’я, а не порошок після горіння.*
+- water — *Water — вода; тут описано попіл.*
+
+**12 · У кімнаті прохолодно. Попросіть: «Зачини вікно, будь ласка».**
+<!-- interaction_id: en:lesson-25:session-31:i08; family: scripted_repeat_compare -->
+🎙 **Please close the window.**
+
+**13 · Зіставте предмети й вогонь із перекладом**
+<!-- interaction_id: en:lesson-25:session-31:i09; family: speed_match -->
 flame — полум’я · ash — попіл · log — поліно · fireplace — камін
 
-**18 · Поїли перед від’їздом**
+**14 · Згадайте старий будинок: «Раніше в нас був камін».**
+<!-- interaction_id: en:lesson-25:session-31:i10; family: phrase_builder -->
+Плитки: `fireplace` `a` `have` `to` `used` `We` → **We used to have a fireplace.**
+
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-31:i11; family: listen_choose -->
+🔊 *On winter evenings we would read by the fire.* → **On winter evenings we would read by the fire.** · On winter evenings we would talk by the fire. · On summer evenings we would read by the fire.
+- On winter evenings we would talk by the fire. — *У записі звучить On winter evenings we would read by the fire.*
+- On summer evenings we would read by the fire. — *У записі звучить On winter evenings we would read by the fire.*
+
+**16 · Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect.**
+<!-- interaction_id: en:lesson-25:session-31:i12; family: context_gap_grammar -->
+The guests ___ left before I returned. → **had** · have · were
+- have — *Have left пов’язане з теперішнім; тут відхід раніше за минуле повернення.*
+- were — *Потрібно had left для ранішої дії.*
+
+**17 · Однієї ковдри бракує. Попросіть: «Можна ще одну ковдру?»**
+<!-- interaction_id: en:lesson-25:session-31:i13; family: scripted_repeat_compare -->
+🎙 **Can I have another blanket?**
+
+**18 · Почуйте порядок подій увечері.**
 <!-- interaction_id: en:lesson-25:session-31:i14; family: listen_build_dictation -->
-🔊 *We ate before we left.* Плитки: `left` `we` `before` `ate` `We` → **We ate before we left.**
+🔊 *We went to bed after our friends left.* Плитки: `left` `friends` `our` `after` `bed` `to` `went` `We` → **We went to bed after our friends left.**
 
-**19 · Почали після її приходу**
-<!-- interaction_id: en:lesson-25:session-31:i15; family: listen_build_dictation -->
-🔊 *We started after she arrived.* Плитки: `arrived` `she` `after` `started` `We` → **We started after she arrived.**
+**19 · Ви залишилися в друзів на одну ніч учора.**
+<!-- interaction_id: en:lesson-25:session-31:i15; family: context_gap_grammar -->
+We ___ here last night. → **stayed** · have stayed · would stay
+- have stayed — *Last night — завершений час; потрібен Past Simple stayed.*
+- would stay — *Would stay описує звичку, а тут одна ніч.*
 
-**20 · Скажіть: «Полум’я згасло до того, як вони пішли».**
-<!-- interaction_id: en:lesson-25:session-31:i16; family: scripted_repeat_compare -->
-🎙 **The flame went out before they left.**
+**20 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-31:i16; family: listen_choose -->
+🔊 *I have already closed the curtains.* → **I have already closed the curtains.** · I have already opened the curtains. · She has already closed the curtains.
+- I have already opened the curtains. — *У записі звучить I have already closed the curtains.*
+- She has already closed the curtains. — *У записі звучить I have already closed the curtains.*
 
-**21 · Скажіть: «Вона почистила камін після того, як вогонь згас».**
-<!-- interaction_id: en:lesson-25:session-31:i17; family: scripted_repeat_compare -->
-🎙 **She cleaned the fireplace after the fire went out.**
+**21 · Укажіть інші кімнати: «Інші кімнати нагорі».**
+<!-- interaction_id: en:lesson-25:session-31:i17; family: phrase_builder -->
+Плитки: `upstairs` `are` `rooms` `other` `The` → **The other rooms are upstairs.**
 

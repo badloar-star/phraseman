@@ -49,103 +49,103 @@ Fireplace — камин. We cleaned the fireplace after the fire went out — �
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — flame**
-<!-- interaction_id: en:lesson-25:session-31:word:flame; family: word_card -->
-> **flame** — Пламя. Flame — видимая горящая часть огня.
-
-**2 · Скажите: «Пламя погасло до того, как мы ушли.»**
-<!-- interaction_id: en:lesson-25:session-31:i01; family: phrase_builder -->
-Плитки: `left` `we` `before` `out` `went` `flame` `The` → **The flame went out before we left.**
-
-**3 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-31:i02; family: context_gap_grammar -->
-The flame ___ out before we left. → **went** · go · going
-- go — *Для законченного события нужна прошедшая форма went.*
-- going — *Для законченного события нужна прошедшая форма went.*
-
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-31:i03; family: listen_choose -->
-🔊 *The flame went out before we left.* → **The flame went out before we left.** · The flame went out before they left. · The flame went out before we ate.
-- The flame went out before they left. — *В записи звучит The flame went out before we left.*
-- The flame went out before we ate. — *В записи звучит The flame went out before we left.*
-
-**5 · Карточка слова — ash**
-<!-- interaction_id: en:lesson-25:session-31:word:ash; family: word_card -->
-> **ash** — Зола. Ash — порошок, который остаётся после горения.
-
-**6 · Скажите: «Зола была холодной до того, как я убрал комнату.»**
-<!-- interaction_id: en:lesson-25:session-31:i04; family: phrase_builder -->
-Плитки: `room` `the` `cleaned` `I` `before` `cold` `was` `ash` `The` → **The ash was cold before I cleaned the room.**
-
-**7 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-31:i05; family: context_gap_grammar -->
-The ash ___ cold before I cleaned the room. → **was** · is · be
-- is — *Для законченного события нужна прошедшая форма was.*
-- be — *Для законченного события нужна прошедшая форма was.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-31:i06; family: listen_choose -->
-🔊 *The ash was cold before I cleaned the room.* → **The ash was cold before I cleaned the room.** · The ash was cold before she cleaned the room. · The ash was cold before I cleaned the floor.
-- The ash was cold before she cleaned the room. — *В записи звучит The ash was cold before I cleaned the room.*
-- The ash was cold before I cleaned the floor. — *В записи звучит The ash was cold before I cleaned the room.*
-
-**9 · Карточка слова — log**
-<!-- interaction_id: en:lesson-25:session-31:word:log; family: word_card -->
-> **log** — Полено. Log — толстый кусок дерева, например для огня.
-
-**10 · Скажите: «Мы добавили ещё одно полено после того, как огонь стал слабее.»**
-<!-- interaction_id: en:lesson-25:session-31:i07; family: phrase_builder -->
-Плитки: `low` `got` `fire` `the` `after` `log` `another` `added` `We` → **We added another log after the fire got low.**
-
-**11 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-31:i08; family: context_gap_grammar -->
-We ___ another log after the fire got low. → **added** · add · adding
-- add — *Для законченного события нужна прошедшая форма added.*
-- adding — *Для законченного события нужна прошедшая форма added.*
-
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-31:i09; family: listen_choose -->
-🔊 *We added another log after the fire got low.* → **We added another log after the fire got low.** · They added another log after the fire got low. · We added another log after the room got cold.
-- They added another log after the fire got low. — *В записи звучит We added another log after the fire got low.*
-- We added another log after the room got cold. — *В записи звучит We added another log after the fire got low.*
-
-**13 · Карточка слова — fireplace**
+**1 · Карточка слова — fireplace**
 <!-- interaction_id: en:lesson-25:session-31:word:fireplace; family: word_card -->
 > **fireplace** — Камин. Fireplace — место для огня в комнате с выходом дыма в дымоход.
 
-**14 · Скажите: «Мы почистили камин после того, как огонь погас.»**
-<!-- interaction_id: en:lesson-25:session-31:i10; family: phrase_builder -->
-Плитки: `out` `went` `fire` `the` `after` `fireplace` `the` `cleaned` `We` → **We cleaned the fireplace after the fire went out.**
+**2 · Уточните удобства комнаты: «В этой комнате есть камин?»**
+<!-- interaction_id: en:lesson-25:session-31:i01; family: scripted_repeat_compare -->
+🎙 **Does this room have a fireplace?**
 
-**15 · Дополните рассказ.**
-<!-- interaction_id: en:lesson-25:session-31:i11; family: context_gap_grammar -->
-We ___ the fireplace after the fire went out. → **cleaned** · clean · cleaning
-- clean — *Для законченного события нужна прошедшая форма cleaned.*
-- cleaning — *Для законченного события нужна прошедшая форма cleaned.*
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-31:i02; family: listen_choose -->
+🔊 *We sat by the fireplace after dinner.* → **We sat by the fireplace after dinner.** · We sat by the window after dinner. · They sat by the fireplace after dinner.
+- We sat by the window after dinner. — *В записи звучит We sat by the fireplace after dinner.*
+- They sat by the fireplace after dinner. — *В записи звучит We sat by the fireplace after dinner.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-31:i12; family: listen_choose -->
-🔊 *We cleaned the fireplace after the fire went out.* → **We cleaned the fireplace after the fire went out.** · They cleaned the fireplace after the fire went out. · We cleaned the fireplace after the guests left.
-- They cleaned the fireplace after the fire went out. — *В записи звучит We cleaned the fireplace after the fire went out.*
-- We cleaned the fireplace after the guests left. — *В записи звучит We cleaned the fireplace after the fire went out.*
+**4 · Карточка слова — log**
+<!-- interaction_id: en:lesson-25:session-31:word:log; family: word_card -->
+> **log** — Полено. Log — толстый кусок дерева, например для огня.
 
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-31:i13; family: speed_match -->
+**5 · Опишите место для полена: «На полу лежало полено».**
+<!-- interaction_id: en:lesson-25:session-31:i03; family: phrase_builder -->
+Плитки: `floor` `the` `on` `log` `a` `was` `There` → **There was a log on the floor.**
+
+**6 · Сначала вы принесли дрова в дом, потом начался дождь.**
+<!-- interaction_id: en:lesson-25:session-31:i04; family: context_gap_grammar -->
+We brought the wood inside ___ it started raining. → **before** · after · because
+- after — *After изменит порядок: дрова были внутри раньше дождя.*
+- because — *Because объясняет причину; здесь нужно указать «до того как».*
+
+**7 · Карточка слова — flame**
+<!-- interaction_id: en:lesson-25:session-31:word:flame; family: word_card -->
+> **flame** — Пламя. Flame — видимая горящая часть огня.
+
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-31:i05; family: listen_choose -->
+🔊 *The candle’s flame went out after we opened the window.* → **The candle’s flame went out after we opened the window.** · The candle’s flame went out before we opened the window. · The candle’s flame went out after they opened the window.
+- The candle’s flame went out before we opened the window. — *В записи звучит The candle’s flame went out after we opened the window.*
+- The candle’s flame went out after they opened the window. — *В записи звучит The candle’s flame went out after we opened the window.*
+
+**9 · Карточка слова — ash**
+<!-- interaction_id: en:lesson-25:session-31:word:ash; family: word_card -->
+> **ash** — Зола. Ash — порошок, который остаётся после горения.
+
+**10 · Услышьте описание того, что осталось.**
+<!-- interaction_id: en:lesson-25:session-31:i06; family: listen_build_dictation -->
+🔊 *There was ash in the old fireplace.* Плитки: `fireplace` `old` `the` `in` `ash` `was` `There` → **There was ash in the old fireplace.**
+
+**11 · Вы описываете порошок, оставшийся от сгоревшего дерева.**
+<!-- interaction_id: en:lesson-25:session-31:i07; family: context_gap_grammar -->
+There was grey ___ in the fireplace. → **ash** · flame · water
+- flame — *Flame — пламя, а не порошок после горения.*
+- water — *Water — вода; здесь описана зола.*
+
+**12 · В комнате прохладно. Попросите: «Закрой окно, пожалуйста».**
+<!-- interaction_id: en:lesson-25:session-31:i08; family: scripted_repeat_compare -->
+🎙 **Please close the window.**
+
+**13 · Соотнесите предметы и огонь с переводом**
+<!-- interaction_id: en:lesson-25:session-31:i09; family: speed_match -->
 flame — пламя · ash — зола · log — полено · fireplace — камин
 
-**18 · Поели перед отъездом**
+**14 · Вспомните старый дом: «Раньше у нас был камин».**
+<!-- interaction_id: en:lesson-25:session-31:i10; family: phrase_builder -->
+Плитки: `fireplace` `a` `have` `to` `used` `We` → **We used to have a fireplace.**
+
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-31:i11; family: listen_choose -->
+🔊 *On winter evenings we would read by the fire.* → **On winter evenings we would read by the fire.** · On winter evenings we would talk by the fire. · On summer evenings we would read by the fire.
+- On winter evenings we would talk by the fire. — *В записи звучит On winter evenings we would read by the fire.*
+- On summer evenings we would read by the fire. — *В записи звучит On winter evenings we would read by the fire.*
+
+**16 · Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.**
+<!-- interaction_id: en:lesson-25:session-31:i12; family: context_gap_grammar -->
+The guests ___ left before I returned. → **had** · have · were
+- have — *Have left связано с настоящим; здесь уход раньше прошлого возвращения.*
+- were — *Нужно had left для более раннего действия.*
+
+**17 · Одного одеяла не хватает. Попросите: «Можно ещё одно одеяло?»**
+<!-- interaction_id: en:lesson-25:session-31:i13; family: scripted_repeat_compare -->
+🎙 **Can I have another blanket?**
+
+**18 · Услышьте порядок событий вечером.**
 <!-- interaction_id: en:lesson-25:session-31:i14; family: listen_build_dictation -->
-🔊 *We ate before we left.* Плитки: `left` `we` `before` `ate` `We` → **We ate before we left.**
+🔊 *We went to bed after our friends left.* Плитки: `left` `friends` `our` `after` `bed` `to` `went` `We` → **We went to bed after our friends left.**
 
-**19 · Начали после её прихода**
-<!-- interaction_id: en:lesson-25:session-31:i15; family: listen_build_dictation -->
-🔊 *We started after she arrived.* Плитки: `arrived` `she` `after` `started` `We` → **We started after she arrived.**
+**19 · Вы остались у друзей на одну ночь вчера.**
+<!-- interaction_id: en:lesson-25:session-31:i15; family: context_gap_grammar -->
+We ___ here last night. → **stayed** · have stayed · would stay
+- have stayed — *Last night — законченное время; нужен Past Simple stayed.*
+- would stay — *Would stay описывает привычку, а здесь одна ночь.*
 
-**20 · Скажите: «Пламя погасло до того, как они ушли».**
-<!-- interaction_id: en:lesson-25:session-31:i16; family: scripted_repeat_compare -->
-🎙 **The flame went out before they left.**
+**20 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-31:i16; family: listen_choose -->
+🔊 *I have already closed the curtains.* → **I have already closed the curtains.** · I have already opened the curtains. · She has already closed the curtains.
+- I have already opened the curtains. — *В записи звучит I have already closed the curtains.*
+- She has already closed the curtains. — *В записи звучит I have already closed the curtains.*
 
-**21 · Скажите: «Она почистила камин после того, как огонь погас».**
-<!-- interaction_id: en:lesson-25:session-31:i17; family: scripted_repeat_compare -->
-🎙 **She cleaned the fireplace after the fire went out.**
+**21 · Укажите другие комнаты: «Другие комнаты наверху».**
+<!-- interaction_id: en:lesson-25:session-31:i17; family: phrase_builder -->
+Плитки: `upstairs` `are` `rooms` `other` `The` → **The other rooms are upstairs.**
 

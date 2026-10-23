@@ -50,175 +50,70 @@
       "interactionId": "en:lesson-25:session-30:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Її привітання було дружнім, коли ми приїхали.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Її привітання було дружнім, коли ми приїхали.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Her greeting was friendly when we arrived.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Её приветствие было дружелюбным, когда мы приехали.»",
-          "uk": "Скажіть: «Її привітання було дружнім, коли ми приїхали.»"
-        },
-        "orderedTokens": [
-          "Her",
-          "greeting",
-          "was",
-          "friendly",
-          "when",
-          "we",
-          "arrived"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-30:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-30:i02:r1",
-          "text": "was"
-        },
-        {
-          "responseId": "en:lesson-25:session-30:i02:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-25:session-30:i02:r3",
-          "text": "be"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
-        },
-        "gappedTargetPhrase": "Her greeting ___ friendly when we arrived.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-30:i02:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i02:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i02:r3",
-            "text": "be"
-          }
-        ],
-        "testedDimension": "Доповніть розповідь.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-30:i02:r2",
-            "correct": false,
-            "testedDimension": "Доповніть розповідь.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма was.",
-              "uk": "Для завершеної події потрібна минула форма was."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i02:r3",
-            "correct": false,
-            "testedDimension": "Доповніть розповідь.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма was.",
-              "uk": "Для завершеної події потрібна минула форма was."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-30:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-30:i03:r1",
-          "text": "Her greeting was friendly when we arrived."
+          "responseId": "en:lesson-25:session-30:i01:r1",
+          "text": "She gave us a warm greeting when we arrived."
         },
         {
-          "responseId": "en:lesson-25:session-30:i03:r2",
-          "text": "His greeting was friendly when we arrived."
+          "responseId": "en:lesson-25:session-30:i01:r2",
+          "text": "She gave them a warm greeting when they arrived."
         },
         {
-          "responseId": "en:lesson-25:session-30:i03:r3",
-          "text": "Her greeting was friendly when they arrived."
+          "responseId": "en:lesson-25:session-30:i01:r3",
+          "text": "He gave us a warm greeting when we arrived."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-30:i03:audio"
+        "en:lesson-25:session-30:i01:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-30:i03:audio",
-          "transcript": "Her greeting was friendly when we arrived."
+          "audioTargetId": "en:lesson-25:session-30:i01:audio",
+          "transcript": "She gave us a warm greeting when we arrived."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-30:i03:r1",
-            "targetText": "Her greeting was friendly when we arrived.",
+            "responseId": "en:lesson-25:session-30:i01:r1",
+            "targetText": "She gave us a warm greeting when we arrived.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-30:i03:r2",
-            "targetText": "His greeting was friendly when we arrived.",
+            "responseId": "en:lesson-25:session-30:i01:r2",
+            "targetText": "She gave them a warm greeting when they arrived.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-30:i03:r3",
-            "targetText": "Her greeting was friendly when they arrived.",
+            "responseId": "en:lesson-25:session-30:i01:r3",
+            "targetText": "He gave us a warm greeting when we arrived.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-30:i03:r2",
+            "responseId": "en:lesson-25:session-30:i01:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Her greeting was friendly when we arrived.",
-              "uk": "У записі звучить Her greeting was friendly when we arrived."
+              "ru": "В записи звучит She gave us a warm greeting when we arrived.",
+              "uk": "У записі звучить She gave us a warm greeting when we arrived."
             }
           },
           {
-            "responseId": "en:lesson-25:session-30:i03:r3",
+            "responseId": "en:lesson-25:session-30:i01:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Her greeting was friendly when we arrived.",
-              "uk": "У записі звучить Her greeting was friendly when we arrived."
+              "ru": "В записи звучит She gave us a warm greeting when we arrived.",
+              "uk": "У записі звучить She gave us a warm greeting when we arrived."
             }
           }
         ],
@@ -228,8 +123,41 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-30:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Привітайтеся з людиною, яку давно не бачили: «Як приємно знову тебе бачити!»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Привітайтеся з людиною, яку давно не бачили: «Як приємно знову тебе бачити!»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-30:i02:audio",
+          "transcript": "It is lovely to see you again."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is lovely to see you again.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-30:word:handshake",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -271,31 +199,31 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-30:i04",
-      "ordinal": 9,
+      "interactionId": "en:lesson-25:session-30:i03",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Він потиснув мені руку перед тим, як пішов.»",
+      "prompt": "Згадайте прощання: «Я потиснув йому руку перед тим, як пішов».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Він потиснув мені руку перед тим, як пішов.»",
+      "accessibilityLabel": "Згадайте прощання: «Я потиснув йому руку перед тим, як пішов».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He gave me a handshake before he left.",
+        "targetPhrase": "I gave him a handshake before I left.",
         "localizedMeaning": {
-          "ru": "Скажите: «Он пожал мне руку перед тем, как ушёл.»",
-          "uk": "Скажіть: «Він потиснув мені руку перед тим, як пішов.»"
+          "ru": "Вспомните прощание: «Я пожал ему руку перед тем, как ушёл».",
+          "uk": "Згадайте прощання: «Я потиснув йому руку перед тим, як пішов»."
         },
         "orderedTokens": [
-          "He",
+          "I",
           "gave",
-          "me",
+          "him",
           "a",
           "handshake",
           "before",
-          "he",
+          "I",
           "left"
         ],
         "authoredDistractorTokens": [],
@@ -308,68 +236,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-30:i05",
-      "ordinal": 10,
+      "interactionId": "en:lesson-25:session-30:i04",
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь.",
+      "prompt": "Спочатку ви привіталися з гостями, потім сіли.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-30:i05:r1",
-          "text": "gave"
+          "responseId": "en:lesson-25:session-30:i04:r1",
+          "text": "after"
         },
         {
-          "responseId": "en:lesson-25:session-30:i05:r2",
-          "text": "give"
+          "responseId": "en:lesson-25:session-30:i04:r2",
+          "text": "before"
         },
         {
-          "responseId": "en:lesson-25:session-30:i05:r3",
-          "text": "giving"
+          "responseId": "en:lesson-25:session-30:i04:r3",
+          "text": "until"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь.",
+      "accessibilityLabel": "Спочатку ви привіталися з гостями, потім сіли.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
+          "ru": "Сначала вы поздоровались с гостями, потом сели.",
+          "uk": "Спочатку ви привіталися з гостями, потім сіли."
         },
-        "gappedTargetPhrase": "He ___ me a handshake before he left.",
+        "gappedTargetPhrase": "We sat down ___ we said hello.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-30:i05:r1",
-            "text": "gave"
+            "responseId": "en:lesson-25:session-30:i04:r1",
+            "text": "after"
           },
           {
-            "responseId": "en:lesson-25:session-30:i05:r2",
-            "text": "give"
+            "responseId": "en:lesson-25:session-30:i04:r2",
+            "text": "before"
           },
           {
-            "responseId": "en:lesson-25:session-30:i05:r3",
-            "text": "giving"
+            "responseId": "en:lesson-25:session-30:i04:r3",
+            "text": "until"
           }
         ],
-        "testedDimension": "Доповніть розповідь.",
+        "testedDimension": "Спочатку ви привіталися з гостями, потім сіли.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-30:i05:r2",
+            "responseId": "en:lesson-25:session-30:i04:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь.",
+            "testedDimension": "Спочатку ви привіталися з гостями, потім сіли.",
             "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма gave.",
-              "uk": "Для завершеної події потрібна минула форма gave."
+              "ru": "Before поменяет порядок: в условии приветствие было первым.",
+              "uk": "Before змінить порядок: в умові привітання було першим."
             }
           },
           {
-            "responseId": "en:lesson-25:session-30:i05:r3",
+            "responseId": "en:lesson-25:session-30:i04:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь.",
+            "testedDimension": "Спочатку ви привіталися з гостями, потім сіли.",
             "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма gave.",
-              "uk": "Для завершеної події потрібна минула форма gave."
+              "ru": "Until означает «до тех пор пока», а здесь нужно «после того как».",
+              "uk": "Until означає «доки», а тут потрібно «після того як»."
             }
           }
         ]
@@ -377,85 +305,9 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-30:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-30:i06:r1",
-          "text": "He gave me a handshake before he left."
-        },
-        {
-          "responseId": "en:lesson-25:session-30:i06:r2",
-          "text": "She gave me a handshake before she left."
-        },
-        {
-          "responseId": "en:lesson-25:session-30:i06:r3",
-          "text": "He gave her a handshake before he left."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-30:i06:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-30:i06:audio",
-          "transcript": "He gave me a handshake before he left."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-30:i06:r1",
-            "targetText": "He gave me a handshake before he left.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i06:r2",
-            "targetText": "She gave me a handshake before she left.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i06:r3",
-            "targetText": "He gave her a handshake before he left.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-30:i06:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит He gave me a handshake before he left.",
-              "uk": "У записі звучить He gave me a handshake before he left."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i06:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит He gave me a handshake before he left.",
-              "uk": "У записі звучить He gave me a handshake before he left."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-30:word:outing",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Картка слова — outing",
@@ -496,180 +348,106 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-30:i07",
-      "ordinal": 13,
+      "interactionId": "en:lesson-25:session-30:i05",
+      "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Ми запланували поїздку на відпочинок до того, як зателефонували друзям.»",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте спільну поїздку: «Давай заплануємо сімейну прогулянку».",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Ми запланували поїздку на відпочинок до того, як зателефонували друзям.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We planned an outing before we called our friends.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Мы запланировали поездку на отдых до того, как позвонили друзьям.»",
-          "uk": "Скажіть: «Ми запланували поїздку на відпочинок до того, як зателефонували друзям.»"
-        },
-        "orderedTokens": [
-          "We",
-          "planned",
-          "an",
-          "outing",
-          "before",
-          "we",
-          "called",
-          "our",
-          "friends"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-30:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-30:i08:r1",
-          "text": "planned"
-        },
-        {
-          "responseId": "en:lesson-25:session-30:i08:r2",
-          "text": "plan"
-        },
-        {
-          "responseId": "en:lesson-25:session-30:i08:r3",
-          "text": "planning"
-        }
+      "audioTargetIds": [
+        "en:lesson-25:session-30:i05:audio"
       ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь.",
+      "accessibilityLabel": "Запропонуйте спільну поїздку: «Давай заплануємо сімейну прогулянку».",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-30:i05:audio",
+          "transcript": "Let us plan a family outing."
         },
-        "gappedTargetPhrase": "We ___ an outing before we called our friends.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-30:i08:r1",
-            "text": "planned"
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i08:r2",
-            "text": "plan"
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i08:r3",
-            "text": "planning"
-          }
-        ],
-        "testedDimension": "Доповніть розповідь.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-30:i08:r2",
-            "correct": false,
-            "testedDimension": "Доповніть розповідь.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма planned.",
-              "uk": "Для завершеної події потрібна минула форма planned."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i08:r3",
-            "correct": false,
-            "testedDimension": "Доповніть розповідь.",
-            "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма planned.",
-              "uk": "Для завершеної події потрібна минула форма planned."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us plan a family outing.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-30:i09",
-      "ordinal": 15,
+      "interactionId": "en:lesson-25:session-30:i06",
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-30:i09:r1",
-          "text": "We planned an outing before we called our friends."
+          "responseId": "en:lesson-25:session-30:i06:r1",
+          "text": "We checked the weather before our outing."
         },
         {
-          "responseId": "en:lesson-25:session-30:i09:r2",
-          "text": "They planned an outing before they called our friends."
+          "responseId": "en:lesson-25:session-30:i06:r2",
+          "text": "We checked the weather after our outing."
         },
         {
-          "responseId": "en:lesson-25:session-30:i09:r3",
-          "text": "We planned an outing before we called our neighbours."
+          "responseId": "en:lesson-25:session-30:i06:r3",
+          "text": "They checked the weather before their outing."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-30:i09:audio"
+        "en:lesson-25:session-30:i06:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-30:i09:audio",
-          "transcript": "We planned an outing before we called our friends."
+          "audioTargetId": "en:lesson-25:session-30:i06:audio",
+          "transcript": "We checked the weather before our outing."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-30:i09:r1",
-            "targetText": "We planned an outing before we called our friends.",
+            "responseId": "en:lesson-25:session-30:i06:r1",
+            "targetText": "We checked the weather before our outing.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-30:i09:r2",
-            "targetText": "They planned an outing before they called our friends.",
+            "responseId": "en:lesson-25:session-30:i06:r2",
+            "targetText": "We checked the weather after our outing.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-30:i09:r3",
-            "targetText": "We planned an outing before we called our neighbours.",
+            "responseId": "en:lesson-25:session-30:i06:r3",
+            "targetText": "They checked the weather before their outing.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-30:i09:r2",
+            "responseId": "en:lesson-25:session-30:i06:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We planned an outing before we called our friends.",
-              "uk": "У записі звучить We planned an outing before we called our friends."
+              "ru": "В записи звучит We checked the weather before our outing.",
+              "uk": "У записі звучить We checked the weather before our outing."
             }
           },
           {
-            "responseId": "en:lesson-25:session-30:i09:r3",
+            "responseId": "en:lesson-25:session-30:i06:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We planned an outing before we called our friends.",
-              "uk": "У записі звучить We planned an outing before we called our friends."
+              "ru": "В записи звучит We checked the weather before our outing.",
+              "uk": "У записі звучить We checked the weather before our outing."
             }
           }
         ],
@@ -680,7 +458,7 @@
     },
     {
       "interactionId": "en:lesson-25:session-30:word:gathering",
-      "ordinal": 16,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -722,30 +500,35 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-30:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
+      "interactionId": "en:lesson-25:session-30:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Зустріч закінчилася після того, як ми поїли.»",
+      "prompt": "Почуйте, де зустрілися родичі.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Зустріч закінчилася після того, як ми поїли.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Почуйте, де зустрілися родичі.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The gathering ended after we ate.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Встреча закончилась после того, как мы поели.»",
-          "uk": "Скажіть: «Зустріч закінчилася після того, як ми поїли.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-30:i07:audio",
+          "transcript": "The family gathering was at my aunt’s house."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The family gathering was at my aunt’s house.",
         "orderedTokens": [
           "The",
+          "family",
           "gathering",
-          "ended",
-          "after",
-          "we",
-          "ate"
+          "was",
+          "at",
+          "my",
+          "aunt’s",
+          "house"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -757,68 +540,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-30:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-30:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь.",
+      "prompt": "Друзі прийшли додому на зустріч, а не вирушили на прогулянку.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-30:i11:r1",
-          "text": "ended"
+          "responseId": "en:lesson-25:session-30:i08:r1",
+          "text": "gathering"
         },
         {
-          "responseId": "en:lesson-25:session-30:i11:r2",
-          "text": "end"
+          "responseId": "en:lesson-25:session-30:i08:r2",
+          "text": "outing"
         },
         {
-          "responseId": "en:lesson-25:session-30:i11:r3",
-          "text": "ending"
+          "responseId": "en:lesson-25:session-30:i08:r3",
+          "text": "handshake"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь.",
+      "accessibilityLabel": "Друзі прийшли додому на зустріч, а не вирушили на прогулянку.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
+          "ru": "Друзья пришли домой на встречу, а не отправились на прогулку.",
+          "uk": "Друзі прийшли додому на зустріч, а не вирушили на прогулянку."
         },
-        "gappedTargetPhrase": "The gathering ___ after we ate.",
+        "gappedTargetPhrase": "We had a small ___ at home.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-30:i11:r1",
-            "text": "ended"
+            "responseId": "en:lesson-25:session-30:i08:r1",
+            "text": "gathering"
           },
           {
-            "responseId": "en:lesson-25:session-30:i11:r2",
-            "text": "end"
+            "responseId": "en:lesson-25:session-30:i08:r2",
+            "text": "outing"
           },
           {
-            "responseId": "en:lesson-25:session-30:i11:r3",
-            "text": "ending"
+            "responseId": "en:lesson-25:session-30:i08:r3",
+            "text": "handshake"
           }
         ],
-        "testedDimension": "Доповніть розповідь.",
+        "testedDimension": "Друзі прийшли додому на зустріч, а не вирушили на прогулянку.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-30:i11:r2",
+            "responseId": "en:lesson-25:session-30:i08:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь.",
+            "testedDimension": "Друзі прийшли додому на зустріч, а не вирушили на прогулянку.",
             "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма ended.",
-              "uk": "Для завершеної події потрібна минула форма ended."
+              "ru": "Outing — прогулка или поездка вне дома; встреча проходила дома.",
+              "uk": "Outing — прогулянка чи поїздка поза домом; зустріч відбувалася вдома."
             }
           },
           {
-            "responseId": "en:lesson-25:session-30:i11:r3",
+            "responseId": "en:lesson-25:session-30:i08:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь.",
+            "testedDimension": "Друзі прийшли додому на зустріч, а не вирушили на прогулянку.",
             "feedbackByLocale": {
-              "ru": "Для законченного события нужна прошедшая форма ended.",
-              "uk": "Для завершеної події потрібна минула форма ended."
+              "ru": "Handshake — рукопожатие, не название встречи людей.",
+              "uk": "Handshake — рукостискання, не назва зустрічі людей."
             }
           }
         ]
@@ -826,97 +609,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-30:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-30:i12:r1",
-          "text": "The gathering ended after we ate."
-        },
-        {
-          "responseId": "en:lesson-25:session-30:i12:r2",
-          "text": "The gathering ended after they ate."
-        },
-        {
-          "responseId": "en:lesson-25:session-30:i12:r3",
-          "text": "The gathering ended after we danced."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-30:i12:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-30:i12:audio",
-          "transcript": "The gathering ended after we ate."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-30:i12:r1",
-            "targetText": "The gathering ended after we ate.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i12:r2",
-            "targetText": "The gathering ended after they ate.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i12:r3",
-            "targetText": "The gathering ended after we danced.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-30:i12:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The gathering ended after we ate.",
-              "uk": "У записі звучить The gathering ended after we ate."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-30:i12:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The gathering ended after we ate.",
-              "uk": "У записі звучить The gathering ended after we ate."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-30:i13",
-      "ordinal": 20,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-30:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Поєднайте форми з перекладом",
+      "prompt": "Розрізніть привітання й види зустрічей",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте форми з перекладом",
+      "accessibilityLabel": "Розрізніть привітання й види зустрічей",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-30:i13:p1",
+            "pairId": "en:lesson-25:session-30:i09:p1",
             "target": "greeting",
             "meaningByLocale": {
               "ru": "приветствие",
@@ -924,7 +631,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-30:i13:p2",
+            "pairId": "en:lesson-25:session-30:i09:p2",
             "target": "handshake",
             "meaningByLocale": {
               "ru": "рукопожатие",
@@ -932,7 +639,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-30:i13:p3",
+            "pairId": "en:lesson-25:session-30:i09:p3",
             "target": "outing",
             "meaningByLocale": {
               "ru": "поездка на отдых",
@@ -940,7 +647,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-30:i13:p4",
+            "pairId": "en:lesson-25:session-30:i09:p4",
             "target": "gathering",
             "meaningByLocale": {
               "ru": "встреча людей",
@@ -975,32 +682,251 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спочатку приготували їжу, потім прийшли гості: «Ми приготували їжу до приходу гостей». Використайте had.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спочатку приготували їжу, потім прийшли гості: «Ми приготували їжу до приходу гостей». Використайте had.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We had prepared the food before the guests arrived.",
+        "localizedMeaning": {
+          "ru": "Сначала приготовили еду, потом пришли гости: «Мы приготовили еду до прихода гостей». Используйте had.",
+          "uk": "Спочатку приготували їжу, потім прийшли гості: «Ми приготували їжу до приходу гостей». Використайте had."
+        },
+        "orderedTokens": [
+          "We",
+          "had",
+          "prepared",
+          "the",
+          "food",
+          "before",
+          "the",
+          "guests",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-30:i11:r1",
+          "text": "We used to meet at my grandmother’s house."
+        },
+        {
+          "responseId": "en:lesson-25:session-30:i11:r2",
+          "text": "We used to meet at my grandfather’s shop."
+        },
+        {
+          "responseId": "en:lesson-25:session-30:i11:r3",
+          "text": "They used to meet at my grandmother’s house."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-30:i11:audio",
+          "transcript": "We used to meet at my grandmother’s house."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-30:i11:r1",
+            "targetText": "We used to meet at my grandmother’s house.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i11:r2",
+            "targetText": "We used to meet at my grandfather’s shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i11:r3",
+            "targetText": "They used to meet at my grandmother’s house.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to meet at my grandmother’s house.",
+              "uk": "У записі звучить We used to meet at my grandmother’s house."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to meet at my grandmother’s house.",
+              "uk": "У записі звучить We used to meet at my grandmother’s house."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-30:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запросіть ще одного друга: «Можу я привести ще одного друга?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-30:i12:audio"
+      ],
+      "accessibilityLabel": "Запросіть ще одного друга: «Можу я привести ще одного друга?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-30:i12:audio",
+          "transcript": "Can I bring another friend?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I bring another friend?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви поговорили з тіткою вчора, у завершений час.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-30:i13:r1",
+          "text": "spoke"
+        },
+        {
+          "responseId": "en:lesson-25:session-30:i13:r2",
+          "text": "have spoken"
+        },
+        {
+          "responseId": "en:lesson-25:session-30:i13:r3",
+          "text": "would speak"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви поговорили з тіткою вчора, у завершений час.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы поговорили с тётей вчера, в законченное время.",
+          "uk": "Ви поговорили з тіткою вчора, у завершений час."
+        },
+        "gappedTargetPhrase": "I ___ to my aunt yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-30:i13:r1",
+            "text": "spoke"
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i13:r2",
+            "text": "have spoken"
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i13:r3",
+            "text": "would speak"
+          }
+        ],
+        "testedDimension": "Ви поговорили з тіткою вчора, у завершений час.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-30:i13:r2",
+            "correct": false,
+            "testedDimension": "Ви поговорили з тіткою вчора, у завершений час.",
+            "feedbackByLocale": {
+              "ru": "Yesterday требует Past Simple spoke.",
+              "uk": "Yesterday потребує Past Simple spoke."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i13:r3",
+            "correct": false,
+            "testedDimension": "Ви поговорили з тіткою вчора, у завершений час.",
+            "feedbackByLocale": {
+              "ru": "Would speak описывает прежнюю привычку; здесь один разговор.",
+              "uk": "Would speak описує колишню звичку; тут одна розмова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-30:i14",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Поїли перед від’їздом",
+      "prompt": "Почуйте колишню традицію на зустрічах.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-30:i14:audio"
       ],
-      "accessibilityLabel": "Поїли перед від’їздом",
+      "accessibilityLabel": "Почуйте колишню традицію на зустрічах.",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-30:i14:audio",
-          "transcript": "We ate before we left."
+          "transcript": "At family parties we would dance after dinner."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We ate before we left.",
+        "hiddenTargetPhrase": "At family parties we would dance after dinner.",
         "orderedTokens": [
-          "We",
-          "ate",
-          "before",
+          "At",
+          "family",
+          "parties",
           "we",
-          "left"
+          "would",
+          "dance",
+          "after",
+          "dinner"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1015,68 +941,143 @@
       "interactionId": "en:lesson-25:session-30:i15",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Почали після її приходу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-30:i15:r1",
+          "text": "I have already invited the neighbours."
+        },
+        {
+          "responseId": "en:lesson-25:session-30:i15:r2",
+          "text": "I have already called the neighbours."
+        },
+        {
+          "responseId": "en:lesson-25:session-30:i15:r3",
+          "text": "She has already invited the neighbours."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-30:i15:audio"
       ],
-      "accessibilityLabel": "Почали після її приходу",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-30:i15:audio",
-          "transcript": "We started after she arrived."
+          "transcript": "I have already invited the neighbours."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We started after she arrived.",
-        "orderedTokens": [
-          "We",
-          "started",
-          "after",
-          "she",
-          "arrived"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-30:i15:r1",
+            "targetText": "I have already invited the neighbours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i15:r2",
+            "targetText": "I have already called the neighbours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i15:r3",
+            "targetText": "She has already invited the neighbours.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-30:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already invited the neighbours.",
+              "uk": "У записі звучить I have already invited the neighbours."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already invited the neighbours.",
+              "uk": "У записі звучить I have already invited the neighbours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-25:session-30:i16",
       "ordinal": 23,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Вона потиснула мені руку перед відходом».",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-30:i16:audio"
-      ],
-      "accessibilityLabel": "Скажіть: «Вона потиснула мені руку перед відходом».",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-30:i16:audio",
-          "transcript": "She gave me a handshake before she left."
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Одні гості прийшли, решта ще в дорозі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-30:i16:r1",
+          "text": "other"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "She gave me a handshake before she left.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-25:session-30:i16:r2",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-25:session-30:i16:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одні гості прийшли, решта ще в дорозі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Одни гости пришли, остальные ещё в дороге.",
+          "uk": "Одні гості прийшли, решта ще в дорозі."
+        },
+        "gappedTargetPhrase": "The ___ guests are on their way.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-30:i16:r1",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i16:r2",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i16:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Одні гості прийшли, решта ще в дорозі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-30:i16:r2",
+            "correct": false,
+            "testedDimension": "Одні гості прийшли, решта ще в дорозі.",
+            "feedbackByLocale": {
+              "ru": "Another относится к единственному числу, не guests.",
+              "uk": "Another стосується однини, не guests."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-30:i16:r3",
+            "correct": false,
+            "testedDimension": "Одні гості прийшли, решта ще в дорозі.",
+            "feedbackByLocale": {
+              "ru": "Перед guests нужно other без -s.",
+              "uk": "Перед guests потрібно other без -s."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -1087,21 +1088,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Зустріч закінчилася після того, як ми потанцювали».",
+      "prompt": "Подякуйте господарям перед відходом: «Дякую, що запросили мене».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-30:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Зустріч закінчилася після того, як ми потанцювали».",
+      "accessibilityLabel": "Подякуйте господарям перед відходом: «Дякую, що запросили мене».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-30:i17:audio",
-          "transcript": "The gathering ended after we danced."
+          "transcript": "Thank you for inviting me."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The gathering ended after we danced.",
+        "targetPhrase": "Thank you for inviting me.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1121,5 +1122,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "241ac1be39c218c5d142034c8440312c76c5c8d16a3b4cc74c08e1fea46c5919"
+  "learnerFingerprint": "b2672a4139741a9dffa182f27b2c413b4538ef8bd10c35a2d07749b90b2de8f5"
 }

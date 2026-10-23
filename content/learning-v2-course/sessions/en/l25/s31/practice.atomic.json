@@ -4,8 +4,308 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-25:session-31:word:flame",
+        "interactionId": "en:lesson-25:session-31:word:fireplace",
         "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fireplace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:word:fireplace:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fireplace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:word:fireplace:audio",
+            "transcript": "fireplace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-31:word:fireplace:r1",
+              "targetText": "fireplace",
+              "meaningByLocale": {
+                "ru": "Камин. Fireplace — место для огня в комнате с выходом дыма в дымоход.",
+                "uk": "Камін. Fireplace — місце для вогню в кімнаті з виходом диму в димохід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fireplace",
+            "definitionByLocale": {
+              "ru": "Камин. Fireplace — место для огня в комнате с выходом дыма в дымоход.",
+              "uk": "Камін. Fireplace — місце для вогню в кімнаті з виходом диму в димохід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i01",
+        "ordinal": 5,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните удобства комнаты: «В этой комнате есть камин?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i01:audio"
+        ],
+        "accessibilityLabel": "Уточните удобства комнаты: «В этой комнате есть камин?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i01:audio",
+            "transcript": "Does this room have a fireplace?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does this room have a fireplace?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i02:r1",
+            "text": "We sat by the fireplace after dinner."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i02:r2",
+            "text": "We sat by the window after dinner."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i02:r3",
+            "text": "They sat by the fireplace after dinner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i02:audio",
+            "transcript": "We sat by the fireplace after dinner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-31:i02:r1",
+              "targetText": "We sat by the fireplace after dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i02:r2",
+              "targetText": "We sat by the window after dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i02:r3",
+              "targetText": "They sat by the fireplace after dinner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We sat by the fireplace after dinner.",
+                "uk": "У записі звучить We sat by the fireplace after dinner."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We sat by the fireplace after dinner.",
+                "uk": "У записі звучить We sat by the fireplace after dinner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:word:log",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — log",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:word:log:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — log",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:word:log:audio",
+            "transcript": "log"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-31:word:log:r1",
+              "targetText": "log",
+              "meaningByLocale": {
+                "ru": "Полено. Log — толстый кусок дерева, например для огня.",
+                "uk": "Поліно. Log — товстий шматок дерева, наприклад для вогню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "log",
+            "definitionByLocale": {
+              "ru": "Полено. Log — толстый кусок дерева, например для огня.",
+              "uk": "Поліно. Log — товстий шматок дерева, наприклад для вогню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишите место для полена: «На полу лежало полено».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишите место для полена: «На полу лежало полено».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a log on the floor.",
+          "localizedMeaning": {
+            "ru": "Опишите место для полена: «На полу лежало полено».",
+            "uk": "Опишіть місце для поліна: «На підлозі лежало поліно»."
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "log",
+            "on",
+            "the",
+            "floor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сначала вы принесли дрова в дом, потом начался дождь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i04:r1",
+            "text": "before"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i04:r2",
+            "text": "after"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i04:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сначала вы принесли дрова в дом, потом начался дождь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сначала вы принесли дрова в дом, потом начался дождь.",
+            "uk": "Спочатку ви принесли дрова в дім, потім почався дощ."
+          },
+          "gappedTargetPhrase": "We brought the wood inside ___ it started raining.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-31:i04:r1",
+              "text": "before"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i04:r2",
+              "text": "after"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i04:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Сначала вы принесли дрова в дом, потом начался дождь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i04:r2",
+              "correct": false,
+              "testedDimension": "Сначала вы принесли дрова в дом, потом начался дождь.",
+              "feedbackByLocale": {
+                "ru": "After изменит порядок: дрова были внутри раньше дождя.",
+                "uk": "After змінить порядок: дрова були всередині раніше за дощ."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i04:r3",
+              "correct": false,
+              "testedDimension": "Сначала вы принесли дрова в дом, потом начался дождь.",
+              "feedbackByLocale": {
+                "ru": "Because объясняет причину; здесь нужно указать «до того как».",
+                "uk": "Because пояснює причину; тут потрібно вказати «до того як»."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:word:flame",
+        "ordinal": 10,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -47,178 +347,73 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-31:i01",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Пламя погасло до того, как мы ушли.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Пламя погасло до того, как мы ушли.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "The flame went out before we left.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Пламя погасло до того, как мы ушли.»",
-            "uk": "Скажіть: «Полум’я згасло до того, як ми пішли.»"
-          },
-          "orderedTokens": [
-            "The",
-            "flame",
-            "went",
-            "out",
-            "before",
-            "we",
-            "left"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i02",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i02:r1",
-            "text": "went"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i02:r2",
-            "text": "go"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i02:r3",
-            "text": "going"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "The flame ___ out before we left.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-31:i02:r1",
-              "text": "went"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i02:r2",
-              "text": "go"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i02:r3",
-              "text": "going"
-            }
-          ],
-          "testedDimension": "Дополните рассказ.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i02:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма went.",
-                "uk": "Для завершеної події потрібна минула форма went."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i02:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма went.",
-                "uk": "Для завершеної події потрібна минула форма went."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
+        "interactionId": "en:lesson-25:session-31:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-31:i03:r1",
-            "text": "The flame went out before we left."
+            "responseId": "en:lesson-25:session-31:i05:r1",
+            "text": "The candle’s flame went out after we opened the window."
           },
           {
-            "responseId": "en:lesson-25:session-31:i03:r2",
-            "text": "The flame went out before they left."
+            "responseId": "en:lesson-25:session-31:i05:r2",
+            "text": "The candle’s flame went out before we opened the window."
           },
           {
-            "responseId": "en:lesson-25:session-31:i03:r3",
-            "text": "The flame went out before we ate."
+            "responseId": "en:lesson-25:session-31:i05:r3",
+            "text": "The candle’s flame went out after they opened the window."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-31:i03:audio"
+          "en:lesson-25:session-31:i05:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i03:audio",
-            "transcript": "The flame went out before we left."
+            "audioTargetId": "en:lesson-25:session-31:i05:audio",
+            "transcript": "The candle’s flame went out after we opened the window."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-31:i03:r1",
-              "targetText": "The flame went out before we left.",
+              "responseId": "en:lesson-25:session-31:i05:r1",
+              "targetText": "The candle’s flame went out after we opened the window.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-31:i03:r2",
-              "targetText": "The flame went out before they left.",
+              "responseId": "en:lesson-25:session-31:i05:r2",
+              "targetText": "The candle’s flame went out before we opened the window.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-31:i03:r3",
-              "targetText": "The flame went out before we ate.",
+              "responseId": "en:lesson-25:session-31:i05:r3",
+              "targetText": "The candle’s flame went out after they opened the window.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-31:i03:r2",
+              "responseId": "en:lesson-25:session-31:i05:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The flame went out before we left.",
-                "uk": "У записі звучить The flame went out before we left."
+                "ru": "В записи звучит The candle’s flame went out after we opened the window.",
+                "uk": "У записі звучить The candle’s flame went out after we opened the window."
               }
             },
             {
-              "responseId": "en:lesson-25:session-31:i03:r3",
+              "responseId": "en:lesson-25:session-31:i05:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The flame went out before we left.",
-                "uk": "У записі звучить The flame went out before we left."
+                "ru": "В записи звучит The candle’s flame went out after we opened the window.",
+                "uk": "У записі звучить The candle’s flame went out after we opened the window."
               }
             }
           ],
@@ -229,8 +424,8 @@
       },
       {
         "interactionId": "en:lesson-25:session-31:word:ash",
-        "ordinal": 8,
-        "purpose": "supported_practice",
+        "ordinal": 12,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Карточка слова — ash",
@@ -271,656 +466,162 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-31:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
+        "interactionId": "en:lesson-25:session-31:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Зола была холодной до того, как я убрал комнату.»",
+        "prompt": "Услышьте описание того, что осталось.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Зола была холодной до того, как я убрал комнату.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i06:audio"
+        ],
+        "accessibilityLabel": "Услышьте описание того, что осталось.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "The ash was cold before I cleaned the room.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Зола была холодной до того, как я убрал комнату.»",
-            "uk": "Скажіть: «Попіл був холодним до того, як я прибрав кімнату.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i06:audio",
+            "transcript": "There was ash in the old fireplace."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There was ash in the old fireplace.",
           "orderedTokens": [
-            "The",
-            "ash",
+            "There",
             "was",
-            "cold",
-            "before",
-            "I",
-            "cleaned",
+            "ash",
+            "in",
             "the",
-            "room"
+            "old",
+            "fireplace"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i05:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i05:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i05:r3",
-            "text": "be"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "The ash ___ cold before I cleaned the room.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-31:i05:r1",
-              "text": "was"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i05:r2",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i05:r3",
-              "text": "be"
-            }
-          ],
-          "testedDimension": "Дополните рассказ.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i05:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма was.",
-                "uk": "Для завершеної події потрібна минула форма was."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i05:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма was.",
-                "uk": "Для завершеної події потрібна минула форма was."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i06:r1",
-            "text": "The ash was cold before I cleaned the room."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i06:r2",
-            "text": "The ash was cold before she cleaned the room."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i06:r3",
-            "text": "The ash was cold before I cleaned the floor."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:i06:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i06:audio",
-            "transcript": "The ash was cold before I cleaned the room."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-31:i06:r1",
-              "targetText": "The ash was cold before I cleaned the room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i06:r2",
-              "targetText": "The ash was cold before she cleaned the room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i06:r3",
-              "targetText": "The ash was cold before I cleaned the floor.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i06:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит The ash was cold before I cleaned the room.",
-                "uk": "У записі звучить The ash was cold before I cleaned the room."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i06:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит The ash was cold before I cleaned the room.",
-                "uk": "У записі звучить The ash was cold before I cleaned the room."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:word:log",
-        "ordinal": 12,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — log",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:word:log:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — log",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:word:log:audio",
-            "transcript": "log"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-31:word:log:r1",
-              "targetText": "log",
-              "meaningByLocale": {
-                "ru": "Полено. Log — толстый кусок дерева, например для огня.",
-                "uk": "Поліно. Log — товстий шматок дерева, наприклад для вогню."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "log",
-            "definitionByLocale": {
-              "ru": "Полено. Log — толстый кусок дерева, например для огня.",
-              "uk": "Поліно. Log — товстий шматок дерева, наприклад для вогню."
-            }
           }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-31:i07",
-        "ordinal": 13,
+        "ordinal": 14,
         "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Мы добавили ещё одно полено после того, как огонь стал слабее.»",
-        "responseOptions": [],
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы описываете порошок, оставшийся от сгоревшего дерева.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i07:r1",
+            "text": "ash"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i07:r2",
+            "text": "flame"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i07:r3",
+            "text": "water"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Мы добавили ещё одно полено после того, как огонь стал слабее.»",
+        "accessibilityLabel": "Вы описываете порошок, оставшийся от сгоревшего дерева.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We added another log after the fire got low.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Мы добавили ещё одно полено после того, как огонь стал слабее.»",
-            "uk": "Скажіть: «Ми додали ще одне поліно після того, як вогонь став слабшим.»"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы описываете порошок, оставшийся от сгоревшего дерева.",
+            "uk": "Ви описуєте порошок, що залишився від згорілого дерева."
           },
-          "orderedTokens": [
-            "We",
-            "added",
-            "another",
-            "log",
-            "after",
-            "the",
-            "fire",
-            "got",
-            "low"
+          "gappedTargetPhrase": "There was grey ___ in the fireplace.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-31:i07:r1",
+              "text": "ash"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i07:r2",
+              "text": "flame"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i07:r3",
+              "text": "water"
+            }
           ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
+          "testedDimension": "Вы описываете порошок, оставшийся от сгоревшего дерева.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i07:r2",
+              "correct": false,
+              "testedDimension": "Вы описываете порошок, оставшийся от сгоревшего дерева.",
+              "feedbackByLocale": {
+                "ru": "Flame — пламя, а не порошок после горения.",
+                "uk": "Flame — полум’я, а не порошок після горіння."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i07:r3",
+              "correct": false,
+              "testedDimension": "Вы описываете порошок, оставшийся от сгоревшего дерева.",
+              "feedbackByLocale": {
+                "ru": "Water — вода; здесь описана зола.",
+                "uk": "Water — вода; тут описано попіл."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-31:i08",
-        "ordinal": 14,
+        "ordinal": 15,
         "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i08:r1",
-            "text": "added"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i08:r2",
-            "text": "add"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i08:r3",
-            "text": "adding"
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В комнате прохладно. Попросите: «Закрой окно, пожалуйста».",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ.",
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "В комнате прохладно. Попросите: «Закрой окно, пожалуйста».",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i08:audio",
+            "transcript": "Please close the window."
           },
-          "gappedTargetPhrase": "We ___ another log after the fire got low.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-31:i08:r1",
-              "text": "added"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i08:r2",
-              "text": "add"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i08:r3",
-              "text": "adding"
-            }
-          ],
-          "testedDimension": "Дополните рассказ.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i08:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма added.",
-                "uk": "Для завершеної події потрібна минула форма added."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i08:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма added.",
-                "uk": "Для завершеної події потрібна минула форма added."
-              }
-            }
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please close the window.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-31:i09",
-        "ordinal": 15,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i09:r1",
-            "text": "We added another log after the fire got low."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i09:r2",
-            "text": "They added another log after the fire got low."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i09:r3",
-            "text": "We added another log after the room got cold."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:i09:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i09:audio",
-            "transcript": "We added another log after the fire got low."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-31:i09:r1",
-              "targetText": "We added another log after the fire got low.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i09:r2",
-              "targetText": "They added another log after the fire got low.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i09:r3",
-              "targetText": "We added another log after the room got cold.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i09:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We added another log after the fire got low.",
-                "uk": "У записі звучить We added another log after the fire got low."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i09:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We added another log after the fire got low.",
-                "uk": "У записі звучить We added another log after the fire got low."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:word:fireplace",
         "ordinal": 16,
         "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — fireplace",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:word:fireplace:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — fireplace",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:word:fireplace:audio",
-            "transcript": "fireplace"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-31:word:fireplace:r1",
-              "targetText": "fireplace",
-              "meaningByLocale": {
-                "ru": "Камин. Fireplace — место для огня в комнате с выходом дыма в дымоход.",
-                "uk": "Камін. Fireplace — місце для вогню в кімнаті з виходом диму в димохід."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "fireplace",
-            "definitionByLocale": {
-              "ru": "Камин. Fireplace — место для огня в комнате с выходом дыма в дымоход.",
-              "uk": "Камін. Fireplace — місце для вогню в кімнаті з виходом диму в димохід."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Мы почистили камин после того, как огонь погас.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Мы почистили камин после того, как огонь погас.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We cleaned the fireplace after the fire went out.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Мы почистили камин после того, как огонь погас.»",
-            "uk": "Скажіть: «Ми почистили камін після того, як вогонь згас.»"
-          },
-          "orderedTokens": [
-            "We",
-            "cleaned",
-            "the",
-            "fireplace",
-            "after",
-            "the",
-            "fire",
-            "went",
-            "out"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i11:r1",
-            "text": "cleaned"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i11:r2",
-            "text": "clean"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i11:r3",
-            "text": "cleaning"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "We ___ the fireplace after the fire went out.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-31:i11:r1",
-              "text": "cleaned"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i11:r2",
-              "text": "clean"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i11:r3",
-              "text": "cleaning"
-            }
-          ],
-          "testedDimension": "Дополните рассказ.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i11:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма cleaned.",
-                "uk": "Для завершеної події потрібна минула форма cleaned."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i11:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма cleaned.",
-                "uk": "Для завершеної події потрібна минула форма cleaned."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i12:r1",
-            "text": "We cleaned the fireplace after the fire went out."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i12:r2",
-            "text": "They cleaned the fireplace after the fire went out."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i12:r3",
-            "text": "We cleaned the fireplace after the guests left."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:i12:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i12:audio",
-            "transcript": "We cleaned the fireplace after the fire went out."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-31:i12:r1",
-              "targetText": "We cleaned the fireplace after the fire went out.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i12:r2",
-              "targetText": "They cleaned the fireplace after the fire went out.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i12:r3",
-              "targetText": "We cleaned the fireplace after the guests left.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i12:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We cleaned the fireplace after the fire went out.",
-                "uk": "У записі звучить We cleaned the fireplace after the fire went out."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i12:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We cleaned the fireplace after the fire went out.",
-                "uk": "У записі звучить We cleaned the fireplace after the fire went out."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините формы с переводом",
+        "prompt": "Соотнесите предметы и огонь с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините формы с переводом",
+        "accessibilityLabel": "Соотнесите предметы и огонь с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-31:i13:p1",
+              "pairId": "en:lesson-25:session-31:i09:p1",
               "target": "flame",
               "meaningByLocale": {
                 "ru": "пламя",
@@ -928,7 +629,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-31:i13:p2",
+              "pairId": "en:lesson-25:session-31:i09:p2",
               "target": "ash",
               "meaningByLocale": {
                 "ru": "зола",
@@ -936,7 +637,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-31:i13:p3",
+              "pairId": "en:lesson-25:session-31:i09:p3",
               "target": "log",
               "meaningByLocale": {
                 "ru": "полено",
@@ -944,7 +645,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-31:i13:p4",
+              "pairId": "en:lesson-25:session-31:i09:p4",
               "target": "fireplace",
               "meaningByLocale": {
                 "ru": "камин",
@@ -979,31 +680,247 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вспомните старый дом: «Раньше у нас был камин».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните старый дом: «Раньше у нас был камин».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to have a fireplace.",
+          "localizedMeaning": {
+            "ru": "Вспомните старый дом: «Раньше у нас был камин».",
+            "uk": "Згадайте старий будинок: «Раніше в нас був камін»."
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "have",
+            "a",
+            "fireplace"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i11:r1",
+            "text": "On winter evenings we would read by the fire."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i11:r2",
+            "text": "On winter evenings we would talk by the fire."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i11:r3",
+            "text": "On summer evenings we would read by the fire."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i11:audio",
+            "transcript": "On winter evenings we would read by the fire."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-31:i11:r1",
+              "targetText": "On winter evenings we would read by the fire.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i11:r2",
+              "targetText": "On winter evenings we would talk by the fire.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i11:r3",
+              "targetText": "On summer evenings we would read by the fire.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит On winter evenings we would read by the fire.",
+                "uk": "У записі звучить On winter evenings we would read by the fire."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит On winter evenings we would read by the fire.",
+                "uk": "У записі звучить On winter evenings we would read by the fire."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i12:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
+            "uk": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect."
+          },
+          "gappedTargetPhrase": "The guests ___ left before I returned.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-31:i12:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i12:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i12:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
+              "feedbackByLocale": {
+                "ru": "Have left связано с настоящим; здесь уход раньше прошлого возвращения.",
+                "uk": "Have left пов’язане з теперішнім; тут відхід раніше за минуле повернення."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
+              "feedbackByLocale": {
+                "ru": "Нужно had left для более раннего действия.",
+                "uk": "Потрібно had left для ранішої дії."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Одного одеяла не хватает. Попросите: «Можно ещё одно одеяло?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i13:audio"
+        ],
+        "accessibilityLabel": "Одного одеяла не хватает. Попросите: «Можно ещё одно одеяло?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i13:audio",
+            "transcript": "Can I have another blanket?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can I have another blanket?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-31:i14",
         "ordinal": 21,
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Поели перед отъездом",
+        "prompt": "Услышьте порядок событий вечером.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-31:i14:audio"
         ],
-        "accessibilityLabel": "Поели перед отъездом",
+        "accessibilityLabel": "Услышьте порядок событий вечером.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-31:i14:audio",
-            "transcript": "We ate before we left."
+            "transcript": "We went to bed after our friends left."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We ate before we left.",
+          "hiddenTargetPhrase": "We went to bed after our friends left.",
           "orderedTokens": [
             "We",
-            "ate",
-            "before",
-            "we",
+            "went",
+            "to",
+            "bed",
+            "after",
+            "our",
+            "friends",
             "left"
           ],
           "authoredDistractorTokens": [],
@@ -1019,29 +936,404 @@
         "interactionId": "en:lesson-25:session-31:i15",
         "ordinal": 22,
         "purpose": "independent_check",
-        "family": "listen_build_dictation",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы остались у друзей на одну ночь вчера.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i15:r1",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i15:r2",
+            "text": "have stayed"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i15:r3",
+            "text": "would stay"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы остались у друзей на одну ночь вчера.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы остались у друзей на одну ночь вчера.",
+            "uk": "Ви залишилися в друзів на одну ніч учора."
+          },
+          "gappedTargetPhrase": "We ___ here last night.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-31:i15:r1",
+              "text": "stayed"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i15:r2",
+              "text": "have stayed"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i15:r3",
+              "text": "would stay"
+            }
+          ],
+          "testedDimension": "Вы остались у друзей на одну ночь вчера.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i15:r2",
+              "correct": false,
+              "testedDimension": "Вы остались у друзей на одну ночь вчера.",
+              "feedbackByLocale": {
+                "ru": "Last night — законченное время; нужен Past Simple stayed.",
+                "uk": "Last night — завершений час; потрібен Past Simple stayed."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i15:r3",
+              "correct": false,
+              "testedDimension": "Вы остались у друзей на одну ночь вчера.",
+              "feedbackByLocale": {
+                "ru": "Would stay описывает привычку, а здесь одна ночь.",
+                "uk": "Would stay описує звичку, а тут одна ніч."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i16:r1",
+            "text": "I have already closed the curtains."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i16:r2",
+            "text": "I have already opened the curtains."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i16:r3",
+            "text": "She has already closed the curtains."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i16:audio",
+            "transcript": "I have already closed the curtains."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-31:i16:r1",
+              "targetText": "I have already closed the curtains.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i16:r2",
+              "targetText": "I have already opened the curtains.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i16:r3",
+              "targetText": "She has already closed the curtains.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i16:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already closed the curtains.",
+                "uk": "У записі звучить I have already closed the curtains."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i16:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already closed the curtains.",
+                "uk": "У записі звучить I have already closed the curtains."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Начали после её прихода",
+        "prompt": "Укажите другие комнаты: «Другие комнаты наверху».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Укажите другие комнаты: «Другие комнаты наверху».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The other rooms are upstairs.",
+          "localizedMeaning": {
+            "ru": "Укажите другие комнаты: «Другие комнаты наверху».",
+            "uk": "Укажіть інші кімнати: «Інші кімнати нагорі»."
+          },
+          "orderedTokens": [
+            "The",
+            "other",
+            "rooms",
+            "are",
+            "upstairs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-31:word:fireplace",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fireplace",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-31:i15:audio"
+          "en:lesson-25:session-31:word:fireplace:audio"
         ],
-        "accessibilityLabel": "Начали после её прихода",
+        "accessibilityLabel": "Картка слова — fireplace",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i15:audio",
-            "transcript": "We started after she arrived."
+            "audioTargetId": "en:lesson-25:session-31:word:fireplace:audio",
+            "transcript": "fireplace"
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We started after she arrived.",
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-31:word:fireplace:r1",
+              "targetText": "fireplace",
+              "meaningByLocale": {
+                "ru": "Камин. Fireplace — место для огня в комнате с выходом дыма в дымоход.",
+                "uk": "Камін. Fireplace — місце для вогню в кімнаті з виходом диму в димохід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fireplace",
+            "definitionByLocale": {
+              "ru": "Камин. Fireplace — место для огня в комнате с выходом дыма в дымоход.",
+              "uk": "Камін. Fireplace — місце для вогню в кімнаті з виходом диму в димохід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i01",
+        "ordinal": 5,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть зручності кімнати: «У цій кімнаті є камін?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i01:audio"
+        ],
+        "accessibilityLabel": "Уточніть зручності кімнати: «У цій кімнаті є камін?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i01:audio",
+            "transcript": "Does this room have a fireplace?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does this room have a fireplace?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i02:r1",
+            "text": "We sat by the fireplace after dinner."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i02:r2",
+            "text": "We sat by the window after dinner."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i02:r3",
+            "text": "They sat by the fireplace after dinner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i02:audio",
+            "transcript": "We sat by the fireplace after dinner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-31:i02:r1",
+              "targetText": "We sat by the fireplace after dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i02:r2",
+              "targetText": "We sat by the window after dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i02:r3",
+              "targetText": "They sat by the fireplace after dinner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We sat by the fireplace after dinner.",
+                "uk": "У записі звучить We sat by the fireplace after dinner."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We sat by the fireplace after dinner.",
+                "uk": "У записі звучить We sat by the fireplace after dinner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:word:log",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — log",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:word:log:audio"
+        ],
+        "accessibilityLabel": "Картка слова — log",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:word:log:audio",
+            "transcript": "log"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-31:word:log:r1",
+              "targetText": "log",
+              "meaningByLocale": {
+                "ru": "Полено. Log — толстый кусок дерева, например для огня.",
+                "uk": "Поліно. Log — товстий шматок дерева, наприклад для вогню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "log",
+            "definitionByLocale": {
+              "ru": "Полено. Log — толстый кусок дерева, например для огня.",
+              "uk": "Поліно. Log — товстий шматок дерева, наприклад для вогню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишіть місце для поліна: «На підлозі лежало поліно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишіть місце для поліна: «На підлозі лежало поліно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a log on the floor.",
+          "localizedMeaning": {
+            "ru": "Опишите место для полена: «На полу лежало полено».",
+            "uk": "Опишіть місце для поліна: «На підлозі лежало поліно»."
+          },
           "orderedTokens": [
-            "We",
-            "started",
-            "after",
-            "she",
-            "arrived"
+            "There",
+            "was",
+            "a",
+            "log",
+            "on",
+            "the",
+            "floor"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1053,76 +1345,77 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-31:i16",
-        "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Пламя погасло до того, как они ушли».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:i16:audio"
-        ],
-        "accessibilityLabel": "Скажите: «Пламя погасло до того, как они ушли».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i16:audio",
-            "transcript": "The flame went out before they left."
+        "interactionId": "en:lesson-25:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спочатку ви принесли дрова в дім, потім почався дощ.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i04:r1",
+            "text": "before"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "The flame went out before they left.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-31:i04:r2",
+            "text": "after"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i04:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спочатку ви принесли дрова в дім, потім почався дощ.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сначала вы принесли дрова в дом, потом начался дождь.",
+            "uk": "Спочатку ви принесли дрова в дім, потім почався дощ."
+          },
+          "gappedTargetPhrase": "We brought the wood inside ___ it started raining.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-31:i04:r1",
+              "text": "before"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i04:r2",
+              "text": "after"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i04:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Спочатку ви принесли дрова в дім, потім почався дощ.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i04:r2",
+              "correct": false,
+              "testedDimension": "Спочатку ви принесли дрова в дім, потім почався дощ.",
+              "feedbackByLocale": {
+                "ru": "After изменит порядок: дрова были внутри раньше дождя.",
+                "uk": "After змінить порядок: дрова були всередині раніше за дощ."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i04:r3",
+              "correct": false,
+              "testedDimension": "Спочатку ви принесли дрова в дім, потім почався дощ.",
+              "feedbackByLocale": {
+                "ru": "Because объясняет причину; здесь нужно указать «до того как».",
+                "uk": "Because пояснює причину; тут потрібно вказати «до того як»."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-31:i17",
-        "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Она почистила камин после того, как огонь погас».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:i17:audio"
-        ],
-        "accessibilityLabel": "Скажите: «Она почистила камин после того, как огонь погас».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i17:audio",
-            "transcript": "She cleaned the fireplace after the fire went out."
-          },
-          "slowReferenceAudio": null,
-          "targetPhrase": "She cleaned the fireplace after the fire went out.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
-        },
-        "scriptedAlternate": null
-      }
-    ],
-    "uk": [
-      {
         "interactionId": "en:lesson-25:session-31:word:flame",
-        "ordinal": 4,
+        "ordinal": 10,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1164,178 +1457,73 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-31:i01",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Полум’я згасло до того, як ми пішли.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Полум’я згасло до того, як ми пішли.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "The flame went out before we left.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Пламя погасло до того, как мы ушли.»",
-            "uk": "Скажіть: «Полум’я згасло до того, як ми пішли.»"
-          },
-          "orderedTokens": [
-            "The",
-            "flame",
-            "went",
-            "out",
-            "before",
-            "we",
-            "left"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i02",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i02:r1",
-            "text": "went"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i02:r2",
-            "text": "go"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i02:r3",
-            "text": "going"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "The flame ___ out before we left.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-31:i02:r1",
-              "text": "went"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i02:r2",
-              "text": "go"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i02:r3",
-              "text": "going"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i02:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма went.",
-                "uk": "Для завершеної події потрібна минула форма went."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i02:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма went.",
-                "uk": "Для завершеної події потрібна минула форма went."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
+        "interactionId": "en:lesson-25:session-31:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-31:i03:r1",
-            "text": "The flame went out before we left."
+            "responseId": "en:lesson-25:session-31:i05:r1",
+            "text": "The candle’s flame went out after we opened the window."
           },
           {
-            "responseId": "en:lesson-25:session-31:i03:r2",
-            "text": "The flame went out before they left."
+            "responseId": "en:lesson-25:session-31:i05:r2",
+            "text": "The candle’s flame went out before we opened the window."
           },
           {
-            "responseId": "en:lesson-25:session-31:i03:r3",
-            "text": "The flame went out before we ate."
+            "responseId": "en:lesson-25:session-31:i05:r3",
+            "text": "The candle’s flame went out after they opened the window."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-31:i03:audio"
+          "en:lesson-25:session-31:i05:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i03:audio",
-            "transcript": "The flame went out before we left."
+            "audioTargetId": "en:lesson-25:session-31:i05:audio",
+            "transcript": "The candle’s flame went out after we opened the window."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-31:i03:r1",
-              "targetText": "The flame went out before we left.",
+              "responseId": "en:lesson-25:session-31:i05:r1",
+              "targetText": "The candle’s flame went out after we opened the window.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-31:i03:r2",
-              "targetText": "The flame went out before they left.",
+              "responseId": "en:lesson-25:session-31:i05:r2",
+              "targetText": "The candle’s flame went out before we opened the window.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-31:i03:r3",
-              "targetText": "The flame went out before we ate.",
+              "responseId": "en:lesson-25:session-31:i05:r3",
+              "targetText": "The candle’s flame went out after they opened the window.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-31:i03:r2",
+              "responseId": "en:lesson-25:session-31:i05:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The flame went out before we left.",
-                "uk": "У записі звучить The flame went out before we left."
+                "ru": "В записи звучит The candle’s flame went out after we opened the window.",
+                "uk": "У записі звучить The candle’s flame went out after we opened the window."
               }
             },
             {
-              "responseId": "en:lesson-25:session-31:i03:r3",
+              "responseId": "en:lesson-25:session-31:i05:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The flame went out before we left.",
-                "uk": "У записі звучить The flame went out before we left."
+                "ru": "В записи звучит The candle’s flame went out after we opened the window.",
+                "uk": "У записі звучить The candle’s flame went out after we opened the window."
               }
             }
           ],
@@ -1346,8 +1534,8 @@
       },
       {
         "interactionId": "en:lesson-25:session-31:word:ash",
-        "ordinal": 8,
-        "purpose": "supported_practice",
+        "ordinal": 12,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Картка слова — ash",
@@ -1388,656 +1576,162 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-31:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
+        "interactionId": "en:lesson-25:session-31:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Попіл був холодним до того, як я прибрав кімнату.»",
+        "prompt": "Почуйте опис того, що залишилося.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Попіл був холодним до того, як я прибрав кімнату.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i06:audio"
+        ],
+        "accessibilityLabel": "Почуйте опис того, що залишилося.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "The ash was cold before I cleaned the room.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Зола была холодной до того, как я убрал комнату.»",
-            "uk": "Скажіть: «Попіл був холодним до того, як я прибрав кімнату.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i06:audio",
+            "transcript": "There was ash in the old fireplace."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There was ash in the old fireplace.",
           "orderedTokens": [
-            "The",
-            "ash",
+            "There",
             "was",
-            "cold",
-            "before",
-            "I",
-            "cleaned",
+            "ash",
+            "in",
             "the",
-            "room"
+            "old",
+            "fireplace"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i05:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i05:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i05:r3",
-            "text": "be"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "The ash ___ cold before I cleaned the room.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-31:i05:r1",
-              "text": "was"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i05:r2",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i05:r3",
-              "text": "be"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i05:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма was.",
-                "uk": "Для завершеної події потрібна минула форма was."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i05:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма was.",
-                "uk": "Для завершеної події потрібна минула форма was."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i06:r1",
-            "text": "The ash was cold before I cleaned the room."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i06:r2",
-            "text": "The ash was cold before she cleaned the room."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i06:r3",
-            "text": "The ash was cold before I cleaned the floor."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:i06:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i06:audio",
-            "transcript": "The ash was cold before I cleaned the room."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-31:i06:r1",
-              "targetText": "The ash was cold before I cleaned the room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i06:r2",
-              "targetText": "The ash was cold before she cleaned the room.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i06:r3",
-              "targetText": "The ash was cold before I cleaned the floor.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i06:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит The ash was cold before I cleaned the room.",
-                "uk": "У записі звучить The ash was cold before I cleaned the room."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i06:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит The ash was cold before I cleaned the room.",
-                "uk": "У записі звучить The ash was cold before I cleaned the room."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:word:log",
-        "ordinal": 12,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — log",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:word:log:audio"
-        ],
-        "accessibilityLabel": "Картка слова — log",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:word:log:audio",
-            "transcript": "log"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-31:word:log:r1",
-              "targetText": "log",
-              "meaningByLocale": {
-                "ru": "Полено. Log — толстый кусок дерева, например для огня.",
-                "uk": "Поліно. Log — товстий шматок дерева, наприклад для вогню."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "log",
-            "definitionByLocale": {
-              "ru": "Полено. Log — толстый кусок дерева, например для огня.",
-              "uk": "Поліно. Log — товстий шматок дерева, наприклад для вогню."
-            }
           }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-31:i07",
-        "ordinal": 13,
+        "ordinal": 14,
         "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Ми додали ще одне поліно після того, як вогонь став слабшим.»",
-        "responseOptions": [],
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви описуєте порошок, що залишився від згорілого дерева.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i07:r1",
+            "text": "ash"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i07:r2",
+            "text": "flame"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i07:r3",
+            "text": "water"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Ми додали ще одне поліно після того, як вогонь став слабшим.»",
+        "accessibilityLabel": "Ви описуєте порошок, що залишився від згорілого дерева.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We added another log after the fire got low.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Мы добавили ещё одно полено после того, как огонь стал слабее.»",
-            "uk": "Скажіть: «Ми додали ще одне поліно після того, як вогонь став слабшим.»"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы описываете порошок, оставшийся от сгоревшего дерева.",
+            "uk": "Ви описуєте порошок, що залишився від згорілого дерева."
           },
-          "orderedTokens": [
-            "We",
-            "added",
-            "another",
-            "log",
-            "after",
-            "the",
-            "fire",
-            "got",
-            "low"
+          "gappedTargetPhrase": "There was grey ___ in the fireplace.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-31:i07:r1",
+              "text": "ash"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i07:r2",
+              "text": "flame"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i07:r3",
+              "text": "water"
+            }
           ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
+          "testedDimension": "Ви описуєте порошок, що залишився від згорілого дерева.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i07:r2",
+              "correct": false,
+              "testedDimension": "Ви описуєте порошок, що залишився від згорілого дерева.",
+              "feedbackByLocale": {
+                "ru": "Flame — пламя, а не порошок после горения.",
+                "uk": "Flame — полум’я, а не порошок після горіння."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i07:r3",
+              "correct": false,
+              "testedDimension": "Ви описуєте порошок, що залишився від згорілого дерева.",
+              "feedbackByLocale": {
+                "ru": "Water — вода; здесь описана зола.",
+                "uk": "Water — вода; тут описано попіл."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-31:i08",
-        "ordinal": 14,
+        "ordinal": 15,
         "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i08:r1",
-            "text": "added"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i08:r2",
-            "text": "add"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i08:r3",
-            "text": "adding"
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У кімнаті прохолодно. Попросіть: «Зачини вікно, будь ласка».",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь.",
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "У кімнаті прохолодно. Попросіть: «Зачини вікно, будь ласка».",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i08:audio",
+            "transcript": "Please close the window."
           },
-          "gappedTargetPhrase": "We ___ another log after the fire got low.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-31:i08:r1",
-              "text": "added"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i08:r2",
-              "text": "add"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i08:r3",
-              "text": "adding"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i08:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма added.",
-                "uk": "Для завершеної події потрібна минула форма added."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i08:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма added.",
-                "uk": "Для завершеної події потрібна минула форма added."
-              }
-            }
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please close the window.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-31:i09",
-        "ordinal": 15,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i09:r1",
-            "text": "We added another log after the fire got low."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i09:r2",
-            "text": "They added another log after the fire got low."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i09:r3",
-            "text": "We added another log after the room got cold."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:i09:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i09:audio",
-            "transcript": "We added another log after the fire got low."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-31:i09:r1",
-              "targetText": "We added another log after the fire got low.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i09:r2",
-              "targetText": "They added another log after the fire got low.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i09:r3",
-              "targetText": "We added another log after the room got cold.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i09:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We added another log after the fire got low.",
-                "uk": "У записі звучить We added another log after the fire got low."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i09:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We added another log after the fire got low.",
-                "uk": "У записі звучить We added another log after the fire got low."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:word:fireplace",
         "ordinal": 16,
         "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — fireplace",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:word:fireplace:audio"
-        ],
-        "accessibilityLabel": "Картка слова — fireplace",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:word:fireplace:audio",
-            "transcript": "fireplace"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-31:word:fireplace:r1",
-              "targetText": "fireplace",
-              "meaningByLocale": {
-                "ru": "Камин. Fireplace — место для огня в комнате с выходом дыма в дымоход.",
-                "uk": "Камін. Fireplace — місце для вогню в кімнаті з виходом диму в димохід."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "fireplace",
-            "definitionByLocale": {
-              "ru": "Камин. Fireplace — место для огня в комнате с выходом дыма в дымоход.",
-              "uk": "Камін. Fireplace — місце для вогню в кімнаті з виходом диму в димохід."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Ми почистили камін після того, як вогонь згас.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Ми почистили камін після того, як вогонь згас.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We cleaned the fireplace after the fire went out.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Мы почистили камин после того, как огонь погас.»",
-            "uk": "Скажіть: «Ми почистили камін після того, як вогонь згас.»"
-          },
-          "orderedTokens": [
-            "We",
-            "cleaned",
-            "the",
-            "fireplace",
-            "after",
-            "the",
-            "fire",
-            "went",
-            "out"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i11:r1",
-            "text": "cleaned"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i11:r2",
-            "text": "clean"
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i11:r3",
-            "text": "cleaning"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ.",
-            "uk": "Доповніть розповідь."
-          },
-          "gappedTargetPhrase": "We ___ the fireplace after the fire went out.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-31:i11:r1",
-              "text": "cleaned"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i11:r2",
-              "text": "clean"
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i11:r3",
-              "text": "cleaning"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i11:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма cleaned.",
-                "uk": "Для завершеної події потрібна минула форма cleaned."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i11:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь.",
-              "feedbackByLocale": {
-                "ru": "Для законченного события нужна прошедшая форма cleaned.",
-                "uk": "Для завершеної події потрібна минула форма cleaned."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-31:i12:r1",
-            "text": "We cleaned the fireplace after the fire went out."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i12:r2",
-            "text": "They cleaned the fireplace after the fire went out."
-          },
-          {
-            "responseId": "en:lesson-25:session-31:i12:r3",
-            "text": "We cleaned the fireplace after the guests left."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:i12:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i12:audio",
-            "transcript": "We cleaned the fireplace after the fire went out."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-31:i12:r1",
-              "targetText": "We cleaned the fireplace after the fire went out.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i12:r2",
-              "targetText": "They cleaned the fireplace after the fire went out.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i12:r3",
-              "targetText": "We cleaned the fireplace after the guests left.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-31:i12:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We cleaned the fireplace after the fire went out.",
-                "uk": "У записі звучить We cleaned the fireplace after the fire went out."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-31:i12:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We cleaned the fireplace after the fire went out.",
-                "uk": "У записі звучить We cleaned the fireplace after the fire went out."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Поєднайте форми з перекладом",
+        "prompt": "Зіставте предмети й вогонь із перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "accessibilityLabel": "Зіставте предмети й вогонь із перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-31:i13:p1",
+              "pairId": "en:lesson-25:session-31:i09:p1",
               "target": "flame",
               "meaningByLocale": {
                 "ru": "пламя",
@@ -2045,7 +1739,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-31:i13:p2",
+              "pairId": "en:lesson-25:session-31:i09:p2",
               "target": "ash",
               "meaningByLocale": {
                 "ru": "зола",
@@ -2053,7 +1747,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-31:i13:p3",
+              "pairId": "en:lesson-25:session-31:i09:p3",
               "target": "log",
               "meaningByLocale": {
                 "ru": "полено",
@@ -2061,7 +1755,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-31:i13:p4",
+              "pairId": "en:lesson-25:session-31:i09:p4",
               "target": "fireplace",
               "meaningByLocale": {
                 "ru": "камин",
@@ -2096,31 +1790,247 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Згадайте старий будинок: «Раніше в нас був камін».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Згадайте старий будинок: «Раніше в нас був камін».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to have a fireplace.",
+          "localizedMeaning": {
+            "ru": "Вспомните старый дом: «Раньше у нас был камин».",
+            "uk": "Згадайте старий будинок: «Раніше в нас був камін»."
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "have",
+            "a",
+            "fireplace"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i11:r1",
+            "text": "On winter evenings we would read by the fire."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i11:r2",
+            "text": "On winter evenings we would talk by the fire."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i11:r3",
+            "text": "On summer evenings we would read by the fire."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i11:audio",
+            "transcript": "On winter evenings we would read by the fire."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-31:i11:r1",
+              "targetText": "On winter evenings we would read by the fire.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i11:r2",
+              "targetText": "On winter evenings we would talk by the fire.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i11:r3",
+              "targetText": "On summer evenings we would read by the fire.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит On winter evenings we would read by the fire.",
+                "uk": "У записі звучить On winter evenings we would read by the fire."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит On winter evenings we would read by the fire.",
+                "uk": "У записі звучить On winter evenings we would read by the fire."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i12:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
+            "uk": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect."
+          },
+          "gappedTargetPhrase": "The guests ___ left before I returned.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-31:i12:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i12:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i12:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect.",
+              "feedbackByLocale": {
+                "ru": "Have left связано с настоящим; здесь уход раньше прошлого возвращения.",
+                "uk": "Have left пов’язане з теперішнім; тут відхід раніше за минуле повернення."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect.",
+              "feedbackByLocale": {
+                "ru": "Нужно had left для более раннего действия.",
+                "uk": "Потрібно had left для ранішої дії."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Однієї ковдри бракує. Попросіть: «Можна ще одну ковдру?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-31:i13:audio"
+        ],
+        "accessibilityLabel": "Однієї ковдри бракує. Попросіть: «Можна ще одну ковдру?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-31:i13:audio",
+            "transcript": "Can I have another blanket?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can I have another blanket?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-31:i14",
         "ordinal": 21,
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Поїли перед від’їздом",
+        "prompt": "Почуйте порядок подій увечері.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-31:i14:audio"
         ],
-        "accessibilityLabel": "Поїли перед від’їздом",
+        "accessibilityLabel": "Почуйте порядок подій увечері.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-31:i14:audio",
-            "transcript": "We ate before we left."
+            "transcript": "We went to bed after our friends left."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We ate before we left.",
+          "hiddenTargetPhrase": "We went to bed after our friends left.",
           "orderedTokens": [
             "We",
-            "ate",
-            "before",
-            "we",
+            "went",
+            "to",
+            "bed",
+            "after",
+            "our",
+            "friends",
             "left"
           ],
           "authoredDistractorTokens": [],
@@ -2136,29 +2046,171 @@
         "interactionId": "en:lesson-25:session-31:i15",
         "ordinal": 22,
         "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Почали після її приходу",
-        "responseOptions": [],
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви залишилися в друзів на одну ніч учора.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i15:r1",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i15:r2",
+            "text": "have stayed"
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i15:r3",
+            "text": "would stay"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви залишилися в друзів на одну ніч учора.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы остались у друзей на одну ночь вчера.",
+            "uk": "Ви залишилися в друзів на одну ніч учора."
+          },
+          "gappedTargetPhrase": "We ___ here last night.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-31:i15:r1",
+              "text": "stayed"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i15:r2",
+              "text": "have stayed"
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i15:r3",
+              "text": "would stay"
+            }
+          ],
+          "testedDimension": "Ви залишилися в друзів на одну ніч учора.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i15:r2",
+              "correct": false,
+              "testedDimension": "Ви залишилися в друзів на одну ніч учора.",
+              "feedbackByLocale": {
+                "ru": "Last night — законченное время; нужен Past Simple stayed.",
+                "uk": "Last night — завершений час; потрібен Past Simple stayed."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i15:r3",
+              "correct": false,
+              "testedDimension": "Ви залишилися в друзів на одну ніч учора.",
+              "feedbackByLocale": {
+                "ru": "Would stay описывает привычку, а здесь одна ночь.",
+                "uk": "Would stay описує звичку, а тут одна ніч."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-31:i16:r1",
+            "text": "I have already closed the curtains."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i16:r2",
+            "text": "I have already opened the curtains."
+          },
+          {
+            "responseId": "en:lesson-25:session-31:i16:r3",
+            "text": "She has already closed the curtains."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-31:i15:audio"
+          "en:lesson-25:session-31:i16:audio"
         ],
-        "accessibilityLabel": "Почали після її приходу",
+        "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i15:audio",
-            "transcript": "We started after she arrived."
+            "audioTargetId": "en:lesson-25:session-31:i16:audio",
+            "transcript": "I have already closed the curtains."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We started after she arrived.",
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-31:i16:r1",
+              "targetText": "I have already closed the curtains.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i16:r2",
+              "targetText": "I have already opened the curtains.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i16:r3",
+              "targetText": "She has already closed the curtains.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-31:i16:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already closed the curtains.",
+                "uk": "У записі звучить I have already closed the curtains."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-31:i16:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already closed the curtains.",
+                "uk": "У записі звучить I have already closed the curtains."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-31:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Укажіть інші кімнати: «Інші кімнати нагорі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Укажіть інші кімнати: «Інші кімнати нагорі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The other rooms are upstairs.",
+          "localizedMeaning": {
+            "ru": "Укажите другие комнаты: «Другие комнаты наверху».",
+            "uk": "Укажіть інші кімнати: «Інші кімнати нагорі»."
+          },
           "orderedTokens": [
-            "We",
-            "started",
-            "after",
-            "she",
-            "arrived"
+            "The",
+            "other",
+            "rooms",
+            "are",
+            "upstairs"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2168,115 +2220,24 @@
           }
         },
         "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i16",
-        "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Полум’я згасло до того, як вони пішли».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:i16:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «Полум’я згасло до того, як вони пішли».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i16:audio",
-            "transcript": "The flame went out before they left."
-          },
-          "slowReferenceAudio": null,
-          "targetPhrase": "The flame went out before they left.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-31:i17",
-        "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Вона почистила камін після того, як вогонь згас».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-31:i17:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «Вона почистила камін після того, як вогонь згас».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-31:i17:audio",
-            "transcript": "She cleaned the fireplace after the fire went out."
-          },
-          "slowReferenceAudio": null,
-          "targetPhrase": "She cleaned the fireplace after the fire went out.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
-        },
-        "scriptedAlternate": null
       }
     ]
   },
   "answers": [
     {
-      "interactionId": "en:lesson-25:session-31:word:flame",
-      "correctText": "flame",
+      "interactionId": "en:lesson-25:session-31:word:fireplace",
+      "correctText": "fireplace",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-31:i01",
-      "correctText": "The flame went out before we left.",
+      "correctText": "Does this room have a fireplace?",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-31:i02",
-      "correctText": "went",
+      "correctText": "We sat by the fireplace after dinner.",
       "correctResponseId": "en:lesson-25:session-31:i02:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-31:i03",
-      "correctText": "The flame went out before we left.",
-      "correctResponseId": "en:lesson-25:session-31:i03:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-31:word:ash",
-      "correctText": "ash",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-31:i04",
-      "correctText": "The ash was cold before I cleaned the room.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-31:i05",
-      "correctText": "was",
-      "correctResponseId": "en:lesson-25:session-31:i05:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-31:i06",
-      "correctText": "The ash was cold before I cleaned the room.",
-      "correctResponseId": "en:lesson-25:session-31:i06:r1"
     },
     {
       "interactionId": "en:lesson-25:session-31:word:log",
@@ -2284,63 +2245,88 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-31:i07",
-      "correctText": "We added another log after the fire got low.",
+      "interactionId": "en:lesson-25:session-31:i03",
+      "correctText": "There was a log on the floor.",
       "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-31:i04",
+      "correctText": "before",
+      "correctResponseId": "en:lesson-25:session-31:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-31:word:flame",
+      "correctText": "flame",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-31:i05",
+      "correctText": "The candle’s flame went out after we opened the window.",
+      "correctResponseId": "en:lesson-25:session-31:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-31:word:ash",
+      "correctText": "ash",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-31:i06",
+      "correctText": "There was ash in the old fireplace.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-31:i07",
+      "correctText": "ash",
+      "correctResponseId": "en:lesson-25:session-31:i07:r1"
     },
     {
       "interactionId": "en:lesson-25:session-31:i08",
-      "correctText": "added",
-      "correctResponseId": "en:lesson-25:session-31:i08:r1"
+      "correctText": "Please close the window.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-31:i09",
-      "correctText": "We added another log after the fire got low.",
-      "correctResponseId": "en:lesson-25:session-31:i09:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-31:word:fireplace",
-      "correctText": "fireplace",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-31:i10",
-      "correctText": "We cleaned the fireplace after the fire went out.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-31:i11",
-      "correctText": "cleaned",
-      "correctResponseId": "en:lesson-25:session-31:i11:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-31:i12",
-      "correctText": "We cleaned the fireplace after the fire went out.",
-      "correctResponseId": "en:lesson-25:session-31:i12:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-31:i13",
       "correctText": "",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-31:i10",
+      "correctText": "We used to have a fireplace.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-31:i11",
+      "correctText": "On winter evenings we would read by the fire.",
+      "correctResponseId": "en:lesson-25:session-31:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-31:i12",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-31:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-31:i13",
+      "correctText": "Can I have another blanket?",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-25:session-31:i14",
-      "correctText": "We ate before we left.",
+      "correctText": "We went to bed after our friends left.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-31:i15",
-      "correctText": "We started after she arrived.",
-      "correctResponseId": null
+      "correctText": "stayed",
+      "correctResponseId": "en:lesson-25:session-31:i15:r1"
     },
     {
       "interactionId": "en:lesson-25:session-31:i16",
-      "correctText": "The flame went out before they left.",
-      "correctResponseId": null
+      "correctText": "I have already closed the curtains.",
+      "correctResponseId": "en:lesson-25:session-31:i16:r1"
     },
     {
       "interactionId": "en:lesson-25:session-31:i17",
-      "correctText": "She cleaned the fireplace after the fire went out.",
+      "correctText": "The other rooms are upstairs.",
       "correctResponseId": null
     }
   ]

@@ -53,99 +53,99 @@ Unhook — снять с крючка или отцепить. I had unhooked th
 <!-- interaction_id: en:lesson-25:session-33:word:inserted; family: word_card -->
 > **inserted** — Вставил. Insert — вставить внутрь; inserted — третья форма.
 
-**2 · Скажите: «Я уже вставил ключ к тому моменту, когда она подошла к двери.»**
-<!-- interaction_id: en:lesson-25:session-33:i01; family: phrase_builder -->
-Плитки: `door` `the` `reached` `she` `time` `the` `by` `key` `the` `inserted` `had` `I` → **I had inserted the key by the time she reached the door.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-33:i01; family: listen_choose -->
+🔊 *I had inserted the ticket by the time the gate opened.* → **I had inserted the ticket by the time the gate opened.** · I had inserted the card by the time the gate opened. · She had inserted the ticket by the time the gate opened.
+- I had inserted the card by the time the gate opened. — *В записи звучит I had inserted the ticket by the time the gate opened.*
+- She had inserted the ticket by the time the gate opened. — *В записи звучит I had inserted the ticket by the time the gate opened.*
 
-**3 · Дополните рассказ о прошлом.**
+**3 · Вы закончили ещё до прихода друга. Дополните Past Perfect.**
 <!-- interaction_id: en:lesson-25:session-33:i02; family: context_gap_grammar -->
-I ___ inserted the key by the time she reached the door. → **had** · have · was
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+I ___ finished by the time my friend arrived. → **had** · have · was
+- have — *Have finished относится к настоящему; здесь завершение до прошлого прихода.*
+- was — *Для завершённого к тому моменту действия нужно had finished.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-33:i03; family: listen_choose -->
-🔊 *I had inserted the key by the time she reached the door.* → **I had inserted the key by the time she reached the door.** · He had inserted the key by the time she reached the door. · I had inserted the key by the time he reached the door.
-- He had inserted the key by the time she reached the door. — *В записи звучит I had inserted the key by the time she reached the door.*
-- I had inserted the key by the time he reached the door. — *В записи звучит I had inserted the key by the time she reached the door.*
-
-**5 · Карточка слова — undone**
+**4 · Карточка слова — undone**
 <!-- interaction_id: en:lesson-25:session-33:word:undone; family: word_card -->
 > **undone** — Расстегнула. Undo — расстегнуть, развязать или отменить результат действия; undone — третья форма.
 
-**6 · Скажите: «Она уже расстегнула пуговицы к тому моменту, когда я нашёл иглу.»**
-<!-- interaction_id: en:lesson-25:session-33:i04; family: phrase_builder -->
-Плитки: `needle` `the` `found` `I` `time` `the` `by` `buttons` `the` `undone` `had` `She` → **She had undone the buttons by the time I found the needle.**
+**5 · Вы уже развязали шнурки, когда друг вернулся: «Я уже развязал шнурки к тому моменту, когда он вернулся».**
+<!-- interaction_id: en:lesson-25:session-33:i03; family: phrase_builder -->
+Плитки: `back` `came` `he` `time` `the` `by` `shoelaces` `my` `undone` `had` `I` → **I had undone my shoelaces by the time he came back.**
 
-**7 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-33:i05; family: context_gap_grammar -->
-She ___ undone the buttons by the time I found the needle. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**6 · Объясните опоздание: «Поезд уже ушёл к тому моменту, когда мы приехали».**
+<!-- interaction_id: en:lesson-25:session-33:i04; family: scripted_repeat_compare -->
+🎙 **The train had left by the time we arrived.**
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-33:i06; family: listen_choose -->
-🔊 *She had undone the buttons by the time I found the needle.* → **She had undone the buttons by the time I found the needle.** · He had undone the buttons by the time I found the needle. · She had undone the buttons by the time we found the needle.
-- He had undone the buttons by the time I found the needle. — *В записи звучит She had undone the buttons by the time I found the needle.*
-- She had undone the buttons by the time we found the needle. — *В записи звучит She had undone the buttons by the time I found the needle.*
-
-**9 · Карточка слова — piled**
+**7 · Карточка слова — piled**
 <!-- interaction_id: en:lesson-25:session-33:word:piled; family: word_card -->
 > **piled** — Сложили в кучу. Pile — складывать в кучу; piled — третья форма.
 
-**10 · Скажите: «Мы уже сложили одежду в кучу на кровати к тому моменту, когда она приехала.»**
-<!-- interaction_id: en:lesson-25:session-33:i07; family: phrase_builder -->
-Плитки: `arrived` `she` `time` `the` `by` `bed` `the` `on` `clothes` `the` `piled` `had` `We` → **We had piled the clothes on the bed by the time she arrived.**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-33:i05; family: listen_choose -->
+🔊 *We had piled the books on the desk by the time she arrived.* → **We had piled the books on the desk by the time she arrived.** · We had piled the books on the floor by the time she arrived. · They had piled the books on the desk by the time she arrived.
+- We had piled the books on the floor by the time she arrived. — *В записи звучит We had piled the books on the desk by the time she arrived.*
+- They had piled the books on the desk by the time she arrived. — *В записи звучит We had piled the books on the desk by the time she arrived.*
 
-**11 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-33:i08; family: context_gap_grammar -->
-We ___ piled the clothes on the bed by the time she arrived. → **had** · have · were
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- were — *Для действия до другого события в прошлом нужно had + третья форма.*
+**9 · Книги уже были собраны в кучу к приходу учителя. Выберите третью форму.**
+<!-- interaction_id: en:lesson-25:session-33:i06; family: context_gap_grammar -->
+We had ___ the books by the time the teacher came. → **piled** · pile · piling
+- pile — *После had нужна третья форма piled.*
+- piling — *Had piling не образует Past Perfect.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-33:i09; family: listen_choose -->
-🔊 *We had piled the clothes on the bed by the time she arrived.* → **We had piled the clothes on the bed by the time she arrived.** · They had piled the clothes on the bed by the time she arrived. · We had piled the clothes on the floor by the time she arrived.
-- They had piled the clothes on the bed by the time she arrived. — *В записи звучит We had piled the clothes on the bed by the time she arrived.*
-- We had piled the clothes on the floor by the time she arrived. — *В записи звучит We had piled the clothes on the bed by the time she arrived.*
-
-**13 · Карточка слова — unhooked**
+**10 · Карточка слова — unhooked**
 <!-- interaction_id: en:lesson-25:session-33:word:unhooked; family: word_card -->
 > **unhooked** — Снял с крючка. Unhook — снять с крючка или отцепить; unhooked — третья форма.
 
-**14 · Скажите: «Я уже снял сумку с крючка к тому моменту, когда он открыл дверь.»**
-<!-- interaction_id: en:lesson-25:session-33:i10; family: phrase_builder -->
-Плитки: `door` `the` `opened` `he` `time` `the` `by` `bag` `the` `unhooked` `had` `I` → **I had unhooked the bag by the time he opened the door.**
+**11 · Услышьте, что уже сделали с сумкой.**
+<!-- interaction_id: en:lesson-25:session-33:i07; family: listen_build_dictation -->
+🔊 *I had unhooked my bag by the time my sister came downstairs.* Плитки: `downstairs` `came` `sister` `my` `time` `the` `by` `bag` `my` `unhooked` `had` `I` → **I had unhooked my bag by the time my sister came downstairs.**
 
-**15 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-33:i11; family: context_gap_grammar -->
-I ___ unhooked the bag by the time he opened the door. → **had** · have · was
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**12 · Вы опоздали к ужину. Скажите: «Семья уже поела к тому моменту, когда я вернулся домой».**
+<!-- interaction_id: en:lesson-25:session-33:i08; family: scripted_repeat_compare -->
+🎙 **My family had eaten by the time I got home.**
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-33:i12; family: listen_choose -->
-🔊 *I had unhooked the bag by the time he opened the door.* → **I had unhooked the bag by the time he opened the door.** · She had unhooked the bag by the time he opened the door. · I had unhooked the bag by the time she opened the door.
-- She had unhooked the bag by the time he opened the door. — *В записи звучит I had unhooked the bag by the time he opened the door.*
-- I had unhooked the bag by the time she opened the door. — *В записи звучит I had unhooked the bag by the time he opened the door.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-33:i13; family: speed_match -->
+**13 · Соотнесите завершённые действия с переводом**
+<!-- interaction_id: en:lesson-25:session-33:i09; family: speed_match -->
 inserted — вставил · undone — расстегнула · piled — сложили в кучу · unhooked — снял с крючка
 
-**18 · Уже закончил**
-<!-- interaction_id: en:lesson-25:session-33:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-33:i10; family: listen_choose -->
+🔊 *The rain had stopped by the time we went outside.* → **The rain had stopped by the time we went outside.** · The rain had started by the time we went outside. · The rain had stopped by the time they went outside.
+- The rain had started by the time we went outside. — *В записи звучит The rain had stopped by the time we went outside.*
+- The rain had stopped by the time they went outside. — *В записи звучит The rain had stopped by the time we went outside.*
 
-**19 · Поезд уже ушёл**
-<!-- interaction_id: en:lesson-25:session-33:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**15 · Встреча закончилась раньше вашего прихода. Дополните часть после by the time.**
+<!-- interaction_id: en:lesson-25:session-33:i11; family: context_gap_grammar -->
+The meeting had ended by the time I ___. → **arrived** · arrive · arriving
+- arrive — *Прошлый момент задаём Past Simple arrived.*
+- arriving — *После I здесь нужна личная форма arrived, не arriving.*
 
-**20 · Скажите: «Он уже вставил ключ к тому моменту, когда я подошёл к двери».**
+**16 · Такси пришло слишком поздно: «Мы уже ушли к тому моменту, когда приехало такси».**
+<!-- interaction_id: en:lesson-25:session-33:i12; family: phrase_builder -->
+Плитки: `arrived` `taxi` `the` `time` `the` `by` `left` `had` `We` → **We had left by the time the taxi arrived.**
+
+**17 · Услышьте, что успели приготовить.**
+<!-- interaction_id: en:lesson-25:session-33:i13; family: listen_build_dictation -->
+🔊 *I had made tea by the time the guests arrived.* Плитки: `arrived` `guests` `the` `time` `the` `by` `tea` `made` `had` `I` → **I had made tea by the time the guests arrived.**
+
+**18 · Магазин закрылся раньше вашего прихода. Выберите had для раннего события.**
+<!-- interaction_id: en:lesson-25:session-33:i14; family: context_gap_grammar -->
+The shop ___ closed by the time we got there. → **had** · has · is
+- has — *Has closed относится к настоящему; здесь речь о прошлом приходе.*
+- is — *Нужно had closed, чтобы показать завершение к прошлому моменту.*
+
+**19 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-33:i15; family: listen_choose -->
+🔊 *I had found my keys by the time you called.* → **I had found my keys by the time you called.** · I had lost my keys by the time you called. · She had found her keys by the time you called.
+- I had lost my keys by the time you called. — *В записи звучит I had found my keys by the time you called.*
+- She had found her keys by the time you called. — *В записи звучит I had found my keys by the time you called.*
+
+**20 · К приходу друга уборка закончилась: «Я уже убрал комнату к тому моменту, когда ты пришёл».**
 <!-- interaction_id: en:lesson-25:session-33:i16; family: scripted_repeat_compare -->
-🎙 **He had inserted the key by the time I reached the door.**
+🎙 **I had cleaned the room by the time you arrived.**
 
-**21 · Скажите: «Она уже сняла сумку с крючка к тому моменту, когда я открыл дверь».**
-<!-- interaction_id: en:lesson-25:session-33:i17; family: scripted_repeat_compare -->
-🎙 **She had unhooked the bag by the time I opened the door.**
+**21 · Письмо отправили раньше вашего звонка: «Она уже отправила письмо к тому моменту, когда я позвонил».**
+<!-- interaction_id: en:lesson-25:session-33:i17; family: phrase_builder -->
+Плитки: `called` `I` `time` `the` `by` `letter` `the` `sent` `had` `She` → **She had sent the letter by the time I called.**
 

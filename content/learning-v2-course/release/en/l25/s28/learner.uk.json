@@ -4,232 +4,8 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-25:session-28:word:previously",
-      "ordinal": 4,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — previously",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-28:word:previously:audio"
-      ],
-      "accessibilityLabel": "Картка слова — previously",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-28:word:previously:audio",
-          "transcript": "previously"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-28:word:previously:r1",
-            "targetText": "previously",
-            "meaningByLocale": {
-              "ru": "Ранее. Previously — до того момента, о котором идёт речь.",
-              "uk": "Раніше. Previously — до того моменту, про який ідеться."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "previously",
-          "definitionByLocale": {
-            "ru": "Ранее. Previously — до того момента, о котором идёт речь.",
-            "uk": "Раніше. Previously — до того моменту, про який ідеться."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-28:i01",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Я раніше зустрічав її в школі.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Я раніше зустрічав її в школі.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I had previously met her at school.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Я ранее встречал её в школе.»",
-          "uk": "Скажіть: «Я раніше зустрічав її в школі.»"
-        },
-        "orderedTokens": [
-          "I",
-          "had",
-          "previously",
-          "met",
-          "her",
-          "at",
-          "school"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-28:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-28:i02:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-28:i02:r2",
-          "text": "have"
-        },
-        {
-          "responseId": "en:lesson-25:session-28:i02:r3",
-          "text": "was"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
-        },
-        "gappedTargetPhrase": "I ___ previously met her at school.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-28:i02:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i02:r2",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i02:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Доповніть розповідь.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-28:i02:r2",
-            "correct": false,
-            "testedDimension": "Доповніть розповідь.",
-            "feedbackByLocale": {
-              "ru": "Встреча была раньше совместной работы: had met.",
-              "uk": "Зустріч була раніше за спільну роботу: had met."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i02:r3",
-            "correct": false,
-            "testedDimension": "Доповніть розповідь.",
-            "feedbackByLocale": {
-              "ru": "Встреча была раньше совместной работы: had met.",
-              "uk": "Зустріч була раніше за спільну роботу: had met."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-28:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-28:i03:r1",
-          "text": "I had previously met her at school."
-        },
-        {
-          "responseId": "en:lesson-25:session-28:i03:r2",
-          "text": "He had previously met her at school."
-        },
-        {
-          "responseId": "en:lesson-25:session-28:i03:r3",
-          "text": "I had previously met him at school."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-28:i03:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-28:i03:audio",
-          "transcript": "I had previously met her at school."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-28:i03:r1",
-            "targetText": "I had previously met her at school.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i03:r2",
-            "targetText": "He had previously met her at school.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i03:r3",
-            "targetText": "I had previously met him at school.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-28:i03:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I had previously met her at school.",
-              "uk": "У записі звучить I had previously met her at school."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i03:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I had previously met her at school.",
-              "uk": "У записі звучить I had previously met her at school."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-28:word:nowadays",
-      "ordinal": 8,
+      "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -271,29 +47,182 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-28:i04",
-      "ordinal": 9,
+      "interactionId": "en:lesson-25:session-28:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-28:i01:r1",
+          "text": "We shop online nowadays."
+        },
+        {
+          "responseId": "en:lesson-25:session-28:i01:r2",
+          "text": "We study online nowadays."
+        },
+        {
+          "responseId": "en:lesson-25:session-28:i01:r3",
+          "text": "They shop online nowadays."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-28:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-28:i01:audio",
+          "transcript": "We shop online nowadays."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-28:i01:r1",
+            "targetText": "We shop online nowadays.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i01:r2",
+            "targetText": "We study online nowadays.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i01:r3",
+            "targetText": "They shop online nowadays.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-28:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We shop online nowadays.",
+              "uk": "У записі звучить We shop online nowadays."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We shop online nowadays.",
+              "uk": "У записі звучить We shop online nowadays."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-28:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Порівняйте свій теперішній спосіб життя з минулим: «Тепер я частіше готую вдома».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Порівняйте свій теперішній спосіб життя з минулим: «Тепер я частіше готую вдома».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-28:i02:audio",
+          "transcript": "I cook at home more often nowadays."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I cook at home more often nowadays.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-28:word:previously",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — previously",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-28:word:previously:audio"
+      ],
+      "accessibilityLabel": "Картка слова — previously",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-28:word:previously:audio",
+          "transcript": "previously"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-28:word:previously:r1",
+            "targetText": "previously",
+            "meaningByLocale": {
+              "ru": "Ранее. Previously — до того момента, о котором идёт речь.",
+              "uk": "Раніше. Previously — до того моменту, про який ідеться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "previously",
+          "definitionByLocale": {
+            "ru": "Ранее. Previously — до того момента, о котором идёт речь.",
+            "uk": "Раніше. Previously — до того моменту, про який ідеться."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-28:i03",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Нині я ходжу на роботу пішки.»",
+      "prompt": "Розкажіть, чому місце було знайомим: «Я раніше бував у цій кав’ярні». Використайте had.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Нині я ходжу на роботу пішки.»",
+      "accessibilityLabel": "Розкажіть, чому місце було знайомим: «Я раніше бував у цій кав’ярні». Використайте had.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I walk to work nowadays.",
+        "targetPhrase": "I had previously visited that cafe.",
         "localizedMeaning": {
-          "ru": "Скажите: «В наши дни я хожу на работу пешком.»",
-          "uk": "Скажіть: «Нині я ходжу на роботу пішки.»"
+          "ru": "Расскажите, почему место было знакомым: «Я раньше бывал в этом кафе». Используйте had.",
+          "uk": "Розкажіть, чому місце було знайомим: «Я раніше бував у цій кав’ярні». Використайте had."
         },
         "orderedTokens": [
           "I",
-          "walk",
-          "to",
-          "work",
-          "nowadays"
+          "had",
+          "previously",
+          "visited",
+          "that",
+          "cafe"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -305,68 +234,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-28:i05",
-      "ordinal": 10,
+      "interactionId": "en:lesson-25:session-28:i04",
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь.",
+      "prompt": "Місце було знайоме ще до тієї зустрічі. Виберіть слово «раніше».",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-28:i05:r1",
-          "text": "walk"
+          "responseId": "en:lesson-25:session-28:i04:r1",
+          "text": "previously"
         },
         {
-          "responseId": "en:lesson-25:session-28:i05:r2",
-          "text": "walked"
+          "responseId": "en:lesson-25:session-28:i04:r2",
+          "text": "nowadays"
         },
         {
-          "responseId": "en:lesson-25:session-28:i05:r3",
-          "text": "walking"
+          "responseId": "en:lesson-25:session-28:i04:r3",
+          "text": "tomorrow"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь.",
+      "accessibilityLabel": "Місце було знайоме ще до тієї зустрічі. Виберіть слово «раніше».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
+          "ru": "Место было знакомо ещё до той встречи. Выберите слово «ранее».",
+          "uk": "Місце було знайоме ще до тієї зустрічі. Виберіть слово «раніше»."
         },
-        "gappedTargetPhrase": "I ___ to work nowadays.",
+        "gappedTargetPhrase": "I had ___ seen that building.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-28:i05:r1",
-            "text": "walk"
+            "responseId": "en:lesson-25:session-28:i04:r1",
+            "text": "previously"
           },
           {
-            "responseId": "en:lesson-25:session-28:i05:r2",
-            "text": "walked"
+            "responseId": "en:lesson-25:session-28:i04:r2",
+            "text": "nowadays"
           },
           {
-            "responseId": "en:lesson-25:session-28:i05:r3",
-            "text": "walking"
+            "responseId": "en:lesson-25:session-28:i04:r3",
+            "text": "tomorrow"
           }
         ],
-        "testedDimension": "Доповніть розповідь.",
+        "testedDimension": "Місце було знайоме ще до тієї зустрічі. Виберіть слово «раніше».",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-28:i05:r2",
+            "responseId": "en:lesson-25:session-28:i04:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь.",
+            "testedDimension": "Місце було знайоме ще до тієї зустрічі. Виберіть слово «раніше».",
             "feedbackByLocale": {
-              "ru": "Нынешняя привычка: I walk.",
-              "uk": "Теперішня звичка: I walk."
+              "ru": "Nowadays описывает настоящее, а здесь действие до другого момента в прошлом.",
+              "uk": "Nowadays описує теперішнє, а тут дія до іншого моменту в минулому."
             }
           },
           {
-            "responseId": "en:lesson-25:session-28:i05:r3",
+            "responseId": "en:lesson-25:session-28:i04:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь.",
+            "testedDimension": "Місце було знайоме ще до тієї зустрічі. Виберіть слово «раніше».",
             "feedbackByLocale": {
-              "ru": "Нынешняя привычка: I walk.",
-              "uk": "Теперішня звичка: I walk."
+              "ru": "Tomorrow — завтра; здесь речь о более раннем опыте.",
+              "uk": "Tomorrow — завтра; тут ідеться про раніший досвід."
             }
           }
         ]
@@ -374,73 +303,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-28:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-25:session-28:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-28:i06:r1",
-          "text": "I walk to work nowadays."
+          "responseId": "en:lesson-25:session-28:i05:r1",
+          "text": "I used to live near that cafe."
         },
         {
-          "responseId": "en:lesson-25:session-28:i06:r2",
-          "text": "I drive to work nowadays."
+          "responseId": "en:lesson-25:session-28:i05:r2",
+          "text": "I used to work near that cafe."
         },
         {
-          "responseId": "en:lesson-25:session-28:i06:r3",
-          "text": "We walk to work nowadays."
+          "responseId": "en:lesson-25:session-28:i05:r3",
+          "text": "She used to live near that cafe."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-28:i06:audio"
+        "en:lesson-25:session-28:i05:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-28:i06:audio",
-          "transcript": "I walk to work nowadays."
+          "audioTargetId": "en:lesson-25:session-28:i05:audio",
+          "transcript": "I used to live near that cafe."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-28:i06:r1",
-            "targetText": "I walk to work nowadays.",
+            "responseId": "en:lesson-25:session-28:i05:r1",
+            "targetText": "I used to live near that cafe.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-28:i06:r2",
-            "targetText": "I drive to work nowadays.",
+            "responseId": "en:lesson-25:session-28:i05:r2",
+            "targetText": "I used to work near that cafe.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-28:i06:r3",
-            "targetText": "We walk to work nowadays.",
+            "responseId": "en:lesson-25:session-28:i05:r3",
+            "targetText": "She used to live near that cafe.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-28:i06:r2",
+            "responseId": "en:lesson-25:session-28:i05:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I walk to work nowadays.",
-              "uk": "У записі звучить I walk to work nowadays."
+              "ru": "В записи звучит I used to live near that cafe.",
+              "uk": "У записі звучить I used to live near that cafe."
             }
           },
           {
-            "responseId": "en:lesson-25:session-28:i06:r3",
+            "responseId": "en:lesson-25:session-28:i05:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I walk to work nowadays.",
-              "uk": "У записі звучить I walk to work nowadays."
+              "ru": "В записи звучит I used to live near that cafe.",
+              "uk": "У записі звучить I used to live near that cafe."
             }
           }
         ],
@@ -451,7 +380,7 @@
     },
     {
       "interactionId": "en:lesson-25:session-28:word:altogether",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -493,32 +422,66 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-28:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть повну вартість: «Скільки це коштує загалом?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-28:i06:audio"
+      ],
+      "accessibilityLabel": "Уточніть повну вартість: «Скільки це коштує загалом?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-28:i06:audio",
+          "transcript": "How much is it altogether?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much is it altogether?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-28:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Після їжі ми заплатили загалом двадцять фунтів.»",
+      "prompt": "Почуйте підсумок покупки.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Після їжі ми заплатили загалом двадцять фунтів.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Почуйте підсумок покупки.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We paid twenty pounds altogether after we ate.",
-        "localizedMeaning": {
-          "ru": "Скажите: «После еды мы заплатили всего двадцать фунтов.»",
-          "uk": "Скажіть: «Після їжі ми заплатили загалом двадцять фунтів.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-28:i07:audio",
+          "transcript": "The tickets cost fifteen pounds altogether."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The tickets cost fifteen pounds altogether.",
         "orderedTokens": [
-          "We",
-          "paid",
-          "twenty",
+          "The",
+          "tickets",
+          "cost",
+          "fifteen",
           "pounds",
-          "altogether",
-          "after",
-          "we",
-          "ate"
+          "altogether"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -530,153 +493,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-28:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-28:i08:r1",
-          "text": "paid"
-        },
-        {
-          "responseId": "en:lesson-25:session-28:i08:r2",
-          "text": "pay"
-        },
-        {
-          "responseId": "en:lesson-25:session-28:i08:r3",
-          "text": "paying"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
-        },
-        "gappedTargetPhrase": "We ___ twenty pounds altogether after we ate.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-28:i08:r1",
-            "text": "paid"
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i08:r2",
-            "text": "pay"
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i08:r3",
-            "text": "paying"
-          }
-        ],
-        "testedDimension": "Доповніть розповідь.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-28:i08:r2",
-            "correct": false,
-            "testedDimension": "Доповніть розповідь.",
-            "feedbackByLocale": {
-              "ru": "Законченное событие в прошлом: paid.",
-              "uk": "Завершена подія в минулому: paid."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i08:r3",
-            "correct": false,
-            "testedDimension": "Доповніть розповідь.",
-            "feedbackByLocale": {
-              "ru": "Законченное событие в прошлом: paid.",
-              "uk": "Завершена подія в минулому: paid."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-28:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-28:i09:r1",
-          "text": "We paid twenty pounds altogether after we ate."
-        },
-        {
-          "responseId": "en:lesson-25:session-28:i09:r2",
-          "text": "We paid thirty pounds altogether after we ate."
-        },
-        {
-          "responseId": "en:lesson-25:session-28:i09:r3",
-          "text": "They paid twenty pounds altogether after they ate."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-28:i09:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-28:i09:audio",
-          "transcript": "We paid twenty pounds altogether after we ate."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-28:i09:r1",
-            "targetText": "We paid twenty pounds altogether after we ate.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i09:r2",
-            "targetText": "We paid thirty pounds altogether after we ate.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i09:r3",
-            "targetText": "They paid twenty pounds altogether after they ate.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-28:i09:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We paid twenty pounds altogether after we ate.",
-              "uk": "У записі звучить We paid twenty pounds altogether after we ate."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i09:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We paid twenty pounds altogether after we ate.",
-              "uk": "У записі звучить We paid twenty pounds altogether after we ate."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-28:word:somehow",
-      "ordinal": 16,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -718,181 +536,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-28:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Я якимось чином загубив ключ після того, як вийшов із дому.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Я якимось чином загубив ключ після того, як вийшов із дому.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I somehow lost my key after I left the house.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Я каким-то образом потерял ключ после того, как вышел из дома.»",
-          "uk": "Скажіть: «Я якимось чином загубив ключ після того, як вийшов із дому.»"
-        },
-        "orderedTokens": [
-          "I",
-          "somehow",
-          "lost",
-          "my",
-          "key",
-          "after",
-          "I",
-          "left",
-          "the",
-          "house"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-28:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-28:i11:r1",
-          "text": "lost"
-        },
-        {
-          "responseId": "en:lesson-25:session-28:i11:r2",
-          "text": "lose"
-        },
-        {
-          "responseId": "en:lesson-25:session-28:i11:r3",
-          "text": "losing"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ.",
-          "uk": "Доповніть розповідь."
-        },
-        "gappedTargetPhrase": "I somehow ___ my key after I left the house.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-28:i11:r1",
-            "text": "lost"
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i11:r2",
-            "text": "lose"
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i11:r3",
-            "text": "losing"
-          }
-        ],
-        "testedDimension": "Доповніть розповідь.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-28:i11:r2",
-            "correct": false,
-            "testedDimension": "Доповніть розповідь.",
-            "feedbackByLocale": {
-              "ru": "Законченное событие в прошлом: lost.",
-              "uk": "Завершена подія в минулому: lost."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-28:i11:r3",
-            "correct": false,
-            "testedDimension": "Доповніть розповідь.",
-            "feedbackByLocale": {
-              "ru": "Законченное событие в прошлом: lost.",
-              "uk": "Завершена подія в минулому: lost."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-28:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-28:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-28:i12:r1",
-          "text": "I somehow lost my key after I left the house."
+          "responseId": "en:lesson-25:session-28:i08:r1",
+          "text": "I somehow left my bag on the bus."
         },
         {
-          "responseId": "en:lesson-25:session-28:i12:r2",
-          "text": "She somehow lost her key after she left the house."
+          "responseId": "en:lesson-25:session-28:i08:r2",
+          "text": "I somehow left my coat on the bus."
         },
         {
-          "responseId": "en:lesson-25:session-28:i12:r3",
-          "text": "I somehow lost my bag after I left the house."
+          "responseId": "en:lesson-25:session-28:i08:r3",
+          "text": "I somehow left my bag on the train."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-28:i12:audio"
+        "en:lesson-25:session-28:i08:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-28:i12:audio",
-          "transcript": "I somehow lost my key after I left the house."
+          "audioTargetId": "en:lesson-25:session-28:i08:audio",
+          "transcript": "I somehow left my bag on the bus."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-28:i12:r1",
-            "targetText": "I somehow lost my key after I left the house.",
+            "responseId": "en:lesson-25:session-28:i08:r1",
+            "targetText": "I somehow left my bag on the bus.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-28:i12:r2",
-            "targetText": "She somehow lost her key after she left the house.",
+            "responseId": "en:lesson-25:session-28:i08:r2",
+            "targetText": "I somehow left my coat on the bus.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-28:i12:r3",
-            "targetText": "I somehow lost my bag after I left the house.",
+            "responseId": "en:lesson-25:session-28:i08:r3",
+            "targetText": "I somehow left my bag on the train.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-28:i12:r2",
+            "responseId": "en:lesson-25:session-28:i08:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I somehow lost my key after I left the house.",
-              "uk": "У записі звучить I somehow lost my key after I left the house."
+              "ru": "В записи звучит I somehow left my bag on the bus.",
+              "uk": "У записі звучить I somehow left my bag on the bus."
             }
           },
           {
-            "responseId": "en:lesson-25:session-28:i12:r3",
+            "responseId": "en:lesson-25:session-28:i08:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I somehow lost my key after I left the house.",
-              "uk": "У записі звучить I somehow lost my key after I left the house."
+              "ru": "В записи звучит I somehow left my bag on the bus.",
+              "uk": "У записі звучить I somehow left my bag on the bus."
             }
           }
         ],
@@ -902,21 +612,90 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-28:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-25:session-28:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви не розумієте, як ключ опинився в кишені пальта. Виберіть «якимось чином».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-28:i09:r1",
+          "text": "somehow"
+        },
+        {
+          "responseId": "en:lesson-25:session-28:i09:r2",
+          "text": "altogether"
+        },
+        {
+          "responseId": "en:lesson-25:session-28:i09:r3",
+          "text": "tomorrow"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви не розумієте, як ключ опинився в кишені пальта. Виберіть «якимось чином».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не понимаете, как ключ оказался в кармане пальто. Выберите «каким-то образом».",
+          "uk": "Ви не розумієте, як ключ опинився в кишені пальта. Виберіть «якимось чином»."
+        },
+        "gappedTargetPhrase": "My key was ___ in my coat pocket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-28:i09:r1",
+            "text": "somehow"
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i09:r2",
+            "text": "altogether"
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i09:r3",
+            "text": "tomorrow"
+          }
+        ],
+        "testedDimension": "Ви не розумієте, як ключ опинився в кишені пальта. Виберіть «якимось чином».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви не розумієте, як ключ опинився в кишені пальта. Виберіть «якимось чином».",
+            "feedbackByLocale": {
+              "ru": "Altogether здесь не передаёт неизвестный способ или причину.",
+              "uk": "Altogether тут не передає невідомий спосіб чи причину."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви не розумієте, як ключ опинився в кишені пальта. Виберіть «якимось чином».",
+            "feedbackByLocale": {
+              "ru": "Tomorrow — завтра; вы описываете уже случившееся.",
+              "uk": "Tomorrow — завтра; ви описуєте те, що вже сталося."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-28:i10",
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Поєднайте слова з перекладом",
+      "prompt": "Розрізніть час, суму й незрозумілу причину",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "accessibilityLabel": "Розрізніть час, суму й незрозумілу причину",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-28:i13:p1",
+            "pairId": "en:lesson-25:session-28:i10:p1",
             "target": "previously",
             "meaningByLocale": {
               "ru": "ранее",
@@ -924,7 +703,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-28:i13:p2",
+            "pairId": "en:lesson-25:session-28:i10:p2",
             "target": "nowadays",
             "meaningByLocale": {
               "ru": "в наши дни",
@@ -932,7 +711,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-28:i13:p3",
+            "pairId": "en:lesson-25:session-28:i10:p3",
             "target": "altogether",
             "meaningByLocale": {
               "ru": "всего",
@@ -940,7 +719,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-28:i13:p4",
+            "pairId": "en:lesson-25:session-28:i10:p4",
             "target": "somehow",
             "meaningByLocale": {
               "ru": "каким-то образом",
@@ -975,70 +754,31 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-28:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
+      "interactionId": "en:lesson-25:session-28:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Поїли перед від’їздом",
+      "prompt": "Спочатку ви оплатили покупку, потім пішли: «Я заплатив до того, як вийшов із крамниці».",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-28:i14:audio"
-      ],
-      "accessibilityLabel": "Поїли перед від’їздом",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спочатку ви оплатили покупку, потім пішли: «Я заплатив до того, як вийшов із крамниці».",
       "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-28:i14:audio",
-          "transcript": "We ate before we left."
+        "family": "phrase_builder",
+        "targetPhrase": "I paid before I left the shop.",
+        "localizedMeaning": {
+          "ru": "Сначала вы оплатили покупку, затем ушли: «Я заплатил до того, как вышел из магазина».",
+          "uk": "Спочатку ви оплатили покупку, потім пішли: «Я заплатив до того, як вийшов із крамниці»."
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We ate before we left.",
-        "orderedTokens": [
-          "We",
-          "ate",
-          "before",
-          "we",
-          "left"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-28:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Раніше їздив машиною",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-28:i15:audio"
-      ],
-      "accessibilityLabel": "Раніше їздив машиною",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-28:i15:audio",
-          "transcript": "I used to drive to work."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to drive to work.",
         "orderedTokens": [
           "I",
-          "used",
-          "to",
-          "drive",
-          "to",
-          "work"
+          "paid",
+          "before",
+          "I",
+          "left",
+          "the",
+          "shop"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1050,26 +790,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-28:i16",
-      "ordinal": 23,
+      "interactionId": "en:lesson-25:session-28:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви помітили зникнення вже після виходу з автобуса.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-28:i12:r1",
+          "text": "after"
+        },
+        {
+          "responseId": "en:lesson-25:session-28:i12:r2",
+          "text": "before"
+        },
+        {
+          "responseId": "en:lesson-25:session-28:i12:r3",
+          "text": "until"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви помітили зникнення вже після виходу з автобуса.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы заметили пропажу уже после выхода из автобуса.",
+          "uk": "Ви помітили зникнення вже після виходу з автобуса."
+        },
+        "gappedTargetPhrase": "I noticed my bag was missing ___ I got off the bus.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-28:i12:r1",
+            "text": "after"
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i12:r2",
+            "text": "before"
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i12:r3",
+            "text": "until"
+          }
+        ],
+        "testedDimension": "Ви помітили зникнення вже після виходу з автобуса.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-28:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви помітили зникнення вже після виходу з автобуса.",
+            "feedbackByLocale": {
+              "ru": "Before изменит порядок событий: вы заметили пропажу уже после выхода.",
+              "uk": "Before змінить порядок подій: ви помітили зникнення вже після виходу."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви помітили зникнення вже після виходу з автобуса.",
+            "feedbackByLocale": {
+              "ru": "Until означает «до тех пор пока»; здесь нужен момент после выхода.",
+              "uk": "Until означає «доки»; тут потрібен момент після виходу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-28:i13",
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Тепер вона ходить до школи пішки».",
+      "prompt": "Уточніть ціну іншого квитка: «Скільки коштує інший квиток?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-28:i16:audio"
+        "en:lesson-25:session-28:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Тепер вона ходить до школи пішки».",
+      "accessibilityLabel": "Уточніть ціну іншого квитка: «Скільки коштує інший квиток?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-28:i16:audio",
-          "transcript": "She walks to school nowadays."
+          "audioTargetId": "en:lesson-25:session-28:i13:audio",
+          "transcript": "How much is the other ticket?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She walks to school nowadays.",
+        "targetPhrase": "How much is the other ticket?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1083,26 +892,209 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-28:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-28:i14:r1",
+          "text": "In those days we would pay in cash."
+        },
+        {
+          "responseId": "en:lesson-25:session-28:i14:r2",
+          "text": "In those days we would pay by card."
+        },
+        {
+          "responseId": "en:lesson-25:session-28:i14:r3",
+          "text": "In those days they would pay in cash."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-28:i14:audio",
+          "transcript": "In those days we would pay in cash."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-28:i14:r1",
+            "targetText": "In those days we would pay in cash.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i14:r2",
+            "targetText": "In those days we would pay by card.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i14:r3",
+            "targetText": "In those days they would pay in cash.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-28:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In those days we would pay in cash.",
+              "uk": "У записі звучить In those days we would pay in cash."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In those days we would pay in cash.",
+              "uk": "У записі звучить In those days we would pay in cash."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-28:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви купили квиток один раз учора.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-28:i15:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-25:session-28:i15:r2",
+          "text": "have bought"
+        },
+        {
+          "responseId": "en:lesson-25:session-28:i15:r3",
+          "text": "would buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви купили квиток один раз учора.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы купили билет один раз вчера.",
+          "uk": "Ви купили квиток один раз учора."
+        },
+        "gappedTargetPhrase": "I ___ a ticket yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-28:i15:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i15:r2",
+            "text": "have bought"
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i15:r3",
+            "text": "would buy"
+          }
+        ],
+        "testedDimension": "Ви купили квиток один раз учора.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-28:i15:r2",
+            "correct": false,
+            "testedDimension": "Ви купили квиток один раз учора.",
+            "feedbackByLocale": {
+              "ru": "Yesterday требует Past Simple bought.",
+              "uk": "Yesterday потребує Past Simple bought."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-28:i15:r3",
+            "correct": false,
+            "testedDimension": "Ви купили квиток один раз учора.",
+            "feedbackByLocale": {
+              "ru": "Would buy описывает прежнюю привычку; здесь одна покупка.",
+              "uk": "Would buy описує колишню звичку; тут одна купівля."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-28:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте, що вже вдалося знайти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-28:i16:audio"
+      ],
+      "accessibilityLabel": "Почуйте, що вже вдалося знайти.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-28:i16:audio",
+          "transcript": "I have already found my bag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have already found my bag.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "found",
+          "my",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-28:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Ми заплатили загалом тридцять фунтів».",
+      "prompt": "Одного квитка бракує. Скажіть: «Мені потрібен ще один квиток».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-28:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Ми заплатили загалом тридцять фунтів».",
+      "accessibilityLabel": "Одного квитка бракує. Скажіть: «Мені потрібен ще один квиток».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-28:i17:audio",
-          "transcript": "We paid thirty pounds altogether."
+          "transcript": "I need another ticket."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We paid thirty pounds altogether.",
+        "targetPhrase": "I need another ticket.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1122,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "48cc1f7a5d07030ba50a706e092e53963b818e28f6a010ca42bffb6fdcd43a84"
+  "learnerFingerprint": "209af6e4b28fff3dedcd1254811acc1d4d55daa1f60f42555926738b4127a00d"
 }

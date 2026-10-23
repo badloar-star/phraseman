@@ -53,99 +53,99 @@ Coward — боягуз. I felt like a coward after I ran away — я почув
 <!-- interaction_id: en:lesson-25:session-29:word:sincere; family: word_card -->
 > **sincere** — Щирим. Sincere — щирий, той, хто каже те, що справді відчуває.
 
-**2 · Скажіть: «Після нашої сварки його вибачення було щирим.»**
-<!-- interaction_id: en:lesson-25:session-29:i01; family: phrase_builder -->
-Плитки: `argued` `we` `after` `sincere` `was` `apology` `His` → **His apology was sincere after we argued.**
+**2 · Ви приймаєте щирі вибачення. Скажіть: «Я думаю, ти щирий».**
+<!-- interaction_id: en:lesson-25:session-29:i01; family: scripted_repeat_compare -->
+🎙 **I think you are sincere.**
 
-**3 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-29:i02; family: context_gap_grammar -->
-His apology ___ sincere after we argued. → **was** · is · be
-- is — *Для завершеної події потрібна минула форма was.*
-- be — *Для завершеної події потрібна минула форма was.*
+**3 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-29:i02; family: listen_choose -->
+🔊 *We talked after the others left.* → **We talked after the others left.** · We talked before the others left. · They talked after the others left.
+- We talked before the others left. — *У записі звучить We talked after the others left.*
+- They talked after the others left. — *У записі звучить We talked after the others left.*
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-29:i03; family: listen_choose -->
-🔊 *His apology was sincere after we argued.* → **His apology was sincere after we argued.** · Her apology was sincere after we argued. · His apology was sincere after they argued.
-- Her apology was sincere after we argued. — *У записі звучить His apology was sincere after we argued.*
-- His apology was sincere after they argued. — *У записі звучить His apology was sincere after we argued.*
-
-**5 · Картка слова — impolite**
+**4 · Картка слова — impolite**
 <!-- interaction_id: en:lesson-25:session-29:word:impolite; family: word_card -->
 > **impolite** — Неввічливим. Impolite — неввічливий.
 
-**6 · Скажіть: «Я був неввічливим до того, як вибачився.»**
+**5 · Людина перебивала інших і не привіталася. Виберіть «неввічливий».**
+<!-- interaction_id: en:lesson-25:session-29:i03; family: context_gap_grammar -->
+His behaviour was ___. → **impolite** · helpful · quiet
+- helpful — *Helpful — корисний, готовий допомогти; тут поведінка була неввічливою.*
+- quiet — *Quiet — тихий; людина перебивала інших.*
+
+**6 · Визнайте свою помилку: «Я був неввічливим до того, як вислухав твоє пояснення».**
 <!-- interaction_id: en:lesson-25:session-29:i04; family: phrase_builder -->
-Плитки: `apologised` `I` `before` `impolite` `was` `I` → **I was impolite before I apologised.**
+Плитки: `explanation` `your` `heard` `I` `before` `impolite` `was` `I` → **I was impolite before I heard your explanation.**
 
-**7 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-29:i05; family: context_gap_grammar -->
-I ___ impolite before I apologised. → **was** · am · be
-- am — *Для завершеної події потрібна минула форма was.*
-- be — *Для завершеної події потрібна минула форма was.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-29:i06; family: listen_choose -->
-🔊 *I was impolite before I apologised.* → **I was impolite before I apologised.** · He was impolite before he apologised. · I was impolite before I left.
-- He was impolite before he apologised. — *У записі звучить I was impolite before I apologised.*
-- I was impolite before I left. — *У записі звучить I was impolite before I apologised.*
-
-**9 · Картка слова — humble**
+**7 · Картка слова — humble**
 <!-- interaction_id: en:lesson-25:session-29:word:humble; family: word_card -->
 > **humble** — Скромним. Humble — скромний, той, хто не вважає себе кращим за інших.
 
-**10 · Скажіть: «Він залишився скромним після того, як переміг.»**
-<!-- interaction_id: en:lesson-25:session-29:i07; family: phrase_builder -->
-Плитки: `won` `he` `after` `humble` `stayed` `He` → **He stayed humble after he won.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-29:i05; family: listen_choose -->
+🔊 *My friend stayed humble after she won the prize.* → **My friend stayed humble after she won the prize.** · My friend stayed humble after she won the race. · My brother stayed humble after he won the prize.
+- My friend stayed humble after she won the race. — *У записі звучить My friend stayed humble after she won the prize.*
+- My brother stayed humble after he won the prize. — *У записі звучить My friend stayed humble after she won the prize.*
 
-**11 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-29:i08; family: context_gap_grammar -->
-He ___ humble after he won. → **stayed** · stay · staying
-- stay — *Для завершеної події потрібна минула форма stayed.*
-- staying — *Для завершеної події потрібна минула форма stayed.*
+**9 · Почуйте подяку переможця.**
+<!-- interaction_id: en:lesson-25:session-29:i06; family: listen_build_dictation -->
+🔊 *Thank you for your help.* Плитки: `help` `your` `for` `you` `Thank` → **Thank you for your help.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-29:i09; family: listen_choose -->
-🔊 *He stayed humble after he won.* → **He stayed humble after he won.** · She stayed humble after she won. · He stayed humble after they won.
-- She stayed humble after she won. — *У записі звучить He stayed humble after he won.*
-- He stayed humble after they won. — *У записі звучить He stayed humble after he won.*
-
-**13 · Картка слова — coward**
+**10 · Картка слова — coward**
 <!-- interaction_id: en:lesson-25:session-29:word:coward; family: word_card -->
 > **coward** — Боягуз. Coward — людина, яка не наважується діяти через страх.
 
-**14 · Скажіть: «Я почувався боягузом після того, як утік.»**
-<!-- interaction_id: en:lesson-25:session-29:i10; family: phrase_builder -->
-Плитки: `away` `ran` `I` `after` `coward` `a` `like` `felt` `I` → **I felt like a coward after I ran away.**
+**11 · Не погоджуйтеся з образливою оцінкою друга: «Ти не боягуз».**
+<!-- interaction_id: en:lesson-25:session-29:i07; family: scripted_repeat_compare -->
+🎙 **You are not a coward.**
 
-**15 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-29:i11; family: context_gap_grammar -->
-I ___ like a coward after I ran away. → **felt** · feel · feeling
-- feel — *Для завершеної події потрібна минула форма felt.*
-- feeling — *Для завершеної події потрібна минула форма felt.*
+**12 · Спочатку ви почули вибачення, потім відповіли.**
+<!-- interaction_id: en:lesson-25:session-29:i08; family: context_gap_grammar -->
+I answered ___ I heard the apology. → **after** · before · until
+- before — *Before змінить порядок: відповідь була після вибачення.*
+- until — *Until означає «доки»; тут потрібно «після того як».*
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-29:i12; family: listen_choose -->
-🔊 *I felt like a coward after I ran away.* → **I felt like a coward after I ran away.** · She felt like a coward after she ran away. · I felt like a coward after I hid.
-- She felt like a coward after she ran away. — *У записі звучить I felt like a coward after I ran away.*
-- I felt like a coward after I hid. — *У записі звучить I felt like a coward after I ran away.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-29:i13; family: speed_match -->
+**13 · Розрізніть описи ставлення до людей**
+<!-- interaction_id: en:lesson-25:session-29:i09; family: speed_match -->
 sincere — щирим · impolite — неввічливим · humble — скромним · coward — боягуз
 
-**18 · Поїли перед від’їздом**
-<!-- interaction_id: en:lesson-25:session-29:i14; family: listen_build_dictation -->
-🔊 *We ate before we left.* Плитки: `left` `we` `before` `ate` `We` → **We ate before we left.**
+**14 · Ви хочете зрозуміти причину. Запитайте: «Чому ти це сказав?»**
+<!-- interaction_id: en:lesson-25:session-29:i10; family: phrase_builder -->
+Плитки: `that` `say` `you` `did` `Why` → **Why did you say that?**
 
-**19 · Почали після її приходу**
-<!-- interaction_id: en:lesson-25:session-29:i15; family: listen_build_dictation -->
-🔊 *We started after she arrived.* Плитки: `arrived` `she` `after` `started` `We` → **We started after she arrived.**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-29:i11; family: listen_choose -->
+🔊 *I used to be afraid of speaking in class.* → **I used to be afraid of speaking in class.** · I used to be afraid of singing in class. · She used to be afraid of speaking in class.
+- I used to be afraid of singing in class. — *У записі звучить I used to be afraid of speaking in class.*
+- She used to be afraid of speaking in class. — *У записі звучить I used to be afraid of speaking in class.*
 
-**20 · Скажіть: «Вона залишилася скромною після перемоги».**
-<!-- interaction_id: en:lesson-25:session-29:i16; family: scripted_repeat_compare -->
-🎙 **She stayed humble after she won.**
+**16 · Розмова закінчилася ще до приходу вчителя. Доповніть Past Perfect.**
+<!-- interaction_id: en:lesson-25:session-29:i12; family: context_gap_grammar -->
+We ___ finished talking before the teacher arrived. → **had** · have · were
+- have — *Have finished стосується теперішнього; тут кінець розмови раніше за минулий прихід.*
+- were — *Потрібно had finished для ранішого завершення розмови.*
 
-**21 · Скажіть: «Він був неввічливим до того, як вибачився».**
-<!-- interaction_id: en:lesson-25:session-29:i17; family: scripted_repeat_compare -->
-🎙 **He was impolite before he apologised.**
+**17 · Почуйте колишню звичку підтримувати одне одного.**
+<!-- interaction_id: en:lesson-25:session-29:i13; family: listen_build_dictation -->
+🔊 *At school we would encourage each other before a test.* Плитки: `test` `a` `before` `other` `each` `encourage` `would` `we` `school` `At` → **At school we would encourage each other before a test.**
+
+**18 · Дайте другові ще одну можливість: «Давай дамо цьому ще один шанс».**
+<!-- interaction_id: en:lesson-25:session-29:i14; family: scripted_repeat_compare -->
+🎙 **Let us give it another chance.**
+
+**19 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-29:i15; family: listen_choose -->
+🔊 *I have already apologised to the others.* → **I have already apologised to the others.** · I have already spoken to the others. · She has already apologised to the others.
+- I have already spoken to the others. — *У записі звучить I have already apologised to the others.*
+- She has already apologised to the others. — *У записі звучить I have already apologised to the others.*
+
+**20 · Ви побачили друга вчора й вибачилися тоді.**
+<!-- interaction_id: en:lesson-25:session-29:i16; family: context_gap_grammar -->
+I ___ yesterday. → **apologised** · have apologised · would apologise
+- have apologised — *Yesterday потребує Past Simple apologised.*
+- would apologise — *Тут один учорашній випадок, а не повторювана звичка.*
+
+**21 · Запропонуйте вислухати інших: «Давай послухаємо інших людей».**
+<!-- interaction_id: en:lesson-25:session-29:i17; family: phrase_builder -->
+Плитки: `people` `other` `the` `to` `listen` `us` `Let` → **Let us listen to the other people.**
 

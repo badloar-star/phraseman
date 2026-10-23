@@ -49,103 +49,103 @@ Somehow — якимось чином: ви не знаєте або не поя
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — previously**
-<!-- interaction_id: en:lesson-25:session-28:word:previously; family: word_card -->
-> **previously** — Раніше. Previously — до того моменту, про який ідеться.
-
-**2 · Скажіть: «Я раніше зустрічав її в школі.»**
-<!-- interaction_id: en:lesson-25:session-28:i01; family: phrase_builder -->
-Плитки: `school` `at` `her` `met` `previously` `had` `I` → **I had previously met her at school.**
-
-**3 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-28:i02; family: context_gap_grammar -->
-I ___ previously met her at school. → **had** · have · was
-- have — *Зустріч була раніше за спільну роботу: had met.*
-- was — *Зустріч була раніше за спільну роботу: had met.*
-
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-28:i03; family: listen_choose -->
-🔊 *I had previously met her at school.* → **I had previously met her at school.** · He had previously met her at school. · I had previously met him at school.
-- He had previously met her at school. — *У записі звучить I had previously met her at school.*
-- I had previously met him at school. — *У записі звучить I had previously met her at school.*
-
-**5 · Картка слова — nowadays**
+**1 · Картка слова — nowadays**
 <!-- interaction_id: en:lesson-25:session-28:word:nowadays; family: word_card -->
 > **nowadays** — Нині. Nowadays описує теперішній стан справ порівняно з минулим.
 
-**6 · Скажіть: «Нині я ходжу на роботу пішки.»**
-<!-- interaction_id: en:lesson-25:session-28:i04; family: phrase_builder -->
-Плитки: `nowadays` `work` `to` `walk` `I` → **I walk to work nowadays.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-28:i01; family: listen_choose -->
+🔊 *We shop online nowadays.* → **We shop online nowadays.** · We study online nowadays. · They shop online nowadays.
+- We study online nowadays. — *У записі звучить We shop online nowadays.*
+- They shop online nowadays. — *У записі звучить We shop online nowadays.*
 
-**7 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-28:i05; family: context_gap_grammar -->
-I ___ to work nowadays. → **walk** · walked · walking
-- walked — *Теперішня звичка: I walk.*
-- walking — *Теперішня звичка: I walk.*
+**3 · Порівняйте свій теперішній спосіб життя з минулим: «Тепер я частіше готую вдома».**
+<!-- interaction_id: en:lesson-25:session-28:i02; family: scripted_repeat_compare -->
+🎙 **I cook at home more often nowadays.**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-28:i06; family: listen_choose -->
-🔊 *I walk to work nowadays.* → **I walk to work nowadays.** · I drive to work nowadays. · We walk to work nowadays.
-- I drive to work nowadays. — *У записі звучить I walk to work nowadays.*
-- We walk to work nowadays. — *У записі звучить I walk to work nowadays.*
+**4 · Картка слова — previously**
+<!-- interaction_id: en:lesson-25:session-28:word:previously; family: word_card -->
+> **previously** — Раніше. Previously — до того моменту, про який ідеться.
 
-**9 · Картка слова — altogether**
+**5 · Розкажіть, чому місце було знайомим: «Я раніше бував у цій кав’ярні». Використайте had.**
+<!-- interaction_id: en:lesson-25:session-28:i03; family: phrase_builder -->
+Плитки: `cafe` `that` `visited` `previously` `had` `I` → **I had previously visited that cafe.**
+
+**6 · Місце було знайоме ще до тієї зустрічі. Виберіть слово «раніше».**
+<!-- interaction_id: en:lesson-25:session-28:i04; family: context_gap_grammar -->
+I had ___ seen that building. → **previously** · nowadays · tomorrow
+- nowadays — *Nowadays описує теперішнє, а тут дія до іншого моменту в минулому.*
+- tomorrow — *Tomorrow — завтра; тут ідеться про раніший досвід.*
+
+**7 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-28:i05; family: listen_choose -->
+🔊 *I used to live near that cafe.* → **I used to live near that cafe.** · I used to work near that cafe. · She used to live near that cafe.
+- I used to work near that cafe. — *У записі звучить I used to live near that cafe.*
+- She used to live near that cafe. — *У записі звучить I used to live near that cafe.*
+
+**8 · Картка слова — altogether**
 <!-- interaction_id: en:lesson-25:session-28:word:altogether; family: word_card -->
 > **altogether** — Загалом. Altogether тут означає загальну суму.
 
-**10 · Скажіть: «Після їжі ми заплатили загалом двадцять фунтів.»**
-<!-- interaction_id: en:lesson-25:session-28:i07; family: phrase_builder -->
-Плитки: `ate` `we` `after` `altogether` `pounds` `twenty` `paid` `We` → **We paid twenty pounds altogether after we ate.**
+**9 · Уточніть повну вартість: «Скільки це коштує загалом?»**
+<!-- interaction_id: en:lesson-25:session-28:i06; family: scripted_repeat_compare -->
+🎙 **How much is it altogether?**
 
-**11 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-28:i08; family: context_gap_grammar -->
-We ___ twenty pounds altogether after we ate. → **paid** · pay · paying
-- pay — *Завершена подія в минулому: paid.*
-- paying — *Завершена подія в минулому: paid.*
+**10 · Почуйте підсумок покупки.**
+<!-- interaction_id: en:lesson-25:session-28:i07; family: listen_build_dictation -->
+🔊 *The tickets cost fifteen pounds altogether.* Плитки: `altogether` `pounds` `fifteen` `cost` `tickets` `The` → **The tickets cost fifteen pounds altogether.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-28:i09; family: listen_choose -->
-🔊 *We paid twenty pounds altogether after we ate.* → **We paid twenty pounds altogether after we ate.** · We paid thirty pounds altogether after we ate. · They paid twenty pounds altogether after they ate.
-- We paid thirty pounds altogether after we ate. — *У записі звучить We paid twenty pounds altogether after we ate.*
-- They paid twenty pounds altogether after they ate. — *У записі звучить We paid twenty pounds altogether after we ate.*
-
-**13 · Картка слова — somehow**
+**11 · Картка слова — somehow**
 <!-- interaction_id: en:lesson-25:session-28:word:somehow; family: word_card -->
 > **somehow** — Якимось чином. Somehow показує, що спосіб чи причина незрозумілі.
 
-**14 · Скажіть: «Я якимось чином загубив ключ після того, як вийшов із дому.»**
-<!-- interaction_id: en:lesson-25:session-28:i10; family: phrase_builder -->
-Плитки: `house` `the` `left` `I` `after` `key` `my` `lost` `somehow` `I` → **I somehow lost my key after I left the house.**
+**12 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-28:i08; family: listen_choose -->
+🔊 *I somehow left my bag on the bus.* → **I somehow left my bag on the bus.** · I somehow left my coat on the bus. · I somehow left my bag on the train.
+- I somehow left my coat on the bus. — *У записі звучить I somehow left my bag on the bus.*
+- I somehow left my bag on the train. — *У записі звучить I somehow left my bag on the bus.*
 
-**15 · Доповніть розповідь.**
-<!-- interaction_id: en:lesson-25:session-28:i11; family: context_gap_grammar -->
-I somehow ___ my key after I left the house. → **lost** · lose · losing
-- lose — *Завершена подія в минулому: lost.*
-- losing — *Завершена подія в минулому: lost.*
+**13 · Ви не розумієте, як ключ опинився в кишені пальта. Виберіть «якимось чином».**
+<!-- interaction_id: en:lesson-25:session-28:i09; family: context_gap_grammar -->
+My key was ___ in my coat pocket. → **somehow** · altogether · tomorrow
+- altogether — *Altogether тут не передає невідомий спосіб чи причину.*
+- tomorrow — *Tomorrow — завтра; ви описуєте те, що вже сталося.*
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-28:i12; family: listen_choose -->
-🔊 *I somehow lost my key after I left the house.* → **I somehow lost my key after I left the house.** · She somehow lost her key after she left the house. · I somehow lost my bag after I left the house.
-- She somehow lost her key after she left the house. — *У записі звучить I somehow lost my key after I left the house.*
-- I somehow lost my bag after I left the house. — *У записі звучить I somehow lost my key after I left the house.*
-
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-28:i13; family: speed_match -->
+**14 · Розрізніть час, суму й незрозумілу причину**
+<!-- interaction_id: en:lesson-25:session-28:i10; family: speed_match -->
 previously — раніше · nowadays — нині · altogether — загалом · somehow — якимось чином
 
-**18 · Поїли перед від’їздом**
-<!-- interaction_id: en:lesson-25:session-28:i14; family: listen_build_dictation -->
-🔊 *We ate before we left.* Плитки: `left` `we` `before` `ate` `We` → **We ate before we left.**
+**15 · Спочатку ви оплатили покупку, потім пішли: «Я заплатив до того, як вийшов із крамниці».**
+<!-- interaction_id: en:lesson-25:session-28:i11; family: phrase_builder -->
+Плитки: `shop` `the` `left` `I` `before` `paid` `I` → **I paid before I left the shop.**
 
-**19 · Раніше їздив машиною**
-<!-- interaction_id: en:lesson-25:session-28:i15; family: listen_build_dictation -->
-🔊 *I used to drive to work.* Плитки: `work` `to` `drive` `to` `used` `I` → **I used to drive to work.**
+**16 · Ви помітили зникнення вже після виходу з автобуса.**
+<!-- interaction_id: en:lesson-25:session-28:i12; family: context_gap_grammar -->
+I noticed my bag was missing ___ I got off the bus. → **after** · before · until
+- before — *Before змінить порядок подій: ви помітили зникнення вже після виходу.*
+- until — *Until означає «доки»; тут потрібен момент після виходу.*
 
-**20 · Скажіть: «Тепер вона ходить до школи пішки».**
-<!-- interaction_id: en:lesson-25:session-28:i16; family: scripted_repeat_compare -->
-🎙 **She walks to school nowadays.**
+**17 · Уточніть ціну іншого квитка: «Скільки коштує інший квиток?»**
+<!-- interaction_id: en:lesson-25:session-28:i13; family: scripted_repeat_compare -->
+🎙 **How much is the other ticket?**
 
-**21 · Скажіть: «Ми заплатили загалом тридцять фунтів».**
+**18 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-28:i14; family: listen_choose -->
+🔊 *In those days we would pay in cash.* → **In those days we would pay in cash.** · In those days we would pay by card. · In those days they would pay in cash.
+- In those days we would pay by card. — *У записі звучить In those days we would pay in cash.*
+- In those days they would pay in cash. — *У записі звучить In those days we would pay in cash.*
+
+**19 · Ви купили квиток один раз учора.**
+<!-- interaction_id: en:lesson-25:session-28:i15; family: context_gap_grammar -->
+I ___ a ticket yesterday. → **bought** · have bought · would buy
+- have bought — *Yesterday потребує Past Simple bought.*
+- would buy — *Would buy описує колишню звичку; тут одна купівля.*
+
+**20 · Почуйте, що вже вдалося знайти.**
+<!-- interaction_id: en:lesson-25:session-28:i16; family: listen_build_dictation -->
+🔊 *I have already found my bag.* Плитки: `bag` `my` `found` `already` `have` `I` → **I have already found my bag.**
+
+**21 · Одного квитка бракує. Скажіть: «Мені потрібен ще один квиток».**
 <!-- interaction_id: en:lesson-25:session-28:i17; family: scripted_repeat_compare -->
-🎙 **We paid thirty pounds altogether.**
+🎙 **I need another ticket.**
 

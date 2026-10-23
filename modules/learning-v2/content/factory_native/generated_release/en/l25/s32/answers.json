@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-32:i01",
-    "correctText": "My fiancé called before I left.",
+    "correctText": "This is my fiancé.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-32:i02",
-    "correctText": "called",
+    "correctText": "My fiancé arrived before the guests.",
     "correctResponseId": "en:lesson-25:session-32:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-32:i03",
-    "correctText": "My fiancé called before I left.",
-    "correctResponseId": "en:lesson-25:session-32:i03:r1"
   },
   {
     "interactionId": "en:lesson-25:session-32:word:fiancée",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-32:i04",
-    "correctText": "My fiancée arrived after I cooked dinner.",
+    "interactionId": "en:lesson-25:session-32:i03",
+    "correctText": "I cooked dinner before my fiancée arrived.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-32:i05",
-    "correctText": "arrived",
-    "correctResponseId": "en:lesson-25:session-32:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-32:i06",
-    "correctText": "My fiancée arrived after I cooked dinner.",
-    "correctResponseId": "en:lesson-25:session-32:i06:r1"
+    "interactionId": "en:lesson-25:session-32:i04",
+    "correctText": "after",
+    "correctResponseId": "en:lesson-25:session-32:i04:r1"
   },
   {
     "interactionId": "en:lesson-25:session-32:word:stepson",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-32:i07",
-    "correctText": "My stepson washed his hands before he ate.",
+    "interactionId": "en:lesson-25:session-32:i05",
+    "correctText": "My stepson likes drawing animals.",
+    "correctResponseId": "en:lesson-25:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-32:i06",
+    "correctText": "Do you need help with your homework?",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-32:i08",
-    "correctText": "washed",
-    "correctResponseId": "en:lesson-25:session-32:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-32:i09",
-    "correctText": "My stepson washed his hands before he ate.",
-    "correctResponseId": "en:lesson-25:session-32:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-32:word:stepdaughter",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-32:i07",
+    "correctText": "My stepdaughter played outside after she finished her homework.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-32:i08",
+    "correctText": "stepdaughter",
+    "correctResponseId": "en:lesson-25:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-32:i09",
+    "correctText": "en:lesson-25:session-32:i09:p1=fiancé\nen:lesson-25:session-32:i09:p2=fiancée\nen:lesson-25:session-32:i09:p3=stepson\nen:lesson-25:session-32:i09:p4=stepdaughter",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-25:session-32:i10",
-    "correctText": "My stepdaughter helped after she finished her homework.",
+    "correctText": "We used to live in a small flat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-32:i11",
-    "correctText": "helped",
+    "correctText": "On Sundays we would visit the grandparents.",
     "correctResponseId": "en:lesson-25:session-32:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-32:i12",
-    "correctText": "My stepdaughter helped after she finished her homework.",
+    "correctText": "had",
     "correctResponseId": "en:lesson-25:session-32:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-32:i13",
-    "correctText": "en:lesson-25:session-32:i13:p1=fiancé\nen:lesson-25:session-32:i13:p2=fiancée\nen:lesson-25:session-32:i13:p3=stepson\nen:lesson-25:session-32:i13:p4=stepdaughter",
+    "correctText": "We need another chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-32:i14",
-    "correctText": "We ate before we left.",
+    "correctText": "The other children are in the garden.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-32:i15",
-    "correctText": "We started after she arrived.",
-    "correctResponseId": null
+    "correctText": "collected",
+    "correctResponseId": "en:lesson-25:session-32:i15:r1"
   },
   {
     "interactionId": "en:lesson-25:session-32:i16",
-    "correctText": "Her fiancé called before she left.",
-    "correctResponseId": null
+    "correctText": "I have already called my parents.",
+    "correctResponseId": "en:lesson-25:session-32:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-32:i17",
-    "correctText": "His stepson washed his hands before he ate.",
+    "correctText": "Thank you for helping with the table.",
     "correctResponseId": null
   }
 ]

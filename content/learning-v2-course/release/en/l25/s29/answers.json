@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-29:i01",
-    "correctText": "His apology was sincere after we argued.",
+    "correctText": "I think you are sincere.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-29:i02",
-    "correctText": "was",
+    "correctText": "We talked after the others left.",
     "correctResponseId": "en:lesson-25:session-29:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-29:i03",
-    "correctText": "His apology was sincere after we argued.",
-    "correctResponseId": "en:lesson-25:session-29:i03:r1"
   },
   {
     "interactionId": "en:lesson-25:session-29:word:impolite",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-29:i03",
+    "correctText": "impolite",
+    "correctResponseId": "en:lesson-25:session-29:i03:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-29:i04",
-    "correctText": "I was impolite before I apologised.",
+    "correctText": "I was impolite before I heard your explanation.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-29:i05",
-    "correctText": "was",
-    "correctResponseId": "en:lesson-25:session-29:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-29:i06",
-    "correctText": "I was impolite before I apologised.",
-    "correctResponseId": "en:lesson-25:session-29:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-29:word:humble",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-29:i07",
-    "correctText": "He stayed humble after he won.",
+    "interactionId": "en:lesson-25:session-29:i05",
+    "correctText": "My friend stayed humble after she won the prize.",
+    "correctResponseId": "en:lesson-25:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-29:i06",
+    "correctText": "Thank you for your help.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-29:i08",
-    "correctText": "stayed",
-    "correctResponseId": "en:lesson-25:session-29:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-29:i09",
-    "correctText": "He stayed humble after he won.",
-    "correctResponseId": "en:lesson-25:session-29:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-29:word:coward",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-29:i07",
+    "correctText": "You are not a coward.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-29:i08",
+    "correctText": "after",
+    "correctResponseId": "en:lesson-25:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-29:i09",
+    "correctText": "en:lesson-25:session-29:i09:p1=sincere\nen:lesson-25:session-29:i09:p2=impolite\nen:lesson-25:session-29:i09:p3=humble\nen:lesson-25:session-29:i09:p4=coward",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-25:session-29:i10",
-    "correctText": "I felt like a coward after I ran away.",
+    "correctText": "Why did you say that?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-29:i11",
-    "correctText": "felt",
+    "correctText": "I used to be afraid of speaking in class.",
     "correctResponseId": "en:lesson-25:session-29:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-29:i12",
-    "correctText": "I felt like a coward after I ran away.",
+    "correctText": "had",
     "correctResponseId": "en:lesson-25:session-29:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-29:i13",
-    "correctText": "en:lesson-25:session-29:i13:p1=sincere\nen:lesson-25:session-29:i13:p2=impolite\nen:lesson-25:session-29:i13:p3=humble\nen:lesson-25:session-29:i13:p4=coward",
+    "correctText": "At school we would encourage each other before a test.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-29:i14",
-    "correctText": "We ate before we left.",
+    "correctText": "Let us give it another chance.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-29:i15",
-    "correctText": "We started after she arrived.",
-    "correctResponseId": null
+    "correctText": "I have already apologised to the others.",
+    "correctResponseId": "en:lesson-25:session-29:i15:r1"
   },
   {
     "interactionId": "en:lesson-25:session-29:i16",
-    "correctText": "She stayed humble after she won.",
-    "correctResponseId": null
+    "correctText": "apologised",
+    "correctResponseId": "en:lesson-25:session-29:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-29:i17",
-    "correctText": "He was impolite before he apologised.",
+    "correctText": "Let us listen to the other people.",
     "correctResponseId": null
   }
 ]

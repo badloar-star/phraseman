@@ -6,8 +6,8 @@
   },
   {
     "interactionId": "en:lesson-25:session-33:i01",
-    "correctText": "I had inserted the key by the time she reached the door.",
-    "correctResponseId": null
+    "correctText": "I had inserted the ticket by the time the gate opened.",
+    "correctResponseId": "en:lesson-25:session-33:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-33:i02",
@@ -15,29 +15,19 @@
     "correctResponseId": "en:lesson-25:session-33:i02:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-33:i03",
-    "correctText": "I had inserted the key by the time she reached the door.",
-    "correctResponseId": "en:lesson-25:session-33:i03:r1"
-  },
-  {
     "interactionId": "en:lesson-25:session-33:word:undone",
     "correctText": "undone",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-33:i04",
-    "correctText": "She had undone the buttons by the time I found the needle.",
+    "interactionId": "en:lesson-25:session-33:i03",
+    "correctText": "I had undone my shoelaces by the time he came back.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-33:i05",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-33:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-33:i06",
-    "correctText": "She had undone the buttons by the time I found the needle.",
-    "correctResponseId": "en:lesson-25:session-33:i06:r1"
+    "interactionId": "en:lesson-25:session-33:i04",
+    "correctText": "The train had left by the time we arrived.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-33:word:piled",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-33:i07",
-    "correctText": "We had piled the clothes on the bed by the time she arrived.",
-    "correctResponseId": null
+    "interactionId": "en:lesson-25:session-33:i05",
+    "correctText": "We had piled the books on the desk by the time she arrived.",
+    "correctResponseId": "en:lesson-25:session-33:i05:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-33:i08",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-33:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-33:i09",
-    "correctText": "We had piled the clothes on the bed by the time she arrived.",
-    "correctResponseId": "en:lesson-25:session-33:i09:r1"
+    "interactionId": "en:lesson-25:session-33:i06",
+    "correctText": "piled",
+    "correctResponseId": "en:lesson-25:session-33:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-33:word:unhooked",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-33:i10",
-    "correctText": "I had unhooked the bag by the time he opened the door.",
+    "interactionId": "en:lesson-25:session-33:i07",
+    "correctText": "I had unhooked my bag by the time my sister came downstairs.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-33:i08",
+    "correctText": "My family had eaten by the time I got home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-33:i09",
+    "correctText": "en:lesson-25:session-33:i09:p1=inserted\nen:lesson-25:session-33:i09:p2=undone\nen:lesson-25:session-33:i09:p3=piled\nen:lesson-25:session-33:i09:p4=unhooked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-33:i10",
+    "correctText": "The rain had stopped by the time we went outside.",
+    "correctResponseId": "en:lesson-25:session-33:i10:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-33:i11",
-    "correctText": "had",
+    "correctText": "arrived",
     "correctResponseId": "en:lesson-25:session-33:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-33:i12",
-    "correctText": "I had unhooked the bag by the time he opened the door.",
-    "correctResponseId": "en:lesson-25:session-33:i12:r1"
+    "correctText": "We had left by the time the taxi arrived.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-33:i13",
-    "correctText": "en:lesson-25:session-33:i13:p1=inserted\nen:lesson-25:session-33:i13:p2=undone\nen:lesson-25:session-33:i13:p3=piled\nen:lesson-25:session-33:i13:p4=unhooked",
+    "correctText": "I had made tea by the time the guests arrived.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-33:i14",
-    "correctText": "She had finished before I called.",
-    "correctResponseId": null
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-33:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-33:i15",
-    "correctText": "The train had left when we arrived.",
-    "correctResponseId": null
+    "correctText": "I had found my keys by the time you called.",
+    "correctResponseId": "en:lesson-25:session-33:i15:r1"
   },
   {
     "interactionId": "en:lesson-25:session-33:i16",
-    "correctText": "He had inserted the key by the time I reached the door.",
+    "correctText": "I had cleaned the room by the time you arrived.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-33:i17",
-    "correctText": "She had unhooked the bag by the time I opened the door.",
+    "correctText": "She had sent the letter by the time I called.",
     "correctResponseId": null
   }
 ]

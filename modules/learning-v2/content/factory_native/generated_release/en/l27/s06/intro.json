@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; past simple / present perfect",
+    "uk": "if + past simple, would + base verb; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбрать обед",
+        "uk": "Обрати обід"
+      },
+      "bodyByLocale": {
+        "ru": "Nutritious — питательный, содержащий полезные для организма вещества. I want a nutritious lunch — я хочу питательный обед. Appetizing — аппетитный, вызывающий желание поесть: That looks appetizing — это выглядит аппетитно. В британском написании встречается appetising; это то же слово. Вы бы готовили чаще, если бы было больше времени: I would cook more often if I had more time. Had после if обозначает воображаемое условие, would cook — результат.",
+        "uk": "Nutritious — поживний, що містить корисні для організму речовини. I want a nutritious lunch — я хочу поживний обід. Appetizing — апетитний, що викликає бажання поїсти: That looks appetizing — це має апетитний вигляд. У британському написанні трапляється appetising; це те саме слово. Ви готували б частіше, якби було більше часу: I would cook more often if I had more time. Had після if позначає уявну умову, would cook — результат."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-06:intro1:r1",
+              "text": "I would cook more often if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro1:r2",
+              "text": "I would cooked more often if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro1:r3",
+              "text": "I would cook more often if I would had more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-06:intro1:r1",
+              "text": "I would cook more often if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro1:r2",
+              "text": "I would cooked more often if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro1:r3",
+              "text": "I would cook more often if I would had more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рассказать о вкусе",
+        "uk": "Розповісти про смак"
+      },
+      "bodyByLocale": {
+        "ru": "Tasteless — безвкусный, почти без вкуса, когда речь о еде. This soup is tasteless — этот суп безвкусный. Это ваше впечатление о вкусе, а не сообщение о безопасности еды. Sugary — сладкий из-за сахара, с заметным количеством сахара. This drink is too sugary for me — этот напиток для меня слишком сладкий. For me показывает личное предпочтение. Друг предлагает лимон. I would add some lemon if I had one — я бы добавил немного лимона, если бы он у меня был. One здесь заменяет a lemon.",
+        "uk": "Tasteless — несмачний у значенні «майже без смаку», коли йдеться про їжу. This soup is tasteless — цей суп майже без смаку. Це ваше враження про смак, а не повідомлення про безпечність їжі. Sugary — солодкий через цукор, із помітною кількістю цукру. This drink is too sugary for me — цей напій для мене надто солодкий. For me показує особисту перевагу. Друг пропонує лимон. I would add some lemon if I had one — я б додав трохи лимона, якби він у мене був. One тут замінює a lemon."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-06:intro2:r1",
+              "text": "I would add some lemon if I had one."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro2:r2",
+              "text": "I would adding some lemon if I had one."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro2:r3",
+              "text": "I would add some lemon if I would had one."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-06:intro2:r1",
+              "text": "I would add some lemon if I had one."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro2:r2",
+              "text": "I would adding some lemon if I had one."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro2:r3",
+              "text": "I would add some lemon if I would had one."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто сегодня готовит",
+        "uk": "Хто сьогодні готує"
+      },
+      "bodyByLocale": {
+        "ru": "I have made dinner — я приготовил ужин: сообщаем о результате сейчас. I made it yesterday — я приготовил это вчера: называем законченное время, поэтому made без have. Вы обсуждаете помощь на кухне: I would help you if I finished work earlier — я бы помог тебе, если бы заканчивал работу раньше. Finished здесь — воображаемое условие, а не обещание. Друг уже накрыл на стол. Это его любимая часть готовки: еда появляется, а кастрюли пока не его забота.",
+        "uk": "I have made dinner — я приготував вечерю: повідомляємо про результат зараз. I made it yesterday — я приготував це вчора: називаємо завершений час, тому made без have. Ви обговорюєте допомогу на кухні: I would help you if I finished work earlier — я б допоміг тобі, якби закінчував роботу раніше. Finished тут — уявна умова, а не обіцянка. Друг уже накрив на стіл. Це його улюблена частина готування: їжа з’являється, а каструлі поки не його турбота."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-06:intro3:r1",
+              "text": "I made it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro3:r2",
+              "text": "I have made it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro3:r3",
+              "text": "I maked it yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-06:intro3:r1",
+              "text": "I made it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro3:r2",
+              "text": "I have made it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-06:intro3:r3",
+              "text": "I maked it yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "295248c8e41e9233b5c8ce4732af5de3e661f1ac5fdb7dd73f6c5a029cf52866"
+}

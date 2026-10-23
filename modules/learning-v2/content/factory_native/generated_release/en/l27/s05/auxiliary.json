@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-05:intro1:r2": {
+          "ru": "После would нужна начальная форма read.",
+          "uk": "Після would потрібна початкова форма read."
+        },
+        "en:lesson-27:session-05:intro1:r3": {
+          "ru": "В условии had без would.",
+          "uk": "В умові had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-05:intro2:r2": {
+          "ru": "После would нужно call.",
+          "uk": "Після would потрібно call."
+        },
+        "en:lesson-27:session-05:intro2:r3": {
+          "ru": "После if здесь had без would.",
+          "uk": "Після if тут had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-05:intro3:r2": {
+          "ru": "С законченным yesterday здесь past simple.",
+          "uk": "Із завершеним yesterday тут past simple."
+        },
+        "en:lesson-27:session-05:intro3:r3": {
+          "ru": "Для прошлого события нужна форма booked.",
+          "uk": "Для минулої події потрібна форма booked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f4cc9e4c8e6d151bfa8dacb7941334a70d5c5f9d454b64b83ad60415168518a1"
+}

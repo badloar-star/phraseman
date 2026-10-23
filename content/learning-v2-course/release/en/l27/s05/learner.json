@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-05:word:oily",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — oily",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:word:oily:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — oily",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:word:oily:audio",
+          "transcript": "oily"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-05:word:oily:r1",
+            "targetText": "oily",
+            "meaningByLocale": {
+              "ru": "Жирный, маслянистый; oily skin — жирная кожа.",
+              "uk": "Жирний, маслянистий; oily skin — жирна шкіра."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "oily",
+          "definitionByLocale": {
+            "ru": "Жирный, маслянистый; oily skin — жирная кожа.",
+            "uk": "Жирний, маслянистий; oily skin — жирна шкіра."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, предназначено ли средство для жирной кожи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Уточните, предназначено ли средство для жирной кожи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:i01:audio",
+          "transcript": "Is this for oily skin?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this for oily skin?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите показать этикетку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите показать этикетку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I see the label?",
+        "localizedMeaning": {
+          "ru": "Попросите показать этикетку.",
+          "uk": "Попросіть показати етикетку."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "see",
+          "the",
+          "label"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Очки дома. Вы прочитали бы этикетку, если бы очки были с вами.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-05:i03:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i03:r2",
+          "text": "would had"
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i03:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Очки дома. Вы прочитали бы этикетку, если бы очки были с вами.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Очки дома. Вы прочитали бы этикетку, если бы очки были с вами.",
+          "uk": "Окуляри вдома. Ви прочитали б етикетку, якби окуляри були з вами."
+        },
+        "gappedTargetPhrase": "I would read the label if I ___ my glasses.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-05:i03:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i03:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i03:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Очки дома. Вы прочитали бы этикетку, если бы очки были с вами.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Очки дома. Вы прочитали бы этикетку, если бы очки были с вами.",
+            "feedbackByLocale": {
+              "ru": "После if здесь had без would.",
+              "uk": "Після if тут had без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Очки дома. Вы прочитали бы этикетку, если бы очки были с вами.",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма had.",
+              "uk": "Потрібна особова форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-05:i04:r1",
+          "text": "I left my bag at home."
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i04:r2",
+          "text": "I left my bag at work."
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i04:r3",
+          "text": "I left my coat at home."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:i04:audio",
+          "transcript": "I left my bag at home."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-05:i04:r1",
+            "targetText": "I left my bag at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i04:r2",
+            "targetText": "I left my bag at work.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i04:r3",
+            "targetText": "I left my coat at home.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-05:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I left my bag at home.",
+              "uk": "У записі звучить I left my bag at home."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I left my bag at home.",
+              "uk": "У записі звучить I left my bag at home."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:word:chapped",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chapped",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:word:chapped:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chapped",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:word:chapped:audio",
+          "transcript": "chapped"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-05:word:chapped:r1",
+            "targetText": "chapped",
+            "meaningByLocale": {
+              "ru": "Обветренный, потрескавшийся — например о губах.",
+              "uk": "Обвітрений, потрісканий — наприклад про губи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chapped",
+          "definitionByLocale": {
+            "ru": "Обветренный, потрескавшийся — например о губах.",
+            "uk": "Обвітрений, потрісканий — наприклад про губи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, что у вас обветрились губы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что у вас обветрились губы.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My lips are chapped.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что у вас обветрились губы.",
+          "uk": "Повідомте, що у вас обвітрилися губи."
+        },
+        "orderedTokens": [
+          "My",
+          "lips",
+          "are",
+          "chapped"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите продавцу, что вы пока только смотрите.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:i06:audio"
+      ],
+      "accessibilityLabel": "Скажите продавцу, что вы пока только смотрите.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:i06:audio",
+          "transcript": "I am just looking."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am just looking.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:word:splinter",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — splinter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:word:splinter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — splinter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:word:splinter:audio",
+          "transcript": "splinter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-05:word:splinter:r1",
+            "targetText": "splinter",
+            "meaningByLocale": {
+              "ru": "Заноза — небольшой острый кусочек, попавший под кожу.",
+              "uk": "Скалка — невеликий гострий шматочок, що потрапив під шкіру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "splinter",
+          "definitionByLocale": {
+            "ru": "Заноза — небольшой острый кусочек, попавший под кожу.",
+            "uk": "Скалка — невеликий гострий шматочок, що потрапив під шкіру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-05:i07:r1",
+          "text": "I have a splinter in my finger."
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i07:r2",
+          "text": "I have a splinter in my foot."
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i07:r3",
+          "text": "I have a cut on my finger."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:i07:audio",
+          "transcript": "I have a splinter in my finger."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-05:i07:r1",
+            "targetText": "I have a splinter in my finger.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i07:r2",
+            "targetText": "I have a splinter in my foot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i07:r3",
+            "targetText": "I have a cut on my finger.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-05:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have a splinter in my finger.",
+              "uk": "У записі звучить I have a splinter in my finger."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have a splinter in my finger.",
+              "uk": "У записі звучить I have a splinter in my finger."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вежливую просьбу о помощи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Услышьте вежливую просьбу о помощи.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:i08:audio",
+          "transcript": "Could you help me, please?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you help me, please?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "help",
+          "me,",
+          "please"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы бы позвонили другу, если бы телефон был с вами.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-05:i09:r1",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i09:r2",
+          "text": "called"
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i09:r3",
+          "text": "to call"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы бы позвонили другу, если бы телефон был с вами.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы бы позвонили другу, если бы телефон был с вами.",
+          "uk": "Ви б зателефонували другові, якби телефон був із вами."
+        },
+        "gappedTargetPhrase": "I would ___ you if I had my phone.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-05:i09:r1",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i09:r2",
+            "text": "called"
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i09:r3",
+            "text": "to call"
+          }
+        ],
+        "testedDimension": "Вы бы позвонили другу, если бы телефон был с вами.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы бы позвонили другу, если бы телефон был с вами.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма call.",
+              "uk": "Після would потрібна початкова форма call."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы бы позвонили другу, если бы телефон был с вами.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:word:rash",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:word:rash:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:word:rash:audio",
+          "transcript": "rash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-05:word:rash:r1",
+            "targetText": "rash",
+            "meaningByLocale": {
+              "ru": "Сыпь; слово не указывает причину.",
+              "uk": "Висип; слово не вказує причину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rash",
+          "definitionByLocale": {
+            "ru": "Сыпь; слово не указывает причину.",
+            "uk": "Висип; слово не вказує причину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "При записи на приём сообщите о сыпи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:i10:audio"
+      ],
+      "accessibilityLabel": "При записи на приём сообщите о сыпи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:i10:audio",
+          "transcript": "I have a rash."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have a rash.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-05:i11:r1",
+          "text": "When did it start?"
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i11:r2",
+          "text": "Where did it start?"
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i11:r3",
+          "text": "When did it stop?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:i11:audio",
+          "transcript": "When did it start?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-05:i11:r1",
+            "targetText": "When did it start?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i11:r2",
+            "targetText": "Where did it start?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i11:r3",
+            "targetText": "When did it stop?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит When did it start?",
+              "uk": "У записі звучить When did it start?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит When did it start?",
+              "uk": "У записі звучить When did it start?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ответьте, что это началось вчера.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ответьте, что это началось вчера.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It started yesterday.",
+        "localizedMeaning": {
+          "ru": "Ответьте, что это началось вчера.",
+          "uk": "Дайте відповідь, що це почалося вчора."
+        },
+        "orderedTokens": [
+          "It",
+          "started",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы записались вчера. Назовите законченное время.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-05:i13:r1",
+          "text": "booked"
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i13:r2",
+          "text": "have booked"
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i13:r3",
+          "text": "booking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы записались вчера. Назовите законченное время.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы записались вчера. Назовите законченное время.",
+          "uk": "Ви записалися вчора. Назвіть завершений час."
+        },
+        "gappedTargetPhrase": "I ___ it yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-05:i13:r1",
+            "text": "booked"
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i13:r2",
+            "text": "have booked"
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i13:r3",
+            "text": "booking"
+          }
+        ],
+        "testedDimension": "Вы записались вчера. Назовите законченное время.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-05:i13:r2",
+            "correct": false,
+            "testedDimension": "Вы записались вчера. Назовите законченное время.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь past simple.",
+              "uk": "Із yesterday тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i13:r3",
+            "correct": false,
+            "testedDimension": "Вы записались вчера. Назовите законченное время.",
+            "feedbackByLocale": {
+              "ru": "Booking само по себе не образует сказуемое.",
+              "uk": "Booking саме по собі не утворює присудок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение времени после обеда.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение времени после обеда.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:i14:audio",
+          "transcript": "I can come after lunch."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can come after lunch.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "come",
+          "after",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите записать время приёма.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Попросите записать время приёма.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:i15:audio",
+          "transcript": "Could you write down the time?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you write down the time?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If I had a car, I would drive there.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If I had a car, I would drive there.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would drive there if I had a car.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If I had a car, I would drive there.",
+          "uk": "Почніть із результату: If I had a car, I would drive there."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "drive",
+          "there",
+          "if",
+          "I",
+          "had",
+          "a",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-05:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-05:i17:r1",
+          "text": "The bus stops outside."
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i17:r2",
+          "text": "The bus stops nearby."
+        },
+        {
+          "responseId": "en:lesson-27:session-05:i17:r3",
+          "text": "The taxi waits outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-05:i17:audio",
+          "transcript": "The bus stops outside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-05:i17:r1",
+            "targetText": "The bus stops outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i17:r2",
+            "targetText": "The bus stops nearby.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i17:r3",
+            "targetText": "The taxi waits outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-05:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bus stops outside.",
+              "uk": "У записі звучить The bus stops outside."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-05:i17:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bus stops outside.",
+              "uk": "У записі звучить The bus stops outside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "de8a16bcafdedde9347224ddc9b81ec5bc628e197278a10faf2a4cadd545b710"
+}

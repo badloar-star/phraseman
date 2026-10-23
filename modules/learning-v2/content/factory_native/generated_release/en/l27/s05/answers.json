@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-05:word:oily",
+    "correctText": "oily",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i01",
+    "correctText": "Is this for oily skin?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i02",
+    "correctText": "Could I see the label?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i03",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i04",
+    "correctText": "I left my bag at home.",
+    "correctResponseId": "en:lesson-27:session-05:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:word:chapped",
+    "correctText": "chapped",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i05",
+    "correctText": "My lips are chapped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i06",
+    "correctText": "I am just looking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:word:splinter",
+    "correctText": "splinter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i07",
+    "correctText": "I have a splinter in my finger.",
+    "correctResponseId": "en:lesson-27:session-05:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i08",
+    "correctText": "Could you help me, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i09",
+    "correctText": "call",
+    "correctResponseId": "en:lesson-27:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:word:rash",
+    "correctText": "rash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i10",
+    "correctText": "I have a rash.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i11",
+    "correctText": "When did it start?",
+    "correctResponseId": "en:lesson-27:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i12",
+    "correctText": "It started yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i13",
+    "correctText": "booked",
+    "correctResponseId": "en:lesson-27:session-05:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i14",
+    "correctText": "I can come after lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i15",
+    "correctText": "Could you write down the time?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i16",
+    "correctText": "I would drive there if I had a car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-05:i17",
+    "correctText": "The bus stops outside.",
+    "correctResponseId": "en:lesson-27:session-05:i17:r1"
+  }
+]

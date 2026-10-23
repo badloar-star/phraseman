@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-06:intro1:r2": {
+          "ru": "После would нужно cook.",
+          "uk": "Після would потрібно cook."
+        },
+        "en:lesson-27:session-06:intro1:r3": {
+          "ru": "В условии had без would.",
+          "uk": "В умові had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-06:intro2:r2": {
+          "ru": "После would нужна форма add.",
+          "uk": "Після would потрібна форма add."
+        },
+        "en:lesson-27:session-06:intro2:r3": {
+          "ru": "После if здесь had без would.",
+          "uk": "Після if тут had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-06:intro3:r2": {
+          "ru": "С yesterday здесь past simple.",
+          "uk": "Із yesterday тут past simple."
+        },
+        "en:lesson-27:session-06:intro3:r3": {
+          "ru": "Прошедшая форма make — made.",
+          "uk": "Минула форма make — made."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c462243ceb1508330dbdfdf74187bd63a53786747c3cfd1eaa26000e849b1ae4"
+}

@@ -53,99 +53,99 @@ Insist — наполягати. Ви хотіли йти пішки, але д�
 <!-- interaction_id: en:lesson-25:session-45:word:recalled; family: word_card -->
 > **recalled** — Згадав. Recall — згадати; recalled — минула й третя форма.
 
-**2 · Скажіть: «Він згадав її ім’я до того, як вона заговорила.»**
-<!-- interaction_id: en:lesson-25:session-45:i01; family: phrase_builder -->
-Плитки: `spoke` `she` `before` `name` `her` `recalled` `had` `He` → **He had recalled her name before she spoke.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-45:i01; family: listen_choose -->
+🔊 *I suddenly recalled his name.* → **I suddenly recalled his name.** · I suddenly recalled her name. · I suddenly recalled his address.
+- I suddenly recalled her name. — *У записі звучить I suddenly recalled his name.*
+- I suddenly recalled his address. — *У записі звучить I suddenly recalled his name.*
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-45:i02; family: context_gap_grammar -->
-He ___ recalled her name before she spoke. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Ви впізнали давнього знайомого. Скажіть: «Ми зустрічалися раніше».**
+<!-- interaction_id: en:lesson-25:session-45:i02; family: scripted_repeat_compare -->
+🎙 **We have met before.**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-45:i03; family: listen_choose -->
-🔊 *He had recalled her name before she spoke.* → **He had recalled her name before she spoke.** · She had recalled his name before he spoke. · He had recalled her name before she arrived.
-- She had recalled his name before he spoke. — *У записі звучить He had recalled her name before she spoke.*
-- He had recalled her name before she arrived. — *У записі звучить He had recalled her name before she spoke.*
-
-**5 · Картка слова — predicted**
+**4 · Картка слова — predicted**
 <!-- interaction_id: en:lesson-25:session-45:word:predicted; family: word_card -->
 > **predicted** — Передбачив. Predict — передбачити; predicted — минула й третя форма.
 
-**6 · Скажіть: «Вона передбачила дощ до того, як ми пішли.»**
-<!-- interaction_id: en:lesson-25:session-45:i04; family: phrase_builder -->
-Плитки: `left` `we` `before` `rain` `predicted` `had` `She` → **She had predicted rain before we left.**
+**5 · У прогнозі заздалегідь повідомили, що піде сніг. Виберіть predicted.**
+<!-- interaction_id: en:lesson-25:session-45:i03; family: context_gap_grammar -->
+The forecast ___ snow. → **predicted** · recalled · forgot
+- recalled — *Recalled — згадав; прогноз повідомляє про майбутнє, а не згадує.*
+- forgot — *Forgot — забув, а тут заздалегідь повідомили про сніг.*
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-45:i05; family: context_gap_grammar -->
-She ___ predicted rain before we left. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**6 · Почуйте нагадування перед виходом.**
+<!-- interaction_id: en:lesson-25:session-45:i04; family: listen_build_dictation -->
+🔊 *Do not forget your umbrella.* Плитки: `umbrella` `your` `forget` `not` `Do` → **Do not forget your umbrella.**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-45:i06; family: listen_choose -->
-🔊 *She had predicted rain before we left.* → **She had predicted rain before we left.** · He had predicted rain before we left. · She had predicted rain before they left.
-- He had predicted rain before we left. — *У записі звучить She had predicted rain before we left.*
-- She had predicted rain before they left. — *У записі звучить She had predicted rain before we left.*
-
-**9 · Картка слова — examined**
+**7 · Картка слова — examined**
 <!-- interaction_id: en:lesson-25:session-45:word:examined; family: word_card -->
 > **examined** — Оглянув. Examine — уважно оглянути; examined — минула й третя форма.
 
-**10 · Скажіть: «Лікар оглянув моє коліно до того, як я пішов додому.»**
-<!-- interaction_id: en:lesson-25:session-45:i07; family: phrase_builder -->
-Плитки: `home` `went` `I` `before` `knee` `my` `examined` `had` `doctor` `The` → **The doctor had examined my knee before I went home.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-45:i05; family: listen_choose -->
+🔊 *The doctor examined my ankle.* → **The doctor examined my ankle.** · The doctor examined my wrist. · The nurse examined my ankle.
+- The doctor examined my wrist. — *У записі звучить The doctor examined my ankle.*
+- The nurse examined my ankle. — *У записі звучить The doctor examined my ankle.*
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-45:i08; family: context_gap_grammar -->
-The doctor ___ examined my knee before I went home. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**9 · На прийомі поясніть, коли виникає біль: «Болить, коли я ходжу».**
+<!-- interaction_id: en:lesson-25:session-45:i06; family: scripted_repeat_compare -->
+🎙 **It hurts when I walk.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-45:i09; family: listen_choose -->
-🔊 *The doctor had examined my knee before I went home.* → **The doctor had examined my knee before I went home.** · The doctor had examined my arm before I went home. · The doctor had examined my knee before she went home.
-- The doctor had examined my arm before I went home. — *У записі звучить The doctor had examined my knee before I went home.*
-- The doctor had examined my knee before she went home. — *У записі звучить The doctor had examined my knee before I went home.*
-
-**13 · Картка слова — insisted**
+**10 · Картка слова — insisted**
 <!-- interaction_id: en:lesson-25:session-45:word:insisted; family: word_card -->
 > **insisted** — Наполіг. Insist — наполягати; insisted — минула й третя форма.
 
-**14 · Скажіть: «Він наполіг на таксі до того, як ми пішли.»**
-<!-- interaction_id: en:lesson-25:session-45:i10; family: phrase_builder -->
-Плитки: `left` `we` `before` `taxi` `a` `on` `insisted` `had` `He` → **He had insisted on a taxi before we left.**
+**11 · Розкажіть про рішення подруги: «Вона наполягла на оплаті вечері».**
+<!-- interaction_id: en:lesson-25:session-45:i07; family: phrase_builder -->
+Плитки: `dinner` `for` `paying` `on` `insisted` `She` → **She insisted on paying for dinner.**
 
-**15 · Доповніть розповідь про минуле.**
+**12 · Друг хотів сам оплатити рахунок. Виберіть прийменник у insisted on.**
+<!-- interaction_id: en:lesson-25:session-45:i08; family: context_gap_grammar -->
+He insisted ___ paying. → **on** · at · to
+- at — *Кажемо insist on doing something, не insist at.*
+- to — *Тут сполучення insisted on paying.*
+
+**13 · Зіставте дії з перекладом**
+<!-- interaction_id: en:lesson-25:session-45:i09; family: speed_match -->
+recalled — згадав · predicted — передбачив · examined — оглянув · insisted — наполіг
+
+**14 · Уточніть час зустрічі: «Я бачив його вчора».**
+<!-- interaction_id: en:lesson-25:session-45:i10; family: phrase_builder -->
+Плитки: `yesterday` `him` `saw` `I` → **I saw him yesterday.**
+
+**15 · Дощ почався до вашого виходу. Виберіть had.**
 <!-- interaction_id: en:lesson-25:session-45:i11; family: context_gap_grammar -->
-He ___ insisted on a taxi before we left. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+It ___ started raining by the time we left. → **had** · has · is
+- has — *Has стосується теперішнього, а left задає минулий момент.*
+- is — *Потрібно had started для початку дощу до виходу.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-45:i12; family: listen_choose -->
-🔊 *He had insisted on a taxi before we left.* → **He had insisted on a taxi before we left.** · She had insisted on a taxi before we left. · He had insisted on a taxi before they left.
-- She had insisted on a taxi before we left. — *У записі звучить He had insisted on a taxi before we left.*
-- He had insisted on a taxi before they left. — *У записі звучить He had insisted on a taxi before we left.*
+🔊 *I used to walk home from school.* → **I used to walk home from school.** · I used to cycle home from school. · She used to walk home from school.
+- I used to cycle home from school. — *У записі звучить I used to walk home from school.*
+- She used to walk home from school. — *У записі звучить I used to walk home from school.*
 
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-45:i13; family: speed_match -->
-recalled — згадав · predicted — передбачив · examined — оглянув · insisted — наполіг
+**17 · Друг оплатив вечерю. Подякуйте: «Дякую за вечерю».**
+<!-- interaction_id: en:lesson-25:session-45:i13; family: scripted_repeat_compare -->
+🎙 **Thank you for dinner.**
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-45:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**18 · Спочатку ви поговорили з лікарем, потім пішли додому. Виберіть after.**
+<!-- interaction_id: en:lesson-25:session-45:i14; family: context_gap_grammar -->
+I went home ___ I spoke to the doctor. → **after** · before · while
+- before — *Before означало б, що ви пішли до розмови.*
+- while — *While означає одночасність, а тут ви пішли пізніше.*
 
-**19 · Потяг уже поїхав**
+**19 · Почуйте пропозицію зустрітися знову.**
 <!-- interaction_id: en:lesson-25:session-45:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+🔊 *Let us meet again next week.* Плитки: `week` `next` `again` `meet` `us` `Let` → **Let us meet again next week.**
 
-**20 · Скажіть: «Лікар оглянув мою руку до того, як я пішов».**
-<!-- interaction_id: en:lesson-25:session-45:i16; family: scripted_repeat_compare -->
-🎙 **The doctor had examined my arm before I left.**
+**20 · Парасольку зламано. Потрібно взяти іншу.**
+<!-- interaction_id: en:lesson-25:session-45:i16; family: context_gap_grammar -->
+I need ___ umbrella. → **another** · other · others
+- other — *Umbrella в однині, тому another.*
+- others — *Others не ставиться перед umbrella.*
 
-**21 · Скажіть: «Вона наполягла на таксі до того, як він пішов».**
-<!-- interaction_id: en:lesson-25:session-45:i17; family: scripted_repeat_compare -->
-🎙 **She had insisted on a taxi before he left.**
+**21 · Повідомте друга про готовність: «Я вже замовив таксі».**
+<!-- interaction_id: en:lesson-25:session-45:i17; family: phrase_builder -->
+Плитки: `taxi` `a` `booked` `already` `have` `I` → **I have already booked a taxi.**
 

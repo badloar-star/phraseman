@@ -53,99 +53,99 @@ Claw — кіготь, claws — кігті. The cat used to sharpen its claws o
 <!-- interaction_id: en:lesson-25:session-48:word:stray; family: word_card -->
 > **stray** — Безпритульний. Stray тут описує свійську тварину, яка живе без господаря або загубилася.
 
-**2 · Скажіть: «Раніше ми годували безпритульну кішку.»**
-<!-- interaction_id: en:lesson-25:session-48:i01; family: phrase_builder -->
-Плитки: `cat` `stray` `a` `feed` `to` `used` `We` → **We used to feed a stray cat.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-48:i01; family: listen_choose -->
+🔊 *A stray cat is sitting by our gate.* → **A stray cat is sitting by our gate.** · A stray dog is sitting by our gate. · A stray cat is sitting by our door.
+- A stray dog is sitting by our gate. — *У записі звучить A stray cat is sitting by our gate.*
+- A stray cat is sitting by our door. — *У записі звучить A stray cat is sitting by our gate.*
 
-**3 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-48:i02; family: context_gap_grammar -->
-We ___ to feed a stray cat. → **used** · use · using
-- use — *Колишня звичка або стан: used to + початкова форма.*
-- using — *Колишня звичка або стан: used to + початкова форма.*
+**3 · Ви побачили незнайому кішку. Запитайте сусіда: «Ця кішка ваша?»**
+<!-- interaction_id: en:lesson-25:session-48:i02; family: scripted_repeat_compare -->
+🎙 **Is this your cat?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-48:i03; family: listen_choose -->
-🔊 *We used to feed a stray cat.* → **We used to feed a stray cat.** · They used to feed a stray cat. · We used to feed a stray dog.
-- They used to feed a stray cat. — *У записі звучить We used to feed a stray cat.*
-- We used to feed a stray dog. — *У записі звучить We used to feed a stray cat.*
-
-**5 · Картка слова — tame**
+**4 · Картка слова — tame**
 <!-- interaction_id: en:lesson-25:session-48:word:tame; family: word_card -->
 > **tame** — Ручний. Tame — той, що звик до людини й не боїться її.
 
-**6 · Скажіть: «Раніше в мене був ручний кролик.»**
+**5 · Кролик звик до людей і спокійно підходить до господаря. Виберіть tame.**
+<!-- interaction_id: en:lesson-25:session-48:i03; family: context_gap_grammar -->
+The rabbit is ___. → **tame** · wild · empty
+- wild — *Wild — дикий; за описом кролик звик до людей.*
+- empty — *Empty — порожній; це не опис поведінки тварини.*
+
+**6 · Згадайте свого улюбленця: «Раніше в мене був білий кролик».**
 <!-- interaction_id: en:lesson-25:session-48:i04; family: phrase_builder -->
-Плитки: `rabbit` `tame` `a` `have` `to` `used` `I` → **I used to have a tame rabbit.**
+Плитки: `rabbit` `white` `a` `have` `to` `used` `I` → **I used to have a white rabbit.**
 
-**7 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-48:i05; family: context_gap_grammar -->
-I ___ to have a tame rabbit. → **used** · use · using
-- use — *Колишня звичка або стан: used to + початкова форма.*
-- using — *Колишня звичка або стан: used to + початкова форма.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-48:i06; family: listen_choose -->
-🔊 *I used to have a tame rabbit.* → **I used to have a tame rabbit.** · She used to have a tame rabbit. · I used to have a tame bird.
-- She used to have a tame rabbit. — *У записі звучить I used to have a tame rabbit.*
-- I used to have a tame bird. — *У записі звучить I used to have a tame rabbit.*
-
-**9 · Картка слова — paws**
+**7 · Картка слова — paws**
 <!-- interaction_id: en:lesson-25:session-48:word:paws; family: word_card -->
 > **paws** — Лапи. Paw — лапа тварини, наприклад кішки чи собаки; paws — множина.
 
-**10 · Скажіть: «Раніше ми мили собаці лапи.»**
-<!-- interaction_id: en:lesson-25:session-48:i07; family: phrase_builder -->
-Плитки: `paws` `dog's` `the` `wash` `to` `used` `We` → **We used to wash the dog's paws.**
+**8 · Почуйте, що потрібно витерти після прогулянки.**
+<!-- interaction_id: en:lesson-25:session-48:i05; family: listen_build_dictation -->
+🔊 *The dog's paws are muddy.* Плитки: `muddy` `are` `paws` `dog's` `The` → **The dog's paws are muddy.**
 
-**11 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-48:i08; family: context_gap_grammar -->
-We ___ to wash the dog's paws. → **used** · use · using
-- use — *Колишня звичка або стан: used to + початкова форма.*
-- using — *Колишня звичка або стан: used to + початкова форма.*
+**9 · Ви шукаєте рушник. Попросіть сестру: «Передай мені рушник, будь ласка».**
+<!-- interaction_id: en:lesson-25:session-48:i06; family: scripted_repeat_compare -->
+🎙 **Pass me the towel, please.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-48:i09; family: listen_choose -->
-🔊 *We used to wash the dog's paws.* → **We used to wash the dog's paws.** · They used to wash the dog's paws. · We used to dry the dog's paws.
-- They used to wash the dog's paws. — *У записі звучить We used to wash the dog's paws.*
-- We used to dry the dog's paws. — *У записі звучить We used to wash the dog's paws.*
-
-**13 · Картка слова — claws**
+**10 · Картка слова — claws**
 <!-- interaction_id: en:lesson-25:session-48:word:claws; family: word_card -->
 > **claws** — Кігті. Claw — кіготь; claws — множина.
 
-**14 · Скажіть: «Раніше кішка гострила кігті надворі.»**
-<!-- interaction_id: en:lesson-25:session-48:i10; family: phrase_builder -->
-Плитки: `outside` `claws` `its` `sharpen` `to` `used` `cat` `The` → **The cat used to sharpen its claws outside.**
+**11 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-48:i07; family: listen_choose -->
+🔊 *The cat has sharp claws.* → **The cat has sharp claws.** · The cat has long whiskers. · The cat has soft paws.
+- The cat has long whiskers. — *У записі звучить The cat has sharp claws.*
+- The cat has soft paws. — *У записі звучить The cat has sharp claws.*
 
-**15 · Пригадайте, як було раніше.**
+**12 · На стільці з’явилися подряпини від кігтів. Виберіть claws.**
+<!-- interaction_id: en:lesson-25:session-48:i08; family: context_gap_grammar -->
+The cat scratched the chair with its ___. → **claws** · paws · tail
+- paws — *Paws — лапи загалом; подряпини залишили гострі кігті.*
+- tail — *Tail — хвіст; він не залишає таких подряпин.*
+
+**13 · Зіставте слова з перекладом**
+<!-- interaction_id: en:lesson-25:session-48:i09; family: speed_match -->
+stray — безпритульний · tame — ручний · paws — лапи · claws — кігті
+
+**14 · Повідомте, що вже знайшли господаря: «Я вже поговорив із власником».**
+<!-- interaction_id: en:lesson-25:session-48:i10; family: phrase_builder -->
+Плитки: `owner` `the` `to` `spoken` `already` `have` `I` → **I have already spoken to the owner.**
+
+**15 · Ви знайшли кота вчора. Виберіть Past Simple.**
 <!-- interaction_id: en:lesson-25:session-48:i11; family: context_gap_grammar -->
-The cat ___ to sharpen its claws outside. → **used** · use · using
-- use — *Колишня звичка або стан: used to + початкова форма.*
-- using — *Колишня звичка або стан: used to + початкова форма.*
+We ___ the cat yesterday. → **found** · have found · finding
+- have found — *Yesterday називає завершений момент, тому found.*
+- finding — *Finding без допоміжного дієслова тут не підходить.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-48:i12; family: listen_choose -->
-🔊 *The cat used to sharpen its claws outside.* → **The cat used to sharpen its claws outside.** · The cat used to sharpen its claws inside. · The cat used to sharpen its claws here.
-- The cat used to sharpen its claws inside. — *У записі звучить The cat used to sharpen its claws outside.*
-- The cat used to sharpen its claws here. — *У записі звучить The cat used to sharpen its claws outside.*
+🔊 *The owner came to collect her dog.* → **The owner came to collect her dog.** · The owner came to collect her cat. · The owner called about her dog.
+- The owner came to collect her cat. — *У записі звучить The owner came to collect her dog.*
+- The owner called about her dog. — *У записі звучить The owner came to collect her dog.*
 
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-48:i13; family: speed_match -->
-stray — безпритульний · tame — ручний · paws — лапи · claws — кігті
+**17 · Господар приїхав по собаку. Поясніть: «Ми знайшли його біля магазину».**
+<!-- interaction_id: en:lesson-25:session-48:i13; family: scripted_repeat_compare -->
+🎙 **We found it near the shop.**
 
-**18 · Уже закінчила до мого дзвінка**
-<!-- interaction_id: en:lesson-25:session-48:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**18 · Собака поїв до приїзду господаря. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-48:i14; family: context_gap_grammar -->
+The dog ___ eaten by the time its owner arrived. → **had** · has · was
+- has — *Has стосується теперішнього, а arrived задає минулий момент.*
+- was — *Потрібно had eaten для дії до приїзду господаря.*
 
-**19 · Раніше їздив машиною**
+**19 · Почуйте прохання тримати ворота зачиненими.**
 <!-- interaction_id: en:lesson-25:session-48:i15; family: listen_build_dictation -->
-🔊 *I used to drive to work.* Плитки: `work` `to` `drive` `to` `used` `I` → **I used to drive to work.**
+🔊 *Please keep the gate closed.* Плитки: `closed` `gate` `the` `keep` `Please` → **Please keep the gate closed.**
 
-**20 · Скажіть: «Раніше вона годувала безпритульну кішку».**
-<!-- interaction_id: en:lesson-25:session-48:i16; family: scripted_repeat_compare -->
-🎙 **She used to feed a stray cat.**
+**20 · Перший рушник мокрий. Попросіть ще один.**
+<!-- interaction_id: en:lesson-25:session-48:i16; family: context_gap_grammar -->
+Can I have ___ towel? → **another** · other · others
+- other — *Towel в однині, тому another.*
+- others — *Others не ставиться перед towel.*
 
-**21 · Скажіть: «Раніше в нас був ручний кролик».**
-<!-- interaction_id: en:lesson-25:session-48:i17; family: scripted_repeat_compare -->
-🎙 **We used to have a tame rabbit.**
+**21 · Розкажіть про порядок справ: «Ми помили руки після того, як погодували тварин».**
+<!-- interaction_id: en:lesson-25:session-48:i17; family: phrase_builder -->
+Плитки: `animals` `the` `fed` `we` `after` `hands` `our` `washed` `We` → **We washed our hands after we fed the animals.**
 

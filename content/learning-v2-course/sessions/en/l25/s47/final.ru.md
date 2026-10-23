@@ -53,99 +53,99 @@ Tolerant — терпимый. I used to be less tolerant of noise — рань�
 <!-- interaction_id: en:lesson-25:session-47:word:alert; family: word_card -->
 > **alert** — Бдительный. Alert — внимательный к происходящему и готовый заметить опасность.
 
-**2 · Скажите: «Раньше я оставался бдительным ночью.»**
-<!-- interaction_id: en:lesson-25:session-47:i01; family: phrase_builder -->
-Плитки: `night` `at` `alert` `stay` `to` `used` `I` → **I used to stay alert at night.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-47:i01; family: listen_choose -->
+🔊 *The driver stayed alert all night.* → **The driver stayed alert all night.** · The driver stayed awake all day. · The driver stayed alert all morning.
+- The driver stayed awake all day. — *В записи звучит The driver stayed alert all night.*
+- The driver stayed alert all morning. — *В записи звучит The driver stayed alert all night.*
 
-**3 · Вспомните, как было раньше.**
-<!-- interaction_id: en:lesson-25:session-47:i02; family: context_gap_grammar -->
-I ___ to stay alert at night. → **used** · use · using
-- use — *Прежнее состояние или привычка: used to + начальная форма.*
-- using — *Прежнее состояние или привычка: used to + начальная форма.*
+**3 · Друг устал в дороге. Предложите: «Давай сделаем перерыв».**
+<!-- interaction_id: en:lesson-25:session-47:i02; family: scripted_repeat_compare -->
+🎙 **Let us take a break.**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-47:i03; family: listen_choose -->
-🔊 *I used to stay alert at night.* → **I used to stay alert at night.** · She used to stay alert at night. · I used to stay alert at work.
-- She used to stay alert at night. — *В записи звучит I used to stay alert at night.*
-- I used to stay alert at work. — *В записи звучит I used to stay alert at night.*
-
-**5 · Карточка слова — mature**
+**4 · Карточка слова — mature**
 <!-- interaction_id: en:lesson-25:session-47:word:mature; family: word_card -->
 > **mature** — Зрелый. Mature здесь — разумный и ответственный в поведении.
 
-**6 · Скажите: «Раньше она казалась зрелой для своего возраста.»**
+**5 · Подросток спокойно признал ошибку и исправил её. Выберите mature для ответственного поведения.**
+<!-- interaction_id: en:lesson-25:session-47:i03; family: context_gap_grammar -->
+That was a ___ response. → **mature** · sleepy · hungry
+- sleepy — *Sleepy — сонный; здесь оценивается ответственность поступка.*
+- hungry — *Hungry — голодный, а здесь речь о разумной реакции.*
+
+**6 · Признайте ошибку: «Я был неправ».**
 <!-- interaction_id: en:lesson-25:session-47:i04; family: phrase_builder -->
-Плитки: `age` `her` `for` `mature` `seem` `to` `used` `She` → **She used to seem mature for her age.**
+Плитки: `wrong` `was` `I` → **I was wrong.**
 
-**7 · Вспомните, как было раньше.**
-<!-- interaction_id: en:lesson-25:session-47:i05; family: context_gap_grammar -->
-She ___ to seem mature for her age. → **used** · use · using
-- use — *Прежнее состояние или привычка: used to + начальная форма.*
-- using — *Прежнее состояние или привычка: used to + начальная форма.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-47:i06; family: listen_choose -->
-🔊 *She used to seem mature for her age.* → **She used to seem mature for her age.** · He used to seem mature for his age. · She used to seem mature at school.
-- He used to seem mature for his age. — *В записи звучит She used to seem mature for her age.*
-- She used to seem mature at school. — *В записи звучит She used to seem mature for her age.*
-
-**9 · Карточка слова — immature**
+**7 · Карточка слова — immature**
 <!-- interaction_id: en:lesson-25:session-47:word:immature; family: word_card -->
 > **immature** — Незрелый. Immature здесь — ведущий себя по-детски, недостаточно ответственно.
 
-**10 · Скажите: «В школе он был незрелым.»**
-<!-- interaction_id: en:lesson-25:session-47:i07; family: phrase_builder -->
-Плитки: `school` `at` `immature` `be` `to` `used` `He` → **He used to be immature at school.**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-47:i05; family: listen_choose -->
+🔊 *His behaviour was immature.* → **His behaviour was immature.** · His behaviour was mature. · Her behaviour was immature.
+- His behaviour was mature. — *В записи звучит His behaviour was immature.*
+- Her behaviour was immature. — *В записи звучит His behaviour was immature.*
 
-**11 · Вспомните, как было раньше.**
-<!-- interaction_id: en:lesson-25:session-47:i08; family: context_gap_grammar -->
-He ___ to be immature at school. → **used** · use · using
-- use — *Прежнее состояние или привычка: used to + начальная форма.*
-- using — *Прежнее состояние или привычка: used to + начальная форма.*
+**9 · Два друга спорят. Предложите: «Давайте поговорим спокойно».**
+<!-- interaction_id: en:lesson-25:session-47:i06; family: scripted_repeat_compare -->
+🎙 **Let us talk calmly.**
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-47:i09; family: listen_choose -->
-🔊 *He used to be immature at school.* → **He used to be immature at school.** · She used to be immature at school. · He used to be immature at work.
-- She used to be immature at school. — *В записи звучит He used to be immature at school.*
-- He used to be immature at work. — *В записи звучит He used to be immature at school.*
-
-**13 · Карточка слова — tolerant**
+**10 · Карточка слова — tolerant**
 <!-- interaction_id: en:lesson-25:session-47:word:tolerant; family: word_card -->
 > **tolerant** — Терпимый. Tolerant — спокойно принимающий то, что отличается от его привычек или предпочтений.
 
-**14 · Скажите: «Раньше я был менее терпимым к шуму.»**
-<!-- interaction_id: en:lesson-25:session-47:i10; family: phrase_builder -->
-Плитки: `noise` `of` `tolerant` `less` `be` `to` `used` `I` → **I used to be less tolerant of noise.**
+**11 · Услышьте описание соседей.**
+<!-- interaction_id: en:lesson-25:session-47:i07; family: listen_build_dictation -->
+🔊 *Our neighbours are tolerant of noise.* Плитки: `noise` `of` `tolerant` `are` `neighbours` `Our` → **Our neighbours are tolerant of noise.**
 
-**15 · Вспомните, как было раньше.**
-<!-- interaction_id: en:lesson-25:session-47:i11; family: context_gap_grammar -->
-I ___ to be less tolerant of noise. → **used** · use · using
-- use — *Прежнее состояние или привычка: used to + начальная форма.*
-- using — *Прежнее состояние или привычка: used to + начальная форма.*
+**12 · Раньше вы раздражались от шума сильнее, чем сейчас. Выберите less.**
+<!-- interaction_id: en:lesson-25:session-47:i08; family: context_gap_grammar -->
+I used to be ___ tolerant of noise. → **less** · more · most
+- more — *More означало бы большую терпимость раньше, а было наоборот.*
+- most — *Most обозначает превосходную степень, а здесь сравнение с нынешним состоянием.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-47:i12; family: listen_choose -->
-🔊 *I used to be less tolerant of noise.* → **I used to be less tolerant of noise.** · She used to be less tolerant of noise. · I used to be more tolerant of noise.
-- She used to be less tolerant of noise. — *В записи звучит I used to be less tolerant of noise.*
-- I used to be more tolerant of noise. — *В записи звучит I used to be less tolerant of noise.*
-
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-47:i13; family: speed_match -->
+**13 · Соотнесите качества с переводом**
+<!-- interaction_id: en:lesson-25:session-47:i09; family: speed_match -->
 alert — бдительный · mature — зрелый · immature — незрелый · tolerant — терпимый
 
-**18 · Уже закончила к моему звонку**
+**14 · Сообщите о результате разговора: «Мы уже решили проблему».**
+<!-- interaction_id: en:lesson-25:session-47:i10; family: phrase_builder -->
+Плитки: `problem` `the` `solved` `already` `have` `We` → **We have already solved the problem.**
+
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-47:i11; family: listen_choose -->
+🔊 *I apologised to my sister yesterday.* → **I apologised to my sister yesterday.** · I apologised to my brother yesterday. · I apologised to my sister last week.
+- I apologised to my brother yesterday. — *В записи звучит I apologised to my sister yesterday.*
+- I apologised to my sister last week. — *В записи звучит I apologised to my sister yesterday.*
+
+**16 · Спор закончился раньше вашего прихода. Выберите had.**
+<!-- interaction_id: en:lesson-25:session-47:i12; family: context_gap_grammar -->
+The argument ___ ended by the time I arrived. → **had** · has · is
+- has — *Has относится к настоящему, а arrived задаёт прошлый момент.*
+- is — *Нужно had ended для события до вашего прихода.*
+
+**17 · Друг извинился. Ответьте: «Всё в порядке».**
+<!-- interaction_id: en:lesson-25:session-47:i13; family: scripted_repeat_compare -->
+🎙 **It is all right.**
+
+**18 · Услышьте просьбу сделать телевизор тише.**
 <!-- interaction_id: en:lesson-25:session-47:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+🔊 *Could you turn the television down?* Плитки: `down` `television` `the` `turn` `you` `Could` → **Could you turn the television down?**
 
-**19 · Раньше ездил на машине**
-<!-- interaction_id: en:lesson-25:session-47:i15; family: listen_build_dictation -->
-🔊 *I used to drive to work.* Плитки: `work` `to` `drive` `to` `used` `I` → **I used to drive to work.**
+**19 · Сначала вы выслушали соседа, потом объяснили свою позицию. Выберите after.**
+<!-- interaction_id: en:lesson-25:session-47:i15; family: context_gap_grammar -->
+I explained my view ___ I listened to my neighbour. → **after** · before · while
+- before — *Before означало бы объяснение до того, как вы выслушали соседа.*
+- while — *While означает одновременность, а здесь речь шла о последовательности.*
 
-**20 · Скажите: «Раньше мы были более терпимыми к шуму».**
-<!-- interaction_id: en:lesson-25:session-47:i16; family: scripted_repeat_compare -->
-🎙 **We used to be more tolerant of noise.**
+**20 · Первая попытка договориться не удалась. Вы просите ещё один шанс.**
+<!-- interaction_id: en:lesson-25:session-47:i16; family: context_gap_grammar -->
+Please give me ___ chance. → **another** · other · others
+- other — *Chance в единственном числе, поэтому another.*
+- others — *Others не ставится перед chance.*
 
-**21 · Скажите: «Раньше он сохранял бдительность ночью».**
-<!-- interaction_id: en:lesson-25:session-47:i17; family: scripted_repeat_compare -->
-🎙 **He used to stay alert at night.**
+**21 · Вспомните прежнее поведение: «Я раньше сердился очень быстро».**
+<!-- interaction_id: en:lesson-25:session-47:i17; family: phrase_builder -->
+Плитки: `quickly` `very` `angry` `get` `to` `used` `I` → **I used to get angry very quickly.**
 

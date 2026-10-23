@@ -53,99 +53,99 @@ Introduction здесь — введение к тексту, его начал�
 <!-- interaction_id: en:lesson-25:session-44:word:request; family: word_card -->
 > **request** — Просьба. Request — обращение с просьбой дать что-то или сделать что-то.
 
-**2 · Скажите: «Мы отправили просьбу до того, как начался урок.»**
+**2 · Начните вежливое обращение: «Можно обратиться с просьбой?»**
 <!-- interaction_id: en:lesson-25:session-44:i01; family: phrase_builder -->
-Плитки: `began` `lesson` `the` `before` `request` `the` `sent` `had` `We` → **We had sent the request before the lesson began.**
+Плитки: `request` `a` `make` `I` `Can` → **Can I make a request?**
 
-**3 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-44:i02; family: context_gap_grammar -->
-We ___ sent the request before the lesson began. → **had** · have · were
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- were — *Для действия до другого события в прошлом нужно had + третья форма.*
+**3 · В классе плохо слышно учителя. Попросите: «Не могли бы вы говорить громче?»**
+<!-- interaction_id: en:lesson-25:session-44:i02; family: scripted_repeat_compare -->
+🎙 **Could you speak louder?**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-44:i03; family: listen_choose -->
-🔊 *We had sent the request before the lesson began.* → **We had sent the request before the lesson began.** · They had sent the request before the lesson began. · We had sent the request before the lesson ended.
-- They had sent the request before the lesson began. — *В записи звучит We had sent the request before the lesson began.*
-- We had sent the request before the lesson ended. — *В записи звучит We had sent the request before the lesson began.*
-
-**5 · Карточка слова — grade**
+**4 · Карточка слова — grade**
 <!-- interaction_id: en:lesson-25:session-44:word:grade; family: word_card -->
 > **grade** — Оценка. Grade здесь — оценка за учебную работу или предмет.
 
-**6 · Скажите: «Я уже проверил свою оценку к тому моменту, когда она позвонила.»**
-<!-- interaction_id: en:lesson-25:session-44:i04; family: phrase_builder -->
-Плитки: `called` `she` `time` `the` `by` `grade` `my` `checked` `had` `I` → **I had checked my grade by the time she called.**
+**5 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-44:i03; family: listen_choose -->
+🔊 *I got a good grade in English.* → **I got a good grade in English.** · I got a good grade in maths. · She got a good grade in English.
+- I got a good grade in maths. — *В записи звучит I got a good grade in English.*
+- She got a good grade in English. — *В записи звучит I got a good grade in English.*
 
-**7 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-44:i05; family: context_gap_grammar -->
-I ___ checked my grade by the time she called. → **had** · have · was
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**6 · Результат контрольной уже известен. Выберите Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-44:i04; family: context_gap_grammar -->
+The teacher ___ our tests. → **has already marked** · have already marked · has already mark
+- have already marked — *Teacher в единственном числе требует has.*
+- has already mark — *После has нужна третья форма marked.*
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-44:i06; family: listen_choose -->
-🔊 *I had checked my grade by the time she called.* → **I had checked my grade by the time she called.** · She had checked her grade by the time I called. · I had checked my grade by the time he called.
-- She had checked her grade by the time I called. — *В записи звучит I had checked my grade by the time she called.*
-- I had checked my grade by the time he called. — *В записи звучит I had checked my grade by the time she called.*
-
-**9 · Карточка слова — definition**
+**7 · Карточка слова — definition**
 <!-- interaction_id: en:lesson-25:session-44:word:definition; family: word_card -->
 > **definition** — Определение. Definition — объяснение значения слова или понятия.
 
-**10 · Скажите: «Мы уже прочитали определение к тому моменту, когда он объяснил слово.»**
-<!-- interaction_id: en:lesson-25:session-44:i07; family: phrase_builder -->
-Плитки: `word` `the` `explained` `he` `time` `the` `by` `definition` `the` `read` `had` `We` → **We had read the definition by the time he explained the word.**
+**8 · Вы хотите узнать значение слова. Что ищете в словаре?**
+<!-- interaction_id: en:lesson-25:session-44:i05; family: context_gap_grammar -->
+I am looking for the ___. → **definition** · grade · request
+- grade — *Grade — оценка за работу, а не объяснение значения.*
+- request — *Request — просьба, а не объяснение слова.*
 
-**11 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-44:i08; family: context_gap_grammar -->
-We ___ read the definition by the time he explained the word. → **had** · have · were
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- were — *Для действия до другого события в прошлом нужно had + третья форма.*
+**9 · Услышьте, где можно найти объяснение.**
+<!-- interaction_id: en:lesson-25:session-44:i06; family: listen_build_dictation -->
+🔊 *Look at the bottom of the page.* Плитки: `page` `the` `of` `bottom` `the` `at` `Look` → **Look at the bottom of the page.**
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-44:i09; family: listen_choose -->
-🔊 *We had read the definition by the time he explained the word.* → **We had read the definition by the time he explained the word.** · They had read the definition by the time he explained the word. · We had read the definition by the time she explained the word.
-- They had read the definition by the time he explained the word. — *В записи звучит We had read the definition by the time he explained the word.*
-- We had read the definition by the time she explained the word. — *В записи звучит We had read the definition by the time he explained the word.*
-
-**13 · Карточка слова — introduction**
+**10 · Карточка слова — introduction**
 <!-- interaction_id: en:lesson-25:session-44:word:introduction; family: word_card -->
 > **introduction** — Введение. Introduction здесь — начальная часть текста, знакомящая с темой.
 
-**14 · Скажите: «Она уже закончила введение к тому моменту, когда я пришёл.»**
-<!-- interaction_id: en:lesson-25:session-44:i10; family: phrase_builder -->
-Плитки: `arrived` `I` `time` `the` `by` `introduction` `the` `finished` `had` `She` → **She had finished the introduction by the time I arrived.**
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-44:i07; family: listen_choose -->
+🔊 *The introduction is on the first page.* → **The introduction is on the first page.** · The introduction is on the last page. · The introduction is on the next page.
+- The introduction is on the last page. — *В записи звучит The introduction is on the first page.*
+- The introduction is on the next page. — *В записи звучит The introduction is on the first page.*
 
-**15 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-44:i11; family: context_gap_grammar -->
-She ___ finished the introduction by the time I arrived. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**12 · Друг пропустил начало текста. Предложите: «Давай начнём сначала».**
+<!-- interaction_id: en:lesson-25:session-44:i08; family: scripted_repeat_compare -->
+🎙 **Let us start from the beginning.**
+
+**13 · Соотнесите слова с переводом**
+<!-- interaction_id: en:lesson-25:session-44:i09; family: speed_match -->
+request — просьба · grade — оценка · definition — определение · introduction — введение
+
+**14 · Домашняя работа была готова до начала урока. Выберите had.**
+<!-- interaction_id: en:lesson-25:session-44:i10; family: context_gap_grammar -->
+I ___ finished my homework by the time the lesson began. → **had** · have · was
+- have — *Have связывает результат с настоящим, а began задаёт прошлый момент.*
+- was — *Нужно had finished для более раннего завершённого действия.*
+
+**15 · Расскажите о прежней трудности: «Я раньше находил чтение трудным».**
+<!-- interaction_id: en:lesson-25:session-44:i11; family: phrase_builder -->
+Плитки: `difficult` `reading` `find` `to` `used` `I` → **I used to find reading difficult.**
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-44:i12; family: listen_choose -->
-🔊 *She had finished the introduction by the time I arrived.* → **She had finished the introduction by the time I arrived.** · He had finished the introduction by the time I arrived. · She had finished the introduction by the time we arrived.
-- He had finished the introduction by the time I arrived. — *В записи звучит She had finished the introduction by the time I arrived.*
-- She had finished the introduction by the time we arrived. — *В записи звучит She had finished the introduction by the time I arrived.*
+🔊 *We discussed the story yesterday.* → **We discussed the story yesterday.** · We discussed the poem yesterday. · We discussed the story last week.
+- We discussed the poem yesterday. — *В записи звучит We discussed the story yesterday.*
+- We discussed the story last week. — *В записи звучит We discussed the story yesterday.*
 
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-44:i13; family: speed_match -->
-request — просьба · grade — оценка · definition — определение · introduction — введение
+**17 · Вы сначала прочли вопрос, потом ответили. Выберите before.**
+<!-- interaction_id: en:lesson-25:session-44:i13; family: context_gap_grammar -->
+I read the question ___ I answered. → **before** · after · while
+- after — *After меняет порядок: чтение оказалось бы после ответа.*
+- while — *While означает одновременность, а чтение было раньше ответа.*
 
-**18 · Уже закончил**
-<!-- interaction_id: en:lesson-25:session-44:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**18 · Вы не знаете слово. Спросите учителя: «Что означает это слово?»**
+<!-- interaction_id: en:lesson-25:session-44:i14; family: scripted_repeat_compare -->
+🎙 **What does this word mean?**
 
-**19 · Поезд уже ушёл**
+**19 · Услышьте просьбу открыть книгу.**
 <!-- interaction_id: en:lesson-25:session-44:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+🔊 *Please open your book at page ten.* Плитки: `ten` `page` `at` `book` `your` `open` `Please` → **Please open your book at page ten.**
 
-**20 · Скажите: «Он уже проверил свою оценку к тому моменту, когда я позвонил».**
-<!-- interaction_id: en:lesson-25:session-44:i16; family: scripted_repeat_compare -->
-🎙 **He had checked his grade by the time I called.**
+**20 · Учитель разрешил задать ещё один вопрос. Попросите об этом.**
+<!-- interaction_id: en:lesson-25:session-44:i16; family: context_gap_grammar -->
+Can I ask ___ question? → **another** · other · others
+- other — *Перед question в единственном числе нужно another.*
+- others — *Others заменяет существительное, а здесь уже есть question.*
 
-**21 · Скажите: «Мы уже закончили введение к тому моменту, когда она пришла».**
-<!-- interaction_id: en:lesson-25:session-44:i17; family: scripted_repeat_compare -->
-🎙 **We had finished the introduction by the time she arrived.**
+**21 · После понятного объяснения скажите: «Теперь я могу сделать это сам».**
+<!-- interaction_id: en:lesson-25:session-44:i17; family: phrase_builder -->
+Плитки: `own` `my` `on` `it` `do` `can` `I` `Now` → **Now I can do it on my own.**
 

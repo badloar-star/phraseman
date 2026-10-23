@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-44:i01",
-    "correctText": "We had sent the request before the lesson began.",
+    "correctText": "Can I make a request?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-44:i02",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-44:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-44:i03",
-    "correctText": "We had sent the request before the lesson began.",
-    "correctResponseId": "en:lesson-25:session-44:i03:r1"
+    "correctText": "Could you speak louder?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-44:word:grade",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-44:i03",
+    "correctText": "I got a good grade in English.",
+    "correctResponseId": "en:lesson-25:session-44:i03:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-44:i04",
-    "correctText": "I had checked my grade by the time she called.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-44:i05",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-44:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-44:i06",
-    "correctText": "I had checked my grade by the time she called.",
-    "correctResponseId": "en:lesson-25:session-44:i06:r1"
+    "correctText": "has already marked",
+    "correctResponseId": "en:lesson-25:session-44:i04:r1"
   },
   {
     "interactionId": "en:lesson-25:session-44:word:definition",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-44:i07",
-    "correctText": "We had read the definition by the time he explained the word.",
+    "interactionId": "en:lesson-25:session-44:i05",
+    "correctText": "definition",
+    "correctResponseId": "en:lesson-25:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-44:i06",
+    "correctText": "Look at the bottom of the page.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-44:i08",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-44:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-44:i09",
-    "correctText": "We had read the definition by the time he explained the word.",
-    "correctResponseId": "en:lesson-25:session-44:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-44:word:introduction",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-44:i10",
-    "correctText": "She had finished the introduction by the time I arrived.",
+    "interactionId": "en:lesson-25:session-44:i07",
+    "correctText": "The introduction is on the first page.",
+    "correctResponseId": "en:lesson-25:session-44:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-44:i08",
+    "correctText": "Let us start from the beginning.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-44:i11",
+    "interactionId": "en:lesson-25:session-44:i09",
+    "correctText": "en:lesson-25:session-44:i09:p1=request\nen:lesson-25:session-44:i09:p2=grade\nen:lesson-25:session-44:i09:p3=definition\nen:lesson-25:session-44:i09:p4=introduction",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-44:i10",
     "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-44:i11:r1"
+    "correctResponseId": "en:lesson-25:session-44:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-44:i11",
+    "correctText": "I used to find reading difficult.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-44:i12",
-    "correctText": "She had finished the introduction by the time I arrived.",
+    "correctText": "We discussed the story yesterday.",
     "correctResponseId": "en:lesson-25:session-44:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-44:i13",
-    "correctText": "en:lesson-25:session-44:i13:p1=request\nen:lesson-25:session-44:i13:p2=grade\nen:lesson-25:session-44:i13:p3=definition\nen:lesson-25:session-44:i13:p4=introduction",
-    "correctResponseId": null
+    "correctText": "before",
+    "correctResponseId": "en:lesson-25:session-44:i13:r1"
   },
   {
     "interactionId": "en:lesson-25:session-44:i14",
-    "correctText": "She had finished before I called.",
+    "correctText": "What does this word mean?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-44:i15",
-    "correctText": "The train had left when we arrived.",
+    "correctText": "Please open your book at page ten.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-44:i16",
-    "correctText": "He had checked his grade by the time I called.",
-    "correctResponseId": null
+    "correctText": "another",
+    "correctResponseId": "en:lesson-25:session-44:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-44:i17",
-    "correctText": "We had finished the introduction by the time she arrived.",
+    "correctText": "Now I can do it on my own.",
     "correctResponseId": null
   }
 ]

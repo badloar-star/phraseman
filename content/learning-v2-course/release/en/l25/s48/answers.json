@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-48:i01",
-    "correctText": "We used to feed a stray cat.",
-    "correctResponseId": null
+    "correctText": "A stray cat is sitting by our gate.",
+    "correctResponseId": "en:lesson-25:session-48:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-48:i02",
-    "correctText": "used",
-    "correctResponseId": "en:lesson-25:session-48:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-48:i03",
-    "correctText": "We used to feed a stray cat.",
-    "correctResponseId": "en:lesson-25:session-48:i03:r1"
+    "correctText": "Is this your cat?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-48:word:tame",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-48:i03",
+    "correctText": "tame",
+    "correctResponseId": "en:lesson-25:session-48:i03:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-48:i04",
-    "correctText": "I used to have a tame rabbit.",
+    "correctText": "I used to have a white rabbit.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-48:i05",
-    "correctText": "used",
-    "correctResponseId": "en:lesson-25:session-48:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-48:i06",
-    "correctText": "I used to have a tame rabbit.",
-    "correctResponseId": "en:lesson-25:session-48:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-48:word:paws",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-48:i07",
-    "correctText": "We used to wash the dog's paws.",
+    "interactionId": "en:lesson-25:session-48:i05",
+    "correctText": "The dog's paws are muddy.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-48:i08",
-    "correctText": "used",
-    "correctResponseId": "en:lesson-25:session-48:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-48:i09",
-    "correctText": "We used to wash the dog's paws.",
-    "correctResponseId": "en:lesson-25:session-48:i09:r1"
+    "interactionId": "en:lesson-25:session-48:i06",
+    "correctText": "Pass me the towel, please.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-48:word:claws",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-48:i07",
+    "correctText": "The cat has sharp claws.",
+    "correctResponseId": "en:lesson-25:session-48:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-48:i08",
+    "correctText": "claws",
+    "correctResponseId": "en:lesson-25:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-48:i09",
+    "correctText": "en:lesson-25:session-48:i09:p1=stray\nen:lesson-25:session-48:i09:p2=tame\nen:lesson-25:session-48:i09:p3=paws\nen:lesson-25:session-48:i09:p4=claws",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-25:session-48:i10",
-    "correctText": "The cat used to sharpen its claws outside.",
+    "correctText": "I have already spoken to the owner.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-48:i11",
-    "correctText": "used",
+    "correctText": "found",
     "correctResponseId": "en:lesson-25:session-48:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-48:i12",
-    "correctText": "The cat used to sharpen its claws outside.",
+    "correctText": "The owner came to collect her dog.",
     "correctResponseId": "en:lesson-25:session-48:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-48:i13",
-    "correctText": "en:lesson-25:session-48:i13:p1=stray\nen:lesson-25:session-48:i13:p2=tame\nen:lesson-25:session-48:i13:p3=paws\nen:lesson-25:session-48:i13:p4=claws",
+    "correctText": "We found it near the shop.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-48:i14",
-    "correctText": "She had finished before I called.",
-    "correctResponseId": null
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-48:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-48:i15",
-    "correctText": "I used to drive to work.",
+    "correctText": "Please keep the gate closed.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-48:i16",
-    "correctText": "She used to feed a stray cat.",
-    "correctResponseId": null
+    "correctText": "another",
+    "correctResponseId": "en:lesson-25:session-48:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-48:i17",
-    "correctText": "We used to have a tame rabbit.",
+    "correctText": "We washed our hands after we fed the animals.",
     "correctResponseId": null
   }
 ]

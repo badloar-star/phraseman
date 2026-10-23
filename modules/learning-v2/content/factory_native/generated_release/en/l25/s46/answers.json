@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-46:i01",
-    "correctText": "I used to be eager to travel.",
-    "correctResponseId": null
+    "correctText": "The children are eager to start.",
+    "correctResponseId": "en:lesson-25:session-46:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-46:i02",
-    "correctText": "used",
-    "correctResponseId": "en:lesson-25:session-46:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-46:i03",
-    "correctText": "I used to be eager to travel.",
-    "correctResponseId": "en:lesson-25:session-46:i03:r1"
+    "correctText": "Can I try too?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-46:word:willing",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-46:i03",
+    "correctText": "willing",
+    "correctResponseId": "en:lesson-25:session-46:i03:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-46:i04",
-    "correctText": "He used to be willing to help.",
+    "correctText": "I can help you carry it.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-46:i05",
-    "correctText": "used",
-    "correctResponseId": "en:lesson-25:session-46:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-46:i06",
-    "correctText": "He used to be willing to help.",
-    "correctResponseId": "en:lesson-25:session-46:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-46:word:attentive",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-46:i07",
-    "correctText": "She used to be attentive in class.",
+    "interactionId": "en:lesson-25:session-46:i05",
+    "correctText": "The waiter was very attentive.",
+    "correctResponseId": "en:lesson-25:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-46:i06",
+    "correctText": "Could we have some more water?",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-46:i08",
-    "correctText": "used",
-    "correctResponseId": "en:lesson-25:session-46:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-46:i09",
-    "correctText": "She used to be attentive in class.",
-    "correctResponseId": "en:lesson-25:session-46:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-46:word:harmless",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-46:i10",
-    "correctText": "We used to play harmless games.",
+    "interactionId": "en:lesson-25:session-46:i07",
+    "correctText": "harmless",
+    "correctResponseId": "en:lesson-25:session-46:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-46:i08",
+    "correctText": "Everyone laughed at the funny story.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-46:i09",
+    "correctText": "en:lesson-25:session-46:i09:p1=eager\nen:lesson-25:session-46:i09:p2=willing\nen:lesson-25:session-46:i09:p3=attentive\nen:lesson-25:session-46:i09:p4=harmless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-46:i10",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-25:session-46:i10:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-46:i11",
-    "correctText": "used",
+    "correctText": "I helped my neighbour yesterday.",
     "correctResponseId": "en:lesson-25:session-46:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-46:i12",
-    "correctText": "We used to play harmless games.",
-    "correctResponseId": "en:lesson-25:session-46:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-46:i13",
-    "correctText": "en:lesson-25:session-46:i13:p1=eager\nen:lesson-25:session-46:i13:p2=willing\nen:lesson-25:session-46:i13:p3=attentive\nen:lesson-25:session-46:i13:p4=harmless",
+    "correctText": "I have already finished.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-46:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-46:i13:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-46:i14",
-    "correctText": "She had finished before I called.",
+    "correctText": "That helped a lot.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-46:i15",
-    "correctText": "I used to drive to work.",
+    "correctText": "Please pass the bread to Anna.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-46:i16",
-    "correctText": "I used to be willing to wait.",
-    "correctResponseId": null
+    "correctText": "another",
+    "correctResponseId": "en:lesson-25:session-46:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-46:i17",
-    "correctText": "He used to be attentive at home.",
+    "correctText": "We cleaned the kitchen after our guests left.",
     "correctResponseId": null
   }
 ]

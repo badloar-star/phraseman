@@ -53,99 +53,99 @@ Harmless — нешкідливий, той, що не завдає шкоди. 
 <!-- interaction_id: en:lesson-25:session-46:word:eager; family: word_card -->
 > **eager** — Який дуже прагне. Eager описує сильне бажання й інтерес до майбутньої дії.
 
-**2 · Скажіть: «Раніше я дуже прагнув подорожувати.»**
-<!-- interaction_id: en:lesson-25:session-46:i01; family: phrase_builder -->
-Плитки: `travel` `to` `eager` `be` `to` `used` `I` → **I used to be eager to travel.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-46:i01; family: listen_choose -->
+🔊 *The children are eager to start.* → **The children are eager to start.** · The children are ready to leave. · The children are eager to learn.
+- The children are ready to leave. — *У записі звучить The children are eager to start.*
+- The children are eager to learn. — *У записі звучить The children are eager to start.*
 
-**3 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-46:i02; family: context_gap_grammar -->
-I ___ to be eager to travel. → **used** · use · using
-- use — *Колишній стан або звичка: used to + початкова форма.*
-- using — *Колишній стан або звичка: used to + початкова форма.*
+**3 · Ви хочете приєднатися до гри. Запитайте: «Можна й мені спробувати?»**
+<!-- interaction_id: en:lesson-25:session-46:i02; family: scripted_repeat_compare -->
+🎙 **Can I try too?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-46:i03; family: listen_choose -->
-🔊 *I used to be eager to travel.* → **I used to be eager to travel.** · She used to be eager to travel. · I used to be eager to learn.
-- She used to be eager to travel. — *У записі звучить I used to be eager to travel.*
-- I used to be eager to learn. — *У записі звучить I used to be eager to travel.*
-
-**5 · Картка слова — willing**
+**4 · Картка слова — willing**
 <!-- interaction_id: en:lesson-25:session-46:word:willing; family: word_card -->
 > **willing** — Готовий, згодний. Willing означає згоду зробити щось, а не завершену підготовку.
 
-**6 · Скажіть: «Раніше він був готовий допомогти.»**
+**5 · Друг згоден зачекати, хоча йому не дуже хочеться. Виберіть willing.**
+<!-- interaction_id: en:lesson-25:session-46:i03; family: context_gap_grammar -->
+He is ___ to wait. → **willing** · eager · unable
+- eager — *Eager означає сильне бажання; тут ідеться лише про згоду.*
+- unable — *Unable означало б, що він не може чекати, а він погодився.*
+
+**6 · Запропонуйте допомогу: «Я можу допомогти тобі нести це».**
 <!-- interaction_id: en:lesson-25:session-46:i04; family: phrase_builder -->
-Плитки: `help` `to` `willing` `be` `to` `used` `He` → **He used to be willing to help.**
+Плитки: `it` `carry` `you` `help` `can` `I` → **I can help you carry it.**
 
-**7 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-46:i05; family: context_gap_grammar -->
-He ___ to be willing to help. → **used** · use · using
-- use — *Колишній стан або звичка: used to + початкова форма.*
-- using — *Колишній стан або звичка: used to + початкова форма.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-46:i06; family: listen_choose -->
-🔊 *He used to be willing to help.* → **He used to be willing to help.** · She used to be willing to help. · He used to be willing to wait.
-- She used to be willing to help. — *У записі звучить He used to be willing to help.*
-- He used to be willing to wait. — *У записі звучить He used to be willing to help.*
-
-**9 · Картка слова — attentive**
+**7 · Картка слова — attentive**
 <!-- interaction_id: en:lesson-25:session-46:word:attentive; family: word_card -->
 > **attentive** — Уважний. Attentive — той, хто уважно слухає або помічає потреби іншої людини.
 
-**10 · Скажіть: «Раніше вона була уважною на уроках.»**
-<!-- interaction_id: en:lesson-25:session-46:i07; family: phrase_builder -->
-Плитки: `class` `in` `attentive` `be` `to` `used` `She` → **She used to be attentive in class.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-46:i05; family: listen_choose -->
+🔊 *The waiter was very attentive.* → **The waiter was very attentive.** · The waiter was very tired. · The teacher was very attentive.
+- The waiter was very tired. — *У записі звучить The waiter was very attentive.*
+- The teacher was very attentive. — *У записі звучить The waiter was very attentive.*
 
-**11 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-46:i08; family: context_gap_grammar -->
-She ___ to be attentive in class. → **used** · use · using
-- use — *Колишній стан або звичка: used to + початкова форма.*
-- using — *Колишній стан або звичка: used to + початкова форма.*
+**9 · Офіціант підійшов до столу. Попросіть: «Можна нам ще води?»**
+<!-- interaction_id: en:lesson-25:session-46:i06; family: scripted_repeat_compare -->
+🎙 **Could we have some more water?**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-46:i09; family: listen_choose -->
-🔊 *She used to be attentive in class.* → **She used to be attentive in class.** · He used to be attentive in class. · She used to be attentive at work.
-- He used to be attentive in class. — *У записі звучить She used to be attentive in class.*
-- She used to be attentive at work. — *У записі звучить She used to be attentive in class.*
-
-**13 · Картка слова — harmless**
+**10 · Картка слова — harmless**
 <!-- interaction_id: en:lesson-25:session-46:word:harmless; family: word_card -->
 > **harmless** — Нешкідливий. Harmless — той, що не завдає шкоди.
 
-**14 · Скажіть: «Раніше ми грали в нешкідливі ігри.»**
-<!-- interaction_id: en:lesson-25:session-46:i10; family: phrase_builder -->
-Плитки: `games` `harmless` `play` `to` `used` `We` → **We used to play harmless games.**
+**11 · Жарт нікого не образив і не завдав шкоди. Виберіть harmless.**
+<!-- interaction_id: en:lesson-25:session-46:i07; family: context_gap_grammar -->
+It was a ___ joke. → **harmless** · dangerous · painful
+- dangerous — *Dangerous — небезпечний; за ситуацією шкоди не було.*
+- painful — *Painful — болісний, що завдає болю; це не підходить до опису.*
 
-**15 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-46:i11; family: context_gap_grammar -->
-We ___ to play harmless games. → **used** · use · using
-- use — *Колишній стан або звичка: used to + початкова форма.*
-- using — *Колишній стан або звичка: used to + початкова форма.*
+**12 · Почуйте реакцію на жарт.**
+<!-- interaction_id: en:lesson-25:session-46:i08; family: listen_build_dictation -->
+🔊 *Everyone laughed at the funny story.* Плитки: `story` `funny` `the` `at` `laughed` `Everyone` → **Everyone laughed at the funny story.**
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-46:i12; family: listen_choose -->
-🔊 *We used to play harmless games.* → **We used to play harmless games.** · They used to play harmless games. · We used to enjoy harmless games.
-- They used to play harmless games. — *У записі звучить We used to play harmless games.*
-- We used to enjoy harmless games. — *У записі звучить We used to play harmless games.*
-
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-46:i13; family: speed_match -->
+**13 · Зіставте якості з перекладом**
+<!-- interaction_id: en:lesson-25:session-46:i09; family: speed_match -->
 eager — який дуже прагне · willing — готовий, згодний · attentive — уважний · harmless — нешкідливий
 
-**18 · Уже закінчила до мого дзвінка**
-<!-- interaction_id: en:lesson-25:session-46:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Раніше ви охоче знайомилися з людьми. Виберіть be після used to.**
+<!-- interaction_id: en:lesson-25:session-46:i10; family: context_gap_grammar -->
+I used to ___ eager to meet new people. → **be** · was · being
+- was — *Після used to потрібна початкова форма be.*
+- being — *Після used to тут не ставимо being.*
 
-**19 · Раніше їздив машиною**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-46:i11; family: listen_choose -->
+🔊 *I helped my neighbour yesterday.* → **I helped my neighbour yesterday.** · I called my neighbour yesterday. · I helped my neighbour last week.
+- I called my neighbour yesterday. — *У записі звучить I helped my neighbour yesterday.*
+- I helped my neighbour last week. — *У записі звучить I helped my neighbour yesterday.*
+
+**16 · Повідомте, що допомога вже не потрібна: «Я вже закінчив».**
+<!-- interaction_id: en:lesson-25:session-46:i12; family: phrase_builder -->
+Плитки: `finished` `already` `have` `I` → **I have already finished.**
+
+**17 · Стіл накрили до приходу гостей. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-46:i13; family: context_gap_grammar -->
+We ___ set the table by the time our guests arrived. → **had** · have · were
+- have — *Have пов’язує результат із теперішнім, а arrived задає минулий момент.*
+- were — *Потрібно had set: стіл уже був накритий до приходу.*
+
+**18 · Друг допоміг вам. Скажіть: «Це дуже допомогло».**
+<!-- interaction_id: en:lesson-25:session-46:i14; family: scripted_repeat_compare -->
+🎙 **That helped a lot.**
+
+**19 · Почуйте прохання передати страву.**
 <!-- interaction_id: en:lesson-25:session-46:i15; family: listen_build_dictation -->
-🔊 *I used to drive to work.* Плитки: `work` `to` `drive` `to` `used` `I` → **I used to drive to work.**
+🔊 *Please pass the bread to Anna.* Плитки: `Anna` `to` `bread` `the` `pass` `Please` → **Please pass the bread to Anna.**
 
-**20 · Скажіть: «Раніше я був готовий чекати».**
-<!-- interaction_id: en:lesson-25:session-46:i16; family: scripted_repeat_compare -->
-🎙 **I used to be willing to wait.**
+**20 · Перша розповідь закінчилася. Діти просять ще одну.**
+<!-- interaction_id: en:lesson-25:session-46:i16; family: context_gap_grammar -->
+Please tell us ___ story. → **another** · other · others
+- other — *Story в однині, тому another.*
+- others — *Others не ставиться перед story.*
 
-**21 · Скажіть: «Раніше він був уважним удома».**
-<!-- interaction_id: en:lesson-25:session-46:i17; family: scripted_repeat_compare -->
-🎙 **He used to be attentive at home.**
+**21 · Згадайте порядок справ: «Ми прибрали кухню після того, як гості пішли».**
+<!-- interaction_id: en:lesson-25:session-46:i17; family: phrase_builder -->
+Плитки: `left` `guests` `our` `after` `kitchen` `the` `cleaned` `We` → **We cleaned the kitchen after our guests left.**
 

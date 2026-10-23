@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-35:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-35:intro1:r3": {
+          "ru": "После have нужна форма read, а не reading.",
+          "uk": "Після have потрібна форма read, а не reading."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-35:intro2:r2": {
+          "ru": "С yesterday нужно went без has.",
+          "uk": "Із yesterday потрібне went без has."
+        },
+        "en:lesson-24:session-35:intro2:r3": {
+          "ru": "Для прошлого нужна форма went.",
+          "uk": "Для минулого потрібна форма went."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-35:intro3:r2": {
+          "ru": "С yesterday нужен reported без have.",
+          "uk": "Із yesterday потрібне reported без have."
+        },
+        "en:lesson-24:session-35:intro3:r3": {
+          "ru": "Для прошлого нужна форма reported.",
+          "uk": "Для минулого потрібна форма reported."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e0f01bdd5e4185a3d5420974c37b210a31f5bda213cfbeef57b8587cc31901cb"
+}

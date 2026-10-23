@@ -9247,4 +9247,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 33,
+    sourceFingerprint: "fc695558c51ddd0cf96cd0160bb3c52a9ad5ac2eae96ff7249bac61b1b103dd1",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 34,
+    sourceFingerprint: "122e5e1eab9e470596e0b13b6e7bc75459e214d6af52f19aac85a46afeb9073e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 35,
+    sourceFingerprint: "c78b86bd13d204759916d588e25f27099aa6428a12d1830b1e85521093de31bc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 36,
+    sourceFingerprint: "34a8c1830153b904bcab9805eaddbe66d5730f0415d78618ccd4cd02833bc9aa",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
 ]);

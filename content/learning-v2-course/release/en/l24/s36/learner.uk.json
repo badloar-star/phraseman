@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-36:word:luck",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — luck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:word:luck:audio"
+      ],
+      "accessibilityLabel": "Картка слова — luck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:word:luck:audio",
+          "transcript": "luck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-36:word:luck:r1",
+            "targetText": "luck",
+            "meaningByLocale": {
+              "ru": "удача.",
+              "uk": "удача."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "luck",
+          "definitionByLocale": {
+            "ru": "удача.",
+            "uk": "удача."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені не пощастило.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені не пощастило.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have had no luck.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне не повезло.»",
+          "uk": "Скажіть: «Мені не пощастило.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "had",
+          "no",
+          "luck"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-36:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "I ___ had no luck.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-36:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед had.",
+              "uk": "Із I потрібно have перед had."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед had.",
+              "uk": "Із I потрібно have перед had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-36:i03:r1",
+          "text": "I have had no luck."
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i03:r2",
+          "text": "We have had no luck."
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i03:r3",
+          "text": "I have had good luck."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:i03:audio",
+          "transcript": "I have had no luck."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-36:i03:r1",
+            "targetText": "I have had no luck.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i03:r2",
+            "targetText": "We have had no luck.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i03:r3",
+            "targetText": "I have had good luck.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have had no luck.",
+              "uk": "У записі звучить I have had no luck."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have had no luck.",
+              "uk": "У записі звучить I have had no luck."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:word:surprise",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — surprise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:word:surprise:audio"
+      ],
+      "accessibilityLabel": "Картка слова — surprise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:word:surprise:audio",
+          "transcript": "surprise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-36:word:surprise:r1",
+            "targetText": "surprise",
+            "meaningByLocale": {
+              "ru": "сюрприз, неожиданность.",
+              "uk": "сюрприз, несподіванка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "surprise",
+          "definitionByLocale": {
+            "ru": "сюрприз, неожиданность.",
+            "uk": "сюрприз, несподіванка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вона спланувала сюрприз.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вона спланувала сюрприз.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She planned a surprise yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она спланировала сюрприз.»",
+          "uk": "Скажіть: «Учора вона спланувала сюрприз.»"
+        },
+        "orderedTokens": [
+          "She",
+          "planned",
+          "a",
+          "surprise",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-36:i05:r1",
+          "text": "planned"
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i05:r2",
+          "text": "has planned"
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i05:r3",
+          "text": "plan"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "She ___ a surprise yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-36:i05:r1",
+            "text": "planned"
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i05:r2",
+            "text": "has planned"
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i05:r3",
+            "text": "plan"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма planned без has.",
+              "uk": "Із yesterday потрібна форма planned без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма planned без has.",
+              "uk": "Із yesterday потрібна форма planned без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-36:i06:r1",
+          "text": "She planned a surprise yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i06:r2",
+          "text": "He planned a surprise yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i06:r3",
+          "text": "She planned a surprise last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:i06:audio",
+          "transcript": "She planned a surprise yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-36:i06:r1",
+            "targetText": "She planned a surprise yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i06:r2",
+            "targetText": "He planned a surprise yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i06:r3",
+            "targetText": "She planned a surprise last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-36:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She planned a surprise yesterday.",
+              "uk": "У записі звучить She planned a surprise yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She planned a surprise yesterday.",
+              "uk": "У записі звучить She planned a surprise yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:word:humour",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — humour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:word:humour:audio"
+      ],
+      "accessibilityLabel": "Картка слова — humour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:word:humour:audio",
+          "transcript": "humour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-36:word:humour:r1",
+            "targetText": "humour",
+            "meaningByLocale": {
+              "ru": "юмор.",
+              "uk": "гумор."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "humour",
+          "definitionByLocale": {
+            "ru": "юмор.",
+            "uk": "гумор."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Нам сподобався гумор у цьому фільмі.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Нам сподобався гумор у цьому фільмі.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have enjoyed the humour in this film.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Нам понравился юмор в этом фильме.»",
+          "uk": "Скажіть: «Нам сподобався гумор у цьому фільмі.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "enjoyed",
+          "the",
+          "humour",
+          "in",
+          "this",
+          "film"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-36:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "We ___ enjoyed the humour in this film.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-36:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед enjoyed.",
+              "uk": "Із we потрібно have перед enjoyed."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед enjoyed.",
+              "uk": "Із we потрібно have перед enjoyed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-36:i09:r1",
+          "text": "We have enjoyed the humour in this film."
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i09:r2",
+          "text": "They have enjoyed the humour in this film."
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i09:r3",
+          "text": "We have enjoyed the humour in this book."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:i09:audio",
+          "transcript": "We have enjoyed the humour in this film."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-36:i09:r1",
+            "targetText": "We have enjoyed the humour in this film.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i09:r2",
+            "targetText": "They have enjoyed the humour in this film.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i09:r3",
+            "targetText": "We have enjoyed the humour in this book.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have enjoyed the humour in this film.",
+              "uk": "У записі звучить We have enjoyed the humour in this film."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have enjoyed the humour in this film.",
+              "uk": "У записі звучить We have enjoyed the humour in this film."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:word:pleasure",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pleasure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:word:pleasure:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pleasure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:word:pleasure:audio",
+          "transcript": "pleasure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-36:word:pleasure:r1",
+            "targetText": "pleasure",
+            "meaningByLocale": {
+              "ru": "удовольствие.",
+              "uk": "задоволення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pleasure",
+          "definitionByLocale": {
+            "ru": "удовольствие.",
+            "uk": "задоволення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора було приємно з тобою познайомитися.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора було приємно з тобою познайомитися.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It was a pleasure to meet you yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера было приятно с тобой познакомиться.»",
+          "uk": "Скажіть: «Учора було приємно з тобою познайомитися.»"
+        },
+        "orderedTokens": [
+          "It",
+          "was",
+          "a",
+          "pleasure",
+          "to",
+          "meet",
+          "you",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-36:i11:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i11:r2",
+          "text": "has been"
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i11:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "It ___ a pleasure to meet you yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-36:i11:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i11:r2",
+            "text": "has been"
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i11:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-36:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма was.",
+              "uk": "Із yesterday потрібна форма was."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма was.",
+              "uk": "Із yesterday потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-36:i12:r1",
+          "text": "It was a pleasure to meet you yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i12:r2",
+          "text": "It was a pleasure to meet her yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-36:i12:r3",
+          "text": "It was a pleasure to meet you last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:i12:audio",
+          "transcript": "It was a pleasure to meet you yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-36:i12:r1",
+            "targetText": "It was a pleasure to meet you yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i12:r2",
+            "targetText": "It was a pleasure to meet her yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i12:r3",
+            "targetText": "It was a pleasure to meet you last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was a pleasure to meet you yesterday.",
+              "uk": "У записі звучить It was a pleasure to meet you yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was a pleasure to meet you yesterday.",
+              "uk": "У записі звучить It was a pleasure to meet you yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-36:i13:p1",
+            "target": "luck",
+            "meaningByLocale": {
+              "ru": "удача",
+              "uk": "удача"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-36:i13:p2",
+            "target": "surprise",
+            "meaningByLocale": {
+              "ru": "сюрприз, неожиданность",
+              "uk": "сюрприз, несподіванка"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-36:i13:p3",
+            "target": "humour",
+            "meaningByLocale": {
+              "ru": "юмор",
+              "uk": "гумор"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-36:i13:p4",
+            "target": "pleasure",
+            "meaningByLocale": {
+              "ru": "удовольствие",
+              "uk": "задоволення"
+            }
+          }
+        ],
+        "leftColumn": [
+          "luck",
+          "surprise",
+          "humour",
+          "pleasure"
+        ],
+        "rightColumn": [
+          "удача",
+          "сюрприз, несподіванка",
+          "гумор",
+          "задоволення"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми спланували сюрприз учора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми спланували сюрприз учора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:i16:audio",
+          "transcript": "We planned a surprise yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We planned a surprise yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Минулого тижня було приємно з тобою познайомитися».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Минулого тижня було приємно з тобою познайомитися».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-36:i17:audio",
+          "transcript": "It was a pleasure to meet you last week."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It was a pleasure to meet you last week.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7e65fee28363bb61e11f98eca4ca5ae671760c4342bd06661538898d8a90e1ad"
+}

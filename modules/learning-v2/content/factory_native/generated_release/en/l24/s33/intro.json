@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Климат и погода",
+        "uk": "Клімат і погода"
+      },
+      "bodyByLocale": {
+        "ru": "Climate — климат: обычная погода в месте за длительное время. Weather — погода сегодня или в конкретный день. I have lived in a warm climate before — я раньше жил в тёплом климате. Говорим об опыте без законченной даты, поэтому have lived.",
+        "uk": "Climate — клімат: звична погода в місці протягом тривалого часу. Weather — погода сьогодні або в конкретний день. I have lived in a warm climate before — я раніше жив у теплому кліматі. Говоримо про досвід без завершеної дати, тому have lived."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-33:intro1:r1",
+              "text": "I have lived in a warm climate before."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro1:r2",
+              "text": "I has lived in a warm climate before."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro1:r3",
+              "text": "I have live in a warm climate before."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-33:intro1:r1",
+              "text": "I have lived in a warm climate before."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro1:r2",
+              "text": "I has lived in a warm climate before."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro1:r3",
+              "text": "I have live in a warm climate before."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дождь и засуха",
+        "uk": "Дощ і посуха"
+      },
+      "bodyByLocale": {
+        "ru": "Rainfall — количество выпавшего дождя. She checked the rainfall yesterday — вчера она посмотрела данные об осадках. Например, перед поездкой узнала, много ли там дождей. Drought — засуха, долгое время без достаточного количества дождя. We have had a drought here before — у нас здесь уже бывала засуха. Yesterday требует checked, а опыт без даты допускает have had.",
+        "uk": "Rainfall — кількість дощу, що випав. She checked the rainfall yesterday — учора вона переглянула дані про опади. Наприклад, перед поїздкою дізналася, чи багато там дощів. Drought — посуха, тривалий час без достатньої кількості дощу. We have had a drought here before — у нас тут уже була посуха. Yesterday потребує checked, а досвід без дати допускає have had."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-33:intro2:r1",
+              "text": "She checked the rainfall yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro2:r2",
+              "text": "She has checked the rainfall yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro2:r3",
+              "text": "She check the rainfall yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-33:intro2:r1",
+              "text": "She checked the rainfall yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro2:r2",
+              "text": "She has checked the rainfall yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro2:r3",
+              "text": "She check the rainfall yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обгорел вчера",
+        "uk": "Обгорів учора"
+      },
+      "bodyByLocale": {
+        "ru": "Sunburn — солнечный ожог. He got sunburn yesterday — вчера он обгорел на солнце. В британском варианте можно сказать get sunburn без a. Yesterday указывает на законченное прошлое, поэтому got без has.",
+        "uk": "Sunburn — сонячний опік. He got sunburn yesterday — учора він обгорів на сонці. У британському варіанті можна сказати get sunburn без a. Yesterday вказує на завершене минуле, тому got без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-33:intro3:r1",
+              "text": "He got sunburn yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro3:r2",
+              "text": "He has got sunburn yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro3:r3",
+              "text": "He get sunburn yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-33:intro3:r1",
+              "text": "He got sunburn yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro3:r2",
+              "text": "He has got sunburn yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-33:intro3:r3",
+              "text": "He get sunburn yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d8a0783ec9093737ff7a63cc6d7c5418ff8fcb2c24b0db2d2340afa70342673e"
+}

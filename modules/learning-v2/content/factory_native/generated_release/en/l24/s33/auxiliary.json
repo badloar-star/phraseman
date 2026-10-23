@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-33:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-33:intro1:r3": {
+          "ru": "После have нужна форма lived.",
+          "uk": "Після have потрібна форма lived."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-33:intro2:r2": {
+          "ru": "С yesterday нужно checked без has.",
+          "uk": "Із yesterday потрібне checked без has."
+        },
+        "en:lesson-24:session-33:intro2:r3": {
+          "ru": "Для прошлого нужна форма checked.",
+          "uk": "Для минулого потрібна форма checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-33:intro3:r2": {
+          "ru": "С yesterday нужен got без has.",
+          "uk": "Із yesterday потрібне got без has."
+        },
+        "en:lesson-24:session-33:intro3:r3": {
+          "ru": "Для прошлого нужна форма got.",
+          "uk": "Для минулого потрібна форма got."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0fafc51bf5a89b52d92d2ed206d35c0859636e96a15a77e61f9aada9dfa2df2f"
+}

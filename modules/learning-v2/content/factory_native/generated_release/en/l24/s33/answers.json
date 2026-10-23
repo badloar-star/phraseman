@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-33:word:climate",
+    "correctText": "climate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i01",
+    "correctText": "I have lived in a warm climate before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i03",
+    "correctText": "I have lived in a warm climate before.",
+    "correctResponseId": "en:lesson-24:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:word:rainfall",
+    "correctText": "rainfall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i04",
+    "correctText": "She checked the rainfall yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i05",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-24:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i06",
+    "correctText": "She checked the rainfall yesterday.",
+    "correctResponseId": "en:lesson-24:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:word:drought",
+    "correctText": "drought",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i07",
+    "correctText": "We have had a drought here before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i09",
+    "correctText": "We have had a drought here before.",
+    "correctResponseId": "en:lesson-24:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:word:sunburn",
+    "correctText": "sunburn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i10",
+    "correctText": "He got sunburn yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i11",
+    "correctText": "got",
+    "correctResponseId": "en:lesson-24:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i12",
+    "correctText": "He got sunburn yesterday.",
+    "correctResponseId": "en:lesson-24:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i13",
+    "correctText": "en:lesson-24:session-33:i13:p1=climate\nen:lesson-24:session-33:i13:p2=rainfall\nen:lesson-24:session-33:i13:p3=drought\nen:lesson-24:session-33:i13:p4=sunburn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i16",
+    "correctText": "She got sunburn yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-33:i17",
+    "correctText": "We have lived in a cold climate before.",
+    "correctResponseId": null
+  }
+]

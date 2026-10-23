@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Официальное письмо",
+        "uk": "Офіційний лист"
+      },
+      "bodyByLocale": {
+        "ru": "Official — официальный. The official letter — официальное письмо, например от учреждения. I have read the official letter — я прочитал официальное письмо: теперь знаю его содержание. I read the official letter yesterday — я прочитал его вчера. В прошлом read пишется так же, но произносится «ред».",
+        "uk": "Official — офіційний. The official letter — офіційний лист, наприклад від установи. I have read the official letter — я прочитав офіційного листа: тепер знаю його зміст. I read the official letter yesterday — я прочитав його вчора. У минулому read пишеться так само, але вимовляється «ред»."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-35:intro1:r1",
+              "text": "I have read the official letter."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro1:r2",
+              "text": "I has read the official letter."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro1:r3",
+              "text": "I have reading the official letter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-35:intro1:r1",
+              "text": "I have read the official letter."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro1:r2",
+              "text": "I has read the official letter."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro1:r3",
+              "text": "I have reading the official letter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Встреча для общения",
+        "uk": "Зустріч для спілкування"
+      },
+      "bodyByLocale": {
+        "ru": "Social — связанный с общением и жизнью среди людей. A social event — мероприятие, куда приходят пообщаться: например, встреча соседей. She went to a social event yesterday — вчера она была на такой встрече. Yesterday задаёт законченное прошлое, поэтому went без has.",
+        "uk": "Social — пов’язаний зі спілкуванням і життям серед людей. A social event — захід, куди приходять поспілкуватися: наприклад, зустріч сусідів. She went to a social event yesterday — учора вона була на такій зустрічі. Yesterday задає завершене минуле, тому went без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-35:intro2:r1",
+              "text": "She went to a social event yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro2:r2",
+              "text": "She has gone to a social event yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro2:r3",
+              "text": "She go to a social event yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-35:intro2:r1",
+              "text": "She went to a social event yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro2:r2",
+              "text": "She has gone to a social event yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro2:r3",
+              "text": "She go to a social event yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Законно или незаконно",
+        "uk": "Законно чи незаконно"
+      },
+      "bodyByLocale": {
+        "ru": "Legal — юридический или законный. We have asked for legal advice — мы попросили юридическую консультацию. Illegal — незаконный. They reported illegal parking yesterday — вчера они сообщили о незаконной парковке. В первой фразе сообщаем результат без даты; во второй есть yesterday, поэтому reported без have.",
+        "uk": "Legal — юридичний або законний. We have asked for legal advice — ми попросили юридичну консультацію. Illegal — незаконний. They reported illegal parking yesterday — учора вони повідомили про незаконне паркування. У першій фразі повідомляємо результат без дати; у другій є yesterday, тому reported без have."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-35:intro3:r1",
+              "text": "They reported illegal parking yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro3:r2",
+              "text": "They have reported illegal parking yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro3:r3",
+              "text": "They report illegal parking yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-35:intro3:r1",
+              "text": "They reported illegal parking yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro3:r2",
+              "text": "They have reported illegal parking yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-35:intro3:r3",
+              "text": "They report illegal parking yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0f464bd2d84f048ce08229dc7932119f5666cb03715372225f0f2f28b92ca503"
+}

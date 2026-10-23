@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-35:word:official",
+    "correctText": "official",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i01",
+    "correctText": "I have read the official letter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i03",
+    "correctText": "I have read the official letter.",
+    "correctResponseId": "en:lesson-24:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:word:social",
+    "correctText": "social",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i04",
+    "correctText": "She went to a social event yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i05",
+    "correctText": "went",
+    "correctResponseId": "en:lesson-24:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i06",
+    "correctText": "She went to a social event yesterday.",
+    "correctResponseId": "en:lesson-24:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:word:legal",
+    "correctText": "legal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i07",
+    "correctText": "We have asked for legal advice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i09",
+    "correctText": "We have asked for legal advice.",
+    "correctResponseId": "en:lesson-24:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:word:illegal",
+    "correctText": "illegal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i10",
+    "correctText": "They reported illegal parking yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i11",
+    "correctText": "reported",
+    "correctResponseId": "en:lesson-24:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i12",
+    "correctText": "They reported illegal parking yesterday.",
+    "correctResponseId": "en:lesson-24:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i13",
+    "correctText": "en:lesson-24:session-35:i13:p1=official\nen:lesson-24:session-35:i13:p2=social\nen:lesson-24:session-35:i13:p3=legal\nen:lesson-24:session-35:i13:p4=illegal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i16",
+    "correctText": "We read the official letter yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-35:i17",
+    "correctText": "She asked for legal advice yesterday.",
+    "correctResponseId": null
+  }
+]

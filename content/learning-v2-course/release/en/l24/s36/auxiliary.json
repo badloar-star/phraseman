@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-36:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-36:intro1:r3": {
+          "ru": "После have нужна форма had.",
+          "uk": "Після have потрібна форма had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-36:intro2:r2": {
+          "ru": "С yesterday нужно planned без has.",
+          "uk": "Із yesterday потрібне planned без has."
+        },
+        "en:lesson-24:session-36:intro2:r3": {
+          "ru": "Для прошлого нужна форма planned.",
+          "uk": "Для минулого потрібна форма planned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-36:intro3:r2": {
+          "ru": "С yesterday нужен was.",
+          "uk": "Із yesterday потрібне was."
+        },
+        "en:lesson-24:session-36:intro3:r3": {
+          "ru": "Для прошлого нужна форма was, а не is.",
+          "uk": "Для минулого потрібна форма was, а не is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cc88c0ce069096a8af345d2fcfba6f4756177a9ce817888fb291330e4cbe35bc"
+}

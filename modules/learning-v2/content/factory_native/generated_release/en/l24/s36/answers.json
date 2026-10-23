@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-36:word:luck",
+    "correctText": "luck",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i01",
+    "correctText": "I have had no luck.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i03",
+    "correctText": "I have had no luck.",
+    "correctResponseId": "en:lesson-24:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:word:surprise",
+    "correctText": "surprise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i04",
+    "correctText": "She planned a surprise yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i05",
+    "correctText": "planned",
+    "correctResponseId": "en:lesson-24:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i06",
+    "correctText": "She planned a surprise yesterday.",
+    "correctResponseId": "en:lesson-24:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:word:humour",
+    "correctText": "humour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i07",
+    "correctText": "We have enjoyed the humour in this film.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i09",
+    "correctText": "We have enjoyed the humour in this film.",
+    "correctResponseId": "en:lesson-24:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:word:pleasure",
+    "correctText": "pleasure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i10",
+    "correctText": "It was a pleasure to meet you yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i11",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-24:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i12",
+    "correctText": "It was a pleasure to meet you yesterday.",
+    "correctResponseId": "en:lesson-24:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i13",
+    "correctText": "en:lesson-24:session-36:i13:p1=luck\nen:lesson-24:session-36:i13:p2=surprise\nen:lesson-24:session-36:i13:p3=humour\nen:lesson-24:session-36:i13:p4=pleasure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i16",
+    "correctText": "We planned a surprise yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-36:i17",
+    "correctText": "It was a pleasure to meet you last week.",
+    "correctResponseId": null
+  }
+]

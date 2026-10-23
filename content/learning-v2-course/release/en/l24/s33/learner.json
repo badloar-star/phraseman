@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-33:word:climate",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — climate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:word:climate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — climate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:word:climate:audio",
+          "transcript": "climate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-33:word:climate:r1",
+            "targetText": "climate",
+            "meaningByLocale": {
+              "ru": "климат.",
+              "uk": "клімат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "climate",
+          "definitionByLocale": {
+            "ru": "климат.",
+            "uk": "клімат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я раньше жил в тёплом климате.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я раньше жил в тёплом климате.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have lived in a warm climate before.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я раньше жил в тёплом климате.»",
+          "uk": "Скажіть: «Я раніше жив у теплому кліматі.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "lived",
+          "in",
+          "a",
+          "warm",
+          "climate",
+          "before"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о поездке.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-33:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о поездке.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездке.",
+          "uk": "Доповніть розповідь про подорож."
+        },
+        "gappedTargetPhrase": "I ___ lived in a warm climate before.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-33:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о поездке.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездке.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед lived.",
+              "uk": "Із I потрібно have перед lived."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездке.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед lived.",
+              "uk": "Із I потрібно have перед lived."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-33:i03:r1",
+          "text": "I have lived in a warm climate before."
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i03:r2",
+          "text": "We have lived in a warm climate before."
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i03:r3",
+          "text": "I have lived in a cold climate before."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:i03:audio",
+          "transcript": "I have lived in a warm climate before."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-33:i03:r1",
+            "targetText": "I have lived in a warm climate before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i03:r2",
+            "targetText": "We have lived in a warm climate before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i03:r3",
+            "targetText": "I have lived in a cold climate before.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have lived in a warm climate before.",
+              "uk": "У записі звучить I have lived in a warm climate before."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have lived in a warm climate before.",
+              "uk": "У записі звучить I have lived in a warm climate before."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:word:rainfall",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rainfall",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:word:rainfall:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rainfall",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:word:rainfall:audio",
+          "transcript": "rainfall"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-33:word:rainfall:r1",
+            "targetText": "rainfall",
+            "meaningByLocale": {
+              "ru": "количество осадков в виде дождя.",
+              "uk": "кількість дощових опадів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rainfall",
+          "definitionByLocale": {
+            "ru": "количество осадков в виде дождя.",
+            "uk": "кількість дощових опадів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Вчера она посмотрела данные о количестве дождевых осадков.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Вчера она посмотрела данные о количестве дождевых осадков.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She checked the rainfall yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она посмотрела данные о количестве дождевых осадков.»",
+          "uk": "Скажіть: «Учора вона переглянула дані про кількість дощових опадів.»"
+        },
+        "orderedTokens": [
+          "She",
+          "checked",
+          "the",
+          "rainfall",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о поездке.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-33:i05:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i05:r2",
+          "text": "has checked"
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i05:r3",
+          "text": "check"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о поездке.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездке.",
+          "uk": "Доповніть розповідь про подорож."
+        },
+        "gappedTargetPhrase": "She ___ the rainfall yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-33:i05:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i05:r2",
+            "text": "has checked"
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i05:r3",
+            "text": "check"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о поездке.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездке.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма checked без has.",
+              "uk": "Із yesterday потрібна форма checked без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездке.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма checked без has.",
+              "uk": "Із yesterday потрібна форма checked без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-33:i06:r1",
+          "text": "She checked the rainfall yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i06:r2",
+          "text": "He checked the rainfall yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i06:r3",
+          "text": "She checked the rainfall last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:i06:audio",
+          "transcript": "She checked the rainfall yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-33:i06:r1",
+            "targetText": "She checked the rainfall yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i06:r2",
+            "targetText": "He checked the rainfall yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i06:r3",
+            "targetText": "She checked the rainfall last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She checked the rainfall yesterday.",
+              "uk": "У записі звучить She checked the rainfall yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She checked the rainfall yesterday.",
+              "uk": "У записі звучить She checked the rainfall yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:word:drought",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drought",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:word:drought:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drought",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:word:drought:audio",
+          "transcript": "drought"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-33:word:drought:r1",
+            "targetText": "drought",
+            "meaningByLocale": {
+              "ru": "засуха.",
+              "uk": "посуха."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drought",
+          "definitionByLocale": {
+            "ru": "засуха.",
+            "uk": "посуха."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «У нас здесь уже бывала засуха.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «У нас здесь уже бывала засуха.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have had a drought here before.",
+        "localizedMeaning": {
+          "ru": "Скажите: «У нас здесь уже бывала засуха.»",
+          "uk": "Скажіть: «У нас тут уже була посуха.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "had",
+          "a",
+          "drought",
+          "here",
+          "before"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о поездке.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-33:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о поездке.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездке.",
+          "uk": "Доповніть розповідь про подорож."
+        },
+        "gappedTargetPhrase": "We ___ had a drought here before.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-33:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о поездке.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездке.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед had.",
+              "uk": "Із we потрібно have перед had."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездке.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед had.",
+              "uk": "Із we потрібно have перед had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-33:i09:r1",
+          "text": "We have had a drought here before."
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i09:r2",
+          "text": "They have had a drought here before."
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i09:r3",
+          "text": "We have had a drought there before."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:i09:audio",
+          "transcript": "We have had a drought here before."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-33:i09:r1",
+            "targetText": "We have had a drought here before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i09:r2",
+            "targetText": "They have had a drought here before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i09:r3",
+            "targetText": "We have had a drought there before.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have had a drought here before.",
+              "uk": "У записі звучить We have had a drought here before."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have had a drought here before.",
+              "uk": "У записі звучить We have had a drought here before."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:word:sunburn",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sunburn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:word:sunburn:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sunburn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:word:sunburn:audio",
+          "transcript": "sunburn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-33:word:sunburn:r1",
+            "targetText": "sunburn",
+            "meaningByLocale": {
+              "ru": "солнечный ожог.",
+              "uk": "сонячний опік."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sunburn",
+          "definitionByLocale": {
+            "ru": "солнечный ожог.",
+            "uk": "сонячний опік."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Вчера он обгорел на солнце.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Вчера он обгорел на солнце.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He got sunburn yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера он обгорел на солнце.»",
+          "uk": "Скажіть: «Учора він обгорів на сонці.»"
+        },
+        "orderedTokens": [
+          "He",
+          "got",
+          "sunburn",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о поездке.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-33:i11:r1",
+          "text": "got"
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i11:r2",
+          "text": "has got"
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i11:r3",
+          "text": "get"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о поездке.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездке.",
+          "uk": "Доповніть розповідь про подорож."
+        },
+        "gappedTargetPhrase": "He ___ sunburn yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-33:i11:r1",
+            "text": "got"
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i11:r2",
+            "text": "has got"
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i11:r3",
+            "text": "get"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о поездке.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездке.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма got без has.",
+              "uk": "Із yesterday потрібна форма got без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездке.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма got без has.",
+              "uk": "Із yesterday потрібна форма got без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-33:i12:r1",
+          "text": "He got sunburn yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i12:r2",
+          "text": "She got sunburn yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-33:i12:r3",
+          "text": "He got sunburn last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:i12:audio",
+          "transcript": "He got sunburn yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-33:i12:r1",
+            "targetText": "He got sunburn yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i12:r2",
+            "targetText": "She got sunburn yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i12:r3",
+            "targetText": "He got sunburn last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He got sunburn yesterday.",
+              "uk": "У записі звучить He got sunburn yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He got sunburn yesterday.",
+              "uk": "У записі звучить He got sunburn yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-33:i13:p1",
+            "target": "climate",
+            "meaningByLocale": {
+              "ru": "климат",
+              "uk": "клімат"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-33:i13:p2",
+            "target": "rainfall",
+            "meaningByLocale": {
+              "ru": "количество осадков в виде дождя",
+              "uk": "кількість дощових опадів"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-33:i13:p3",
+            "target": "drought",
+            "meaningByLocale": {
+              "ru": "засуха",
+              "uk": "посуха"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-33:i13:p4",
+            "target": "sunburn",
+            "meaningByLocale": {
+              "ru": "солнечный ожог",
+              "uk": "сонячний опік"
+            }
+          }
+        ],
+        "leftColumn": [
+          "climate",
+          "rainfall",
+          "drought",
+          "sunburn"
+        ],
+        "rightColumn": [
+          "климат",
+          "количество осадков в виде дождя",
+          "засуха",
+          "солнечный ожог"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Жду уже час",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Жду уже час",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Работает с утра",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Работает с утра",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она обгорела на солнце вчера».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она обгорела на солнце вчера».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:i16:audio",
+          "transcript": "She got sunburn yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She got sunburn yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы раньше жили в холодном климате».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы раньше жили в холодном климате».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-33:i17:audio",
+          "transcript": "We have lived in a cold climate before."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have lived in a cold climate before.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "514b99a6fea48f25cf8c23d723e04f5df84ee75b6a7fafbaf3f090cff73c1dc1"
+}

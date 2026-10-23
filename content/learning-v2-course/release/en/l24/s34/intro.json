@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Накопленная сотня",
+        "uk": "Заощаджена сотня"
+      },
+      "bodyByLocale": {
+        "ru": "Hundred — сто. A hundred pounds — сто фунтов; можно также сказать one hundred pounds. I have saved a hundred pounds — я накопил сто фунтов: деньги есть сейчас. С yesterday было бы I saved a hundred pounds yesterday — без have. После точного числа hundred не получает -s: two hundred pounds.",
+        "uk": "Hundred — сто. A hundred pounds — сто фунтів; можна також сказати one hundred pounds. I have saved a hundred pounds — я заощадив сто фунтів: гроші є зараз. Із yesterday було б I saved a hundred pounds yesterday — без have. Після точного числа hundred не отримує -s: two hundred pounds."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-34:intro1:r1",
+              "text": "I have saved a hundred pounds."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro1:r2",
+              "text": "I has saved a hundred pounds."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro1:r3",
+              "text": "I have save a hundred pounds."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-34:intro1:r1",
+              "text": "I have saved a hundred pounds."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro1:r2",
+              "text": "I has saved a hundred pounds."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro1:r3",
+              "text": "I have save a hundred pounds."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тысяча и миллион",
+        "uk": "Тисяча й мільйон"
+      },
+      "bodyByLocale": {
+        "ru": "Thousand — тысяча, million — миллион. She paid a thousand dollars yesterday — вчера она заплатила тысячу долларов. We have sold a million books — мы продали миллион книг: например, издательство сообщает результат. С yesterday нужен paid без has. С точным количеством говорим two thousand, three million — без -s.",
+        "uk": "Thousand — тисяча, million — мільйон. She paid a thousand dollars yesterday — учора вона заплатила тисячу доларів. We have sold a million books — ми продали мільйон книжок: наприклад, видавництво повідомляє результат. Із yesterday потрібне paid без has. Із точною кількістю кажемо two thousand, three million — без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-34:intro2:r1",
+              "text": "She paid a thousand dollars yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro2:r2",
+              "text": "She has paid a thousand dollars yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro2:r3",
+              "text": "She pay a thousand dollars yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-34:intro2:r1",
+              "text": "She paid a thousand dollars yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro2:r2",
+              "text": "She has paid a thousand dollars yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro2:r3",
+              "text": "She pay a thousand dollars yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Двенадцать яиц",
+        "uk": "Дванадцять яєць"
+      },
+      "bodyByLocale": {
+        "ru": "Dozen — дюжина, двенадцать штук. A dozen eggs — двенадцать яиц. They bought a dozen eggs yesterday — вчера они купили дюжину яиц. Для законченного прошлого нужен bought без have. Two dozen eggs — двадцать четыре яйца: после two слово dozen остаётся без -s. Завтрак на двоих или на всю семью — количество имеет значение.",
+        "uk": "Dozen — дюжина, дванадцять штук. A dozen eggs — дванадцять яєць. They bought a dozen eggs yesterday — учора вони купили дюжину яєць. Для завершеного минулого потрібне bought без have. Two dozen eggs — двадцять чотири яйця: після two слово dozen залишається без -s. Сніданок на двох чи на всю сім’ю — кількість має значення."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-34:intro3:r1",
+              "text": "They bought a dozen eggs yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro3:r2",
+              "text": "They have bought a dozen eggs yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro3:r3",
+              "text": "They buy a dozen eggs yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-34:intro3:r1",
+              "text": "They bought a dozen eggs yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro3:r2",
+              "text": "They have bought a dozen eggs yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-34:intro3:r3",
+              "text": "They buy a dozen eggs yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d54f75b23edb2b39017bb1a06ed350f86daf81b8369465612ec36d013cda0001"
+}

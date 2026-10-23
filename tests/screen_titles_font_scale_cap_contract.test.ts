@@ -25,7 +25,8 @@ const TITLES: ReadonlyArray<readonly [string, string]> = [
   ['app/settings_edu.tsx', 'fontSize: 34, lineHeight: 40'],
   ['app/settings_language.tsx', 'fontSize: 34, lineHeight: 40'],
   ['app/settings_notifications.tsx', 'fontSize: 34, lineHeight: 40'],
-  ['app/streak_stats.tsx', "fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: embedded ? 0 : 10"],
+  // 22.10 (закон «назад в одном месте»): кнопка и полоса стоят до прокрутки — отступ заголовка над ним больше не нужен
+  ['app/streak_stats.tsx', "fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 0 }"],
 ];
 
 describe('заголовки экранов при крупном системном шрифте', () => {

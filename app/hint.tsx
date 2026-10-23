@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -28,7 +27,7 @@ import { THEORY_FALLBACK, theoryContentKey, theoryEntryFor, theoryHasOwnText } f
 import { lessonTheorySectionsSeenKey } from './target_storage_keys';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { RowDivider } from '../components/v2/RowDivider';
-import BackGlyph from '../components/v2/BackGlyph';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../components/v2/ScreenBackButton';
 
 function L(
   lang: Lang,
@@ -1512,11 +1511,11 @@ function HintScreen() {
     <ScreenGradient>
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-      <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14 }}>
+      {/* зачем (закон владельца 22.10 «назад в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+      <SafeTopBackButton screen="hint" accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} />
+      <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: 20, paddingRight: 14, paddingBottom: 14, minHeight: SCREEN_BACK_SIZE + 14 }}>
         <RowDivider edge="bottom" color={t.border} />
-        <TapScale onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} style={{ marginRight: 12 }}>
-          <BackGlyph size={28} color={t.textPrimary} />
-        </TapScale>
+        <View style={{ marginRight: 12 }}><ScreenBackSlot /></View>
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.textMuted, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.7 }}>
             {hintSubtitle}

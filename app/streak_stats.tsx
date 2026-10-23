@@ -3,7 +3,6 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { KIT_MOTION } from '../constants/motionHybrid';
 import Reanimated, { FadeInDown, FadeOut, useSharedValue, useAnimatedStyle, withTiming, withDelay, cancelAnimation, Easing } from 'react-native-reanimated';
-import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { AppState, View, Text, ScrollView, Pressable, TouchableOpacity, Share, StyleSheet, } from 'react-native';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -78,7 +77,7 @@ import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — 
 import { accentGraphicOf } from '../constants/themeAccentRoles';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { useGuardedNav } from '../hooks/use-guarded-nav';
-import BackGlyph from '../components/v2/BackGlyph';
+import { SafeTopBackButton, ScreenBackZone } from '../components/v2/ScreenBackButton';
 import { quietEmptyDetail, quietEmptyTitle } from '../components/cards-grid/quiet_empty_copy';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
@@ -2357,20 +2356,11 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const statsHeader = (
         <View style={{ paddingHorizontal: 20, paddingTop: embedded ? 4 : 2, paddingBottom: 4, zIndex: 2 /* зачем (D158): шапка с «назад» выше панели «Сейчас недоступно» */ }}>
           <View style={{ alignItems: 'flex-start' }}>
-          {!embedded && (<TapScale
-            onPress={() => {
-              safeRouterBack(router, '/(tabs)/home' as any);
-            }}
-            hitSlop={10}
-            style={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
-          >
-            <BackGlyph size={21} color={statsGlass.text}/>
-          </TapScale>)}
           <FlowText
             testID="stats-header-title"
             provenance="authored"
             maxFontSizeMultiplier={1.15}
-            style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: embedded ? 0 : 10 }}
+            style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 0 }}
           >
             {triLang(lang, {
               ru: 'Серия и результаты',
@@ -2396,6 +2386,15 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             <SafeAreaView testID="screen-streak-stats" style={{ flex: 1 }}>
 
               <ContentWrap>
+              {/* зачем (закон владельца 22.10 «назад в одном месте» + ЗАМОК 22.10 «не пересекается»): «назад» — общая кнопка под безопасным
+                  верхом и полоса под неё ДО прокрутки; заголовок 34 по макету остаётся в прокрутке и уходит под полосу, а не под круг.
+                  Во вкладке (embedded) кнопки нет — у таба её быть не должно. */}
+              {embedded ? null : (
+                <>
+                  <SafeTopBackButton screen="streak_stats" accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} />
+                  <ScreenBackZone />
+                </>
+              )}
               <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
               {/* зачем (Сверка results-007 🔴, 05.10): в макете «‹» и заголовок лежат ВНУТРИ прокрутки (.scr > .in) и уезжают
                   вместе с контентом. Неподвижный заголовок 34 без фона выглядел налезающим на прокрученные блоки.

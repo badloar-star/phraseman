@@ -49,103 +49,103 @@ Throb — пульсувати, боліти ритмічними поштовх
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — numb**
+**1 · Запитайте про самопочуття в дорозі: «Як ти почуваєшся, коли їдеш автобусом?»**
+<!-- interaction_id: en:lesson-26:session-06:i01; family: scripted_repeat_compare -->
+🎙 **How do you feel when you travel by bus?**
+
+**2 · Картка слова — numb**
 <!-- interaction_id: en:lesson-26:session-06:word:numb; family: word_card -->
 > **numb** — Онімілий. Numb — той, що втратив звичайну чутливість, наприклад про пальці.
 
-**2 · Скажіть: «Мої пальці німіють, коли сильно мерзнуть.»**
-<!-- interaction_id: en:lesson-26:session-06:i01; family: phrase_builder -->
-Плитки: `cold` `very` `get` `they` `when` `numb` `feel` `fingers` `My` → **My fingers feel numb when they get very cold.**
+**3 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-06:i02; family: listen_choose -->
+🔊 *My toes feel numb when my shoes are too tight.* → **My toes feel numb when my shoes are too tight.** · My fingers feel numb when my gloves are too tight. · My toes feel cold when my shoes are wet.
+- My fingers feel numb when my gloves are too tight. — *У записі звучить My toes feel numb when my shoes are too tight.*
+- My toes feel cold when my shoes are wet. — *У записі звучить My toes feel numb when my shoes are too tight.*
 
-**3 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-06:i02; family: context_gap_grammar -->
-My fingers ___ numb when they get very cold. → **feel** · feels · feeling
-- feels — *Звичайна закономірність: Present Simple. Потрібна форма feel.*
-- feeling — *Звичайна закономірність: Present Simple. Потрібна форма feel.*
-
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-06:i03; family: listen_choose -->
-🔊 *My fingers feel numb when they get very cold.* → **My fingers feel numb when they get very cold.** · Her fingers feel numb when they get very cold. · My toes feel numb when they get very cold.
-- Her fingers feel numb when they get very cold. — *У записі звучить My fingers feel numb when they get very cold.*
-- My toes feel numb when they get very cold. — *У записі звучить My fingers feel numb when they get very cold.*
+**4 · Мовець описує свої руки. Hands — множина.**
+<!-- interaction_id: en:lesson-26:session-06:i03; family: context_gap_grammar -->
+My hands ___ cold when I wait outside. → **feel** · feels · feeling
+- feels — *Після hands потрібна форма feel без -s.*
+- feeling — *Тут потрібен Present Simple: feel, не feeling без are.*
 
 **5 · Картка слова — nauseous**
 <!-- interaction_id: en:lesson-26:session-06:word:nauseous; family: word_card -->
 > **nauseous** — Який відчуває нудоту. Nauseous описує відчуття, що вас може знудити.
 
-**6 · Скажіть: «Мене нудить, коли я читаю в машині.»**
+**6 · Опишіть свою реакцію на запах: «Мене нудить, коли я відчуваю запах бензину».**
 <!-- interaction_id: en:lesson-26:session-06:i04; family: phrase_builder -->
-Плитки: `car` `a` `in` `read` `I` `when` `nauseous` `feel` `I` → **I feel nauseous when I read in a car.**
+Плитки: `petrol` `smell` `I` `when` `nauseous` `feel` `I` → **I feel nauseous when I smell petrol.**
 
-**7 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-06:i05; family: context_gap_grammar -->
-I ___ nauseous when I read in a car. → **feel** · feels · feeling
-- feels — *Звичайна закономірність: Present Simple. Потрібна форма feel.*
-- feeling — *Звичайна закономірність: Present Simple. Потрібна форма feel.*
+**7 · Уточніть у співрозмовника: «Тебе нудить, коли ти читаєш в автобусі?»**
+<!-- interaction_id: en:lesson-26:session-06:i05; family: scripted_repeat_compare -->
+🎙 **Do you feel nauseous when you read on a bus?**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-06:i06; family: listen_choose -->
-🔊 *I feel nauseous when I read in a car.* → **I feel nauseous when I read in a car.** · She feels nauseous when she reads in a car. · I feel nauseous when I read on a bus.
-- She feels nauseous when she reads in a car. — *У записі звучить I feel nauseous when I read in a car.*
-- I feel nauseous when I read on a bus. — *У записі звучить I feel nauseous when I read in a car.*
+**8 · Відновіть почутий опис.**
+<!-- interaction_id: en:lesson-26:session-06:i06; family: listen_build_dictation -->
+🔊 *I feel tired when I sleep badly.* Плитки: `badly` `sleep` `I` `when` `tired` `feel` `I` → **I feel tired when I sleep badly.**
 
 **9 · Картка слова — tingle**
 <!-- interaction_id: en:lesson-26:session-06:word:tingle; family: word_card -->
 > **tingle** — Поколюють. Tingle — викликати або відчувати легке поколювання.
 
-**10 · Скажіть: «У ступнях поколює, коли я надто довго сиджу.»**
-<!-- interaction_id: en:lesson-26:session-06:i07; family: phrase_builder -->
-Плитки: `long` `too` `for` `sit` `I` `when` `tingle` `feet` `My` → **My feet tingle when I sit for too long.**
+**10 · Мовець описує поколювання після тривалого сидіння. Доповніть умову.**
+<!-- interaction_id: en:lesson-26:session-06:i07; family: context_gap_grammar -->
+My feet tingle when I ___ for too long. → **sit** · sits · sitting
+- sits — *Після I потрібна форма sit без -s.*
+- sitting — *Тут потрібне дієслово sit, а не sitting без am.*
 
-**11 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-06:i08; family: context_gap_grammar -->
-My feet ___ when I sit for too long. → **tingle** · tingles · tingling
-- tingles — *Звичайна закономірність: Present Simple. Потрібна форма tingle.*
-- tingling — *Звичайна закономірність: Present Simple. Потрібна форма tingle.*
+**11 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-06:i08; family: listen_choose -->
+🔊 *My fingers tingle when I come in from the cold.* → **My fingers tingle when I come in from the cold.** · My fingers tingle when I go out in the cold. · My toes tingle when I come in from the cold.
+- My fingers tingle when I go out in the cold. — *У записі звучить My fingers tingle when I come in from the cold.*
+- My toes tingle when I come in from the cold. — *У записі звучить My fingers tingle when I come in from the cold.*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-06:i09; family: listen_choose -->
-🔊 *My feet tingle when I sit for too long.* → **My feet tingle when I sit for too long.** · Her feet tingle when she sits for too long. · My legs tingle when I sit for too long.
-- Her feet tingle when she sits for too long. — *У записі звучить My feet tingle when I sit for too long.*
-- My legs tingle when I sit for too long. — *У записі звучить My feet tingle when I sit for too long.*
-
-**13 · Картка слова — throbs**
+**12 · Картка слова — throbs**
 <!-- interaction_id: en:lesson-26:session-06:word:throbs; family: word_card -->
 > **throbs** — Пульсує. Throb — боліти ритмічними поштовхами; throbs — форма із закінченням -s.
 
-**14 · Скажіть: «Голова пульсує, коли в мене головний біль.»**
-<!-- interaction_id: en:lesson-26:session-06:i10; family: phrase_builder -->
-Плитки: `headache` `a` `have` `I` `when` `throbs` `head` `My` → **My head throbs when I have a headache.**
+**13 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-06:i09; family: listen_choose -->
+🔊 *My head throbs when I bend down.* → **My head throbs when I bend down.** · My tooth throbs when I bend down. · My head aches when I stand up.
+- My tooth throbs when I bend down. — *У записі звучить My head throbs when I bend down.*
+- My head aches when I stand up. — *У записі звучить My head throbs when I bend down.*
 
-**15 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-06:i11; family: context_gap_grammar -->
-My head ___ when I have a headache. → **throbs** · throb · throbbing
-- throb — *Звичайна закономірність: Present Simple. Потрібна форма throbs.*
-- throbbing — *Звичайна закономірність: Present Simple. Потрібна форма throbs.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-06:i12; family: listen_choose -->
-🔊 *My head throbs when I have a headache.* → **My head throbs when I have a headache.** · Her head throbs when she has a headache. · My head throbs when I feel unwell.
-- Her head throbs when she has a headache. — *У записі звучить My head throbs when I have a headache.*
-- My head throbs when I feel unwell. — *У записі звучить My head throbs when I have a headache.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-26:session-06:i13; family: speed_match -->
+**14 · Розрізніть відчуття**
+<!-- interaction_id: en:lesson-26:session-06:i10; family: speed_match -->
 numb — онімілий · nauseous — який відчуває нудоту · tingle — поколюють · throbs — пульсує
 
-**18 · Відпочиваю, коли втомлююся**
-<!-- interaction_id: en:lesson-26:session-06:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**15 · Поясніть, коли з’являється відчуття: «Мої пальці німіють, коли я надто довго тримаю цю сумку».**
+<!-- interaction_id: en:lesson-26:session-06:i11; family: phrase_builder -->
+Плитки: `long` `too` `for` `bag` `this` `hold` `I` `when` `numb` `feel` `fingers` `My` → **My fingers feel numb when I hold this bag for too long.**
 
-**19 · Якщо йде дощ, залишаюся вдома**
-<!-- interaction_id: en:lesson-26:session-06:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+**16 · Ви описуєте нудоту, а не голод або спрагу. Виберіть потрібне відчуття.**
+<!-- interaction_id: en:lesson-26:session-06:i12; family: context_gap_grammar -->
+I feel ___ when I travel on a boat. → **nauseous** · hungry · thirsty
+- hungry — *Hungry — голодний; за ситуацією потрібно назвати нудоту.*
+- thirsty — *Thirsty — той, хто відчуває спрагу; це інше відчуття.*
 
-**20 · Скажіть: «Його пальці німіють, коли сильно мерзнуть».**
-<!-- interaction_id: en:lesson-26:session-06:i16; family: scripted_repeat_compare -->
-🎙 **His fingers feel numb when they get very cold.**
+**17 · Почуйте звичку мовця.**
+<!-- interaction_id: en:lesson-26:session-06:i13; family: listen_build_dictation -->
+🔊 *I sit down when my legs feel tired.* Плитки: `tired` `feel` `legs` `my` `when` `down` `sit` `I` → **I sit down when my legs feel tired.**
 
-**21 · Скажіть: «Його нудить, коли він читає в машині».**
-<!-- interaction_id: en:lesson-26:session-06:i17; family: scripted_repeat_compare -->
-🎙 **He feels nauseous when he reads in a car.**
+**18 · Розкажіть про розмову з лікарем: «Я пояснюю, що відчуваю, коли лікар запитує».**
+<!-- interaction_id: en:lesson-26:session-06:i14; family: scripted_repeat_compare -->
+🎙 **I explain how I feel when the doctor asks.**
+
+**19 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-06:i15; family: listen_choose -->
+🔊 *My neck feels stiff when I sit in this chair.* → **My neck feels stiff when I sit in this chair.** · My back feels stiff when I sit in this chair. · My neck feels stiff when I sleep in this bed.
+- My back feels stiff when I sit in this chair. — *У записі звучить My neck feels stiff when I sit in this chair.*
+- My neck feels stiff when I sleep in this bed. — *У записі звучить My neck feels stiff when I sit in this chair.*
+
+**20 · Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть заперечення.**
+<!-- interaction_id: en:lesson-26:session-06:i16; family: context_gap_grammar -->
+I ___ read if I feel nauseous. → **do not** · does not · am not
+- does not — *Після I заперечення з read утворюється через do not.*
+- am not — *Am not не поєднується тут із початковою формою read; потрібно do not read.*
+
+**21 · Поясніть особисту звичку: «Я роблю перерву, якщо мої руки втомлюються».**
+<!-- interaction_id: en:lesson-26:session-06:i17; family: phrase_builder -->
+Плитки: `tired` `get` `hands` `my` `if` `break` `a` `take` `I` → **I take a break if my hands get tired.**
 

@@ -1,22 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-26:session-06:i01",
+    "correctText": "How do you feel when you travel by bus?",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-26:session-06:word:numb",
     "correctText": "numb",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-26:session-06:i01",
-    "correctText": "My fingers feel numb when they get very cold.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-26:session-06:i02",
-    "correctText": "feel",
+    "correctText": "My toes feel numb when my shoes are too tight.",
     "correctResponseId": "en:lesson-26:session-06:i02:r1"
   },
   {
     "interactionId": "en:lesson-26:session-06:i03",
-    "correctText": "My fingers feel numb when they get very cold.",
+    "correctText": "feel",
     "correctResponseId": "en:lesson-26:session-06:i03:r1"
   },
   {
@@ -26,18 +26,18 @@
   },
   {
     "interactionId": "en:lesson-26:session-06:i04",
-    "correctText": "I feel nauseous when I read in a car.",
+    "correctText": "I feel nauseous when I smell petrol.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-06:i05",
-    "correctText": "feel",
-    "correctResponseId": "en:lesson-26:session-06:i05:r1"
+    "correctText": "Do you feel nauseous when you read on a bus?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-06:i06",
-    "correctText": "I feel nauseous when I read in a car.",
-    "correctResponseId": "en:lesson-26:session-06:i06:r1"
+    "correctText": "I feel tired when I sleep badly.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-06:word:tingle",
@@ -46,18 +46,13 @@
   },
   {
     "interactionId": "en:lesson-26:session-06:i07",
-    "correctText": "My feet tingle when I sit for too long.",
-    "correctResponseId": null
+    "correctText": "sit",
+    "correctResponseId": "en:lesson-26:session-06:i07:r1"
   },
   {
     "interactionId": "en:lesson-26:session-06:i08",
-    "correctText": "tingle",
+    "correctText": "My fingers tingle when I come in from the cold.",
     "correctResponseId": "en:lesson-26:session-06:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-26:session-06:i09",
-    "correctText": "My feet tingle when I sit for too long.",
-    "correctResponseId": "en:lesson-26:session-06:i09:r1"
   },
   {
     "interactionId": "en:lesson-26:session-06:word:throbs",
@@ -65,43 +60,48 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-26:session-06:i09",
+    "correctText": "My head throbs when I bend down.",
+    "correctResponseId": "en:lesson-26:session-06:i09:r1"
+  },
+  {
     "interactionId": "en:lesson-26:session-06:i10",
-    "correctText": "My head throbs when I have a headache.",
+    "correctText": "en:lesson-26:session-06:i10:p1=numb\nen:lesson-26:session-06:i10:p2=nauseous\nen:lesson-26:session-06:i10:p3=tingle\nen:lesson-26:session-06:i10:p4=throbs",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-06:i11",
-    "correctText": "throbs",
-    "correctResponseId": "en:lesson-26:session-06:i11:r1"
+    "correctText": "My fingers feel numb when I hold this bag for too long.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-06:i12",
-    "correctText": "My head throbs when I have a headache.",
+    "correctText": "nauseous",
     "correctResponseId": "en:lesson-26:session-06:i12:r1"
   },
   {
     "interactionId": "en:lesson-26:session-06:i13",
-    "correctText": "en:lesson-26:session-06:i13:p1=numb\nen:lesson-26:session-06:i13:p2=nauseous\nen:lesson-26:session-06:i13:p3=tingle\nen:lesson-26:session-06:i13:p4=throbs",
+    "correctText": "I sit down when my legs feel tired.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-06:i14",
-    "correctText": "I rest when I am tired.",
+    "correctText": "I explain how I feel when the doctor asks.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-06:i15",
-    "correctText": "I stay home if it rains.",
-    "correctResponseId": null
+    "correctText": "My neck feels stiff when I sit in this chair.",
+    "correctResponseId": "en:lesson-26:session-06:i15:r1"
   },
   {
     "interactionId": "en:lesson-26:session-06:i16",
-    "correctText": "His fingers feel numb when they get very cold.",
-    "correctResponseId": null
+    "correctText": "do not",
+    "correctResponseId": "en:lesson-26:session-06:i16:r1"
   },
   {
     "interactionId": "en:lesson-26:session-06:i17",
-    "correctText": "He feels nauseous when he reads in a car.",
+    "correctText": "I take a break if my hands get tired.",
     "correctResponseId": null
   }
 ]

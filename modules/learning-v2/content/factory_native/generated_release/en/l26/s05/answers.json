@@ -6,17 +6,17 @@
   },
   {
     "interactionId": "en:lesson-26:session-05:i01",
-    "correctText": "The doors open automatically when I approach.",
-    "correctResponseId": null
+    "correctText": "The light comes on automatically when I enter the hall.",
+    "correctResponseId": "en:lesson-26:session-05:i01:r1"
   },
   {
     "interactionId": "en:lesson-26:session-05:i02",
-    "correctText": "open",
-    "correctResponseId": "en:lesson-26:session-05:i02:r1"
+    "correctText": "Do the doors close when you leave?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-05:i03",
-    "correctText": "The doors open automatically when I approach.",
+    "correctText": "automatically",
     "correctResponseId": "en:lesson-26:session-05:i03:r1"
   },
   {
@@ -26,18 +26,18 @@
   },
   {
     "interactionId": "en:lesson-26:session-05:i04",
-    "correctText": "I speak rapidly when I get nervous.",
-    "correctResponseId": null
+    "correctText": "The ice melts rapidly when I put it in hot water.",
+    "correctResponseId": "en:lesson-26:session-05:i04:r1"
   },
   {
     "interactionId": "en:lesson-26:session-05:i05",
-    "correctText": "speak",
-    "correctResponseId": "en:lesson-26:session-05:i05:r1"
+    "correctText": "I ask you to repeat if you speak too fast.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-05:i06",
-    "correctText": "I speak rapidly when I get nervous.",
-    "correctResponseId": "en:lesson-26:session-05:i06:r1"
+    "correctText": "Do you speak faster when you are nervous?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-05:word:constantly",
@@ -46,17 +46,17 @@
   },
   {
     "interactionId": "en:lesson-26:session-05:i07",
-    "correctText": "I move constantly when I dance.",
+    "correctText": "I check the time constantly when I wait for a bus.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-05:i08",
-    "correctText": "move",
+    "correctText": "constantly",
     "correctResponseId": "en:lesson-26:session-05:i08:r1"
   },
   {
     "interactionId": "en:lesson-26:session-05:i09",
-    "correctText": "I move constantly when I dance.",
+    "correctText": "I move away from the door when people get off the bus.",
     "correctResponseId": "en:lesson-26:session-05:i09:r1"
   },
   {
@@ -66,42 +66,42 @@
   },
   {
     "interactionId": "en:lesson-26:session-05:i10",
-    "correctText": "I step back instinctively when something comes towards me.",
+    "correctText": "I close my eyes instinctively when I see a bright flash.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-05:i11",
-    "correctText": "step",
-    "correctResponseId": "en:lesson-26:session-05:i11:r1"
+    "correctText": "en:lesson-26:session-05:i11:p1=automatically\nen:lesson-26:session-05:i11:p2=rapidly\nen:lesson-26:session-05:i11:p3=constantly\nen:lesson-26:session-05:i11:p4=instinctively",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-05:i12",
-    "correctText": "I step back instinctively when something comes towards me.",
-    "correctResponseId": "en:lesson-26:session-05:i12:r1"
+    "correctText": "I jump instinctively when I hear a sudden bang.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-05:i13",
-    "correctText": "en:lesson-26:session-05:i13:p1=automatically\nen:lesson-26:session-05:i13:p2=rapidly\nen:lesson-26:session-05:i13:p3=constantly\nen:lesson-26:session-05:i13:p4=instinctively",
-    "correctResponseId": null
+    "correctText": "gets",
+    "correctResponseId": "en:lesson-26:session-05:i13:r1"
   },
   {
     "interactionId": "en:lesson-26:session-05:i14",
-    "correctText": "I rest when I am tired.",
-    "correctResponseId": null
+    "correctText": "The screen lights up when I press this button.",
+    "correctResponseId": "en:lesson-26:session-05:i14:r1"
   },
   {
     "interactionId": "en:lesson-26:session-05:i15",
-    "correctText": "I stay home if it rains.",
+    "correctText": "I read more slowly if the text is difficult.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-26:session-05:i16",
-    "correctText": "He speaks rapidly when he gets nervous.",
-    "correctResponseId": null
+    "correctText": "do not",
+    "correctResponseId": "en:lesson-26:session-05:i16:r1"
   },
   {
     "interactionId": "en:lesson-26:session-05:i17",
-    "correctText": "The doors open automatically when we approach.",
+    "correctText": "I ask for help if I do not understand the instructions.",
     "correctResponseId": null
   }
 ]

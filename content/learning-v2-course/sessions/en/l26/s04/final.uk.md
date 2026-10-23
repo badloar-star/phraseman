@@ -49,103 +49,103 @@ Heartbeat — серцебиття. I notice my heartbeat when I lie quietly —
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — rhythm**
+**1 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-04:i01; family: listen_choose -->
+🔊 *I smile when I hear my favourite song.* → **I smile when I hear my favourite song.** · I sing when I hear my favourite song. · I smile when I hear my favourite story.
+- I sing when I hear my favourite song. — *У записі звучить I smile when I hear my favourite song.*
+- I smile when I hear my favourite story. — *У записі звучить I smile when I hear my favourite song.*
+
+**2 · Картка слова — rhythm**
 <!-- interaction_id: en:lesson-26:session-04:word:rhythm; family: word_card -->
 > **rhythm** — Ритм. Rhythm — повторюваний малюнок звуків чи рухів.
 
-**2 · Скажіть: «Я дотримуюся ритму, коли танцюю.»**
-<!-- interaction_id: en:lesson-26:session-04:i01; family: phrase_builder -->
-Плитки: `dance` `I` `when` `rhythm` `the` `follow` `I` → **I follow the rhythm when I dance.**
+**3 · Запитайте про звичку: «Ти дотримуєшся ритму, коли плескаєш?»**
+<!-- interaction_id: en:lesson-26:session-04:i02; family: phrase_builder -->
+Плитки: `clap` `you` `when` `rhythm` `the` `follow` `you` `Do` → **Do you follow the rhythm when you clap?**
 
-**3 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-04:i02; family: context_gap_grammar -->
-I ___ the rhythm when I dance. → **follow** · follows · following
-- follows — *Звичайна закономірність: Present Simple. Потрібна форма follow.*
-- following — *Звичайна закономірність: Present Simple. Потрібна форма follow.*
+**4 · Ви описуєте свою звичайну поведінку на заняттях танцями.**
+<!-- interaction_id: en:lesson-26:session-04:i03; family: context_gap_grammar -->
+I ___ carefully when the teacher shows a new step. → **watch** · watches · watching
+- watches — *Після I потрібна форма watch без -s.*
+- watching — *Для звички потрібен Present Simple: watch, не watching без допоміжного дієслова.*
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-04:i03; family: listen_choose -->
-🔊 *I follow the rhythm when I dance.* → **I follow the rhythm when I dance.** · She follows the rhythm when she dances. · I follow the rhythm when I sing.
-- She follows the rhythm when she dances. — *У записі звучить I follow the rhythm when I dance.*
-- I follow the rhythm when I sing. — *У записі звучить I follow the rhythm when I dance.*
+**5 · Почуйте, коли мовець робить паузу.**
+<!-- interaction_id: en:lesson-26:session-04:i04; family: listen_build_dictation -->
+🔊 *I stop dancing when the music ends.* Плитки: `ends` `music` `the` `when` `dancing` `stop` `I` → **I stop dancing when the music ends.**
 
-**5 · Картка слова — posture**
+**6 · Картка слова — posture**
 <!-- interaction_id: en:lesson-26:session-04:word:posture; family: word_card -->
 > **posture** — Постава. Posture — те, як людина тримає тіло, коли сидить чи стоїть.
 
-**6 · Скажіть: «Я перевіряю свою поставу, коли відчуваю втому в спині.»**
-<!-- interaction_id: en:lesson-26:session-04:i04; family: phrase_builder -->
-Плитки: `tired` `feels` `back` `my` `when` `posture` `my` `check` `I` → **I check my posture when my back feels tired.**
+**7 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-04:i05; family: listen_choose -->
+🔊 *I notice my posture when I look in a mirror.* → **I notice my posture when I look in a mirror.** · I notice my posture when I look at a photo. · I notice my shoes when I look in a mirror.
+- I notice my posture when I look at a photo. — *У записі звучить I notice my posture when I look in a mirror.*
+- I notice my shoes when I look in a mirror. — *У записі звучить I notice my posture when I look in a mirror.*
 
-**7 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-04:i05; family: context_gap_grammar -->
-I ___ my posture when my back feels tired. → **check** · checks · checking
-- checks — *Звичайна закономірність: Present Simple. Потрібна форма check.*
-- checking — *Звичайна закономірність: Present Simple. Потрібна форма check.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-04:i06; family: listen_choose -->
-🔊 *I check my posture when my back feels tired.* → **I check my posture when my back feels tired.** · She checks her posture when her back feels tired. · I check my posture when my neck feels tired.
-- She checks her posture when her back feels tired. — *У записі звучить I check my posture when my back feels tired.*
-- I check my posture when my neck feels tired. — *У записі звучить I check my posture when my back feels tired.*
+**8 · Розкажіть про особисту звичку: «Я встаю, коли мені потрібна перерва».**
+<!-- interaction_id: en:lesson-26:session-04:i06; family: phrase_builder -->
+Плитки: `break` `a` `need` `I` `when` `up` `stand` `I` → **I stand up when I need a break.**
 
 **9 · Картка слова — pulse**
 <!-- interaction_id: en:lesson-26:session-04:word:pulse; family: word_card -->
 > **pulse** — Пульс. Pulse — ритмічні поштовхи крові в артеріях, які можна відчути, наприклад на зап’ястку.
 
-**10 · Скажіть: «Мій пульс частішає, коли я біжу.»**
-<!-- interaction_id: en:lesson-26:session-04:i07; family: phrase_builder -->
-Плитки: `run` `I` `when` `faster` `gets` `pulse` `My` → **My pulse gets faster when I run.**
+**10 · Мовець описує зміну свого пульсу під час вправ. Доповніть умову.**
+<!-- interaction_id: en:lesson-26:session-04:i07; family: context_gap_grammar -->
+My pulse gets faster when I ___. → **exercise** · exercises · exercising
+- exercises — *Після I потрібна форма exercise без -s.*
+- exercising — *В умові тут потрібен Present Simple: exercise.*
 
-**11 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-04:i08; family: context_gap_grammar -->
-My pulse ___ faster when I run. → **gets** · get · getting
-- get — *Звичайна закономірність: Present Simple. Потрібна форма gets.*
-- getting — *Звичайна закономірність: Present Simple. Потрібна форма gets.*
+**11 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-04:i08; family: listen_choose -->
+🔊 *I take a break when I feel tired.* → **I take a break when I feel tired.** · I take a break when I feel cold. · I take a walk when I feel tired.
+- I take a break when I feel cold. — *У записі звучить I take a break when I feel tired.*
+- I take a walk when I feel tired. — *У записі звучить I take a break when I feel tired.*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-04:i09; family: listen_choose -->
-🔊 *My pulse gets faster when I run.* → **My pulse gets faster when I run.** · Her pulse gets faster when she runs. · My pulse gets faster when I climb stairs.
-- Her pulse gets faster when she runs. — *У записі звучить My pulse gets faster when I run.*
-- My pulse gets faster when I climb stairs. — *У записі звучить My pulse gets faster when I run.*
-
-**13 · Картка слова — heartbeat**
+**12 · Картка слова — heartbeat**
 <!-- interaction_id: en:lesson-26:session-04:word:heartbeat; family: word_card -->
 > **heartbeat** — Серцебиття. Heartbeat — биття серця.
 
-**14 · Скажіть: «Я помічаю своє серцебиття, коли тихо лежу.»**
-<!-- interaction_id: en:lesson-26:session-04:i10; family: phrase_builder -->
-Плитки: `quietly` `lie` `I` `when` `heartbeat` `my` `notice` `I` → **I notice my heartbeat when I lie quietly.**
+**13 · Опишіть своє відчуття: «Я відчуваю своє серцебиття, коли хвилююся».**
+<!-- interaction_id: en:lesson-26:session-04:i09; family: phrase_builder -->
+Плитки: `nervous` `am` `I` `when` `heartbeat` `my` `feel` `I` → **I feel my heartbeat when I am nervous.**
 
-**15 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-04:i11; family: context_gap_grammar -->
-I ___ my heartbeat when I lie quietly. → **notice** · notices · noticing
-- notices — *Звичайна закономірність: Present Simple. Потрібна форма notice.*
-- noticing — *Звичайна закономірність: Present Simple. Потрібна форма notice.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-04:i12; family: listen_choose -->
-🔊 *I notice my heartbeat when I lie quietly.* → **I notice my heartbeat when I lie quietly.** · She notices her heartbeat when she lies quietly. · I notice my heartbeat when I sit quietly.
-- She notices her heartbeat when she lies quietly. — *У записі звучить I notice my heartbeat when I lie quietly.*
-- I notice my heartbeat when I sit quietly. — *У записі звучить I notice my heartbeat when I lie quietly.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-26:session-04:i13; family: speed_match -->
+**14 · Поєднайте слова з перекладами**
+<!-- interaction_id: en:lesson-26:session-04:i10; family: speed_match -->
 rhythm — ритм · posture — постава · pulse — пульс · heartbeat — серцебиття
 
-**18 · Відпочиваю, коли втомлююся**
-<!-- interaction_id: en:lesson-26:session-04:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**15 · Ви спостерігаєте за своєю поставою, сидячи перед дзеркалом. Доповніть дію.**
+<!-- interaction_id: en:lesson-26:session-04:i11; family: context_gap_grammar -->
+I check my posture when I ___ in front of a mirror. → **sit** · sits · sitting
+- sits — *Після I потрібна форма sit.*
+- sitting — *Тут потрібне дієслово sit, а не sitting без am.*
 
-**19 · Якщо йде дощ, залишаюся вдома**
-<!-- interaction_id: en:lesson-26:session-04:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+**16 · Запитайте співрозмовника: «Що ти робиш, коли втомлюєшся?»**
+<!-- interaction_id: en:lesson-26:session-04:i12; family: scripted_repeat_compare -->
+🎙 **What do you do when you get tired?**
 
-**20 · Скажіть: «Я дотримуюся ритму, коли граю на барабанах».**
-<!-- interaction_id: en:lesson-26:session-04:i16; family: scripted_repeat_compare -->
-🎙 **I follow the rhythm when I play the drums.**
+**17 · Відновіть почутий опис ритму.**
+<!-- interaction_id: en:lesson-26:session-04:i13; family: listen_build_dictation -->
+🔊 *I lose the rhythm if the music is too fast.* Плитки: `fast` `too` `is` `music` `the` `if` `rhythm` `the` `lose` `I` → **I lose the rhythm if the music is too fast.**
 
-**21 · Скажіть: «Мій пульс частішає, коли я танцюю».**
+**18 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-04:i14; family: listen_choose -->
+🔊 *I breathe faster when I run uphill.* → **I breathe faster when I run uphill.** · I breathe faster when I walk downhill. · I breathe slowly when I run uphill.
+- I breathe faster when I walk downhill. — *У записі звучить I breathe faster when I run uphill.*
+- I breathe slowly when I run uphill. — *У записі звучить I breathe faster when I run uphill.*
+
+**19 · Поясніть вибір темпу: «Я йду повільніше, якщо моя сумка важка».**
+<!-- interaction_id: en:lesson-26:session-04:i15; family: phrase_builder -->
+Плитки: `heavy` `is` `bag` `my` `if` `slowly` `more` `walk` `I` → **I walk more slowly if my bag is heavy.**
+
+**20 · Мовець не продовжує танцювати після завершення музики. Доповніть заперечення.**
+<!-- interaction_id: en:lesson-26:session-04:i16; family: context_gap_grammar -->
+I ___ keep dancing when the music stops. → **do not** · does not · am not
+- does not — *Для заперечення з I тут потрібно do not.*
+- am not — *Перед keep потрібна форма do not, не am not.*
+
+**21 · Розкажіть про свою звичку: «Я п’ю воду, коли відчуваю спрагу».**
 <!-- interaction_id: en:lesson-26:session-04:i17; family: scripted_repeat_compare -->
-🎙 **My pulse gets faster when I dance.**
+🎙 **I drink water when I feel thirsty.**
 

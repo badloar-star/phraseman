@@ -49,103 +49,103 @@ Throb — пульсировать, болеть ритмичными толчк
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — numb**
+**1 · Спросите о самочувствии в дороге: «Как ты себя чувствуешь, когда едешь на автобусе?»**
+<!-- interaction_id: en:lesson-26:session-06:i01; family: scripted_repeat_compare -->
+🎙 **How do you feel when you travel by bus?**
+
+**2 · Карточка слова — numb**
 <!-- interaction_id: en:lesson-26:session-06:word:numb; family: word_card -->
 > **numb** — Онемевший. Numb — потерявший обычную чувствительность, например о пальцах.
 
-**2 · Скажите: «Мои пальцы немеют, когда сильно мёрзнут.»**
-<!-- interaction_id: en:lesson-26:session-06:i01; family: phrase_builder -->
-Плитки: `cold` `very` `get` `they` `when` `numb` `feel` `fingers` `My` → **My fingers feel numb when they get very cold.**
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-06:i02; family: listen_choose -->
+🔊 *My toes feel numb when my shoes are too tight.* → **My toes feel numb when my shoes are too tight.** · My fingers feel numb when my gloves are too tight. · My toes feel cold when my shoes are wet.
+- My fingers feel numb when my gloves are too tight. — *В записи звучит My toes feel numb when my shoes are too tight.*
+- My toes feel cold when my shoes are wet. — *В записи звучит My toes feel numb when my shoes are too tight.*
 
-**3 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-06:i02; family: context_gap_grammar -->
-My fingers ___ numb when they get very cold. → **feel** · feels · feeling
-- feels — *Обычная закономерность: Present Simple. Нужна форма feel.*
-- feeling — *Обычная закономерность: Present Simple. Нужна форма feel.*
-
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-06:i03; family: listen_choose -->
-🔊 *My fingers feel numb when they get very cold.* → **My fingers feel numb when they get very cold.** · Her fingers feel numb when they get very cold. · My toes feel numb when they get very cold.
-- Her fingers feel numb when they get very cold. — *В записи звучит My fingers feel numb when they get very cold.*
-- My toes feel numb when they get very cold. — *В записи звучит My fingers feel numb when they get very cold.*
+**4 · Говорящий описывает свои руки. Hands — множественное число.**
+<!-- interaction_id: en:lesson-26:session-06:i03; family: context_gap_grammar -->
+My hands ___ cold when I wait outside. → **feel** · feels · feeling
+- feels — *После hands нужна форма feel без -s.*
+- feeling — *Здесь нужен Present Simple: feel, не feeling без are.*
 
 **5 · Карточка слова — nauseous**
 <!-- interaction_id: en:lesson-26:session-06:word:nauseous; family: word_card -->
 > **nauseous** — Испытывающий тошноту. Nauseous описывает чувство, что вас может вырвать.
 
-**6 · Скажите: «Меня тошнит, когда я читаю в машине.»**
+**6 · Опишите свою реакцию на запах: «Меня тошнит, когда я чувствую запах бензина».**
 <!-- interaction_id: en:lesson-26:session-06:i04; family: phrase_builder -->
-Плитки: `car` `a` `in` `read` `I` `when` `nauseous` `feel` `I` → **I feel nauseous when I read in a car.**
+Плитки: `petrol` `smell` `I` `when` `nauseous` `feel` `I` → **I feel nauseous when I smell petrol.**
 
-**7 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-06:i05; family: context_gap_grammar -->
-I ___ nauseous when I read in a car. → **feel** · feels · feeling
-- feels — *Обычная закономерность: Present Simple. Нужна форма feel.*
-- feeling — *Обычная закономерность: Present Simple. Нужна форма feel.*
+**7 · Уточните у собеседника: «Тебя тошнит, когда ты читаешь в автобусе?»**
+<!-- interaction_id: en:lesson-26:session-06:i05; family: scripted_repeat_compare -->
+🎙 **Do you feel nauseous when you read on a bus?**
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-06:i06; family: listen_choose -->
-🔊 *I feel nauseous when I read in a car.* → **I feel nauseous when I read in a car.** · She feels nauseous when she reads in a car. · I feel nauseous when I read on a bus.
-- She feels nauseous when she reads in a car. — *В записи звучит I feel nauseous when I read in a car.*
-- I feel nauseous when I read on a bus. — *В записи звучит I feel nauseous when I read in a car.*
+**8 · Восстановите услышанное описание.**
+<!-- interaction_id: en:lesson-26:session-06:i06; family: listen_build_dictation -->
+🔊 *I feel tired when I sleep badly.* Плитки: `badly` `sleep` `I` `when` `tired` `feel` `I` → **I feel tired when I sleep badly.**
 
 **9 · Карточка слова — tingle**
 <!-- interaction_id: en:lesson-26:session-06:word:tingle; family: word_card -->
 > **tingle** — Покалывают. Tingle — вызывать или ощущать лёгкое покалывание.
 
-**10 · Скажите: «В ступнях покалывает, когда я слишком долго сижу.»**
-<!-- interaction_id: en:lesson-26:session-06:i07; family: phrase_builder -->
-Плитки: `long` `too` `for` `sit` `I` `when` `tingle` `feet` `My` → **My feet tingle when I sit for too long.**
+**10 · Говорящий описывает покалывание после долгого сидения. Дополните условие.**
+<!-- interaction_id: en:lesson-26:session-06:i07; family: context_gap_grammar -->
+My feet tingle when I ___ for too long. → **sit** · sits · sitting
+- sits — *После I нужна форма sit без -s.*
+- sitting — *Здесь нужен личный глагол sit, а не sitting без am.*
 
-**11 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-06:i08; family: context_gap_grammar -->
-My feet ___ when I sit for too long. → **tingle** · tingles · tingling
-- tingles — *Обычная закономерность: Present Simple. Нужна форма tingle.*
-- tingling — *Обычная закономерность: Present Simple. Нужна форма tingle.*
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-06:i08; family: listen_choose -->
+🔊 *My fingers tingle when I come in from the cold.* → **My fingers tingle when I come in from the cold.** · My fingers tingle when I go out in the cold. · My toes tingle when I come in from the cold.
+- My fingers tingle when I go out in the cold. — *В записи звучит My fingers tingle when I come in from the cold.*
+- My toes tingle when I come in from the cold. — *В записи звучит My fingers tingle when I come in from the cold.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-06:i09; family: listen_choose -->
-🔊 *My feet tingle when I sit for too long.* → **My feet tingle when I sit for too long.** · Her feet tingle when she sits for too long. · My legs tingle when I sit for too long.
-- Her feet tingle when she sits for too long. — *В записи звучит My feet tingle when I sit for too long.*
-- My legs tingle when I sit for too long. — *В записи звучит My feet tingle when I sit for too long.*
-
-**13 · Карточка слова — throbs**
+**12 · Карточка слова — throbs**
 <!-- interaction_id: en:lesson-26:session-06:word:throbs; family: word_card -->
 > **throbs** — Пульсирует. Throb — болеть ритмичными толчками; throbs — форма с окончанием -s.
 
-**14 · Скажите: «Голова пульсирует, когда у меня головная боль.»**
-<!-- interaction_id: en:lesson-26:session-06:i10; family: phrase_builder -->
-Плитки: `headache` `a` `have` `I` `when` `throbs` `head` `My` → **My head throbs when I have a headache.**
+**13 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-06:i09; family: listen_choose -->
+🔊 *My head throbs when I bend down.* → **My head throbs when I bend down.** · My tooth throbs when I bend down. · My head aches when I stand up.
+- My tooth throbs when I bend down. — *В записи звучит My head throbs when I bend down.*
+- My head aches when I stand up. — *В записи звучит My head throbs when I bend down.*
 
-**15 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-06:i11; family: context_gap_grammar -->
-My head ___ when I have a headache. → **throbs** · throb · throbbing
-- throb — *Обычная закономерность: Present Simple. Нужна форма throbs.*
-- throbbing — *Обычная закономерность: Present Simple. Нужна форма throbs.*
-
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-06:i12; family: listen_choose -->
-🔊 *My head throbs when I have a headache.* → **My head throbs when I have a headache.** · Her head throbs when she has a headache. · My head throbs when I feel unwell.
-- Her head throbs when she has a headache. — *В записи звучит My head throbs when I have a headache.*
-- My head throbs when I feel unwell. — *В записи звучит My head throbs when I have a headache.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-26:session-06:i13; family: speed_match -->
+**14 · Различите ощущения**
+<!-- interaction_id: en:lesson-26:session-06:i10; family: speed_match -->
 numb — онемевший · nauseous — испытывающий тошноту · tingle — покалывают · throbs — пульсирует
 
-**18 · Отдыхаю, когда устаю**
-<!-- interaction_id: en:lesson-26:session-06:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**15 · Объясните, когда появляется ощущение: «Мои пальцы немеют, когда я слишком долго держу эту сумку».**
+<!-- interaction_id: en:lesson-26:session-06:i11; family: phrase_builder -->
+Плитки: `long` `too` `for` `bag` `this` `hold` `I` `when` `numb` `feel` `fingers` `My` → **My fingers feel numb when I hold this bag for too long.**
 
-**19 · Если идёт дождь, остаюсь дома**
-<!-- interaction_id: en:lesson-26:session-06:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+**16 · Вы описываете тошноту, а не голод или жажду. Выберите нужное ощущение.**
+<!-- interaction_id: en:lesson-26:session-06:i12; family: context_gap_grammar -->
+I feel ___ when I travel on a boat. → **nauseous** · hungry · thirsty
+- hungry — *Hungry — голодный; по ситуации нужно назвать тошноту.*
+- thirsty — *Thirsty — испытывающий жажду; это другое ощущение.*
 
-**20 · Скажите: «Его пальцы немеют, когда сильно мёрзнут».**
-<!-- interaction_id: en:lesson-26:session-06:i16; family: scripted_repeat_compare -->
-🎙 **His fingers feel numb when they get very cold.**
+**17 · Услышьте привычку говорящего.**
+<!-- interaction_id: en:lesson-26:session-06:i13; family: listen_build_dictation -->
+🔊 *I sit down when my legs feel tired.* Плитки: `tired` `feel` `legs` `my` `when` `down` `sit` `I` → **I sit down when my legs feel tired.**
 
-**21 · Скажите: «Его тошнит, когда он читает в машине».**
-<!-- interaction_id: en:lesson-26:session-06:i17; family: scripted_repeat_compare -->
-🎙 **He feels nauseous when he reads in a car.**
+**18 · Расскажите о разговоре с врачом: «Я объясняю, что чувствую, когда врач спрашивает».**
+<!-- interaction_id: en:lesson-26:session-06:i14; family: scripted_repeat_compare -->
+🎙 **I explain how I feel when the doctor asks.**
+
+**19 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-06:i15; family: listen_choose -->
+🔊 *My neck feels stiff when I sit in this chair.* → **My neck feels stiff when I sit in this chair.** · My back feels stiff when I sit in this chair. · My neck feels stiff when I sleep in this bed.
+- My back feels stiff when I sit in this chair. — *В записи звучит My neck feels stiff when I sit in this chair.*
+- My neck feels stiff when I sleep in this bed. — *В записи звучит My neck feels stiff when I sit in this chair.*
+
+**20 · Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.**
+<!-- interaction_id: en:lesson-26:session-06:i16; family: context_gap_grammar -->
+I ___ read if I feel nauseous. → **do not** · does not · am not
+- does not — *После I отрицание с read строится через do not.*
+- am not — *Am not не сочетается здесь с начальной формой read; нужно do not read.*
+
+**21 · Объясните личную привычку: «Я делаю перерыв, если мои руки устают».**
+<!-- interaction_id: en:lesson-26:session-06:i17; family: phrase_builder -->
+Плитки: `tired` `get` `hands` `my` `if` `break` `a` `take` `I` → **I take a break if my hands get tired.**
 

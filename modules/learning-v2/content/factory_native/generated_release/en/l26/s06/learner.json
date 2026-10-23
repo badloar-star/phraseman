@@ -4,8 +4,41 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-26:session-06:word:numb",
+      "interactionId": "en:lesson-26:session-06:i01",
       "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите о самочувствии в дороге: «Как ты себя чувствуешь, когда едешь на автобусе?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Спросите о самочувствии в дороге: «Как ты себя чувствуешь, когда едешь на автобусе?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-06:i01:audio",
+          "transcript": "How do you feel when you travel by bus?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How do you feel when you travel by bus?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-06:word:numb",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -47,109 +80,78 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-06:i01",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Мои пальцы немеют, когда сильно мёрзнут.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Мои пальцы немеют, когда сильно мёрзнут.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "My fingers feel numb when they get very cold.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Мои пальцы немеют, когда сильно мёрзнут.»",
-          "uk": "Скажіть: «Мої пальці німіють, коли сильно мерзнуть.»"
-        },
-        "orderedTokens": [
-          "My",
-          "fingers",
-          "feel",
-          "numb",
-          "when",
-          "they",
-          "get",
-          "very",
-          "cold"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-26:session-06:i02",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Дополните обычную закономерность.",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-26:session-06:i02:r1",
-          "text": "feel"
+          "text": "My toes feel numb when my shoes are too tight."
         },
         {
           "responseId": "en:lesson-26:session-06:i02:r2",
-          "text": "feels"
+          "text": "My fingers feel numb when my gloves are too tight."
         },
         {
           "responseId": "en:lesson-26:session-06:i02:r3",
-          "text": "feeling"
+          "text": "My toes feel cold when my shoes are wet."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните обычную закономерность.",
+      "audioTargetIds": [
+        "en:lesson-26:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-06:i02:audio",
+          "transcript": "My toes feel numb when my shoes are too tight."
         },
-        "gappedTargetPhrase": "My fingers ___ numb when they get very cold.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-26:session-06:i02:r1",
-            "text": "feel"
+            "targetText": "My toes feel numb when my shoes are too tight.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-26:session-06:i02:r2",
-            "text": "feels"
+            "targetText": "My fingers feel numb when my gloves are too tight.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-26:session-06:i02:r3",
-            "text": "feeling"
+            "targetText": "My toes feel cold when my shoes are wet.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Дополните обычную закономерность.",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-26:session-06:i02:r2",
             "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма feel.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма feel."
+              "ru": "В записи звучит My toes feel numb when my shoes are too tight.",
+              "uk": "У записі звучить My toes feel numb when my shoes are too tight."
             }
           },
           {
             "responseId": "en:lesson-26:session-06:i02:r3",
             "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма feel.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма feel."
+              "ru": "В записи звучит My toes feel numb when my shoes are too tight.",
+              "uk": "У записі звучить My toes feel numb when my shoes are too tight."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -157,75 +159,68 @@
       "interactionId": "en:lesson-26:session-06:i03",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Говорящий описывает свои руки. Hands — множественное число.",
       "responseOptions": [
         {
           "responseId": "en:lesson-26:session-06:i03:r1",
-          "text": "My fingers feel numb when they get very cold."
+          "text": "feel"
         },
         {
           "responseId": "en:lesson-26:session-06:i03:r2",
-          "text": "Her fingers feel numb when they get very cold."
+          "text": "feels"
         },
         {
           "responseId": "en:lesson-26:session-06:i03:r3",
-          "text": "My toes feel numb when they get very cold."
+          "text": "feeling"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-06:i03:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Говорящий описывает свои руки. Hands — множественное число.",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-06:i03:audio",
-          "transcript": "My fingers feel numb when they get very cold."
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Говорящий описывает свои руки. Hands — множественное число.",
+          "uk": "Мовець описує свої руки. Hands — множина."
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "gappedTargetPhrase": "My hands ___ cold when I wait outside.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-26:session-06:i03:r1",
-            "targetText": "My fingers feel numb when they get very cold.",
-            "meaningByLocale": null
+            "text": "feel"
           },
           {
             "responseId": "en:lesson-26:session-06:i03:r2",
-            "targetText": "Her fingers feel numb when they get very cold.",
-            "meaningByLocale": null
+            "text": "feels"
           },
           {
             "responseId": "en:lesson-26:session-06:i03:r3",
-            "targetText": "My toes feel numb when they get very cold.",
-            "meaningByLocale": null
+            "text": "feeling"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
+        "testedDimension": "Говорящий описывает свои руки. Hands — множественное число.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-26:session-06:i03:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Говорящий описывает свои руки. Hands — множественное число.",
             "feedbackByLocale": {
-              "ru": "В записи звучит My fingers feel numb when they get very cold.",
-              "uk": "У записі звучить My fingers feel numb when they get very cold."
+              "ru": "После hands нужна форма feel без -s.",
+              "uk": "Після hands потрібна форма feel без -s."
             }
           },
           {
             "responseId": "en:lesson-26:session-06:i03:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Говорящий описывает свои руки. Hands — множественное число.",
             "feedbackByLocale": {
-              "ru": "В записи звучит My fingers feel numb when they get very cold.",
-              "uk": "У записі звучить My fingers feel numb when they get very cold."
+              "ru": "Здесь нужен Present Simple: feel, не feeling без are.",
+              "uk": "Тут потрібен Present Simple: feel, не feeling без are."
             }
           }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        ]
       },
       "scriptedAlternate": null
     },
@@ -278,17 +273,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Меня тошнит, когда я читаю в машине.»",
+      "prompt": "Опишите свою реакцию на запах: «Меня тошнит, когда я чувствую запах бензина».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Меня тошнит, когда я читаю в машине.»",
+      "accessibilityLabel": "Опишите свою реакцию на запах: «Меня тошнит, когда я чувствую запах бензина».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I feel nauseous when I read in a car.",
+        "targetPhrase": "I feel nauseous when I smell petrol.",
         "localizedMeaning": {
-          "ru": "Скажите: «Меня тошнит, когда я читаю в машине.»",
-          "uk": "Скажіть: «Мене нудить, коли я читаю в машині.»"
+          "ru": "Опишите свою реакцию на запах: «Меня тошнит, когда я чувствую запах бензина».",
+          "uk": "Опишіть свою реакцію на запах: «Мене нудить, коли я відчуваю запах бензину»."
         },
         "orderedTokens": [
           "I",
@@ -296,10 +291,8 @@
           "nauseous",
           "when",
           "I",
-          "read",
-          "in",
-          "a",
-          "car"
+          "smell",
+          "petrol"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -313,68 +306,32 @@
     {
       "interactionId": "en:lesson-26:session-06:i05",
       "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните обычную закономерность.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-26:session-06:i05:r1",
-          "text": "feel"
-        },
-        {
-          "responseId": "en:lesson-26:session-06:i05:r2",
-          "text": "feels"
-        },
-        {
-          "responseId": "en:lesson-26:session-06:i05:r3",
-          "text": "feeling"
-        }
-      ],
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните у собеседника: «Тебя тошнит, когда ты читаешь в автобусе?»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните обычную закономерность.",
+      "audioTargetIds": [
+        "en:lesson-26:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Уточните у собеседника: «Тебя тошнит, когда ты читаешь в автобусе?»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-06:i05:audio",
+          "transcript": "Do you feel nauseous when you read on a bus?"
         },
-        "gappedTargetPhrase": "I ___ nauseous when I read in a car.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-26:session-06:i05:r1",
-            "text": "feel"
-          },
-          {
-            "responseId": "en:lesson-26:session-06:i05:r2",
-            "text": "feels"
-          },
-          {
-            "responseId": "en:lesson-26:session-06:i05:r3",
-            "text": "feeling"
-          }
-        ],
-        "testedDimension": "Дополните обычную закономерность.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-26:session-06:i05:r2",
-            "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
-            "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма feel.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма feel."
-            }
-          },
-          {
-            "responseId": "en:lesson-26:session-06:i05:r3",
-            "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
-            "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма feel.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма feel."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you feel nauseous when you read on a bus?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -383,75 +340,38 @@
       "interactionId": "en:lesson-26:session-06:i06",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-26:session-06:i06:r1",
-          "text": "I feel nauseous when I read in a car."
-        },
-        {
-          "responseId": "en:lesson-26:session-06:i06:r2",
-          "text": "She feels nauseous when she reads in a car."
-        },
-        {
-          "responseId": "en:lesson-26:session-06:i06:r3",
-          "text": "I feel nauseous when I read on a bus."
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Восстановите услышанное описание.",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-26:session-06:i06:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Восстановите услышанное описание.",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-26:session-06:i06:audio",
-          "transcript": "I feel nauseous when I read in a car."
+          "transcript": "I feel tired when I sleep badly."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-26:session-06:i06:r1",
-            "targetText": "I feel nauseous when I read in a car.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-26:session-06:i06:r2",
-            "targetText": "She feels nauseous when she reads in a car.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-26:session-06:i06:r3",
-            "targetText": "I feel nauseous when I read on a bus.",
-            "meaningByLocale": null
-          }
+        "hiddenTargetPhrase": "I feel tired when I sleep badly.",
+        "orderedTokens": [
+          "I",
+          "feel",
+          "tired",
+          "when",
+          "I",
+          "sleep",
+          "badly"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-26:session-06:i06:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I feel nauseous when I read in a car.",
-              "uk": "У записі звучить I feel nauseous when I read in a car."
-            }
-          },
-          {
-            "responseId": "en:lesson-26:session-06:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I feel nauseous when I read in a car.",
-              "uk": "У записі звучить I feel nauseous when I read in a car."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -502,103 +422,65 @@
       "interactionId": "en:lesson-26:session-06:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «В ступнях покалывает, когда я слишком долго сижу.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «В ступнях покалывает, когда я слишком долго сижу.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "My feet tingle when I sit for too long.",
-        "localizedMeaning": {
-          "ru": "Скажите: «В ступнях покалывает, когда я слишком долго сижу.»",
-          "uk": "Скажіть: «У ступнях поколює, коли я надто довго сиджу.»"
-        },
-        "orderedTokens": [
-          "My",
-          "feet",
-          "tingle",
-          "when",
-          "I",
-          "sit",
-          "for",
-          "too",
-          "long"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-06:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните обычную закономерность.",
+      "prompt": "Говорящий описывает покалывание после долгого сидения. Дополните условие.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-26:session-06:i08:r1",
-          "text": "tingle"
+          "responseId": "en:lesson-26:session-06:i07:r1",
+          "text": "sit"
         },
         {
-          "responseId": "en:lesson-26:session-06:i08:r2",
-          "text": "tingles"
+          "responseId": "en:lesson-26:session-06:i07:r2",
+          "text": "sits"
         },
         {
-          "responseId": "en:lesson-26:session-06:i08:r3",
-          "text": "tingling"
+          "responseId": "en:lesson-26:session-06:i07:r3",
+          "text": "sitting"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните обычную закономерность.",
+      "accessibilityLabel": "Говорящий описывает покалывание после долгого сидения. Дополните условие.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
+          "ru": "Говорящий описывает покалывание после долгого сидения. Дополните условие.",
+          "uk": "Мовець описує поколювання після тривалого сидіння. Доповніть умову."
         },
-        "gappedTargetPhrase": "My feet ___ when I sit for too long.",
+        "gappedTargetPhrase": "My feet tingle when I ___ for too long.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-26:session-06:i08:r1",
-            "text": "tingle"
+            "responseId": "en:lesson-26:session-06:i07:r1",
+            "text": "sit"
           },
           {
-            "responseId": "en:lesson-26:session-06:i08:r2",
-            "text": "tingles"
+            "responseId": "en:lesson-26:session-06:i07:r2",
+            "text": "sits"
           },
           {
-            "responseId": "en:lesson-26:session-06:i08:r3",
-            "text": "tingling"
+            "responseId": "en:lesson-26:session-06:i07:r3",
+            "text": "sitting"
           }
         ],
-        "testedDimension": "Дополните обычную закономерность.",
+        "testedDimension": "Говорящий описывает покалывание после долгого сидения. Дополните условие.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-26:session-06:i08:r2",
+            "responseId": "en:lesson-26:session-06:i07:r2",
             "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
+            "testedDimension": "Говорящий описывает покалывание после долгого сидения. Дополните условие.",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма tingle.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма tingle."
+              "ru": "После I нужна форма sit без -s.",
+              "uk": "Після I потрібна форма sit без -s."
             }
           },
           {
-            "responseId": "en:lesson-26:session-06:i08:r3",
+            "responseId": "en:lesson-26:session-06:i07:r3",
             "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
+            "testedDimension": "Говорящий описывает покалывание после долгого сидения. Дополните условие.",
             "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма tingle.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма tingle."
+              "ru": "Здесь нужен личный глагол sit, а не sitting без am.",
+              "uk": "Тут потрібне дієслово sit, а не sitting без am."
             }
           }
         ]
@@ -606,73 +488,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-06:i09",
-      "ordinal": 15,
+      "interactionId": "en:lesson-26:session-06:i08",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-26:session-06:i09:r1",
-          "text": "My feet tingle when I sit for too long."
+          "responseId": "en:lesson-26:session-06:i08:r1",
+          "text": "My fingers tingle when I come in from the cold."
         },
         {
-          "responseId": "en:lesson-26:session-06:i09:r2",
-          "text": "Her feet tingle when she sits for too long."
+          "responseId": "en:lesson-26:session-06:i08:r2",
+          "text": "My fingers tingle when I go out in the cold."
         },
         {
-          "responseId": "en:lesson-26:session-06:i09:r3",
-          "text": "My legs tingle when I sit for too long."
+          "responseId": "en:lesson-26:session-06:i08:r3",
+          "text": "My toes tingle when I come in from the cold."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-26:session-06:i09:audio"
+        "en:lesson-26:session-06:i08:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-06:i09:audio",
-          "transcript": "My feet tingle when I sit for too long."
+          "audioTargetId": "en:lesson-26:session-06:i08:audio",
+          "transcript": "My fingers tingle when I come in from the cold."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-26:session-06:i09:r1",
-            "targetText": "My feet tingle when I sit for too long.",
+            "responseId": "en:lesson-26:session-06:i08:r1",
+            "targetText": "My fingers tingle when I come in from the cold.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-26:session-06:i09:r2",
-            "targetText": "Her feet tingle when she sits for too long.",
+            "responseId": "en:lesson-26:session-06:i08:r2",
+            "targetText": "My fingers tingle when I go out in the cold.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-26:session-06:i09:r3",
-            "targetText": "My legs tingle when I sit for too long.",
+            "responseId": "en:lesson-26:session-06:i08:r3",
+            "targetText": "My toes tingle when I come in from the cold.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-26:session-06:i09:r2",
+            "responseId": "en:lesson-26:session-06:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит My feet tingle when I sit for too long.",
-              "uk": "У записі звучить My feet tingle when I sit for too long."
+              "ru": "В записи звучит My fingers tingle when I come in from the cold.",
+              "uk": "У записі звучить My fingers tingle when I come in from the cold."
             }
           },
           {
-            "responseId": "en:lesson-26:session-06:i09:r3",
+            "responseId": "en:lesson-26:session-06:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит My feet tingle when I sit for too long.",
-              "uk": "У записі звучить My feet tingle when I sit for too long."
+              "ru": "В записи звучит My fingers tingle when I come in from the cold.",
+              "uk": "У записі звучить My fingers tingle when I come in from the cold."
             }
           }
         ],
@@ -683,7 +565,7 @@
     },
     {
       "interactionId": "en:lesson-26:session-06:word:throbs",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -725,179 +607,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-06:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Голова пульсирует, когда у меня головная боль.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Голова пульсирует, когда у меня головная боль.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "My head throbs when I have a headache.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Голова пульсирует, когда у меня головная боль.»",
-          "uk": "Скажіть: «Голова пульсує, коли в мене головний біль.»"
-        },
-        "orderedTokens": [
-          "My",
-          "head",
-          "throbs",
-          "when",
-          "I",
-          "have",
-          "a",
-          "headache"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-06:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните обычную закономерность.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-26:session-06:i11:r1",
-          "text": "throbs"
-        },
-        {
-          "responseId": "en:lesson-26:session-06:i11:r2",
-          "text": "throb"
-        },
-        {
-          "responseId": "en:lesson-26:session-06:i11:r3",
-          "text": "throbbing"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните обычную закономерность.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните обычную закономерность.",
-          "uk": "Доповніть звичайну закономірність."
-        },
-        "gappedTargetPhrase": "My head ___ when I have a headache.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-26:session-06:i11:r1",
-            "text": "throbs"
-          },
-          {
-            "responseId": "en:lesson-26:session-06:i11:r2",
-            "text": "throb"
-          },
-          {
-            "responseId": "en:lesson-26:session-06:i11:r3",
-            "text": "throbbing"
-          }
-        ],
-        "testedDimension": "Дополните обычную закономерность.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-26:session-06:i11:r2",
-            "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
-            "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма throbs.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма throbs."
-            }
-          },
-          {
-            "responseId": "en:lesson-26:session-06:i11:r3",
-            "correct": false,
-            "testedDimension": "Дополните обычную закономерность.",
-            "feedbackByLocale": {
-              "ru": "Обычная закономерность: Present Simple. Нужна форма throbs.",
-              "uk": "Звичайна закономірність: Present Simple. Потрібна форма throbs."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-06:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-26:session-06:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-26:session-06:i12:r1",
-          "text": "My head throbs when I have a headache."
+          "responseId": "en:lesson-26:session-06:i09:r1",
+          "text": "My head throbs when I bend down."
         },
         {
-          "responseId": "en:lesson-26:session-06:i12:r2",
-          "text": "Her head throbs when she has a headache."
+          "responseId": "en:lesson-26:session-06:i09:r2",
+          "text": "My tooth throbs when I bend down."
         },
         {
-          "responseId": "en:lesson-26:session-06:i12:r3",
-          "text": "My head throbs when I feel unwell."
+          "responseId": "en:lesson-26:session-06:i09:r3",
+          "text": "My head aches when I stand up."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-26:session-06:i12:audio"
+        "en:lesson-26:session-06:i09:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-06:i12:audio",
-          "transcript": "My head throbs when I have a headache."
+          "audioTargetId": "en:lesson-26:session-06:i09:audio",
+          "transcript": "My head throbs when I bend down."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-26:session-06:i12:r1",
-            "targetText": "My head throbs when I have a headache.",
+            "responseId": "en:lesson-26:session-06:i09:r1",
+            "targetText": "My head throbs when I bend down.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-26:session-06:i12:r2",
-            "targetText": "Her head throbs when she has a headache.",
+            "responseId": "en:lesson-26:session-06:i09:r2",
+            "targetText": "My tooth throbs when I bend down.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-26:session-06:i12:r3",
-            "targetText": "My head throbs when I feel unwell.",
+            "responseId": "en:lesson-26:session-06:i09:r3",
+            "targetText": "My head aches when I stand up.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-26:session-06:i12:r2",
+            "responseId": "en:lesson-26:session-06:i09:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит My head throbs when I have a headache.",
-              "uk": "У записі звучить My head throbs when I have a headache."
+              "ru": "В записи звучит My head throbs when I bend down.",
+              "uk": "У записі звучить My head throbs when I bend down."
             }
           },
           {
-            "responseId": "en:lesson-26:session-06:i12:r3",
+            "responseId": "en:lesson-26:session-06:i09:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит My head throbs when I have a headache.",
-              "uk": "У записі звучить My head throbs when I have a headache."
+              "ru": "В записи звучит My head throbs when I bend down.",
+              "uk": "У записі звучить My head throbs when I bend down."
             }
           }
         ],
@@ -907,21 +683,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-06:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-26:session-06:i10",
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините формы с переводом",
+      "prompt": "Различите ощущения",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините формы с переводом",
+      "accessibilityLabel": "Различите ощущения",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-26:session-06:i13:p1",
+            "pairId": "en:lesson-26:session-06:i10:p1",
             "target": "numb",
             "meaningByLocale": {
               "ru": "онемевший",
@@ -929,7 +705,7 @@
             }
           },
           {
-            "pairId": "en:lesson-26:session-06:i13:p2",
+            "pairId": "en:lesson-26:session-06:i10:p2",
             "target": "nauseous",
             "meaningByLocale": {
               "ru": "испытывающий тошноту",
@@ -937,7 +713,7 @@
             }
           },
           {
-            "pairId": "en:lesson-26:session-06:i13:p3",
+            "pairId": "en:lesson-26:session-06:i10:p3",
             "target": "tingle",
             "meaningByLocale": {
               "ru": "покалывают",
@@ -945,7 +721,7 @@
             }
           },
           {
-            "pairId": "en:lesson-26:session-06:i13:p4",
+            "pairId": "en:lesson-26:session-06:i10:p4",
             "target": "throbs",
             "meaningByLocale": {
               "ru": "пульсирует",
@@ -980,32 +756,144 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-06:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-26:session-06:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, когда появляется ощущение: «Мои пальцы немеют, когда я слишком долго держу эту сумку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, когда появляется ощущение: «Мои пальцы немеют, когда я слишком долго держу эту сумку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My fingers feel numb when I hold this bag for too long.",
+        "localizedMeaning": {
+          "ru": "Объясните, когда появляется ощущение: «Мои пальцы немеют, когда я слишком долго держу эту сумку».",
+          "uk": "Поясніть, коли з’являється відчуття: «Мої пальці німіють, коли я надто довго тримаю цю сумку»."
+        },
+        "orderedTokens": [
+          "My",
+          "fingers",
+          "feel",
+          "numb",
+          "when",
+          "I",
+          "hold",
+          "this",
+          "bag",
+          "for",
+          "too",
+          "long"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-06:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы описываете тошноту, а не голод или жажду. Выберите нужное ощущение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-06:i12:r1",
+          "text": "nauseous"
+        },
+        {
+          "responseId": "en:lesson-26:session-06:i12:r2",
+          "text": "hungry"
+        },
+        {
+          "responseId": "en:lesson-26:session-06:i12:r3",
+          "text": "thirsty"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы описываете тошноту, а не голод или жажду. Выберите нужное ощущение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете тошноту, а не голод или жажду. Выберите нужное ощущение.",
+          "uk": "Ви описуєте нудоту, а не голод або спрагу. Виберіть потрібне відчуття."
+        },
+        "gappedTargetPhrase": "I feel ___ when I travel on a boat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-06:i12:r1",
+            "text": "nauseous"
+          },
+          {
+            "responseId": "en:lesson-26:session-06:i12:r2",
+            "text": "hungry"
+          },
+          {
+            "responseId": "en:lesson-26:session-06:i12:r3",
+            "text": "thirsty"
+          }
+        ],
+        "testedDimension": "Вы описываете тошноту, а не голод или жажду. Выберите нужное ощущение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-06:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы описываете тошноту, а не голод или жажду. Выберите нужное ощущение.",
+            "feedbackByLocale": {
+              "ru": "Hungry — голодный; по ситуации нужно назвать тошноту.",
+              "uk": "Hungry — голодний; за ситуацією потрібно назвати нудоту."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-06:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы описываете тошноту, а не голод или жажду. Выберите нужное ощущение.",
+            "feedbackByLocale": {
+              "ru": "Thirsty — испытывающий жажду; это другое ощущение.",
+              "uk": "Thirsty — той, хто відчуває спрагу; це інше відчуття."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-06:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Отдыхаю, когда устаю",
+      "prompt": "Услышьте привычку говорящего.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-26:session-06:i14:audio"
+        "en:lesson-26:session-06:i13:audio"
       ],
-      "accessibilityLabel": "Отдыхаю, когда устаю",
+      "accessibilityLabel": "Услышьте привычку говорящего.",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-06:i14:audio",
-          "transcript": "I rest when I am tired."
+          "audioTargetId": "en:lesson-26:session-06:i13:audio",
+          "transcript": "I sit down when my legs feel tired."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I rest when I am tired.",
+        "hiddenTargetPhrase": "I sit down when my legs feel tired.",
         "orderedTokens": [
           "I",
-          "rest",
+          "sit",
+          "down",
           "when",
-          "I",
-          "am",
+          "my",
+          "legs",
+          "feel",
           "tired"
         ],
         "authoredDistractorTokens": [],
@@ -1018,64 +906,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-26:session-06:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Если идёт дождь, остаюсь дома",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-06:i15:audio"
-      ],
-      "accessibilityLabel": "Если идёт дождь, остаюсь дома",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-06:i15:audio",
-          "transcript": "I stay home if it rains."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I stay home if it rains.",
-        "orderedTokens": [
-          "I",
-          "stay",
-          "home",
-          "if",
-          "it",
-          "rains"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-26:session-06:i16",
-      "ordinal": 23,
+      "interactionId": "en:lesson-26:session-06:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Его пальцы немеют, когда сильно мёрзнут».",
+      "prompt": "Расскажите о разговоре с врачом: «Я объясняю, что чувствую, когда врач спрашивает».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-26:session-06:i16:audio"
+        "en:lesson-26:session-06:i14:audio"
       ],
-      "accessibilityLabel": "Скажите: «Его пальцы немеют, когда сильно мёрзнут».",
+      "accessibilityLabel": "Расскажите о разговоре с врачом: «Я объясняю, что чувствую, когда врач спрашивает».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-06:i16:audio",
-          "transcript": "His fingers feel numb when they get very cold."
+          "audioTargetId": "en:lesson-26:session-06:i14:audio",
+          "transcript": "I explain how I feel when the doctor asks."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "His fingers feel numb when they get very cold.",
+        "targetPhrase": "I explain how I feel when the doctor asks.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1084,6 +934,151 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-06:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-06:i15:r1",
+          "text": "My neck feels stiff when I sit in this chair."
+        },
+        {
+          "responseId": "en:lesson-26:session-06:i15:r2",
+          "text": "My back feels stiff when I sit in this chair."
+        },
+        {
+          "responseId": "en:lesson-26:session-06:i15:r3",
+          "text": "My neck feels stiff when I sleep in this bed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-06:i15:audio",
+          "transcript": "My neck feels stiff when I sit in this chair."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-06:i15:r1",
+            "targetText": "My neck feels stiff when I sit in this chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-06:i15:r2",
+            "targetText": "My back feels stiff when I sit in this chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-06:i15:r3",
+            "targetText": "My neck feels stiff when I sleep in this bed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-06:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My neck feels stiff when I sit in this chair.",
+              "uk": "У записі звучить My neck feels stiff when I sit in this chair."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-06:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My neck feels stiff when I sit in this chair.",
+              "uk": "У записі звучить My neck feels stiff when I sit in this chair."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-06:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-06:i16:r1",
+          "text": "do not"
+        },
+        {
+          "responseId": "en:lesson-26:session-06:i16:r2",
+          "text": "does not"
+        },
+        {
+          "responseId": "en:lesson-26:session-06:i16:r3",
+          "text": "am not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.",
+          "uk": "Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть заперечення."
+        },
+        "gappedTargetPhrase": "I ___ read if I feel nauseous.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-06:i16:r1",
+            "text": "do not"
+          },
+          {
+            "responseId": "en:lesson-26:session-06:i16:r2",
+            "text": "does not"
+          },
+          {
+            "responseId": "en:lesson-26:session-06:i16:r3",
+            "text": "am not"
+          }
+        ],
+        "testedDimension": "Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-06:i16:r2",
+            "correct": false,
+            "testedDimension": "Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.",
+            "feedbackByLocale": {
+              "ru": "После I отрицание с read строится через do not.",
+              "uk": "Після I заперечення з read утворюється через do not."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-06:i16:r3",
+            "correct": false,
+            "testedDimension": "Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.",
+            "feedbackByLocale": {
+              "ru": "Am not не сочетается здесь с начальной формой read; нужно do not read.",
+              "uk": "Am not не поєднується тут із початковою формою read; потрібно do not read."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -1091,33 +1086,38 @@
     {
       "interactionId": "en:lesson-26:session-06:i17",
       "ordinal": 24,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Его тошнит, когда он читает в машине».",
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните личную привычку: «Я делаю перерыв, если мои руки устают».",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-26:session-06:i17:audio"
-      ],
-      "accessibilityLabel": "Скажите: «Его тошнит, когда он читает в машине».",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните личную привычку: «Я делаю перерыв, если мои руки устают».",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-26:session-06:i17:audio",
-          "transcript": "He feels nauseous when he reads in a car."
+        "family": "phrase_builder",
+        "targetPhrase": "I take a break if my hands get tired.",
+        "localizedMeaning": {
+          "ru": "Объясните личную привычку: «Я делаю перерыв, если мои руки устают».",
+          "uk": "Поясніть особисту звичку: «Я роблю перерву, якщо мої руки втомлюються»."
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "He feels nauseous when he reads in a car.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "I",
+          "take",
+          "a",
+          "break",
+          "if",
+          "my",
+          "hands",
+          "get",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     }
@@ -1128,5 +1128,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "250e00ca65a860e26bdf30b38e9e3ee9b43bc74f5ed017d1dc905ea652334c35"
+  "learnerFingerprint": "d0112afc5b73b75389b4a641cdecfaea03016c2185e9ebc59b9c7d11a602cddc"
 }

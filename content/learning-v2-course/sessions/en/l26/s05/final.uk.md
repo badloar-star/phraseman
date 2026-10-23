@@ -53,99 +53,99 @@ Instinctively — інстинктивно, без попереднього об
 <!-- interaction_id: en:lesson-26:session-05:word:automatically; family: word_card -->
 > **automatically** — Автоматично. Automatically — без окремої дії чи рішення людини цієї миті.
 
-**2 · Скажіть: «Двері відчиняються автоматично, коли я підходжу.»**
-<!-- interaction_id: en:lesson-26:session-05:i01; family: phrase_builder -->
-Плитки: `approach` `I` `when` `automatically` `open` `doors` `The` → **The doors open automatically when I approach.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-05:i01; family: listen_choose -->
+🔊 *The light comes on automatically when I enter the hall.* → **The light comes on automatically when I enter the hall.** · The light goes off automatically when I enter the hall. · The light comes on automatically when I leave the hall.
+- The light goes off automatically when I enter the hall. — *У записі звучить The light comes on automatically when I enter the hall.*
+- The light comes on automatically when I leave the hall. — *У записі звучить The light comes on automatically when I enter the hall.*
 
-**3 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-05:i02; family: context_gap_grammar -->
-The doors ___ automatically when I approach. → **open** · opens · opening
-- opens — *Звичайна закономірність: Present Simple. Потрібна форма open.*
-- opening — *Звичайна закономірність: Present Simple. Потрібна форма open.*
+**3 · Запитайте: «Двері зачиняються, коли ти йдеш?»**
+<!-- interaction_id: en:lesson-26:session-05:i02; family: phrase_builder -->
+Плитки: `leave` `you` `when` `close` `doors` `the` `Do` → **Do the doors close when you leave?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-05:i03; family: listen_choose -->
-🔊 *The doors open automatically when I approach.* → **The doors open automatically when I approach.** · The doors open automatically when she approaches. · The doors close automatically when I leave.
-- The doors open automatically when she approaches. — *У записі звучить The doors open automatically when I approach.*
-- The doors close automatically when I leave. — *У записі звучить The doors open automatically when I approach.*
+**4 · Світло вмикається саме, без натискання кнопки. Виберіть спосіб дії.**
+<!-- interaction_id: en:lesson-26:session-05:i03; family: context_gap_grammar -->
+The light comes on ___ when someone enters. → **automatically** · manually · carelessly
+- manually — *Manually — вручну; за ситуацією кнопку не натискають.*
+- carelessly — *Carelessly — недбало; тут ідеться про автоматичне вмикання.*
 
 **5 · Картка слова — rapidly**
 <!-- interaction_id: en:lesson-26:session-05:word:rapidly; family: word_card -->
 > **rapidly** — Швидко. Rapidly описує високу швидкість дії чи зміни.
 
-**6 · Скажіть: «Я говорю швидко, коли нервую.»**
-<!-- interaction_id: en:lesson-26:session-05:i04; family: phrase_builder -->
-Плитки: `nervous` `get` `I` `when` `rapidly` `speak` `I` → **I speak rapidly when I get nervous.**
+**6 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-05:i04; family: listen_choose -->
+🔊 *The ice melts rapidly when I put it in hot water.* → **The ice melts rapidly when I put it in hot water.** · The ice melts rapidly when I put it in cold water. · The sugar dissolves rapidly when I put it in hot water.
+- The ice melts rapidly when I put it in cold water. — *У записі звучить The ice melts rapidly when I put it in hot water.*
+- The sugar dissolves rapidly when I put it in hot water. — *У записі звучить The ice melts rapidly when I put it in hot water.*
 
-**7 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-05:i05; family: context_gap_grammar -->
-I ___ rapidly when I get nervous. → **speak** · speaks · speaking
-- speaks — *Звичайна закономірність: Present Simple. Потрібна форма speak.*
-- speaking — *Звичайна закономірність: Present Simple. Потрібна форма speak.*
+**7 · Почуйте причину прохання повторити.**
+<!-- interaction_id: en:lesson-26:session-05:i05; family: listen_build_dictation -->
+🔊 *I ask you to repeat if you speak too fast.* Плитки: `fast` `too` `speak` `you` `if` `repeat` `to` `you` `ask` `I` → **I ask you to repeat if you speak too fast.**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-05:i06; family: listen_choose -->
-🔊 *I speak rapidly when I get nervous.* → **I speak rapidly when I get nervous.** · She speaks rapidly when she gets nervous. · I speak rapidly when I get excited.
-- She speaks rapidly when she gets nervous. — *У записі звучить I speak rapidly when I get nervous.*
-- I speak rapidly when I get excited. — *У записі звучить I speak rapidly when I get nervous.*
+**8 · Запитайте співрозмовника: «Ти говориш швидше, коли хвилюєшся?»**
+<!-- interaction_id: en:lesson-26:session-05:i06; family: scripted_repeat_compare -->
+🎙 **Do you speak faster when you are nervous?**
 
 **9 · Картка слова — constantly**
 <!-- interaction_id: en:lesson-26:session-05:word:constantly; family: word_card -->
 > **constantly** — Постійно. Constantly — безперервно або дуже часто.
 
-**10 · Скажіть: «Я постійно рухаюся, коли танцюю.»**
+**10 · Розкажіть про особисту звичку: «Я постійно дивлюся на годинник, коли чекаю автобус».**
 <!-- interaction_id: en:lesson-26:session-05:i07; family: phrase_builder -->
-Плитки: `dance` `I` `when` `constantly` `move` `I` → **I move constantly when I dance.**
+Плитки: `bus` `a` `for` `wait` `I` `when` `constantly` `time` `the` `check` `I` → **I check the time constantly when I wait for a bus.**
 
-**11 · Доповніть звичайну закономірність.**
+**11 · Ви дивитеся на годинник знову й знову. Потрібне слово про частоту, не про швидкість.**
 <!-- interaction_id: en:lesson-26:session-05:i08; family: context_gap_grammar -->
-I ___ constantly when I dance. → **move** · moves · moving
-- moves — *Звичайна закономірність: Present Simple. Потрібна форма move.*
-- moving — *Звичайна закономірність: Present Simple. Потрібна форма move.*
+I look at my watch ___ when I am late. → **constantly** · rapidly · silently
+- rapidly — *Rapidly описує швидкість; тут важливо, що дія часто повторюється.*
+- silently — *Silently — мовчки; воно не повідомляє, що ви знову й знову дивитеся на годинник.*
 
 **12 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-05:i09; family: listen_choose -->
-🔊 *I move constantly when I dance.* → **I move constantly when I dance.** · She moves constantly when she dances. · I move constantly when I cook.
-- She moves constantly when she dances. — *У записі звучить I move constantly when I dance.*
-- I move constantly when I cook. — *У записі звучить I move constantly when I dance.*
+🔊 *I move away from the door when people get off the bus.* → **I move away from the door when people get off the bus.** · I move towards the door when people get off the bus. · I move away from the door when people get on the bus.
+- I move towards the door when people get off the bus. — *У записі звучить I move away from the door when people get off the bus.*
+- I move away from the door when people get on the bus. — *У записі звучить I move away from the door when people get off the bus.*
 
 **13 · Картка слова — instinctively**
 <!-- interaction_id: en:lesson-26:session-05:word:instinctively; family: word_card -->
 > **instinctively** — Інстинктивно. Instinctively — без попереднього обмірковування, як природна реакція.
 
-**14 · Скажіть: «Я інстинктивно відступаю, коли щось рухається до мене.»**
+**14 · Опишіть власну миттєву реакцію: «Я інстинктивно заплющую очі, коли бачу яскравий спалах».**
 <!-- interaction_id: en:lesson-26:session-05:i10; family: phrase_builder -->
-Плитки: `me` `towards` `comes` `something` `when` `instinctively` `back` `step` `I` → **I step back instinctively when something comes towards me.**
+Плитки: `flash` `bright` `a` `see` `I` `when` `instinctively` `eyes` `my` `close` `I` → **I close my eyes instinctively when I see a bright flash.**
 
-**15 · Доповніть звичайну закономірність.**
-<!-- interaction_id: en:lesson-26:session-05:i11; family: context_gap_grammar -->
-I ___ back instinctively when something comes towards me. → **step** · steps · stepping
-- steps — *Звичайна закономірність: Present Simple. Потрібна форма step.*
-- stepping — *Звичайна закономірність: Present Simple. Потрібна форма step.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-26:session-05:i12; family: listen_choose -->
-🔊 *I step back instinctively when something comes towards me.* → **I step back instinctively when something comes towards me.** · She steps back instinctively when something comes towards her. · I step back instinctively when someone runs towards me.
-- She steps back instinctively when something comes towards her. — *У записі звучить I step back instinctively when something comes towards me.*
-- I step back instinctively when someone runs towards me. — *У записі звучить I step back instinctively when something comes towards me.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-26:session-05:i13; family: speed_match -->
+**15 · Розрізніть значення прислівників**
+<!-- interaction_id: en:lesson-26:session-05:i11; family: speed_match -->
 automatically — автоматично · rapidly — швидко · constantly — постійно · instinctively — інстинктивно
 
-**18 · Відпочиваю, коли втомлююся**
-<!-- interaction_id: en:lesson-26:session-05:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**16 · Відновіть почуте особисте спостереження.**
+<!-- interaction_id: en:lesson-26:session-05:i12; family: listen_build_dictation -->
+🔊 *I jump instinctively when I hear a sudden bang.* Плитки: `bang` `sudden` `a` `hear` `I` `when` `instinctively` `jump` `I` → **I jump instinctively when I hear a sudden bang.**
 
-**19 · Якщо йде дощ, залишаюся вдома**
-<!-- interaction_id: en:lesson-26:session-05:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+**17 · Ви описуєте звичку свого друга. Доповніть умову із he.**
+<!-- interaction_id: en:lesson-26:session-05:i13; family: context_gap_grammar -->
+He speaks rapidly when he ___ excited. → **gets** · get · getting
+- get — *Після he потрібна форма gets із -s.*
+- getting — *Для звичайної умови тут потрібно gets, не getting.*
 
-**20 · Скажіть: «Він говорить швидко, коли нервує».**
-<!-- interaction_id: en:lesson-26:session-05:i16; family: scripted_repeat_compare -->
-🎙 **He speaks rapidly when he gets nervous.**
+**18 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-26:session-05:i14; family: listen_choose -->
+🔊 *The screen lights up when I press this button.* → **The screen lights up when I press this button.** · The screen goes dark when I press this button. · The screen lights up when I touch the table.
+- The screen goes dark when I press this button. — *У записі звучить The screen lights up when I press this button.*
+- The screen lights up when I touch the table. — *У записі звучить The screen lights up when I press this button.*
 
-**21 · Скажіть: «Двері відчиняються автоматично, коли ми підходимо».**
+**19 · Поясніть свою звичку: «Я читаю повільніше, якщо текст складний».**
+<!-- interaction_id: en:lesson-26:session-05:i15; family: phrase_builder -->
+Плитки: `difficult` `is` `text` `the` `if` `slowly` `more` `read` `I` → **I read more slowly if the text is difficult.**
+
+**20 · Світло вже горить, і ви не натискаєте кнопку. Доповніть звичайну дію.**
+<!-- interaction_id: en:lesson-26:session-05:i16; family: context_gap_grammar -->
+I ___ press the button if the light is already on. → **do not** · does not · am not
+- does not — *Після I потрібно do not, а не does not.*
+- am not — *Заперечення з press тут утворюється через do not, не am not.*
+
+**21 · Поясніть умову своєї звички: «Я прошу допомоги, якщо не розумію інструкцію».**
 <!-- interaction_id: en:lesson-26:session-05:i17; family: scripted_repeat_compare -->
-🎙 **The doors open automatically when we approach.**
+🎙 **I ask for help if I do not understand the instructions.**
 

@@ -53,99 +53,99 @@ Instinctively — инстинктивно, без предварительно�
 <!-- interaction_id: en:lesson-26:session-05:word:automatically; family: word_card -->
 > **automatically** — Автоматически. Automatically — без отдельного действия или решения человека в этот момент.
 
-**2 · Скажите: «Двери открываются автоматически, когда я подхожу.»**
-<!-- interaction_id: en:lesson-26:session-05:i01; family: phrase_builder -->
-Плитки: `approach` `I` `when` `automatically` `open` `doors` `The` → **The doors open automatically when I approach.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-05:i01; family: listen_choose -->
+🔊 *The light comes on automatically when I enter the hall.* → **The light comes on automatically when I enter the hall.** · The light goes off automatically when I enter the hall. · The light comes on automatically when I leave the hall.
+- The light goes off automatically when I enter the hall. — *В записи звучит The light comes on automatically when I enter the hall.*
+- The light comes on automatically when I leave the hall. — *В записи звучит The light comes on automatically when I enter the hall.*
 
-**3 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-05:i02; family: context_gap_grammar -->
-The doors ___ automatically when I approach. → **open** · opens · opening
-- opens — *Обычная закономерность: Present Simple. Нужна форма open.*
-- opening — *Обычная закономерность: Present Simple. Нужна форма open.*
+**3 · Спросите: «Двери закрываются, когда ты уходишь?»**
+<!-- interaction_id: en:lesson-26:session-05:i02; family: phrase_builder -->
+Плитки: `leave` `you` `when` `close` `doors` `the` `Do` → **Do the doors close when you leave?**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-05:i03; family: listen_choose -->
-🔊 *The doors open automatically when I approach.* → **The doors open automatically when I approach.** · The doors open automatically when she approaches. · The doors close automatically when I leave.
-- The doors open automatically when she approaches. — *В записи звучит The doors open automatically when I approach.*
-- The doors close automatically when I leave. — *В записи звучит The doors open automatically when I approach.*
+**4 · Свет включается сам, без нажатия кнопки. Выберите способ действия.**
+<!-- interaction_id: en:lesson-26:session-05:i03; family: context_gap_grammar -->
+The light comes on ___ when someone enters. → **automatically** · manually · carelessly
+- manually — *Manually — вручную; по ситуации кнопку не нажимают.*
+- carelessly — *Carelessly — небрежно; здесь речь об автоматическом включении.*
 
 **5 · Карточка слова — rapidly**
 <!-- interaction_id: en:lesson-26:session-05:word:rapidly; family: word_card -->
 > **rapidly** — Быстро. Rapidly описывает высокую скорость действия или изменения.
 
-**6 · Скажите: «Я говорю быстро, когда нервничаю.»**
-<!-- interaction_id: en:lesson-26:session-05:i04; family: phrase_builder -->
-Плитки: `nervous` `get` `I` `when` `rapidly` `speak` `I` → **I speak rapidly when I get nervous.**
+**6 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-05:i04; family: listen_choose -->
+🔊 *The ice melts rapidly when I put it in hot water.* → **The ice melts rapidly when I put it in hot water.** · The ice melts rapidly when I put it in cold water. · The sugar dissolves rapidly when I put it in hot water.
+- The ice melts rapidly when I put it in cold water. — *В записи звучит The ice melts rapidly when I put it in hot water.*
+- The sugar dissolves rapidly when I put it in hot water. — *В записи звучит The ice melts rapidly when I put it in hot water.*
 
-**7 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-05:i05; family: context_gap_grammar -->
-I ___ rapidly when I get nervous. → **speak** · speaks · speaking
-- speaks — *Обычная закономерность: Present Simple. Нужна форма speak.*
-- speaking — *Обычная закономерность: Present Simple. Нужна форма speak.*
+**7 · Услышьте причину просьбы повторить.**
+<!-- interaction_id: en:lesson-26:session-05:i05; family: listen_build_dictation -->
+🔊 *I ask you to repeat if you speak too fast.* Плитки: `fast` `too` `speak` `you` `if` `repeat` `to` `you` `ask` `I` → **I ask you to repeat if you speak too fast.**
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-05:i06; family: listen_choose -->
-🔊 *I speak rapidly when I get nervous.* → **I speak rapidly when I get nervous.** · She speaks rapidly when she gets nervous. · I speak rapidly when I get excited.
-- She speaks rapidly when she gets nervous. — *В записи звучит I speak rapidly when I get nervous.*
-- I speak rapidly when I get excited. — *В записи звучит I speak rapidly when I get nervous.*
+**8 · Спросите собеседника: «Ты говоришь быстрее, когда волнуешься?»**
+<!-- interaction_id: en:lesson-26:session-05:i06; family: scripted_repeat_compare -->
+🎙 **Do you speak faster when you are nervous?**
 
 **9 · Карточка слова — constantly**
 <!-- interaction_id: en:lesson-26:session-05:word:constantly; family: word_card -->
 > **constantly** — Постоянно. Constantly — непрерывно или очень часто.
 
-**10 · Скажите: «Я постоянно двигаюсь, когда танцую.»**
+**10 · Расскажите о личной привычке: «Я постоянно смотрю на часы, когда жду автобус».**
 <!-- interaction_id: en:lesson-26:session-05:i07; family: phrase_builder -->
-Плитки: `dance` `I` `when` `constantly` `move` `I` → **I move constantly when I dance.**
+Плитки: `bus` `a` `for` `wait` `I` `when` `constantly` `time` `the` `check` `I` → **I check the time constantly when I wait for a bus.**
 
-**11 · Дополните обычную закономерность.**
+**11 · Вы смотрите на часы снова и снова. Нужно слово о частоте, не о скорости.**
 <!-- interaction_id: en:lesson-26:session-05:i08; family: context_gap_grammar -->
-I ___ constantly when I dance. → **move** · moves · moving
-- moves — *Обычная закономерность: Present Simple. Нужна форма move.*
-- moving — *Обычная закономерность: Present Simple. Нужна форма move.*
+I look at my watch ___ when I am late. → **constantly** · rapidly · silently
+- rapidly — *Rapidly описывает скорость; здесь важно, что действие часто повторяется.*
+- silently — *Silently — молча; оно не сообщает, что вы снова и снова смотрите на часы.*
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-05:i09; family: listen_choose -->
-🔊 *I move constantly when I dance.* → **I move constantly when I dance.** · She moves constantly when she dances. · I move constantly when I cook.
-- She moves constantly when she dances. — *В записи звучит I move constantly when I dance.*
-- I move constantly when I cook. — *В записи звучит I move constantly when I dance.*
+🔊 *I move away from the door when people get off the bus.* → **I move away from the door when people get off the bus.** · I move towards the door when people get off the bus. · I move away from the door when people get on the bus.
+- I move towards the door when people get off the bus. — *В записи звучит I move away from the door when people get off the bus.*
+- I move away from the door when people get on the bus. — *В записи звучит I move away from the door when people get off the bus.*
 
 **13 · Карточка слова — instinctively**
 <!-- interaction_id: en:lesson-26:session-05:word:instinctively; family: word_card -->
 > **instinctively** — Инстинктивно. Instinctively — без предварительного обдумывания, как естественная реакция.
 
-**14 · Скажите: «Я инстинктивно отступаю, когда что-то движется ко мне.»**
+**14 · Опишите собственную мгновенную реакцию: «Я инстинктивно закрываю глаза, когда вижу яркую вспышку».**
 <!-- interaction_id: en:lesson-26:session-05:i10; family: phrase_builder -->
-Плитки: `me` `towards` `comes` `something` `when` `instinctively` `back` `step` `I` → **I step back instinctively when something comes towards me.**
+Плитки: `flash` `bright` `a` `see` `I` `when` `instinctively` `eyes` `my` `close` `I` → **I close my eyes instinctively when I see a bright flash.**
 
-**15 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-05:i11; family: context_gap_grammar -->
-I ___ back instinctively when something comes towards me. → **step** · steps · stepping
-- steps — *Обычная закономерность: Present Simple. Нужна форма step.*
-- stepping — *Обычная закономерность: Present Simple. Нужна форма step.*
-
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-05:i12; family: listen_choose -->
-🔊 *I step back instinctively when something comes towards me.* → **I step back instinctively when something comes towards me.** · She steps back instinctively when something comes towards her. · I step back instinctively when someone runs towards me.
-- She steps back instinctively when something comes towards her. — *В записи звучит I step back instinctively when something comes towards me.*
-- I step back instinctively when someone runs towards me. — *В записи звучит I step back instinctively when something comes towards me.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-26:session-05:i13; family: speed_match -->
+**15 · Различите значения наречий**
+<!-- interaction_id: en:lesson-26:session-05:i11; family: speed_match -->
 automatically — автоматически · rapidly — быстро · constantly — постоянно · instinctively — инстинктивно
 
-**18 · Отдыхаю, когда устаю**
-<!-- interaction_id: en:lesson-26:session-05:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**16 · Восстановите услышанное личное наблюдение.**
+<!-- interaction_id: en:lesson-26:session-05:i12; family: listen_build_dictation -->
+🔊 *I jump instinctively when I hear a sudden bang.* Плитки: `bang` `sudden` `a` `hear` `I` `when` `instinctively` `jump` `I` → **I jump instinctively when I hear a sudden bang.**
 
-**19 · Если идёт дождь, остаюсь дома**
-<!-- interaction_id: en:lesson-26:session-05:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+**17 · Вы описываете привычку своего друга. Дополните условие с he.**
+<!-- interaction_id: en:lesson-26:session-05:i13; family: context_gap_grammar -->
+He speaks rapidly when he ___ excited. → **gets** · get · getting
+- get — *После he нужна форма gets с -s.*
+- getting — *Для обычного условия здесь нужно gets, не getting.*
 
-**20 · Скажите: «Он говорит быстро, когда нервничает».**
-<!-- interaction_id: en:lesson-26:session-05:i16; family: scripted_repeat_compare -->
-🎙 **He speaks rapidly when he gets nervous.**
+**18 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-05:i14; family: listen_choose -->
+🔊 *The screen lights up when I press this button.* → **The screen lights up when I press this button.** · The screen goes dark when I press this button. · The screen lights up when I touch the table.
+- The screen goes dark when I press this button. — *В записи звучит The screen lights up when I press this button.*
+- The screen lights up when I touch the table. — *В записи звучит The screen lights up when I press this button.*
 
-**21 · Скажите: «Двери открываются автоматически, когда мы подходим».**
+**19 · Объясните свою привычку: «Я читаю медленнее, если текст трудный».**
+<!-- interaction_id: en:lesson-26:session-05:i15; family: phrase_builder -->
+Плитки: `difficult` `is` `text` `the` `if` `slowly` `more` `read` `I` → **I read more slowly if the text is difficult.**
+
+**20 · Свет уже горит, и вы не нажимаете кнопку. Дополните обычное действие.**
+<!-- interaction_id: en:lesson-26:session-05:i16; family: context_gap_grammar -->
+I ___ press the button if the light is already on. → **do not** · does not · am not
+- does not — *После I нужно do not, а не does not.*
+- am not — *Отрицание с press здесь строится через do not, не am not.*
+
+**21 · Объясните условие своей привычки: «Я прошу помощи, если не понимаю инструкцию».**
 <!-- interaction_id: en:lesson-26:session-05:i17; family: scripted_repeat_compare -->
-🎙 **The doors open automatically when we approach.**
+🎙 **I ask for help if I do not understand the instructions.**
 

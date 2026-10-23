@@ -49,103 +49,103 @@ Heartbeat — сердцебиение. I notice my heartbeat when I lie quietly
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — rhythm**
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-04:i01; family: listen_choose -->
+🔊 *I smile when I hear my favourite song.* → **I smile when I hear my favourite song.** · I sing when I hear my favourite song. · I smile when I hear my favourite story.
+- I sing when I hear my favourite song. — *В записи звучит I smile when I hear my favourite song.*
+- I smile when I hear my favourite story. — *В записи звучит I smile when I hear my favourite song.*
+
+**2 · Карточка слова — rhythm**
 <!-- interaction_id: en:lesson-26:session-04:word:rhythm; family: word_card -->
 > **rhythm** — Ритм. Rhythm — повторяющийся рисунок звуков или движений.
 
-**2 · Скажите: «Я следую ритму, когда танцую.»**
-<!-- interaction_id: en:lesson-26:session-04:i01; family: phrase_builder -->
-Плитки: `dance` `I` `when` `rhythm` `the` `follow` `I` → **I follow the rhythm when I dance.**
+**3 · Спросите о привычке: «Ты следуешь ритму, когда хлопаешь?»**
+<!-- interaction_id: en:lesson-26:session-04:i02; family: phrase_builder -->
+Плитки: `clap` `you` `when` `rhythm` `the` `follow` `you` `Do` → **Do you follow the rhythm when you clap?**
 
-**3 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-04:i02; family: context_gap_grammar -->
-I ___ the rhythm when I dance. → **follow** · follows · following
-- follows — *Обычная закономерность: Present Simple. Нужна форма follow.*
-- following — *Обычная закономерность: Present Simple. Нужна форма follow.*
+**4 · Вы описываете своё обычное поведение на занятиях танцами.**
+<!-- interaction_id: en:lesson-26:session-04:i03; family: context_gap_grammar -->
+I ___ carefully when the teacher shows a new step. → **watch** · watches · watching
+- watches — *После I нужна форма watch без -s.*
+- watching — *Для привычки нужен Present Simple: watch, не watching без вспомогательного глагола.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-04:i03; family: listen_choose -->
-🔊 *I follow the rhythm when I dance.* → **I follow the rhythm when I dance.** · She follows the rhythm when she dances. · I follow the rhythm when I sing.
-- She follows the rhythm when she dances. — *В записи звучит I follow the rhythm when I dance.*
-- I follow the rhythm when I sing. — *В записи звучит I follow the rhythm when I dance.*
+**5 · Услышьте, когда говорящий делает паузу.**
+<!-- interaction_id: en:lesson-26:session-04:i04; family: listen_build_dictation -->
+🔊 *I stop dancing when the music ends.* Плитки: `ends` `music` `the` `when` `dancing` `stop` `I` → **I stop dancing when the music ends.**
 
-**5 · Карточка слова — posture**
+**6 · Карточка слова — posture**
 <!-- interaction_id: en:lesson-26:session-04:word:posture; family: word_card -->
 > **posture** — Осанка. Posture — то, как человек держит тело, когда сидит или стоит.
 
-**6 · Скажите: «Я проверяю свою осанку, когда чувствую усталость в спине.»**
-<!-- interaction_id: en:lesson-26:session-04:i04; family: phrase_builder -->
-Плитки: `tired` `feels` `back` `my` `when` `posture` `my` `check` `I` → **I check my posture when my back feels tired.**
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-04:i05; family: listen_choose -->
+🔊 *I notice my posture when I look in a mirror.* → **I notice my posture when I look in a mirror.** · I notice my posture when I look at a photo. · I notice my shoes when I look in a mirror.
+- I notice my posture when I look at a photo. — *В записи звучит I notice my posture when I look in a mirror.*
+- I notice my shoes when I look in a mirror. — *В записи звучит I notice my posture when I look in a mirror.*
 
-**7 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-04:i05; family: context_gap_grammar -->
-I ___ my posture when my back feels tired. → **check** · checks · checking
-- checks — *Обычная закономерность: Present Simple. Нужна форма check.*
-- checking — *Обычная закономерность: Present Simple. Нужна форма check.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-04:i06; family: listen_choose -->
-🔊 *I check my posture when my back feels tired.* → **I check my posture when my back feels tired.** · She checks her posture when her back feels tired. · I check my posture when my neck feels tired.
-- She checks her posture when her back feels tired. — *В записи звучит I check my posture when my back feels tired.*
-- I check my posture when my neck feels tired. — *В записи звучит I check my posture when my back feels tired.*
+**8 · Расскажите о личной привычке: «Я встаю, когда мне нужен перерыв».**
+<!-- interaction_id: en:lesson-26:session-04:i06; family: phrase_builder -->
+Плитки: `break` `a` `need` `I` `when` `up` `stand` `I` → **I stand up when I need a break.**
 
 **9 · Карточка слова — pulse**
 <!-- interaction_id: en:lesson-26:session-04:word:pulse; family: word_card -->
 > **pulse** — Пульс. Pulse — ритмические толчки крови в артериях, которые можно ощутить, например на запястье.
 
-**10 · Скажите: «Мой пульс учащается, когда я бегу.»**
-<!-- interaction_id: en:lesson-26:session-04:i07; family: phrase_builder -->
-Плитки: `run` `I` `when` `faster` `gets` `pulse` `My` → **My pulse gets faster when I run.**
+**10 · Говорящий описывает изменение своего пульса во время упражнений. Дополните условие.**
+<!-- interaction_id: en:lesson-26:session-04:i07; family: context_gap_grammar -->
+My pulse gets faster when I ___. → **exercise** · exercises · exercising
+- exercises — *После I нужна форма exercise без -s.*
+- exercising — *В условии здесь нужен Present Simple: exercise.*
 
-**11 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-04:i08; family: context_gap_grammar -->
-My pulse ___ faster when I run. → **gets** · get · getting
-- get — *Обычная закономерность: Present Simple. Нужна форма gets.*
-- getting — *Обычная закономерность: Present Simple. Нужна форма gets.*
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-04:i08; family: listen_choose -->
+🔊 *I take a break when I feel tired.* → **I take a break when I feel tired.** · I take a break when I feel cold. · I take a walk when I feel tired.
+- I take a break when I feel cold. — *В записи звучит I take a break when I feel tired.*
+- I take a walk when I feel tired. — *В записи звучит I take a break when I feel tired.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-04:i09; family: listen_choose -->
-🔊 *My pulse gets faster when I run.* → **My pulse gets faster when I run.** · Her pulse gets faster when she runs. · My pulse gets faster when I climb stairs.
-- Her pulse gets faster when she runs. — *В записи звучит My pulse gets faster when I run.*
-- My pulse gets faster when I climb stairs. — *В записи звучит My pulse gets faster when I run.*
-
-**13 · Карточка слова — heartbeat**
+**12 · Карточка слова — heartbeat**
 <!-- interaction_id: en:lesson-26:session-04:word:heartbeat; family: word_card -->
 > **heartbeat** — Сердцебиение. Heartbeat — биение сердца.
 
-**14 · Скажите: «Я замечаю своё сердцебиение, когда лежу тихо.»**
-<!-- interaction_id: en:lesson-26:session-04:i10; family: phrase_builder -->
-Плитки: `quietly` `lie` `I` `when` `heartbeat` `my` `notice` `I` → **I notice my heartbeat when I lie quietly.**
+**13 · Опишите своё ощущение: «Я чувствую своё сердцебиение, когда волнуюсь».**
+<!-- interaction_id: en:lesson-26:session-04:i09; family: phrase_builder -->
+Плитки: `nervous` `am` `I` `when` `heartbeat` `my` `feel` `I` → **I feel my heartbeat when I am nervous.**
 
-**15 · Дополните обычную закономерность.**
-<!-- interaction_id: en:lesson-26:session-04:i11; family: context_gap_grammar -->
-I ___ my heartbeat when I lie quietly. → **notice** · notices · noticing
-- notices — *Обычная закономерность: Present Simple. Нужна форма notice.*
-- noticing — *Обычная закономерность: Present Simple. Нужна форма notice.*
-
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-26:session-04:i12; family: listen_choose -->
-🔊 *I notice my heartbeat when I lie quietly.* → **I notice my heartbeat when I lie quietly.** · She notices her heartbeat when she lies quietly. · I notice my heartbeat when I sit quietly.
-- She notices her heartbeat when she lies quietly. — *В записи звучит I notice my heartbeat when I lie quietly.*
-- I notice my heartbeat when I sit quietly. — *В записи звучит I notice my heartbeat when I lie quietly.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-26:session-04:i13; family: speed_match -->
+**14 · Соедините слова с переводами**
+<!-- interaction_id: en:lesson-26:session-04:i10; family: speed_match -->
 rhythm — ритм · posture — осанка · pulse — пульс · heartbeat — сердцебиение
 
-**18 · Отдыхаю, когда устаю**
-<!-- interaction_id: en:lesson-26:session-04:i14; family: listen_build_dictation -->
-🔊 *I rest when I am tired.* Плитки: `tired` `am` `I` `when` `rest` `I` → **I rest when I am tired.**
+**15 · Вы наблюдаете за своей осанкой, сидя перед зеркалом. Дополните действие.**
+<!-- interaction_id: en:lesson-26:session-04:i11; family: context_gap_grammar -->
+I check my posture when I ___ in front of a mirror. → **sit** · sits · sitting
+- sits — *После I нужна форма sit.*
+- sitting — *Здесь нужен личный глагол sit, а не sitting без am.*
 
-**19 · Если идёт дождь, остаюсь дома**
-<!-- interaction_id: en:lesson-26:session-04:i15; family: listen_build_dictation -->
-🔊 *I stay home if it rains.* Плитки: `rains` `it` `if` `home` `stay` `I` → **I stay home if it rains.**
+**16 · Спросите собеседника: «Что ты делаешь, когда устаёшь?»**
+<!-- interaction_id: en:lesson-26:session-04:i12; family: scripted_repeat_compare -->
+🎙 **What do you do when you get tired?**
 
-**20 · Скажите: «Я следую ритму, когда играю на барабанах».**
-<!-- interaction_id: en:lesson-26:session-04:i16; family: scripted_repeat_compare -->
-🎙 **I follow the rhythm when I play the drums.**
+**17 · Восстановите услышанное описание ритма.**
+<!-- interaction_id: en:lesson-26:session-04:i13; family: listen_build_dictation -->
+🔊 *I lose the rhythm if the music is too fast.* Плитки: `fast` `too` `is` `music` `the` `if` `rhythm` `the` `lose` `I` → **I lose the rhythm if the music is too fast.**
 
-**21 · Скажите: «Мой пульс учащается, когда я танцую».**
+**18 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-26:session-04:i14; family: listen_choose -->
+🔊 *I breathe faster when I run uphill.* → **I breathe faster when I run uphill.** · I breathe faster when I walk downhill. · I breathe slowly when I run uphill.
+- I breathe faster when I walk downhill. — *В записи звучит I breathe faster when I run uphill.*
+- I breathe slowly when I run uphill. — *В записи звучит I breathe faster when I run uphill.*
+
+**19 · Объясните выбор темпа: «Я иду медленнее, если моя сумка тяжёлая».**
+<!-- interaction_id: en:lesson-26:session-04:i15; family: phrase_builder -->
+Плитки: `heavy` `is` `bag` `my` `if` `slowly` `more` `walk` `I` → **I walk more slowly if my bag is heavy.**
+
+**20 · Говорящий не продолжает танцевать после окончания музыки. Дополните отрицание.**
+<!-- interaction_id: en:lesson-26:session-04:i16; family: context_gap_grammar -->
+I ___ keep dancing when the music stops. → **do not** · does not · am not
+- does not — *Для отрицания с I здесь нужно do not.*
+- am not — *Перед keep нужна форма do not, не am not.*
+
+**21 · Расскажите о своей привычке: «Я пью воду, когда испытываю жажду».**
 <!-- interaction_id: en:lesson-26:session-04:i17; family: scripted_repeat_compare -->
-🎙 **My pulse gets faster when I dance.**
+🎙 **I drink water when I feel thirsty.**
 

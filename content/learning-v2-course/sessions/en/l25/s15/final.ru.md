@@ -49,103 +49,103 @@ Slurp — шумно пить или хлебать жидкую еду. As a ch
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — gulp**
-<!-- interaction_id: en:lesson-25:session-15:word:gulp; family: word_card -->
-> **gulp** — пить большими глотками.
-
-**2 · Скажите: «После игр мы обычно пили холодную воду большими глотками.»**
-<!-- interaction_id: en:lesson-25:session-15:i01; family: phrase_builder -->
-Плитки: `water` `cold` `gulp` `would` `we` `games` `After` → **After games we would gulp cold water.**
-
-**3 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-15:i02; family: context_gap_grammar -->
-After games we would ___ cold water. → **gulp** · gulped · gulping
-- gulped — *После would нужна базовая форма глагола.*
-- gulping — *После would нужна базовая форма глагола.*
-
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-15:i03; family: listen_choose -->
-🔊 *After games we would gulp cold water.* → **After games we would gulp cold water.** · After games they would gulp cold water. · After games we would gulp cold juice.
-- After games they would gulp cold water. — *В записи звучит After games we would gulp cold water.*
-- After games we would gulp cold juice. — *В записи звучит After games we would gulp cold water.*
-
-**5 · Карточка слова — nibble**
+**1 · Карточка слова — nibble**
 <!-- interaction_id: en:lesson-25:session-15:word:nibble; family: word_card -->
-> **nibble** — есть маленькими кусочками.
+> **nibble** — есть маленькими кусочками
 
-**6 · Скажите: «В детстве я часто понемногу ел печенье перед ужином.»**
-<!-- interaction_id: en:lesson-25:session-15:i04; family: phrase_builder -->
-Плитки: `dinner` `before` `biscuit` `a` `nibble` `would` `I` `child` `a` `As` → **As a child I would nibble a biscuit before dinner.**
+**2 · Расскажите о привычке: «Обычно я понемногу ем печенье с чаем».**
+<!-- interaction_id: en:lesson-25:session-15:i01; family: phrase_builder -->
+Плитки: `tea` `my` `with` `biscuit` `a` `nibble` `usually` `I` → **I usually nibble a biscuit with my tea.**
 
-**7 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-15:i05; family: context_gap_grammar -->
-As a child I would ___ a biscuit before dinner. → **nibble** · nibbled · nibbling
-- nibbled — *После would нужна базовая форма глагола.*
-- nibbling — *После would нужна базовая форма глагола.*
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-15:i02; family: listen_choose -->
+🔊 *As children we would share a packet of biscuits.* → **As children we would share a packet of biscuits.** · As children we would share a packet of crisps. · As children they would share a packet of biscuits.
+- As children we would share a packet of crisps. — *В записи звучит As children we would share a packet of biscuits.*
+- As children they would share a packet of biscuits. — *В записи звучит As children we would share a packet of biscuits.*
+
+**4 · Карточка слова — gulp**
+<!-- interaction_id: en:lesson-25:session-15:word:gulp; family: word_card -->
+> **gulp** — пить большими глотками
+
+**5 · После пробежки вы пили большими глотками. Выберите форму прежней привычки.**
+<!-- interaction_id: en:lesson-25:session-15:i03; family: context_gap_grammar -->
+After those runs I would ___ a glass of water. → **gulp** · gulped · gulping
+- gulped — *После would нужна базовая форма gulp.*
+- gulping — *Would gulping неверно; нужно would gulp.*
+
+**6 · Вы хотите пить. Попросите: «Можно стакан воды, пожалуйста?»**
+<!-- interaction_id: en:lesson-25:session-15:i04; family: scripted_repeat_compare -->
+🎙 **Can I have a glass of water, please?**
+
+**7 · Карточка слова — munch**
+<!-- interaction_id: en:lesson-25:session-15:word:munch; family: word_card -->
+> **munch** — жевать с хрустом
 
 **8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-15:i06; family: listen_choose -->
-🔊 *As a child I would nibble a biscuit before dinner.* → **As a child I would nibble a biscuit before dinner.** · As a child she would nibble a biscuit before dinner. · As a child I would nibble a biscuit before lunch.
-- As a child she would nibble a biscuit before dinner. — *В записи звучит As a child I would nibble a biscuit before dinner.*
-- As a child I would nibble a biscuit before lunch. — *В записи звучит As a child I would nibble a biscuit before dinner.*
+<!-- interaction_id: en:lesson-25:session-15:i05; family: listen_choose -->
+🔊 *At school we would munch apples in the playground.* → **At school we would munch apples in the playground.** · At school we would munch carrots in the playground. · At school we would munch apples in the classroom.
+- At school we would munch carrots in the playground. — *В записи звучит At school we would munch apples in the playground.*
+- At school we would munch apples in the classroom. — *В записи звучит At school we would munch apples in the playground.*
 
-**9 · Карточка слова — munch**
-<!-- interaction_id: en:lesson-25:session-15:word:munch; family: word_card -->
-> **munch** — жевать с хрустом.
+**9 · Услышьте описание сегодняшнего перекуса.**
+<!-- interaction_id: en:lesson-25:session-15:i06; family: listen_build_dictation -->
+🔊 *I am munching a carrot.* Плитки: `carrot` `a` `munching` `am` `I` → **I am munching a carrot.**
 
-**10 · Скажите: «В школе мы часто хрустели морковкой во время обеда.»**
-<!-- interaction_id: en:lesson-25:session-15:i07; family: phrase_builder -->
-Плитки: `lunch` `during` `carrots` `munch` `would` `we` `school` `At` → **At school we would munch carrots during lunch.**
-
-**11 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-15:i08; family: context_gap_grammar -->
-At school we would ___ carrots during lunch. → **munch** · munched · munching
-- munched — *После would нужна базовая форма глагола.*
-- munching — *После would нужна базовая форма глагола.*
-
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-15:i09; family: listen_choose -->
-🔊 *At school we would munch carrots during lunch.* → **At school we would munch carrots during lunch.** · At school they would munch carrots during lunch. · At school we would munch apples during lunch.
-- At school they would munch carrots during lunch. — *В записи звучит At school we would munch carrots during lunch.*
-- At school we would munch apples during lunch. — *В записи звучит At school we would munch carrots during lunch.*
-
-**13 · Карточка слова — slurp**
+**10 · Карточка слова — slurp**
 <!-- interaction_id: en:lesson-25:session-15:word:slurp; family: word_card -->
-> **slurp** — шумно пить, прихлёбывать.
+> **slurp** — шумно пить, прихлёбывать
 
-**14 · Скажите: «В детстве он часто шумно хлебал суп.»**
-<!-- interaction_id: en:lesson-25:session-15:i10; family: phrase_builder -->
-Плитки: `soup` `his` `slurp` `would` `he` `child` `a` `As` → **As a child he would slurp his soup.**
+**11 · Попросите не прихлёбывать суп: «Пожалуйста, не хлебай суп шумно».**
+<!-- interaction_id: en:lesson-25:session-15:i07; family: scripted_repeat_compare -->
+🎙 **Please do not slurp your soup.**
 
-**15 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-15:i11; family: context_gap_grammar -->
-As a child he would ___ his soup. → **slurp** · slurped · slurping
-- slurped — *После would нужна базовая форма глагола.*
-- slurping — *После would нужна базовая форма глагола.*
+**12 · Вас беспокоит именно шум при питье супа, не размер глотков.**
+<!-- interaction_id: en:lesson-25:session-15:i08; family: context_gap_grammar -->
+Please do not ___ so loudly. → **slurp** · nibble · wait
+- nibble — *Nibble — откусывать маленькие кусочки; речь о шумном прихлёбывании.*
+- wait — *Wait — ждать; это не способ пить суп.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-15:i12; family: listen_choose -->
-🔊 *As a child he would slurp his soup.* → **As a child he would slurp his soup.** · As a child she would slurp her soup. · As a child he would slurp his milk.
-- As a child she would slurp her soup. — *В записи звучит As a child he would slurp his soup.*
-- As a child he would slurp his milk. — *В записи звучит As a child he would slurp his soup.*
+**13 · Вспомните семейный ужин: «По воскресеньям дедушка рассказывал нам истории за ужином». Используйте would.**
+<!-- interaction_id: en:lesson-25:session-15:i09; family: phrase_builder -->
+Плитки: `dinner` `at` `stories` `us` `tell` `would` `grandfather` `our` `Sundays` `On` → **On Sundays our grandfather would tell us stories at dinner.**
 
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-15:i13; family: speed_match -->
+**14 · Различите четыре способа есть и пить**
+<!-- interaction_id: en:lesson-25:session-15:i10; family: speed_match -->
 gulp — пить большими глотками · nibble — есть маленькими кусочками · munch — жевать с хрустом · slurp — шумно пить, прихлёбывать
 
-**18 · Прежнее место жительства**
-<!-- interaction_id: en:lesson-25:session-15:i14; family: listen_build_dictation -->
-🔊 *I used to live by the lake.* Плитки: `lake` `the` `by` `live` `to` `used` `I` → **I used to live by the lake.**
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-15:i11; family: listen_choose -->
+🔊 *Have you finished your lunch?* → **Have you finished your lunch?** · Have you started your lunch? · Have they finished their lunch?
+- Have you started your lunch? — *В записи звучит Have you finished your lunch?*
+- Have they finished their lunch? — *В записи звучит Have you finished your lunch?*
 
-**19 · Раньше я был застенчивым**
-<!-- interaction_id: en:lesson-25:session-15:i15; family: listen_build_dictation -->
-🔊 *I used to be shy.* Плитки: `shy` `be` `to` `used` `I` → **I used to be shy.**
+**16 · Вы уже поели; сейчас голода нет. Дополните Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-15:i12; family: context_gap_grammar -->
+I have already ___. → **eaten** · ate · eat
+- ate — *После have нужна третья форма eaten, а не ate.*
+- eat — *Have eat неверно; используем have eaten.*
 
-**20 · Скажите: «В детстве он часто понемногу ел печенье перед ужином».**
-<!-- interaction_id: en:lesson-25:session-15:i16; family: scripted_repeat_compare -->
-🎙 **As a child he would nibble a biscuit before dinner.**
+**17 · Услышьте один вчерашний случай.**
+<!-- interaction_id: en:lesson-25:session-15:i13; family: listen_build_dictation -->
+🔊 *I spilled my juice yesterday.* Плитки: `yesterday` `juice` `my` `spilled` `I` → **I spilled my juice yesterday.**
 
-**21 · Скажите: «В школе она часто хрустела морковкой во время обеда».**
-<!-- interaction_id: en:lesson-25:session-15:i17; family: scripted_repeat_compare -->
-🎙 **At school she would munch carrots during lunch.**
+**18 · Суп слишком горячий. Скажите: «Я немного подожду».**
+<!-- interaction_id: en:lesson-25:session-15:i14; family: scripted_repeat_compare -->
+🎙 **I will wait a little.**
+
+**19 · Нужна ещё одна чистая ложка.**
+<!-- interaction_id: en:lesson-25:session-15:i15; family: context_gap_grammar -->
+Please bring me ___ spoon. → **another** · other · others
+- other — *Another относится к одной дополнительной ложке.*
+- others — *Others не ставится перед spoon.*
+
+**20 · Некоторые тарелки ещё на столе. Скажите: «Другие тарелки на столе».**
+<!-- interaction_id: en:lesson-25:session-15:i16; family: phrase_builder -->
+Плитки: `table` `the` `on` `are` `plates` `other` `The` → **The other plates are on the table.**
+
+**21 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-15:i17; family: listen_choose -->
+🔊 *I used to dislike soup.* → **I used to dislike soup.** · I used to dislike milk. · She used to dislike soup.
+- I used to dislike milk. — *В записи звучит I used to dislike soup.*
+- She used to dislike soup. — *В записи звучит I used to dislike soup.*
 

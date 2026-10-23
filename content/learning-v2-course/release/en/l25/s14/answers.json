@@ -1,23 +1,18 @@
 [
   {
-    "interactionId": "en:lesson-25:session-14:word:gargle",
-    "correctText": "gargle",
+    "interactionId": "en:lesson-25:session-14:word:dye",
+    "correctText": "dye",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-14:i01",
-    "correctText": "In those days I would gargle with water every morning.",
-    "correctResponseId": null
+    "correctText": "In those days I would dye my hair at home.",
+    "correctResponseId": "en:lesson-25:session-14:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-14:i02",
-    "correctText": "gargle",
-    "correctResponseId": "en:lesson-25:session-14:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-14:i03",
-    "correctText": "In those days I would gargle with water every morning.",
-    "correctResponseId": "en:lesson-25:session-14:i03:r1"
+    "correctText": "Do you dye your hair?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-14:word:massage",
@@ -25,19 +20,19 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-14:i04",
-    "correctText": "After work she would massage her shoulders.",
+    "interactionId": "en:lesson-25:session-14:i03",
+    "correctText": "Can you massage my shoulders?",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-14:i05",
+    "interactionId": "en:lesson-25:session-14:i04",
     "correctText": "massage",
-    "correctResponseId": "en:lesson-25:session-14:i05:r1"
+    "correctResponseId": "en:lesson-25:session-14:i04:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-14:i06",
-    "correctText": "After work she would massage her shoulders.",
-    "correctResponseId": "en:lesson-25:session-14:i06:r1"
+    "interactionId": "en:lesson-25:session-14:i05",
+    "correctText": "My shoulders felt better after a rest.",
+    "correctResponseId": "en:lesson-25:session-14:i05:r1"
   },
   {
     "interactionId": "en:lesson-25:session-14:word:pluck",
@@ -45,63 +40,68 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-14:i06",
+    "correctText": "In those days I would pluck my eyebrows carefully.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-25:session-14:i07",
-    "correctText": "In those days she would pluck her eyebrows.",
+    "correctText": "pluck",
+    "correctResponseId": "en:lesson-25:session-14:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-14:word:gargle",
+    "correctText": "gargle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-14:i08",
-    "correctText": "pluck",
+    "correctText": "When I was younger I would gargle with water in the morning.",
     "correctResponseId": "en:lesson-25:session-14:i08:r1"
   },
   {
     "interactionId": "en:lesson-25:session-14:i09",
-    "correctText": "In those days she would pluck her eyebrows.",
-    "correctResponseId": "en:lesson-25:session-14:i09:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-14:word:dye",
-    "correctText": "dye",
+    "correctText": "en:lesson-25:session-14:i09:p1=gargle\nen:lesson-25:session-14:i09:p2=massage\nen:lesson-25:session-14:i09:p3=pluck\nen:lesson-25:session-14:i09:p4=dye",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-14:i10",
-    "correctText": "In those days we would dye our hair at home.",
+    "correctText": "I used to have dark hair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-14:i11",
-    "correctText": "dye",
+    "correctText": "washed",
     "correctResponseId": "en:lesson-25:session-14:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-14:i12",
-    "correctText": "In those days we would dye our hair at home.",
-    "correctResponseId": "en:lesson-25:session-14:i12:r1"
+    "correctText": "Can I have another towel?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-14:i13",
-    "correctText": "en:lesson-25:session-14:i13:p1=gargle\nen:lesson-25:session-14:i13:p2=massage\nen:lesson-25:session-14:i13:p3=pluck\nen:lesson-25:session-14:i13:p4=dye",
+    "correctText": "Before school I would brush my hair by the window.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-14:i14",
-    "correctText": "I used to live by the lake.",
-    "correctResponseId": null
+    "correctText": "Where is the other mirror?",
+    "correctResponseId": "en:lesson-25:session-14:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-14:i15",
-    "correctText": "I used to be shy.",
-    "correctResponseId": null
+    "correctText": "went",
+    "correctResponseId": "en:lesson-25:session-14:i15:r1"
   },
   {
     "interactionId": "en:lesson-25:session-14:i16",
-    "correctText": "In those days he would dye his hair at home.",
+    "correctText": "I like your new hairstyle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-14:i17",
-    "correctText": "After work they would massage their shoulders.",
+    "correctText": "In those days I would take a long bath on Saturdays.",
     "correctResponseId": null
   }
 ]

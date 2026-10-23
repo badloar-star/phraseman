@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-25:session-14:word:gargle",
+      "interactionId": "en:lesson-25:session-14:word:dye",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — gargle",
+      "prompt": "Карточка слова — dye",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-14:word:gargle:audio"
+        "en:lesson-25:session-14:word:dye:audio"
       ],
-      "accessibilityLabel": "Карточка слова — gargle",
+      "accessibilityLabel": "Карточка слова — dye",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-14:word:gargle:audio",
-          "transcript": "gargle"
+          "audioTargetId": "en:lesson-25:session-14:word:dye:audio",
+          "transcript": "dye"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-14:word:gargle:r1",
-            "targetText": "gargle",
+            "responseId": "en:lesson-25:session-14:word:dye:r1",
+            "targetText": "dye",
             "meaningByLocale": {
-              "ru": "полоскать горло.",
-              "uk": "полоскати горло."
+              "ru": "красить, окрашивать",
+              "uk": "фарбувати"
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "gargle",
+          "word": "dye",
           "definitionByLocale": {
-            "ru": "полоскать горло.",
-            "uk": "полоскати горло."
+            "ru": "красить, окрашивать",
+            "uk": "фарбувати"
           }
         }
       },
@@ -50,178 +50,70 @@
       "interactionId": "en:lesson-25:session-14:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «В те времена я обычно полоскал горло водой каждое утро.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «В те времена я обычно полоскал горло водой каждое утро.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "In those days I would gargle with water every morning.",
-        "localizedMeaning": {
-          "ru": "Скажите: «В те времена я обычно полоскал горло водой каждое утро.»",
-          "uk": "Скажіть: «У ті часи я зазвичай полоскав горло водою щоранку.»"
-        },
-        "orderedTokens": [
-          "In",
-          "those",
-          "days",
-          "I",
-          "would",
-          "gargle",
-          "with",
-          "water",
-          "every",
-          "morning"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-14:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните воспоминание.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-14:i02:r1",
-          "text": "gargle"
-        },
-        {
-          "responseId": "en:lesson-25:session-14:i02:r2",
-          "text": "gargled"
-        },
-        {
-          "responseId": "en:lesson-25:session-14:i02:r3",
-          "text": "gargling"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните воспоминание.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "In those days I would ___ with water every morning.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-14:i02:r1",
-            "text": "gargle"
-          },
-          {
-            "responseId": "en:lesson-25:session-14:i02:r2",
-            "text": "gargled"
-          },
-          {
-            "responseId": "en:lesson-25:session-14:i02:r3",
-            "text": "gargling"
-          }
-        ],
-        "testedDimension": "Дополните воспоминание.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-14:i02:r2",
-            "correct": false,
-            "testedDimension": "Дополните воспоминание.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-14:i02:r3",
-            "correct": false,
-            "testedDimension": "Дополните воспоминание.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-14:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-14:i03:r1",
-          "text": "In those days I would gargle with water every morning."
+          "responseId": "en:lesson-25:session-14:i01:r1",
+          "text": "In those days I would dye my hair at home."
         },
         {
-          "responseId": "en:lesson-25:session-14:i03:r2",
-          "text": "In those days he would gargle with water every morning."
+          "responseId": "en:lesson-25:session-14:i01:r2",
+          "text": "In those days I would dye my hair at a salon."
         },
         {
-          "responseId": "en:lesson-25:session-14:i03:r3",
-          "text": "In those days I would gargle with water every evening."
+          "responseId": "en:lesson-25:session-14:i01:r3",
+          "text": "In those days she would dye her hair at home."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-14:i03:audio"
+        "en:lesson-25:session-14:i01:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-14:i03:audio",
-          "transcript": "In those days I would gargle with water every morning."
+          "audioTargetId": "en:lesson-25:session-14:i01:audio",
+          "transcript": "In those days I would dye my hair at home."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-14:i03:r1",
-            "targetText": "In those days I would gargle with water every morning.",
+            "responseId": "en:lesson-25:session-14:i01:r1",
+            "targetText": "In those days I would dye my hair at home.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-14:i03:r2",
-            "targetText": "In those days he would gargle with water every morning.",
+            "responseId": "en:lesson-25:session-14:i01:r2",
+            "targetText": "In those days I would dye my hair at a salon.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-14:i03:r3",
-            "targetText": "In those days I would gargle with water every evening.",
+            "responseId": "en:lesson-25:session-14:i01:r3",
+            "targetText": "In those days she would dye her hair at home.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-14:i03:r2",
+            "responseId": "en:lesson-25:session-14:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит In those days I would gargle with water every morning.",
-              "uk": "У записі звучить In those days I would gargle with water every morning."
+              "ru": "В записи звучит In those days I would dye my hair at home.",
+              "uk": "У записі звучить In those days I would dye my hair at home."
             }
           },
           {
-            "responseId": "en:lesson-25:session-14:i03:r3",
+            "responseId": "en:lesson-25:session-14:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит In those days I would gargle with water every morning.",
-              "uk": "У записі звучить In those days I would gargle with water every morning."
+              "ru": "В записи звучит In those days I would dye my hair at home.",
+              "uk": "У записі звучить In those days I would dye my hair at home."
             }
           }
         ],
@@ -231,8 +123,41 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-14:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите подругу о её выборе: «Ты красишь волосы?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Спросите подругу о её выборе: «Ты красишь волосы?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i02:audio",
+          "transcript": "Do you dye your hair?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you dye your hair?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-14:word:massage",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -255,8 +180,8 @@
             "responseId": "en:lesson-25:session-14:word:massage:r1",
             "targetText": "massage",
             "meaningByLocale": {
-              "ru": "массировать.",
-              "uk": "масажувати."
+              "ru": "массировать",
+              "uk": "масажувати"
             }
           }
         ],
@@ -266,38 +191,36 @@
         "wordCard": {
           "word": "massage",
           "definitionByLocale": {
-            "ru": "массировать.",
-            "uk": "масажувати."
+            "ru": "массировать",
+            "uk": "масажувати"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-14:i04",
-      "ordinal": 9,
+      "interactionId": "en:lesson-25:session-14:i03",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «После работы она обычно массировала себе плечи.»",
+      "prompt": "Вы просите о помощи: «Можешь помассировать мне плечи?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «После работы она обычно массировала себе плечи.»",
+      "accessibilityLabel": "Вы просите о помощи: «Можешь помассировать мне плечи?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "After work she would massage her shoulders.",
+        "targetPhrase": "Can you massage my shoulders?",
         "localizedMeaning": {
-          "ru": "Скажите: «После работы она обычно массировала себе плечи.»",
-          "uk": "Скажіть: «Після роботи вона зазвичай масажувала собі плечі.»"
+          "ru": "Вы просите о помощи: «Можешь помассировать мне плечи?»",
+          "uk": "Ви просите допомогти: «Можеш помасажувати мені плечі?»"
         },
         "orderedTokens": [
-          "After",
-          "work",
-          "she",
-          "would",
+          "Can",
+          "you",
           "massage",
-          "her",
+          "my",
           "shoulders"
         ],
         "authoredDistractorTokens": [],
@@ -310,68 +233,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-14:i05",
-      "ordinal": 10,
+      "interactionId": "en:lesson-25:session-14:i04",
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните воспоминание.",
+      "prompt": "Вы рассказываете о своей повторявшейся привычке после работы.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-14:i05:r1",
+          "responseId": "en:lesson-25:session-14:i04:r1",
           "text": "massage"
         },
         {
-          "responseId": "en:lesson-25:session-14:i05:r2",
+          "responseId": "en:lesson-25:session-14:i04:r2",
           "text": "massaged"
         },
         {
-          "responseId": "en:lesson-25:session-14:i05:r3",
+          "responseId": "en:lesson-25:session-14:i04:r3",
           "text": "massaging"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните воспоминание.",
+      "accessibilityLabel": "Вы рассказываете о своей повторявшейся привычке после работы.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
+          "ru": "Вы рассказываете о своей повторявшейся привычке после работы.",
+          "uk": "Ви розповідаєте про свою повторювану звичку після роботи."
         },
-        "gappedTargetPhrase": "After work she would ___ her shoulders.",
+        "gappedTargetPhrase": "After those long shifts I would ___ my feet.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-14:i05:r1",
+            "responseId": "en:lesson-25:session-14:i04:r1",
             "text": "massage"
           },
           {
-            "responseId": "en:lesson-25:session-14:i05:r2",
+            "responseId": "en:lesson-25:session-14:i04:r2",
             "text": "massaged"
           },
           {
-            "responseId": "en:lesson-25:session-14:i05:r3",
+            "responseId": "en:lesson-25:session-14:i04:r3",
             "text": "massaging"
           }
         ],
-        "testedDimension": "Дополните воспоминание.",
+        "testedDimension": "Вы рассказываете о своей повторявшейся привычке после работы.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-14:i05:r2",
+            "responseId": "en:lesson-25:session-14:i04:r2",
             "correct": false,
-            "testedDimension": "Дополните воспоминание.",
+            "testedDimension": "Вы рассказываете о своей повторявшейся привычке после работы.",
             "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
+              "ru": "После would нужен глагол massage без окончания.",
+              "uk": "Після would потрібне дієслово massage без закінчення."
             }
           },
           {
-            "responseId": "en:lesson-25:session-14:i05:r3",
+            "responseId": "en:lesson-25:session-14:i04:r3",
             "correct": false,
-            "testedDimension": "Дополните воспоминание.",
+            "testedDimension": "Вы рассказываете о своей повторявшейся привычке после работы.",
             "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
+              "ru": "Would massaging здесь неверно; нужно would massage.",
+              "uk": "Would massaging тут неправильно; потрібно would massage."
             }
           }
         ]
@@ -379,73 +302,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-14:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-25:session-14:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-14:i06:r1",
-          "text": "After work she would massage her shoulders."
+          "responseId": "en:lesson-25:session-14:i05:r1",
+          "text": "My shoulders felt better after a rest."
         },
         {
-          "responseId": "en:lesson-25:session-14:i06:r2",
-          "text": "After work he would massage his shoulders."
+          "responseId": "en:lesson-25:session-14:i05:r2",
+          "text": "My feet felt better after a rest."
         },
         {
-          "responseId": "en:lesson-25:session-14:i06:r3",
-          "text": "After work she would massage her feet."
+          "responseId": "en:lesson-25:session-14:i05:r3",
+          "text": "My shoulders felt worse after a rest."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-14:i06:audio"
+        "en:lesson-25:session-14:i05:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-14:i06:audio",
-          "transcript": "After work she would massage her shoulders."
+          "audioTargetId": "en:lesson-25:session-14:i05:audio",
+          "transcript": "My shoulders felt better after a rest."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-14:i06:r1",
-            "targetText": "After work she would massage her shoulders.",
+            "responseId": "en:lesson-25:session-14:i05:r1",
+            "targetText": "My shoulders felt better after a rest.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-14:i06:r2",
-            "targetText": "After work he would massage his shoulders.",
+            "responseId": "en:lesson-25:session-14:i05:r2",
+            "targetText": "My feet felt better after a rest.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-14:i06:r3",
-            "targetText": "After work she would massage her feet.",
+            "responseId": "en:lesson-25:session-14:i05:r3",
+            "targetText": "My shoulders felt worse after a rest.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-14:i06:r2",
+            "responseId": "en:lesson-25:session-14:i05:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит After work she would massage her shoulders.",
-              "uk": "У записі звучить After work she would massage her shoulders."
+              "ru": "В записи звучит My shoulders felt better after a rest.",
+              "uk": "У записі звучить My shoulders felt better after a rest."
             }
           },
           {
-            "responseId": "en:lesson-25:session-14:i06:r3",
+            "responseId": "en:lesson-25:session-14:i05:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит After work she would massage her shoulders.",
-              "uk": "У записі звучить After work she would massage her shoulders."
+              "ru": "В записи звучит My shoulders felt better after a rest.",
+              "uk": "У записі звучить My shoulders felt better after a rest."
             }
           }
         ],
@@ -456,7 +379,7 @@
     },
     {
       "interactionId": "en:lesson-25:session-14:word:pluck",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -479,8 +402,8 @@
             "responseId": "en:lesson-25:session-14:word:pluck:r1",
             "targetText": "pluck",
             "meaningByLocale": {
-              "ru": "выщипывать.",
-              "uk": "вищипувати."
+              "ru": "выщипывать",
+              "uk": "вищипувати"
             }
           }
         ],
@@ -490,9 +413,50 @@
         "wordCard": {
           "word": "pluck",
           "definitionByLocale": {
-            "ru": "выщипывать.",
-            "uk": "вищипувати."
+            "ru": "выщипывать",
+            "uk": "вищипувати"
           }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте описание прежней привычки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i06:audio"
+      ],
+      "accessibilityLabel": "Услышьте описание прежней привычки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i06:audio",
+          "transcript": "In those days I would pluck my eyebrows carefully."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "In those days I would pluck my eyebrows carefully.",
+        "orderedTokens": [
+          "In",
+          "those",
+          "days",
+          "I",
+          "would",
+          "pluck",
+          "my",
+          "eyebrows",
+          "carefully"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -501,102 +465,65 @@
       "interactionId": "en:lesson-25:session-14:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «В те времена она обычно выщипывала брови.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «В те времена она обычно выщипывала брови.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "In those days she would pluck her eyebrows.",
-        "localizedMeaning": {
-          "ru": "Скажите: «В те времена она обычно выщипывала брови.»",
-          "uk": "Скажіть: «У ті часи вона зазвичай вищипувала брови.»"
-        },
-        "orderedTokens": [
-          "In",
-          "those",
-          "days",
-          "she",
-          "would",
-          "pluck",
-          "her",
-          "eyebrows"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-14:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните воспоминание.",
+      "prompt": "Речь об удалении отдельных волосков, а не об изменении их цвета.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-14:i08:r1",
+          "responseId": "en:lesson-25:session-14:i07:r1",
           "text": "pluck"
         },
         {
-          "responseId": "en:lesson-25:session-14:i08:r2",
-          "text": "plucked"
+          "responseId": "en:lesson-25:session-14:i07:r2",
+          "text": "dye"
         },
         {
-          "responseId": "en:lesson-25:session-14:i08:r3",
-          "text": "plucking"
+          "responseId": "en:lesson-25:session-14:i07:r3",
+          "text": "wash"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните воспоминание.",
+      "accessibilityLabel": "Речь об удалении отдельных волосков, а не об изменении их цвета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
+          "ru": "Речь об удалении отдельных волосков, а не об изменении их цвета.",
+          "uk": "Ідеться про видалення окремих волосків, а не про зміну їхнього кольору."
         },
-        "gappedTargetPhrase": "In those days she would ___ her eyebrows.",
+        "gappedTargetPhrase": "I used to ___ my eyebrows.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-14:i08:r1",
+            "responseId": "en:lesson-25:session-14:i07:r1",
             "text": "pluck"
           },
           {
-            "responseId": "en:lesson-25:session-14:i08:r2",
-            "text": "plucked"
+            "responseId": "en:lesson-25:session-14:i07:r2",
+            "text": "dye"
           },
           {
-            "responseId": "en:lesson-25:session-14:i08:r3",
-            "text": "plucking"
+            "responseId": "en:lesson-25:session-14:i07:r3",
+            "text": "wash"
           }
         ],
-        "testedDimension": "Дополните воспоминание.",
+        "testedDimension": "Речь об удалении отдельных волосков, а не об изменении их цвета.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-14:i08:r2",
+            "responseId": "en:lesson-25:session-14:i07:r2",
             "correct": false,
-            "testedDimension": "Дополните воспоминание.",
+            "testedDimension": "Речь об удалении отдельных волосков, а не об изменении их цвета.",
             "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
+              "ru": "Dye — красить; здесь речь об удалении волосков.",
+              "uk": "Dye — фарбувати; тут ідеться про видалення волосків."
             }
           },
           {
-            "responseId": "en:lesson-25:session-14:i08:r3",
+            "responseId": "en:lesson-25:session-14:i07:r3",
             "correct": false,
-            "testedDimension": "Дополните воспоминание.",
+            "testedDimension": "Речь об удалении отдельных волосков, а не об изменении их цвета.",
             "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
+              "ru": "Wash — мыть; здесь выщипывали отдельные волоски.",
+              "uk": "Wash — мити; тут вищипували окремі волоски."
             }
           }
         ]
@@ -604,108 +531,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-14:i09",
-      "ordinal": 15,
+      "interactionId": "en:lesson-25:session-14:word:gargle",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-14:i09:r1",
-          "text": "In those days she would pluck her eyebrows."
-        },
-        {
-          "responseId": "en:lesson-25:session-14:i09:r2",
-          "text": "In those days he would pluck his eyebrows."
-        },
-        {
-          "responseId": "en:lesson-25:session-14:i09:r3",
-          "text": "In those days she would pluck her eyebrows carefully."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-14:i09:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-14:i09:audio",
-          "transcript": "In those days she would pluck her eyebrows."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-14:i09:r1",
-            "targetText": "In those days she would pluck her eyebrows.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-14:i09:r2",
-            "targetText": "In those days he would pluck his eyebrows.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-14:i09:r3",
-            "targetText": "In those days she would pluck her eyebrows carefully.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-14:i09:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит In those days she would pluck her eyebrows.",
-              "uk": "У записі звучить In those days she would pluck her eyebrows."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-14:i09:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит In those days she would pluck her eyebrows.",
-              "uk": "У записі звучить In those days she would pluck her eyebrows."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-14:word:dye",
-      "ordinal": 16,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — dye",
+      "prompt": "Карточка слова — gargle",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-14:word:dye:audio"
+        "en:lesson-25:session-14:word:gargle:audio"
       ],
-      "accessibilityLabel": "Карточка слова — dye",
+      "accessibilityLabel": "Карточка слова — gargle",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-14:word:dye:audio",
-          "transcript": "dye"
+          "audioTargetId": "en:lesson-25:session-14:word:gargle:audio",
+          "transcript": "gargle"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-14:word:dye:r1",
-            "targetText": "dye",
+            "responseId": "en:lesson-25:session-14:word:gargle:r1",
+            "targetText": "gargle",
             "meaningByLocale": {
-              "ru": "красить, окрашивать.",
-              "uk": "фарбувати."
+              "ru": "полоскать горло",
+              "uk": "полоскати горло"
             }
           }
         ],
@@ -713,191 +564,83 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "dye",
+          "word": "gargle",
           "definitionByLocale": {
-            "ru": "красить, окрашивать.",
-            "uk": "фарбувати."
+            "ru": "полоскать горло",
+            "uk": "полоскати горло"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-14:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «В те времена мы обычно красили волосы дома.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «В те времена мы обычно красили волосы дома.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "In those days we would dye our hair at home.",
-        "localizedMeaning": {
-          "ru": "Скажите: «В те времена мы обычно красили волосы дома.»",
-          "uk": "Скажіть: «У ті часи ми зазвичай фарбували волосся вдома.»"
-        },
-        "orderedTokens": [
-          "In",
-          "those",
-          "days",
-          "we",
-          "would",
-          "dye",
-          "our",
-          "hair",
-          "at",
-          "home"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-14:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните воспоминание.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-14:i11:r1",
-          "text": "dye"
-        },
-        {
-          "responseId": "en:lesson-25:session-14:i11:r2",
-          "text": "dyed"
-        },
-        {
-          "responseId": "en:lesson-25:session-14:i11:r3",
-          "text": "dyeing"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните воспоминание.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "In those days we would ___ our hair at home.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-14:i11:r1",
-            "text": "dye"
-          },
-          {
-            "responseId": "en:lesson-25:session-14:i11:r2",
-            "text": "dyed"
-          },
-          {
-            "responseId": "en:lesson-25:session-14:i11:r3",
-            "text": "dyeing"
-          }
-        ],
-        "testedDimension": "Дополните воспоминание.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-14:i11:r2",
-            "correct": false,
-            "testedDimension": "Дополните воспоминание.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-14:i11:r3",
-            "correct": false,
-            "testedDimension": "Дополните воспоминание.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-14:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-14:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-14:i12:r1",
-          "text": "In those days we would dye our hair at home."
+          "responseId": "en:lesson-25:session-14:i08:r1",
+          "text": "When I was younger I would gargle with water in the morning."
         },
         {
-          "responseId": "en:lesson-25:session-14:i12:r2",
-          "text": "In those days they would dye their hair at home."
+          "responseId": "en:lesson-25:session-14:i08:r2",
+          "text": "When I was younger I would gargle with water at night."
         },
         {
-          "responseId": "en:lesson-25:session-14:i12:r3",
-          "text": "In those days we would dye our clothes at home."
+          "responseId": "en:lesson-25:session-14:i08:r3",
+          "text": "When she was younger she would gargle with water in the morning."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-14:i12:audio"
+        "en:lesson-25:session-14:i08:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-14:i12:audio",
-          "transcript": "In those days we would dye our hair at home."
+          "audioTargetId": "en:lesson-25:session-14:i08:audio",
+          "transcript": "When I was younger I would gargle with water in the morning."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-14:i12:r1",
-            "targetText": "In those days we would dye our hair at home.",
+            "responseId": "en:lesson-25:session-14:i08:r1",
+            "targetText": "When I was younger I would gargle with water in the morning.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-14:i12:r2",
-            "targetText": "In those days they would dye their hair at home.",
+            "responseId": "en:lesson-25:session-14:i08:r2",
+            "targetText": "When I was younger I would gargle with water at night.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-14:i12:r3",
-            "targetText": "In those days we would dye our clothes at home.",
+            "responseId": "en:lesson-25:session-14:i08:r3",
+            "targetText": "When she was younger she would gargle with water in the morning.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-14:i12:r2",
+            "responseId": "en:lesson-25:session-14:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит In those days we would dye our hair at home.",
-              "uk": "У записі звучить In those days we would dye our hair at home."
+              "ru": "В записи звучит When I was younger I would gargle with water in the morning.",
+              "uk": "У записі звучить When I was younger I would gargle with water in the morning."
             }
           },
           {
-            "responseId": "en:lesson-25:session-14:i12:r3",
+            "responseId": "en:lesson-25:session-14:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит In those days we would dye our hair at home.",
-              "uk": "У записі звучить In those days we would dye our hair at home."
+              "ru": "В записи звучит When I was younger I would gargle with water in the morning.",
+              "uk": "У записі звучить When I was younger I would gargle with water in the morning."
             }
           }
         ],
@@ -907,21 +650,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-14:i13",
-      "ordinal": 20,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-14:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова с переводом",
+      "prompt": "Соотнесите действия по уходу за собой с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова с переводом",
+      "accessibilityLabel": "Соотнесите действия по уходу за собой с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-14:i13:p1",
+            "pairId": "en:lesson-25:session-14:i09:p1",
             "target": "gargle",
             "meaningByLocale": {
               "ru": "полоскать горло",
@@ -929,7 +672,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-14:i13:p2",
+            "pairId": "en:lesson-25:session-14:i09:p2",
             "target": "massage",
             "meaningByLocale": {
               "ru": "массировать",
@@ -937,7 +680,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-14:i13:p3",
+            "pairId": "en:lesson-25:session-14:i09:p3",
             "target": "pluck",
             "meaningByLocale": {
               "ru": "выщипывать",
@@ -945,7 +688,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-14:i13:p4",
+            "pairId": "en:lesson-25:session-14:i09:p4",
             "target": "dye",
             "meaningByLocale": {
               "ru": "красить, окрашивать",
@@ -980,34 +723,30 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-14:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
+      "interactionId": "en:lesson-25:session-14:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Прежнее место жительства",
+      "prompt": "Вспомните прежний цвет волос: «Раньше у меня были тёмные волосы».",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-14:i14:audio"
-      ],
-      "accessibilityLabel": "Прежнее место жительства",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните прежний цвет волос: «Раньше у меня были тёмные волосы».",
       "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-14:i14:audio",
-          "transcript": "I used to live by the lake."
+        "family": "phrase_builder",
+        "targetPhrase": "I used to have dark hair.",
+        "localizedMeaning": {
+          "ru": "Вспомните прежний цвет волос: «Раньше у меня были тёмные волосы».",
+          "uk": "Згадайте колишній колір волосся: «Раніше в мене було темне волосся»."
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to live by the lake.",
         "orderedTokens": [
           "I",
           "used",
           "to",
-          "live",
-          "by",
-          "the",
-          "lake"
+          "have",
+          "dark",
+          "hair"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1019,32 +758,139 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-14:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Раньше я был застенчивым",
+      "interactionId": "en:lesson-25:session-14:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i11:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i11:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i11:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+          "uk": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect."
+        },
+        "gappedTargetPhrase": "I have already ___ my hair.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-14:i11:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i11:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i11:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+            "feedbackByLocale": {
+              "ru": "После have нужна форма washed.",
+              "uk": "Після have потрібна форма washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+            "feedbackByLocale": {
+              "ru": "Have washing не образует Present Perfect.",
+              "uk": "Have washing не утворює Present Perfect."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Первое полотенце мокрое. Попросите: «Можно мне ещё одно полотенце?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-14:i15:audio"
+        "en:lesson-25:session-14:i12:audio"
       ],
-      "accessibilityLabel": "Раньше я был застенчивым",
+      "accessibilityLabel": "Первое полотенце мокрое. Попросите: «Можно мне ещё одно полотенце?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i12:audio",
+          "transcript": "Can I have another towel?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I have another towel?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте прежнюю привычку перед зеркалом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i13:audio"
+      ],
+      "accessibilityLabel": "Услышьте прежнюю привычку перед зеркалом.",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-14:i15:audio",
-          "transcript": "I used to be shy."
+          "audioTargetId": "en:lesson-25:session-14:i13:audio",
+          "transcript": "Before school I would brush my hair by the window."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to be shy.",
+        "hiddenTargetPhrase": "Before school I would brush my hair by the window.",
         "orderedTokens": [
+          "Before",
+          "school",
           "I",
-          "used",
-          "to",
-          "be",
-          "shy"
+          "would",
+          "brush",
+          "my",
+          "hair",
+          "by",
+          "the",
+          "window"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1052,6 +898,151 @@
           "ru": "",
           "uk": ""
         }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i14:r1",
+          "text": "Where is the other mirror?"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i14:r2",
+          "text": "Where is the other towel?"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i14:r3",
+          "text": "Where are the other mirrors?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-14:i14:audio",
+          "transcript": "Where is the other mirror?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-14:i14:r1",
+            "targetText": "Where is the other mirror?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i14:r2",
+            "targetText": "Where is the other towel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i14:r3",
+            "targetText": "Where are the other mirrors?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Where is the other mirror?",
+              "uk": "У записі звучить Where is the other mirror?"
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Where is the other mirror?",
+              "uk": "У записі звучить Where is the other mirror?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера вы сходили в парикмахерскую один раз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-14:i15:r1",
+          "text": "went"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i15:r2",
+          "text": "have gone"
+        },
+        {
+          "responseId": "en:lesson-25:session-14:i15:r3",
+          "text": "would go"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера вы сходили в парикмахерскую один раз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера вы сходили в парикмахерскую один раз.",
+          "uk": "Учора ви сходили до перукарні один раз."
+        },
+        "gappedTargetPhrase": "I ___ to the hairdresser yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-14:i15:r1",
+            "text": "went"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i15:r2",
+            "text": "have gone"
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i15:r3",
+            "text": "would go"
+          }
+        ],
+        "testedDimension": "Вчера вы сходили в парикмахерскую один раз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-14:i15:r2",
+            "correct": false,
+            "testedDimension": "Вчера вы сходили в парикмахерскую один раз.",
+            "feedbackByLocale": {
+              "ru": "Yesterday требует Past Simple went.",
+              "uk": "Yesterday потребує Past Simple went."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-14:i15:r3",
+            "correct": false,
+            "testedDimension": "Вчера вы сходили в парикмахерскую один раз.",
+            "feedbackByLocale": {
+              "ru": "Здесь одна вчерашняя поездка, а не повторявшийся обычай.",
+              "uk": "Тут одна вчорашня поїздка, а не повторюваний звичай."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1061,21 +1052,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «В те времена он обычно красил волосы дома».",
+      "prompt": "Знакомая изменила причёску. Скажите: «Мне нравится твоя новая причёска».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-14:i16:audio"
       ],
-      "accessibilityLabel": "Скажите: «В те времена он обычно красил волосы дома».",
+      "accessibilityLabel": "Знакомая изменила причёску. Скажите: «Мне нравится твоя новая причёска».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-14:i16:audio",
-          "transcript": "In those days he would dye his hair at home."
+          "transcript": "I like your new hairstyle."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "In those days he would dye his hair at home.",
+        "targetPhrase": "I like your new hairstyle.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1091,33 +1082,40 @@
     {
       "interactionId": "en:lesson-25:session-14:i17",
       "ordinal": 24,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «После работы они обычно массировали себе плечи».",
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о прежнем субботнем отдыхе: «В те времена по субботам я долго принимал ванну». Используйте would.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-14:i17:audio"
-      ],
-      "accessibilityLabel": "Скажите: «После работы они обычно массировали себе плечи».",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о прежнем субботнем отдыхе: «В те времена по субботам я долго принимал ванну». Используйте would.",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-14:i17:audio",
-          "transcript": "After work they would massage their shoulders."
+        "family": "phrase_builder",
+        "targetPhrase": "In those days I would take a long bath on Saturdays.",
+        "localizedMeaning": {
+          "ru": "Расскажите о прежнем субботнем отдыхе: «В те времена по субботам я долго принимал ванну». Используйте would.",
+          "uk": "Розкажіть про колишній суботній відпочинок: «У ті часи щосуботи я довго приймав ванну». Використайте would."
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "After work they would massage their shoulders.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "In",
+          "those",
+          "days",
+          "I",
+          "would",
+          "take",
+          "a",
+          "long",
+          "bath",
+          "on",
+          "Saturdays"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     }
@@ -1128,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0e3acbf76c7689f312de89ac054db65fa9ae0cf7dd0886c696f7412f150fcff2"
+  "learnerFingerprint": "882c89243c060b8af93d4fb5298a984d6ce2421e940202010cd1627cafe1d6e5"
 }

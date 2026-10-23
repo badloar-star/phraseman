@@ -49,103 +49,103 @@ League — лига: группа команд, которые соревную�
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — winner**
-<!-- interaction_id: en:lesson-25:session-10:word:winner; family: word_card -->
-> **winner** — победитель.
-
-**2 · Скажите: «В школе мы обычно болели за победителя.»**
-<!-- interaction_id: en:lesson-25:session-10:i01; family: phrase_builder -->
-Плитки: `winner` `the` `for` `cheer` `would` `we` `school` `At` → **At school we would cheer for the winner.**
-
-**3 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-10:i02; family: context_gap_grammar -->
-At school we would ___ for the winner. → **cheer** · cheered · cheering
-- cheered — *После would нужна базовая форма глагола.*
-- cheering — *После would нужна базовая форма глагола.*
-
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-10:i03; family: listen_choose -->
-🔊 *At school we would cheer for the winner.* → **At school we would cheer for the winner.** · At school they would cheer for the winner. · At school we would clap for the winner.
-- At school they would cheer for the winner. — *В записи звучит At school we would cheer for the winner.*
-- At school we would clap for the winner. — *В записи звучит At school we would cheer for the winner.*
-
-**5 · Карточка слова — loser**
-<!-- interaction_id: en:lesson-25:session-10:word:loser; family: word_card -->
-> **loser** — проигравший.
-
-**6 · Скажите: «В те времена мы обычно утешали проигравшего.»**
-<!-- interaction_id: en:lesson-25:session-10:i04; family: phrase_builder -->
-Плитки: `loser` `the` `comfort` `would` `we` `days` `those` `In` → **In those days we would comfort the loser.**
-
-**7 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-10:i05; family: context_gap_grammar -->
-In those days we would ___ the loser. → **comfort** · comforted · comforting
-- comforted — *После would нужна базовая форма глагола.*
-- comforting — *После would нужна базовая форма глагола.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-10:i06; family: listen_choose -->
-🔊 *In those days we would comfort the loser.* → **In those days we would comfort the loser.** · In those days they would comfort the loser. · In those days we would encourage the loser.
-- In those days they would comfort the loser. — *В записи звучит In those days we would comfort the loser.*
-- In those days we would encourage the loser. — *В записи звучит In those days we would comfort the loser.*
-
-**9 · Карточка слова — athlete**
+**1 · Карточка слова — athlete**
 <!-- interaction_id: en:lesson-25:session-10:word:athlete; family: word_card -->
-> **athlete** — спортсмен.
+> **athlete** — спортсмен
 
-**10 · Скажите: «В те времена я регулярно тренировался со спортсменом.»**
-<!-- interaction_id: en:lesson-25:session-10:i07; family: phrase_builder -->
-Плитки: `athlete` `an` `with` `train` `would` `I` `days` `those` `In` → **In those days I would train with an athlete.**
+**2 · Представьте знакомого: «Моя сестра — спортсменка».**
+<!-- interaction_id: en:lesson-25:session-10:i01; family: phrase_builder -->
+Плитки: `athlete` `an` `is` `sister` `My` → **My sister is an athlete.**
 
-**11 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-10:i08; family: context_gap_grammar -->
-In those days I would ___ with an athlete. → **train** · trained · training
-- trained — *После would нужна базовая форма глагола.*
-- training — *После would нужна базовая форма глагола.*
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-10:i02; family: listen_choose -->
+🔊 *As teenagers we would train before school.* → **As teenagers we would train before school.** · As teenagers we would train after school. · As teenagers they would train before school.
+- As teenagers we would train after school. — *В записи звучит As teenagers we would train before school.*
+- As teenagers they would train before school. — *В записи звучит As teenagers we would train before school.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-10:i09; family: listen_choose -->
-🔊 *In those days I would train with an athlete.* → **In those days I would train with an athlete.** · In those days she would train with an athlete. · In those days I would run with an athlete.
-- In those days she would train with an athlete. — *В записи звучит In those days I would train with an athlete.*
-- In those days I would run with an athlete. — *В записи звучит In those days I would train with an athlete.*
+**4 · Вы вспоминаете регулярные тренировки много лет назад.**
+<!-- interaction_id: en:lesson-25:session-10:i03; family: context_gap_grammar -->
+Back then we would ___ every morning. → **run** · ran · running
+- ran — *После would нужна базовая форма run.*
+- running — *Would running неверно; нужно would run.*
 
-**13 · Карточка слова — league**
+**5 · Карточка слова — winner**
+<!-- interaction_id: en:lesson-25:session-10:word:winner; family: word_card -->
+> **winner** — победитель
+
+**6 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-10:i04; family: listen_choose -->
+🔊 *The winner received a medal.* → **The winner received a medal.** · The winner received a cup. · The winner received a prize.
+- The winner received a cup. — *В записи звучит The winner received a medal.*
+- The winner received a prize. — *В записи звучит The winner received a medal.*
+
+**7 · Вы не знаете результат гонки. Спросите: «Кто победитель?»**
+<!-- interaction_id: en:lesson-25:session-10:i05; family: scripted_repeat_compare -->
+🎙 **Who is the winner?**
+
+**8 · Карточка слова — loser**
+<!-- interaction_id: en:lesson-25:session-10:word:loser; family: word_card -->
+> **loser** — проигравший
+
+**9 · Услышьте воспоминание о честной игре.**
+<!-- interaction_id: en:lesson-25:session-10:i06; family: listen_build_dictation -->
+🔊 *After those games the loser would shake hands with the winner.* Плитки: `winner` `the` `with` `hands` `shake` `would` `loser` `the` `games` `those` `After` → **After those games the loser would shake hands with the winner.**
+
+**10 · Соперник выиграл, а вы проиграли. Вы называете только результат этой игры.**
+<!-- interaction_id: en:lesson-25:session-10:i07; family: context_gap_grammar -->
+I was the ___ in that game. → **loser** · winner · coach
+- winner — *Winner — победитель, но вы проиграли эту игру.*
+- coach — *Coach — тренер; здесь речь о вашем результате как игрока.*
+
+**11 · Карточка слова — league**
 <!-- interaction_id: en:lesson-25:session-10:word:league; family: word_card -->
-> **league** — лига.
+> **league** — лига
 
-**14 · Скажите: «В школе мы регулярно играли в местной лиге.»**
-<!-- interaction_id: en:lesson-25:session-10:i10; family: phrase_builder -->
-Плитки: `league` `local` `a` `in` `play` `would` `we` `school` `At` → **At school we would play in a local league.**
+**12 · Скажите о команде: «Наша команда играет в местной лиге».**
+<!-- interaction_id: en:lesson-25:session-10:i08; family: phrase_builder -->
+Плитки: `league` `local` `a` `in` `plays` `team` `Our` → **Our team plays in a local league.**
 
-**15 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-10:i11; family: context_gap_grammar -->
-At school we would ___ in a local league. → **play** · played · playing
-- played — *После would нужна базовая форма глагола.*
-- playing — *После would нужна базовая форма глагола.*
+**13 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-10:i09; family: listen_choose -->
+🔊 *In those days we would travel to matches by bus.* → **In those days we would travel to matches by bus.** · In those days we would travel to matches by train. · In those days we would walk to matches.
+- In those days we would travel to matches by train. — *В записи звучит In those days we would travel to matches by bus.*
+- In those days we would walk to matches. — *В записи звучит In those days we would travel to matches by bus.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-10:i12; family: listen_choose -->
-🔊 *At school we would play in a local league.* → **At school we would play in a local league.** · At school they would play in a local league. · At school we would compete in a local league.
-- At school they would play in a local league. — *В записи звучит At school we would play in a local league.*
-- At school we would compete in a local league. — *В записи звучит At school we would play in a local league.*
-
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-10:i13; family: speed_match -->
+**14 · Различите участников, результат и соревнование**
+<!-- interaction_id: en:lesson-25:session-10:i10; family: speed_match -->
 winner — победитель · loser — проигравший · athlete — спортсмен · league — лига
 
-**18 · Прежнее место жительства**
-<!-- interaction_id: en:lesson-25:session-10:i14; family: listen_build_dictation -->
-🔊 *I used to live by the lake.* Плитки: `lake` `the` `by` `live` `to` `used` `I` → **I used to live by the lake.**
+**15 · Предложите сыграть ещё раз: «Давай сыграем ещё одну игру».**
+<!-- interaction_id: en:lesson-25:session-10:i11; family: scripted_repeat_compare -->
+🎙 **Let us play another game.**
 
-**19 · Раньше я был застенчивым**
-<!-- interaction_id: en:lesson-25:session-10:i15; family: listen_build_dictation -->
-🔊 *I used to be shy.* Плитки: `shy` `be` `to` `used` `I` → **I used to be shy.**
+**16 · Вчера был один конкретный матч.**
+<!-- interaction_id: en:lesson-25:session-10:i12; family: context_gap_grammar -->
+Our team ___ yesterday. → **won** · has won · would win
+- has won — *Yesterday требует Past Simple won.*
+- would win — *Would win не обозначает здесь одну конкретную вчерашнюю победу.*
 
-**20 · Скажите: «В те времена они обычно утешали проигравшего».**
-<!-- interaction_id: en:lesson-25:session-10:i16; family: scripted_repeat_compare -->
-🎙 **In those days they would comfort the loser.**
+**17 · Услышьте прежний ритуал после тренировки.**
+<!-- interaction_id: en:lesson-25:session-10:i13; family: listen_build_dictation -->
+🔊 *After practice we would sit on the grass and talk.* Плитки: `talk` `and` `grass` `the` `on` `sit` `would` `we` `practice` `After` → **After practice we would sit on the grass and talk.**
 
-**21 · Скажите: «В школе они регулярно играли в местной лиге».**
+**18 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-10:i14; family: listen_choose -->
+🔊 *Have you ever won a race?* → **Have you ever won a race?** · Have you ever watched a race? · Have they ever won a race?
+- Have you ever watched a race? — *В записи звучит Have you ever won a race?*
+- Have they ever won a race? — *В записи звучит Have you ever won a race?*
+
+**19 · Расскажите о прежнем состоянии: «Раньше я был медленнее».**
+<!-- interaction_id: en:lesson-25:session-10:i15; family: phrase_builder -->
+Плитки: `slower` `be` `to` `used` `I` → **I used to be slower.**
+
+**20 · Один игрок уже готов. Дополните: «Другие игроки всё ещё ждут».**
+<!-- interaction_id: en:lesson-25:session-10:i16; family: context_gap_grammar -->
+The ___ players are still waiting. → **other** · another · others
+- another — *Another ставим перед существительным в единственном числе.*
+- others — *Перед players нужна форма other, без -s.*
+
+**21 · Поддержите друга после проигрыша: «Ты хорошо играл сегодня».**
 <!-- interaction_id: en:lesson-25:session-10:i17; family: scripted_repeat_compare -->
-🎙 **At school they would play in a local league.**
+🎙 **You played well today.**
 

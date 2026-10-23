@@ -28,8 +28,8 @@
               "responseId": "en:lesson-25:session-13:word:grab:r1",
               "targetText": "grab",
               "meaningByLocale": {
-                "ru": "схватить.",
-                "uk": "схопити."
+                "ru": "схватить",
+                "uk": "схопити"
               }
             }
           ],
@@ -39,8 +39,8 @@
           "wordCard": {
             "word": "grab",
             "definitionByLocale": {
-              "ru": "схватить.",
-              "uk": "схопити."
+              "ru": "схватить",
+              "uk": "схопити"
             }
           }
         },
@@ -52,28 +52,22 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В детстве мы обычно хватали свои сумки после школы.»",
+        "prompt": "Вы спешите выйти. Скажите другу: «Бери пальто!»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В детстве мы обычно хватали свои сумки после школы.»",
+        "accessibilityLabel": "Вы спешите выйти. Скажите другу: «Бери пальто!»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "As children we would grab our bags after school.",
+          "targetPhrase": "Grab your coat!",
           "localizedMeaning": {
-            "ru": "Скажите: «В детстве мы обычно хватали свои сумки после школы.»",
-            "uk": "Скажіть: «У дитинстві ми зазвичай хапали свої сумки після школи.»"
+            "ru": "Вы спешите выйти. Скажите другу: «Бери пальто!»",
+            "uk": "Ви поспішаєте вийти. Скажіть другові: «Хапай пальто!»"
           },
           "orderedTokens": [
-            "As",
-            "children",
-            "we",
-            "would",
-            "grab",
-            "our",
-            "bags",
-            "after",
-            "school"
+            "Grab",
+            "your",
+            "coat"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -88,139 +82,70 @@
         "interactionId": "en:lesson-25:session-13:i02",
         "ordinal": 6,
         "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i02:r1",
-            "text": "grab"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i02:r2",
-            "text": "grabbed"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i02:r3",
-            "text": "grabbing"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "As children we would ___ our bags after school.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-13:i02:r1",
-              "text": "grab"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i02:r2",
-              "text": "grabbed"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i02:r3",
-              "text": "grabbing"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i02:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i02:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-13:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-13:i03:r1",
-            "text": "As children we would grab our bags after school."
+            "responseId": "en:lesson-25:session-13:i02:r1",
+            "text": "After school we would hurry home."
           },
           {
-            "responseId": "en:lesson-25:session-13:i03:r2",
-            "text": "As children they would grab their bags after school."
+            "responseId": "en:lesson-25:session-13:i02:r2",
+            "text": "Before school we would hurry home."
           },
           {
-            "responseId": "en:lesson-25:session-13:i03:r3",
-            "text": "As children we would grab our coats after school."
+            "responseId": "en:lesson-25:session-13:i02:r3",
+            "text": "After school they would hurry home."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-13:i03:audio"
+          "en:lesson-25:session-13:i02:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i03:audio",
-            "transcript": "As children we would grab our bags after school."
+            "audioTargetId": "en:lesson-25:session-13:i02:audio",
+            "transcript": "After school we would hurry home."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-13:i03:r1",
-              "targetText": "As children we would grab our bags after school.",
+              "responseId": "en:lesson-25:session-13:i02:r1",
+              "targetText": "After school we would hurry home.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-13:i03:r2",
-              "targetText": "As children they would grab their bags after school.",
+              "responseId": "en:lesson-25:session-13:i02:r2",
+              "targetText": "Before school we would hurry home.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-13:i03:r3",
-              "targetText": "As children we would grab our coats after school.",
+              "responseId": "en:lesson-25:session-13:i02:r3",
+              "targetText": "After school they would hurry home.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-13:i03:r2",
+              "responseId": "en:lesson-25:session-13:i02:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит As children we would grab our bags after school.",
-                "uk": "У записі звучить As children we would grab our bags after school."
+                "ru": "В записи звучит After school we would hurry home.",
+                "uk": "У записі звучить After school we would hurry home."
               }
             },
             {
-              "responseId": "en:lesson-25:session-13:i03:r3",
+              "responseId": "en:lesson-25:session-13:i02:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит As children we would grab our bags after school.",
-                "uk": "У записі звучить As children we would grab our bags after school."
+                "ru": "В записи звучит After school we would hurry home.",
+                "uk": "У записі звучить After school we would hurry home."
               }
             }
           ],
@@ -231,7 +156,7 @@
       },
       {
         "interactionId": "en:lesson-25:session-13:word:tiptoe",
-        "ordinal": 8,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -254,8 +179,8 @@
               "responseId": "en:lesson-25:session-13:word:tiptoe:r1",
               "targetText": "tiptoe",
               "meaningByLocale": {
-                "ru": "идти на цыпочках.",
-                "uk": "іти навшпиньки."
+                "ru": "идти на цыпочках",
+                "uk": "іти навшпиньки"
               }
             }
           ],
@@ -265,10 +190,79 @@
           "wordCard": {
             "word": "tiptoe",
             "definitionByLocale": {
-              "ru": "идти на цыпочках.",
-              "uk": "іти навшпиньки."
+              "ru": "идти на цыпочках",
+              "uk": "іти навшпиньки"
             }
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-13:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ребёнок спит. Нужно пройти тихо на цыпочках, а не шумно бежать.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i03:r1",
+            "text": "tiptoe"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i03:r2",
+            "text": "shout"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i03:r3",
+            "text": "jump"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ребёнок спит. Нужно пройти тихо на цыпочках, а не шумно бежать.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ребёнок спит. Нужно пройти тихо на цыпочках, а не шумно бежать.",
+            "uk": "Дитина спить. Треба пройти тихо навшпиньки, а не шумно бігти."
+          },
+          "gappedTargetPhrase": "Please ___ past the bedroom.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-13:i03:r1",
+              "text": "tiptoe"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i03:r2",
+              "text": "shout"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i03:r3",
+              "text": "jump"
+            }
+          ],
+          "testedDimension": "Ребёнок спит. Нужно пройти тихо на цыпочках, а не шумно бежать.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "Ребёнок спит. Нужно пройти тихо на цыпочках, а не шумно бежать.",
+              "feedbackByLocale": {
+                "ru": "Shout — кричать; нужно пройти тихо.",
+                "uk": "Shout — кричати; потрібно пройти тихо."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "Ребёнок спит. Нужно пройти тихо на цыпочках, а не шумно бежать.",
+              "feedbackByLocale": {
+                "ru": "Jump — прыгать; здесь просят пройти на цыпочках.",
+                "uk": "Jump — стрибати; тут просять пройти навшпиньки."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -276,20 +270,23 @@
         "interactionId": "en:lesson-25:session-13:i04",
         "ordinal": 9,
         "purpose": "supported_practice",
-        "family": "phrase_builder",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В те времена я обычно проходил на цыпочках мимо спальни.»",
+        "prompt": "Услышьте прежнюю вечернюю привычку.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В те времена я обычно проходил на цыпочках мимо спальни.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-13:i04:audio"
+        ],
+        "accessibilityLabel": "Услышьте прежнюю вечернюю привычку.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "In those days I would tiptoe past the bedroom.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В те времена я обычно проходил на цыпочках мимо спальни.»",
-            "uk": "Скажіть: «У ті часи я зазвичай проходив навшпиньки повз спальню.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-13:i04:audio",
+            "transcript": "In those days I would tiptoe downstairs at night."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "In those days I would tiptoe downstairs at night.",
           "orderedTokens": [
             "In",
             "those",
@@ -297,9 +294,9 @@
             "I",
             "would",
             "tiptoe",
-            "past",
-            "the",
-            "bedroom"
+            "downstairs",
+            "at",
+            "night"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -313,151 +310,39 @@
       {
         "interactionId": "en:lesson-25:session-13:i05",
         "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i05:r1",
-            "text": "tiptoe"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i05:r2",
-            "text": "tiptoed"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i05:r3",
-            "text": "tiptoeing"
-          }
-        ],
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите тишины: «Пожалуйста, не буди ребёнка».",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
+        "audioTargetIds": [
+          "en:lesson-25:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Попросите тишины: «Пожалуйста, не буди ребёнка».",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-13:i05:audio",
+            "transcript": "Please do not wake the baby."
           },
-          "gappedTargetPhrase": "In those days I would ___ past the bedroom.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-13:i05:r1",
-              "text": "tiptoe"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i05:r2",
-              "text": "tiptoed"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i05:r3",
-              "text": "tiptoeing"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i05:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i05:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please do not wake the baby.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i06:r1",
-            "text": "In those days I would tiptoe past the bedroom."
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i06:r2",
-            "text": "In those days she would tiptoe past the bedroom."
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i06:r3",
-            "text": "In those days I would tiptoe past the kitchen."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-13:i06:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i06:audio",
-            "transcript": "In those days I would tiptoe past the bedroom."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-13:i06:r1",
-              "targetText": "In those days I would tiptoe past the bedroom.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i06:r2",
-              "targetText": "In those days she would tiptoe past the bedroom.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i06:r3",
-              "targetText": "In those days I would tiptoe past the kitchen.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i06:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит In those days I would tiptoe past the bedroom.",
-                "uk": "У записі звучить In those days I would tiptoe past the bedroom."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i06:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит In those days I would tiptoe past the bedroom.",
-                "uk": "У записі звучить In those days I would tiptoe past the bedroom."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-13:word:chuckle",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -480,8 +365,8 @@
               "responseId": "en:lesson-25:session-13:word:chuckle:r1",
               "targetText": "chuckle",
               "meaningByLocale": {
-                "ru": "тихо смеяться.",
-                "uk": "тихо сміятися."
+                "ru": "тихо смеяться",
+                "uk": "тихо сміятися"
               }
             }
           ],
@@ -491,188 +376,81 @@
           "wordCard": {
             "word": "chuckle",
             "definitionByLocale": {
-              "ru": "тихо смеяться.",
-              "uk": "тихо сміятися."
+              "ru": "тихо смеяться",
+              "uk": "тихо сміятися"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В детстве он часто тихо смеялся над нашими шутками.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В детстве он часто тихо смеялся над нашими шутками.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "As a child he would chuckle at our jokes.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В детстве он часто тихо смеялся над нашими шутками.»",
-            "uk": "Скажіть: «У дитинстві він часто тихо сміявся з наших жартів.»"
-          },
-          "orderedTokens": [
-            "As",
-            "a",
-            "child",
-            "he",
-            "would",
-            "chuckle",
-            "at",
-            "our",
-            "jokes"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-13:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i08:r1",
-            "text": "chuckle"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i08:r2",
-            "text": "chuckled"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i08:r3",
-            "text": "chuckling"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "As a child he would ___ at our jokes.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-13:i08:r1",
-              "text": "chuckle"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i08:r2",
-              "text": "chuckled"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i08:r3",
-              "text": "chuckling"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i08:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i08:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-13:i09",
-        "ordinal": 15,
+        "interactionId": "en:lesson-25:session-13:i06",
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-13:i09:r1",
-            "text": "As a child he would chuckle at our jokes."
+            "responseId": "en:lesson-25:session-13:i06:r1",
+            "text": "My grandfather would chuckle at that story every evening."
           },
           {
-            "responseId": "en:lesson-25:session-13:i09:r2",
-            "text": "As a child she would chuckle at our jokes."
+            "responseId": "en:lesson-25:session-13:i06:r2",
+            "text": "My grandfather would chuckle at that joke every evening."
           },
           {
-            "responseId": "en:lesson-25:session-13:i09:r3",
-            "text": "As a child he would chuckle at their jokes."
+            "responseId": "en:lesson-25:session-13:i06:r3",
+            "text": "My grandmother would chuckle at that story every evening."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-13:i09:audio"
+          "en:lesson-25:session-13:i06:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i09:audio",
-            "transcript": "As a child he would chuckle at our jokes."
+            "audioTargetId": "en:lesson-25:session-13:i06:audio",
+            "transcript": "My grandfather would chuckle at that story every evening."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-13:i09:r1",
-              "targetText": "As a child he would chuckle at our jokes.",
+              "responseId": "en:lesson-25:session-13:i06:r1",
+              "targetText": "My grandfather would chuckle at that story every evening.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-13:i09:r2",
-              "targetText": "As a child she would chuckle at our jokes.",
+              "responseId": "en:lesson-25:session-13:i06:r2",
+              "targetText": "My grandfather would chuckle at that joke every evening.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-13:i09:r3",
-              "targetText": "As a child he would chuckle at their jokes.",
+              "responseId": "en:lesson-25:session-13:i06:r3",
+              "targetText": "My grandmother would chuckle at that story every evening.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-13:i09:r2",
+              "responseId": "en:lesson-25:session-13:i06:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит As a child he would chuckle at our jokes.",
-                "uk": "У записі звучить As a child he would chuckle at our jokes."
+                "ru": "В записи звучит My grandfather would chuckle at that story every evening.",
+                "uk": "У записі звучить My grandfather would chuckle at that story every evening."
               }
             },
             {
-              "responseId": "en:lesson-25:session-13:i09:r3",
+              "responseId": "en:lesson-25:session-13:i06:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит As a child he would chuckle at our jokes.",
-                "uk": "У записі звучить As a child he would chuckle at our jokes."
+                "ru": "В записи звучит My grandfather would chuckle at that story every evening.",
+                "uk": "У записі звучить My grandfather would chuckle at that story every evening."
               }
             }
           ],
@@ -682,8 +460,77 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-13:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о повторявшейся реакции дедушки в прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i07:r1",
+            "text": "chuckle"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i07:r2",
+            "text": "chuckled"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i07:r3",
+            "text": "chuckling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о повторявшейся реакции дедушки в прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о повторявшейся реакции дедушки в прошлом.",
+            "uk": "Ідеться про повторювану реакцію дідуся в минулому."
+          },
+          "gappedTargetPhrase": "Back then he would ___ at our stories.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-13:i07:r1",
+              "text": "chuckle"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i07:r2",
+              "text": "chuckled"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i07:r3",
+              "text": "chuckling"
+            }
+          ],
+          "testedDimension": "Речь о повторявшейся реакции дедушки в прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i07:r2",
+              "correct": false,
+              "testedDimension": "Речь о повторявшейся реакции дедушки в прошлом.",
+              "feedbackByLocale": {
+                "ru": "После would используем базовую форму chuckle.",
+                "uk": "Після would використовуємо базову форму chuckle."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i07:r3",
+              "correct": false,
+              "testedDimension": "Речь о повторявшейся реакции дедушки в прошлом.",
+              "feedbackByLocale": {
+                "ru": "Would chuckling не подходит; нужно would chuckle.",
+                "uk": "Would chuckling не підходить; потрібно would chuckle."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-13:word:imitate",
-        "ordinal": 16,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -706,8 +553,8 @@
               "responseId": "en:lesson-25:session-13:word:imitate:r1",
               "targetText": "imitate",
               "meaningByLocale": {
-                "ru": "подражать.",
-                "uk": "наслідувати."
+                "ru": "подражать",
+                "uk": "наслідувати"
               }
             }
           ],
@@ -717,30 +564,63 @@
           "wordCard": {
             "word": "imitate",
             "definitionByLocale": {
-              "ru": "подражать.",
-              "uk": "наслідувати."
+              "ru": "подражать",
+              "uk": "наслідувати"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-13:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите игру: «Можешь изобразить кошку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-13:i08:audio"
+        ],
+        "accessibilityLabel": "Предложите игру: «Можешь изобразить кошку?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-13:i08:audio",
+            "transcript": "Can you imitate a cat?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you imitate a cat?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-13:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В школе мы часто подражали звукам животных.»",
+        "prompt": "Вспомните школьные игры: «В школе мы часто подражали голосам друг друга». Используйте would.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В школе мы часто подражали звукам животных.»",
+        "accessibilityLabel": "Вспомните школьные игры: «В школе мы часто подражали голосам друг друга». Используйте would.",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "At school we would imitate animal sounds.",
+          "targetPhrase": "At school we would imitate each other’s voices.",
           "localizedMeaning": {
-            "ru": "Скажите: «В школе мы часто подражали звукам животных.»",
-            "uk": "Скажіть: «У школі ми часто наслідували звуки тварин.»"
+            "ru": "Вспомните школьные игры: «В школе мы часто подражали голосам друг друга». Используйте would.",
+            "uk": "Згадайте шкільні ігри: «У школі ми часто наслідували голоси одне одного». Використайте would."
           },
           "orderedTokens": [
             "At",
@@ -748,8 +628,9 @@
             "we",
             "would",
             "imitate",
-            "animal",
-            "sounds"
+            "each",
+            "other’s",
+            "voices"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -761,166 +642,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i11:r1",
-            "text": "imitate"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i11:r2",
-            "text": "imitated"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i11:r3",
-            "text": "imitating"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "At school we would ___ animal sounds.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-13:i11:r1",
-              "text": "imitate"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i11:r2",
-              "text": "imitated"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i11:r3",
-              "text": "imitating"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i11:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i11:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-13:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i12:r1",
-            "text": "At school we would imitate animal sounds."
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i12:r2",
-            "text": "At school they would imitate animal sounds."
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i12:r3",
-            "text": "At school we would imitate bird sounds."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-13:i12:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i12:audio",
-            "transcript": "At school we would imitate animal sounds."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-13:i12:r1",
-              "targetText": "At school we would imitate animal sounds.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i12:r2",
-              "targetText": "At school they would imitate animal sounds.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i12:r3",
-              "targetText": "At school we would imitate bird sounds.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i12:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school we would imitate animal sounds.",
-                "uk": "У записі звучить At school we would imitate animal sounds."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i12:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school we would imitate animal sounds.",
-                "uk": "У записі звучить At school we would imitate animal sounds."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-13:i13",
-        "ordinal": 20,
+        "interactionId": "en:lesson-25:session-13:i10",
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова с переводом",
+        "prompt": "Соотнесите четыре действия с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова с переводом",
+        "accessibilityLabel": "Соотнесите четыре действия с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-13:i13:p1",
+              "pairId": "en:lesson-25:session-13:i10:p1",
               "target": "grab",
               "meaningByLocale": {
                 "ru": "схватить",
@@ -928,7 +664,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-13:i13:p2",
+              "pairId": "en:lesson-25:session-13:i10:p2",
               "target": "tiptoe",
               "meaningByLocale": {
                 "ru": "идти на цыпочках",
@@ -936,7 +672,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-13:i13:p3",
+              "pairId": "en:lesson-25:session-13:i10:p3",
               "target": "chuckle",
               "meaningByLocale": {
                 "ru": "тихо смеяться",
@@ -944,7 +680,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-13:i13:p4",
+              "pairId": "en:lesson-25:session-13:i10:p4",
               "target": "imitate",
               "meaningByLocale": {
                 "ru": "подражать",
@@ -979,34 +715,179 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
+        "interactionId": "en:lesson-25:session-13:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i11:r1",
+            "text": "Did you hear that funny sound?"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i11:r2",
+            "text": "Did you make that funny sound?"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i11:r3",
+            "text": "Did they hear that funny sound?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-13:i11:audio",
+            "transcript": "Did you hear that funny sound?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-13:i11:r1",
+              "targetText": "Did you hear that funny sound?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i11:r2",
+              "targetText": "Did you make that funny sound?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i11:r3",
+              "targetText": "Did they hear that funny sound?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you hear that funny sound?",
+                "uk": "У записі звучить Did you hear that funny sound?"
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you hear that funny sound?",
+                "uk": "У записі звучить Did you hear that funny sound?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-13:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Смешной рассказ вы услышали один раз вчера.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i12:r1",
+            "text": "told"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i12:r2",
+            "text": "has told"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i12:r3",
+            "text": "would tell"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Смешной рассказ вы услышали один раз вчера.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Смешной рассказ вы услышали один раз вчера.",
+            "uk": "Кумедну розповідь ви почули один раз учора."
+          },
+          "gappedTargetPhrase": "My friend ___ me that story yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-13:i12:r1",
+              "text": "told"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i12:r2",
+              "text": "has told"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i12:r3",
+              "text": "would tell"
+            }
+          ],
+          "testedDimension": "Смешной рассказ вы услышали один раз вчера.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i12:r2",
+              "correct": false,
+              "testedDimension": "Смешной рассказ вы услышали один раз вчера.",
+              "feedbackByLocale": {
+                "ru": "Yesterday требует Past Simple told.",
+                "uk": "Yesterday потребує Past Simple told."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i12:r3",
+              "correct": false,
+              "testedDimension": "Смешной рассказ вы услышали один раз вчера.",
+              "feedbackByLocale": {
+                "ru": "Здесь один рассказ вчера, а не прежний повторявшийся обычай.",
+                "uk": "Тут одна розповідь учора, а не колишній повторюваний звичай."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-13:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Прежнее место жительства",
+        "prompt": "Услышьте, где прежде встречались друзья.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-13:i14:audio"
+          "en:lesson-25:session-13:i13:audio"
         ],
-        "accessibilityLabel": "Прежнее место жительства",
+        "accessibilityLabel": "Услышьте, где прежде встречались друзья.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i14:audio",
-            "transcript": "I used to live by the lake."
+            "audioTargetId": "en:lesson-25:session-13:i13:audio",
+            "transcript": "We used to meet behind the school."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to live by the lake.",
+          "hiddenTargetPhrase": "We used to meet behind the school.",
           "orderedTokens": [
-            "I",
+            "We",
             "used",
             "to",
-            "live",
-            "by",
+            "meet",
+            "behind",
             "the",
-            "lake"
+            "school"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1018,32 +899,61 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i15",
-        "ordinal": 22,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Раньше я был застенчивым",
+        "interactionId": "en:lesson-25:session-13:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Эта история вам знакома. Скажите: «Я уже слышал эту историю».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-13:i15:audio"
+          "en:lesson-25:session-13:i14:audio"
         ],
-        "accessibilityLabel": "Раньше я был застенчивым",
+        "accessibilityLabel": "Эта история вам знакома. Скажите: «Я уже слышал эту историю».",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i15:audio",
-            "transcript": "I used to be shy."
+            "audioTargetId": "en:lesson-25:session-13:i14:audio",
+            "transcript": "I have already heard that story."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to be shy.",
+          "targetPhrase": "I have already heard that story.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Одну шутку уже рассказали. Попросите: «Расскажи мне ещё одну шутку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Одну шутку уже рассказали. Попросите: «Расскажи мне ещё одну шутку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Tell me another joke.",
+          "localizedMeaning": {
+            "ru": "Одну шутку уже рассказали. Попросите: «Расскажи мне ещё одну шутку».",
+            "uk": "Один жарт уже розповіли. Попросіть: «Розкажи мені ще один жарт»."
+          },
           "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "be",
-            "shy"
+            "Tell",
+            "me",
+            "another",
+            "joke"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1057,32 +967,68 @@
       {
         "interactionId": "en:lesson-25:session-13:i16",
         "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «В те времена он обычно проходил на цыпочках мимо спальни».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-13:i16:audio"
-        ],
-        "accessibilityLabel": "Скажите: «В те времена он обычно проходил на цыпочках мимо спальни».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i16:audio",
-            "transcript": "In those days he would tiptoe past the bedroom."
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы хотите услышать другие истории, несколько.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i16:r1",
+            "text": "other"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "In those days he would tiptoe past the bedroom.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-13:i16:r2",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i16:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите услышать другие истории, несколько.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы хотите услышать другие истории, несколько.",
+            "uk": "Ви хочете почути інші історії, кілька."
+          },
+          "gappedTargetPhrase": "Do you know any ___ stories?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-13:i16:r1",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i16:r2",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i16:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Вы хотите услышать другие истории, несколько.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы хотите услышать другие истории, несколько.",
+              "feedbackByLocale": {
+                "ru": "Another относится к одному предмету; stories — множественное число.",
+                "uk": "Another стосується одного предмета; stories — множина."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы хотите услышать другие истории, несколько.",
+              "feedbackByLocale": {
+                "ru": "Перед существительным stories используем other без -s.",
+                "uk": "Перед іменником stories використовуємо other без -s."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1090,33 +1036,76 @@
       {
         "interactionId": "en:lesson-25:session-13:i17",
         "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «В школе она часто подражала звукам животных».",
-        "responseOptions": [],
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i17:r1",
+            "text": "As children we would laugh all the way home."
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i17:r2",
+            "text": "As children we would sing all the way home."
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i17:r3",
+            "text": "As children we would run all the way home."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-13:i17:audio"
         ],
-        "accessibilityLabel": "Скажите: «В школе она часто подражала звукам животных».",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
-          "family": "scripted_repeat_compare",
+          "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-13:i17:audio",
-            "transcript": "At school she would imitate animal sounds."
+            "transcript": "As children we would laugh all the way home."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "At school she would imitate animal sounds.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-13:i17:r1",
+              "targetText": "As children we would laugh all the way home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i17:r2",
+              "targetText": "As children we would sing all the way home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i17:r3",
+              "targetText": "As children we would run all the way home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i17:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит As children we would laugh all the way home.",
+                "uk": "У записі звучить As children we would laugh all the way home."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i17:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит As children we would laugh all the way home.",
+                "uk": "У записі звучить As children we would laugh all the way home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       }
@@ -1147,8 +1136,8 @@
               "responseId": "en:lesson-25:session-13:word:grab:r1",
               "targetText": "grab",
               "meaningByLocale": {
-                "ru": "схватить.",
-                "uk": "схопити."
+                "ru": "схватить",
+                "uk": "схопити"
               }
             }
           ],
@@ -1158,8 +1147,8 @@
           "wordCard": {
             "word": "grab",
             "definitionByLocale": {
-              "ru": "схватить.",
-              "uk": "схопити."
+              "ru": "схватить",
+              "uk": "схопити"
             }
           }
         },
@@ -1171,28 +1160,22 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У дитинстві ми зазвичай хапали свої сумки після школи.»",
+        "prompt": "Ви поспішаєте вийти. Скажіть другові: «Хапай пальто!»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У дитинстві ми зазвичай хапали свої сумки після школи.»",
+        "accessibilityLabel": "Ви поспішаєте вийти. Скажіть другові: «Хапай пальто!»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "As children we would grab our bags after school.",
+          "targetPhrase": "Grab your coat!",
           "localizedMeaning": {
-            "ru": "Скажите: «В детстве мы обычно хватали свои сумки после школы.»",
-            "uk": "Скажіть: «У дитинстві ми зазвичай хапали свої сумки після школи.»"
+            "ru": "Вы спешите выйти. Скажите другу: «Бери пальто!»",
+            "uk": "Ви поспішаєте вийти. Скажіть другові: «Хапай пальто!»"
           },
           "orderedTokens": [
-            "As",
-            "children",
-            "we",
-            "would",
-            "grab",
-            "our",
-            "bags",
-            "after",
-            "school"
+            "Grab",
+            "your",
+            "coat"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1207,139 +1190,70 @@
         "interactionId": "en:lesson-25:session-13:i02",
         "ordinal": 6,
         "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i02:r1",
-            "text": "grab"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i02:r2",
-            "text": "grabbed"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i02:r3",
-            "text": "grabbing"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "As children we would ___ our bags after school.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-13:i02:r1",
-              "text": "grab"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i02:r2",
-              "text": "grabbed"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i02:r3",
-              "text": "grabbing"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i02:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i02:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-13:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-13:i03:r1",
-            "text": "As children we would grab our bags after school."
+            "responseId": "en:lesson-25:session-13:i02:r1",
+            "text": "After school we would hurry home."
           },
           {
-            "responseId": "en:lesson-25:session-13:i03:r2",
-            "text": "As children they would grab their bags after school."
+            "responseId": "en:lesson-25:session-13:i02:r2",
+            "text": "Before school we would hurry home."
           },
           {
-            "responseId": "en:lesson-25:session-13:i03:r3",
-            "text": "As children we would grab our coats after school."
+            "responseId": "en:lesson-25:session-13:i02:r3",
+            "text": "After school they would hurry home."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-13:i03:audio"
+          "en:lesson-25:session-13:i02:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i03:audio",
-            "transcript": "As children we would grab our bags after school."
+            "audioTargetId": "en:lesson-25:session-13:i02:audio",
+            "transcript": "After school we would hurry home."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-13:i03:r1",
-              "targetText": "As children we would grab our bags after school.",
+              "responseId": "en:lesson-25:session-13:i02:r1",
+              "targetText": "After school we would hurry home.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-13:i03:r2",
-              "targetText": "As children they would grab their bags after school.",
+              "responseId": "en:lesson-25:session-13:i02:r2",
+              "targetText": "Before school we would hurry home.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-13:i03:r3",
-              "targetText": "As children we would grab our coats after school.",
+              "responseId": "en:lesson-25:session-13:i02:r3",
+              "targetText": "After school they would hurry home.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-13:i03:r2",
+              "responseId": "en:lesson-25:session-13:i02:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит As children we would grab our bags after school.",
-                "uk": "У записі звучить As children we would grab our bags after school."
+                "ru": "В записи звучит After school we would hurry home.",
+                "uk": "У записі звучить After school we would hurry home."
               }
             },
             {
-              "responseId": "en:lesson-25:session-13:i03:r3",
+              "responseId": "en:lesson-25:session-13:i02:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит As children we would grab our bags after school.",
-                "uk": "У записі звучить As children we would grab our bags after school."
+                "ru": "В записи звучит After school we would hurry home.",
+                "uk": "У записі звучить After school we would hurry home."
               }
             }
           ],
@@ -1350,7 +1264,7 @@
       },
       {
         "interactionId": "en:lesson-25:session-13:word:tiptoe",
-        "ordinal": 8,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1373,8 +1287,8 @@
               "responseId": "en:lesson-25:session-13:word:tiptoe:r1",
               "targetText": "tiptoe",
               "meaningByLocale": {
-                "ru": "идти на цыпочках.",
-                "uk": "іти навшпиньки."
+                "ru": "идти на цыпочках",
+                "uk": "іти навшпиньки"
               }
             }
           ],
@@ -1384,10 +1298,79 @@
           "wordCard": {
             "word": "tiptoe",
             "definitionByLocale": {
-              "ru": "идти на цыпочках.",
-              "uk": "іти навшпиньки."
+              "ru": "идти на цыпочках",
+              "uk": "іти навшпиньки"
             }
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-13:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дитина спить. Треба пройти тихо навшпиньки, а не шумно бігти.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i03:r1",
+            "text": "tiptoe"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i03:r2",
+            "text": "shout"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i03:r3",
+            "text": "jump"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дитина спить. Треба пройти тихо навшпиньки, а не шумно бігти.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ребёнок спит. Нужно пройти тихо на цыпочках, а не шумно бежать.",
+            "uk": "Дитина спить. Треба пройти тихо навшпиньки, а не шумно бігти."
+          },
+          "gappedTargetPhrase": "Please ___ past the bedroom.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-13:i03:r1",
+              "text": "tiptoe"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i03:r2",
+              "text": "shout"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i03:r3",
+              "text": "jump"
+            }
+          ],
+          "testedDimension": "Дитина спить. Треба пройти тихо навшпиньки, а не шумно бігти.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "Дитина спить. Треба пройти тихо навшпиньки, а не шумно бігти.",
+              "feedbackByLocale": {
+                "ru": "Shout — кричать; нужно пройти тихо.",
+                "uk": "Shout — кричати; потрібно пройти тихо."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "Дитина спить. Треба пройти тихо навшпиньки, а не шумно бігти.",
+              "feedbackByLocale": {
+                "ru": "Jump — прыгать; здесь просят пройти на цыпочках.",
+                "uk": "Jump — стрибати; тут просять пройти навшпиньки."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1395,20 +1378,23 @@
         "interactionId": "en:lesson-25:session-13:i04",
         "ordinal": 9,
         "purpose": "supported_practice",
-        "family": "phrase_builder",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У ті часи я зазвичай проходив навшпиньки повз спальню.»",
+        "prompt": "Почуйте колишню вечірню звичку.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У ті часи я зазвичай проходив навшпиньки повз спальню.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-13:i04:audio"
+        ],
+        "accessibilityLabel": "Почуйте колишню вечірню звичку.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "In those days I would tiptoe past the bedroom.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В те времена я обычно проходил на цыпочках мимо спальни.»",
-            "uk": "Скажіть: «У ті часи я зазвичай проходив навшпиньки повз спальню.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-13:i04:audio",
+            "transcript": "In those days I would tiptoe downstairs at night."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "In those days I would tiptoe downstairs at night.",
           "orderedTokens": [
             "In",
             "those",
@@ -1416,9 +1402,9 @@
             "I",
             "would",
             "tiptoe",
-            "past",
-            "the",
-            "bedroom"
+            "downstairs",
+            "at",
+            "night"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1432,151 +1418,39 @@
       {
         "interactionId": "en:lesson-25:session-13:i05",
         "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i05:r1",
-            "text": "tiptoe"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i05:r2",
-            "text": "tiptoed"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i05:r3",
-            "text": "tiptoeing"
-          }
-        ],
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть тиші: «Будь ласка, не буди дитину».",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
+        "audioTargetIds": [
+          "en:lesson-25:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Попросіть тиші: «Будь ласка, не буди дитину».",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-13:i05:audio",
+            "transcript": "Please do not wake the baby."
           },
-          "gappedTargetPhrase": "In those days I would ___ past the bedroom.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-13:i05:r1",
-              "text": "tiptoe"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i05:r2",
-              "text": "tiptoed"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i05:r3",
-              "text": "tiptoeing"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i05:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i05:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please do not wake the baby.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i06:r1",
-            "text": "In those days I would tiptoe past the bedroom."
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i06:r2",
-            "text": "In those days she would tiptoe past the bedroom."
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i06:r3",
-            "text": "In those days I would tiptoe past the kitchen."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-13:i06:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i06:audio",
-            "transcript": "In those days I would tiptoe past the bedroom."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-13:i06:r1",
-              "targetText": "In those days I would tiptoe past the bedroom.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i06:r2",
-              "targetText": "In those days she would tiptoe past the bedroom.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i06:r3",
-              "targetText": "In those days I would tiptoe past the kitchen.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i06:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит In those days I would tiptoe past the bedroom.",
-                "uk": "У записі звучить In those days I would tiptoe past the bedroom."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i06:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит In those days I would tiptoe past the bedroom.",
-                "uk": "У записі звучить In those days I would tiptoe past the bedroom."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-13:word:chuckle",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1599,8 +1473,8 @@
               "responseId": "en:lesson-25:session-13:word:chuckle:r1",
               "targetText": "chuckle",
               "meaningByLocale": {
-                "ru": "тихо смеяться.",
-                "uk": "тихо сміятися."
+                "ru": "тихо смеяться",
+                "uk": "тихо сміятися"
               }
             }
           ],
@@ -1610,188 +1484,81 @@
           "wordCard": {
             "word": "chuckle",
             "definitionByLocale": {
-              "ru": "тихо смеяться.",
-              "uk": "тихо сміятися."
+              "ru": "тихо смеяться",
+              "uk": "тихо сміятися"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У дитинстві він часто тихо сміявся з наших жартів.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У дитинстві він часто тихо сміявся з наших жартів.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "As a child he would chuckle at our jokes.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В детстве он часто тихо смеялся над нашими шутками.»",
-            "uk": "Скажіть: «У дитинстві він часто тихо сміявся з наших жартів.»"
-          },
-          "orderedTokens": [
-            "As",
-            "a",
-            "child",
-            "he",
-            "would",
-            "chuckle",
-            "at",
-            "our",
-            "jokes"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-13:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i08:r1",
-            "text": "chuckle"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i08:r2",
-            "text": "chuckled"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i08:r3",
-            "text": "chuckling"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "As a child he would ___ at our jokes.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-13:i08:r1",
-              "text": "chuckle"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i08:r2",
-              "text": "chuckled"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i08:r3",
-              "text": "chuckling"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i08:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i08:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-13:i09",
-        "ordinal": 15,
+        "interactionId": "en:lesson-25:session-13:i06",
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-13:i09:r1",
-            "text": "As a child he would chuckle at our jokes."
+            "responseId": "en:lesson-25:session-13:i06:r1",
+            "text": "My grandfather would chuckle at that story every evening."
           },
           {
-            "responseId": "en:lesson-25:session-13:i09:r2",
-            "text": "As a child she would chuckle at our jokes."
+            "responseId": "en:lesson-25:session-13:i06:r2",
+            "text": "My grandfather would chuckle at that joke every evening."
           },
           {
-            "responseId": "en:lesson-25:session-13:i09:r3",
-            "text": "As a child he would chuckle at their jokes."
+            "responseId": "en:lesson-25:session-13:i06:r3",
+            "text": "My grandmother would chuckle at that story every evening."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-13:i09:audio"
+          "en:lesson-25:session-13:i06:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i09:audio",
-            "transcript": "As a child he would chuckle at our jokes."
+            "audioTargetId": "en:lesson-25:session-13:i06:audio",
+            "transcript": "My grandfather would chuckle at that story every evening."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-13:i09:r1",
-              "targetText": "As a child he would chuckle at our jokes.",
+              "responseId": "en:lesson-25:session-13:i06:r1",
+              "targetText": "My grandfather would chuckle at that story every evening.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-13:i09:r2",
-              "targetText": "As a child she would chuckle at our jokes.",
+              "responseId": "en:lesson-25:session-13:i06:r2",
+              "targetText": "My grandfather would chuckle at that joke every evening.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-13:i09:r3",
-              "targetText": "As a child he would chuckle at their jokes.",
+              "responseId": "en:lesson-25:session-13:i06:r3",
+              "targetText": "My grandmother would chuckle at that story every evening.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-13:i09:r2",
+              "responseId": "en:lesson-25:session-13:i06:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит As a child he would chuckle at our jokes.",
-                "uk": "У записі звучить As a child he would chuckle at our jokes."
+                "ru": "В записи звучит My grandfather would chuckle at that story every evening.",
+                "uk": "У записі звучить My grandfather would chuckle at that story every evening."
               }
             },
             {
-              "responseId": "en:lesson-25:session-13:i09:r3",
+              "responseId": "en:lesson-25:session-13:i06:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит As a child he would chuckle at our jokes.",
-                "uk": "У записі звучить As a child he would chuckle at our jokes."
+                "ru": "В записи звучит My grandfather would chuckle at that story every evening.",
+                "uk": "У записі звучить My grandfather would chuckle at that story every evening."
               }
             }
           ],
@@ -1801,8 +1568,77 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-13:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ідеться про повторювану реакцію дідуся в минулому.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i07:r1",
+            "text": "chuckle"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i07:r2",
+            "text": "chuckled"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i07:r3",
+            "text": "chuckling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ідеться про повторювану реакцію дідуся в минулому.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о повторявшейся реакции дедушки в прошлом.",
+            "uk": "Ідеться про повторювану реакцію дідуся в минулому."
+          },
+          "gappedTargetPhrase": "Back then he would ___ at our stories.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-13:i07:r1",
+              "text": "chuckle"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i07:r2",
+              "text": "chuckled"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i07:r3",
+              "text": "chuckling"
+            }
+          ],
+          "testedDimension": "Ідеться про повторювану реакцію дідуся в минулому.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i07:r2",
+              "correct": false,
+              "testedDimension": "Ідеться про повторювану реакцію дідуся в минулому.",
+              "feedbackByLocale": {
+                "ru": "После would используем базовую форму chuckle.",
+                "uk": "Після would використовуємо базову форму chuckle."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i07:r3",
+              "correct": false,
+              "testedDimension": "Ідеться про повторювану реакцію дідуся в минулому.",
+              "feedbackByLocale": {
+                "ru": "Would chuckling не подходит; нужно would chuckle.",
+                "uk": "Would chuckling не підходить; потрібно would chuckle."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-13:word:imitate",
-        "ordinal": 16,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1825,8 +1661,8 @@
               "responseId": "en:lesson-25:session-13:word:imitate:r1",
               "targetText": "imitate",
               "meaningByLocale": {
-                "ru": "подражать.",
-                "uk": "наслідувати."
+                "ru": "подражать",
+                "uk": "наслідувати"
               }
             }
           ],
@@ -1836,30 +1672,63 @@
           "wordCard": {
             "word": "imitate",
             "definitionByLocale": {
-              "ru": "подражать.",
-              "uk": "наслідувати."
+              "ru": "подражать",
+              "uk": "наслідувати"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-13:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте гру: «Можеш зобразити кота?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-13:i08:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте гру: «Можеш зобразити кота?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-13:i08:audio",
+            "transcript": "Can you imitate a cat?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you imitate a cat?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-13:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У школі ми часто наслідували звуки тварин.»",
+        "prompt": "Згадайте шкільні ігри: «У школі ми часто наслідували голоси одне одного». Використайте would.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У школі ми часто наслідували звуки тварин.»",
+        "accessibilityLabel": "Згадайте шкільні ігри: «У школі ми часто наслідували голоси одне одного». Використайте would.",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "At school we would imitate animal sounds.",
+          "targetPhrase": "At school we would imitate each other’s voices.",
           "localizedMeaning": {
-            "ru": "Скажите: «В школе мы часто подражали звукам животных.»",
-            "uk": "Скажіть: «У школі ми часто наслідували звуки тварин.»"
+            "ru": "Вспомните школьные игры: «В школе мы часто подражали голосам друг друга». Используйте would.",
+            "uk": "Згадайте шкільні ігри: «У школі ми часто наслідували голоси одне одного». Використайте would."
           },
           "orderedTokens": [
             "At",
@@ -1867,8 +1736,9 @@
             "we",
             "would",
             "imitate",
-            "animal",
-            "sounds"
+            "each",
+            "other’s",
+            "voices"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1880,166 +1750,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i11:r1",
-            "text": "imitate"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i11:r2",
-            "text": "imitated"
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i11:r3",
-            "text": "imitating"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "At school we would ___ animal sounds.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-13:i11:r1",
-              "text": "imitate"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i11:r2",
-              "text": "imitated"
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i11:r3",
-              "text": "imitating"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i11:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i11:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-13:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-13:i12:r1",
-            "text": "At school we would imitate animal sounds."
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i12:r2",
-            "text": "At school they would imitate animal sounds."
-          },
-          {
-            "responseId": "en:lesson-25:session-13:i12:r3",
-            "text": "At school we would imitate bird sounds."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-13:i12:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i12:audio",
-            "transcript": "At school we would imitate animal sounds."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-13:i12:r1",
-              "targetText": "At school we would imitate animal sounds.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i12:r2",
-              "targetText": "At school they would imitate animal sounds.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i12:r3",
-              "targetText": "At school we would imitate bird sounds.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-13:i12:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school we would imitate animal sounds.",
-                "uk": "У записі звучить At school we would imitate animal sounds."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-13:i12:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school we would imitate animal sounds.",
-                "uk": "У записі звучить At school we would imitate animal sounds."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-13:i13",
-        "ordinal": 20,
+        "interactionId": "en:lesson-25:session-13:i10",
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Поєднайте слова з перекладом",
+        "prompt": "Зіставте чотири дії з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "accessibilityLabel": "Зіставте чотири дії з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-13:i13:p1",
+              "pairId": "en:lesson-25:session-13:i10:p1",
               "target": "grab",
               "meaningByLocale": {
                 "ru": "схватить",
@@ -2047,7 +1772,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-13:i13:p2",
+              "pairId": "en:lesson-25:session-13:i10:p2",
               "target": "tiptoe",
               "meaningByLocale": {
                 "ru": "идти на цыпочках",
@@ -2055,7 +1780,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-13:i13:p3",
+              "pairId": "en:lesson-25:session-13:i10:p3",
               "target": "chuckle",
               "meaningByLocale": {
                 "ru": "тихо смеяться",
@@ -2063,7 +1788,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-13:i13:p4",
+              "pairId": "en:lesson-25:session-13:i10:p4",
               "target": "imitate",
               "meaningByLocale": {
                 "ru": "подражать",
@@ -2098,34 +1823,179 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
+        "interactionId": "en:lesson-25:session-13:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i11:r1",
+            "text": "Did you hear that funny sound?"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i11:r2",
+            "text": "Did you make that funny sound?"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i11:r3",
+            "text": "Did they hear that funny sound?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-13:i11:audio",
+            "transcript": "Did you hear that funny sound?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-13:i11:r1",
+              "targetText": "Did you hear that funny sound?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i11:r2",
+              "targetText": "Did you make that funny sound?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i11:r3",
+              "targetText": "Did they hear that funny sound?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you hear that funny sound?",
+                "uk": "У записі звучить Did you hear that funny sound?"
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you hear that funny sound?",
+                "uk": "У записі звучить Did you hear that funny sound?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-13:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кумедну розповідь ви почули один раз учора.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i12:r1",
+            "text": "told"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i12:r2",
+            "text": "has told"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i12:r3",
+            "text": "would tell"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кумедну розповідь ви почули один раз учора.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Смешной рассказ вы услышали один раз вчера.",
+            "uk": "Кумедну розповідь ви почули один раз учора."
+          },
+          "gappedTargetPhrase": "My friend ___ me that story yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-13:i12:r1",
+              "text": "told"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i12:r2",
+              "text": "has told"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i12:r3",
+              "text": "would tell"
+            }
+          ],
+          "testedDimension": "Кумедну розповідь ви почули один раз учора.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i12:r2",
+              "correct": false,
+              "testedDimension": "Кумедну розповідь ви почули один раз учора.",
+              "feedbackByLocale": {
+                "ru": "Yesterday требует Past Simple told.",
+                "uk": "Yesterday потребує Past Simple told."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i12:r3",
+              "correct": false,
+              "testedDimension": "Кумедну розповідь ви почули один раз учора.",
+              "feedbackByLocale": {
+                "ru": "Здесь один рассказ вчера, а не прежний повторявшийся обычай.",
+                "uk": "Тут одна розповідь учора, а не колишній повторюваний звичай."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-13:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Колишнє місце проживання",
+        "prompt": "Почуйте, де раніше зустрічалися друзі.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-13:i14:audio"
+          "en:lesson-25:session-13:i13:audio"
         ],
-        "accessibilityLabel": "Колишнє місце проживання",
+        "accessibilityLabel": "Почуйте, де раніше зустрічалися друзі.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i14:audio",
-            "transcript": "I used to live by the lake."
+            "audioTargetId": "en:lesson-25:session-13:i13:audio",
+            "transcript": "We used to meet behind the school."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to live by the lake.",
+          "hiddenTargetPhrase": "We used to meet behind the school.",
           "orderedTokens": [
-            "I",
+            "We",
             "used",
             "to",
-            "live",
-            "by",
+            "meet",
+            "behind",
             "the",
-            "lake"
+            "school"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2137,32 +2007,61 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-13:i15",
-        "ordinal": 22,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Раніше я був сором’язливим",
+        "interactionId": "en:lesson-25:session-13:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ця історія вам знайома. Скажіть: «Я вже чув цю історію».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-13:i15:audio"
+          "en:lesson-25:session-13:i14:audio"
         ],
-        "accessibilityLabel": "Раніше я був сором’язливим",
+        "accessibilityLabel": "Ця історія вам знайома. Скажіть: «Я вже чув цю історію».",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i15:audio",
-            "transcript": "I used to be shy."
+            "audioTargetId": "en:lesson-25:session-13:i14:audio",
+            "transcript": "I have already heard that story."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to be shy.",
+          "targetPhrase": "I have already heard that story.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Один жарт уже розповіли. Попросіть: «Розкажи мені ще один жарт».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один жарт уже розповіли. Попросіть: «Розкажи мені ще один жарт».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Tell me another joke.",
+          "localizedMeaning": {
+            "ru": "Одну шутку уже рассказали. Попросите: «Расскажи мне ещё одну шутку».",
+            "uk": "Один жарт уже розповіли. Попросіть: «Розкажи мені ще один жарт»."
+          },
           "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "be",
-            "shy"
+            "Tell",
+            "me",
+            "another",
+            "joke"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2176,32 +2075,68 @@
       {
         "interactionId": "en:lesson-25:session-13:i16",
         "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «У ті часи він зазвичай проходив навшпиньки повз спальню».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-13:i16:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «У ті часи він зазвичай проходив навшпиньки повз спальню».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-13:i16:audio",
-            "transcript": "In those days he would tiptoe past the bedroom."
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви хочете почути інші історії, кілька.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i16:r1",
+            "text": "other"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "In those days he would tiptoe past the bedroom.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-13:i16:r2",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i16:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете почути інші історії, кілька.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы хотите услышать другие истории, несколько.",
+            "uk": "Ви хочете почути інші історії, кілька."
+          },
+          "gappedTargetPhrase": "Do you know any ___ stories?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-13:i16:r1",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i16:r2",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i16:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Ви хочете почути інші історії, кілька.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви хочете почути інші історії, кілька.",
+              "feedbackByLocale": {
+                "ru": "Another относится к одному предмету; stories — множественное число.",
+                "uk": "Another стосується одного предмета; stories — множина."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви хочете почути інші історії, кілька.",
+              "feedbackByLocale": {
+                "ru": "Перед существительным stories используем other без -s.",
+                "uk": "Перед іменником stories використовуємо other без -s."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -2209,33 +2144,76 @@
       {
         "interactionId": "en:lesson-25:session-13:i17",
         "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «У школі вона часто наслідувала звуки тварин».",
-        "responseOptions": [],
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-13:i17:r1",
+            "text": "As children we would laugh all the way home."
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i17:r2",
+            "text": "As children we would sing all the way home."
+          },
+          {
+            "responseId": "en:lesson-25:session-13:i17:r3",
+            "text": "As children we would run all the way home."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-13:i17:audio"
         ],
-        "accessibilityLabel": "Скажіть: «У школі вона часто наслідувала звуки тварин».",
+        "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
-          "family": "scripted_repeat_compare",
+          "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-13:i17:audio",
-            "transcript": "At school she would imitate animal sounds."
+            "transcript": "As children we would laugh all the way home."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "At school she would imitate animal sounds.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-13:i17:r1",
+              "targetText": "As children we would laugh all the way home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i17:r2",
+              "targetText": "As children we would sing all the way home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i17:r3",
+              "targetText": "As children we would run all the way home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-13:i17:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит As children we would laugh all the way home.",
+                "uk": "У записі звучить As children we would laugh all the way home."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-13:i17:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит As children we would laugh all the way home.",
+                "uk": "У записі звучить As children we would laugh all the way home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       }
@@ -2249,18 +2227,13 @@
     },
     {
       "interactionId": "en:lesson-25:session-13:i01",
-      "correctText": "As children we would grab our bags after school.",
+      "correctText": "Grab your coat!",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-13:i02",
-      "correctText": "grab",
+      "correctText": "After school we would hurry home.",
       "correctResponseId": "en:lesson-25:session-13:i02:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-13:i03",
-      "correctText": "As children we would grab our bags after school.",
-      "correctResponseId": "en:lesson-25:session-13:i03:r1"
     },
     {
       "interactionId": "en:lesson-25:session-13:word:tiptoe",
@@ -2268,19 +2241,19 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-13:i03",
+      "correctText": "tiptoe",
+      "correctResponseId": "en:lesson-25:session-13:i03:r1"
+    },
+    {
       "interactionId": "en:lesson-25:session-13:i04",
-      "correctText": "In those days I would tiptoe past the bedroom.",
+      "correctText": "In those days I would tiptoe downstairs at night.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-13:i05",
-      "correctText": "tiptoe",
-      "correctResponseId": "en:lesson-25:session-13:i05:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-13:i06",
-      "correctText": "In those days I would tiptoe past the bedroom.",
-      "correctResponseId": "en:lesson-25:session-13:i06:r1"
+      "correctText": "Please do not wake the baby.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-13:word:chuckle",
@@ -2288,19 +2261,14 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-13:i06",
+      "correctText": "My grandfather would chuckle at that story every evening.",
+      "correctResponseId": "en:lesson-25:session-13:i06:r1"
+    },
+    {
       "interactionId": "en:lesson-25:session-13:i07",
-      "correctText": "As a child he would chuckle at our jokes.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-13:i08",
       "correctText": "chuckle",
-      "correctResponseId": "en:lesson-25:session-13:i08:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-13:i09",
-      "correctText": "As a child he would chuckle at our jokes.",
-      "correctResponseId": "en:lesson-25:session-13:i09:r1"
+      "correctResponseId": "en:lesson-25:session-13:i07:r1"
     },
     {
       "interactionId": "en:lesson-25:session-13:word:imitate",
@@ -2308,44 +2276,54 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-13:i10",
-      "correctText": "At school we would imitate animal sounds.",
+      "interactionId": "en:lesson-25:session-13:i08",
+      "correctText": "Can you imitate a cat?",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-13:i11",
-      "correctText": "imitate",
-      "correctResponseId": "en:lesson-25:session-13:i11:r1"
+      "interactionId": "en:lesson-25:session-13:i09",
+      "correctText": "At school we would imitate each other’s voices.",
+      "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-13:i12",
-      "correctText": "At school we would imitate animal sounds.",
-      "correctResponseId": "en:lesson-25:session-13:i12:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-13:i13",
+      "interactionId": "en:lesson-25:session-13:i10",
       "correctText": "",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-13:i11",
+      "correctText": "Did you hear that funny sound?",
+      "correctResponseId": "en:lesson-25:session-13:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-13:i12",
+      "correctText": "told",
+      "correctResponseId": "en:lesson-25:session-13:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-13:i13",
+      "correctText": "We used to meet behind the school.",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-25:session-13:i14",
-      "correctText": "I used to live by the lake.",
+      "correctText": "I have already heard that story.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-13:i15",
-      "correctText": "I used to be shy.",
+      "correctText": "Tell me another joke.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-13:i16",
-      "correctText": "In those days he would tiptoe past the bedroom.",
-      "correctResponseId": null
+      "correctText": "other",
+      "correctResponseId": "en:lesson-25:session-13:i16:r1"
     },
     {
       "interactionId": "en:lesson-25:session-13:i17",
-      "correctText": "At school she would imitate animal sounds.",
-      "correctResponseId": null
+      "correctText": "As children we would laugh all the way home.",
+      "correctResponseId": "en:lesson-25:session-13:i17:r1"
     }
   ]
 }

@@ -28,8 +28,8 @@
               "responseId": "en:lesson-25:session-12:word:peek:r1",
               "targetText": "peek",
               "meaningByLocale": {
-                "ru": "быстро выглянуть, заглянуть.",
-                "uk": "швидко визирнути, зазирнути."
+                "ru": "быстро выглянуть, заглянуть",
+                "uk": "швидко визирнути, зазирнути"
               }
             }
           ],
@@ -39,8 +39,8 @@
           "wordCard": {
             "word": "peek",
             "definitionByLocale": {
-              "ru": "быстро выглянуть, заглянуть.",
-              "uk": "швидко визирнути, зазирнути."
+              "ru": "быстро выглянуть, заглянуть",
+              "uk": "швидко визирнути, зазирнути"
             }
           }
         },
@@ -49,30 +49,180 @@
       {
         "interactionId": "en:lesson-25:session-12:i01",
         "ordinal": 5,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подарок пока скрыт. Попросите: «Не подглядывай!»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-12:i01:audio"
+        ],
+        "accessibilityLabel": "Подарок пока скрыт. Попросите: «Не подглядывай!»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-12:i01:audio",
+            "transcript": "Do not peek!"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do not peek!",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-12:i02:r1",
+            "text": "As children we would peek into the kitchen."
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i02:r2",
+            "text": "As children we would peek into the garden."
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i02:r3",
+            "text": "As children they would peek into the kitchen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-12:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-12:i02:audio",
+            "transcript": "As children we would peek into the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-12:i02:r1",
+              "targetText": "As children we would peek into the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i02:r2",
+              "targetText": "As children we would peek into the garden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i02:r3",
+              "targetText": "As children they would peek into the kitchen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-12:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит As children we would peek into the kitchen.",
+                "uk": "У записі звучить As children we would peek into the kitchen."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит As children we would peek into the kitchen.",
+                "uk": "У записі звучить As children we would peek into the kitchen."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:word:tug",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-12:word:tug:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-12:word:tug:audio",
+            "transcript": "tug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-12:word:tug:r1",
+              "targetText": "tug",
+              "meaningByLocale": {
+                "ru": "дёргать, тянуть рывком",
+                "uk": "смикати, тягнути ривком"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tug",
+            "definitionByLocale": {
+              "ru": "дёргать, тянуть рывком",
+              "uk": "смикати, тягнути ривком"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i03",
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В детстве мы часто выглядывали сквозь занавески.»",
+        "prompt": "Молния застряла. Скажите: «Не дёргай молнию».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В детстве мы часто выглядывали сквозь занавески.»",
+        "accessibilityLabel": "Молния застряла. Скажите: «Не дёргай молнию».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "As children we would peek through the curtains.",
+          "targetPhrase": "Do not tug at the zip.",
           "localizedMeaning": {
-            "ru": "Скажите: «В детстве мы часто выглядывали сквозь занавески.»",
-            "uk": "Скажіть: «У дитинстві ми часто визирали крізь фіранки.»"
+            "ru": "Молния застряла. Скажите: «Не дёргай молнию».",
+            "uk": "Блискавка застрягла. Скажіть: «Не смикай блискавку»."
           },
           "orderedTokens": [
-            "As",
-            "children",
-            "we",
-            "would",
-            "peek",
-            "through",
+            "Do",
+            "not",
+            "tug",
+            "at",
             "the",
-            "curtains"
+            "zip"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -84,68 +234,68 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i02",
-        "ordinal": 6,
+        "interactionId": "en:lesson-25:session-12:i04",
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
+        "prompt": "Ребёнок тянет вас за рукав, чтобы привлечь внимание. Выберите движение к себе.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-12:i02:r1",
+            "responseId": "en:lesson-25:session-12:i04:r1",
+            "text": "tug"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i04:r2",
             "text": "peek"
           },
           {
-            "responseId": "en:lesson-25:session-12:i02:r2",
-            "text": "peeked"
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i02:r3",
-            "text": "peeking"
+            "responseId": "en:lesson-25:session-12:i04:r3",
+            "text": "look"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
+        "accessibilityLabel": "Ребёнок тянет вас за рукав, чтобы привлечь внимание. Выберите движение к себе.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+            "ru": "Ребёнок тянет вас за рукав, чтобы привлечь внимание. Выберите движение к себе.",
+            "uk": "Дитина тягне вас за рукав, щоб привернути увагу. Виберіть рух до себе."
           },
-          "gappedTargetPhrase": "As children we would ___ through the curtains.",
+          "gappedTargetPhrase": "Please do not ___ at my sleeve.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-12:i02:r1",
+              "responseId": "en:lesson-25:session-12:i04:r1",
+              "text": "tug"
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i04:r2",
               "text": "peek"
             },
             {
-              "responseId": "en:lesson-25:session-12:i02:r2",
-              "text": "peeked"
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i02:r3",
-              "text": "peeking"
+              "responseId": "en:lesson-25:session-12:i04:r3",
+              "text": "look"
             }
           ],
-          "testedDimension": "Дополните воспоминание.",
+          "testedDimension": "Ребёнок тянет вас за рукав, чтобы привлечь внимание. Выберите движение к себе.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-12:i02:r2",
+              "responseId": "en:lesson-25:session-12:i04:r2",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "Ребёнок тянет вас за рукав, чтобы привлечь внимание. Выберите движение к себе.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "Peek — заглядывать, а здесь тянут за рукав.",
+                "uk": "Peek — зазирати, а тут тягнуть за рукав."
               }
             },
             {
-              "responseId": "en:lesson-25:session-12:i02:r3",
+              "responseId": "en:lesson-25:session-12:i04:r3",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "Ребёнок тянет вас за рукав, чтобы привлечь внимание. Выберите движение к себе.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "Look — смотреть; это не движение рукой.",
+                "uk": "Look — дивитися; це не рух рукою."
               }
             }
           ]
@@ -153,84 +303,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-12:i03:r1",
-            "text": "As children we would peek through the curtains."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i03:r2",
-            "text": "As children they would peek through the curtains."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i03:r3",
-            "text": "As children we would peek through the window."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-12:i03:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i03:audio",
-            "transcript": "As children we would peek through the curtains."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-12:i03:r1",
-              "targetText": "As children we would peek through the curtains.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i03:r2",
-              "targetText": "As children they would peek through the curtains.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i03:r3",
-              "targetText": "As children we would peek through the window.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-12:i03:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит As children we would peek through the curtains.",
-                "uk": "У записі звучить As children we would peek through the curtains."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i03:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит As children we would peek through the curtains.",
-                "uk": "У записі звучить As children we would peek through the curtains."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-12:word:poke",
-        "ordinal": 8,
+        "ordinal": 10,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -253,8 +327,8 @@
               "responseId": "en:lesson-25:session-12:word:poke:r1",
               "targetText": "poke",
               "meaningByLocale": {
-                "ru": "тыкать.",
-                "uk": "тикати."
+                "ru": "тыкать",
+                "uk": "тикати"
               }
             }
           ],
@@ -264,124 +338,15 @@
           "wordCard": {
             "word": "poke",
             "definitionByLocale": {
-              "ru": "тыкать.",
-              "uk": "тикати."
+              "ru": "тыкать",
+              "uk": "тикати"
             }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-12:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В те времена мы часто тыкали палкой в песок.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В те времена мы часто тыкали палкой в песок.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "In those days we would poke the sand with a stick.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В те времена мы часто тыкали палкой в песок.»",
-            "uk": "Скажіть: «У ті часи ми часто тикали палицею в пісок.»"
-          },
-          "orderedTokens": [
-            "In",
-            "those",
-            "days",
-            "we",
-            "would",
-            "poke",
-            "the",
-            "sand",
-            "with",
-            "a",
-            "stick"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
           }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-12:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-12:i05:r1",
-            "text": "poke"
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i05:r2",
-            "text": "poked"
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i05:r3",
-            "text": "poking"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "In those days we would ___ the sand with a stick.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-12:i05:r1",
-              "text": "poke"
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i05:r2",
-              "text": "poked"
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i05:r3",
-              "text": "poking"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-12:i05:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i05:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-12:i06",
         "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
@@ -389,65 +354,65 @@
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-12:i06:r1",
-            "text": "In those days we would poke the sand with a stick."
+            "responseId": "en:lesson-25:session-12:i05:r1",
+            "text": "Do not poke the dog with that stick."
           },
           {
-            "responseId": "en:lesson-25:session-12:i06:r2",
-            "text": "In those days they would poke the sand with a stick."
+            "responseId": "en:lesson-25:session-12:i05:r2",
+            "text": "Do not poke the cat with that stick."
           },
           {
-            "responseId": "en:lesson-25:session-12:i06:r3",
-            "text": "In those days we would poke the mud with a stick."
+            "responseId": "en:lesson-25:session-12:i05:r3",
+            "text": "Do not poke the dog with your finger."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-12:i06:audio"
+          "en:lesson-25:session-12:i05:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i06:audio",
-            "transcript": "In those days we would poke the sand with a stick."
+            "audioTargetId": "en:lesson-25:session-12:i05:audio",
+            "transcript": "Do not poke the dog with that stick."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-12:i06:r1",
-              "targetText": "In those days we would poke the sand with a stick.",
+              "responseId": "en:lesson-25:session-12:i05:r1",
+              "targetText": "Do not poke the dog with that stick.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-12:i06:r2",
-              "targetText": "In those days they would poke the sand with a stick.",
+              "responseId": "en:lesson-25:session-12:i05:r2",
+              "targetText": "Do not poke the cat with that stick.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-12:i06:r3",
-              "targetText": "In those days we would poke the mud with a stick.",
+              "responseId": "en:lesson-25:session-12:i05:r3",
+              "targetText": "Do not poke the dog with your finger.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-12:i06:r2",
+              "responseId": "en:lesson-25:session-12:i05:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит In those days we would poke the sand with a stick.",
-                "uk": "У записі звучить In those days we would poke the sand with a stick."
+                "ru": "В записи звучит Do not poke the dog with that stick.",
+                "uk": "У записі звучить Do not poke the dog with that stick."
               }
             },
             {
-              "responseId": "en:lesson-25:session-12:i06:r3",
+              "responseId": "en:lesson-25:session-12:i05:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит In those days we would poke the sand with a stick.",
-                "uk": "У записі звучить In those days we would poke the sand with a stick."
+                "ru": "В записи звучит Do not poke the dog with that stick.",
+                "uk": "У записі звучить Do not poke the dog with that stick."
               }
             }
           ],
@@ -457,76 +422,37 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:word:tug",
+        "interactionId": "en:lesson-25:session-12:i06",
         "ordinal": 12,
         "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — tug",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте воспоминание об игре у моря.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-12:word:tug:audio"
+          "en:lesson-25:session-12:i06:audio"
         ],
-        "accessibilityLabel": "Карточка слова — tug",
+        "accessibilityLabel": "Услышьте воспоминание об игре у моря.",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:word:tug:audio",
-            "transcript": "tug"
+            "audioTargetId": "en:lesson-25:session-12:i06:audio",
+            "transcript": "On those holidays we would draw shapes in the sand."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-12:word:tug:r1",
-              "targetText": "tug",
-              "meaningByLocale": {
-                "ru": "дёргать, тянуть рывком.",
-                "uk": "смикати, тягнути ривком."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "tug",
-            "definitionByLocale": {
-              "ru": "дёргать, тянуть рывком.",
-              "uk": "смикати, тягнути ривком."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-12:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В детстве я часто дёргал верёвку.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В детстве я часто дёргал верёвку.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "As a child I would tug at the rope.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В детстве я часто дёргал верёвку.»",
-            "uk": "Скажіть: «У дитинстві я часто смикав мотузку.»"
-          },
+          "hiddenTargetPhrase": "On those holidays we would draw shapes in the sand.",
           "orderedTokens": [
-            "As",
-            "a",
-            "child",
-            "I",
+            "On",
+            "those",
+            "holidays",
+            "we",
             "would",
-            "tug",
-            "at",
+            "draw",
+            "shapes",
+            "in",
             "the",
-            "rope"
+            "sand"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -538,153 +464,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-12:i08:r1",
-            "text": "tug"
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i08:r2",
-            "text": "tugged"
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i08:r3",
-            "text": "tugging"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "As a child I would ___ at the rope.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-12:i08:r1",
-              "text": "tug"
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i08:r2",
-              "text": "tugged"
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i08:r3",
-              "text": "tugging"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-12:i08:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i08:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-12:i09",
-        "ordinal": 15,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-12:i09:r1",
-            "text": "As a child I would tug at the rope."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i09:r2",
-            "text": "As a child he would tug at the rope."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i09:r3",
-            "text": "As a child I would tug at the string."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-12:i09:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i09:audio",
-            "transcript": "As a child I would tug at the rope."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-12:i09:r1",
-              "targetText": "As a child I would tug at the rope.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i09:r2",
-              "targetText": "As a child he would tug at the rope.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i09:r3",
-              "targetText": "As a child I would tug at the string.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-12:i09:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит As a child I would tug at the rope.",
-                "uk": "У записі звучить As a child I would tug at the rope."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i09:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит As a child I would tug at the rope.",
-                "uk": "У записі звучить As a child I would tug at the rope."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-12:word:nudge",
-        "ordinal": 16,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -707,8 +488,8 @@
               "responseId": "en:lesson-25:session-12:word:nudge:r1",
               "targetText": "nudge",
               "meaningByLocale": {
-                "ru": "слегка подтолкнуть.",
-                "uk": "легенько підштовхнути."
+                "ru": "слегка подтолкнуть",
+                "uk": "легенько підштовхнути"
               }
             }
           ],
@@ -718,41 +499,35 @@
           "wordCard": {
             "word": "nudge",
             "definitionByLocale": {
-              "ru": "слегка подтолкнуть.",
-              "uk": "легенько підштовхнути."
+              "ru": "слегка подтолкнуть",
+              "uk": "легенько підштовхнути"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-12:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В школе я часто слегка толкал брата во время обеда.»",
+        "prompt": "Попросите друга привлечь ваше внимание: «Слегка толкни меня, пожалуйста».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В школе я часто слегка толкал брата во время обеда.»",
+        "accessibilityLabel": "Попросите друга привлечь ваше внимание: «Слегка толкни меня, пожалуйста».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "At school I would nudge my brother during lunch.",
+          "targetPhrase": "Please nudge me.",
           "localizedMeaning": {
-            "ru": "Скажите: «В школе я часто слегка толкал брата во время обеда.»",
-            "uk": "Скажіть: «У школі я часто легенько штовхав брата під час обіду.»"
+            "ru": "Попросите друга привлечь ваше внимание: «Слегка толкни меня, пожалуйста».",
+            "uk": "Попросіть друга привернути вашу увагу: «Легенько штовхни мене, будь ласка»."
           },
           "orderedTokens": [
-            "At",
-            "school",
-            "I",
-            "would",
+            "Please",
             "nudge",
-            "my",
-            "brother",
-            "during",
-            "lunch"
+            "me"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -764,68 +539,68 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-12:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
+        "prompt": "Раньше вы незаметно подавали другу знак локтем во время урока.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-12:i11:r1",
+            "responseId": "en:lesson-25:session-12:i08:r1",
             "text": "nudge"
           },
           {
-            "responseId": "en:lesson-25:session-12:i11:r2",
+            "responseId": "en:lesson-25:session-12:i08:r2",
             "text": "nudged"
           },
           {
-            "responseId": "en:lesson-25:session-12:i11:r3",
+            "responseId": "en:lesson-25:session-12:i08:r3",
             "text": "nudging"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
+        "accessibilityLabel": "Раньше вы незаметно подавали другу знак локтем во время урока.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+            "ru": "Раньше вы незаметно подавали другу знак локтем во время урока.",
+            "uk": "Раніше ви непомітно подавали другові знак ліктем під час уроку."
           },
-          "gappedTargetPhrase": "At school I would ___ my brother during lunch.",
+          "gappedTargetPhrase": "At school I would ___ my friend gently.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-12:i11:r1",
+              "responseId": "en:lesson-25:session-12:i08:r1",
               "text": "nudge"
             },
             {
-              "responseId": "en:lesson-25:session-12:i11:r2",
+              "responseId": "en:lesson-25:session-12:i08:r2",
               "text": "nudged"
             },
             {
-              "responseId": "en:lesson-25:session-12:i11:r3",
+              "responseId": "en:lesson-25:session-12:i08:r3",
               "text": "nudging"
             }
           ],
-          "testedDimension": "Дополните воспоминание.",
+          "testedDimension": "Раньше вы незаметно подавали другу знак локтем во время урока.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-12:i11:r2",
+              "responseId": "en:lesson-25:session-12:i08:r2",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "Раньше вы незаметно подавали другу знак локтем во время урока.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "После would нужна базовая форма nudge.",
+                "uk": "Після would потрібна базова форма nudge."
               }
             },
             {
-              "responseId": "en:lesson-25:session-12:i11:r3",
+              "responseId": "en:lesson-25:session-12:i08:r3",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "Раньше вы незаметно подавали другу знак локтем во время урока.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "Would nudging неверно; используем would nudge.",
+                "uk": "Would nudging неправильно; використовуємо would nudge."
               }
             }
           ]
@@ -833,97 +608,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-12:i12:r1",
-            "text": "At school I would nudge my brother during lunch."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i12:r2",
-            "text": "At school she would nudge her brother during lunch."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i12:r3",
-            "text": "At school I would nudge my friend during lunch."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-12:i12:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i12:audio",
-            "transcript": "At school I would nudge my brother during lunch."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-12:i12:r1",
-              "targetText": "At school I would nudge my brother during lunch.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i12:r2",
-              "targetText": "At school she would nudge her brother during lunch.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i12:r3",
-              "targetText": "At school I would nudge my friend during lunch.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-12:i12:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school I would nudge my brother during lunch.",
-                "uk": "У записі звучить At school I would nudge my brother during lunch."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i12:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school I would nudge my brother during lunch.",
-                "uk": "У записі звучить At school I would nudge my brother during lunch."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-12:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-12:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова с переводом",
+        "prompt": "Различите взгляд и три движения",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова с переводом",
+        "accessibilityLabel": "Различите взгляд и три движения",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-12:i13:p1",
+              "pairId": "en:lesson-25:session-12:i09:p1",
               "target": "peek",
               "meaningByLocale": {
                 "ru": "быстро выглянуть, заглянуть",
@@ -931,7 +630,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-12:i13:p2",
+              "pairId": "en:lesson-25:session-12:i09:p2",
               "target": "poke",
               "meaningByLocale": {
                 "ru": "тыкать",
@@ -939,7 +638,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-12:i13:p3",
+              "pairId": "en:lesson-25:session-12:i09:p3",
               "target": "tug",
               "meaningByLocale": {
                 "ru": "дёргать, тянуть рывком",
@@ -947,7 +646,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-12:i13:p4",
+              "pairId": "en:lesson-25:session-12:i09:p4",
               "target": "nudge",
               "meaningByLocale": {
                 "ru": "слегка подтолкнуть",
@@ -982,34 +681,248 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Прежнее место жительства",
+        "interactionId": "en:lesson-25:session-12:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-12:i10:r1",
+            "text": "Did I hurt your arm?"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i10:r2",
+            "text": "Did I hurt your hand?"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i10:r3",
+            "text": "Did you hurt your arm?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-12:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-12:i10:audio",
+            "transcript": "Did I hurt your arm?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-12:i10:r1",
+              "targetText": "Did I hurt your arm?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i10:r2",
+              "targetText": "Did I hurt your hand?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i10:r3",
+              "targetText": "Did you hurt your arm?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-12:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did I hurt your arm?",
+                "uk": "У записі звучить Did I hurt your arm?"
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did I hurt your arm?",
+                "uk": "У записі звучить Did I hurt your arm?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы случайно толкнули друга. Скажите: «Прости, я не хотел тебя толкать».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-12:i14:audio"
+          "en:lesson-25:session-12:i11:audio"
         ],
-        "accessibilityLabel": "Прежнее место жительства",
+        "accessibilityLabel": "Вы случайно толкнули друга. Скажите: «Прости, я не хотел тебя толкать».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-12:i11:audio",
+            "transcript": "Sorry, I did not mean to push you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Sorry, I did not mean to push you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Расскажите об одном случайном движении вчера.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-12:i12:r1",
+            "text": "pulled"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i12:r2",
+            "text": "have pulled"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i12:r3",
+            "text": "would pull"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об одном случайном движении вчера.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Расскажите об одном случайном движении вчера.",
+            "uk": "Розкажіть про один випадковий рух учора."
+          },
+          "gappedTargetPhrase": "I ___ your sleeve yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-12:i12:r1",
+              "text": "pulled"
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i12:r2",
+              "text": "have pulled"
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i12:r3",
+              "text": "would pull"
+            }
+          ],
+          "testedDimension": "Расскажите об одном случайном движении вчера.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-12:i12:r2",
+              "correct": false,
+              "testedDimension": "Расскажите об одном случайном движении вчера.",
+              "feedbackByLocale": {
+                "ru": "Yesterday указывает на законченное прошлое: нужен pulled.",
+                "uk": "Yesterday вказує на завершене минуле: потрібне pulled."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i12:r3",
+              "correct": false,
+              "testedDimension": "Расскажите об одном случайном движении вчера.",
+              "feedbackByLocale": {
+                "ru": "Would pull обозначало бы повторявшееся действие, а здесь один случай.",
+                "uk": "Would pull позначало б повторювану дію, а тут один випадок."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, как раньше договаривались не шуметь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-12:i13:audio"
+        ],
+        "accessibilityLabel": "Услышьте, как раньше договаривались не шуметь.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i14:audio",
-            "transcript": "I used to live by the lake."
+            "audioTargetId": "en:lesson-25:session-12:i13:audio",
+            "transcript": "In those days we would whisper during the game."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to live by the lake.",
+          "hiddenTargetPhrase": "In those days we would whisper during the game.",
           "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "live",
-            "by",
+            "In",
+            "those",
+            "days",
+            "we",
+            "would",
+            "whisper",
+            "during",
             "the",
-            "lake"
+            "game"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Один рукав вы уже проверили. Попросите: «Покажи мне другой рукав».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один рукав вы уже проверили. Попросите: «Покажи мне другой рукав».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Show me the other sleeve.",
+          "localizedMeaning": {
+            "ru": "Один рукав вы уже проверили. Попросите: «Покажи мне другой рукав».",
+            "uk": "Один рукав ви вже перевірили. Попросіть: «Покажи мені інший рукав»."
+          },
+          "orderedTokens": [
+            "Show",
+            "me",
+            "the",
+            "other",
+            "sleeve"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1024,68 +937,143 @@
         "interactionId": "en:lesson-25:session-12:i15",
         "ordinal": 22,
         "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Раньше я был застенчивым",
-        "responseOptions": [],
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-12:i15:r1",
+            "text": "I have already said sorry."
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i15:r2",
+            "text": "I have already said goodbye."
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i15:r3",
+            "text": "She has already said sorry."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-12:i15:audio"
         ],
-        "accessibilityLabel": "Раньше я был застенчивым",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-12:i15:audio",
-            "transcript": "I used to be shy."
+            "transcript": "I have already said sorry."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to be shy.",
-          "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "be",
-            "shy"
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-12:i15:r1",
+              "targetText": "I have already said sorry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i15:r2",
+              "targetText": "I have already said goodbye.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i15:r3",
+              "targetText": "She has already said sorry.",
+              "meaningByLocale": null
+            }
           ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-12:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already said sorry.",
+                "uk": "У записі звучить I have already said sorry."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already said sorry.",
+                "uk": "У записі звучить I have already said sorry."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-12:i16",
         "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «В детстве она часто дёргала верёвку».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-12:i16:audio"
-        ],
-        "accessibilityLabel": "Скажите: «В детстве она часто дёргала верёвку».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i16:audio",
-            "transcript": "As a child she would tug at the rope."
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы хотите попробовать ещё раз. Нужен один дополнительный раз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-12:i16:r1",
+            "text": "another"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "As a child she would tug at the rope.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-12:i16:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i16:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите попробовать ещё раз. Нужен один дополнительный раз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы хотите попробовать ещё раз. Нужен один дополнительный раз.",
+            "uk": "Ви хочете спробувати ще раз. Потрібна одна додаткова спроба."
+          },
+          "gappedTargetPhrase": "Can I have ___ try?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-12:i16:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i16:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i16:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Вы хотите попробовать ещё раз. Нужен один дополнительный раз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-12:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы хотите попробовать ещё раз. Нужен один дополнительный раз.",
+              "feedbackByLocale": {
+                "ru": "Перед единственным try без артикля используем another.",
+                "uk": "Перед одниною try без артикля використовуємо another."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы хотите попробовать ещё раз. Нужен один дополнительный раз.",
+              "feedbackByLocale": {
+                "ru": "Others употребляется без следующего существительного.",
+                "uk": "Others уживається без наступного іменника."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1096,21 +1084,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «В школе он часто слегка толкал брата во время обеда».",
+        "prompt": "Вспомните прежнее чувство: «Раньше я боялся темноты».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-12:i17:audio"
         ],
-        "accessibilityLabel": "Скажите: «В школе он часто слегка толкал брата во время обеда».",
+        "accessibilityLabel": "Вспомните прежнее чувство: «Раньше я боялся темноты».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-12:i17:audio",
-            "transcript": "At school he would nudge his brother during lunch."
+            "transcript": "I used to be afraid of the dark."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "At school he would nudge his brother during lunch.",
+          "targetPhrase": "I used to be afraid of the dark.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1150,8 +1138,8 @@
               "responseId": "en:lesson-25:session-12:word:peek:r1",
               "targetText": "peek",
               "meaningByLocale": {
-                "ru": "быстро выглянуть, заглянуть.",
-                "uk": "швидко визирнути, зазирнути."
+                "ru": "быстро выглянуть, заглянуть",
+                "uk": "швидко визирнути, зазирнути"
               }
             }
           ],
@@ -1161,8 +1149,8 @@
           "wordCard": {
             "word": "peek",
             "definitionByLocale": {
-              "ru": "быстро выглянуть, заглянуть.",
-              "uk": "швидко визирнути, зазирнути."
+              "ru": "быстро выглянуть, заглянуть",
+              "uk": "швидко визирнути, зазирнути"
             }
           }
         },
@@ -1171,30 +1159,180 @@
       {
         "interactionId": "en:lesson-25:session-12:i01",
         "ordinal": 5,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подарунок поки прихований. Попросіть: «Не підглядай!»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-12:i01:audio"
+        ],
+        "accessibilityLabel": "Подарунок поки прихований. Попросіть: «Не підглядай!»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-12:i01:audio",
+            "transcript": "Do not peek!"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do not peek!",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-12:i02:r1",
+            "text": "As children we would peek into the kitchen."
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i02:r2",
+            "text": "As children we would peek into the garden."
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i02:r3",
+            "text": "As children they would peek into the kitchen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-12:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-12:i02:audio",
+            "transcript": "As children we would peek into the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-12:i02:r1",
+              "targetText": "As children we would peek into the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i02:r2",
+              "targetText": "As children we would peek into the garden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i02:r3",
+              "targetText": "As children they would peek into the kitchen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-12:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит As children we would peek into the kitchen.",
+                "uk": "У записі звучить As children we would peek into the kitchen."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит As children we would peek into the kitchen.",
+                "uk": "У записі звучить As children we would peek into the kitchen."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:word:tug",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-12:word:tug:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-12:word:tug:audio",
+            "transcript": "tug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-12:word:tug:r1",
+              "targetText": "tug",
+              "meaningByLocale": {
+                "ru": "дёргать, тянуть рывком",
+                "uk": "смикати, тягнути ривком"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tug",
+            "definitionByLocale": {
+              "ru": "дёргать, тянуть рывком",
+              "uk": "смикати, тягнути ривком"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i03",
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У дитинстві ми часто визирали крізь фіранки.»",
+        "prompt": "Блискавка застрягла. Скажіть: «Не смикай блискавку».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У дитинстві ми часто визирали крізь фіранки.»",
+        "accessibilityLabel": "Блискавка застрягла. Скажіть: «Не смикай блискавку».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "As children we would peek through the curtains.",
+          "targetPhrase": "Do not tug at the zip.",
           "localizedMeaning": {
-            "ru": "Скажите: «В детстве мы часто выглядывали сквозь занавески.»",
-            "uk": "Скажіть: «У дитинстві ми часто визирали крізь фіранки.»"
+            "ru": "Молния застряла. Скажите: «Не дёргай молнию».",
+            "uk": "Блискавка застрягла. Скажіть: «Не смикай блискавку»."
           },
           "orderedTokens": [
-            "As",
-            "children",
-            "we",
-            "would",
-            "peek",
-            "through",
+            "Do",
+            "not",
+            "tug",
+            "at",
             "the",
-            "curtains"
+            "zip"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1206,68 +1344,68 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i02",
-        "ordinal": 6,
+        "interactionId": "en:lesson-25:session-12:i04",
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
+        "prompt": "Дитина тягне вас за рукав, щоб привернути увагу. Виберіть рух до себе.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-12:i02:r1",
+            "responseId": "en:lesson-25:session-12:i04:r1",
+            "text": "tug"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i04:r2",
             "text": "peek"
           },
           {
-            "responseId": "en:lesson-25:session-12:i02:r2",
-            "text": "peeked"
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i02:r3",
-            "text": "peeking"
+            "responseId": "en:lesson-25:session-12:i04:r3",
+            "text": "look"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
+        "accessibilityLabel": "Дитина тягне вас за рукав, щоб привернути увагу. Виберіть рух до себе.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+            "ru": "Ребёнок тянет вас за рукав, чтобы привлечь внимание. Выберите движение к себе.",
+            "uk": "Дитина тягне вас за рукав, щоб привернути увагу. Виберіть рух до себе."
           },
-          "gappedTargetPhrase": "As children we would ___ through the curtains.",
+          "gappedTargetPhrase": "Please do not ___ at my sleeve.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-12:i02:r1",
+              "responseId": "en:lesson-25:session-12:i04:r1",
+              "text": "tug"
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i04:r2",
               "text": "peek"
             },
             {
-              "responseId": "en:lesson-25:session-12:i02:r2",
-              "text": "peeked"
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i02:r3",
-              "text": "peeking"
+              "responseId": "en:lesson-25:session-12:i04:r3",
+              "text": "look"
             }
           ],
-          "testedDimension": "Доповніть спогад.",
+          "testedDimension": "Дитина тягне вас за рукав, щоб привернути увагу. Виберіть рух до себе.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-12:i02:r2",
+              "responseId": "en:lesson-25:session-12:i04:r2",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "Дитина тягне вас за рукав, щоб привернути увагу. Виберіть рух до себе.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "Peek — заглядывать, а здесь тянут за рукав.",
+                "uk": "Peek — зазирати, а тут тягнуть за рукав."
               }
             },
             {
-              "responseId": "en:lesson-25:session-12:i02:r3",
+              "responseId": "en:lesson-25:session-12:i04:r3",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "Дитина тягне вас за рукав, щоб привернути увагу. Виберіть рух до себе.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "Look — смотреть; это не движение рукой.",
+                "uk": "Look — дивитися; це не рух рукою."
               }
             }
           ]
@@ -1275,84 +1413,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-12:i03:r1",
-            "text": "As children we would peek through the curtains."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i03:r2",
-            "text": "As children they would peek through the curtains."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i03:r3",
-            "text": "As children we would peek through the window."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-12:i03:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i03:audio",
-            "transcript": "As children we would peek through the curtains."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-12:i03:r1",
-              "targetText": "As children we would peek through the curtains.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i03:r2",
-              "targetText": "As children they would peek through the curtains.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i03:r3",
-              "targetText": "As children we would peek through the window.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-12:i03:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит As children we would peek through the curtains.",
-                "uk": "У записі звучить As children we would peek through the curtains."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i03:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит As children we would peek through the curtains.",
-                "uk": "У записі звучить As children we would peek through the curtains."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-12:word:poke",
-        "ordinal": 8,
+        "ordinal": 10,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1375,8 +1437,8 @@
               "responseId": "en:lesson-25:session-12:word:poke:r1",
               "targetText": "poke",
               "meaningByLocale": {
-                "ru": "тыкать.",
-                "uk": "тикати."
+                "ru": "тыкать",
+                "uk": "тикати"
               }
             }
           ],
@@ -1386,124 +1448,15 @@
           "wordCard": {
             "word": "poke",
             "definitionByLocale": {
-              "ru": "тыкать.",
-              "uk": "тикати."
+              "ru": "тыкать",
+              "uk": "тикати"
             }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-12:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У ті часи ми часто тикали палицею в пісок.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У ті часи ми часто тикали палицею в пісок.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "In those days we would poke the sand with a stick.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В те времена мы часто тыкали палкой в песок.»",
-            "uk": "Скажіть: «У ті часи ми часто тикали палицею в пісок.»"
-          },
-          "orderedTokens": [
-            "In",
-            "those",
-            "days",
-            "we",
-            "would",
-            "poke",
-            "the",
-            "sand",
-            "with",
-            "a",
-            "stick"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
           }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-12:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-12:i05:r1",
-            "text": "poke"
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i05:r2",
-            "text": "poked"
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i05:r3",
-            "text": "poking"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "In those days we would ___ the sand with a stick.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-12:i05:r1",
-              "text": "poke"
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i05:r2",
-              "text": "poked"
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i05:r3",
-              "text": "poking"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-12:i05:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i05:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-12:i06",
         "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
@@ -1511,65 +1464,65 @@
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-12:i06:r1",
-            "text": "In those days we would poke the sand with a stick."
+            "responseId": "en:lesson-25:session-12:i05:r1",
+            "text": "Do not poke the dog with that stick."
           },
           {
-            "responseId": "en:lesson-25:session-12:i06:r2",
-            "text": "In those days they would poke the sand with a stick."
+            "responseId": "en:lesson-25:session-12:i05:r2",
+            "text": "Do not poke the cat with that stick."
           },
           {
-            "responseId": "en:lesson-25:session-12:i06:r3",
-            "text": "In those days we would poke the mud with a stick."
+            "responseId": "en:lesson-25:session-12:i05:r3",
+            "text": "Do not poke the dog with your finger."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-12:i06:audio"
+          "en:lesson-25:session-12:i05:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i06:audio",
-            "transcript": "In those days we would poke the sand with a stick."
+            "audioTargetId": "en:lesson-25:session-12:i05:audio",
+            "transcript": "Do not poke the dog with that stick."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-12:i06:r1",
-              "targetText": "In those days we would poke the sand with a stick.",
+              "responseId": "en:lesson-25:session-12:i05:r1",
+              "targetText": "Do not poke the dog with that stick.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-12:i06:r2",
-              "targetText": "In those days they would poke the sand with a stick.",
+              "responseId": "en:lesson-25:session-12:i05:r2",
+              "targetText": "Do not poke the cat with that stick.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-12:i06:r3",
-              "targetText": "In those days we would poke the mud with a stick.",
+              "responseId": "en:lesson-25:session-12:i05:r3",
+              "targetText": "Do not poke the dog with your finger.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-12:i06:r2",
+              "responseId": "en:lesson-25:session-12:i05:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит In those days we would poke the sand with a stick.",
-                "uk": "У записі звучить In those days we would poke the sand with a stick."
+                "ru": "В записи звучит Do not poke the dog with that stick.",
+                "uk": "У записі звучить Do not poke the dog with that stick."
               }
             },
             {
-              "responseId": "en:lesson-25:session-12:i06:r3",
+              "responseId": "en:lesson-25:session-12:i05:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит In those days we would poke the sand with a stick.",
-                "uk": "У записі звучить In those days we would poke the sand with a stick."
+                "ru": "В записи звучит Do not poke the dog with that stick.",
+                "uk": "У записі звучить Do not poke the dog with that stick."
               }
             }
           ],
@@ -1579,76 +1532,37 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:word:tug",
+        "interactionId": "en:lesson-25:session-12:i06",
         "ordinal": 12,
         "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — tug",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте спогад про гру біля моря.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-12:word:tug:audio"
+          "en:lesson-25:session-12:i06:audio"
         ],
-        "accessibilityLabel": "Картка слова — tug",
+        "accessibilityLabel": "Почуйте спогад про гру біля моря.",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:word:tug:audio",
-            "transcript": "tug"
+            "audioTargetId": "en:lesson-25:session-12:i06:audio",
+            "transcript": "On those holidays we would draw shapes in the sand."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-12:word:tug:r1",
-              "targetText": "tug",
-              "meaningByLocale": {
-                "ru": "дёргать, тянуть рывком.",
-                "uk": "смикати, тягнути ривком."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "tug",
-            "definitionByLocale": {
-              "ru": "дёргать, тянуть рывком.",
-              "uk": "смикати, тягнути ривком."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-12:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У дитинстві я часто смикав мотузку.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У дитинстві я часто смикав мотузку.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "As a child I would tug at the rope.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В детстве я часто дёргал верёвку.»",
-            "uk": "Скажіть: «У дитинстві я часто смикав мотузку.»"
-          },
+          "hiddenTargetPhrase": "On those holidays we would draw shapes in the sand.",
           "orderedTokens": [
-            "As",
-            "a",
-            "child",
-            "I",
+            "On",
+            "those",
+            "holidays",
+            "we",
             "would",
-            "tug",
-            "at",
+            "draw",
+            "shapes",
+            "in",
             "the",
-            "rope"
+            "sand"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1660,153 +1574,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-12:i08:r1",
-            "text": "tug"
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i08:r2",
-            "text": "tugged"
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i08:r3",
-            "text": "tugging"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "As a child I would ___ at the rope.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-12:i08:r1",
-              "text": "tug"
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i08:r2",
-              "text": "tugged"
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i08:r3",
-              "text": "tugging"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-12:i08:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i08:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-12:i09",
-        "ordinal": 15,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-12:i09:r1",
-            "text": "As a child I would tug at the rope."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i09:r2",
-            "text": "As a child he would tug at the rope."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i09:r3",
-            "text": "As a child I would tug at the string."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-12:i09:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i09:audio",
-            "transcript": "As a child I would tug at the rope."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-12:i09:r1",
-              "targetText": "As a child I would tug at the rope.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i09:r2",
-              "targetText": "As a child he would tug at the rope.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i09:r3",
-              "targetText": "As a child I would tug at the string.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-12:i09:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит As a child I would tug at the rope.",
-                "uk": "У записі звучить As a child I would tug at the rope."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i09:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит As a child I would tug at the rope.",
-                "uk": "У записі звучить As a child I would tug at the rope."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-12:word:nudge",
-        "ordinal": 16,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1829,8 +1598,8 @@
               "responseId": "en:lesson-25:session-12:word:nudge:r1",
               "targetText": "nudge",
               "meaningByLocale": {
-                "ru": "слегка подтолкнуть.",
-                "uk": "легенько підштовхнути."
+                "ru": "слегка подтолкнуть",
+                "uk": "легенько підштовхнути"
               }
             }
           ],
@@ -1840,41 +1609,35 @@
           "wordCard": {
             "word": "nudge",
             "definitionByLocale": {
-              "ru": "слегка подтолкнуть.",
-              "uk": "легенько підштовхнути."
+              "ru": "слегка подтолкнуть",
+              "uk": "легенько підштовхнути"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-12:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У школі я часто легенько штовхав брата під час обіду.»",
+        "prompt": "Попросіть друга привернути вашу увагу: «Легенько штовхни мене, будь ласка».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У школі я часто легенько штовхав брата під час обіду.»",
+        "accessibilityLabel": "Попросіть друга привернути вашу увагу: «Легенько штовхни мене, будь ласка».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "At school I would nudge my brother during lunch.",
+          "targetPhrase": "Please nudge me.",
           "localizedMeaning": {
-            "ru": "Скажите: «В школе я часто слегка толкал брата во время обеда.»",
-            "uk": "Скажіть: «У школі я часто легенько штовхав брата під час обіду.»"
+            "ru": "Попросите друга привлечь ваше внимание: «Слегка толкни меня, пожалуйста».",
+            "uk": "Попросіть друга привернути вашу увагу: «Легенько штовхни мене, будь ласка»."
           },
           "orderedTokens": [
-            "At",
-            "school",
-            "I",
-            "would",
+            "Please",
             "nudge",
-            "my",
-            "brother",
-            "during",
-            "lunch"
+            "me"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1886,68 +1649,68 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-12:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
+        "prompt": "Раніше ви непомітно подавали другові знак ліктем під час уроку.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-12:i11:r1",
+            "responseId": "en:lesson-25:session-12:i08:r1",
             "text": "nudge"
           },
           {
-            "responseId": "en:lesson-25:session-12:i11:r2",
+            "responseId": "en:lesson-25:session-12:i08:r2",
             "text": "nudged"
           },
           {
-            "responseId": "en:lesson-25:session-12:i11:r3",
+            "responseId": "en:lesson-25:session-12:i08:r3",
             "text": "nudging"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
+        "accessibilityLabel": "Раніше ви непомітно подавали другові знак ліктем під час уроку.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+            "ru": "Раньше вы незаметно подавали другу знак локтем во время урока.",
+            "uk": "Раніше ви непомітно подавали другові знак ліктем під час уроку."
           },
-          "gappedTargetPhrase": "At school I would ___ my brother during lunch.",
+          "gappedTargetPhrase": "At school I would ___ my friend gently.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-12:i11:r1",
+              "responseId": "en:lesson-25:session-12:i08:r1",
               "text": "nudge"
             },
             {
-              "responseId": "en:lesson-25:session-12:i11:r2",
+              "responseId": "en:lesson-25:session-12:i08:r2",
               "text": "nudged"
             },
             {
-              "responseId": "en:lesson-25:session-12:i11:r3",
+              "responseId": "en:lesson-25:session-12:i08:r3",
               "text": "nudging"
             }
           ],
-          "testedDimension": "Доповніть спогад.",
+          "testedDimension": "Раніше ви непомітно подавали другові знак ліктем під час уроку.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-12:i11:r2",
+              "responseId": "en:lesson-25:session-12:i08:r2",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "Раніше ви непомітно подавали другові знак ліктем під час уроку.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "После would нужна базовая форма nudge.",
+                "uk": "Після would потрібна базова форма nudge."
               }
             },
             {
-              "responseId": "en:lesson-25:session-12:i11:r3",
+              "responseId": "en:lesson-25:session-12:i08:r3",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "Раніше ви непомітно подавали другові знак ліктем під час уроку.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "Would nudging неверно; используем would nudge.",
+                "uk": "Would nudging неправильно; використовуємо would nudge."
               }
             }
           ]
@@ -1955,97 +1718,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-12:i12:r1",
-            "text": "At school I would nudge my brother during lunch."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i12:r2",
-            "text": "At school she would nudge her brother during lunch."
-          },
-          {
-            "responseId": "en:lesson-25:session-12:i12:r3",
-            "text": "At school I would nudge my friend during lunch."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-12:i12:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i12:audio",
-            "transcript": "At school I would nudge my brother during lunch."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-12:i12:r1",
-              "targetText": "At school I would nudge my brother during lunch.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i12:r2",
-              "targetText": "At school she would nudge her brother during lunch.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i12:r3",
-              "targetText": "At school I would nudge my friend during lunch.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-12:i12:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school I would nudge my brother during lunch.",
-                "uk": "У записі звучить At school I would nudge my brother during lunch."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-12:i12:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school I would nudge my brother during lunch.",
-                "uk": "У записі звучить At school I would nudge my brother during lunch."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-12:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-12:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Поєднайте слова з перекладом",
+        "prompt": "Розрізніть погляд і три рухи",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "accessibilityLabel": "Розрізніть погляд і три рухи",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-12:i13:p1",
+              "pairId": "en:lesson-25:session-12:i09:p1",
               "target": "peek",
               "meaningByLocale": {
                 "ru": "быстро выглянуть, заглянуть",
@@ -2053,7 +1740,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-12:i13:p2",
+              "pairId": "en:lesson-25:session-12:i09:p2",
               "target": "poke",
               "meaningByLocale": {
                 "ru": "тыкать",
@@ -2061,7 +1748,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-12:i13:p3",
+              "pairId": "en:lesson-25:session-12:i09:p3",
               "target": "tug",
               "meaningByLocale": {
                 "ru": "дёргать, тянуть рывком",
@@ -2069,7 +1756,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-12:i13:p4",
+              "pairId": "en:lesson-25:session-12:i09:p4",
               "target": "nudge",
               "meaningByLocale": {
                 "ru": "слегка подтолкнуть",
@@ -2104,34 +1791,248 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-12:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Колишнє місце проживання",
+        "interactionId": "en:lesson-25:session-12:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-12:i10:r1",
+            "text": "Did I hurt your arm?"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i10:r2",
+            "text": "Did I hurt your hand?"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i10:r3",
+            "text": "Did you hurt your arm?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-12:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-12:i10:audio",
+            "transcript": "Did I hurt your arm?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-12:i10:r1",
+              "targetText": "Did I hurt your arm?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i10:r2",
+              "targetText": "Did I hurt your hand?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i10:r3",
+              "targetText": "Did you hurt your arm?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-12:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did I hurt your arm?",
+                "uk": "У записі звучить Did I hurt your arm?"
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did I hurt your arm?",
+                "uk": "У записі звучить Did I hurt your arm?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви випадково штовхнули друга. Скажіть: «Вибач, я не хотів тебе штовхати».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-12:i14:audio"
+          "en:lesson-25:session-12:i11:audio"
         ],
-        "accessibilityLabel": "Колишнє місце проживання",
+        "accessibilityLabel": "Ви випадково штовхнули друга. Скажіть: «Вибач, я не хотів тебе штовхати».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-12:i11:audio",
+            "transcript": "Sorry, I did not mean to push you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Sorry, I did not mean to push you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Розкажіть про один випадковий рух учора.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-12:i12:r1",
+            "text": "pulled"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i12:r2",
+            "text": "have pulled"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i12:r3",
+            "text": "would pull"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про один випадковий рух учора.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Расскажите об одном случайном движении вчера.",
+            "uk": "Розкажіть про один випадковий рух учора."
+          },
+          "gappedTargetPhrase": "I ___ your sleeve yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-12:i12:r1",
+              "text": "pulled"
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i12:r2",
+              "text": "have pulled"
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i12:r3",
+              "text": "would pull"
+            }
+          ],
+          "testedDimension": "Розкажіть про один випадковий рух учора.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-12:i12:r2",
+              "correct": false,
+              "testedDimension": "Розкажіть про один випадковий рух учора.",
+              "feedbackByLocale": {
+                "ru": "Yesterday указывает на законченное прошлое: нужен pulled.",
+                "uk": "Yesterday вказує на завершене минуле: потрібне pulled."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i12:r3",
+              "correct": false,
+              "testedDimension": "Розкажіть про один випадковий рух учора.",
+              "feedbackByLocale": {
+                "ru": "Would pull обозначало бы повторявшееся действие, а здесь один случай.",
+                "uk": "Would pull позначало б повторювану дію, а тут один випадок."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, як раніше домовлялися не шуміти.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-12:i13:audio"
+        ],
+        "accessibilityLabel": "Почуйте, як раніше домовлялися не шуміти.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i14:audio",
-            "transcript": "I used to live by the lake."
+            "audioTargetId": "en:lesson-25:session-12:i13:audio",
+            "transcript": "In those days we would whisper during the game."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to live by the lake.",
+          "hiddenTargetPhrase": "In those days we would whisper during the game.",
           "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "live",
-            "by",
+            "In",
+            "those",
+            "days",
+            "we",
+            "would",
+            "whisper",
+            "during",
             "the",
-            "lake"
+            "game"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-12:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Один рукав ви вже перевірили. Попросіть: «Покажи мені інший рукав».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один рукав ви вже перевірили. Попросіть: «Покажи мені інший рукав».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Show me the other sleeve.",
+          "localizedMeaning": {
+            "ru": "Один рукав вы уже проверили. Попросите: «Покажи мне другой рукав».",
+            "uk": "Один рукав ви вже перевірили. Попросіть: «Покажи мені інший рукав»."
+          },
+          "orderedTokens": [
+            "Show",
+            "me",
+            "the",
+            "other",
+            "sleeve"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2146,68 +2047,143 @@
         "interactionId": "en:lesson-25:session-12:i15",
         "ordinal": 22,
         "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Раніше я був сором’язливим",
-        "responseOptions": [],
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-12:i15:r1",
+            "text": "I have already said sorry."
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i15:r2",
+            "text": "I have already said goodbye."
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i15:r3",
+            "text": "She has already said sorry."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-12:i15:audio"
         ],
-        "accessibilityLabel": "Раніше я був сором’язливим",
+        "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-12:i15:audio",
-            "transcript": "I used to be shy."
+            "transcript": "I have already said sorry."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to be shy.",
-          "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "be",
-            "shy"
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-12:i15:r1",
+              "targetText": "I have already said sorry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i15:r2",
+              "targetText": "I have already said goodbye.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i15:r3",
+              "targetText": "She has already said sorry.",
+              "meaningByLocale": null
+            }
           ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-12:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already said sorry.",
+                "uk": "У записі звучить I have already said sorry."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already said sorry.",
+                "uk": "У записі звучить I have already said sorry."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-12:i16",
         "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «У дитинстві вона часто смикала мотузку».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-12:i16:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «У дитинстві вона часто смикала мотузку».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-12:i16:audio",
-            "transcript": "As a child she would tug at the rope."
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви хочете спробувати ще раз. Потрібна одна додаткова спроба.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-12:i16:r1",
+            "text": "another"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "As a child she would tug at the rope.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-12:i16:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-12:i16:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете спробувати ще раз. Потрібна одна додаткова спроба.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы хотите попробовать ещё раз. Нужен один дополнительный раз.",
+            "uk": "Ви хочете спробувати ще раз. Потрібна одна додаткова спроба."
+          },
+          "gappedTargetPhrase": "Can I have ___ try?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-12:i16:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i16:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i16:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Ви хочете спробувати ще раз. Потрібна одна додаткова спроба.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-12:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви хочете спробувати ще раз. Потрібна одна додаткова спроба.",
+              "feedbackByLocale": {
+                "ru": "Перед единственным try без артикля используем another.",
+                "uk": "Перед одниною try без артикля використовуємо another."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-12:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви хочете спробувати ще раз. Потрібна одна додаткова спроба.",
+              "feedbackByLocale": {
+                "ru": "Others употребляется без следующего существительного.",
+                "uk": "Others уживається без наступного іменника."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -2218,21 +2194,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «У школі він часто легенько штовхав брата під час обіду».",
+        "prompt": "Згадайте колишнє почуття: «Раніше я боявся темряви».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-12:i17:audio"
         ],
-        "accessibilityLabel": "Скажіть: «У школі він часто легенько штовхав брата під час обіду».",
+        "accessibilityLabel": "Згадайте колишнє почуття: «Раніше я боявся темряви».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-12:i17:audio",
-            "transcript": "At school he would nudge his brother during lunch."
+            "transcript": "I used to be afraid of the dark."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "At school he would nudge his brother during lunch.",
+          "targetPhrase": "I used to be afraid of the dark.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2255,38 +2231,13 @@
     },
     {
       "interactionId": "en:lesson-25:session-12:i01",
-      "correctText": "As children we would peek through the curtains.",
+      "correctText": "Do not peek!",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-12:i02",
-      "correctText": "peek",
+      "correctText": "As children we would peek into the kitchen.",
       "correctResponseId": "en:lesson-25:session-12:i02:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-12:i03",
-      "correctText": "As children we would peek through the curtains.",
-      "correctResponseId": "en:lesson-25:session-12:i03:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-12:word:poke",
-      "correctText": "poke",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-12:i04",
-      "correctText": "In those days we would poke the sand with a stick.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-12:i05",
-      "correctText": "poke",
-      "correctResponseId": "en:lesson-25:session-12:i05:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-12:i06",
-      "correctText": "In those days we would poke the sand with a stick.",
-      "correctResponseId": "en:lesson-25:session-12:i06:r1"
     },
     {
       "interactionId": "en:lesson-25:session-12:word:tug",
@@ -2294,19 +2245,29 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-12:i07",
-      "correctText": "As a child I would tug at the rope.",
+      "interactionId": "en:lesson-25:session-12:i03",
+      "correctText": "Do not tug at the zip.",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-12:i08",
+      "interactionId": "en:lesson-25:session-12:i04",
       "correctText": "tug",
-      "correctResponseId": "en:lesson-25:session-12:i08:r1"
+      "correctResponseId": "en:lesson-25:session-12:i04:r1"
     },
     {
-      "interactionId": "en:lesson-25:session-12:i09",
-      "correctText": "As a child I would tug at the rope.",
-      "correctResponseId": "en:lesson-25:session-12:i09:r1"
+      "interactionId": "en:lesson-25:session-12:word:poke",
+      "correctText": "poke",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-12:i05",
+      "correctText": "Do not poke the dog with that stick.",
+      "correctResponseId": "en:lesson-25:session-12:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-12:i06",
+      "correctText": "On those holidays we would draw shapes in the sand.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-12:word:nudge",
@@ -2314,43 +2275,58 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-12:i10",
-      "correctText": "At school I would nudge my brother during lunch.",
+      "interactionId": "en:lesson-25:session-12:i07",
+      "correctText": "Please nudge me.",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-12:i11",
+      "interactionId": "en:lesson-25:session-12:i08",
       "correctText": "nudge",
-      "correctResponseId": "en:lesson-25:session-12:i11:r1"
+      "correctResponseId": "en:lesson-25:session-12:i08:r1"
     },
     {
-      "interactionId": "en:lesson-25:session-12:i12",
-      "correctText": "At school I would nudge my brother during lunch.",
-      "correctResponseId": "en:lesson-25:session-12:i12:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-12:i13",
+      "interactionId": "en:lesson-25:session-12:i09",
       "correctText": "",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-12:i10",
+      "correctText": "Did I hurt your arm?",
+      "correctResponseId": "en:lesson-25:session-12:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-12:i11",
+      "correctText": "Sorry, I did not mean to push you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-12:i12",
+      "correctText": "pulled",
+      "correctResponseId": "en:lesson-25:session-12:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-12:i13",
+      "correctText": "In those days we would whisper during the game.",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-25:session-12:i14",
-      "correctText": "I used to live by the lake.",
+      "correctText": "Show me the other sleeve.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-12:i15",
-      "correctText": "I used to be shy.",
-      "correctResponseId": null
+      "correctText": "I have already said sorry.",
+      "correctResponseId": "en:lesson-25:session-12:i15:r1"
     },
     {
       "interactionId": "en:lesson-25:session-12:i16",
-      "correctText": "As a child she would tug at the rope.",
-      "correctResponseId": null
+      "correctText": "another",
+      "correctResponseId": "en:lesson-25:session-12:i16:r1"
     },
     {
       "interactionId": "en:lesson-25:session-12:i17",
-      "correctText": "At school he would nudge his brother during lunch.",
+      "correctText": "I used to be afraid of the dark.",
       "correctResponseId": null
     }
   ]

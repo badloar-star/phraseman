@@ -4,8 +4,230 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-25:session-10:word:winner",
+      "interactionId": "en:lesson-25:session-10:word:athlete",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — athlete",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-10:word:athlete:audio"
+      ],
+      "accessibilityLabel": "Картка слова — athlete",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-10:word:athlete:audio",
+          "transcript": "athlete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-10:word:athlete:r1",
+            "targetText": "athlete",
+            "meaningByLocale": {
+              "ru": "спортсмен",
+              "uk": "спортсмен"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "athlete",
+          "definitionByLocale": {
+            "ru": "спортсмен",
+            "uk": "спортсмен"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Представте знайому: «Моя сестра — спортсменка».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Представте знайому: «Моя сестра — спортсменка».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My sister is an athlete.",
+        "localizedMeaning": {
+          "ru": "Представьте знакомого: «Моя сестра — спортсменка».",
+          "uk": "Представте знайому: «Моя сестра — спортсменка»."
+        },
+        "orderedTokens": [
+          "My",
+          "sister",
+          "is",
+          "an",
+          "athlete"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-10:i02:r1",
+          "text": "As teenagers we would train before school."
+        },
+        {
+          "responseId": "en:lesson-25:session-10:i02:r2",
+          "text": "As teenagers we would train after school."
+        },
+        {
+          "responseId": "en:lesson-25:session-10:i02:r3",
+          "text": "As teenagers they would train before school."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-10:i02:audio",
+          "transcript": "As teenagers we would train before school."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-10:i02:r1",
+            "targetText": "As teenagers we would train before school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i02:r2",
+            "targetText": "As teenagers we would train after school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i02:r3",
+            "targetText": "As teenagers they would train before school.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит As teenagers we would train before school.",
+              "uk": "У записі звучить As teenagers we would train before school."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит As teenagers we would train before school.",
+              "uk": "У записі звучить As teenagers we would train before school."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви згадуєте регулярні тренування багато років тому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-10:i03:r1",
+          "text": "run"
+        },
+        {
+          "responseId": "en:lesson-25:session-10:i03:r2",
+          "text": "ran"
+        },
+        {
+          "responseId": "en:lesson-25:session-10:i03:r3",
+          "text": "running"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви згадуєте регулярні тренування багато років тому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы вспоминаете регулярные тренировки много лет назад.",
+          "uk": "Ви згадуєте регулярні тренування багато років тому."
+        },
+        "gappedTargetPhrase": "Back then we would ___ every morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-10:i03:r1",
+            "text": "run"
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i03:r2",
+            "text": "ran"
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i03:r3",
+            "text": "running"
+          }
+        ],
+        "testedDimension": "Ви згадуєте регулярні тренування багато років тому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви згадуєте регулярні тренування багато років тому.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма run.",
+              "uk": "Після would потрібна базова форма run."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви згадуєте регулярні тренування багато років тому.",
+            "feedbackByLocale": {
+              "ru": "Would running неверно; нужно would run.",
+              "uk": "Would running неправильно; потрібно would run."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-10:word:winner",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -28,8 +250,8 @@
             "responseId": "en:lesson-25:session-10:word:winner:r1",
             "targetText": "winner",
             "meaningByLocale": {
-              "ru": "победитель.",
-              "uk": "переможець."
+              "ru": "победитель",
+              "uk": "переможець"
             }
           }
         ],
@@ -39,187 +261,81 @@
         "wordCard": {
           "word": "winner",
           "definitionByLocale": {
-            "ru": "победитель.",
-            "uk": "переможець."
+            "ru": "победитель",
+            "uk": "переможець"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-10:i01",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У школі ми зазвичай уболівали за переможця.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У школі ми зазвичай уболівали за переможця.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "At school we would cheer for the winner.",
-        "localizedMeaning": {
-          "ru": "Скажите: «В школе мы обычно болели за победителя.»",
-          "uk": "Скажіть: «У школі ми зазвичай уболівали за переможця.»"
-        },
-        "orderedTokens": [
-          "At",
-          "school",
-          "we",
-          "would",
-          "cheer",
-          "for",
-          "the",
-          "winner"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-10:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-10:i02:r1",
-          "text": "cheer"
-        },
-        {
-          "responseId": "en:lesson-25:session-10:i02:r2",
-          "text": "cheered"
-        },
-        {
-          "responseId": "en:lesson-25:session-10:i02:r3",
-          "text": "cheering"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "At school we would ___ for the winner.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-10:i02:r1",
-            "text": "cheer"
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i02:r2",
-            "text": "cheered"
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i02:r3",
-            "text": "cheering"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-10:i02:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i02:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-10:i03",
-      "ordinal": 7,
+      "interactionId": "en:lesson-25:session-10:i04",
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-10:i03:r1",
-          "text": "At school we would cheer for the winner."
+          "responseId": "en:lesson-25:session-10:i04:r1",
+          "text": "The winner received a medal."
         },
         {
-          "responseId": "en:lesson-25:session-10:i03:r2",
-          "text": "At school they would cheer for the winner."
+          "responseId": "en:lesson-25:session-10:i04:r2",
+          "text": "The winner received a cup."
         },
         {
-          "responseId": "en:lesson-25:session-10:i03:r3",
-          "text": "At school we would clap for the winner."
+          "responseId": "en:lesson-25:session-10:i04:r3",
+          "text": "The winner received a prize."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-10:i03:audio"
+        "en:lesson-25:session-10:i04:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-10:i03:audio",
-          "transcript": "At school we would cheer for the winner."
+          "audioTargetId": "en:lesson-25:session-10:i04:audio",
+          "transcript": "The winner received a medal."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-10:i03:r1",
-            "targetText": "At school we would cheer for the winner.",
+            "responseId": "en:lesson-25:session-10:i04:r1",
+            "targetText": "The winner received a medal.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-10:i03:r2",
-            "targetText": "At school they would cheer for the winner.",
+            "responseId": "en:lesson-25:session-10:i04:r2",
+            "targetText": "The winner received a cup.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-10:i03:r3",
-            "targetText": "At school we would clap for the winner.",
+            "responseId": "en:lesson-25:session-10:i04:r3",
+            "targetText": "The winner received a prize.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-10:i03:r2",
+            "responseId": "en:lesson-25:session-10:i04:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит At school we would cheer for the winner.",
-              "uk": "У записі звучить At school we would cheer for the winner."
+              "ru": "В записи звучит The winner received a medal.",
+              "uk": "У записі звучить The winner received a medal."
             }
           },
           {
-            "responseId": "en:lesson-25:session-10:i03:r3",
+            "responseId": "en:lesson-25:session-10:i04:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит At school we would cheer for the winner.",
-              "uk": "У записі звучить At school we would cheer for the winner."
+              "ru": "В записи звучит The winner received a medal.",
+              "uk": "У записі звучить The winner received a medal."
             }
           }
         ],
@@ -229,9 +345,42 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-10:i05",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви не знаєте результат забігу. Запитайте: «Хто переможець?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Ви не знаєте результат забігу. Запитайте: «Хто переможець?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-10:i05:audio",
+          "transcript": "Who is the winner?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Who is the winner?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-10:word:loser",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Картка слова — loser",
@@ -253,8 +402,8 @@
             "responseId": "en:lesson-25:session-10:word:loser:r1",
             "targetText": "loser",
             "meaningByLocale": {
-              "ru": "проигравший.",
-              "uk": "той, хто програв."
+              "ru": "проигравший",
+              "uk": "той, хто програв"
             }
           }
         ],
@@ -264,234 +413,52 @@
         "wordCard": {
           "word": "loser",
           "definitionByLocale": {
-            "ru": "проигравший.",
-            "uk": "той, хто програв."
+            "ru": "проигравший",
+            "uk": "той, хто програв"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-10:i04",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
+      "interactionId": "en:lesson-25:session-10:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У ті часи ми зазвичай втішали того, хто програв.»",
+      "prompt": "Почуйте спогад про чесну гру.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У ті часи ми зазвичай втішали того, хто програв.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-10:i06:audio"
+      ],
+      "accessibilityLabel": "Почуйте спогад про чесну гру.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "In those days we would comfort the loser.",
-        "localizedMeaning": {
-          "ru": "Скажите: «В те времена мы обычно утешали проигравшего.»",
-          "uk": "Скажіть: «У ті часи ми зазвичай втішали того, хто програв.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-10:i06:audio",
+          "transcript": "After those games the loser would shake hands with the winner."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "After those games the loser would shake hands with the winner.",
         "orderedTokens": [
-          "In",
+          "After",
           "those",
-          "days",
-          "we",
-          "would",
-          "comfort",
+          "games",
           "the",
-          "loser"
+          "loser",
+          "would",
+          "shake",
+          "hands",
+          "with",
+          "the",
+          "winner"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-10:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-10:i05:r1",
-          "text": "comfort"
-        },
-        {
-          "responseId": "en:lesson-25:session-10:i05:r2",
-          "text": "comforted"
-        },
-        {
-          "responseId": "en:lesson-25:session-10:i05:r3",
-          "text": "comforting"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "In those days we would ___ the loser.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-10:i05:r1",
-            "text": "comfort"
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i05:r2",
-            "text": "comforted"
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i05:r3",
-            "text": "comforting"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-10:i05:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i05:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-10:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-10:i06:r1",
-          "text": "In those days we would comfort the loser."
-        },
-        {
-          "responseId": "en:lesson-25:session-10:i06:r2",
-          "text": "In those days they would comfort the loser."
-        },
-        {
-          "responseId": "en:lesson-25:session-10:i06:r3",
-          "text": "In those days we would encourage the loser."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-10:i06:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-10:i06:audio",
-          "transcript": "In those days we would comfort the loser."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-10:i06:r1",
-            "targetText": "In those days we would comfort the loser.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i06:r2",
-            "targetText": "In those days they would comfort the loser.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i06:r3",
-            "targetText": "In those days we would encourage the loser.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-10:i06:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит In those days we would comfort the loser.",
-              "uk": "У записі звучить In those days we would comfort the loser."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i06:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит In those days we would comfort the loser.",
-              "uk": "У записі звучить In those days we would comfort the loser."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-10:word:athlete",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — athlete",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-10:word:athlete:audio"
-      ],
-      "accessibilityLabel": "Картка слова — athlete",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-10:word:athlete:audio",
-          "transcript": "athlete"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-10:word:athlete:r1",
-            "targetText": "athlete",
-            "meaningByLocale": {
-              "ru": "спортсмен.",
-              "uk": "спортсмен."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "athlete",
-          "definitionByLocale": {
-            "ru": "спортсмен.",
-            "uk": "спортсмен."
-          }
         }
       },
       "scriptedAlternate": null
@@ -500,103 +467,65 @@
       "interactionId": "en:lesson-25:session-10:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У ті часи я регулярно тренувався зі спортсменом.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У ті часи я регулярно тренувався зі спортсменом.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "In those days I would train with an athlete.",
-        "localizedMeaning": {
-          "ru": "Скажите: «В те времена я регулярно тренировался со спортсменом.»",
-          "uk": "Скажіть: «У ті часи я регулярно тренувався зі спортсменом.»"
-        },
-        "orderedTokens": [
-          "In",
-          "those",
-          "days",
-          "I",
-          "would",
-          "train",
-          "with",
-          "an",
-          "athlete"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-10:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
+      "prompt": "Суперник виграв, а ви програли. Ви називаєте лише результат цієї гри.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-10:i08:r1",
-          "text": "train"
+          "responseId": "en:lesson-25:session-10:i07:r1",
+          "text": "loser"
         },
         {
-          "responseId": "en:lesson-25:session-10:i08:r2",
-          "text": "trained"
+          "responseId": "en:lesson-25:session-10:i07:r2",
+          "text": "winner"
         },
         {
-          "responseId": "en:lesson-25:session-10:i08:r3",
-          "text": "training"
+          "responseId": "en:lesson-25:session-10:i07:r3",
+          "text": "coach"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
+      "accessibilityLabel": "Суперник виграв, а ви програли. Ви називаєте лише результат цієї гри.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
+          "ru": "Соперник выиграл, а вы проиграли. Вы называете только результат этой игры.",
+          "uk": "Суперник виграв, а ви програли. Ви називаєте лише результат цієї гри."
         },
-        "gappedTargetPhrase": "In those days I would ___ with an athlete.",
+        "gappedTargetPhrase": "I was the ___ in that game.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-10:i08:r1",
-            "text": "train"
+            "responseId": "en:lesson-25:session-10:i07:r1",
+            "text": "loser"
           },
           {
-            "responseId": "en:lesson-25:session-10:i08:r2",
-            "text": "trained"
+            "responseId": "en:lesson-25:session-10:i07:r2",
+            "text": "winner"
           },
           {
-            "responseId": "en:lesson-25:session-10:i08:r3",
-            "text": "training"
+            "responseId": "en:lesson-25:session-10:i07:r3",
+            "text": "coach"
           }
         ],
-        "testedDimension": "Доповніть спогад.",
+        "testedDimension": "Суперник виграв, а ви програли. Ви називаєте лише результат цієї гри.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-10:i08:r2",
+            "responseId": "en:lesson-25:session-10:i07:r2",
             "correct": false,
-            "testedDimension": "Доповніть спогад.",
+            "testedDimension": "Суперник виграв, а ви програли. Ви називаєте лише результат цієї гри.",
             "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
+              "ru": "Winner — победитель, но вы проиграли эту игру.",
+              "uk": "Winner — переможець, але ви програли цю гру."
             }
           },
           {
-            "responseId": "en:lesson-25:session-10:i08:r3",
+            "responseId": "en:lesson-25:session-10:i07:r3",
             "correct": false,
-            "testedDimension": "Доповніть спогад.",
+            "testedDimension": "Суперник виграв, а ви програли. Ви називаєте лише результат цієї гри.",
             "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
+              "ru": "Coach — тренер; здесь речь о вашем результате как игрока.",
+              "uk": "Coach — тренер; тут ідеться про ваш результат як гравця."
             }
           }
         ]
@@ -604,84 +533,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-10:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-10:i09:r1",
-          "text": "In those days I would train with an athlete."
-        },
-        {
-          "responseId": "en:lesson-25:session-10:i09:r2",
-          "text": "In those days she would train with an athlete."
-        },
-        {
-          "responseId": "en:lesson-25:session-10:i09:r3",
-          "text": "In those days I would run with an athlete."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-10:i09:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-10:i09:audio",
-          "transcript": "In those days I would train with an athlete."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-10:i09:r1",
-            "targetText": "In those days I would train with an athlete.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i09:r2",
-            "targetText": "In those days she would train with an athlete.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i09:r3",
-            "targetText": "In those days I would run with an athlete.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-10:i09:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит In those days I would train with an athlete.",
-              "uk": "У записі звучить In those days I would train with an athlete."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i09:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит In those days I would train with an athlete.",
-              "uk": "У записі звучить In those days I would train with an athlete."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-10:word:league",
-      "ordinal": 16,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -704,8 +557,8 @@
             "responseId": "en:lesson-25:session-10:word:league:r1",
             "targetText": "league",
             "meaningByLocale": {
-              "ru": "лига.",
-              "uk": "ліга."
+              "ru": "лига",
+              "uk": "ліга"
             }
           }
         ],
@@ -715,37 +568,35 @@
         "wordCard": {
           "word": "league",
           "definitionByLocale": {
-            "ru": "лига.",
-            "uk": "ліга."
+            "ru": "лига",
+            "uk": "ліга"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-10:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-10:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У школі ми регулярно грали в місцевій лізі.»",
+      "prompt": "Скажіть про команду: «Наша команда грає в місцевій лізі».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У школі ми регулярно грали в місцевій лізі.»",
+      "accessibilityLabel": "Скажіть про команду: «Наша команда грає в місцевій лізі».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "At school we would play in a local league.",
+        "targetPhrase": "Our team plays in a local league.",
         "localizedMeaning": {
-          "ru": "Скажите: «В школе мы регулярно играли в местной лиге.»",
-          "uk": "Скажіть: «У школі ми регулярно грали в місцевій лізі.»"
+          "ru": "Скажите о команде: «Наша команда играет в местной лиге».",
+          "uk": "Скажіть про команду: «Наша команда грає в місцевій лізі»."
         },
         "orderedTokens": [
-          "At",
-          "school",
-          "we",
-          "would",
-          "play",
+          "Our",
+          "team",
+          "plays",
           "in",
           "a",
           "local",
@@ -761,142 +612,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-10:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-10:i11:r1",
-          "text": "play"
-        },
-        {
-          "responseId": "en:lesson-25:session-10:i11:r2",
-          "text": "played"
-        },
-        {
-          "responseId": "en:lesson-25:session-10:i11:r3",
-          "text": "playing"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "At school we would ___ in a local league.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-10:i11:r1",
-            "text": "play"
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i11:r2",
-            "text": "played"
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i11:r3",
-            "text": "playing"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-10:i11:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-10:i11:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-10:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-10:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-10:i12:r1",
-          "text": "At school we would play in a local league."
+          "responseId": "en:lesson-25:session-10:i09:r1",
+          "text": "In those days we would travel to matches by bus."
         },
         {
-          "responseId": "en:lesson-25:session-10:i12:r2",
-          "text": "At school they would play in a local league."
+          "responseId": "en:lesson-25:session-10:i09:r2",
+          "text": "In those days we would travel to matches by train."
         },
         {
-          "responseId": "en:lesson-25:session-10:i12:r3",
-          "text": "At school we would compete in a local league."
+          "responseId": "en:lesson-25:session-10:i09:r3",
+          "text": "In those days we would walk to matches."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-10:i12:audio"
+        "en:lesson-25:session-10:i09:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-10:i12:audio",
-          "transcript": "At school we would play in a local league."
+          "audioTargetId": "en:lesson-25:session-10:i09:audio",
+          "transcript": "In those days we would travel to matches by bus."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-10:i12:r1",
-            "targetText": "At school we would play in a local league.",
+            "responseId": "en:lesson-25:session-10:i09:r1",
+            "targetText": "In those days we would travel to matches by bus.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-10:i12:r2",
-            "targetText": "At school they would play in a local league.",
+            "responseId": "en:lesson-25:session-10:i09:r2",
+            "targetText": "In those days we would travel to matches by train.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-10:i12:r3",
-            "targetText": "At school we would compete in a local league.",
+            "responseId": "en:lesson-25:session-10:i09:r3",
+            "targetText": "In those days we would walk to matches.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-10:i12:r2",
+            "responseId": "en:lesson-25:session-10:i09:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит At school we would play in a local league.",
-              "uk": "У записі звучить At school we would play in a local league."
+              "ru": "В записи звучит In those days we would travel to matches by bus.",
+              "uk": "У записі звучить In those days we would travel to matches by bus."
             }
           },
           {
-            "responseId": "en:lesson-25:session-10:i12:r3",
+            "responseId": "en:lesson-25:session-10:i09:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит At school we would play in a local league.",
-              "uk": "У записі звучить At school we would play in a local league."
+              "ru": "В записи звучит In those days we would travel to matches by bus.",
+              "uk": "У записі звучить In those days we would travel to matches by bus."
             }
           }
         ],
@@ -906,21 +688,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-10:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-25:session-10:i10",
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Поєднайте слова з перекладом",
+      "prompt": "Розрізніть учасників, результат і змагання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "accessibilityLabel": "Розрізніть учасників, результат і змагання",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-10:i13:p1",
+            "pairId": "en:lesson-25:session-10:i10:p1",
             "target": "winner",
             "meaningByLocale": {
               "ru": "победитель",
@@ -928,7 +710,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-10:i13:p2",
+            "pairId": "en:lesson-25:session-10:i10:p2",
             "target": "loser",
             "meaningByLocale": {
               "ru": "проигравший",
@@ -936,7 +718,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-10:i13:p3",
+            "pairId": "en:lesson-25:session-10:i10:p3",
             "target": "athlete",
             "meaningByLocale": {
               "ru": "спортсмен",
@@ -944,7 +726,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-10:i13:p4",
+            "pairId": "en:lesson-25:session-10:i10:p4",
             "target": "league",
             "meaningByLocale": {
               "ru": "лига",
@@ -979,102 +761,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-10:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Колишнє місце проживання",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-10:i14:audio"
-      ],
-      "accessibilityLabel": "Колишнє місце проживання",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-10:i14:audio",
-          "transcript": "I used to live by the lake."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to live by the lake.",
-        "orderedTokens": [
-          "I",
-          "used",
-          "to",
-          "live",
-          "by",
-          "the",
-          "lake"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-10:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Раніше я був сором’язливим",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-10:i15:audio"
-      ],
-      "accessibilityLabel": "Раніше я був сором’язливим",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-10:i15:audio",
-          "transcript": "I used to be shy."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to be shy.",
-        "orderedTokens": [
-          "I",
-          "used",
-          "to",
-          "be",
-          "shy"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-10:i16",
-      "ordinal": 23,
+      "interactionId": "en:lesson-25:session-10:i11",
+      "ordinal": 18,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «У ті часи вони зазвичай втішали того, хто програв».",
+      "prompt": "Запропонуйте зіграти ще раз: «Давай зіграємо ще одну гру».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-10:i16:audio"
+        "en:lesson-25:session-10:i11:audio"
       ],
-      "accessibilityLabel": "Скажіть: «У ті часи вони зазвичай втішали того, хто програв».",
+      "accessibilityLabel": "Запропонуйте зіграти ще раз: «Давай зіграємо ще одну гру».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-10:i16:audio",
-          "transcript": "In those days they would comfort the loser."
+          "audioTargetId": "en:lesson-25:session-10:i11:audio",
+          "transcript": "Let us play another game."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "In those days they would comfort the loser.",
+        "targetPhrase": "Let us play another game.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1088,26 +794,316 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора був один конкретний матч.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-10:i12:r1",
+          "text": "won"
+        },
+        {
+          "responseId": "en:lesson-25:session-10:i12:r2",
+          "text": "has won"
+        },
+        {
+          "responseId": "en:lesson-25:session-10:i12:r3",
+          "text": "would win"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора був один конкретний матч.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера был один конкретный матч.",
+          "uk": "Учора був один конкретний матч."
+        },
+        "gappedTargetPhrase": "Our team ___ yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-10:i12:r1",
+            "text": "won"
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i12:r2",
+            "text": "has won"
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i12:r3",
+            "text": "would win"
+          }
+        ],
+        "testedDimension": "Учора був один конкретний матч.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора був один конкретний матч.",
+            "feedbackByLocale": {
+              "ru": "Yesterday требует Past Simple won.",
+              "uk": "Yesterday потребує Past Simple won."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора був один конкретний матч.",
+            "feedbackByLocale": {
+              "ru": "Would win не обозначает здесь одну конкретную вчерашнюю победу.",
+              "uk": "Would win не позначає тут одну конкретну вчорашню перемогу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-10:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте колишній ритуал після тренування.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-10:i13:audio"
+      ],
+      "accessibilityLabel": "Почуйте колишній ритуал після тренування.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-10:i13:audio",
+          "transcript": "After practice we would sit on the grass and talk."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "After practice we would sit on the grass and talk.",
+        "orderedTokens": [
+          "After",
+          "practice",
+          "we",
+          "would",
+          "sit",
+          "on",
+          "the",
+          "grass",
+          "and",
+          "talk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-10:i14:r1",
+          "text": "Have you ever won a race?"
+        },
+        {
+          "responseId": "en:lesson-25:session-10:i14:r2",
+          "text": "Have you ever watched a race?"
+        },
+        {
+          "responseId": "en:lesson-25:session-10:i14:r3",
+          "text": "Have they ever won a race?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-10:i14:audio",
+          "transcript": "Have you ever won a race?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-10:i14:r1",
+            "targetText": "Have you ever won a race?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i14:r2",
+            "targetText": "Have you ever watched a race?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i14:r3",
+            "targetText": "Have they ever won a race?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-10:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you ever won a race?",
+              "uk": "У записі звучить Have you ever won a race?"
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you ever won a race?",
+              "uk": "У записі звучить Have you ever won a race?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про колишній стан: «Раніше я був повільнішим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про колишній стан: «Раніше я був повільнішим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used to be slower.",
+        "localizedMeaning": {
+          "ru": "Расскажите о прежнем состоянии: «Раньше я был медленнее».",
+          "uk": "Розкажіть про колишній стан: «Раніше я був повільнішим»."
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "be",
+          "slower"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-10:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Один гравець уже готовий. Доповніть: «Інші гравці все ще чекають».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-10:i16:r1",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-25:session-10:i16:r2",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-25:session-10:i16:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Один гравець уже готовий. Доповніть: «Інші гравці все ще чекають».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Один игрок уже готов. Дополните: «Другие игроки всё ещё ждут».",
+          "uk": "Один гравець уже готовий. Доповніть: «Інші гравці все ще чекають»."
+        },
+        "gappedTargetPhrase": "The ___ players are still waiting.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-10:i16:r1",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i16:r2",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i16:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Один гравець уже готовий. Доповніть: «Інші гравці все ще чекають».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-10:i16:r2",
+            "correct": false,
+            "testedDimension": "Один гравець уже готовий. Доповніть: «Інші гравці все ще чекають».",
+            "feedbackByLocale": {
+              "ru": "Another ставим перед существительным в единственном числе.",
+              "uk": "Another ставимо перед іменником в однині."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-10:i16:r3",
+            "correct": false,
+            "testedDimension": "Один гравець уже готовий. Доповніть: «Інші гравці все ще чекають».",
+            "feedbackByLocale": {
+              "ru": "Перед players нужна форма other, без -s.",
+              "uk": "Перед players потрібна форма other, без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-10:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «У школі вони регулярно грали в місцевій лізі».",
+      "prompt": "Підтримайте друга після програшу: «Ти добре грав сьогодні».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-10:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «У школі вони регулярно грали в місцевій лізі».",
+      "accessibilityLabel": "Підтримайте друга після програшу: «Ти добре грав сьогодні».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-10:i17:audio",
-          "transcript": "At school they would play in a local league."
+          "transcript": "You played well today."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "At school they would play in a local league.",
+        "targetPhrase": "You played well today.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1127,5 +1123,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "91da2dadfde91210b06d36f5c04a109a8d6417f30ec1e37b8cea0b8b4982a276"
+  "learnerFingerprint": "66b8410c64d47d7e1386432b106b464c3d188fec0b3a0065948f60f5629d15bb"
 }

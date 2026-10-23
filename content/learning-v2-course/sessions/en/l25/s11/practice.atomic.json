@@ -4,8 +4,199 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-25:session-11:word:dolls",
+        "interactionId": "en:lesson-25:session-11:i01",
         "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i01:r1",
+            "text": "We used to play outside after school."
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i01:r2",
+            "text": "We used to play inside after school."
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i01:r3",
+            "text": "We used to play outside before school."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-11:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:i01:audio",
+            "transcript": "We used to play outside after school."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-11:i01:r1",
+              "targetText": "We used to play outside after school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i01:r2",
+              "targetText": "We used to play inside after school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i01:r3",
+              "targetText": "We used to play outside before school.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to play outside after school.",
+                "uk": "У записі звучить We used to play outside after school."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to play outside after school.",
+                "uk": "У записі звучить We used to play outside after school."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:word:scooters",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scooters",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-11:word:scooters:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scooters",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:word:scooters:audio",
+            "transcript": "scooters"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-11:word:scooters:r1",
+              "targetText": "scooters",
+              "meaningByLocale": {
+                "ru": "самокаты",
+                "uk": "самокати"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scooters",
+            "definitionByLocale": {
+              "ru": "самокаты",
+              "uk": "самокати"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вспомните дорогу в парк: «Тогда мы ездили в парк на самокатах». Используйте would.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните дорогу в парк: «Тогда мы ездили в парк на самокатах». Используйте would.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Back then we would ride our scooters to the park.",
+          "localizedMeaning": {
+            "ru": "Вспомните дорогу в парк: «Тогда мы ездили в парк на самокатах». Используйте would.",
+            "uk": "Згадайте дорогу до парку: «Тоді ми їздили до парку на самокатах». Використайте would."
+          },
+          "orderedTokens": [
+            "Back",
+            "then",
+            "we",
+            "would",
+            "ride",
+            "our",
+            "scooters",
+            "to",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:i03",
+        "ordinal": 7,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы собираетесь кататься. Спросите: «Где наши самокаты?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-11:i03:audio"
+        ],
+        "accessibilityLabel": "Вы собираетесь кататься. Спросите: «Где наши самокаты?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:i03:audio",
+            "transcript": "Where are our scooters?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where are our scooters?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:word:dolls",
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -28,8 +219,8 @@
               "responseId": "en:lesson-25:session-11:word:dolls:r1",
               "targetText": "dolls",
               "meaningByLocale": {
-                "ru": "куклы.",
-                "uk": "ляльки."
+                "ru": "куклы",
+                "uk": "ляльки"
               }
             }
           ],
@@ -39,186 +230,81 @@
           "wordCard": {
             "word": "dolls",
             "definitionByLocale": {
-              "ru": "куклы.",
-              "uk": "ляльки."
+              "ru": "куклы",
+              "uk": "ляльки"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-11:i01",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В детстве мы часто наряжали своих кукол.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В детстве мы часто наряжали своих кукол.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "As children we would dress our dolls.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В детстве мы часто наряжали своих кукол.»",
-            "uk": "Скажіть: «У дитинстві ми часто вбирали своїх ляльок.»"
-          },
-          "orderedTokens": [
-            "As",
-            "children",
-            "we",
-            "would",
-            "dress",
-            "our",
-            "dolls"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i02",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i02:r1",
-            "text": "dress"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i02:r2",
-            "text": "dressed"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i02:r3",
-            "text": "dressing"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "As children we would ___ our dolls.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-11:i02:r1",
-              "text": "dress"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i02:r2",
-              "text": "dressed"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i02:r3",
-              "text": "dressing"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i02:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i02:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i03",
-        "ordinal": 7,
+        "interactionId": "en:lesson-25:session-11:i04",
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-11:i03:r1",
-            "text": "As children we would dress our dolls."
+            "responseId": "en:lesson-25:session-11:i04:r1",
+            "text": "My sister kept her dolls in a wooden box."
           },
           {
-            "responseId": "en:lesson-25:session-11:i03:r2",
-            "text": "As children they would dress their dolls."
+            "responseId": "en:lesson-25:session-11:i04:r2",
+            "text": "My sister kept her dolls on a shelf."
           },
           {
-            "responseId": "en:lesson-25:session-11:i03:r3",
-            "text": "As children we would wash our dolls."
+            "responseId": "en:lesson-25:session-11:i04:r3",
+            "text": "My brother kept his dolls in a wooden box."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-11:i03:audio"
+          "en:lesson-25:session-11:i04:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i03:audio",
-            "transcript": "As children we would dress our dolls."
+            "audioTargetId": "en:lesson-25:session-11:i04:audio",
+            "transcript": "My sister kept her dolls in a wooden box."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-11:i03:r1",
-              "targetText": "As children we would dress our dolls.",
+              "responseId": "en:lesson-25:session-11:i04:r1",
+              "targetText": "My sister kept her dolls in a wooden box.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-11:i03:r2",
-              "targetText": "As children they would dress their dolls.",
+              "responseId": "en:lesson-25:session-11:i04:r2",
+              "targetText": "My sister kept her dolls on a shelf.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-11:i03:r3",
-              "targetText": "As children we would wash our dolls.",
+              "responseId": "en:lesson-25:session-11:i04:r3",
+              "targetText": "My brother kept his dolls in a wooden box.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-11:i03:r2",
+              "responseId": "en:lesson-25:session-11:i04:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит As children we would dress our dolls.",
-                "uk": "У записі звучить As children we would dress our dolls."
+                "ru": "В записи звучит My sister kept her dolls in a wooden box.",
+                "uk": "У записі звучить My sister kept her dolls in a wooden box."
               }
             },
             {
-              "responseId": "en:lesson-25:session-11:i03:r3",
+              "responseId": "en:lesson-25:session-11:i04:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит As children we would dress our dolls.",
-                "uk": "У записі звучить As children we would dress our dolls."
+                "ru": "В записи звучит My sister kept her dolls in a wooden box.",
+                "uk": "У записі звучить My sister kept her dolls in a wooden box."
               }
             }
           ],
@@ -228,9 +314,78 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-11:word:puppets",
-        "ordinal": 8,
+        "interactionId": "en:lesson-25:session-11:i05",
+        "ordinal": 10,
         "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы вспоминаете повторявшуюся игру в детстве.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i05:r1",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i05:r2",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i05:r3",
+            "text": "making"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы вспоминаете повторявшуюся игру в детстве.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы вспоминаете повторявшуюся игру в детстве.",
+            "uk": "Ви згадуєте гру, яка повторювалася в дитинстві."
+          },
+          "gappedTargetPhrase": "As children we would ___ clothes for our dolls.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-11:i05:r1",
+              "text": "make"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i05:r2",
+              "text": "made"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i05:r3",
+              "text": "making"
+            }
+          ],
+          "testedDimension": "Вы вспоминаете повторявшуюся игру в детстве.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i05:r2",
+              "correct": false,
+              "testedDimension": "Вы вспоминаете повторявшуюся игру в детстве.",
+              "feedbackByLocale": {
+                "ru": "После would нужна форма make, не made.",
+                "uk": "Після would потрібна форма make, не made."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i05:r3",
+              "correct": false,
+              "testedDimension": "Вы вспоминаете повторявшуюся игру в детстве.",
+              "feedbackByLocale": {
+                "ru": "В этой конструкции после would не используется -ing.",
+                "uk": "У цій конструкції після would не використовується -ing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:word:puppets",
+        "ordinal": 11,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Карточка слова — puppets",
@@ -252,8 +407,8 @@
               "responseId": "en:lesson-25:session-11:word:puppets:r1",
               "targetText": "puppets",
               "meaningByLocale": {
-                "ru": "театральные куклы.",
-                "uk": "театральні ляльки."
+                "ru": "театральные куклы",
+                "uk": "театральні ляльки"
               }
             }
           ],
@@ -263,233 +418,48 @@
           "wordCard": {
             "word": "puppets",
             "definitionByLocale": {
-              "ru": "театральные куклы.",
-              "uk": "театральні ляльки."
+              "ru": "театральные куклы",
+              "uk": "театральні ляльки"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-11:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
+        "interactionId": "en:lesson-25:session-11:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В те времена мы часто делали театральных кукол.»",
+        "prompt": "Услышьте, для чего дети готовились.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В те времена мы часто делали театральных кукол.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-11:i06:audio"
+        ],
+        "accessibilityLabel": "Услышьте, для чего дети готовились.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "In those days we would make puppets.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В те времена мы часто делали театральных кукол.»",
-            "uk": "Скажіть: «У ті часи ми часто робили театральних ляльок.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:i06:audio",
+            "transcript": "We made puppets for the school show."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We made puppets for the school show.",
           "orderedTokens": [
-            "In",
-            "those",
-            "days",
-            "we",
-            "would",
-            "make",
-            "puppets"
+            "We",
+            "made",
+            "puppets",
+            "for",
+            "the",
+            "school",
+            "show"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i05:r1",
-            "text": "make"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i05:r2",
-            "text": "made"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i05:r3",
-            "text": "making"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "In those days we would ___ puppets.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-11:i05:r1",
-              "text": "make"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i05:r2",
-              "text": "made"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i05:r3",
-              "text": "making"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i05:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i05:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i06:r1",
-            "text": "In those days we would make puppets."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i06:r2",
-            "text": "In those days they would make puppets."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i06:r3",
-            "text": "In those days we would buy puppets."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-11:i06:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i06:audio",
-            "transcript": "In those days we would make puppets."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-11:i06:r1",
-              "targetText": "In those days we would make puppets.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i06:r2",
-              "targetText": "In those days they would make puppets.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i06:r3",
-              "targetText": "In those days we would buy puppets.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i06:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит In those days we would make puppets.",
-                "uk": "У записі звучить In those days we would make puppets."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i06:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит In those days we would make puppets.",
-                "uk": "У записі звучить In those days we would make puppets."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:word:scooters",
-        "ordinal": 12,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — scooters",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-11:word:scooters:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — scooters",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:word:scooters:audio",
-            "transcript": "scooters"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-11:word:scooters:r1",
-              "targetText": "scooters",
-              "meaningByLocale": {
-                "ru": "самокаты.",
-                "uk": "самокати."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "scooters",
-            "definitionByLocale": {
-              "ru": "самокаты.",
-              "uk": "самокати."
-            }
           }
         },
         "scriptedAlternate": null
@@ -498,101 +468,65 @@
         "interactionId": "en:lesson-25:session-11:i07",
         "ordinal": 13,
         "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «После школы мы обычно катались на самокатах.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «После школы мы обычно катались на самокатах.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "After school we would ride our scooters.",
-          "localizedMeaning": {
-            "ru": "Скажите: «После школы мы обычно катались на самокатах.»",
-            "uk": "Скажіть: «Після школи ми зазвичай каталися на самокатах.»"
-          },
-          "orderedTokens": [
-            "After",
-            "school",
-            "we",
-            "would",
-            "ride",
-            "our",
-            "scooters"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
+        "prompt": "На представлении дети двигали кукол руками. Выберите театральных кукол.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-11:i08:r1",
-            "text": "ride"
+            "responseId": "en:lesson-25:session-11:i07:r1",
+            "text": "puppets"
           },
           {
-            "responseId": "en:lesson-25:session-11:i08:r2",
-            "text": "rode"
+            "responseId": "en:lesson-25:session-11:i07:r2",
+            "text": "scooters"
           },
           {
-            "responseId": "en:lesson-25:session-11:i08:r3",
-            "text": "riding"
+            "responseId": "en:lesson-25:session-11:i07:r3",
+            "text": "books"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
+        "accessibilityLabel": "На представлении дети двигали кукол руками. Выберите театральных кукол.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+            "ru": "На представлении дети двигали кукол руками. Выберите театральных кукол.",
+            "uk": "На виставі діти рухали ляльками руками. Виберіть театральних ляльок."
           },
-          "gappedTargetPhrase": "After school we would ___ our scooters.",
+          "gappedTargetPhrase": "The children performed with ___.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-11:i08:r1",
-              "text": "ride"
+              "responseId": "en:lesson-25:session-11:i07:r1",
+              "text": "puppets"
             },
             {
-              "responseId": "en:lesson-25:session-11:i08:r2",
-              "text": "rode"
+              "responseId": "en:lesson-25:session-11:i07:r2",
+              "text": "scooters"
             },
             {
-              "responseId": "en:lesson-25:session-11:i08:r3",
-              "text": "riding"
+              "responseId": "en:lesson-25:session-11:i07:r3",
+              "text": "books"
             }
           ],
-          "testedDimension": "Дополните воспоминание.",
+          "testedDimension": "На представлении дети двигали кукол руками. Выберите театральных кукол.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-11:i08:r2",
+              "responseId": "en:lesson-25:session-11:i07:r2",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "На представлении дети двигали кукол руками. Выберите театральных кукол.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "Scooters — самокаты; здесь выступали с театральными куклами.",
+                "uk": "Scooters — самокати; тут виступали з театральними ляльками."
               }
             },
             {
-              "responseId": "en:lesson-25:session-11:i08:r3",
+              "responseId": "en:lesson-25:session-11:i07:r3",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "На представлении дети двигали кукол руками. Выберите театральных кукол.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "Books — книги, не куклы для представления.",
+                "uk": "Books — книжки, не ляльки для вистави."
               }
             }
           ]
@@ -600,84 +534,41 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-11:i09",
-        "ordinal": 15,
+        "interactionId": "en:lesson-25:session-11:i08",
+        "ordinal": 14,
         "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i09:r1",
-            "text": "After school we would ride our scooters."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i09:r2",
-            "text": "After school they would ride their scooters."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i09:r3",
-            "text": "After school we would clean our scooters."
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спектакль уже закончился. Попросите ещё одну историю: «Расскажи нам ещё одну историю».",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-11:i09:audio"
+          "en:lesson-25:session-11:i08:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Спектакль уже закончился. Попросите ещё одну историю: «Расскажи нам ещё одну историю».",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i09:audio",
-            "transcript": "After school we would ride our scooters."
+            "audioTargetId": "en:lesson-25:session-11:i08:audio",
+            "transcript": "Tell us another story."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-11:i09:r1",
-              "targetText": "After school we would ride our scooters.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i09:r2",
-              "targetText": "After school they would ride their scooters.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i09:r3",
-              "targetText": "After school we would clean our scooters.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i09:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит After school we would ride our scooters.",
-                "uk": "У записі звучить After school we would ride our scooters."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i09:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит After school we would ride our scooters.",
-                "uk": "У записі звучить After school we would ride our scooters."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          "targetPhrase": "Tell us another story.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-11:word:rockets",
-        "ordinal": 16,
+        "ordinal": 15,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -700,8 +591,8 @@
               "responseId": "en:lesson-25:session-11:word:rockets:r1",
               "targetText": "rockets",
               "meaningByLocale": {
-                "ru": "ракеты.",
-                "uk": "ракети."
+                "ru": "ракеты",
+                "uk": "ракети"
               }
             }
           ],
@@ -711,10 +602,86 @@
           "wordCard": {
             "word": "rockets",
             "definitionByLocale": {
-              "ru": "ракеты.",
-              "uk": "ракети."
+              "ru": "ракеты",
+              "uk": "ракети"
             }
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i09:r1",
+            "text": "At school we would draw rockets on coloured paper."
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i09:r2",
+            "text": "At school we would draw rockets on white paper."
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i09:r3",
+            "text": "At home we would draw rockets on coloured paper."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-11:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:i09:audio",
+            "transcript": "At school we would draw rockets on coloured paper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-11:i09:r1",
+              "targetText": "At school we would draw rockets on coloured paper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i09:r2",
+              "targetText": "At school we would draw rockets on white paper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i09:r3",
+              "targetText": "At home we would draw rockets on coloured paper.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At school we would draw rockets on coloured paper.",
+                "uk": "У записі звучить At school we would draw rockets on coloured paper."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At school we would draw rockets on coloured paper.",
+                "uk": "У записі звучить At school we would draw rockets on coloured paper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -724,25 +691,24 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «В школе мы часто делали бумажные ракеты.»",
+        "prompt": "Вы показываете сделанные поделки: «Мы уже сделали три ракеты».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «В школе мы часто делали бумажные ракеты.»",
+        "accessibilityLabel": "Вы показываете сделанные поделки: «Мы уже сделали три ракеты».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "At school we would build paper rockets.",
+          "targetPhrase": "We have already made three rockets.",
           "localizedMeaning": {
-            "ru": "Скажите: «В школе мы часто делали бумажные ракеты.»",
-            "uk": "Скажіть: «У школі ми часто робили паперові ракети.»"
+            "ru": "Вы показываете сделанные поделки: «Мы уже сделали три ракеты».",
+            "uk": "Ви показуєте зроблені поробки: «Ми вже зробили три ракети»."
           },
           "orderedTokens": [
-            "At",
-            "school",
-            "we",
-            "would",
-            "build",
-            "paper",
+            "We",
+            "have",
+            "already",
+            "made",
+            "three",
             "rockets"
           ],
           "authoredDistractorTokens": [],
@@ -758,163 +724,18 @@
         "interactionId": "en:lesson-25:session-11:i11",
         "ordinal": 18,
         "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i11:r1",
-            "text": "build"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i11:r2",
-            "text": "built"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i11:r3",
-            "text": "building"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "At school we would ___ paper rockets.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-11:i11:r1",
-              "text": "build"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i11:r2",
-              "text": "built"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i11:r3",
-              "text": "building"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i11:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i11:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i12:r1",
-            "text": "At school we would build paper rockets."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i12:r2",
-            "text": "At school they would build paper rockets."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i12:r3",
-            "text": "At school we would draw paper rockets."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-11:i12:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i12:audio",
-            "transcript": "At school we would build paper rockets."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-11:i12:r1",
-              "targetText": "At school we would build paper rockets.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i12:r2",
-              "targetText": "At school they would build paper rockets.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i12:r3",
-              "targetText": "At school we would draw paper rockets.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i12:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school we would build paper rockets.",
-                "uk": "У записі звучить At school we would build paper rockets."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i12:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school we would build paper rockets.",
-                "uk": "У записі звучить At school we would build paper rockets."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова с переводом",
+        "prompt": "Найдите переводы игрушек и поделок",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова с переводом",
+        "accessibilityLabel": "Найдите переводы игрушек и поделок",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-11:i13:p1",
+              "pairId": "en:lesson-25:session-11:i11:p1",
               "target": "dolls",
               "meaningByLocale": {
                 "ru": "куклы",
@@ -922,7 +743,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-11:i13:p2",
+              "pairId": "en:lesson-25:session-11:i11:p2",
               "target": "puppets",
               "meaningByLocale": {
                 "ru": "театральные куклы",
@@ -930,7 +751,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-11:i13:p3",
+              "pairId": "en:lesson-25:session-11:i11:p3",
               "target": "scooters",
               "meaningByLocale": {
                 "ru": "самокаты",
@@ -938,7 +759,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-11:i13:p4",
+              "pairId": "en:lesson-25:session-11:i11:p4",
               "target": "rockets",
               "meaningByLocale": {
                 "ru": "ракеты",
@@ -973,34 +794,106 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-11:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
+        "interactionId": "en:lesson-25:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы вспоминаете конкретный подарок на прошлой неделе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i12:r1",
+            "text": "gave"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i12:r2",
+            "text": "has given"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i12:r3",
+            "text": "would give"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы вспоминаете конкретный подарок на прошлой неделе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы вспоминаете конкретный подарок на прошлой неделе.",
+            "uk": "Ви згадуєте конкретний подарунок минулого тижня."
+          },
+          "gappedTargetPhrase": "My uncle ___ me a toy last week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-11:i12:r1",
+              "text": "gave"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i12:r2",
+              "text": "has given"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i12:r3",
+              "text": "would give"
+            }
+          ],
+          "testedDimension": "Вы вспоминаете конкретный подарок на прошлой неделе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы вспоминаете конкретный подарок на прошлой неделе.",
+              "feedbackByLocale": {
+                "ru": "Last week требует Past Simple gave.",
+                "uk": "Last week потребує Past Simple gave."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы вспоминаете конкретный подарок на прошлой неделе.",
+              "feedbackByLocale": {
+                "ru": "Здесь один подарок в названное время, а не повторявшаяся привычка.",
+                "uk": "Тут один подарунок у названий час, а не повторювана звичка."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Прежнее место жительства",
+        "prompt": "Услышьте, что происходило после игры.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-11:i14:audio"
+          "en:lesson-25:session-11:i13:audio"
         ],
-        "accessibilityLabel": "Прежнее место жительства",
+        "accessibilityLabel": "Услышьте, что происходило после игры.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i14:audio",
-            "transcript": "I used to live by the lake."
+            "audioTargetId": "en:lesson-25:session-11:i13:audio",
+            "transcript": "In those days we would put everything away before dinner."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to live by the lake.",
+          "hiddenTargetPhrase": "In those days we would put everything away before dinner.",
           "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "live",
-            "by",
-            "the",
-            "lake"
+            "In",
+            "those",
+            "days",
+            "we",
+            "would",
+            "put",
+            "everything",
+            "away",
+            "before",
+            "dinner"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1012,32 +905,105 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i14:r1",
+            "text": "Did you keep your old toys?"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i14:r2",
+            "text": "Did you sell your old toys?"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i14:r3",
+            "text": "Did they keep their old toys?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-11:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:i14:audio",
+            "transcript": "Did you keep your old toys?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-11:i14:r1",
+              "targetText": "Did you keep your old toys?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i14:r2",
+              "targetText": "Did you sell your old toys?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i14:r3",
+              "targetText": "Did they keep their old toys?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i14:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you keep your old toys?",
+                "uk": "У записі звучить Did you keep your old toys?"
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i14:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you keep your old toys?",
+                "uk": "У записі звучить Did you keep your old toys?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-11:i15",
         "ordinal": 22,
         "purpose": "independent_check",
-        "family": "listen_build_dictation",
+        "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Раньше я был застенчивым",
+        "prompt": "Другие дети ещё не закончили. Скажите: «Подожди других детей».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-11:i15:audio"
-        ],
-        "accessibilityLabel": "Раньше я был застенчивым",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Другие дети ещё не закончили. Скажите: «Подожди других детей».",
         "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i15:audio",
-            "transcript": "I used to be shy."
+          "family": "phrase_builder",
+          "targetPhrase": "Wait for the other children.",
+          "localizedMeaning": {
+            "ru": "Другие дети ещё не закончили. Скажите: «Подожди других детей».",
+            "uk": "Інші діти ще не закінчили. Скажіть: «Зачекай на інших дітей»."
           },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to be shy.",
           "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "be",
-            "shy"
+            "Wait",
+            "for",
+            "the",
+            "other",
+            "children"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1051,32 +1017,68 @@
       {
         "interactionId": "en:lesson-25:session-11:i16",
         "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «В те времена они часто делали театральных кукол».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-11:i16:audio"
-        ],
-        "accessibilityLabel": "Скажите: «В те времена они часто делали театральных кукол».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i16:audio",
-            "transcript": "In those days they would make puppets."
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы говорите о том, где прежде жили, а не о повторявшейся игре.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i16:r1",
+            "text": "used to"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "In those days they would make puppets.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-11:i16:r2",
+            "text": "use to"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i16:r3",
+            "text": "using to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы говорите о том, где прежде жили, а не о повторявшейся игре.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы говорите о том, где прежде жили, а не о повторявшейся игре.",
+            "uk": "Ви говорите про те, де раніше жили, а не про гру, що повторювалася."
+          },
+          "gappedTargetPhrase": "I ___ live near my cousins.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-11:i16:r1",
+              "text": "used to"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i16:r2",
+              "text": "use to"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i16:r3",
+              "text": "using to"
+            }
+          ],
+          "testedDimension": "Вы говорите о том, где прежде жили, а не о повторявшейся игре.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы говорите о том, где прежде жили, а не о повторявшейся игре.",
+              "feedbackByLocale": {
+                "ru": "Для прежнего места проживания нужна форма used to.",
+                "uk": "Для колишнього місця проживання потрібна форма used to."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы говорите о том, где прежде жили, а не о повторявшейся игре.",
+              "feedbackByLocale": {
+                "ru": "Using to не образует эту конструкцию прошедшего времени.",
+                "uk": "Using to не утворює цю конструкцію минулого часу."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1087,21 +1089,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «В школе они часто делали бумажные ракеты».",
+        "prompt": "Завершите воспоминание: «В те времена мы смеялись над нашими смешными историями». Используйте would.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-11:i17:audio"
         ],
-        "accessibilityLabel": "Скажите: «В школе они часто делали бумажные ракеты».",
+        "accessibilityLabel": "Завершите воспоминание: «В те времена мы смеялись над нашими смешными историями». Используйте would.",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-11:i17:audio",
-            "transcript": "At school they would build paper rockets."
+            "transcript": "In those days we would laugh at our funny stories."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "At school they would build paper rockets.",
+          "targetPhrase": "In those days we would laugh at our funny stories.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1117,8 +1119,199 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-25:session-11:word:dolls",
+        "interactionId": "en:lesson-25:session-11:i01",
         "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i01:r1",
+            "text": "We used to play outside after school."
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i01:r2",
+            "text": "We used to play inside after school."
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i01:r3",
+            "text": "We used to play outside before school."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-11:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:i01:audio",
+            "transcript": "We used to play outside after school."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-11:i01:r1",
+              "targetText": "We used to play outside after school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i01:r2",
+              "targetText": "We used to play inside after school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i01:r3",
+              "targetText": "We used to play outside before school.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to play outside after school.",
+                "uk": "У записі звучить We used to play outside after school."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to play outside after school.",
+                "uk": "У записі звучить We used to play outside after school."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:word:scooters",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scooters",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-11:word:scooters:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scooters",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:word:scooters:audio",
+            "transcript": "scooters"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-11:word:scooters:r1",
+              "targetText": "scooters",
+              "meaningByLocale": {
+                "ru": "самокаты",
+                "uk": "самокати"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scooters",
+            "definitionByLocale": {
+              "ru": "самокаты",
+              "uk": "самокати"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Згадайте дорогу до парку: «Тоді ми їздили до парку на самокатах». Використайте would.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Згадайте дорогу до парку: «Тоді ми їздили до парку на самокатах». Використайте would.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Back then we would ride our scooters to the park.",
+          "localizedMeaning": {
+            "ru": "Вспомните дорогу в парк: «Тогда мы ездили в парк на самокатах». Используйте would.",
+            "uk": "Згадайте дорогу до парку: «Тоді ми їздили до парку на самокатах». Використайте would."
+          },
+          "orderedTokens": [
+            "Back",
+            "then",
+            "we",
+            "would",
+            "ride",
+            "our",
+            "scooters",
+            "to",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:i03",
+        "ordinal": 7,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви збираєтеся кататися. Запитайте: «Де наші самокати?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-11:i03:audio"
+        ],
+        "accessibilityLabel": "Ви збираєтеся кататися. Запитайте: «Де наші самокати?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:i03:audio",
+            "transcript": "Where are our scooters?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where are our scooters?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:word:dolls",
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1141,8 +1334,8 @@
               "responseId": "en:lesson-25:session-11:word:dolls:r1",
               "targetText": "dolls",
               "meaningByLocale": {
-                "ru": "куклы.",
-                "uk": "ляльки."
+                "ru": "куклы",
+                "uk": "ляльки"
               }
             }
           ],
@@ -1152,186 +1345,81 @@
           "wordCard": {
             "word": "dolls",
             "definitionByLocale": {
-              "ru": "куклы.",
-              "uk": "ляльки."
+              "ru": "куклы",
+              "uk": "ляльки"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-11:i01",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У дитинстві ми часто вбирали своїх ляльок.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У дитинстві ми часто вбирали своїх ляльок.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "As children we would dress our dolls.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В детстве мы часто наряжали своих кукол.»",
-            "uk": "Скажіть: «У дитинстві ми часто вбирали своїх ляльок.»"
-          },
-          "orderedTokens": [
-            "As",
-            "children",
-            "we",
-            "would",
-            "dress",
-            "our",
-            "dolls"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i02",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i02:r1",
-            "text": "dress"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i02:r2",
-            "text": "dressed"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i02:r3",
-            "text": "dressing"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "As children we would ___ our dolls.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-11:i02:r1",
-              "text": "dress"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i02:r2",
-              "text": "dressed"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i02:r3",
-              "text": "dressing"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i02:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i02:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i03",
-        "ordinal": 7,
+        "interactionId": "en:lesson-25:session-11:i04",
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-11:i03:r1",
-            "text": "As children we would dress our dolls."
+            "responseId": "en:lesson-25:session-11:i04:r1",
+            "text": "My sister kept her dolls in a wooden box."
           },
           {
-            "responseId": "en:lesson-25:session-11:i03:r2",
-            "text": "As children they would dress their dolls."
+            "responseId": "en:lesson-25:session-11:i04:r2",
+            "text": "My sister kept her dolls on a shelf."
           },
           {
-            "responseId": "en:lesson-25:session-11:i03:r3",
-            "text": "As children we would wash our dolls."
+            "responseId": "en:lesson-25:session-11:i04:r3",
+            "text": "My brother kept his dolls in a wooden box."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-11:i03:audio"
+          "en:lesson-25:session-11:i04:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i03:audio",
-            "transcript": "As children we would dress our dolls."
+            "audioTargetId": "en:lesson-25:session-11:i04:audio",
+            "transcript": "My sister kept her dolls in a wooden box."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-11:i03:r1",
-              "targetText": "As children we would dress our dolls.",
+              "responseId": "en:lesson-25:session-11:i04:r1",
+              "targetText": "My sister kept her dolls in a wooden box.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-11:i03:r2",
-              "targetText": "As children they would dress their dolls.",
+              "responseId": "en:lesson-25:session-11:i04:r2",
+              "targetText": "My sister kept her dolls on a shelf.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-11:i03:r3",
-              "targetText": "As children we would wash our dolls.",
+              "responseId": "en:lesson-25:session-11:i04:r3",
+              "targetText": "My brother kept his dolls in a wooden box.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-11:i03:r2",
+              "responseId": "en:lesson-25:session-11:i04:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит As children we would dress our dolls.",
-                "uk": "У записі звучить As children we would dress our dolls."
+                "ru": "В записи звучит My sister kept her dolls in a wooden box.",
+                "uk": "У записі звучить My sister kept her dolls in a wooden box."
               }
             },
             {
-              "responseId": "en:lesson-25:session-11:i03:r3",
+              "responseId": "en:lesson-25:session-11:i04:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит As children we would dress our dolls.",
-                "uk": "У записі звучить As children we would dress our dolls."
+                "ru": "В записи звучит My sister kept her dolls in a wooden box.",
+                "uk": "У записі звучить My sister kept her dolls in a wooden box."
               }
             }
           ],
@@ -1341,9 +1429,78 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-11:word:puppets",
-        "ordinal": 8,
+        "interactionId": "en:lesson-25:session-11:i05",
+        "ordinal": 10,
         "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви згадуєте гру, яка повторювалася в дитинстві.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i05:r1",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i05:r2",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i05:r3",
+            "text": "making"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви згадуєте гру, яка повторювалася в дитинстві.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы вспоминаете повторявшуюся игру в детстве.",
+            "uk": "Ви згадуєте гру, яка повторювалася в дитинстві."
+          },
+          "gappedTargetPhrase": "As children we would ___ clothes for our dolls.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-11:i05:r1",
+              "text": "make"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i05:r2",
+              "text": "made"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i05:r3",
+              "text": "making"
+            }
+          ],
+          "testedDimension": "Ви згадуєте гру, яка повторювалася в дитинстві.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i05:r2",
+              "correct": false,
+              "testedDimension": "Ви згадуєте гру, яка повторювалася в дитинстві.",
+              "feedbackByLocale": {
+                "ru": "После would нужна форма make, не made.",
+                "uk": "Після would потрібна форма make, не made."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i05:r3",
+              "correct": false,
+              "testedDimension": "Ви згадуєте гру, яка повторювалася в дитинстві.",
+              "feedbackByLocale": {
+                "ru": "В этой конструкции после would не используется -ing.",
+                "uk": "У цій конструкції після would не використовується -ing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:word:puppets",
+        "ordinal": 11,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Картка слова — puppets",
@@ -1365,8 +1522,8 @@
               "responseId": "en:lesson-25:session-11:word:puppets:r1",
               "targetText": "puppets",
               "meaningByLocale": {
-                "ru": "театральные куклы.",
-                "uk": "театральні ляльки."
+                "ru": "театральные куклы",
+                "uk": "театральні ляльки"
               }
             }
           ],
@@ -1376,233 +1533,48 @@
           "wordCard": {
             "word": "puppets",
             "definitionByLocale": {
-              "ru": "театральные куклы.",
-              "uk": "театральні ляльки."
+              "ru": "театральные куклы",
+              "uk": "театральні ляльки"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-11:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
+        "interactionId": "en:lesson-25:session-11:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У ті часи ми часто робили театральних ляльок.»",
+        "prompt": "Почуйте, до чого діти готувалися.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У ті часи ми часто робили театральних ляльок.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-11:i06:audio"
+        ],
+        "accessibilityLabel": "Почуйте, до чого діти готувалися.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "In those days we would make puppets.",
-          "localizedMeaning": {
-            "ru": "Скажите: «В те времена мы часто делали театральных кукол.»",
-            "uk": "Скажіть: «У ті часи ми часто робили театральних ляльок.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:i06:audio",
+            "transcript": "We made puppets for the school show."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We made puppets for the school show.",
           "orderedTokens": [
-            "In",
-            "those",
-            "days",
-            "we",
-            "would",
-            "make",
-            "puppets"
+            "We",
+            "made",
+            "puppets",
+            "for",
+            "the",
+            "school",
+            "show"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i05:r1",
-            "text": "make"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i05:r2",
-            "text": "made"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i05:r3",
-            "text": "making"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "In those days we would ___ puppets.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-11:i05:r1",
-              "text": "make"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i05:r2",
-              "text": "made"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i05:r3",
-              "text": "making"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i05:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i05:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i06:r1",
-            "text": "In those days we would make puppets."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i06:r2",
-            "text": "In those days they would make puppets."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i06:r3",
-            "text": "In those days we would buy puppets."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-11:i06:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i06:audio",
-            "transcript": "In those days we would make puppets."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-11:i06:r1",
-              "targetText": "In those days we would make puppets.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i06:r2",
-              "targetText": "In those days they would make puppets.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i06:r3",
-              "targetText": "In those days we would buy puppets.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i06:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит In those days we would make puppets.",
-                "uk": "У записі звучить In those days we would make puppets."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i06:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит In those days we would make puppets.",
-                "uk": "У записі звучить In those days we would make puppets."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:word:scooters",
-        "ordinal": 12,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — scooters",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-11:word:scooters:audio"
-        ],
-        "accessibilityLabel": "Картка слова — scooters",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:word:scooters:audio",
-            "transcript": "scooters"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-11:word:scooters:r1",
-              "targetText": "scooters",
-              "meaningByLocale": {
-                "ru": "самокаты.",
-                "uk": "самокати."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "scooters",
-            "definitionByLocale": {
-              "ru": "самокаты.",
-              "uk": "самокати."
-            }
           }
         },
         "scriptedAlternate": null
@@ -1611,101 +1583,65 @@
         "interactionId": "en:lesson-25:session-11:i07",
         "ordinal": 13,
         "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Після школи ми зазвичай каталися на самокатах.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Після школи ми зазвичай каталися на самокатах.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "After school we would ride our scooters.",
-          "localizedMeaning": {
-            "ru": "Скажите: «После школы мы обычно катались на самокатах.»",
-            "uk": "Скажіть: «Після школи ми зазвичай каталися на самокатах.»"
-          },
-          "orderedTokens": [
-            "After",
-            "school",
-            "we",
-            "would",
-            "ride",
-            "our",
-            "scooters"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
+        "prompt": "На виставі діти рухали ляльками руками. Виберіть театральних ляльок.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-11:i08:r1",
-            "text": "ride"
+            "responseId": "en:lesson-25:session-11:i07:r1",
+            "text": "puppets"
           },
           {
-            "responseId": "en:lesson-25:session-11:i08:r2",
-            "text": "rode"
+            "responseId": "en:lesson-25:session-11:i07:r2",
+            "text": "scooters"
           },
           {
-            "responseId": "en:lesson-25:session-11:i08:r3",
-            "text": "riding"
+            "responseId": "en:lesson-25:session-11:i07:r3",
+            "text": "books"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
+        "accessibilityLabel": "На виставі діти рухали ляльками руками. Виберіть театральних ляльок.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+            "ru": "На представлении дети двигали кукол руками. Выберите театральных кукол.",
+            "uk": "На виставі діти рухали ляльками руками. Виберіть театральних ляльок."
           },
-          "gappedTargetPhrase": "After school we would ___ our scooters.",
+          "gappedTargetPhrase": "The children performed with ___.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-11:i08:r1",
-              "text": "ride"
+              "responseId": "en:lesson-25:session-11:i07:r1",
+              "text": "puppets"
             },
             {
-              "responseId": "en:lesson-25:session-11:i08:r2",
-              "text": "rode"
+              "responseId": "en:lesson-25:session-11:i07:r2",
+              "text": "scooters"
             },
             {
-              "responseId": "en:lesson-25:session-11:i08:r3",
-              "text": "riding"
+              "responseId": "en:lesson-25:session-11:i07:r3",
+              "text": "books"
             }
           ],
-          "testedDimension": "Доповніть спогад.",
+          "testedDimension": "На виставі діти рухали ляльками руками. Виберіть театральних ляльок.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-11:i08:r2",
+              "responseId": "en:lesson-25:session-11:i07:r2",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "На виставі діти рухали ляльками руками. Виберіть театральних ляльок.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "Scooters — самокаты; здесь выступали с театральными куклами.",
+                "uk": "Scooters — самокати; тут виступали з театральними ляльками."
               }
             },
             {
-              "responseId": "en:lesson-25:session-11:i08:r3",
+              "responseId": "en:lesson-25:session-11:i07:r3",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "На виставі діти рухали ляльками руками. Виберіть театральних ляльок.",
               "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
+                "ru": "Books — книги, не куклы для представления.",
+                "uk": "Books — книжки, не ляльки для вистави."
               }
             }
           ]
@@ -1713,84 +1649,41 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-11:i09",
-        "ordinal": 15,
+        "interactionId": "en:lesson-25:session-11:i08",
+        "ordinal": 14,
         "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i09:r1",
-            "text": "After school we would ride our scooters."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i09:r2",
-            "text": "After school they would ride their scooters."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i09:r3",
-            "text": "After school we would clean our scooters."
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вистава вже закінчилася. Попросіть ще одну історію: «Розкажи нам ще одну історію».",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-11:i09:audio"
+          "en:lesson-25:session-11:i08:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть",
+        "accessibilityLabel": "Вистава вже закінчилася. Попросіть ще одну історію: «Розкажи нам ще одну історію».",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i09:audio",
-            "transcript": "After school we would ride our scooters."
+            "audioTargetId": "en:lesson-25:session-11:i08:audio",
+            "transcript": "Tell us another story."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-11:i09:r1",
-              "targetText": "After school we would ride our scooters.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i09:r2",
-              "targetText": "After school they would ride their scooters.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i09:r3",
-              "targetText": "After school we would clean our scooters.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i09:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит After school we would ride our scooters.",
-                "uk": "У записі звучить After school we would ride our scooters."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i09:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит After school we would ride our scooters.",
-                "uk": "У записі звучить After school we would ride our scooters."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          "targetPhrase": "Tell us another story.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-25:session-11:word:rockets",
-        "ordinal": 16,
+        "ordinal": 15,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1813,8 +1706,8 @@
               "responseId": "en:lesson-25:session-11:word:rockets:r1",
               "targetText": "rockets",
               "meaningByLocale": {
-                "ru": "ракеты.",
-                "uk": "ракети."
+                "ru": "ракеты",
+                "uk": "ракети"
               }
             }
           ],
@@ -1824,10 +1717,86 @@
           "wordCard": {
             "word": "rockets",
             "definitionByLocale": {
-              "ru": "ракеты.",
-              "uk": "ракети."
+              "ru": "ракеты",
+              "uk": "ракети"
             }
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i09:r1",
+            "text": "At school we would draw rockets on coloured paper."
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i09:r2",
+            "text": "At school we would draw rockets on white paper."
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i09:r3",
+            "text": "At home we would draw rockets on coloured paper."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-11:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:i09:audio",
+            "transcript": "At school we would draw rockets on coloured paper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-11:i09:r1",
+              "targetText": "At school we would draw rockets on coloured paper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i09:r2",
+              "targetText": "At school we would draw rockets on white paper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i09:r3",
+              "targetText": "At home we would draw rockets on coloured paper.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At school we would draw rockets on coloured paper.",
+                "uk": "У записі звучить At school we would draw rockets on coloured paper."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At school we would draw rockets on coloured paper.",
+                "uk": "У записі звучить At school we would draw rockets on coloured paper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1837,25 +1806,24 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «У школі ми часто робили паперові ракети.»",
+        "prompt": "Ви показуєте зроблені поробки: «Ми вже зробили три ракети».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «У школі ми часто робили паперові ракети.»",
+        "accessibilityLabel": "Ви показуєте зроблені поробки: «Ми вже зробили три ракети».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "At school we would build paper rockets.",
+          "targetPhrase": "We have already made three rockets.",
           "localizedMeaning": {
-            "ru": "Скажите: «В школе мы часто делали бумажные ракеты.»",
-            "uk": "Скажіть: «У школі ми часто робили паперові ракети.»"
+            "ru": "Вы показываете сделанные поделки: «Мы уже сделали три ракеты».",
+            "uk": "Ви показуєте зроблені поробки: «Ми вже зробили три ракети»."
           },
           "orderedTokens": [
-            "At",
-            "school",
-            "we",
-            "would",
-            "build",
-            "paper",
+            "We",
+            "have",
+            "already",
+            "made",
+            "three",
             "rockets"
           ],
           "authoredDistractorTokens": [],
@@ -1871,163 +1839,18 @@
         "interactionId": "en:lesson-25:session-11:i11",
         "ordinal": 18,
         "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i11:r1",
-            "text": "build"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i11:r2",
-            "text": "built"
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i11:r3",
-            "text": "building"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "At school we would ___ paper rockets.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-11:i11:r1",
-              "text": "build"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i11:r2",
-              "text": "built"
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i11:r3",
-              "text": "building"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i11:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i11:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После would нужна базовая форма глагола.",
-                "uk": "Після would потрібна базова форма дієслова."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-11:i12:r1",
-            "text": "At school we would build paper rockets."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i12:r2",
-            "text": "At school they would build paper rockets."
-          },
-          {
-            "responseId": "en:lesson-25:session-11:i12:r3",
-            "text": "At school we would draw paper rockets."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-11:i12:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i12:audio",
-            "transcript": "At school we would build paper rockets."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-11:i12:r1",
-              "targetText": "At school we would build paper rockets.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i12:r2",
-              "targetText": "At school they would build paper rockets.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i12:r3",
-              "targetText": "At school we would draw paper rockets.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-11:i12:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school we would build paper rockets.",
-                "uk": "У записі звучить At school we would build paper rockets."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-11:i12:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит At school we would build paper rockets.",
-                "uk": "У записі звучить At school we would build paper rockets."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-11:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Поєднайте слова з перекладом",
+        "prompt": "Знайдіть переклади іграшок і поробок",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "accessibilityLabel": "Знайдіть переклади іграшок і поробок",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-11:i13:p1",
+              "pairId": "en:lesson-25:session-11:i11:p1",
               "target": "dolls",
               "meaningByLocale": {
                 "ru": "куклы",
@@ -2035,7 +1858,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-11:i13:p2",
+              "pairId": "en:lesson-25:session-11:i11:p2",
               "target": "puppets",
               "meaningByLocale": {
                 "ru": "театральные куклы",
@@ -2043,7 +1866,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-11:i13:p3",
+              "pairId": "en:lesson-25:session-11:i11:p3",
               "target": "scooters",
               "meaningByLocale": {
                 "ru": "самокаты",
@@ -2051,7 +1874,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-11:i13:p4",
+              "pairId": "en:lesson-25:session-11:i11:p4",
               "target": "rockets",
               "meaningByLocale": {
                 "ru": "ракеты",
@@ -2086,34 +1909,106 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-11:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
+        "interactionId": "en:lesson-25:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви згадуєте конкретний подарунок минулого тижня.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i12:r1",
+            "text": "gave"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i12:r2",
+            "text": "has given"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i12:r3",
+            "text": "would give"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви згадуєте конкретний подарунок минулого тижня.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы вспоминаете конкретный подарок на прошлой неделе.",
+            "uk": "Ви згадуєте конкретний подарунок минулого тижня."
+          },
+          "gappedTargetPhrase": "My uncle ___ me a toy last week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-11:i12:r1",
+              "text": "gave"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i12:r2",
+              "text": "has given"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i12:r3",
+              "text": "would give"
+            }
+          ],
+          "testedDimension": "Ви згадуєте конкретний подарунок минулого тижня.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви згадуєте конкретний подарунок минулого тижня.",
+              "feedbackByLocale": {
+                "ru": "Last week требует Past Simple gave.",
+                "uk": "Last week потребує Past Simple gave."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви згадуєте конкретний подарунок минулого тижня.",
+              "feedbackByLocale": {
+                "ru": "Здесь один подарок в названное время, а не повторявшаяся привычка.",
+                "uk": "Тут один подарунок у названий час, а не повторювана звичка."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-11:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Колишнє місце проживання",
+        "prompt": "Почуйте, що відбувалося після гри.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-11:i14:audio"
+          "en:lesson-25:session-11:i13:audio"
         ],
-        "accessibilityLabel": "Колишнє місце проживання",
+        "accessibilityLabel": "Почуйте, що відбувалося після гри.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i14:audio",
-            "transcript": "I used to live by the lake."
+            "audioTargetId": "en:lesson-25:session-11:i13:audio",
+            "transcript": "In those days we would put everything away before dinner."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to live by the lake.",
+          "hiddenTargetPhrase": "In those days we would put everything away before dinner.",
           "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "live",
-            "by",
-            "the",
-            "lake"
+            "In",
+            "those",
+            "days",
+            "we",
+            "would",
+            "put",
+            "everything",
+            "away",
+            "before",
+            "dinner"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2125,32 +2020,105 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i14:r1",
+            "text": "Did you keep your old toys?"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i14:r2",
+            "text": "Did you sell your old toys?"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i14:r3",
+            "text": "Did they keep their old toys?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-11:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-11:i14:audio",
+            "transcript": "Did you keep your old toys?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-11:i14:r1",
+              "targetText": "Did you keep your old toys?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i14:r2",
+              "targetText": "Did you sell your old toys?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i14:r3",
+              "targetText": "Did they keep their old toys?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i14:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you keep your old toys?",
+                "uk": "У записі звучить Did you keep your old toys?"
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i14:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did you keep your old toys?",
+                "uk": "У записі звучить Did you keep your old toys?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-11:i15",
         "ordinal": 22,
         "purpose": "independent_check",
-        "family": "listen_build_dictation",
+        "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Раніше я був сором’язливим",
+        "prompt": "Інші діти ще не закінчили. Скажіть: «Зачекай на інших дітей».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-11:i15:audio"
-        ],
-        "accessibilityLabel": "Раніше я був сором’язливим",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Інші діти ще не закінчили. Скажіть: «Зачекай на інших дітей».",
         "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i15:audio",
-            "transcript": "I used to be shy."
+          "family": "phrase_builder",
+          "targetPhrase": "Wait for the other children.",
+          "localizedMeaning": {
+            "ru": "Другие дети ещё не закончили. Скажите: «Подожди других детей».",
+            "uk": "Інші діти ще не закінчили. Скажіть: «Зачекай на інших дітей»."
           },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to be shy.",
           "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "be",
-            "shy"
+            "Wait",
+            "for",
+            "the",
+            "other",
+            "children"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2164,32 +2132,68 @@
       {
         "interactionId": "en:lesson-25:session-11:i16",
         "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «У ті часи вони часто робили театральних ляльок».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-11:i16:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «У ті часи вони часто робили театральних ляльок».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-11:i16:audio",
-            "transcript": "In those days they would make puppets."
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви говорите про те, де раніше жили, а не про гру, що повторювалася.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-11:i16:r1",
+            "text": "used to"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "In those days they would make puppets.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-11:i16:r2",
+            "text": "use to"
+          },
+          {
+            "responseId": "en:lesson-25:session-11:i16:r3",
+            "text": "using to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви говорите про те, де раніше жили, а не про гру, що повторювалася.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы говорите о том, где прежде жили, а не о повторявшейся игре.",
+            "uk": "Ви говорите про те, де раніше жили, а не про гру, що повторювалася."
+          },
+          "gappedTargetPhrase": "I ___ live near my cousins.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-11:i16:r1",
+              "text": "used to"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i16:r2",
+              "text": "use to"
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i16:r3",
+              "text": "using to"
+            }
+          ],
+          "testedDimension": "Ви говорите про те, де раніше жили, а не про гру, що повторювалася.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-11:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви говорите про те, де раніше жили, а не про гру, що повторювалася.",
+              "feedbackByLocale": {
+                "ru": "Для прежнего места проживания нужна форма used to.",
+                "uk": "Для колишнього місця проживання потрібна форма used to."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-11:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви говорите про те, де раніше жили, а не про гру, що повторювалася.",
+              "feedbackByLocale": {
+                "ru": "Using to не образует эту конструкцию прошедшего времени.",
+                "uk": "Using to не утворює цю конструкцію минулого часу."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -2200,21 +2204,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «У школі вони часто робили паперові ракети».",
+        "prompt": "Завершіть спогад: «У ті часи ми сміялися з наших кумедних історій». Використайте would.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-11:i17:audio"
         ],
-        "accessibilityLabel": "Скажіть: «У школі вони часто робили паперові ракети».",
+        "accessibilityLabel": "Завершіть спогад: «У ті часи ми сміялися з наших кумедних історій». Використайте would.",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-11:i17:audio",
-            "transcript": "At school they would build paper rockets."
+            "transcript": "In those days we would laugh at our funny stories."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "At school they would build paper rockets.",
+          "targetPhrase": "In those days we would laugh at our funny stories.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2231,44 +2235,9 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-25:session-11:word:dolls",
-      "correctText": "dolls",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-25:session-11:i01",
-      "correctText": "As children we would dress our dolls.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-11:i02",
-      "correctText": "dress",
-      "correctResponseId": "en:lesson-25:session-11:i02:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-11:i03",
-      "correctText": "As children we would dress our dolls.",
-      "correctResponseId": "en:lesson-25:session-11:i03:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-11:word:puppets",
-      "correctText": "puppets",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-11:i04",
-      "correctText": "In those days we would make puppets.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-11:i05",
-      "correctText": "make",
-      "correctResponseId": "en:lesson-25:session-11:i05:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-11:i06",
-      "correctText": "In those days we would make puppets.",
-      "correctResponseId": "en:lesson-25:session-11:i06:r1"
+      "correctText": "We used to play outside after school.",
+      "correctResponseId": "en:lesson-25:session-11:i01:r1"
     },
     {
       "interactionId": "en:lesson-25:session-11:word:scooters",
@@ -2276,19 +2245,49 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-11:i07",
-      "correctText": "After school we would ride our scooters.",
+      "interactionId": "en:lesson-25:session-11:i02",
+      "correctText": "Back then we would ride our scooters to the park.",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-11:i08",
-      "correctText": "ride",
-      "correctResponseId": "en:lesson-25:session-11:i08:r1"
+      "interactionId": "en:lesson-25:session-11:i03",
+      "correctText": "Where are our scooters?",
+      "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-11:i09",
-      "correctText": "After school we would ride our scooters.",
-      "correctResponseId": "en:lesson-25:session-11:i09:r1"
+      "interactionId": "en:lesson-25:session-11:word:dolls",
+      "correctText": "dolls",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-11:i04",
+      "correctText": "My sister kept her dolls in a wooden box.",
+      "correctResponseId": "en:lesson-25:session-11:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-11:i05",
+      "correctText": "make",
+      "correctResponseId": "en:lesson-25:session-11:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-11:word:puppets",
+      "correctText": "puppets",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-11:i06",
+      "correctText": "We made puppets for the school show.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-11:i07",
+      "correctText": "puppets",
+      "correctResponseId": "en:lesson-25:session-11:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-11:i08",
+      "correctText": "Tell us another story.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-11:word:rockets",
@@ -2296,43 +2295,48 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-11:i09",
+      "correctText": "At school we would draw rockets on coloured paper.",
+      "correctResponseId": "en:lesson-25:session-11:i09:r1"
+    },
+    {
       "interactionId": "en:lesson-25:session-11:i10",
-      "correctText": "At school we would build paper rockets.",
+      "correctText": "We have already made three rockets.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-11:i11",
-      "correctText": "build",
-      "correctResponseId": "en:lesson-25:session-11:i11:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-11:i12",
-      "correctText": "At school we would build paper rockets.",
-      "correctResponseId": "en:lesson-25:session-11:i12:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-11:i13",
       "correctText": "",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-11:i14",
-      "correctText": "I used to live by the lake.",
+      "interactionId": "en:lesson-25:session-11:i12",
+      "correctText": "gave",
+      "correctResponseId": "en:lesson-25:session-11:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-11:i13",
+      "correctText": "In those days we would put everything away before dinner.",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-11:i14",
+      "correctText": "Did you keep your old toys?",
+      "correctResponseId": "en:lesson-25:session-11:i14:r1"
+    },
+    {
       "interactionId": "en:lesson-25:session-11:i15",
-      "correctText": "I used to be shy.",
+      "correctText": "Wait for the other children.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-11:i16",
-      "correctText": "In those days they would make puppets.",
-      "correctResponseId": null
+      "correctText": "used to",
+      "correctResponseId": "en:lesson-25:session-11:i16:r1"
     },
     {
       "interactionId": "en:lesson-25:session-11:i17",
-      "correctText": "At school they would build paper rockets.",
+      "correctText": "In those days we would laugh at our funny stories.",
       "correctResponseId": null
     }
   ]

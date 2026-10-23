@@ -51,101 +51,101 @@ Nudge — слегка подтолкнуть, например локтем, ч
 
 **1 · Карточка слова — peek**
 <!-- interaction_id: en:lesson-25:session-12:word:peek; family: word_card -->
-> **peek** — быстро выглянуть, заглянуть.
+> **peek** — быстро выглянуть, заглянуть
 
-**2 · Скажите: «В детстве мы часто выглядывали сквозь занавески.»**
-<!-- interaction_id: en:lesson-25:session-12:i01; family: phrase_builder -->
-Плитки: `curtains` `the` `through` `peek` `would` `we` `children` `As` → **As children we would peek through the curtains.**
+**2 · Подарок пока скрыт. Попросите: «Не подглядывай!»**
+<!-- interaction_id: en:lesson-25:session-12:i01; family: scripted_repeat_compare -->
+🎙 **Do not peek!**
 
-**3 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-12:i02; family: context_gap_grammar -->
-As children we would ___ through the curtains. → **peek** · peeked · peeking
-- peeked — *После would нужна базовая форма глагола.*
-- peeking — *После would нужна базовая форма глагола.*
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-12:i02; family: listen_choose -->
+🔊 *As children we would peek into the kitchen.* → **As children we would peek into the kitchen.** · As children we would peek into the garden. · As children they would peek into the kitchen.
+- As children we would peek into the garden. — *В записи звучит As children we would peek into the kitchen.*
+- As children they would peek into the kitchen. — *В записи звучит As children we would peek into the kitchen.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-12:i03; family: listen_choose -->
-🔊 *As children we would peek through the curtains.* → **As children we would peek through the curtains.** · As children they would peek through the curtains. · As children we would peek through the window.
-- As children they would peek through the curtains. — *В записи звучит As children we would peek through the curtains.*
-- As children we would peek through the window. — *В записи звучит As children we would peek through the curtains.*
+**4 · Карточка слова — tug**
+<!-- interaction_id: en:lesson-25:session-12:word:tug; family: word_card -->
+> **tug** — дёргать, тянуть рывком
 
-**5 · Карточка слова — poke**
+**5 · Молния застряла. Скажите: «Не дёргай молнию».**
+<!-- interaction_id: en:lesson-25:session-12:i03; family: phrase_builder -->
+Плитки: `zip` `the` `at` `tug` `not` `Do` → **Do not tug at the zip.**
+
+**6 · Ребёнок тянет вас за рукав, чтобы привлечь внимание. Выберите движение к себе.**
+<!-- interaction_id: en:lesson-25:session-12:i04; family: context_gap_grammar -->
+Please do not ___ at my sleeve. → **tug** · peek · look
+- peek — *Peek — заглядывать, а здесь тянут за рукав.*
+- look — *Look — смотреть; это не движение рукой.*
+
+**7 · Карточка слова — poke**
 <!-- interaction_id: en:lesson-25:session-12:word:poke; family: word_card -->
-> **poke** — тыкать.
-
-**6 · Скажите: «В те времена мы часто тыкали палкой в песок.»**
-<!-- interaction_id: en:lesson-25:session-12:i04; family: phrase_builder -->
-Плитки: `stick` `a` `with` `sand` `the` `poke` `would` `we` `days` `those` `In` → **In those days we would poke the sand with a stick.**
-
-**7 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-12:i05; family: context_gap_grammar -->
-In those days we would ___ the sand with a stick. → **poke** · poked · poking
-- poked — *После would нужна базовая форма глагола.*
-- poking — *После would нужна базовая форма глагола.*
+> **poke** — тыкать
 
 **8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-12:i06; family: listen_choose -->
-🔊 *In those days we would poke the sand with a stick.* → **In those days we would poke the sand with a stick.** · In those days they would poke the sand with a stick. · In those days we would poke the mud with a stick.
-- In those days they would poke the sand with a stick. — *В записи звучит In those days we would poke the sand with a stick.*
-- In those days we would poke the mud with a stick. — *В записи звучит In those days we would poke the sand with a stick.*
+<!-- interaction_id: en:lesson-25:session-12:i05; family: listen_choose -->
+🔊 *Do not poke the dog with that stick.* → **Do not poke the dog with that stick.** · Do not poke the cat with that stick. · Do not poke the dog with your finger.
+- Do not poke the cat with that stick. — *В записи звучит Do not poke the dog with that stick.*
+- Do not poke the dog with your finger. — *В записи звучит Do not poke the dog with that stick.*
 
-**9 · Карточка слова — tug**
-<!-- interaction_id: en:lesson-25:session-12:word:tug; family: word_card -->
-> **tug** — дёргать, тянуть рывком.
+**9 · Услышьте воспоминание об игре у моря.**
+<!-- interaction_id: en:lesson-25:session-12:i06; family: listen_build_dictation -->
+🔊 *On those holidays we would draw shapes in the sand.* Плитки: `sand` `the` `in` `shapes` `draw` `would` `we` `holidays` `those` `On` → **On those holidays we would draw shapes in the sand.**
 
-**10 · Скажите: «В детстве я часто дёргал верёвку.»**
-<!-- interaction_id: en:lesson-25:session-12:i07; family: phrase_builder -->
-Плитки: `rope` `the` `at` `tug` `would` `I` `child` `a` `As` → **As a child I would tug at the rope.**
-
-**11 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-12:i08; family: context_gap_grammar -->
-As a child I would ___ at the rope. → **tug** · tugged · tugging
-- tugged — *После would нужна базовая форма глагола.*
-- tugging — *После would нужна базовая форма глагола.*
-
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-12:i09; family: listen_choose -->
-🔊 *As a child I would tug at the rope.* → **As a child I would tug at the rope.** · As a child he would tug at the rope. · As a child I would tug at the string.
-- As a child he would tug at the rope. — *В записи звучит As a child I would tug at the rope.*
-- As a child I would tug at the string. — *В записи звучит As a child I would tug at the rope.*
-
-**13 · Карточка слова — nudge**
+**10 · Карточка слова — nudge**
 <!-- interaction_id: en:lesson-25:session-12:word:nudge; family: word_card -->
-> **nudge** — слегка подтолкнуть.
+> **nudge** — слегка подтолкнуть
 
-**14 · Скажите: «В школе я часто слегка толкал брата во время обеда.»**
-<!-- interaction_id: en:lesson-25:session-12:i10; family: phrase_builder -->
-Плитки: `lunch` `during` `brother` `my` `nudge` `would` `I` `school` `At` → **At school I would nudge my brother during lunch.**
+**11 · Попросите друга привлечь ваше внимание: «Слегка толкни меня, пожалуйста».**
+<!-- interaction_id: en:lesson-25:session-12:i07; family: phrase_builder -->
+Плитки: `me` `nudge` `Please` → **Please nudge me.**
 
-**15 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-12:i11; family: context_gap_grammar -->
-At school I would ___ my brother during lunch. → **nudge** · nudged · nudging
-- nudged — *После would нужна базовая форма глагола.*
-- nudging — *После would нужна базовая форма глагола.*
+**12 · Раньше вы незаметно подавали другу знак локтем во время урока.**
+<!-- interaction_id: en:lesson-25:session-12:i08; family: context_gap_grammar -->
+At school I would ___ my friend gently. → **nudge** · nudged · nudging
+- nudged — *После would нужна базовая форма nudge.*
+- nudging — *Would nudging неверно; используем would nudge.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-12:i12; family: listen_choose -->
-🔊 *At school I would nudge my brother during lunch.* → **At school I would nudge my brother during lunch.** · At school she would nudge her brother during lunch. · At school I would nudge my friend during lunch.
-- At school she would nudge her brother during lunch. — *В записи звучит At school I would nudge my brother during lunch.*
-- At school I would nudge my friend during lunch. — *В записи звучит At school I would nudge my brother during lunch.*
-
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-12:i13; family: speed_match -->
+**13 · Различите взгляд и три движения**
+<!-- interaction_id: en:lesson-25:session-12:i09; family: speed_match -->
 peek — быстро выглянуть, заглянуть · poke — тыкать · tug — дёргать, тянуть рывком · nudge — слегка подтолкнуть
 
-**18 · Прежнее место жительства**
-<!-- interaction_id: en:lesson-25:session-12:i14; family: listen_build_dictation -->
-🔊 *I used to live by the lake.* Плитки: `lake` `the` `by` `live` `to` `used` `I` → **I used to live by the lake.**
+**14 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-12:i10; family: listen_choose -->
+🔊 *Did I hurt your arm?* → **Did I hurt your arm?** · Did I hurt your hand? · Did you hurt your arm?
+- Did I hurt your hand? — *В записи звучит Did I hurt your arm?*
+- Did you hurt your arm? — *В записи звучит Did I hurt your arm?*
 
-**19 · Раньше я был застенчивым**
-<!-- interaction_id: en:lesson-25:session-12:i15; family: listen_build_dictation -->
-🔊 *I used to be shy.* Плитки: `shy` `be` `to` `used` `I` → **I used to be shy.**
+**15 · Вы случайно толкнули друга. Скажите: «Прости, я не хотел тебя толкать».**
+<!-- interaction_id: en:lesson-25:session-12:i11; family: scripted_repeat_compare -->
+🎙 **Sorry, I did not mean to push you.**
 
-**20 · Скажите: «В детстве она часто дёргала верёвку».**
-<!-- interaction_id: en:lesson-25:session-12:i16; family: scripted_repeat_compare -->
-🎙 **As a child she would tug at the rope.**
+**16 · Расскажите об одном случайном движении вчера.**
+<!-- interaction_id: en:lesson-25:session-12:i12; family: context_gap_grammar -->
+I ___ your sleeve yesterday. → **pulled** · have pulled · would pull
+- have pulled — *Yesterday указывает на законченное прошлое: нужен pulled.*
+- would pull — *Would pull обозначало бы повторявшееся действие, а здесь один случай.*
 
-**21 · Скажите: «В школе он часто слегка толкал брата во время обеда».**
+**17 · Услышьте, как раньше договаривались не шуметь.**
+<!-- interaction_id: en:lesson-25:session-12:i13; family: listen_build_dictation -->
+🔊 *In those days we would whisper during the game.* Плитки: `game` `the` `during` `whisper` `would` `we` `days` `those` `In` → **In those days we would whisper during the game.**
+
+**18 · Один рукав вы уже проверили. Попросите: «Покажи мне другой рукав».**
+<!-- interaction_id: en:lesson-25:session-12:i14; family: phrase_builder -->
+Плитки: `sleeve` `other` `the` `me` `Show` → **Show me the other sleeve.**
+
+**19 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-12:i15; family: listen_choose -->
+🔊 *I have already said sorry.* → **I have already said sorry.** · I have already said goodbye. · She has already said sorry.
+- I have already said goodbye. — *В записи звучит I have already said sorry.*
+- She has already said sorry. — *В записи звучит I have already said sorry.*
+
+**20 · Вы хотите попробовать ещё раз. Нужен один дополнительный раз.**
+<!-- interaction_id: en:lesson-25:session-12:i16; family: context_gap_grammar -->
+Can I have ___ try? → **another** · other · others
+- other — *Перед единственным try без артикля используем another.*
+- others — *Others употребляется без следующего существительного.*
+
+**21 · Вспомните прежнее чувство: «Раньше я боялся темноты».**
 <!-- interaction_id: en:lesson-25:session-12:i17; family: scripted_repeat_compare -->
-🎙 **At school he would nudge his brother during lunch.**
+🎙 **I used to be afraid of the dark.**
 

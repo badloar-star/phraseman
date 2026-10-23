@@ -49,103 +49,103 @@ Rocket — ракета. At school we would build paper rockets — у школ�
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — dolls**
-<!-- interaction_id: en:lesson-25:session-11:word:dolls; family: word_card -->
-> **dolls** — ляльки.
+**1 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-11:i01; family: listen_choose -->
+🔊 *We used to play outside after school.* → **We used to play outside after school.** · We used to play inside after school. · We used to play outside before school.
+- We used to play inside after school. — *У записі звучить We used to play outside after school.*
+- We used to play outside before school. — *У записі звучить We used to play outside after school.*
 
-**2 · Скажіть: «У дитинстві ми часто вбирали своїх ляльок.»**
-<!-- interaction_id: en:lesson-25:session-11:i01; family: phrase_builder -->
-Плитки: `dolls` `our` `dress` `would` `we` `children` `As` → **As children we would dress our dolls.**
-
-**3 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-11:i02; family: context_gap_grammar -->
-As children we would ___ our dolls. → **dress** · dressed · dressing
-- dressed — *Після would потрібна базова форма дієслова.*
-- dressing — *Після would потрібна базова форма дієслова.*
-
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-11:i03; family: listen_choose -->
-🔊 *As children we would dress our dolls.* → **As children we would dress our dolls.** · As children they would dress their dolls. · As children we would wash our dolls.
-- As children they would dress their dolls. — *У записі звучить As children we would dress our dolls.*
-- As children we would wash our dolls. — *У записі звучить As children we would dress our dolls.*
-
-**5 · Картка слова — puppets**
-<!-- interaction_id: en:lesson-25:session-11:word:puppets; family: word_card -->
-> **puppets** — театральні ляльки.
-
-**6 · Скажіть: «У ті часи ми часто робили театральних ляльок.»**
-<!-- interaction_id: en:lesson-25:session-11:i04; family: phrase_builder -->
-Плитки: `puppets` `make` `would` `we` `days` `those` `In` → **In those days we would make puppets.**
-
-**7 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-11:i05; family: context_gap_grammar -->
-In those days we would ___ puppets. → **make** · made · making
-- made — *Після would потрібна базова форма дієслова.*
-- making — *Після would потрібна базова форма дієслова.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-11:i06; family: listen_choose -->
-🔊 *In those days we would make puppets.* → **In those days we would make puppets.** · In those days they would make puppets. · In those days we would buy puppets.
-- In those days they would make puppets. — *У записі звучить In those days we would make puppets.*
-- In those days we would buy puppets. — *У записі звучить In those days we would make puppets.*
-
-**9 · Картка слова — scooters**
+**2 · Картка слова — scooters**
 <!-- interaction_id: en:lesson-25:session-11:word:scooters; family: word_card -->
-> **scooters** — самокати.
+> **scooters** — самокати
 
-**10 · Скажіть: «Після школи ми зазвичай каталися на самокатах.»**
-<!-- interaction_id: en:lesson-25:session-11:i07; family: phrase_builder -->
-Плитки: `scooters` `our` `ride` `would` `we` `school` `After` → **After school we would ride our scooters.**
+**3 · Згадайте дорогу до парку: «Тоді ми їздили до парку на самокатах». Використайте would.**
+<!-- interaction_id: en:lesson-25:session-11:i02; family: phrase_builder -->
+Плитки: `park` `the` `to` `scooters` `our` `ride` `would` `we` `then` `Back` → **Back then we would ride our scooters to the park.**
 
-**11 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-11:i08; family: context_gap_grammar -->
-After school we would ___ our scooters. → **ride** · rode · riding
-- rode — *Після would потрібна базова форма дієслова.*
-- riding — *Після would потрібна базова форма дієслова.*
+**4 · Ви збираєтеся кататися. Запитайте: «Де наші самокати?»**
+<!-- interaction_id: en:lesson-25:session-11:i03; family: scripted_repeat_compare -->
+🎙 **Where are our scooters?**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-11:i09; family: listen_choose -->
-🔊 *After school we would ride our scooters.* → **After school we would ride our scooters.** · After school they would ride their scooters. · After school we would clean our scooters.
-- After school they would ride their scooters. — *У записі звучить After school we would ride our scooters.*
-- After school we would clean our scooters. — *У записі звучить After school we would ride our scooters.*
+**5 · Картка слова — dolls**
+<!-- interaction_id: en:lesson-25:session-11:word:dolls; family: word_card -->
+> **dolls** — ляльки
 
-**13 · Картка слова — rockets**
+**6 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-11:i04; family: listen_choose -->
+🔊 *My sister kept her dolls in a wooden box.* → **My sister kept her dolls in a wooden box.** · My sister kept her dolls on a shelf. · My brother kept his dolls in a wooden box.
+- My sister kept her dolls on a shelf. — *У записі звучить My sister kept her dolls in a wooden box.*
+- My brother kept his dolls in a wooden box. — *У записі звучить My sister kept her dolls in a wooden box.*
+
+**7 · Ви згадуєте гру, яка повторювалася в дитинстві.**
+<!-- interaction_id: en:lesson-25:session-11:i05; family: context_gap_grammar -->
+As children we would ___ clothes for our dolls. → **make** · made · making
+- made — *Після would потрібна форма make, не made.*
+- making — *У цій конструкції після would не використовується -ing.*
+
+**8 · Картка слова — puppets**
+<!-- interaction_id: en:lesson-25:session-11:word:puppets; family: word_card -->
+> **puppets** — театральні ляльки
+
+**9 · Почуйте, до чого діти готувалися.**
+<!-- interaction_id: en:lesson-25:session-11:i06; family: listen_build_dictation -->
+🔊 *We made puppets for the school show.* Плитки: `show` `school` `the` `for` `puppets` `made` `We` → **We made puppets for the school show.**
+
+**10 · На виставі діти рухали ляльками руками. Виберіть театральних ляльок.**
+<!-- interaction_id: en:lesson-25:session-11:i07; family: context_gap_grammar -->
+The children performed with ___. → **puppets** · scooters · books
+- scooters — *Scooters — самокати; тут виступали з театральними ляльками.*
+- books — *Books — книжки, не ляльки для вистави.*
+
+**11 · Вистава вже закінчилася. Попросіть ще одну історію: «Розкажи нам ще одну історію».**
+<!-- interaction_id: en:lesson-25:session-11:i08; family: scripted_repeat_compare -->
+🎙 **Tell us another story.**
+
+**12 · Картка слова — rockets**
 <!-- interaction_id: en:lesson-25:session-11:word:rockets; family: word_card -->
-> **rockets** — ракети.
+> **rockets** — ракети
 
-**14 · Скажіть: «У школі ми часто робили паперові ракети.»**
+**13 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-11:i09; family: listen_choose -->
+🔊 *At school we would draw rockets on coloured paper.* → **At school we would draw rockets on coloured paper.** · At school we would draw rockets on white paper. · At home we would draw rockets on coloured paper.
+- At school we would draw rockets on white paper. — *У записі звучить At school we would draw rockets on coloured paper.*
+- At home we would draw rockets on coloured paper. — *У записі звучить At school we would draw rockets on coloured paper.*
+
+**14 · Ви показуєте зроблені поробки: «Ми вже зробили три ракети».**
 <!-- interaction_id: en:lesson-25:session-11:i10; family: phrase_builder -->
-Плитки: `rockets` `paper` `build` `would` `we` `school` `At` → **At school we would build paper rockets.**
+Плитки: `rockets` `three` `made` `already` `have` `We` → **We have already made three rockets.**
 
-**15 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-11:i11; family: context_gap_grammar -->
-At school we would ___ paper rockets. → **build** · built · building
-- built — *Після would потрібна базова форма дієслова.*
-- building — *Після would потрібна базова форма дієслова.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-11:i12; family: listen_choose -->
-🔊 *At school we would build paper rockets.* → **At school we would build paper rockets.** · At school they would build paper rockets. · At school we would draw paper rockets.
-- At school they would build paper rockets. — *У записі звучить At school we would build paper rockets.*
-- At school we would draw paper rockets. — *У записі звучить At school we would build paper rockets.*
-
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-11:i13; family: speed_match -->
+**15 · Знайдіть переклади іграшок і поробок**
+<!-- interaction_id: en:lesson-25:session-11:i11; family: speed_match -->
 dolls — ляльки · puppets — театральні ляльки · scooters — самокати · rockets — ракети
 
-**18 · Колишнє місце проживання**
-<!-- interaction_id: en:lesson-25:session-11:i14; family: listen_build_dictation -->
-🔊 *I used to live by the lake.* Плитки: `lake` `the` `by` `live` `to` `used` `I` → **I used to live by the lake.**
+**16 · Ви згадуєте конкретний подарунок минулого тижня.**
+<!-- interaction_id: en:lesson-25:session-11:i12; family: context_gap_grammar -->
+My uncle ___ me a toy last week. → **gave** · has given · would give
+- has given — *Last week потребує Past Simple gave.*
+- would give — *Тут один подарунок у названий час, а не повторювана звичка.*
 
-**19 · Раніше я був сором’язливим**
-<!-- interaction_id: en:lesson-25:session-11:i15; family: listen_build_dictation -->
-🔊 *I used to be shy.* Плитки: `shy` `be` `to` `used` `I` → **I used to be shy.**
+**17 · Почуйте, що відбувалося після гри.**
+<!-- interaction_id: en:lesson-25:session-11:i13; family: listen_build_dictation -->
+🔊 *In those days we would put everything away before dinner.* Плитки: `dinner` `before` `away` `everything` `put` `would` `we` `days` `those` `In` → **In those days we would put everything away before dinner.**
 
-**20 · Скажіть: «У ті часи вони часто робили театральних ляльок».**
-<!-- interaction_id: en:lesson-25:session-11:i16; family: scripted_repeat_compare -->
-🎙 **In those days they would make puppets.**
+**18 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-11:i14; family: listen_choose -->
+🔊 *Did you keep your old toys?* → **Did you keep your old toys?** · Did you sell your old toys? · Did they keep their old toys?
+- Did you sell your old toys? — *У записі звучить Did you keep your old toys?*
+- Did they keep their old toys? — *У записі звучить Did you keep your old toys?*
 
-**21 · Скажіть: «У школі вони часто робили паперові ракети».**
+**19 · Інші діти ще не закінчили. Скажіть: «Зачекай на інших дітей».**
+<!-- interaction_id: en:lesson-25:session-11:i15; family: phrase_builder -->
+Плитки: `children` `other` `the` `for` `Wait` → **Wait for the other children.**
+
+**20 · Ви говорите про те, де раніше жили, а не про гру, що повторювалася.**
+<!-- interaction_id: en:lesson-25:session-11:i16; family: context_gap_grammar -->
+I ___ live near my cousins. → **used to** · use to · using to
+- use to — *Для колишнього місця проживання потрібна форма used to.*
+- using to — *Using to не утворює цю конструкцію минулого часу.*
+
+**21 · Завершіть спогад: «У ті часи ми сміялися з наших кумедних історій». Використайте would.**
 <!-- interaction_id: en:lesson-25:session-11:i17; family: scripted_repeat_compare -->
-🎙 **At school they would build paper rockets.**
+🎙 **In those days we would laugh at our funny stories.**
 

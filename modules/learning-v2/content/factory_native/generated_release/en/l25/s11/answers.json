@@ -1,43 +1,8 @@
 [
   {
-    "interactionId": "en:lesson-25:session-11:word:dolls",
-    "correctText": "dolls",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-25:session-11:i01",
-    "correctText": "As children we would dress our dolls.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-11:i02",
-    "correctText": "dress",
-    "correctResponseId": "en:lesson-25:session-11:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-11:i03",
-    "correctText": "As children we would dress our dolls.",
-    "correctResponseId": "en:lesson-25:session-11:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-11:word:puppets",
-    "correctText": "puppets",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-11:i04",
-    "correctText": "In those days we would make puppets.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-11:i05",
-    "correctText": "make",
-    "correctResponseId": "en:lesson-25:session-11:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-11:i06",
-    "correctText": "In those days we would make puppets.",
-    "correctResponseId": "en:lesson-25:session-11:i06:r1"
+    "correctText": "We used to play outside after school.",
+    "correctResponseId": "en:lesson-25:session-11:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-11:word:scooters",
@@ -45,19 +10,49 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-11:i07",
-    "correctText": "After school we would ride our scooters.",
+    "interactionId": "en:lesson-25:session-11:i02",
+    "correctText": "Back then we would ride our scooters to the park.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-11:i08",
-    "correctText": "ride",
-    "correctResponseId": "en:lesson-25:session-11:i08:r1"
+    "interactionId": "en:lesson-25:session-11:i03",
+    "correctText": "Where are our scooters?",
+    "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-11:i09",
-    "correctText": "After school we would ride our scooters.",
-    "correctResponseId": "en:lesson-25:session-11:i09:r1"
+    "interactionId": "en:lesson-25:session-11:word:dolls",
+    "correctText": "dolls",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-11:i04",
+    "correctText": "My sister kept her dolls in a wooden box.",
+    "correctResponseId": "en:lesson-25:session-11:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-11:i05",
+    "correctText": "make",
+    "correctResponseId": "en:lesson-25:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-11:word:puppets",
+    "correctText": "puppets",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-11:i06",
+    "correctText": "We made puppets for the school show.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-11:i07",
+    "correctText": "puppets",
+    "correctResponseId": "en:lesson-25:session-11:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-11:i08",
+    "correctText": "Tell us another story.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-11:word:rockets",
@@ -65,43 +60,48 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-11:i09",
+    "correctText": "At school we would draw rockets on coloured paper.",
+    "correctResponseId": "en:lesson-25:session-11:i09:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-11:i10",
-    "correctText": "At school we would build paper rockets.",
+    "correctText": "We have already made three rockets.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-11:i11",
-    "correctText": "build",
-    "correctResponseId": "en:lesson-25:session-11:i11:r1"
+    "correctText": "en:lesson-25:session-11:i11:p1=dolls\nen:lesson-25:session-11:i11:p2=puppets\nen:lesson-25:session-11:i11:p3=scooters\nen:lesson-25:session-11:i11:p4=rockets",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-11:i12",
-    "correctText": "At school we would build paper rockets.",
+    "correctText": "gave",
     "correctResponseId": "en:lesson-25:session-11:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-11:i13",
-    "correctText": "en:lesson-25:session-11:i13:p1=dolls\nen:lesson-25:session-11:i13:p2=puppets\nen:lesson-25:session-11:i13:p3=scooters\nen:lesson-25:session-11:i13:p4=rockets",
+    "correctText": "In those days we would put everything away before dinner.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-11:i14",
-    "correctText": "I used to live by the lake.",
-    "correctResponseId": null
+    "correctText": "Did you keep your old toys?",
+    "correctResponseId": "en:lesson-25:session-11:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-11:i15",
-    "correctText": "I used to be shy.",
+    "correctText": "Wait for the other children.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-11:i16",
-    "correctText": "In those days they would make puppets.",
-    "correctResponseId": null
+    "correctText": "used to",
+    "correctResponseId": "en:lesson-25:session-11:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-11:i17",
-    "correctText": "At school they would build paper rockets.",
+    "correctText": "In those days we would laugh at our funny stories.",
     "correctResponseId": null
   }
 ]

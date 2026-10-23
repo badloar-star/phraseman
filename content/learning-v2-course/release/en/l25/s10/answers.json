@@ -1,23 +1,38 @@
 [
   {
+    "interactionId": "en:lesson-25:session-10:word:athlete",
+    "correctText": "athlete",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-10:i01",
+    "correctText": "My sister is an athlete.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-10:i02",
+    "correctText": "As teenagers we would train before school.",
+    "correctResponseId": "en:lesson-25:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-10:i03",
+    "correctText": "run",
+    "correctResponseId": "en:lesson-25:session-10:i03:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-10:word:winner",
     "correctText": "winner",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-10:i01",
-    "correctText": "At school we would cheer for the winner.",
+    "interactionId": "en:lesson-25:session-10:i04",
+    "correctText": "The winner received a medal.",
+    "correctResponseId": "en:lesson-25:session-10:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-10:i05",
+    "correctText": "Who is the winner?",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-10:i02",
-    "correctText": "cheer",
-    "correctResponseId": "en:lesson-25:session-10:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-10:i03",
-    "correctText": "At school we would cheer for the winner.",
-    "correctResponseId": "en:lesson-25:session-10:i03:r1"
   },
   {
     "interactionId": "en:lesson-25:session-10:word:loser",
@@ -25,39 +40,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-10:i04",
-    "correctText": "In those days we would comfort the loser.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-10:i05",
-    "correctText": "comfort",
-    "correctResponseId": "en:lesson-25:session-10:i05:r1"
-  },
-  {
     "interactionId": "en:lesson-25:session-10:i06",
-    "correctText": "In those days we would comfort the loser.",
-    "correctResponseId": "en:lesson-25:session-10:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-10:word:athlete",
-    "correctText": "athlete",
+    "correctText": "After those games the loser would shake hands with the winner.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-10:i07",
-    "correctText": "In those days I would train with an athlete.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-10:i08",
-    "correctText": "train",
-    "correctResponseId": "en:lesson-25:session-10:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-10:i09",
-    "correctText": "In those days I would train with an athlete.",
-    "correctResponseId": "en:lesson-25:session-10:i09:r1"
+    "correctText": "loser",
+    "correctResponseId": "en:lesson-25:session-10:i07:r1"
   },
   {
     "interactionId": "en:lesson-25:session-10:word:league",
@@ -65,43 +55,53 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-10:i08",
+    "correctText": "Our team plays in a local league.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-10:i09",
+    "correctText": "In those days we would travel to matches by bus.",
+    "correctResponseId": "en:lesson-25:session-10:i09:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-10:i10",
-    "correctText": "At school we would play in a local league.",
+    "correctText": "en:lesson-25:session-10:i10:p1=winner\nen:lesson-25:session-10:i10:p2=loser\nen:lesson-25:session-10:i10:p3=athlete\nen:lesson-25:session-10:i10:p4=league",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-10:i11",
-    "correctText": "play",
-    "correctResponseId": "en:lesson-25:session-10:i11:r1"
+    "correctText": "Let us play another game.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-10:i12",
-    "correctText": "At school we would play in a local league.",
+    "correctText": "won",
     "correctResponseId": "en:lesson-25:session-10:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-10:i13",
-    "correctText": "en:lesson-25:session-10:i13:p1=winner\nen:lesson-25:session-10:i13:p2=loser\nen:lesson-25:session-10:i13:p3=athlete\nen:lesson-25:session-10:i13:p4=league",
+    "correctText": "After practice we would sit on the grass and talk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-10:i14",
-    "correctText": "I used to live by the lake.",
-    "correctResponseId": null
+    "correctText": "Have you ever won a race?",
+    "correctResponseId": "en:lesson-25:session-10:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-10:i15",
-    "correctText": "I used to be shy.",
+    "correctText": "I used to be slower.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-10:i16",
-    "correctText": "In those days they would comfort the loser.",
-    "correctResponseId": null
+    "correctText": "other",
+    "correctResponseId": "en:lesson-25:session-10:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-10:i17",
-    "correctText": "At school they would play in a local league.",
+    "correctText": "You played well today.",
     "correctResponseId": null
   }
 ]

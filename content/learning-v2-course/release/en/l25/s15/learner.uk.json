@@ -4,232 +4,8 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-25:session-15:word:gulp",
-      "ordinal": 4,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — gulp",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-15:word:gulp:audio"
-      ],
-      "accessibilityLabel": "Картка слова — gulp",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-15:word:gulp:audio",
-          "transcript": "gulp"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-15:word:gulp:r1",
-            "targetText": "gulp",
-            "meaningByLocale": {
-              "ru": "пить большими глотками.",
-              "uk": "пити великими ковтками."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "gulp",
-          "definitionByLocale": {
-            "ru": "пить большими глотками.",
-            "uk": "пити великими ковтками."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-15:i01",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Після ігор ми зазвичай пили холодну воду великими ковтками.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Після ігор ми зазвичай пили холодну воду великими ковтками.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "After games we would gulp cold water.",
-        "localizedMeaning": {
-          "ru": "Скажите: «После игр мы обычно пили холодную воду большими глотками.»",
-          "uk": "Скажіть: «Після ігор ми зазвичай пили холодну воду великими ковтками.»"
-        },
-        "orderedTokens": [
-          "After",
-          "games",
-          "we",
-          "would",
-          "gulp",
-          "cold",
-          "water"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-15:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-15:i02:r1",
-          "text": "gulp"
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i02:r2",
-          "text": "gulped"
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i02:r3",
-          "text": "gulping"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "After games we would ___ cold water.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-15:i02:r1",
-            "text": "gulp"
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i02:r2",
-            "text": "gulped"
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i02:r3",
-            "text": "gulping"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-15:i02:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i02:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-15:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-15:i03:r1",
-          "text": "After games we would gulp cold water."
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i03:r2",
-          "text": "After games they would gulp cold water."
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i03:r3",
-          "text": "After games we would gulp cold juice."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-15:i03:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-15:i03:audio",
-          "transcript": "After games we would gulp cold water."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-15:i03:r1",
-            "targetText": "After games we would gulp cold water.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i03:r2",
-            "targetText": "After games they would gulp cold water.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i03:r3",
-            "targetText": "After games we would gulp cold juice.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-15:i03:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит After games we would gulp cold water.",
-              "uk": "У записі звучить After games we would gulp cold water."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i03:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит After games we would gulp cold water.",
-              "uk": "У записі звучить After games we would gulp cold water."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-15:word:nibble",
-      "ordinal": 8,
+      "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -252,8 +28,8 @@
             "responseId": "en:lesson-25:session-15:word:nibble:r1",
             "targetText": "nibble",
             "meaningByLocale": {
-              "ru": "есть маленькими кусочками.",
-              "uk": "їсти маленькими шматочками."
+              "ru": "есть маленькими кусочками",
+              "uk": "їсти маленькими шматочками"
             }
           }
         ],
@@ -263,42 +39,40 @@
         "wordCard": {
           "word": "nibble",
           "definitionByLocale": {
-            "ru": "есть маленькими кусочками.",
-            "uk": "їсти маленькими шматочками."
+            "ru": "есть маленькими кусочками",
+            "uk": "їсти маленькими шматочками"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-15:i04",
-      "ordinal": 9,
+      "interactionId": "en:lesson-25:session-15:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У дитинстві я часто потроху їв печиво перед вечерею.»",
+      "prompt": "Розкажіть про звичку: «Зазвичай я потроху їм печиво з чаєм».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У дитинстві я часто потроху їв печиво перед вечерею.»",
+      "accessibilityLabel": "Розкажіть про звичку: «Зазвичай я потроху їм печиво з чаєм».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "As a child I would nibble a biscuit before dinner.",
+        "targetPhrase": "I usually nibble a biscuit with my tea.",
         "localizedMeaning": {
-          "ru": "Скажите: «В детстве я часто понемногу ел печенье перед ужином.»",
-          "uk": "Скажіть: «У дитинстві я часто потроху їв печиво перед вечерею.»"
+          "ru": "Расскажите о привычке: «Обычно я понемногу ем печенье с чаем».",
+          "uk": "Розкажіть про звичку: «Зазвичай я потроху їм печиво з чаєм»."
         },
         "orderedTokens": [
-          "As",
-          "a",
-          "child",
           "I",
-          "would",
+          "usually",
           "nibble",
           "a",
           "biscuit",
-          "before",
-          "dinner"
+          "with",
+          "my",
+          "tea"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -310,142 +84,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-15:i05",
-      "ordinal": 10,
+      "interactionId": "en:lesson-25:session-15:i02",
+      "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-15:i05:r1",
-          "text": "nibble"
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i05:r2",
-          "text": "nibbled"
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i05:r3",
-          "text": "nibbling"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "As a child I would ___ a biscuit before dinner.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-15:i05:r1",
-            "text": "nibble"
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i05:r2",
-            "text": "nibbled"
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i05:r3",
-            "text": "nibbling"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-15:i05:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i05:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-15:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-15:i06:r1",
-          "text": "As a child I would nibble a biscuit before dinner."
+          "responseId": "en:lesson-25:session-15:i02:r1",
+          "text": "As children we would share a packet of biscuits."
         },
         {
-          "responseId": "en:lesson-25:session-15:i06:r2",
-          "text": "As a child she would nibble a biscuit before dinner."
+          "responseId": "en:lesson-25:session-15:i02:r2",
+          "text": "As children we would share a packet of crisps."
         },
         {
-          "responseId": "en:lesson-25:session-15:i06:r3",
-          "text": "As a child I would nibble a biscuit before lunch."
+          "responseId": "en:lesson-25:session-15:i02:r3",
+          "text": "As children they would share a packet of biscuits."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-15:i06:audio"
+        "en:lesson-25:session-15:i02:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-15:i06:audio",
-          "transcript": "As a child I would nibble a biscuit before dinner."
+          "audioTargetId": "en:lesson-25:session-15:i02:audio",
+          "transcript": "As children we would share a packet of biscuits."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-15:i06:r1",
-            "targetText": "As a child I would nibble a biscuit before dinner.",
+            "responseId": "en:lesson-25:session-15:i02:r1",
+            "targetText": "As children we would share a packet of biscuits.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-15:i06:r2",
-            "targetText": "As a child she would nibble a biscuit before dinner.",
+            "responseId": "en:lesson-25:session-15:i02:r2",
+            "targetText": "As children we would share a packet of crisps.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-15:i06:r3",
-            "targetText": "As a child I would nibble a biscuit before lunch.",
+            "responseId": "en:lesson-25:session-15:i02:r3",
+            "targetText": "As children they would share a packet of biscuits.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-15:i06:r2",
+            "responseId": "en:lesson-25:session-15:i02:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит As a child I would nibble a biscuit before dinner.",
-              "uk": "У записі звучить As a child I would nibble a biscuit before dinner."
+              "ru": "В записи звучит As children we would share a packet of biscuits.",
+              "uk": "У записі звучить As children we would share a packet of biscuits."
             }
           },
           {
-            "responseId": "en:lesson-25:session-15:i06:r3",
+            "responseId": "en:lesson-25:session-15:i02:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит As a child I would nibble a biscuit before dinner.",
-              "uk": "У записі звучить As a child I would nibble a biscuit before dinner."
+              "ru": "В записи звучит As children we would share a packet of biscuits.",
+              "uk": "У записі звучить As children we would share a packet of biscuits."
             }
           }
         ],
@@ -455,9 +160,154 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-15:word:munch",
-      "ordinal": 12,
+      "interactionId": "en:lesson-25:session-15:word:gulp",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gulp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-15:word:gulp:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gulp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-15:word:gulp:audio",
+          "transcript": "gulp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-15:word:gulp:r1",
+            "targetText": "gulp",
+            "meaningByLocale": {
+              "ru": "пить большими глотками",
+              "uk": "пити великими ковтками"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gulp",
+          "definitionByLocale": {
+            "ru": "пить большими глотками",
+            "uk": "пити великими ковтками"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Після пробіжки ви пили великими ковтками. Виберіть форму колишньої звички.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-15:i03:r1",
+          "text": "gulp"
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i03:r2",
+          "text": "gulped"
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i03:r3",
+          "text": "gulping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після пробіжки ви пили великими ковтками. Виберіть форму колишньої звички.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После пробежки вы пили большими глотками. Выберите форму прежней привычки.",
+          "uk": "Після пробіжки ви пили великими ковтками. Виберіть форму колишньої звички."
+        },
+        "gappedTargetPhrase": "After those runs I would ___ a glass of water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-15:i03:r1",
+            "text": "gulp"
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i03:r2",
+            "text": "gulped"
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i03:r3",
+            "text": "gulping"
+          }
+        ],
+        "testedDimension": "Після пробіжки ви пили великими ковтками. Виберіть форму колишньої звички.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Після пробіжки ви пили великими ковтками. Виберіть форму колишньої звички.",
+            "feedbackByLocale": {
+              "ru": "После would нужна базовая форма gulp.",
+              "uk": "Після would потрібна базова форма gulp."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Після пробіжки ви пили великими ковтками. Виберіть форму колишньої звички.",
+            "feedbackByLocale": {
+              "ru": "Would gulping неверно; нужно would gulp.",
+              "uk": "Would gulping неправильно; потрібно would gulp."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:i04",
+      "ordinal": 9,
       "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви хочете пити. Попросіть: «Можна склянку води, будь ласка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-15:i04:audio"
+      ],
+      "accessibilityLabel": "Ви хочете пити. Попросіть: «Можна склянку води, будь ласка?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-15:i04:audio",
+          "transcript": "Can I have a glass of water, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I have a glass of water, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:word:munch",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Картка слова — munch",
@@ -479,8 +329,8 @@
             "responseId": "en:lesson-25:session-15:word:munch:r1",
             "targetText": "munch",
             "meaningByLocale": {
-              "ru": "жевать с хрустом.",
-              "uk": "жувати з хрускотом."
+              "ru": "жевать с хрустом",
+              "uk": "жувати з хрускотом"
             }
           }
         ],
@@ -490,40 +340,116 @@
         "wordCard": {
           "word": "munch",
           "definitionByLocale": {
-            "ru": "жевать с хрустом.",
-            "uk": "жувати з хрускотом."
+            "ru": "жевать с хрустом",
+            "uk": "жувати з хрускотом"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-15:i07",
-      "ordinal": 13,
+      "interactionId": "en:lesson-25:session-15:i05",
+      "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-15:i05:r1",
+          "text": "At school we would munch apples in the playground."
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i05:r2",
+          "text": "At school we would munch carrots in the playground."
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i05:r3",
+          "text": "At school we would munch apples in the classroom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-15:i05:audio",
+          "transcript": "At school we would munch apples in the playground."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-15:i05:r1",
+            "targetText": "At school we would munch apples in the playground.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i05:r2",
+            "targetText": "At school we would munch carrots in the playground.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i05:r3",
+            "targetText": "At school we would munch apples in the classroom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At school we would munch apples in the playground.",
+              "uk": "У записі звучить At school we would munch apples in the playground."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At school we would munch apples in the playground.",
+              "uk": "У записі звучить At school we would munch apples in the playground."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У школі ми часто хрумтіли морквою під час обіду.»",
+      "prompt": "Почуйте опис сьогоднішнього перекусу.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У школі ми часто хрумтіли морквою під час обіду.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-15:i06:audio"
+      ],
+      "accessibilityLabel": "Почуйте опис сьогоднішнього перекусу.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "At school we would munch carrots during lunch.",
-        "localizedMeaning": {
-          "ru": "Скажите: «В школе мы часто хрустели морковкой во время обеда.»",
-          "uk": "Скажіть: «У школі ми часто хрумтіли морквою під час обіду.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-15:i06:audio",
+          "transcript": "I am munching a carrot."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am munching a carrot.",
         "orderedTokens": [
-          "At",
-          "school",
-          "we",
-          "would",
-          "munch",
-          "carrots",
-          "during",
-          "lunch"
+          "I",
+          "am",
+          "munching",
+          "a",
+          "carrot"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -535,153 +461,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-15:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-15:i08:r1",
-          "text": "munch"
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i08:r2",
-          "text": "munched"
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i08:r3",
-          "text": "munching"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "At school we would ___ carrots during lunch.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-15:i08:r1",
-            "text": "munch"
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i08:r2",
-            "text": "munched"
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i08:r3",
-            "text": "munching"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-15:i08:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i08:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-15:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-15:i09:r1",
-          "text": "At school we would munch carrots during lunch."
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i09:r2",
-          "text": "At school they would munch carrots during lunch."
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i09:r3",
-          "text": "At school we would munch apples during lunch."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-15:i09:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-15:i09:audio",
-          "transcript": "At school we would munch carrots during lunch."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-15:i09:r1",
-            "targetText": "At school we would munch carrots during lunch.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i09:r2",
-            "targetText": "At school they would munch carrots during lunch.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i09:r3",
-            "targetText": "At school we would munch apples during lunch.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-15:i09:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит At school we would munch carrots during lunch.",
-              "uk": "У записі звучить At school we would munch carrots during lunch."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i09:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит At school we would munch carrots during lunch.",
-              "uk": "У записі звучить At school we would munch carrots during lunch."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-15:word:slurp",
-      "ordinal": 16,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -704,8 +485,8 @@
             "responseId": "en:lesson-25:session-15:word:slurp:r1",
             "targetText": "slurp",
             "meaningByLocale": {
-              "ru": "шумно пить, прихлёбывать.",
-              "uk": "шумно пити, сьорбати."
+              "ru": "шумно пить, прихлёбывать",
+              "uk": "шумно пити, сьорбати"
             }
           }
         ],
@@ -715,40 +496,144 @@
         "wordCard": {
           "word": "slurp",
           "definitionByLocale": {
-            "ru": "шумно пить, прихлёбывать.",
-            "uk": "шумно пити, сьорбати."
+            "ru": "шумно пить, прихлёбывать",
+            "uk": "шумно пити, сьорбати"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-15:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-15:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть не сьорбати суп: «Будь ласка, не сьорбай суп голосно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Попросіть не сьорбати суп: «Будь ласка, не сьорбай суп голосно».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-15:i07:audio",
+          "transcript": "Please do not slurp your soup."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please do not slurp your soup.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вас непокоїть саме шум під час споживання супу, не розмір ковтків.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-15:i08:r1",
+          "text": "slurp"
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i08:r2",
+          "text": "nibble"
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i08:r3",
+          "text": "wait"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вас непокоїть саме шум під час споживання супу, не розмір ковтків.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вас беспокоит именно шум при питье супа, не размер глотков.",
+          "uk": "Вас непокоїть саме шум під час споживання супу, не розмір ковтків."
+        },
+        "gappedTargetPhrase": "Please do not ___ so loudly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-15:i08:r1",
+            "text": "slurp"
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i08:r2",
+            "text": "nibble"
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i08:r3",
+            "text": "wait"
+          }
+        ],
+        "testedDimension": "Вас непокоїть саме шум під час споживання супу, не розмір ковтків.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Вас непокоїть саме шум під час споживання супу, не розмір ковтків.",
+            "feedbackByLocale": {
+              "ru": "Nibble — откусывать маленькие кусочки; речь о шумном прихлёбывании.",
+              "uk": "Nibble — відкушувати маленькі шматочки; ідеться про голосне сьорбання."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Вас непокоїть саме шум під час споживання супу, не розмір ковтків.",
+            "feedbackByLocale": {
+              "ru": "Wait — ждать; это не способ пить суп.",
+              "uk": "Wait — чекати; це не спосіб їсти суп."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У дитинстві він часто голосно сьорбав суп.»",
+      "prompt": "Згадайте сімейну вечерю: «Щонеділі дідусь розповідав нам історії за вечерею». Використайте would.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У дитинстві він часто голосно сьорбав суп.»",
+      "accessibilityLabel": "Згадайте сімейну вечерю: «Щонеділі дідусь розповідав нам історії за вечерею». Використайте would.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "As a child he would slurp his soup.",
+        "targetPhrase": "On Sundays our grandfather would tell us stories at dinner.",
         "localizedMeaning": {
-          "ru": "Скажите: «В детстве он часто шумно хлебал суп.»",
-          "uk": "Скажіть: «У дитинстві він часто голосно сьорбав суп.»"
+          "ru": "Вспомните семейный ужин: «По воскресеньям дедушка рассказывал нам истории за ужином». Используйте would.",
+          "uk": "Згадайте сімейну вечерю: «Щонеділі дідусь розповідав нам історії за вечерею». Використайте would."
         },
         "orderedTokens": [
-          "As",
-          "a",
-          "child",
-          "he",
+          "On",
+          "Sundays",
+          "our",
+          "grandfather",
           "would",
-          "slurp",
-          "his",
-          "soup"
+          "tell",
+          "us",
+          "stories",
+          "at",
+          "dinner"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -760,166 +645,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-15:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-15:i11:r1",
-          "text": "slurp"
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i11:r2",
-          "text": "slurped"
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i11:r3",
-          "text": "slurping"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание.",
-          "uk": "Доповніть спогад."
-        },
-        "gappedTargetPhrase": "As a child he would ___ his soup.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-15:i11:r1",
-            "text": "slurp"
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i11:r2",
-            "text": "slurped"
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i11:r3",
-            "text": "slurping"
-          }
-        ],
-        "testedDimension": "Доповніть спогад.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-15:i11:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i11:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад.",
-            "feedbackByLocale": {
-              "ru": "После would нужна базовая форма глагола.",
-              "uk": "Після would потрібна базова форма дієслова."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-15:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-15:i12:r1",
-          "text": "As a child he would slurp his soup."
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i12:r2",
-          "text": "As a child she would slurp her soup."
-        },
-        {
-          "responseId": "en:lesson-25:session-15:i12:r3",
-          "text": "As a child he would slurp his milk."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-15:i12:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-15:i12:audio",
-          "transcript": "As a child he would slurp his soup."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-15:i12:r1",
-            "targetText": "As a child he would slurp his soup.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i12:r2",
-            "targetText": "As a child she would slurp her soup.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i12:r3",
-            "targetText": "As a child he would slurp his milk.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-15:i12:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит As a child he would slurp his soup.",
-              "uk": "У записі звучить As a child he would slurp his soup."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-15:i12:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит As a child he would slurp his soup.",
-              "uk": "У записі звучить As a child he would slurp his soup."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-15:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-25:session-15:i10",
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Поєднайте слова з перекладом",
+      "prompt": "Розрізніть чотири способи їсти й пити",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "accessibilityLabel": "Розрізніть чотири способи їсти й пити",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-15:i13:p1",
+            "pairId": "en:lesson-25:session-15:i10:p1",
             "target": "gulp",
             "meaningByLocale": {
               "ru": "пить большими глотками",
@@ -927,7 +667,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-15:i13:p2",
+            "pairId": "en:lesson-25:session-15:i10:p2",
             "target": "nibble",
             "meaningByLocale": {
               "ru": "есть маленькими кусочками",
@@ -935,7 +675,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-15:i13:p3",
+            "pairId": "en:lesson-25:session-15:i10:p3",
             "target": "munch",
             "meaningByLocale": {
               "ru": "жевать с хрустом",
@@ -943,7 +683,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-15:i13:p4",
+            "pairId": "en:lesson-25:session-15:i10:p4",
             "target": "slurp",
             "meaningByLocale": {
               "ru": "шумно пить, прихлёбывать",
@@ -978,34 +718,177 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-15:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-25:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-15:i11:r1",
+          "text": "Have you finished your lunch?"
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i11:r2",
+          "text": "Have you started your lunch?"
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i11:r3",
+          "text": "Have they finished their lunch?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-15:i11:audio",
+          "transcript": "Have you finished your lunch?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-15:i11:r1",
+            "targetText": "Have you finished your lunch?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i11:r2",
+            "targetText": "Have you started your lunch?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i11:r3",
+            "targetText": "Have they finished their lunch?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you finished your lunch?",
+              "uk": "У записі звучить Have you finished your lunch?"
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you finished your lunch?",
+              "uk": "У записі звучить Have you finished your lunch?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вже поїли; зараз голоду немає. Доповніть Present Perfect.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-15:i12:r1",
+          "text": "eaten"
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i12:r2",
+          "text": "ate"
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i12:r3",
+          "text": "eat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вже поїли; зараз голоду немає. Доповніть Present Perfect.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже поели; сейчас голода нет. Дополните Present Perfect.",
+          "uk": "Ви вже поїли; зараз голоду немає. Доповніть Present Perfect."
+        },
+        "gappedTargetPhrase": "I have already ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-15:i12:r1",
+            "text": "eaten"
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i12:r2",
+            "text": "ate"
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i12:r3",
+            "text": "eat"
+          }
+        ],
+        "testedDimension": "Ви вже поїли; зараз голоду немає. Доповніть Present Perfect.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви вже поїли; зараз голоду немає. Доповніть Present Perfect.",
+            "feedbackByLocale": {
+              "ru": "После have нужна третья форма eaten, а не ate.",
+              "uk": "Після have потрібна третя форма eaten, а не ate."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви вже поїли; зараз голоду немає. Доповніть Present Perfect.",
+            "feedbackByLocale": {
+              "ru": "Have eat неверно; используем have eaten.",
+              "uk": "Have eat неправильно; використовуємо have eaten."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Колишнє місце проживання",
+      "prompt": "Почуйте один учорашній випадок.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-15:i14:audio"
+        "en:lesson-25:session-15:i13:audio"
       ],
-      "accessibilityLabel": "Колишнє місце проживання",
+      "accessibilityLabel": "Почуйте один учорашній випадок.",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-15:i14:audio",
-          "transcript": "I used to live by the lake."
+          "audioTargetId": "en:lesson-25:session-15:i13:audio",
+          "transcript": "I spilled my juice yesterday."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to live by the lake.",
+        "hiddenTargetPhrase": "I spilled my juice yesterday.",
         "orderedTokens": [
           "I",
-          "used",
-          "to",
-          "live",
-          "by",
-          "the",
-          "lake"
+          "spilled",
+          "my",
+          "juice",
+          "yesterday"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1013,6 +896,39 @@
           "ru": "",
           "uk": ""
         }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:i14",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Суп занадто гарячий. Скажіть: «Я трохи зачекаю».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Суп занадто гарячий. Скажіть: «Я трохи зачекаю».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-15:i14:audio",
+          "transcript": "I will wait a little."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will wait a little.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1020,29 +936,97 @@
       "interactionId": "en:lesson-25:session-15:i15",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "listen_build_dictation",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Потрібна ще одна чиста ложка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-15:i15:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i15:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i15:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Потрібна ще одна чиста ложка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Нужна ещё одна чистая ложка.",
+          "uk": "Потрібна ще одна чиста ложка."
+        },
+        "gappedTargetPhrase": "Please bring me ___ spoon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-15:i15:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i15:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i15:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Потрібна ще одна чиста ложка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-15:i15:r2",
+            "correct": false,
+            "testedDimension": "Потрібна ще одна чиста ложка.",
+            "feedbackByLocale": {
+              "ru": "Another относится к одной дополнительной ложке.",
+              "uk": "Another стосується однієї додаткової ложки."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i15:r3",
+            "correct": false,
+            "testedDimension": "Потрібна ще одна чиста ложка.",
+            "feedbackByLocale": {
+              "ru": "Others не ставится перед spoon.",
+              "uk": "Others не ставиться перед spoon."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-15:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Раніше я був сором’язливим",
+      "prompt": "Деякі тарілки ще на столі. Скажіть: «Інші тарілки на столі».",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-15:i15:audio"
-      ],
-      "accessibilityLabel": "Раніше я був сором’язливим",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Деякі тарілки ще на столі. Скажіть: «Інші тарілки на столі».",
       "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-15:i15:audio",
-          "transcript": "I used to be shy."
+        "family": "phrase_builder",
+        "targetPhrase": "The other plates are on the table.",
+        "localizedMeaning": {
+          "ru": "Некоторые тарелки ещё на столе. Скажите: «Другие тарелки на столе».",
+          "uk": "Деякі тарілки ще на столі. Скажіть: «Інші тарілки на столі»."
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to be shy.",
         "orderedTokens": [
-          "I",
-          "used",
-          "to",
-          "be",
-          "shy"
+          "The",
+          "other",
+          "plates",
+          "are",
+          "on",
+          "the",
+          "table"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1054,68 +1038,78 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-15:i16",
-      "ordinal": 23,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «У дитинстві він часто потроху їв печиво перед вечерею».",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-15:i16:audio"
-      ],
-      "accessibilityLabel": "Скажіть: «У дитинстві він часто потроху їв печиво перед вечерею».",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-15:i16:audio",
-          "transcript": "As a child he would nibble a biscuit before dinner."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "As a child he would nibble a biscuit before dinner.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-15:i17",
       "ordinal": 24,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «У школі вона часто хрумтіла морквою під час обіду».",
-      "responseOptions": [],
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-15:i17:r1",
+          "text": "I used to dislike soup."
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i17:r2",
+          "text": "I used to dislike milk."
+        },
+        {
+          "responseId": "en:lesson-25:session-15:i17:r3",
+          "text": "She used to dislike soup."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-15:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «У школі вона часто хрумтіла морквою під час обіду».",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-15:i17:audio",
-          "transcript": "At school she would munch carrots during lunch."
+          "transcript": "I used to dislike soup."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "At school she would munch carrots during lunch.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-15:i17:r1",
+            "targetText": "I used to dislike soup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i17:r2",
+            "targetText": "I used to dislike milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i17:r3",
+            "targetText": "She used to dislike soup.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-15:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to dislike soup.",
+              "uk": "У записі звучить I used to dislike soup."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-15:i17:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to dislike soup.",
+              "uk": "У записі звучить I used to dislike soup."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     }
@@ -1126,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "01c3684da2a57e7a2ef5fc07c786199dec47449d780a80e06404e46ef36e8178"
+  "learnerFingerprint": "4223c027dd41d2ee0080b8fe2bef110d73c34087aba90c8d99487409fc6c4a30"
 }

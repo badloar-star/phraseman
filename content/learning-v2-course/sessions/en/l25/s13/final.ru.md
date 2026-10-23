@@ -51,101 +51,101 @@ Imitate — подражать, воспроизводить чьи-то зву�
 
 **1 · Карточка слова — grab**
 <!-- interaction_id: en:lesson-25:session-13:word:grab; family: word_card -->
-> **grab** — схватить.
+> **grab** — схватить
 
-**2 · Скажите: «В детстве мы обычно хватали свои сумки после школы.»**
+**2 · Вы спешите выйти. Скажите другу: «Бери пальто!»**
 <!-- interaction_id: en:lesson-25:session-13:i01; family: phrase_builder -->
-Плитки: `school` `after` `bags` `our` `grab` `would` `we` `children` `As` → **As children we would grab our bags after school.**
+Плитки: `coat!` `your` `Grab` → **Grab your coat!**
 
-**3 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-13:i02; family: context_gap_grammar -->
-As children we would ___ our bags after school. → **grab** · grabbed · grabbing
-- grabbed — *После would нужна базовая форма глагола.*
-- grabbing — *После would нужна базовая форма глагола.*
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-13:i02; family: listen_choose -->
+🔊 *After school we would hurry home.* → **After school we would hurry home.** · Before school we would hurry home. · After school they would hurry home.
+- Before school we would hurry home. — *В записи звучит After school we would hurry home.*
+- After school they would hurry home. — *В записи звучит After school we would hurry home.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-13:i03; family: listen_choose -->
-🔊 *As children we would grab our bags after school.* → **As children we would grab our bags after school.** · As children they would grab their bags after school. · As children we would grab our coats after school.
-- As children they would grab their bags after school. — *В записи звучит As children we would grab our bags after school.*
-- As children we would grab our coats after school. — *В записи звучит As children we would grab our bags after school.*
-
-**5 · Карточка слова — tiptoe**
+**4 · Карточка слова — tiptoe**
 <!-- interaction_id: en:lesson-25:session-13:word:tiptoe; family: word_card -->
-> **tiptoe** — идти на цыпочках.
+> **tiptoe** — идти на цыпочках
 
-**6 · Скажите: «В те времена я обычно проходил на цыпочках мимо спальни.»**
-<!-- interaction_id: en:lesson-25:session-13:i04; family: phrase_builder -->
-Плитки: `bedroom` `the` `past` `tiptoe` `would` `I` `days` `those` `In` → **In those days I would tiptoe past the bedroom.**
+**5 · Ребёнок спит. Нужно пройти тихо на цыпочках, а не шумно бежать.**
+<!-- interaction_id: en:lesson-25:session-13:i03; family: context_gap_grammar -->
+Please ___ past the bedroom. → **tiptoe** · shout · jump
+- shout — *Shout — кричать; нужно пройти тихо.*
+- jump — *Jump — прыгать; здесь просят пройти на цыпочках.*
 
-**7 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-13:i05; family: context_gap_grammar -->
-In those days I would ___ past the bedroom. → **tiptoe** · tiptoed · tiptoeing
-- tiptoed — *После would нужна базовая форма глагола.*
-- tiptoeing — *После would нужна базовая форма глагола.*
+**6 · Услышьте прежнюю вечернюю привычку.**
+<!-- interaction_id: en:lesson-25:session-13:i04; family: listen_build_dictation -->
+🔊 *In those days I would tiptoe downstairs at night.* Плитки: `night` `at` `downstairs` `tiptoe` `would` `I` `days` `those` `In` → **In those days I would tiptoe downstairs at night.**
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-13:i06; family: listen_choose -->
-🔊 *In those days I would tiptoe past the bedroom.* → **In those days I would tiptoe past the bedroom.** · In those days she would tiptoe past the bedroom. · In those days I would tiptoe past the kitchen.
-- In those days she would tiptoe past the bedroom. — *В записи звучит In those days I would tiptoe past the bedroom.*
-- In those days I would tiptoe past the kitchen. — *В записи звучит In those days I would tiptoe past the bedroom.*
+**7 · Попросите тишины: «Пожалуйста, не буди ребёнка».**
+<!-- interaction_id: en:lesson-25:session-13:i05; family: scripted_repeat_compare -->
+🎙 **Please do not wake the baby.**
 
-**9 · Карточка слова — chuckle**
+**8 · Карточка слова — chuckle**
 <!-- interaction_id: en:lesson-25:session-13:word:chuckle; family: word_card -->
-> **chuckle** — тихо смеяться.
+> **chuckle** — тихо смеяться
 
-**10 · Скажите: «В детстве он часто тихо смеялся над нашими шутками.»**
-<!-- interaction_id: en:lesson-25:session-13:i07; family: phrase_builder -->
-Плитки: `jokes` `our` `at` `chuckle` `would` `he` `child` `a` `As` → **As a child he would chuckle at our jokes.**
+**9 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-13:i06; family: listen_choose -->
+🔊 *My grandfather would chuckle at that story every evening.* → **My grandfather would chuckle at that story every evening.** · My grandfather would chuckle at that joke every evening. · My grandmother would chuckle at that story every evening.
+- My grandfather would chuckle at that joke every evening. — *В записи звучит My grandfather would chuckle at that story every evening.*
+- My grandmother would chuckle at that story every evening. — *В записи звучит My grandfather would chuckle at that story every evening.*
 
-**11 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-13:i08; family: context_gap_grammar -->
-As a child he would ___ at our jokes. → **chuckle** · chuckled · chuckling
-- chuckled — *После would нужна базовая форма глагола.*
-- chuckling — *После would нужна базовая форма глагола.*
+**10 · Речь о повторявшейся реакции дедушки в прошлом.**
+<!-- interaction_id: en:lesson-25:session-13:i07; family: context_gap_grammar -->
+Back then he would ___ at our stories. → **chuckle** · chuckled · chuckling
+- chuckled — *После would используем базовую форму chuckle.*
+- chuckling — *Would chuckling не подходит; нужно would chuckle.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-13:i09; family: listen_choose -->
-🔊 *As a child he would chuckle at our jokes.* → **As a child he would chuckle at our jokes.** · As a child she would chuckle at our jokes. · As a child he would chuckle at their jokes.
-- As a child she would chuckle at our jokes. — *В записи звучит As a child he would chuckle at our jokes.*
-- As a child he would chuckle at their jokes. — *В записи звучит As a child he would chuckle at our jokes.*
-
-**13 · Карточка слова — imitate**
+**11 · Карточка слова — imitate**
 <!-- interaction_id: en:lesson-25:session-13:word:imitate; family: word_card -->
-> **imitate** — подражать.
+> **imitate** — подражать
 
-**14 · Скажите: «В школе мы часто подражали звукам животных.»**
-<!-- interaction_id: en:lesson-25:session-13:i10; family: phrase_builder -->
-Плитки: `sounds` `animal` `imitate` `would` `we` `school` `At` → **At school we would imitate animal sounds.**
+**12 · Предложите игру: «Можешь изобразить кошку?»**
+<!-- interaction_id: en:lesson-25:session-13:i08; family: scripted_repeat_compare -->
+🎙 **Can you imitate a cat?**
 
-**15 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-13:i11; family: context_gap_grammar -->
-At school we would ___ animal sounds. → **imitate** · imitated · imitating
-- imitated — *После would нужна базовая форма глагола.*
-- imitating — *После would нужна базовая форма глагола.*
+**13 · Вспомните школьные игры: «В школе мы часто подражали голосам друг друга». Используйте would.**
+<!-- interaction_id: en:lesson-25:session-13:i09; family: phrase_builder -->
+Плитки: `voices` `other’s` `each` `imitate` `would` `we` `school` `At` → **At school we would imitate each other’s voices.**
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-13:i12; family: listen_choose -->
-🔊 *At school we would imitate animal sounds.* → **At school we would imitate animal sounds.** · At school they would imitate animal sounds. · At school we would imitate bird sounds.
-- At school they would imitate animal sounds. — *В записи звучит At school we would imitate animal sounds.*
-- At school we would imitate bird sounds. — *В записи звучит At school we would imitate animal sounds.*
-
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-13:i13; family: speed_match -->
+**14 · Соотнесите четыре действия с переводом**
+<!-- interaction_id: en:lesson-25:session-13:i10; family: speed_match -->
 grab — схватить · tiptoe — идти на цыпочках · chuckle — тихо смеяться · imitate — подражать
 
-**18 · Прежнее место жительства**
-<!-- interaction_id: en:lesson-25:session-13:i14; family: listen_build_dictation -->
-🔊 *I used to live by the lake.* Плитки: `lake` `the` `by` `live` `to` `used` `I` → **I used to live by the lake.**
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-13:i11; family: listen_choose -->
+🔊 *Did you hear that funny sound?* → **Did you hear that funny sound?** · Did you make that funny sound? · Did they hear that funny sound?
+- Did you make that funny sound? — *В записи звучит Did you hear that funny sound?*
+- Did they hear that funny sound? — *В записи звучит Did you hear that funny sound?*
 
-**19 · Раньше я был застенчивым**
-<!-- interaction_id: en:lesson-25:session-13:i15; family: listen_build_dictation -->
-🔊 *I used to be shy.* Плитки: `shy` `be` `to` `used` `I` → **I used to be shy.**
+**16 · Смешной рассказ вы услышали один раз вчера.**
+<!-- interaction_id: en:lesson-25:session-13:i12; family: context_gap_grammar -->
+My friend ___ me that story yesterday. → **told** · has told · would tell
+- has told — *Yesterday требует Past Simple told.*
+- would tell — *Здесь один рассказ вчера, а не прежний повторявшийся обычай.*
 
-**20 · Скажите: «В те времена он обычно проходил на цыпочках мимо спальни».**
-<!-- interaction_id: en:lesson-25:session-13:i16; family: scripted_repeat_compare -->
-🎙 **In those days he would tiptoe past the bedroom.**
+**17 · Услышьте, где прежде встречались друзья.**
+<!-- interaction_id: en:lesson-25:session-13:i13; family: listen_build_dictation -->
+🔊 *We used to meet behind the school.* Плитки: `school` `the` `behind` `meet` `to` `used` `We` → **We used to meet behind the school.**
 
-**21 · Скажите: «В школе она часто подражала звукам животных».**
-<!-- interaction_id: en:lesson-25:session-13:i17; family: scripted_repeat_compare -->
-🎙 **At school she would imitate animal sounds.**
+**18 · Эта история вам знакома. Скажите: «Я уже слышал эту историю».**
+<!-- interaction_id: en:lesson-25:session-13:i14; family: scripted_repeat_compare -->
+🎙 **I have already heard that story.**
+
+**19 · Одну шутку уже рассказали. Попросите: «Расскажи мне ещё одну шутку».**
+<!-- interaction_id: en:lesson-25:session-13:i15; family: phrase_builder -->
+Плитки: `joke` `another` `me` `Tell` → **Tell me another joke.**
+
+**20 · Вы хотите услышать другие истории, несколько.**
+<!-- interaction_id: en:lesson-25:session-13:i16; family: context_gap_grammar -->
+Do you know any ___ stories? → **other** · another · others
+- another — *Another относится к одному предмету; stories — множественное число.*
+- others — *Перед существительным stories используем other без -s.*
+
+**21 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-13:i17; family: listen_choose -->
+🔊 *As children we would laugh all the way home.* → **As children we would laugh all the way home.** · As children we would sing all the way home. · As children we would run all the way home.
+- As children we would sing all the way home. — *В записи звучит As children we would laugh all the way home.*
+- As children we would run all the way home. — *В записи звучит As children we would laugh all the way home.*
 

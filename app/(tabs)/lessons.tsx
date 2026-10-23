@@ -1398,6 +1398,8 @@ const LEARNING_V2_SESSION_STATE_ICON: Readonly<
 > = Object.freeze({
   completed: "checkmark",
   current: "star",
+  // зачем (прогресс v2, владелец 21.10 №8/№10 «просто открыты»): открыто экзаменом или тестом — играть можно
+  open: "play",
   next: "sparkles",
   locked: "lock-closed",
 });

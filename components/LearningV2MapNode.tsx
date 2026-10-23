@@ -35,7 +35,8 @@ const DENIAL_HALF_MS = 120;
 const HALO_MS = 2400;
 const PRESS_EASE = Easing.bezier(0.23, 1, 0.32, 1);
 
-export type LearningV2MapNodeStateV1 = 'completed' | 'current' | 'next' | 'locked';
+// 'open' (прогресс v2, владелец 21.10 №8/№10 «просто открыты»): открыто экзаменом или тестом — рисуется обычным доступным узлом
+export type LearningV2MapNodeStateV1 = 'completed' | 'current' | 'open' | 'next' | 'locked';
 
 interface Props {
   state: LearningV2MapNodeStateV1;

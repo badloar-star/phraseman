@@ -84,7 +84,8 @@ export function useLv2Glass(): Lv2Glass {
  */
 export function lv2NodePaint(
   g: Lv2Glass,
-  state: 'completed' | 'current' | 'next' | 'locked',
+  // 'open' (прогресс v2): открыто экзаменом или тестом — красится как доступный узел (available = true у вызывающего)
+  state: 'completed' | 'current' | 'open' | 'next' | 'locked',
   available: boolean,
 ): { readonly face: string; readonly ink: string } {
   // зачем (темы 2.0): пройденный узел карты — цвет темы (это «прогресс»); в «Спокойно» = cta.

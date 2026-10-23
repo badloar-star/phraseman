@@ -378,7 +378,8 @@ export default function LearningV2ChaptersCourse(props: Props) {
             const isCheckpoint = row.role === "chapter_checkpoint";
             const isExam = row.role === "final_exam";
             // зачем (решение координатора 04.10): узлы — по learning-v2.html, «Занятие N» и «Проверка главы»; раунд 2 менял только шапку.
-            const available = hasMaterial && (row.state === "current" || row.state === "completed");
+            // зачем (прогресс v2): открытый экзаменом или тестом эпизод играбелен, как текущий
+            const available = hasMaterial && (row.state === "current" || row.state === "completed" || row.state === "open");
             const paint = lv2NodePaint(g, row.state, available);
             const icon = !hasMaterial ? "construct-outline" : row.state === "completed" ? "checkmark" : isCheckpoint || isExam ? "trophy" : row.state === "locked" ? "lock-closed" : available ? "play" : "lock-closed";
             const stars = row.state === "completed" ? Math.max(1, props.stars[row.id] ?? 1) : 0;

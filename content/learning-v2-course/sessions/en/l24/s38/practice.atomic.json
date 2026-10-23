@@ -1,0 +1,2357 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-38",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-38:word:edge",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — edge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:word:edge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — edge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:word:edge:audio",
+            "transcript": "edge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:word:edge:r1",
+              "targetText": "edge",
+              "meaningByLocale": {
+                "ru": "край.",
+                "uk": "край."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "edge",
+            "definitionByLocale": {
+              "ru": "край.",
+              "uk": "край."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я вытер край стола.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я вытер край стола.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have cleaned the edge of the table.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я вытер край стола.»",
+            "uk": "Скажіть: «Я витер край столу.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "cleaned",
+            "the",
+            "edge",
+            "of",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "I ___ cleaned the edge of the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-38:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните рассказ.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед cleaned.",
+                "uk": "Із I потрібно have перед cleaned."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед cleaned.",
+                "uk": "Із I потрібно have перед cleaned."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i03:r1",
+            "text": "I have cleaned the edge of the table."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i03:r2",
+            "text": "We have cleaned the edge of the table."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i03:r3",
+            "text": "I have cleaned the edge of the shelf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i03:audio",
+            "transcript": "I have cleaned the edge of the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:i03:r1",
+              "targetText": "I have cleaned the edge of the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i03:r2",
+              "targetText": "We have cleaned the edge of the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i03:r3",
+              "targetText": "I have cleaned the edge of the shelf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have cleaned the edge of the table.",
+                "uk": "У записі звучить I have cleaned the edge of the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have cleaned the edge of the table.",
+                "uk": "У записі звучить I have cleaned the edge of the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:word:beginning",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beginning",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:word:beginning:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beginning",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:word:beginning:audio",
+            "transcript": "beginning"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:word:beginning:r1",
+              "targetText": "beginning",
+              "meaningByLocale": {
+                "ru": "начало.",
+                "uk": "початок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beginning",
+            "definitionByLocale": {
+              "ru": "начало.",
+              "uk": "початок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера она прочитала начало рассказа.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера она прочитала начало рассказа.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She read the beginning of the story yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она прочитала начало рассказа.»",
+            "uk": "Скажіть: «Учора вона прочитала початок оповідання.»"
+          },
+          "orderedTokens": [
+            "She",
+            "read",
+            "the",
+            "beginning",
+            "of",
+            "the",
+            "story",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i05:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i05:r2",
+            "text": "has read"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i05:r3",
+            "text": "reads"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "She ___ the beginning of the story yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-38:i05:r1",
+              "text": "read"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i05:r2",
+              "text": "has read"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i05:r3",
+              "text": "reads"
+            }
+          ],
+          "testedDimension": "Дополните рассказ.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма read без has.",
+                "uk": "Із yesterday потрібна форма read без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма read без has.",
+                "uk": "Із yesterday потрібна форма read без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i06:r1",
+            "text": "She read the beginning of the story yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i06:r2",
+            "text": "He read the beginning of the story yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i06:r3",
+            "text": "She read the beginning of the story last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i06:audio",
+            "transcript": "She read the beginning of the story yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:i06:r1",
+              "targetText": "She read the beginning of the story yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i06:r2",
+              "targetText": "He read the beginning of the story yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i06:r3",
+              "targetText": "She read the beginning of the story last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She read the beginning of the story yesterday.",
+                "uk": "У записі звучить She read the beginning of the story yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She read the beginning of the story yesterday.",
+                "uk": "У записі звучить She read the beginning of the story yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:word:section",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — section",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:word:section:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — section",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:word:section:audio",
+            "transcript": "section"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:word:section:r1",
+              "targetText": "section",
+              "meaningByLocale": {
+                "ru": "раздел.",
+                "uk": "розділ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "section",
+            "definitionByLocale": {
+              "ru": "раздел.",
+              "uk": "розділ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы заполнили этот раздел анкеты.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы заполнили этот раздел анкеты.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have completed this section of the form.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы заполнили этот раздел анкеты.»",
+            "uk": "Скажіть: «Ми заповнили цей розділ анкети.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "completed",
+            "this",
+            "section",
+            "of",
+            "the",
+            "form"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "We ___ completed this section of the form.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-38:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Дополните рассказ.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед completed.",
+                "uk": "Із we потрібно have перед completed."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед completed.",
+                "uk": "Із we потрібно have перед completed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i09:r1",
+            "text": "We have completed this section of the form."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i09:r2",
+            "text": "They have completed this section of the form."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i09:r3",
+            "text": "We have checked this section of the form."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i09:audio",
+            "transcript": "We have completed this section of the form."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:i09:r1",
+              "targetText": "We have completed this section of the form.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i09:r2",
+              "targetText": "They have completed this section of the form.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i09:r3",
+              "targetText": "We have checked this section of the form.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have completed this section of the form.",
+                "uk": "У записі звучить We have completed this section of the form."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have completed this section of the form.",
+                "uk": "У записі звучить We have completed this section of the form."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:word:bottom",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bottom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:word:bottom:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bottom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:word:bottom:audio",
+            "transcript": "bottom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:word:bottom:r1",
+              "targetText": "bottom",
+              "meaningByLocale": {
+                "ru": "дно, нижняя часть.",
+                "uk": "дно, нижня частина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottom",
+            "definitionByLocale": {
+              "ru": "дно, нижняя часть.",
+              "uk": "дно, нижня частина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера она нашла ключи на дне своей сумки.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера она нашла ключи на дне своей сумки.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She found the keys at the bottom of her bag yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она нашла ключи на дне своей сумки.»",
+            "uk": "Скажіть: «Учора вона знайшла ключі на дні своєї сумки.»"
+          },
+          "orderedTokens": [
+            "She",
+            "found",
+            "the",
+            "keys",
+            "at",
+            "the",
+            "bottom",
+            "of",
+            "her",
+            "bag",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i11:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i11:r2",
+            "text": "has found"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i11:r3",
+            "text": "find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "She ___ the keys at the bottom of her bag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-38:i11:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i11:r2",
+              "text": "has found"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i11:r3",
+              "text": "find"
+            }
+          ],
+          "testedDimension": "Дополните рассказ.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма found без has.",
+                "uk": "Із yesterday потрібна форма found без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма found без has.",
+                "uk": "Із yesterday потрібна форма found без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i12:r1",
+            "text": "She found the keys at the bottom of her bag yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i12:r2",
+            "text": "He found the keys at the bottom of his bag yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i12:r3",
+            "text": "She found the keys at the bottom of her bag last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i12:audio",
+            "transcript": "She found the keys at the bottom of her bag yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:i12:r1",
+              "targetText": "She found the keys at the bottom of her bag yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i12:r2",
+              "targetText": "He found the keys at the bottom of his bag yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i12:r3",
+              "targetText": "She found the keys at the bottom of her bag last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She found the keys at the bottom of her bag yesterday.",
+                "uk": "У записі звучить She found the keys at the bottom of her bag yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She found the keys at the bottom of her bag yesterday.",
+                "uk": "У записі звучить She found the keys at the bottom of her bag yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-38:i13:p1",
+              "target": "edge",
+              "meaningByLocale": {
+                "ru": "край",
+                "uk": "край"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-38:i13:p2",
+              "target": "beginning",
+              "meaningByLocale": {
+                "ru": "начало",
+                "uk": "початок"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-38:i13:p3",
+              "target": "section",
+              "meaningByLocale": {
+                "ru": "раздел",
+                "uk": "розділ"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-38:i13:p4",
+              "target": "bottom",
+              "meaningByLocale": {
+                "ru": "дно, нижняя часть",
+                "uk": "дно, нижня частина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "edge",
+            "beginning",
+            "section",
+            "bottom"
+          ],
+          "rightColumn": [
+            "край",
+            "начало",
+            "раздел",
+            "дно, нижняя часть"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работает с утра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Работает с утра",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы прочитали начало рассказа вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы прочитали начало рассказа вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i16:audio",
+            "transcript": "We read the beginning of the story yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We read the beginning of the story yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она заполнила этот раздел анкеты вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она заполнила этот раздел анкеты вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i17:audio",
+            "transcript": "She completed this section of the form yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She completed this section of the form yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-38:word:edge",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — edge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:word:edge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — edge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:word:edge:audio",
+            "transcript": "edge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:word:edge:r1",
+              "targetText": "edge",
+              "meaningByLocale": {
+                "ru": "край.",
+                "uk": "край."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "edge",
+            "definitionByLocale": {
+              "ru": "край.",
+              "uk": "край."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я витер край столу.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я витер край столу.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have cleaned the edge of the table.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я вытер край стола.»",
+            "uk": "Скажіть: «Я витер край столу.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "cleaned",
+            "the",
+            "edge",
+            "of",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "I ___ cleaned the edge of the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-38:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед cleaned.",
+                "uk": "Із I потрібно have перед cleaned."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед cleaned.",
+                "uk": "Із I потрібно have перед cleaned."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i03:r1",
+            "text": "I have cleaned the edge of the table."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i03:r2",
+            "text": "We have cleaned the edge of the table."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i03:r3",
+            "text": "I have cleaned the edge of the shelf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i03:audio",
+            "transcript": "I have cleaned the edge of the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:i03:r1",
+              "targetText": "I have cleaned the edge of the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i03:r2",
+              "targetText": "We have cleaned the edge of the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i03:r3",
+              "targetText": "I have cleaned the edge of the shelf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have cleaned the edge of the table.",
+                "uk": "У записі звучить I have cleaned the edge of the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have cleaned the edge of the table.",
+                "uk": "У записі звучить I have cleaned the edge of the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:word:beginning",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beginning",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:word:beginning:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beginning",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:word:beginning:audio",
+            "transcript": "beginning"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:word:beginning:r1",
+              "targetText": "beginning",
+              "meaningByLocale": {
+                "ru": "начало.",
+                "uk": "початок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beginning",
+            "definitionByLocale": {
+              "ru": "начало.",
+              "uk": "початок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора вона прочитала початок оповідання.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора вона прочитала початок оповідання.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She read the beginning of the story yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она прочитала начало рассказа.»",
+            "uk": "Скажіть: «Учора вона прочитала початок оповідання.»"
+          },
+          "orderedTokens": [
+            "She",
+            "read",
+            "the",
+            "beginning",
+            "of",
+            "the",
+            "story",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i05:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i05:r2",
+            "text": "has read"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i05:r3",
+            "text": "reads"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "She ___ the beginning of the story yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-38:i05:r1",
+              "text": "read"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i05:r2",
+              "text": "has read"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i05:r3",
+              "text": "reads"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма read без has.",
+                "uk": "Із yesterday потрібна форма read без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма read без has.",
+                "uk": "Із yesterday потрібна форма read без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i06:r1",
+            "text": "She read the beginning of the story yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i06:r2",
+            "text": "He read the beginning of the story yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i06:r3",
+            "text": "She read the beginning of the story last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i06:audio",
+            "transcript": "She read the beginning of the story yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:i06:r1",
+              "targetText": "She read the beginning of the story yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i06:r2",
+              "targetText": "He read the beginning of the story yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i06:r3",
+              "targetText": "She read the beginning of the story last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She read the beginning of the story yesterday.",
+                "uk": "У записі звучить She read the beginning of the story yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She read the beginning of the story yesterday.",
+                "uk": "У записі звучить She read the beginning of the story yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:word:section",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — section",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:word:section:audio"
+        ],
+        "accessibilityLabel": "Картка слова — section",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:word:section:audio",
+            "transcript": "section"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:word:section:r1",
+              "targetText": "section",
+              "meaningByLocale": {
+                "ru": "раздел.",
+                "uk": "розділ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "section",
+            "definitionByLocale": {
+              "ru": "раздел.",
+              "uk": "розділ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми заповнили цей розділ анкети.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми заповнили цей розділ анкети.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have completed this section of the form.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы заполнили этот раздел анкеты.»",
+            "uk": "Скажіть: «Ми заповнили цей розділ анкети.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "completed",
+            "this",
+            "section",
+            "of",
+            "the",
+            "form"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "We ___ completed this section of the form.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-38:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед completed.",
+                "uk": "Із we потрібно have перед completed."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед completed.",
+                "uk": "Із we потрібно have перед completed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i09:r1",
+            "text": "We have completed this section of the form."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i09:r2",
+            "text": "They have completed this section of the form."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i09:r3",
+            "text": "We have checked this section of the form."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i09:audio",
+            "transcript": "We have completed this section of the form."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:i09:r1",
+              "targetText": "We have completed this section of the form.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i09:r2",
+              "targetText": "They have completed this section of the form.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i09:r3",
+              "targetText": "We have checked this section of the form.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have completed this section of the form.",
+                "uk": "У записі звучить We have completed this section of the form."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have completed this section of the form.",
+                "uk": "У записі звучить We have completed this section of the form."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:word:bottom",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bottom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:word:bottom:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bottom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:word:bottom:audio",
+            "transcript": "bottom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:word:bottom:r1",
+              "targetText": "bottom",
+              "meaningByLocale": {
+                "ru": "дно, нижняя часть.",
+                "uk": "дно, нижня частина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottom",
+            "definitionByLocale": {
+              "ru": "дно, нижняя часть.",
+              "uk": "дно, нижня частина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора вона знайшла ключі на дні своєї сумки.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора вона знайшла ключі на дні своєї сумки.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She found the keys at the bottom of her bag yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она нашла ключи на дне своей сумки.»",
+            "uk": "Скажіть: «Учора вона знайшла ключі на дні своєї сумки.»"
+          },
+          "orderedTokens": [
+            "She",
+            "found",
+            "the",
+            "keys",
+            "at",
+            "the",
+            "bottom",
+            "of",
+            "her",
+            "bag",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i11:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i11:r2",
+            "text": "has found"
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i11:r3",
+            "text": "find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "She ___ the keys at the bottom of her bag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-38:i11:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i11:r2",
+              "text": "has found"
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i11:r3",
+              "text": "find"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма found без has.",
+                "uk": "Із yesterday потрібна форма found без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма found без has.",
+                "uk": "Із yesterday потрібна форма found без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-38:i12:r1",
+            "text": "She found the keys at the bottom of her bag yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i12:r2",
+            "text": "He found the keys at the bottom of his bag yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-38:i12:r3",
+            "text": "She found the keys at the bottom of her bag last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i12:audio",
+            "transcript": "She found the keys at the bottom of her bag yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-38:i12:r1",
+              "targetText": "She found the keys at the bottom of her bag yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i12:r2",
+              "targetText": "He found the keys at the bottom of his bag yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i12:r3",
+              "targetText": "She found the keys at the bottom of her bag last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She found the keys at the bottom of her bag yesterday.",
+                "uk": "У записі звучить She found the keys at the bottom of her bag yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She found the keys at the bottom of her bag yesterday.",
+                "uk": "У записі звучить She found the keys at the bottom of her bag yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-38:i13:p1",
+              "target": "edge",
+              "meaningByLocale": {
+                "ru": "край",
+                "uk": "край"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-38:i13:p2",
+              "target": "beginning",
+              "meaningByLocale": {
+                "ru": "начало",
+                "uk": "початок"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-38:i13:p3",
+              "target": "section",
+              "meaningByLocale": {
+                "ru": "раздел",
+                "uk": "розділ"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-38:i13:p4",
+              "target": "bottom",
+              "meaningByLocale": {
+                "ru": "дно, нижняя часть",
+                "uk": "дно, нижня частина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "edge",
+            "beginning",
+            "section",
+            "bottom"
+          ],
+          "rightColumn": [
+            "край",
+            "початок",
+            "розділ",
+            "дно, нижня частина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працює з ранку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Працює з ранку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми прочитали початок оповідання вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми прочитали початок оповідання вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i16:audio",
+            "transcript": "We read the beginning of the story yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We read the beginning of the story yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-38:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона заповнила цей розділ анкети вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона заповнила цей розділ анкети вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-38:i17:audio",
+            "transcript": "She completed this section of the form yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She completed this section of the form yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-38:word:edge",
+      "correctText": "edge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i01",
+      "correctText": "I have cleaned the edge of the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i02",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-38:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i03",
+      "correctText": "I have cleaned the edge of the table.",
+      "correctResponseId": "en:lesson-24:session-38:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:word:beginning",
+      "correctText": "beginning",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i04",
+      "correctText": "She read the beginning of the story yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i05",
+      "correctText": "read",
+      "correctResponseId": "en:lesson-24:session-38:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i06",
+      "correctText": "She read the beginning of the story yesterday.",
+      "correctResponseId": "en:lesson-24:session-38:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:word:section",
+      "correctText": "section",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i07",
+      "correctText": "We have completed this section of the form.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i08",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-38:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i09",
+      "correctText": "We have completed this section of the form.",
+      "correctResponseId": "en:lesson-24:session-38:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:word:bottom",
+      "correctText": "bottom",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i10",
+      "correctText": "She found the keys at the bottom of her bag yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i11",
+      "correctText": "found",
+      "correctResponseId": "en:lesson-24:session-38:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i12",
+      "correctText": "She found the keys at the bottom of her bag yesterday.",
+      "correctResponseId": "en:lesson-24:session-38:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i15",
+      "correctText": "She has been working since this morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i16",
+      "correctText": "We read the beginning of the story yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-38:i17",
+      "correctText": "She completed this section of the form yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

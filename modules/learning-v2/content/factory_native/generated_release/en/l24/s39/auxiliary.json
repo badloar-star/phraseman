@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-39:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-39:intro1:r3": {
+          "ru": "После have нужна форма bought.",
+          "uk": "Після have потрібна форма bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-39:intro2:r2": {
+          "ru": "С yesterday нужно picked без has.",
+          "uk": "Із yesterday потрібне picked без has."
+        },
+        "en:lesson-24:session-39:intro2:r3": {
+          "ru": "Для прошлого нужна форма picked.",
+          "uk": "Для минулого потрібна форма picked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-39:intro3:r2": {
+          "ru": "С yesterday нужен recycled без have.",
+          "uk": "Із yesterday потрібне recycled без have."
+        },
+        "en:lesson-24:session-39:intro3:r3": {
+          "ru": "Для прошлого нужна форма recycled.",
+          "uk": "Для минулого потрібна форма recycled."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ddf3aa592a216d01982d3d74f2e93d9fb675d9f8ff9e88130e78a5d45e5c385d"
+}

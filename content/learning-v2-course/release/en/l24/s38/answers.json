@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-38:word:edge",
+    "correctText": "edge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i01",
+    "correctText": "I have cleaned the edge of the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i03",
+    "correctText": "I have cleaned the edge of the table.",
+    "correctResponseId": "en:lesson-24:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:word:beginning",
+    "correctText": "beginning",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i04",
+    "correctText": "She read the beginning of the story yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i05",
+    "correctText": "read",
+    "correctResponseId": "en:lesson-24:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i06",
+    "correctText": "She read the beginning of the story yesterday.",
+    "correctResponseId": "en:lesson-24:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:word:section",
+    "correctText": "section",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i07",
+    "correctText": "We have completed this section of the form.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i09",
+    "correctText": "We have completed this section of the form.",
+    "correctResponseId": "en:lesson-24:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:word:bottom",
+    "correctText": "bottom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i10",
+    "correctText": "She found the keys at the bottom of her bag yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i11",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-24:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i12",
+    "correctText": "She found the keys at the bottom of her bag yesterday.",
+    "correctResponseId": "en:lesson-24:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i13",
+    "correctText": "en:lesson-24:session-38:i13:p1=edge\nen:lesson-24:session-38:i13:p2=beginning\nen:lesson-24:session-38:i13:p3=section\nen:lesson-24:session-38:i13:p4=bottom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i16",
+    "correctText": "We read the beginning of the story yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-38:i17",
+    "correctText": "She completed this section of the form yesterday.",
+    "correctResponseId": null
+  }
+]

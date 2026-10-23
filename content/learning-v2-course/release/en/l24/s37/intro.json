@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не помню возраст",
+        "uk": "Не пам’ятаю віку"
+      },
+      "bodyByLocale": {
+        "ru": "Age — возраст. I have forgotten his age — я забыл, сколько ему лет. Have forgotten показывает результат: сейчас я не помню. Forgotten — форма знакомого forget. His age — его возраст, her age — её возраст. Чтобы спросить возраст, можно использовать знакомый вопрос How old is he?",
+        "uk": "Age — вік. I have forgotten his age — я забув, скільки йому років. Have forgotten показує результат: зараз я не пам’ятаю. Forgotten — форма знайомого forget. His age — його вік, her age — її вік. Щоб запитати вік, можна використати знайоме запитання How old is he?"
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-37:intro1:r1",
+              "text": "I have forgotten his age."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro1:r2",
+              "text": "I has forgotten his age."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro1:r3",
+              "text": "I have forget his age."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-37:intro1:r1",
+              "text": "I have forgotten his age."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro1:r2",
+              "text": "I has forgotten his age."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro1:r3",
+              "text": "I have forget his age."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Разговор о дружбе",
+        "uk": "Розмова про дружбу"
+      },
+      "bodyByLocale": {
+        "ru": "Friendship — дружба. Friend — друг, а friendship — отношения между друзьями. She talked about their friendship yesterday — вчера она говорила об их дружбе. После talk здесь нужно about. Yesterday относится к законченному прошлому, поэтому talked без has.",
+        "uk": "Friendship — дружба. Friend — друг, а friendship — стосунки між друзями. She talked about their friendship yesterday — учора вона говорила про їхню дружбу. Після talk тут потрібне about. Yesterday стосується завершеного минулого, тому talked без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-37:intro2:r1",
+              "text": "She talked about their friendship yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro2:r2",
+              "text": "She has talked about their friendship yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro2:r3",
+              "text": "She talk about their friendship yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-37:intro2:r1",
+              "text": "She talked about their friendship yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro2:r2",
+              "text": "She has talked about their friendship yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro2:r3",
+              "text": "She talk about their friendship yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Печальная новость",
+        "uk": "Сумна новина"
+      },
+      "bodyByLocale": {
+        "ru": "Death — смерть, funeral — похороны. We have heard about his death — мы узнали о его смерти: сообщаем новость без даты. They attended the funeral last week — на прошлой неделе они были на похоронах. Last week требует attended без have. В английском the funeral — одно событие, хотя русское «похороны» имеет форму множественного числа.",
+        "uk": "Death — смерть, funeral — похорон. We have heard about his death — ми дізналися про його смерть: повідомляємо новину без дати. They attended the funeral last week — минулого тижня вони були на похороні. Last week потребує attended без have. Після attend називаємо подію прямо: attend the funeral, без at."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-37:intro3:r1",
+              "text": "They attended the funeral last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro3:r2",
+              "text": "They have attended the funeral last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro3:r3",
+              "text": "They attend the funeral last week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-37:intro3:r1",
+              "text": "They attended the funeral last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro3:r2",
+              "text": "They have attended the funeral last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-37:intro3:r3",
+              "text": "They attend the funeral last week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e3e2acf4989ac4751acaa30d5bafb0007d87050251a01583df37d547c709dd56"
+}

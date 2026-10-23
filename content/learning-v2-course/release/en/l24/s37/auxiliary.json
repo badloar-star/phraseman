@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-37:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-37:intro1:r3": {
+          "ru": "После have нужна форма forgotten.",
+          "uk": "Після have потрібна форма forgotten."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-37:intro2:r2": {
+          "ru": "С yesterday нужно talked без has.",
+          "uk": "Із yesterday потрібне talked без has."
+        },
+        "en:lesson-24:session-37:intro2:r3": {
+          "ru": "Для прошлого нужна форма talked.",
+          "uk": "Для минулого потрібна форма talked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-37:intro3:r2": {
+          "ru": "С last week нужен attended без have.",
+          "uk": "Із last week потрібне attended без have."
+        },
+        "en:lesson-24:session-37:intro3:r3": {
+          "ru": "Для прошлого нужна форма attended.",
+          "uk": "Для минулого потрібна форма attended."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5b1e7b1b8c22e14dfa06a4e9487298d8f0b9d9c1c62fa9b15a48d5fd19fad914"
+}

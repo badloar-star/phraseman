@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-39:word:wood",
+    "correctText": "wood",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i01",
+    "correctText": "I have bought some wood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i03",
+    "correctText": "I have bought some wood.",
+    "correctResponseId": "en:lesson-24:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:word:stone",
+    "correctText": "stone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i04",
+    "correctText": "She picked up a stone yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i05",
+    "correctText": "picked",
+    "correctResponseId": "en:lesson-24:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i06",
+    "correctText": "She picked up a stone yesterday.",
+    "correctResponseId": "en:lesson-24:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:word:steel",
+    "correctText": "steel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i07",
+    "correctText": "We have chosen a steel shelf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i09",
+    "correctText": "We have chosen a steel shelf.",
+    "correctResponseId": "en:lesson-24:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:word:cardboard",
+    "correctText": "cardboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i10",
+    "correctText": "They recycled the cardboard yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i11",
+    "correctText": "recycled",
+    "correctResponseId": "en:lesson-24:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i12",
+    "correctText": "They recycled the cardboard yesterday.",
+    "correctResponseId": "en:lesson-24:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i13",
+    "correctText": "en:lesson-24:session-39:i13:p1=wood\nen:lesson-24:session-39:i13:p2=stone\nen:lesson-24:session-39:i13:p3=steel\nen:lesson-24:session-39:i13:p4=cardboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i16",
+    "correctText": "We bought some wood yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-39:i17",
+    "correctText": "She recycled the cardboard yesterday.",
+    "correctResponseId": null
+  }
+]

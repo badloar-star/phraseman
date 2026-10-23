@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-37:word:age",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — age",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:word:age:audio"
+      ],
+      "accessibilityLabel": "Картка слова — age",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:word:age:audio",
+          "transcript": "age"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-37:word:age:r1",
+            "targetText": "age",
+            "meaningByLocale": {
+              "ru": "возраст.",
+              "uk": "вік."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "age",
+          "definitionByLocale": {
+            "ru": "возраст.",
+            "uk": "вік."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я забув, скільки йому років.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я забув, скільки йому років.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have forgotten his age.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я забыл, сколько ему лет.»",
+          "uk": "Скажіть: «Я забув, скільки йому років.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "forgotten",
+          "his",
+          "age"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про людей.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-37:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про людей.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о людях.",
+          "uk": "Доповніть розповідь про людей."
+        },
+        "gappedTargetPhrase": "I ___ forgotten his age.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-37:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про людей.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед forgotten.",
+              "uk": "Із I потрібно have перед forgotten."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед forgotten.",
+              "uk": "Із I потрібно have перед forgotten."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-37:i03:r1",
+          "text": "I have forgotten his age."
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i03:r2",
+          "text": "We have forgotten his age."
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i03:r3",
+          "text": "I have forgotten her age."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:i03:audio",
+          "transcript": "I have forgotten his age."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-37:i03:r1",
+            "targetText": "I have forgotten his age.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i03:r2",
+            "targetText": "We have forgotten his age.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i03:r3",
+            "targetText": "I have forgotten her age.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have forgotten his age.",
+              "uk": "У записі звучить I have forgotten his age."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have forgotten his age.",
+              "uk": "У записі звучить I have forgotten his age."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:word:friendship",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — friendship",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:word:friendship:audio"
+      ],
+      "accessibilityLabel": "Картка слова — friendship",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:word:friendship:audio",
+          "transcript": "friendship"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-37:word:friendship:r1",
+            "targetText": "friendship",
+            "meaningByLocale": {
+              "ru": "дружба.",
+              "uk": "дружба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "friendship",
+          "definitionByLocale": {
+            "ru": "дружба.",
+            "uk": "дружба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вона говорила про їхню дружбу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вона говорила про їхню дружбу.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She talked about their friendship yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она говорила об их дружбе.»",
+          "uk": "Скажіть: «Учора вона говорила про їхню дружбу.»"
+        },
+        "orderedTokens": [
+          "She",
+          "talked",
+          "about",
+          "their",
+          "friendship",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про людей.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-37:i05:r1",
+          "text": "talked"
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i05:r2",
+          "text": "has talked"
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i05:r3",
+          "text": "talk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про людей.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о людях.",
+          "uk": "Доповніть розповідь про людей."
+        },
+        "gappedTargetPhrase": "She ___ about their friendship yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-37:i05:r1",
+            "text": "talked"
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i05:r2",
+            "text": "has talked"
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i05:r3",
+            "text": "talk"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про людей.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма talked без has.",
+              "uk": "Із yesterday потрібна форма talked без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма talked без has.",
+              "uk": "Із yesterday потрібна форма talked без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-37:i06:r1",
+          "text": "She talked about their friendship yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i06:r2",
+          "text": "He talked about their friendship yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i06:r3",
+          "text": "She talked about their friendship last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:i06:audio",
+          "transcript": "She talked about their friendship yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-37:i06:r1",
+            "targetText": "She talked about their friendship yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i06:r2",
+            "targetText": "He talked about their friendship yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i06:r3",
+            "targetText": "She talked about their friendship last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-37:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She talked about their friendship yesterday.",
+              "uk": "У записі звучить She talked about their friendship yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She talked about their friendship yesterday.",
+              "uk": "У записі звучить She talked about their friendship yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:word:death",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — death",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:word:death:audio"
+      ],
+      "accessibilityLabel": "Картка слова — death",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:word:death:audio",
+          "transcript": "death"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-37:word:death:r1",
+            "targetText": "death",
+            "meaningByLocale": {
+              "ru": "смерть.",
+              "uk": "смерть."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "death",
+          "definitionByLocale": {
+            "ru": "смерть.",
+            "uk": "смерть."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми дізналися про його смерть.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми дізналися про його смерть.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have heard about his death.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы узнали о его смерти.»",
+          "uk": "Скажіть: «Ми дізналися про його смерть.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "heard",
+          "about",
+          "his",
+          "death"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про людей.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-37:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про людей.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о людях.",
+          "uk": "Доповніть розповідь про людей."
+        },
+        "gappedTargetPhrase": "We ___ heard about his death.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-37:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про людей.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед heard.",
+              "uk": "Із we потрібно have перед heard."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед heard.",
+              "uk": "Із we потрібно have перед heard."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-37:i09:r1",
+          "text": "We have heard about his death."
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i09:r2",
+          "text": "They have heard about his death."
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i09:r3",
+          "text": "We have heard about her death."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:i09:audio",
+          "transcript": "We have heard about his death."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-37:i09:r1",
+            "targetText": "We have heard about his death.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i09:r2",
+            "targetText": "They have heard about his death.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i09:r3",
+            "targetText": "We have heard about her death.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have heard about his death.",
+              "uk": "У записі звучить We have heard about his death."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have heard about his death.",
+              "uk": "У записі звучить We have heard about his death."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:word:funeral",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — funeral",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:word:funeral:audio"
+      ],
+      "accessibilityLabel": "Картка слова — funeral",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:word:funeral:audio",
+          "transcript": "funeral"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-37:word:funeral:r1",
+            "targetText": "funeral",
+            "meaningByLocale": {
+              "ru": "похороны.",
+              "uk": "похорон."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "funeral",
+          "definitionByLocale": {
+            "ru": "похороны.",
+            "uk": "похорон."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Минулого тижня вони були на похороні.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Минулого тижня вони були на похороні.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They attended the funeral last week.",
+        "localizedMeaning": {
+          "ru": "Скажите: «На прошлой неделе они были на похоронах.»",
+          "uk": "Скажіть: «Минулого тижня вони були на похороні.»"
+        },
+        "orderedTokens": [
+          "They",
+          "attended",
+          "the",
+          "funeral",
+          "last",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про людей.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-37:i11:r1",
+          "text": "attended"
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i11:r2",
+          "text": "have attended"
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i11:r3",
+          "text": "attend"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про людей.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о людях.",
+          "uk": "Доповніть розповідь про людей."
+        },
+        "gappedTargetPhrase": "They ___ the funeral last week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-37:i11:r1",
+            "text": "attended"
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i11:r2",
+            "text": "have attended"
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i11:r3",
+            "text": "attend"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про людей.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей.",
+            "feedbackByLocale": {
+              "ru": "С last week нужна форма attended без have.",
+              "uk": "Із last week потрібна форма attended без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей.",
+            "feedbackByLocale": {
+              "ru": "С last week нужна форма attended без have.",
+              "uk": "Із last week потрібна форма attended без have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-37:i12:r1",
+          "text": "They attended the funeral last week."
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i12:r2",
+          "text": "We attended the funeral last week."
+        },
+        {
+          "responseId": "en:lesson-24:session-37:i12:r3",
+          "text": "They attended the funeral yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:i12:audio",
+          "transcript": "They attended the funeral last week."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-37:i12:r1",
+            "targetText": "They attended the funeral last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i12:r2",
+            "targetText": "We attended the funeral last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i12:r3",
+            "targetText": "They attended the funeral yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They attended the funeral last week.",
+              "uk": "У записі звучить They attended the funeral last week."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They attended the funeral last week.",
+              "uk": "У записі звучить They attended the funeral last week."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-37:i13:p1",
+            "target": "age",
+            "meaningByLocale": {
+              "ru": "возраст",
+              "uk": "вік"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-37:i13:p2",
+            "target": "friendship",
+            "meaningByLocale": {
+              "ru": "дружба",
+              "uk": "дружба"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-37:i13:p3",
+            "target": "death",
+            "meaningByLocale": {
+              "ru": "смерть",
+              "uk": "смерть"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-37:i13:p4",
+            "target": "funeral",
+            "meaningByLocale": {
+              "ru": "похороны",
+              "uk": "похорон"
+            }
+          }
+        ],
+        "leftColumn": [
+          "age",
+          "friendship",
+          "death",
+          "funeral"
+        ],
+        "rightColumn": [
+          "вік",
+          "дружба",
+          "смерть",
+          "похорон"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми говорили про їхню дружбу вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми говорили про їхню дружбу вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:i16:audio",
+          "transcript": "We talked about their friendship yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We talked about their friendship yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-37:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона була на похороні минулого тижня».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона була на похороні минулого тижня».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-37:i17:audio",
+          "transcript": "She attended the funeral last week."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She attended the funeral last week.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "70ce5d36c540a3a198a1ac8d619156ad6fdfa77680e0f71f19f7fde305fa4cd1"
+}

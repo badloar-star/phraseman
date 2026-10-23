@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Материал для полки",
+        "uk": "Матеріал для полиці"
+      },
+      "bodyByLocale": {
+        "ru": "Wood — дерево как материал, древесина. I have bought some wood — я купил немного древесины: например, для полки. Растущее дерево — знакомое tree. Wood здесь неисчисляемое, поэтому some wood, не a wood. Сообщаем результат покупки: материал уже есть.",
+        "uk": "Wood — дерево як матеріал, деревина. I have bought some wood — я купив трохи деревини: наприклад, для полиці. Дерево, що росте, — знайоме tree. Wood тут незлічуване, тому some wood, не a wood. Повідомляємо результат покупки: матеріал уже є."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-39:intro1:r1",
+              "text": "I have bought some wood."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro1:r2",
+              "text": "I has bought some wood."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro1:r3",
+              "text": "I have buy some wood."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-39:intro1:r1",
+              "text": "I have bought some wood."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro1:r2",
+              "text": "I has bought some wood."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro1:r3",
+              "text": "I have buy some wood."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Камень и сталь",
+        "uk": "Камінь і сталь"
+      },
+      "bodyByLocale": {
+        "ru": "Stone — камень. She picked up a stone yesterday — вчера она подняла камень. Один камень можно посчитать: a stone, two stones. Steel — сталь. We have chosen a steel shelf — мы выбрали стальную полку. Steel перед shelf указывает материал. Yesterday требует picked, а результат без даты — have chosen.",
+        "uk": "Stone — камінь. She picked up a stone yesterday — учора вона підняла камінь. Один камінь можна порахувати: a stone, two stones. Steel — сталь. We have chosen a steel shelf — ми вибрали сталеву полицю. Steel перед shelf указує матеріал. Yesterday потребує picked, а результат без дати — have chosen."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-39:intro2:r1",
+              "text": "She picked up a stone yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro2:r2",
+              "text": "She has picked up a stone yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro2:r3",
+              "text": "She pick up a stone yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-39:intro2:r1",
+              "text": "She picked up a stone yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro2:r2",
+              "text": "She has picked up a stone yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro2:r3",
+              "text": "She pick up a stone yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Картон на переработку",
+        "uk": "Картон на переробку"
+      },
+      "bodyByLocale": {
+        "ru": "Cardboard — картон. They recycled the cardboard yesterday — вчера они сдали картон на переработку. Cardboard обозначает материал; отдельную коробку называем a cardboard box. С yesterday нужен recycled без have. Коробка исчезла из прихожей — теперь там снова можно пройти.",
+        "uk": "Cardboard — картон. They recycled the cardboard yesterday — учора вони здали картон на переробку. Cardboard позначає матеріал; окрему коробку називаємо a cardboard box. Із yesterday потрібне recycled без have. Коробка зникла з передпокою — тепер там знову можна пройти."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-39:intro3:r1",
+              "text": "They recycled the cardboard yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro3:r2",
+              "text": "They have recycled the cardboard yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro3:r3",
+              "text": "They recycle the cardboard yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-39:intro3:r1",
+              "text": "They recycled the cardboard yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro3:r2",
+              "text": "They have recycled the cardboard yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-39:intro3:r3",
+              "text": "They recycle the cardboard yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "caf624067797c9e008edad650c82bf9d2e2ad2cb1208461255598c938349161f"
+}

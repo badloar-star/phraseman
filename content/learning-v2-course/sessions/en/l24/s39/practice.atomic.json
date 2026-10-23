@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-39:word:wood",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wood",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:word:wood:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wood",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:word:wood:audio",
+            "transcript": "wood"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:word:wood:r1",
+              "targetText": "wood",
+              "meaningByLocale": {
+                "ru": "дерево, древесина.",
+                "uk": "дерево, деревина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wood",
+            "definitionByLocale": {
+              "ru": "дерево, древесина.",
+              "uk": "дерево, деревина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я купил немного древесины.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я купил немного древесины.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have bought some wood.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я купил немного древесины.»",
+            "uk": "Скажіть: «Я купив трохи деревини.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "bought",
+            "some",
+            "wood"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о материалах.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о материалах.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о материалах.",
+            "uk": "Доповніть розповідь про матеріали."
+          },
+          "gappedTargetPhrase": "I ___ bought some wood.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-39:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о материалах.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о материалах.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед bought.",
+                "uk": "Із I потрібно have перед bought."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о материалах.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед bought.",
+                "uk": "Із I потрібно have перед bought."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i03:r1",
+            "text": "I have bought some wood."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i03:r2",
+            "text": "We have bought some wood."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i03:r3",
+            "text": "I have cut some wood."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i03:audio",
+            "transcript": "I have bought some wood."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:i03:r1",
+              "targetText": "I have bought some wood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i03:r2",
+              "targetText": "We have bought some wood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i03:r3",
+              "targetText": "I have cut some wood.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have bought some wood.",
+                "uk": "У записі звучить I have bought some wood."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have bought some wood.",
+                "uk": "У записі звучить I have bought some wood."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:word:stone",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:word:stone:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:word:stone:audio",
+            "transcript": "stone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:word:stone:r1",
+              "targetText": "stone",
+              "meaningByLocale": {
+                "ru": "камень.",
+                "uk": "камінь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stone",
+            "definitionByLocale": {
+              "ru": "камень.",
+              "uk": "камінь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера она подняла камень.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера она подняла камень.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She picked up a stone yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она подняла камень.»",
+            "uk": "Скажіть: «Учора вона підняла камінь.»"
+          },
+          "orderedTokens": [
+            "She",
+            "picked",
+            "up",
+            "a",
+            "stone",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о материалах.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i05:r1",
+            "text": "picked"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i05:r2",
+            "text": "has picked"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i05:r3",
+            "text": "pick"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о материалах.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о материалах.",
+            "uk": "Доповніть розповідь про матеріали."
+          },
+          "gappedTargetPhrase": "She ___ up a stone yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-39:i05:r1",
+              "text": "picked"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i05:r2",
+              "text": "has picked"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i05:r3",
+              "text": "pick"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о материалах.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о материалах.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма picked без has.",
+                "uk": "Із yesterday потрібна форма picked без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о материалах.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма picked без has.",
+                "uk": "Із yesterday потрібна форма picked без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i06:r1",
+            "text": "She picked up a stone yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i06:r2",
+            "text": "He picked up a stone yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i06:r3",
+            "text": "She picked up a stone last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i06:audio",
+            "transcript": "She picked up a stone yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:i06:r1",
+              "targetText": "She picked up a stone yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i06:r2",
+              "targetText": "He picked up a stone yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i06:r3",
+              "targetText": "She picked up a stone last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She picked up a stone yesterday.",
+                "uk": "У записі звучить She picked up a stone yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She picked up a stone yesterday.",
+                "uk": "У записі звучить She picked up a stone yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:word:steel",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — steel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:word:steel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — steel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:word:steel:audio",
+            "transcript": "steel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:word:steel:r1",
+              "targetText": "steel",
+              "meaningByLocale": {
+                "ru": "сталь.",
+                "uk": "сталь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "steel",
+            "definitionByLocale": {
+              "ru": "сталь.",
+              "uk": "сталь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы выбрали стальную полку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы выбрали стальную полку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have chosen a steel shelf.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы выбрали стальную полку.»",
+            "uk": "Скажіть: «Ми вибрали сталеву полицю.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "chosen",
+            "a",
+            "steel",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о материалах.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о материалах.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о материалах.",
+            "uk": "Доповніть розповідь про матеріали."
+          },
+          "gappedTargetPhrase": "We ___ chosen a steel shelf.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-39:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о материалах.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о материалах.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед chosen.",
+                "uk": "Із we потрібно have перед chosen."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о материалах.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед chosen.",
+                "uk": "Із we потрібно have перед chosen."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i09:r1",
+            "text": "We have chosen a steel shelf."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i09:r2",
+            "text": "They have chosen a steel shelf."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i09:r3",
+            "text": "We have chosen a steel table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i09:audio",
+            "transcript": "We have chosen a steel shelf."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:i09:r1",
+              "targetText": "We have chosen a steel shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i09:r2",
+              "targetText": "They have chosen a steel shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i09:r3",
+              "targetText": "We have chosen a steel table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have chosen a steel shelf.",
+                "uk": "У записі звучить We have chosen a steel shelf."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have chosen a steel shelf.",
+                "uk": "У записі звучить We have chosen a steel shelf."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:word:cardboard",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cardboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:word:cardboard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cardboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:word:cardboard:audio",
+            "transcript": "cardboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:word:cardboard:r1",
+              "targetText": "cardboard",
+              "meaningByLocale": {
+                "ru": "картон.",
+                "uk": "картон."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cardboard",
+            "definitionByLocale": {
+              "ru": "картон.",
+              "uk": "картон."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера они сдали картон на переработку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера они сдали картон на переработку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They recycled the cardboard yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера они сдали картон на переработку.»",
+            "uk": "Скажіть: «Учора вони здали картон на переробку.»"
+          },
+          "orderedTokens": [
+            "They",
+            "recycled",
+            "the",
+            "cardboard",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о материалах.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i11:r1",
+            "text": "recycled"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i11:r2",
+            "text": "have recycled"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i11:r3",
+            "text": "recycle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о материалах.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о материалах.",
+            "uk": "Доповніть розповідь про матеріали."
+          },
+          "gappedTargetPhrase": "They ___ the cardboard yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-39:i11:r1",
+              "text": "recycled"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i11:r2",
+              "text": "have recycled"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i11:r3",
+              "text": "recycle"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о материалах.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о материалах.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма recycled без have.",
+                "uk": "Із yesterday потрібна форма recycled без have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о материалах.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма recycled без have.",
+                "uk": "Із yesterday потрібна форма recycled без have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i12:r1",
+            "text": "They recycled the cardboard yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i12:r2",
+            "text": "We recycled the cardboard yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i12:r3",
+            "text": "They recycled the cardboard last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i12:audio",
+            "transcript": "They recycled the cardboard yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:i12:r1",
+              "targetText": "They recycled the cardboard yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i12:r2",
+              "targetText": "We recycled the cardboard yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i12:r3",
+              "targetText": "They recycled the cardboard last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They recycled the cardboard yesterday.",
+                "uk": "У записі звучить They recycled the cardboard yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They recycled the cardboard yesterday.",
+                "uk": "У записі звучить They recycled the cardboard yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-39:i13:p1",
+              "target": "wood",
+              "meaningByLocale": {
+                "ru": "дерево, древесина",
+                "uk": "дерево, деревина"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-39:i13:p2",
+              "target": "stone",
+              "meaningByLocale": {
+                "ru": "камень",
+                "uk": "камінь"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-39:i13:p3",
+              "target": "steel",
+              "meaningByLocale": {
+                "ru": "сталь",
+                "uk": "сталь"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-39:i13:p4",
+              "target": "cardboard",
+              "meaningByLocale": {
+                "ru": "картон",
+                "uk": "картон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wood",
+            "stone",
+            "steel",
+            "cardboard"
+          ],
+          "rightColumn": [
+            "дерево, древесина",
+            "камень",
+            "сталь",
+            "картон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работает с утра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Работает с утра",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы купили немного древесины вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы купили немного древесины вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i16:audio",
+            "transcript": "We bought some wood yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We bought some wood yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она сдала картон на переработку вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она сдала картон на переработку вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i17:audio",
+            "transcript": "She recycled the cardboard yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She recycled the cardboard yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-39:word:wood",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wood",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:word:wood:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wood",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:word:wood:audio",
+            "transcript": "wood"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:word:wood:r1",
+              "targetText": "wood",
+              "meaningByLocale": {
+                "ru": "дерево, древесина.",
+                "uk": "дерево, деревина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wood",
+            "definitionByLocale": {
+              "ru": "дерево, древесина.",
+              "uk": "дерево, деревина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я купив трохи деревини.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я купив трохи деревини.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have bought some wood.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я купил немного древесины.»",
+            "uk": "Скажіть: «Я купив трохи деревини.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "bought",
+            "some",
+            "wood"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про матеріали.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про матеріали.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о материалах.",
+            "uk": "Доповніть розповідь про матеріали."
+          },
+          "gappedTargetPhrase": "I ___ bought some wood.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-39:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про матеріали.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про матеріали.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед bought.",
+                "uk": "Із I потрібно have перед bought."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про матеріали.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед bought.",
+                "uk": "Із I потрібно have перед bought."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i03:r1",
+            "text": "I have bought some wood."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i03:r2",
+            "text": "We have bought some wood."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i03:r3",
+            "text": "I have cut some wood."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i03:audio",
+            "transcript": "I have bought some wood."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:i03:r1",
+              "targetText": "I have bought some wood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i03:r2",
+              "targetText": "We have bought some wood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i03:r3",
+              "targetText": "I have cut some wood.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have bought some wood.",
+                "uk": "У записі звучить I have bought some wood."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have bought some wood.",
+                "uk": "У записі звучить I have bought some wood."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:word:stone",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:word:stone:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:word:stone:audio",
+            "transcript": "stone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:word:stone:r1",
+              "targetText": "stone",
+              "meaningByLocale": {
+                "ru": "камень.",
+                "uk": "камінь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stone",
+            "definitionByLocale": {
+              "ru": "камень.",
+              "uk": "камінь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора вона підняла камінь.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора вона підняла камінь.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She picked up a stone yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она подняла камень.»",
+            "uk": "Скажіть: «Учора вона підняла камінь.»"
+          },
+          "orderedTokens": [
+            "She",
+            "picked",
+            "up",
+            "a",
+            "stone",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про матеріали.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i05:r1",
+            "text": "picked"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i05:r2",
+            "text": "has picked"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i05:r3",
+            "text": "pick"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про матеріали.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о материалах.",
+            "uk": "Доповніть розповідь про матеріали."
+          },
+          "gappedTargetPhrase": "She ___ up a stone yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-39:i05:r1",
+              "text": "picked"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i05:r2",
+              "text": "has picked"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i05:r3",
+              "text": "pick"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про матеріали.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про матеріали.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма picked без has.",
+                "uk": "Із yesterday потрібна форма picked без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про матеріали.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма picked без has.",
+                "uk": "Із yesterday потрібна форма picked без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i06:r1",
+            "text": "She picked up a stone yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i06:r2",
+            "text": "He picked up a stone yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i06:r3",
+            "text": "She picked up a stone last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i06:audio",
+            "transcript": "She picked up a stone yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:i06:r1",
+              "targetText": "She picked up a stone yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i06:r2",
+              "targetText": "He picked up a stone yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i06:r3",
+              "targetText": "She picked up a stone last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She picked up a stone yesterday.",
+                "uk": "У записі звучить She picked up a stone yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She picked up a stone yesterday.",
+                "uk": "У записі звучить She picked up a stone yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:word:steel",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — steel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:word:steel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — steel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:word:steel:audio",
+            "transcript": "steel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:word:steel:r1",
+              "targetText": "steel",
+              "meaningByLocale": {
+                "ru": "сталь.",
+                "uk": "сталь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "steel",
+            "definitionByLocale": {
+              "ru": "сталь.",
+              "uk": "сталь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми вибрали сталеву полицю.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми вибрали сталеву полицю.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have chosen a steel shelf.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы выбрали стальную полку.»",
+            "uk": "Скажіть: «Ми вибрали сталеву полицю.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "chosen",
+            "a",
+            "steel",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про матеріали.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про матеріали.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о материалах.",
+            "uk": "Доповніть розповідь про матеріали."
+          },
+          "gappedTargetPhrase": "We ___ chosen a steel shelf.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-39:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про матеріали.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про матеріали.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед chosen.",
+                "uk": "Із we потрібно have перед chosen."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про матеріали.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед chosen.",
+                "uk": "Із we потрібно have перед chosen."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i09:r1",
+            "text": "We have chosen a steel shelf."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i09:r2",
+            "text": "They have chosen a steel shelf."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i09:r3",
+            "text": "We have chosen a steel table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i09:audio",
+            "transcript": "We have chosen a steel shelf."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:i09:r1",
+              "targetText": "We have chosen a steel shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i09:r2",
+              "targetText": "They have chosen a steel shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i09:r3",
+              "targetText": "We have chosen a steel table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have chosen a steel shelf.",
+                "uk": "У записі звучить We have chosen a steel shelf."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have chosen a steel shelf.",
+                "uk": "У записі звучить We have chosen a steel shelf."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:word:cardboard",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cardboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:word:cardboard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cardboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:word:cardboard:audio",
+            "transcript": "cardboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:word:cardboard:r1",
+              "targetText": "cardboard",
+              "meaningByLocale": {
+                "ru": "картон.",
+                "uk": "картон."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cardboard",
+            "definitionByLocale": {
+              "ru": "картон.",
+              "uk": "картон."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора вони здали картон на переробку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора вони здали картон на переробку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They recycled the cardboard yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера они сдали картон на переработку.»",
+            "uk": "Скажіть: «Учора вони здали картон на переробку.»"
+          },
+          "orderedTokens": [
+            "They",
+            "recycled",
+            "the",
+            "cardboard",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про матеріали.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i11:r1",
+            "text": "recycled"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i11:r2",
+            "text": "have recycled"
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i11:r3",
+            "text": "recycle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про матеріали.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о материалах.",
+            "uk": "Доповніть розповідь про матеріали."
+          },
+          "gappedTargetPhrase": "They ___ the cardboard yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-39:i11:r1",
+              "text": "recycled"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i11:r2",
+              "text": "have recycled"
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i11:r3",
+              "text": "recycle"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про матеріали.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про матеріали.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма recycled без have.",
+                "uk": "Із yesterday потрібна форма recycled без have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про матеріали.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма recycled без have.",
+                "uk": "Із yesterday потрібна форма recycled без have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-39:i12:r1",
+            "text": "They recycled the cardboard yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i12:r2",
+            "text": "We recycled the cardboard yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-39:i12:r3",
+            "text": "They recycled the cardboard last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i12:audio",
+            "transcript": "They recycled the cardboard yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-39:i12:r1",
+              "targetText": "They recycled the cardboard yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i12:r2",
+              "targetText": "We recycled the cardboard yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i12:r3",
+              "targetText": "They recycled the cardboard last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They recycled the cardboard yesterday.",
+                "uk": "У записі звучить They recycled the cardboard yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They recycled the cardboard yesterday.",
+                "uk": "У записі звучить They recycled the cardboard yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-39:i13:p1",
+              "target": "wood",
+              "meaningByLocale": {
+                "ru": "дерево, древесина",
+                "uk": "дерево, деревина"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-39:i13:p2",
+              "target": "stone",
+              "meaningByLocale": {
+                "ru": "камень",
+                "uk": "камінь"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-39:i13:p3",
+              "target": "steel",
+              "meaningByLocale": {
+                "ru": "сталь",
+                "uk": "сталь"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-39:i13:p4",
+              "target": "cardboard",
+              "meaningByLocale": {
+                "ru": "картон",
+                "uk": "картон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wood",
+            "stone",
+            "steel",
+            "cardboard"
+          ],
+          "rightColumn": [
+            "дерево, деревина",
+            "камінь",
+            "сталь",
+            "картон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працює з ранку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Працює з ранку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми купили трохи деревини вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми купили трохи деревини вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i16:audio",
+            "transcript": "We bought some wood yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We bought some wood yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона здала картон на переробку вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона здала картон на переробку вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-39:i17:audio",
+            "transcript": "She recycled the cardboard yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She recycled the cardboard yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-39:word:wood",
+      "correctText": "wood",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i01",
+      "correctText": "I have bought some wood.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i02",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i03",
+      "correctText": "I have bought some wood.",
+      "correctResponseId": "en:lesson-24:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:word:stone",
+      "correctText": "stone",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i04",
+      "correctText": "She picked up a stone yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i05",
+      "correctText": "picked",
+      "correctResponseId": "en:lesson-24:session-39:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i06",
+      "correctText": "She picked up a stone yesterday.",
+      "correctResponseId": "en:lesson-24:session-39:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:word:steel",
+      "correctText": "steel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i07",
+      "correctText": "We have chosen a steel shelf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i08",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i09",
+      "correctText": "We have chosen a steel shelf.",
+      "correctResponseId": "en:lesson-24:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:word:cardboard",
+      "correctText": "cardboard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i10",
+      "correctText": "They recycled the cardboard yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i11",
+      "correctText": "recycled",
+      "correctResponseId": "en:lesson-24:session-39:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i12",
+      "correctText": "They recycled the cardboard yesterday.",
+      "correctResponseId": "en:lesson-24:session-39:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i15",
+      "correctText": "She has been working since this morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i16",
+      "correctText": "We bought some wood yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-39:i17",
+      "correctText": "She recycled the cardboard yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

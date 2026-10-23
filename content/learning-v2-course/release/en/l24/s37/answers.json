@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-37:word:age",
+    "correctText": "age",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i01",
+    "correctText": "I have forgotten his age.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i03",
+    "correctText": "I have forgotten his age.",
+    "correctResponseId": "en:lesson-24:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:word:friendship",
+    "correctText": "friendship",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i04",
+    "correctText": "She talked about their friendship yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i05",
+    "correctText": "talked",
+    "correctResponseId": "en:lesson-24:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i06",
+    "correctText": "She talked about their friendship yesterday.",
+    "correctResponseId": "en:lesson-24:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:word:death",
+    "correctText": "death",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i07",
+    "correctText": "We have heard about his death.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i09",
+    "correctText": "We have heard about his death.",
+    "correctResponseId": "en:lesson-24:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:word:funeral",
+    "correctText": "funeral",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i10",
+    "correctText": "They attended the funeral last week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i11",
+    "correctText": "attended",
+    "correctResponseId": "en:lesson-24:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i12",
+    "correctText": "They attended the funeral last week.",
+    "correctResponseId": "en:lesson-24:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i13",
+    "correctText": "en:lesson-24:session-37:i13:p1=age\nen:lesson-24:session-37:i13:p2=friendship\nen:lesson-24:session-37:i13:p3=death\nen:lesson-24:session-37:i13:p4=funeral",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i16",
+    "correctText": "We talked about their friendship yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-37:i17",
+    "correctText": "She attended the funeral last week.",
+    "correctResponseId": null
+  }
+]

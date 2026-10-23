@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-53:word:bangs",
+    "correctText": "bangs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i01",
+    "correctText": "My bangs are too long.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i02",
+    "correctText": "Please keep them above my eyes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i03",
+    "correctText": "Just a little shorter.",
+    "correctResponseId": "en:lesson-26:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:word:frizzy",
+    "correctText": "frizzy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i04",
+    "correctText": "My hair gets frizzy in the rain.",
+    "correctResponseId": "en:lesson-26:session-53:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i05",
+    "correctText": "gets",
+    "correctResponseId": "en:lesson-26:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:word:stubble",
+    "correctText": "stubble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i06",
+    "correctText": "I have stubble on my chin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i07",
+    "correctText": "Have a look in the mirror.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:word:sideburns",
+    "correctText": "sideburns",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i08",
+    "correctText": "Please trim my sideburns.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i09",
+    "correctText": "finish",
+    "correctResponseId": "en:lesson-26:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i10",
+    "correctText": "Is that short enough?",
+    "correctResponseId": "en:lesson-26:session-53:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i11",
+    "correctText": "That is exactly what I wanted.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i12",
+    "correctText": "Have you been to the salon yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i13",
+    "correctText": "I have just come back.",
+    "correctResponseId": "en:lesson-26:session-53:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-53:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i15",
+    "correctText": "Could you send me that photo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-53:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-53:i17",
+    "correctText": "Thanks for asking first.",
+    "correctResponseId": null
+  }
+]

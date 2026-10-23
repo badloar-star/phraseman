@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, just, yet; by the time",
+    "uk": "if, when, unless; already, just, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти закатившуюся вещь",
+        "uk": "Знайти річ, що закотилася"
+      },
+      "bodyByLocale": {
+        "ru": "Crouch — пригибаться, приседать, чтобы оказаться ниже. I crouch to look under the bed — я пригибаюсь, чтобы заглянуть под кровать. Squat — сидеть или опускаться на корточки. I squat beside the box — я сажусь на корточки рядом с коробкой. Crouch подчёркивает низкое положение тела; squat — положение на корточках. Это не два названия одной обязательной позы. Вы ищете игрушку: Can you see it? — ты её видишь? If it is dark, use the torch — если темно, воспользуйся фонариком.",
+        "uk": "Crouch — пригинатися, присідати, щоб опинитися нижче. I crouch to look under the bed — я пригинаюся, щоб зазирнути під ліжко. Squat — сидіти або опускатися навпочіпки. I squat beside the box — я сідаю навпочіпки біля коробки. Crouch підкреслює низьке положення тіла; squat — положення навпочіпки. Це не дві назви однієї обов’язкової пози. Ви шукаєте іграшку: Can you see it? — ти її бачиш? If it is dark, use the torch — якщо темно, скористайся ліхтариком."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-51:intro1:r1",
+              "text": "Use the torch if it is dark."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro1:r2",
+              "text": "Use the torch unless it is dark."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro1:r3",
+              "text": "Use the torch if it are dark."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-51:intro1:r1",
+              "text": "Use the torch if it is dark."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro1:r2",
+              "text": "Use the torch unless it is dark."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro1:r3",
+              "text": "Use the torch if it are dark."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Освободить место на диване",
+        "uk": "Звільнити місце на дивані"
+      },
+      "bodyByLocale": {
+        "ru": "Sprawl — развалиться, раскинуться, занимая много места. Please do not sprawl on the sofa — пожалуйста, не разваливайся на диване. Это прямая просьба близкому человеку. Диван на троих внезапно стал диваном на одного. Мягче попросить подвинуться: Could you move over a little? — можешь немного подвинуться? I will sit down when you move the bag — я сяду, когда ты уберёшь сумку. После when здесь move без will. Have you found the toy yet? — ты уже нашёл игрушку? I have just found it — я только что её нашёл.",
+        "uk": "Sprawl — розвалитися, розкинутися, займаючи багато місця. Please do not sprawl on the sofa — будь ласка, не розвалюйся на дивані. Це пряме прохання до близької людини. Диван на трьох раптом став диваном на одного. М’якше попросити посунутися: Could you move over a little? — можеш трохи посунутися? I will sit down when you move the bag — я сяду, коли ти прибереш сумку. Після when тут move без will. Have you found the toy yet? — ти вже знайшов іграшку? I have just found it — я щойно її знайшов."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-51:intro2:r1",
+              "text": "I will sit down when you move the bag."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro2:r2",
+              "text": "I will sit down when you will move the bag."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro2:r3",
+              "text": "I will sit down when you moves the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-51:intro2:r1",
+              "text": "I will sit down when you move the bag."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro2:r2",
+              "text": "I will sit down when you will move the bag."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro2:r3",
+              "text": "I will sit down when you moves the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Держать крепко",
+        "uk": "Тримати міцно"
+      },
+      "bodyByLocale": {
+        "ru": "Clutch — крепко сжимать, прижимать к себе. I clutch my bag when I feel nervous — я крепко сжимаю сумку, когда нервничаю. Hold — просто держать; clutch подчёркивает крепкую хватку. Здесь when описывает привычную реакцию, поэтому с обеих сторон обычное настоящее. Друг предлагает взять сумку: Shall I hold it for you? — подержать её для тебя? О вчерашнем визите: I had put the bags away by the time our guests arrived — я убрал сумки к тому времени, как пришли гости. Had put показывает более раннее действие; форма put не меняется.",
+        "uk": "Clutch — міцно стискати, притискати до себе. I clutch my bag when I feel nervous — я міцно стискаю сумку, коли нервую. Hold — просто тримати; clutch підкреслює міцну хватку. Тут when описує звичну реакцію, тому з обох боків звичайне теперішнє. Друг пропонує взяти сумку: Shall I hold it for you? — потримати її для тебе? Про вчорашній візит: I had put the bags away by the time our guests arrived — я прибрав сумки до того часу, як прийшли гості. Had put показує ранішу дію; форма put не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-51:intro3:r1",
+              "text": "I had put the bags away by the time our guests arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro3:r2",
+              "text": "I have put the bags away by the time our guests arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro3:r3",
+              "text": "I had putted the bags away by the time our guests arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-51:intro3:r1",
+              "text": "I had put the bags away by the time our guests arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro3:r2",
+              "text": "I have put the bags away by the time our guests arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-51:intro3:r3",
+              "text": "I had putted the bags away by the time our guests arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "59f9c2c0b6c1d36c80a05aa2523c36e49e6119bc9a983e637b33a600fa63ee13"
+}

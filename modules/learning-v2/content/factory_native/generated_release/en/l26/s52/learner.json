@@ -1,0 +1,1074 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-52:word:laundromat",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — laundromat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:word:laundromat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — laundromat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:word:laundromat:audio",
+          "transcript": "laundromat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-52:word:laundromat:r1",
+            "targetText": "laundromat",
+            "meaningByLocale": {
+              "ru": "Прачечная самообслуживания; обычное американское слово.",
+              "uk": "Пральня самообслуговування; звичне американське слово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "laundromat",
+          "definitionByLocale": {
+            "ru": "Прачечная самообслуживания; обычное американское слово.",
+            "uk": "Пральня самообслуговування; звичне американське слово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите о ближайшей прачечной самообслуживания.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Спросите о ближайшей прачечной самообслуживания.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:i01:audio",
+          "transcript": "Is there a laundromat nearby?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a laundromat nearby?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-52:i02:r1",
+          "text": "It is next to the bakery."
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i02:r2",
+          "text": "It is next to the bank."
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i02:r3",
+          "text": "It is opposite the bakery."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:i02:audio",
+          "transcript": "It is next to the bakery."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-52:i02:r1",
+            "targetText": "It is next to the bakery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i02:r2",
+            "targetText": "It is next to the bank.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i02:r3",
+            "targetText": "It is opposite the bakery.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It is next to the bakery.",
+              "uk": "У записі звучить It is next to the bakery."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It is next to the bakery.",
+              "uk": "У записі звучить It is next to the bakery."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Узнайте, включил ли друг стиральную машину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Узнайте, включил ли друг стиральную машину.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you started the machine yet?",
+        "localizedMeaning": {
+          "ru": "Узнайте, включил ли друг стиральную машину.",
+          "uk": "Дізнайтеся, чи друг увімкнув пральну машину."
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "started",
+          "the",
+          "machine",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг только что включил машину.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-52:i04:r1",
+          "text": "started"
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i04:r2",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i04:r3",
+          "text": "starting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг только что включил машину.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг только что включил машину.",
+          "uk": "Друг щойно ввімкнув машину."
+        },
+        "gappedTargetPhrase": "I have just ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-52:i04:r1",
+            "text": "started"
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i04:r2",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i04:r3",
+            "text": "starting"
+          }
+        ],
+        "testedDimension": "Друг только что включил машину.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-52:i04:r2",
+            "correct": false,
+            "testedDimension": "Друг только что включил машину.",
+            "feedbackByLocale": {
+              "ru": "После have нужна форма started.",
+              "uk": "Після have потрібна форма started."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i04:r3",
+            "correct": false,
+            "testedDimension": "Друг только что включил машину.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно started, не starting.",
+              "uk": "Тут потрібно started, не starting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:word:sweatpants",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sweatpants",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:word:sweatpants:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sweatpants",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:word:sweatpants:audio",
+          "transcript": "sweatpants"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-52:word:sweatpants:r1",
+            "targetText": "sweatpants",
+            "meaningByLocale": {
+              "ru": "Мягкие спортивные штаны; слово во множественном числе.",
+              "uk": "М’які спортивні штани; слово у множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sweatpants",
+          "definitionByLocale": {
+            "ru": "Мягкие спортивные штаны; слово во множественном числе.",
+            "uk": "М’які спортивні штани; слово у множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-52:i05:r1",
+          "text": "These sweatpants are comfortable."
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i05:r2",
+          "text": "These sweatpants are expensive."
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i05:r3",
+          "text": "These shoes are comfortable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:i05:audio",
+          "transcript": "These sweatpants are comfortable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-52:i05:r1",
+            "targetText": "These sweatpants are comfortable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i05:r2",
+            "targetText": "These sweatpants are expensive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i05:r3",
+            "targetText": "These shoes are comfortable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These sweatpants are comfortable.",
+              "uk": "У записі звучить These sweatpants are comfortable."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These sweatpants are comfortable.",
+              "uk": "У записі звучить These sweatpants are comfortable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, можно ли расплатиться картой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:i06:audio"
+      ],
+      "accessibilityLabel": "Уточните, можно ли расплатиться картой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:i06:audio",
+          "transcript": "Can I pay by card?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I pay by card?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:word:blazer",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blazer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:word:blazer:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blazer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:word:blazer:audio",
+          "transcript": "blazer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-52:word:blazer:r1",
+            "targetText": "blazer",
+            "meaningByLocale": {
+              "ru": "Пиджак, который носят отдельно от костюма.",
+              "uk": "Піджак, який носять окремо від костюма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blazer",
+          "definitionByLocale": {
+            "ru": "Пиджак, который носят отдельно от костюма.",
+            "uk": "Піджак, який носять окремо від костюма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите друга, впору ли вам этот пиджак.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите друга, впору ли вам этот пиджак.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does this blazer fit me?",
+        "localizedMeaning": {
+          "ru": "Спросите друга, впору ли вам этот пиджак.",
+          "uk": "Запитайте друга, чи вам упору цей піджак."
+        },
+        "orderedTokens": [
+          "Does",
+          "this",
+          "blazer",
+          "fit",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-52:i08:r1",
+          "text": "The sleeves are too long."
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i08:r2",
+          "text": "The sleeves are too short."
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i08:r3",
+          "text": "The sleeves are too tight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:i08:audio",
+          "transcript": "The sleeves are too long."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-52:i08:r1",
+            "targetText": "The sleeves are too long.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i08:r2",
+            "targetText": "The sleeves are too short.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i08:r3",
+            "targetText": "The sleeves are too tight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sleeves are too long.",
+              "uk": "У записі звучить The sleeves are too long."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sleeves are too long.",
+              "uk": "У записі звучить The sleeves are too long."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите размер поменьше.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:i09:audio"
+      ],
+      "accessibilityLabel": "Попросите размер поменьше.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:i09:audio",
+          "transcript": "Do you have a smaller size?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have a smaller size?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте совет попробовать другой размер, если вещь мала.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:i10:audio"
+      ],
+      "accessibilityLabel": "Услышьте совет попробовать другой размер, если вещь мала.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:i10:audio",
+          "transcript": "Try another size if it is too small."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Try another size if it is too small.",
+        "orderedTokens": [
+          "Try",
+          "another",
+          "size",
+          "if",
+          "it",
+          "is",
+          "too",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:word:barbershop",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — barbershop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:word:barbershop:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — barbershop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:word:barbershop:audio",
+          "transcript": "barbershop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-52:word:barbershop:r1",
+            "targetText": "barbershop",
+            "meaningByLocale": {
+              "ru": "Парикмахерская, обычно для мужских стрижек.",
+              "uk": "Перукарня, зазвичай для чоловічих стрижок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barbershop",
+          "definitionByLocale": {
+            "ru": "Парикмахерская, обычно для мужских стрижек.",
+            "uk": "Перукарня, зазвичай для чоловічих стрижок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Узнайте время закрытия парикмахерской.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Узнайте время закрытия парикмахерской.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What time does the barbershop close?",
+        "localizedMeaning": {
+          "ru": "Узнайте время закрытия парикмахерской.",
+          "uk": "Дізнайтеся час зачинення перукарні."
+        },
+        "orderedTokens": [
+          "What",
+          "time",
+          "does",
+          "the",
+          "barbershop",
+          "close"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-52:i12:r1",
+          "text": "I have already booked an appointment."
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i12:r2",
+          "text": "I have already cancelled my appointment."
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i12:r3",
+          "text": "I have just missed my appointment."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:i12:audio",
+          "transcript": "I have already booked an appointment."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-52:i12:r1",
+            "targetText": "I have already booked an appointment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i12:r2",
+            "targetText": "I have already cancelled my appointment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i12:r3",
+            "targetText": "I have just missed my appointment.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already booked an appointment.",
+              "uk": "У записі звучить I have already booked an appointment."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already booked an appointment.",
+              "uk": "У записі звучить I have already booked an appointment."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите только немного подровнять волосы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "Попросите только немного подровнять волосы.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-52:i13:audio",
+          "transcript": "Just a trim, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Just a trim, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера парикмахерская закрылась до вашего звонка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-52:i14:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i14:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера парикмахерская закрылась до вашего звонка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера парикмахерская закрылась до вашего звонка.",
+          "uk": "Учора перукарня зачинилася до вашого дзвінка."
+        },
+        "gappedTargetPhrase": "The barbershop ___ closed by the time I called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-52:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вчера парикмахерская закрылась до вашего звонка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-52:i14:r2",
+            "correct": false,
+            "testedDimension": "Вчера парикмахерская закрылась до вашего звонка.",
+            "feedbackByLocale": {
+              "ru": "Has связывает результат с настоящим; здесь два прошлых события.",
+              "uk": "Has пов’язує результат із теперішнім; тут дві минулі події."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i14:r3",
+            "correct": false,
+            "testedDimension": "Вчера парикмахерская закрылась до вашего звонка.",
+            "feedbackByLocale": {
+              "ru": "Is closed описывает состояние, а здесь более раннее прошлое действие.",
+              "uk": "Is closed описує стан, а тут раніша минула дія."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пообещайте позвонить после окончания стирки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-52:i15:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i15:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i15:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообещайте позвонить после окончания стирки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пообещайте позвонить после окончания стирки.",
+          "uk": "Пообіцяйте зателефонувати після завершення прання."
+        },
+        "gappedTargetPhrase": "I will call you when the washing ___ done.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-52:i15:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i15:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i15:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Пообещайте позвонить после окончания стирки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-52:i15:r2",
+            "correct": false,
+            "testedDimension": "Пообещайте позвонить после окончания стирки.",
+            "feedbackByLocale": {
+              "ru": "После when здесь is без will.",
+              "uk": "Після when тут is без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i15:r3",
+            "correct": false,
+            "testedDimension": "Пообещайте позвонить после окончания стирки.",
+            "feedbackByLocale": {
+              "ru": "С the washing здесь нужно is.",
+              "uk": "З the washing тут потрібно is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы подождёте снаружи, если другу не нужна помощь внутри.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-52:i16:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i16:r2",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-26:session-52:i16:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы подождёте снаружи, если другу не нужна помощь внутри.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы подождёте снаружи, если другу не нужна помощь внутри.",
+          "uk": "Ви зачекаєте надворі, якщо другу не потрібна допомога всередині."
+        },
+        "gappedTargetPhrase": "I will wait outside ___ you need my help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-52:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i16:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Вы подождёте снаружи, если другу не нужна помощь внутри.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-52:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы подождёте снаружи, если другу не нужна помощь внутри.",
+            "feedbackByLocale": {
+              "ru": "If означало бы ждать снаружи именно тогда, когда другу нужна помощь.",
+              "uk": "If означало б чекати надворі саме тоді, коли другу потрібна допомога."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-52:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы подождёте снаружи, если другу не нужна помощь внутри.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы потребность в помощи причиной ждать снаружи.",
+              "uk": "Because зробило б потребу в допомозі причиною чекати надворі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поблагодарите за то, что вас подождали.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поблагодарите за то, что вас подождали.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thanks for waiting.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите за то, что вас подождали.",
+          "uk": "Подякуйте за те, що на вас зачекали."
+        },
+        "orderedTokens": [
+          "Thanks",
+          "for",
+          "waiting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "af7040701db2c4d5f2c2e06e700e117eb5f37b9c8557c969928d0d5e1617a704"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-52:word:laundromat",
+    "correctText": "laundromat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i01",
+    "correctText": "Is there a laundromat nearby?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i02",
+    "correctText": "It is next to the bakery.",
+    "correctResponseId": "en:lesson-26:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i03",
+    "correctText": "Have you started the machine yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i04",
+    "correctText": "started",
+    "correctResponseId": "en:lesson-26:session-52:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:word:sweatpants",
+    "correctText": "sweatpants",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i05",
+    "correctText": "These sweatpants are comfortable.",
+    "correctResponseId": "en:lesson-26:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i06",
+    "correctText": "Can I pay by card?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:word:blazer",
+    "correctText": "blazer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i07",
+    "correctText": "Does this blazer fit me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i08",
+    "correctText": "The sleeves are too long.",
+    "correctResponseId": "en:lesson-26:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i09",
+    "correctText": "Do you have a smaller size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i10",
+    "correctText": "Try another size if it is too small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:word:barbershop",
+    "correctText": "barbershop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i11",
+    "correctText": "What time does the barbershop close?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i12",
+    "correctText": "I have already booked an appointment.",
+    "correctResponseId": "en:lesson-26:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i13",
+    "correctText": "Just a trim, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-52:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i15",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-26:session-52:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-52:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-52:i17",
+    "correctText": "Thanks for waiting.",
+    "correctResponseId": null
+  }
+]

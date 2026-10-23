@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-53:intro1:r2": {
+          "ru": "С неисчисляемым hair здесь нужно gets.",
+          "uk": "З незлічуваним hair тут потрібно gets."
+        },
+        "en:lesson-26:session-53:intro1:r3": {
+          "ru": "Для привычного результата здесь нужно gets.",
+          "uk": "Для звичного результату тут потрібно gets."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-53:intro2:r2": {
+          "ru": "После when здесь finish без will.",
+          "uk": "Після when тут finish без will."
+        },
+        "en:lesson-26:session-53:intro2:r3": {
+          "ru": "С I нужно finish без -s.",
+          "uk": "З I потрібно finish без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-53:intro3:r2": {
+          "ru": "Called задаёт прошлое; более раннее действие — had left.",
+          "uk": "Called задає минуле; раніша дія — had left."
+        },
+        "en:lesson-26:session-53:intro3:r3": {
+          "ru": "После had нужна форма left.",
+          "uk": "Після had потрібна форма left."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1c2c42be5238c469c0e8a6a2dae25c68a4a895fcf8acda207c31beb90a507b7e"
+}

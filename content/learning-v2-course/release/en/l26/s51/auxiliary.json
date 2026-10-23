@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-51:intro1:r2": {
+          "ru": "Unless меняет условие: если не темно.",
+          "uk": "Unless змінює умову: якщо не темно."
+        },
+        "en:lesson-26:session-51:intro1:r3": {
+          "ru": "С it нужно is.",
+          "uk": "З it потрібно is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-51:intro2:r2": {
+          "ru": "После when здесь move без will.",
+          "uk": "Після when тут move без will."
+        },
+        "en:lesson-26:session-51:intro2:r3": {
+          "ru": "С you нужно move без -s.",
+          "uk": "З you потрібно move без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-51:intro3:r2": {
+          "ru": "Arrived задаёт прошлое; более раннее действие — had put.",
+          "uk": "Arrived задає минуле; раніша дія — had put."
+        },
+        "en:lesson-26:session-51:intro3:r3": {
+          "ru": "У put форма не меняется; putted здесь неверно.",
+          "uk": "У put форма не змінюється; putted тут неправильно."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fbdbc4652a226bd18e0fbce099612b142929a538d66b094254ec1ec748192c86"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-52:intro1:r2": {
+          "ru": "После when здесь is без will.",
+          "uk": "Після when тут is без will."
+        },
+        "en:lesson-26:session-52:intro1:r3": {
+          "ru": "С the washing здесь нужно is.",
+          "uk": "З the washing тут потрібно is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-52:intro2:r2": {
+          "ru": "Unless меняет условие: если пиджак не слишком мал.",
+          "uk": "Unless змінює умову: якщо піджак не замалий."
+        },
+        "en:lesson-26:session-52:intro2:r3": {
+          "ru": "С it нужно is.",
+          "uk": "З it потрібно is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-52:intro3:r2": {
+          "ru": "Called задаёт прошлое; более раннее действие — had closed.",
+          "uk": "Called задає минуле; раніша дія — had closed."
+        },
+        "en:lesson-26:session-52:intro3:r3": {
+          "ru": "После had нужна форма closed.",
+          "uk": "Після had потрібна форма closed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e66053556c097b2ab155d83f4d1ea254bd4fad4c280dcdd167829766a776f84c"
+}

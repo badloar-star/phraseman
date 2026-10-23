@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-51:word:crouch",
+    "correctText": "crouch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i01",
+    "correctText": "I crouch to look under the bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i02",
+    "correctText": "It is behind the box.",
+    "correctResponseId": "en:lesson-26:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i03",
+    "correctText": "Can you see it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:word:squat",
+    "correctText": "squat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i04",
+    "correctText": "I squat beside the box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i05",
+    "correctText": "if",
+    "correctResponseId": "en:lesson-26:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i06",
+    "correctText": "I have just found it.",
+    "correctResponseId": "en:lesson-26:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:word:sprawl",
+    "correctText": "sprawl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i07",
+    "correctText": "Please do not sprawl on the sofa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i08",
+    "correctText": "Could you move over a little?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i09",
+    "correctText": "move",
+    "correctResponseId": "en:lesson-26:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i10",
+    "correctText": "Have you found the toy yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:word:clutch",
+    "correctText": "clutch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i11",
+    "correctText": "I clutch my bag when I feel nervous.",
+    "correctResponseId": "en:lesson-26:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i12",
+    "correctText": "Shall I hold it for you?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i13",
+    "correctText": "I have already put it away.",
+    "correctResponseId": "en:lesson-26:session-51:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-51:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i15",
+    "correctText": "If it is dark, use the torch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-51:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-51:i17",
+    "correctText": "Thanks for helping me find it.",
+    "correctResponseId": null
+  }
+]

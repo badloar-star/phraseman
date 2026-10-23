@@ -1,0 +1,1075 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-53:word:bangs",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bangs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:word:bangs:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bangs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:word:bangs:audio",
+          "transcript": "bangs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-53:word:bangs:r1",
+            "targetText": "bangs",
+            "meaningByLocale": {
+              "ru": "Чёлка; американское слово, здесь во множественном числе.",
+              "uk": "Чубчик; американське слово, тут у множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bangs",
+          "definitionByLocale": {
+            "ru": "Чёлка; американское слово, здесь во множественном числе.",
+            "uk": "Чубчик; американське слово, тут у множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите мастеру, что чёлка слишком длинная.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите мастеру, что чёлка слишком длинная.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My bangs are too long.",
+        "localizedMeaning": {
+          "ru": "Скажите мастеру, что чёлка слишком длинная.",
+          "uk": "Скажіть майстру, що чубчик задовгий."
+        },
+        "orderedTokens": [
+          "My",
+          "bangs",
+          "are",
+          "too",
+          "long"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите оставить чёлку выше глаз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Попросите оставить чёлку выше глаз.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:i02:audio",
+          "transcript": "Please keep them above my eyes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please keep them above my eyes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-53:i03:r1",
+          "text": "Just a little shorter."
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i03:r2",
+          "text": "Just a little longer."
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i03:r3",
+          "text": "Just a little darker."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:i03:audio",
+          "transcript": "Just a little shorter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-53:i03:r1",
+            "targetText": "Just a little shorter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i03:r2",
+            "targetText": "Just a little longer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i03:r3",
+            "targetText": "Just a little darker.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Just a little shorter.",
+              "uk": "У записі звучить Just a little shorter."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Just a little shorter.",
+              "uk": "У записі звучить Just a little shorter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:word:frizzy",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — frizzy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:word:frizzy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — frizzy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:word:frizzy:audio",
+          "transcript": "frizzy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-53:word:frizzy:r1",
+            "targetText": "frizzy",
+            "meaningByLocale": {
+              "ru": "Пушащийся, с непослушными мелкими завитками; о волосах.",
+              "uk": "Пухнастий, із неслухняними дрібними завитками; про волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frizzy",
+          "definitionByLocale": {
+            "ru": "Пушащийся, с непослушными мелкими завитками; о волосах.",
+            "uk": "Пухнастий, із неслухняними дрібними завитками; про волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-53:i04:r1",
+          "text": "My hair gets frizzy in the rain."
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i04:r2",
+          "text": "My hair gets wet in the rain."
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i04:r3",
+          "text": "My hair gets frizzy in the heat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:i04:audio",
+          "transcript": "My hair gets frizzy in the rain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-53:i04:r1",
+            "targetText": "My hair gets frizzy in the rain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i04:r2",
+            "targetText": "My hair gets wet in the rain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i04:r3",
+            "targetText": "My hair gets frizzy in the heat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-53:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My hair gets frizzy in the rain.",
+              "uk": "У записі звучить My hair gets frizzy in the rain."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My hair gets frizzy in the rain.",
+              "uk": "У записі звучить My hair gets frizzy in the rain."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Опишите привычный результат: волосы пушатся под дождём.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-53:i05:r1",
+          "text": "gets"
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i05:r2",
+          "text": "get"
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i05:r3",
+          "text": "getting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишите привычный результат: волосы пушатся под дождём.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Опишите привычный результат: волосы пушатся под дождём.",
+          "uk": "Опишіть звичний результат: волосся пушиться під дощем."
+        },
+        "gappedTargetPhrase": "My hair ___ frizzy in the rain.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-53:i05:r1",
+            "text": "gets"
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i05:r2",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i05:r3",
+            "text": "getting"
+          }
+        ],
+        "testedDimension": "Опишите привычный результат: волосы пушатся под дождём.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Опишите привычный результат: волосы пушатся под дождём.",
+            "feedbackByLocale": {
+              "ru": "Hair здесь неисчисляемое: gets.",
+              "uk": "Hair тут незлічуване: gets."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Опишите привычный результат: волосы пушатся под дождём.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма gets.",
+              "uk": "Тут потрібна форма gets."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:word:stubble",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stubble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:word:stubble:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stubble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:word:stubble:audio",
+          "transcript": "stubble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-53:word:stubble:r1",
+            "targetText": "stubble",
+            "meaningByLocale": {
+              "ru": "Короткая щетина; здесь неисчисляемое слово.",
+              "uk": "Коротка щетина; тут незлічуване слово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stubble",
+          "definitionByLocale": {
+            "ru": "Короткая щетина; здесь неисчисляемое слово.",
+            "uk": "Коротка щетина; тут незлічуване слово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что у вас щетина на подбородке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:i06:audio"
+      ],
+      "accessibilityLabel": "Скажите, что у вас щетина на подбородке.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:i06:audio",
+          "transcript": "I have stubble on my chin."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have stubble on my chin.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение посмотреть в зеркало.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение посмотреть в зеркало.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:i07:audio",
+          "transcript": "Have a look in the mirror."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have a look in the mirror.",
+        "orderedTokens": [
+          "Have",
+          "a",
+          "look",
+          "in",
+          "the",
+          "mirror"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:word:sideburns",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sideburns",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:word:sideburns:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sideburns",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:word:sideburns:audio",
+          "transcript": "sideburns"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-53:word:sideburns:r1",
+            "targetText": "sideburns",
+            "meaningByLocale": {
+              "ru": "Бакенбарды, волосы по бокам лица перед ушами.",
+              "uk": "Бакенбарди, волосся з боків обличчя перед вухами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sideburns",
+          "definitionByLocale": {
+            "ru": "Бакенбарды, волосы по бокам лица перед ушами.",
+            "uk": "Бакенбарди, волосся з боків обличчя перед вухами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите подровнять бакенбарды.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите подровнять бакенбарды.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please trim my sideburns.",
+        "localizedMeaning": {
+          "ru": "Попросите подровнять бакенбарды.",
+          "uk": "Попросіть підрівняти бакенбарди."
+        },
+        "orderedTokens": [
+          "Please",
+          "trim",
+          "my",
+          "sideburns"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мастер покажет результат после окончания работы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-53:i09:r1",
+          "text": "finish"
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i09:r2",
+          "text": "will finish"
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i09:r3",
+          "text": "finishes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер покажет результат после окончания работы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер покажет результат после окончания работы.",
+          "uk": "Майстер покаже результат після завершення роботи."
+        },
+        "gappedTargetPhrase": "I will show you when I ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-53:i09:r1",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i09:r2",
+            "text": "will finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i09:r3",
+            "text": "finishes"
+          }
+        ],
+        "testedDimension": "Мастер покажет результат после окончания работы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Мастер покажет результат после окончания работы.",
+            "feedbackByLocale": {
+              "ru": "После when здесь finish без will.",
+              "uk": "Після when тут finish без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Мастер покажет результат после окончания работы.",
+            "feedbackByLocale": {
+              "ru": "С I нужно finish без -s.",
+              "uk": "З I потрібно finish без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-53:i10:r1",
+          "text": "Is that short enough?"
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i10:r2",
+          "text": "Is that long enough?"
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i10:r3",
+          "text": "Is that dark enough?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:i10:audio",
+          "transcript": "Is that short enough?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-53:i10:r1",
+            "targetText": "Is that short enough?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i10:r2",
+            "targetText": "Is that long enough?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i10:r3",
+            "targetText": "Is that dark enough?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-53:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is that short enough?",
+              "uk": "У записі звучить Is that short enough?"
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is that short enough?",
+              "uk": "У записі звучить Is that short enough?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i11",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите мастеру, что результат именно такой, как вы хотели.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите мастеру, что результат именно такой, как вы хотели.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:i11:audio",
+          "transcript": "That is exactly what I wanted."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is exactly what I wanted.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Узнайте у друга, сходил ли он уже в салон.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Узнайте у друга, сходил ли он уже в салон.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you been to the salon yet?",
+        "localizedMeaning": {
+          "ru": "Узнайте у друга, сходил ли он уже в салон.",
+          "uk": "Дізнайтеся в друга, чи він уже сходив до салону."
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "been",
+          "to",
+          "the",
+          "salon",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-53:i13:r1",
+          "text": "I have just come back."
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i13:r2",
+          "text": "I have just arrived."
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i13:r3",
+          "text": "I have already booked it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:i13:audio",
+          "transcript": "I have just come back."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-53:i13:r1",
+            "targetText": "I have just come back.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i13:r2",
+            "targetText": "I have just arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i13:r3",
+            "targetText": "I have already booked it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-53:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just come back.",
+              "uk": "У записі звучить I have just come back."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just come back.",
+              "uk": "У записі звучить I have just come back."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера вы ушли из салона до звонка подруги.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-53:i14:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i14:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера вы ушли из салона до звонка подруги.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера вы ушли из салона до звонка подруги.",
+          "uk": "Учора ви пішли із салону до дзвінка подруги."
+        },
+        "gappedTargetPhrase": "I ___ left the salon by the time she called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-53:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вчера вы ушли из салона до звонка подруги.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-53:i14:r2",
+            "correct": false,
+            "testedDimension": "Вчера вы ушли из салона до звонка подруги.",
+            "feedbackByLocale": {
+              "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+              "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i14:r3",
+            "correct": false,
+            "testedDimension": "Вчера вы ушли из салона до звонка подруги.",
+            "feedbackByLocale": {
+              "ru": "Am left не означает: я ушёл раньше звонка.",
+              "uk": "Am left не означає: я пішов раніше за дзвінок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите подругу прислать совместное фото.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Попросите подругу прислать совместное фото.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:i15:audio",
+          "transcript": "Could you send me that photo?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you send me that photo?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пообещайте не делиться фотографией без согласия подруги.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-53:i16:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i16:r2",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-26:session-53:i16:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообещайте не делиться фотографией без согласия подруги.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пообещайте не делиться фотографией без согласия подруги.",
+          "uk": "Пообіцяйте не ділитися фотографією без згоди подруги."
+        },
+        "gappedTargetPhrase": "I will not share the photo ___ you agree.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-53:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i16:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Пообещайте не делиться фотографией без согласия подруги.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-53:i16:r2",
+            "correct": false,
+            "testedDimension": "Пообещайте не делиться фотографией без согласия подруги.",
+            "feedbackByLocale": {
+              "ru": "If означало бы не делиться именно при её согласии.",
+              "uk": "If означало б не ділитися саме за її згоди."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-53:i16:r3",
+            "correct": false,
+            "testedDimension": "Пообещайте не делиться фотографией без согласия подруги.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы согласие причиной не делиться фотографией.",
+              "uk": "Because зробило б згоду причиною не ділитися фотографією."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-53:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте благодарность за то, что вы сначала спросили.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Услышьте благодарность за то, что вы сначала спросили.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-53:i17:audio",
+          "transcript": "Thanks for asking first."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Thanks for asking first.",
+        "orderedTokens": [
+          "Thanks",
+          "for",
+          "asking",
+          "first"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f757c3b749ab49c42eab8a07c01b7debc8015589c3bb84d47092bdf7bbc31e54"
+}

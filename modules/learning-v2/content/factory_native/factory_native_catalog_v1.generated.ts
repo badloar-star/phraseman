@@ -10157,4 +10157,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"when, if, unless; already, just, yet; by the time","uk":"when, if, unless; already, just, yet; by the time"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 51,
+    sourceFingerprint: "845a6e084f17d8271108696e75268301b0c65e28646f1de3ab7bc9298166c777",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if, when, unless; already, just, yet; by the time","uk":"if, when, unless; already, just, yet; by the time"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 52,
+    sourceFingerprint: "ae7ca88f4970bb2b6cef15a3feb6c6e9f1243a082ee6260384f5eceb58bc24a7",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"when, if, unless; just, already, yet; by the time","uk":"when, if, unless; just, already, yet; by the time"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 53,
+    sourceFingerprint: "6318ce89f5ef8b0a7928ac0815fc3796a22ce96fc042c2ce102a287b12feabac",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"when, if, unless; just, already, yet; by the time","uk":"when, if, unless; just, already, yet; by the time"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
 ]);

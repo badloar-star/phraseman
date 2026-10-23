@@ -6,38 +6,18 @@
   },
   {
     "interactionId": "en:lesson-25:session-01:i01",
-    "correctText": "I used to live in a bungalow.",
-    "correctResponseId": null
+    "correctText": "My grandmother used to live in a small bungalow.",
+    "correctResponseId": "en:lesson-25:session-01:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-01:i02",
-    "correctText": "live",
+    "correctText": "used to live",
     "correctResponseId": "en:lesson-25:session-01:i02:r1"
   },
   {
     "interactionId": "en:lesson-25:session-01:i03",
-    "correctText": "I used to live in a bungalow.",
-    "correctResponseId": "en:lesson-25:session-01:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-01:word:estate",
-    "correctText": "estate",
+    "correctText": "This street used to be quiet.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-01:i04",
-    "correctText": "She used to play on this estate.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-01:i05",
-    "correctText": "play",
-    "correctResponseId": "en:lesson-25:session-01:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-01:i06",
-    "correctText": "She used to play on this estate.",
-    "correctResponseId": "en:lesson-25:session-01:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-01:word:orchard",
@@ -45,19 +25,34 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-01:i07",
-    "correctText": "We used to walk through the orchard.",
+    "interactionId": "en:lesson-25:session-01:i04",
+    "correctText": "We used to pick apples in this orchard.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-01:i08",
-    "correctText": "walk",
-    "correctResponseId": "en:lesson-25:session-01:i08:r1"
+    "interactionId": "en:lesson-25:session-01:i05",
+    "correctText": "I used to ride my bike to school.",
+    "correctResponseId": "en:lesson-25:session-01:i05:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-01:i09",
-    "correctText": "We used to walk through the orchard.",
-    "correctResponseId": "en:lesson-25:session-01:i09:r1"
+    "interactionId": "en:lesson-25:session-01:i06",
+    "correctText": "keep",
+    "correctResponseId": "en:lesson-25:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-01:word:estate",
+    "correctText": "estate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-01:i07",
+    "correctText": "There used to be a playground on this estate.",
+    "correctResponseId": "en:lesson-25:session-01:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-01:i08",
+    "correctText": "My parents used to walk to work.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-01:word:fairground",
@@ -65,43 +60,48 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-01:i09",
+    "correctText": "I used to work at the fairground.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-25:session-01:i10",
-    "correctText": "They used to visit the fairground.",
+    "correctText": "en:lesson-25:session-01:i10:p1=bungalow\nen:lesson-25:session-01:i10:p2=estate\nen:lesson-25:session-01:i10:p3=orchard\nen:lesson-25:session-01:i10:p4=fairground",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-01:i11",
-    "correctText": "visit",
+    "correctText": "visited",
     "correctResponseId": "en:lesson-25:session-01:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-01:i12",
-    "correctText": "They used to visit the fairground.",
-    "correctResponseId": "en:lesson-25:session-01:i12:r1"
+    "correctText": "There used to be a shop here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-01:i13",
-    "correctText": "en:lesson-25:session-01:i13:p1=bungalow\nen:lesson-25:session-01:i13:p2=estate\nen:lesson-25:session-01:i13:p3=orchard\nen:lesson-25:session-01:i13:p4=fairground",
+    "correctText": "We used to have picnics in the orchard.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-01:i14",
-    "correctText": "I have been waiting for an hour.",
-    "correctResponseId": null
+    "correctText": "My brother used to be shy.",
+    "correctResponseId": "en:lesson-25:session-01:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-01:i15",
-    "correctText": "She has been working since this morning.",
-    "correctResponseId": null
+    "correctText": "be",
+    "correctResponseId": "en:lesson-25:session-01:i15:r1"
   },
   {
     "interactionId": "en:lesson-25:session-01:i16",
-    "correctText": "We used to live in a bungalow.",
+    "correctText": "We used to live on the same street.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-01:i17",
-    "correctText": "She used to walk through the orchard.",
+    "correctText": "I used to play football every day.",
     "correctResponseId": null
   }
 ]

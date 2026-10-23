@@ -28,8 +28,8 @@
               "responseId": "en:lesson-25:session-03:word:everybody:r1",
               "targetText": "everybody",
               "meaningByLocale": {
-                "ru": "все, каждый.",
-                "uk": "усі, кожен."
+                "ru": "все, каждый",
+                "uk": "усі, кожен"
               }
             }
           ],
@@ -39,8 +39,8 @@
           "wordCard": {
             "word": "everybody",
             "definitionByLocale": {
-              "ru": "все, каждый.",
-              "uk": "усі, кожен."
+              "ru": "все, каждый",
+              "uk": "усі, кожен"
             }
           }
         },
@@ -50,34 +50,75 @@
         "interactionId": "en:lesson-25:session-03:i01",
         "ordinal": 5,
         "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Раньше все знали моё имя.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Раньше все знали моё имя.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "Everybody used to know my name.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Раньше все знали моё имя.»",
-            "uk": "Скажіть: «Раніше всі знали моє ім’я.»"
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-03:i01:r1",
+            "text": "Everybody used to eat lunch together."
           },
-          "orderedTokens": [
-            "Everybody",
-            "used",
-            "to",
-            "know",
-            "my",
-            "name"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
+          {
+            "responseId": "en:lesson-25:session-03:i01:r2",
+            "text": "Everybody used to eat dinner together."
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i01:r3",
+            "text": "Everybody used to cook lunch together."
           }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-03:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-03:i01:audio",
+            "transcript": "Everybody used to eat lunch together."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-03:i01:r1",
+              "targetText": "Everybody used to eat lunch together.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i01:r2",
+              "targetText": "Everybody used to eat dinner together.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i01:r3",
+              "targetText": "Everybody used to cook lunch together.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-03:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Everybody used to eat lunch together.",
+                "uk": "У записі звучить Everybody used to eat lunch together."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Everybody used to eat lunch together.",
+                "uk": "У записі звучить Everybody used to eat lunch together."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -87,63 +128,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
+        "prompt": "Теперь соседи редко общаются. Раньше все знали друг друга. Выберите прежнее состояние.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-03:i02:r1",
-            "text": "know"
+            "text": "used to know"
           },
           {
             "responseId": "en:lesson-25:session-03:i02:r2",
-            "text": "knew"
+            "text": "knows"
           },
           {
             "responseId": "en:lesson-25:session-03:i02:r3",
-            "text": "knowing"
+            "text": "is knowing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
+        "accessibilityLabel": "Теперь соседи редко общаются. Раньше все знали друг друга. Выберите прежнее состояние.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+            "ru": "Теперь соседи редко общаются. Раньше все знали друг друга. Выберите прежнее состояние.",
+            "uk": "Тепер сусіди рідко спілкуються. Раніше всі знали одне одного. Виберіть колишній стан."
           },
-          "gappedTargetPhrase": "Everybody used to ___ my name.",
+          "gappedTargetPhrase": "Everybody ___ each other.",
           "gapOptions": [
             {
               "responseId": "en:lesson-25:session-03:i02:r1",
-              "text": "know"
+              "text": "used to know"
             },
             {
               "responseId": "en:lesson-25:session-03:i02:r2",
-              "text": "knew"
+              "text": "knows"
             },
             {
               "responseId": "en:lesson-25:session-03:i02:r3",
-              "text": "knowing"
+              "text": "is knowing"
             }
           ],
-          "testedDimension": "Дополните воспоминание.",
+          "testedDimension": "Теперь соседи редко общаются. Раньше все знали друг друга. Выберите прежнее состояние.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-25:session-03:i02:r2",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "Теперь соседи редко общаются. Раньше все знали друг друга. Выберите прежнее состояние.",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма know.",
-                "uk": "Після used to потрібна форма know."
+                "ru": "Knows описывает настоящее, а по ситуации речь о прежнем знакомстве.",
+                "uk": "Knows описує теперішнє, а за ситуацією йдеться про колишнє знайомство."
               }
             },
             {
               "responseId": "en:lesson-25:session-03:i02:r3",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "Теперь соседи редко общаются. Раньше все знали друг друга. Выберите прежнее состояние.",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма know.",
-                "uk": "Після used to потрібна форма know."
+                "ru": "Для прежнего состояния здесь нужна конструкция used to know.",
+                "uk": "Для колишнього стану тут потрібна конструкція used to know."
               }
             }
           ]
@@ -154,146 +195,31 @@
         "interactionId": "en:lesson-25:session-03:i03",
         "ordinal": 7,
         "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-03:i03:r1",
-            "text": "Everybody used to know my name."
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i03:r2",
-            "text": "Everybody used to know her name."
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i03:r3",
-            "text": "Everybody used to call my name."
-          }
-        ],
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, каким говорящий был раньше.",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-03:i03:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Услышьте, каким говорящий был раньше.",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-03:i03:audio",
-            "transcript": "Everybody used to know my name."
+            "transcript": "I used to be shy at school."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-03:i03:r1",
-              "targetText": "Everybody used to know my name.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i03:r2",
-              "targetText": "Everybody used to know her name.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i03:r3",
-              "targetText": "Everybody used to call my name.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-03:i03:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Everybody used to know my name.",
-                "uk": "У записі звучить Everybody used to know my name."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i03:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Everybody used to know my name.",
-                "uk": "У записі звучить Everybody used to know my name."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-03:word:anybody",
-        "ordinal": 8,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — anybody",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-03:word:anybody:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — anybody",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:word:anybody:audio",
-            "transcript": "anybody"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-03:word:anybody:r1",
-              "targetText": "anybody",
-              "meaningByLocale": {
-                "ru": "кто угодно.",
-                "uk": "хто завгодно."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "anybody",
-            "definitionByLocale": {
-              "ru": "кто угодно.",
-              "uk": "хто завгодно."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-03:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Раньше я разговаривал с кем угодно.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Раньше я разговаривал с кем угодно.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I used to talk to anybody.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Раньше я разговаривал с кем угодно.»",
-            "uk": "Скажіть: «Раніше я розмовляв із ким завгодно.»"
-          },
+          "hiddenTargetPhrase": "I used to be shy at school.",
           "orderedTokens": [
             "I",
             "used",
             "to",
-            "talk",
-            "to",
-            "anybody"
+            "be",
+            "shy",
+            "at",
+            "school"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -305,154 +231,9 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-03:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-03:i05:r1",
-            "text": "talk"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i05:r2",
-            "text": "talked"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i05:r3",
-            "text": "talking"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "I used to ___ to anybody.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-03:i05:r1",
-              "text": "talk"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i05:r2",
-              "text": "talked"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i05:r3",
-              "text": "talking"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-03:i05:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма talk.",
-                "uk": "Після used to потрібна форма talk."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i05:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма talk.",
-                "uk": "Після used to потрібна форма talk."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-03:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-03:i06:r1",
-            "text": "I used to talk to anybody."
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i06:r2",
-            "text": "We used to talk to anybody."
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i06:r3",
-            "text": "I used to listen to anybody."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-03:i06:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:i06:audio",
-            "transcript": "I used to talk to anybody."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-03:i06:r1",
-              "targetText": "I used to talk to anybody.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i06:r2",
-              "targetText": "We used to talk to anybody.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i06:r3",
-              "targetText": "I used to listen to anybody.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-03:i06:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I used to talk to anybody.",
-                "uk": "У записі звучить I used to talk to anybody."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i06:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I used to talk to anybody.",
-                "uk": "У записі звучить I used to talk to anybody."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-03:word:something",
-        "ordinal": 12,
-        "purpose": "guided_practice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Карточка слова — something",
@@ -474,8 +255,8 @@
               "responseId": "en:lesson-25:session-03:word:something:r1",
               "targetText": "something",
               "meaningByLocale": {
-                "ru": "что-то.",
-                "uk": "щось."
+                "ru": "что-то",
+                "uk": "щось"
               }
             }
           ],
@@ -485,8 +266,232 @@
           "wordCard": {
             "word": "something",
             "definitionByLocale": {
-              "ru": "что-то.",
-              "uk": "щось."
+              "ru": "что-то",
+              "uk": "щось"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вспомните привычку: «Раньше я приносил что-нибудь на обед».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните привычку: «Раньше я приносил что-нибудь на обед».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to bring something for lunch.",
+          "localizedMeaning": {
+            "ru": "Вспомните привычку: «Раньше я приносил что-нибудь на обед».",
+            "uk": "Згадайте звичку: «Раніше я приносив щось на обід»."
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "bring",
+            "something",
+            "for",
+            "lunch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В коробке был какой-то предмет. Не человек и не место. Выберите нужное слово.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-03:i05:r1",
+            "text": "something"
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i05:r2",
+            "text": "someone"
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i05:r3",
+            "text": "somewhere"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В коробке был какой-то предмет. Не человек и не место. Выберите нужное слово.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В коробке был какой-то предмет. Не человек и не место. Выберите нужное слово.",
+            "uk": "У коробці був якийсь предмет. Не людина й не місце. Виберіть потрібне слово."
+          },
+          "gappedTargetPhrase": "There was ___ in the box.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-03:i05:r1",
+              "text": "something"
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i05:r2",
+              "text": "someone"
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i05:r3",
+              "text": "somewhere"
+            }
+          ],
+          "testedDimension": "В коробке был какой-то предмет. Не человек и не место. Выберите нужное слово.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-03:i05:r2",
+              "correct": false,
+              "testedDimension": "В коробке был какой-то предмет. Не человек и не место. Выберите нужное слово.",
+              "feedbackByLocale": {
+                "ru": "Someone обозначает человека; в ситуации речь о предмете.",
+                "uk": "Someone позначає людину; у ситуації йдеться про предмет."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i05:r3",
+              "correct": false,
+              "testedDimension": "В коробке был какой-то предмет. Не человек и не место. Выберите нужное слово.",
+              "feedbackByLocale": {
+                "ru": "Somewhere обозначает место; здесь нужно назвать неопределённый предмет.",
+                "uk": "Somewhere позначає місце; тут потрібно назвати невизначений предмет."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-03:i06:r1",
+            "text": "I have found something in my old bag."
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i06:r2",
+            "text": "I have lost something from my old bag."
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i06:r3",
+            "text": "I have found something in my old coat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-03:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-03:i06:audio",
+            "transcript": "I have found something in my old bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-03:i06:r1",
+              "targetText": "I have found something in my old bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i06:r2",
+              "targetText": "I have lost something from my old bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i06:r3",
+              "targetText": "I have found something in my old coat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-03:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have found something in my old bag.",
+                "uk": "У записі звучить I have found something in my old bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have found something in my old bag.",
+                "uk": "У записі звучить I have found something in my old bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:word:anybody",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — anybody",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-03:word:anybody:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — anybody",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-03:word:anybody:audio",
+            "transcript": "anybody"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-03:word:anybody:r1",
+              "targetText": "anybody",
+              "meaningByLocale": {
+                "ru": "кто угодно",
+                "uk": "хто завгодно"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "anybody",
+            "definitionByLocale": {
+              "ru": "кто угодно",
+              "uk": "хто завгодно"
             }
           }
         },
@@ -498,26 +503,26 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Раньше она что-то ела перед школой.»",
+        "prompt": "Раньше вы не стеснялись просить помощи. Скажите: «Раньше я просил помощи у кого угодно».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Раньше она что-то ела перед школой.»",
+        "accessibilityLabel": "Раньше вы не стеснялись просить помощи. Скажите: «Раньше я просил помощи у кого угодно».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She used to eat something before school.",
+          "targetPhrase": "I used to ask anybody for help.",
           "localizedMeaning": {
-            "ru": "Скажите: «Раньше она что-то ела перед школой.»",
-            "uk": "Скажіть: «Раніше вона щось їла перед школою.»"
+            "ru": "Раньше вы не стеснялись просить помощи. Скажите: «Раньше я просил помощи у кого угодно».",
+            "uk": "Раніше ви не соромилися просити допомоги. Скажіть: «Раніше я просив допомоги в кого завгодно»."
           },
           "orderedTokens": [
-            "She",
+            "I",
             "used",
             "to",
-            "eat",
-            "something",
-            "before",
-            "school"
+            "ask",
+            "anybody",
+            "for",
+            "help"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -532,67 +537,31 @@
         "interactionId": "en:lesson-25:session-03:i08",
         "ordinal": 14,
         "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-03:i08:r1",
-            "text": "eat"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i08:r2",
-            "text": "ate"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i08:r3",
-            "text": "eating"
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В вопросе anybody — «кто-нибудь». Спросите: «Здесь есть кто-нибудь?»",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
+        "audioTargetIds": [
+          "en:lesson-25:session-03:i08:audio"
+        ],
+        "accessibilityLabel": "В вопросе anybody — «кто-нибудь». Спросите: «Здесь есть кто-нибудь?»",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-03:i08:audio",
+            "transcript": "Is anybody here?"
           },
-          "gappedTargetPhrase": "She used to ___ something before school.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-03:i08:r1",
-              "text": "eat"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i08:r2",
-              "text": "ate"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i08:r3",
-              "text": "eating"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-03:i08:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма eat.",
-                "uk": "Після used to потрібна форма eat."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i08:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма eat.",
-                "uk": "Після used to потрібна форма eat."
-              }
-            }
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is anybody here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
@@ -601,75 +570,68 @@
         "interactionId": "en:lesson-25:session-03:i09",
         "ordinal": 15,
         "purpose": "guided_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Вы встретили ещё одного старого друга. После пропуска — один человек.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-03:i09:r1",
-            "text": "She used to eat something before school."
+            "text": "another"
           },
           {
             "responseId": "en:lesson-25:session-03:i09:r2",
-            "text": "He used to eat something before school."
+            "text": "other"
           },
           {
             "responseId": "en:lesson-25:session-03:i09:r3",
-            "text": "She used to buy something before school."
+            "text": "others"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-03:i09:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы встретили ещё одного старого друга. После пропуска — один человек.",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:i09:audio",
-            "transcript": "She used to eat something before school."
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы встретили ещё одного старого друга. После пропуска — один человек.",
+            "uk": "Ви зустріли ще одного старого друга. Після пропуску — одна людина."
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I met ___ old friend yesterday.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-25:session-03:i09:r1",
-              "targetText": "She used to eat something before school.",
-              "meaningByLocale": null
+              "text": "another"
             },
             {
               "responseId": "en:lesson-25:session-03:i09:r2",
-              "targetText": "He used to eat something before school.",
-              "meaningByLocale": null
+              "text": "other"
             },
             {
               "responseId": "en:lesson-25:session-03:i09:r3",
-              "targetText": "She used to buy something before school.",
-              "meaningByLocale": null
+              "text": "others"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Вы встретили ещё одного старого друга. После пропуска — один человек.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-25:session-03:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Вы встретили ещё одного старого друга. После пропуска — один человек.",
               "feedbackByLocale": {
-                "ru": "В записи звучит She used to eat something before school.",
-                "uk": "У записі звучить She used to eat something before school."
+                "ru": "Перед одним исчисляемым friend нужно another.",
+                "uk": "Перед одним злічуваним friend потрібно another."
               }
             },
             {
               "responseId": "en:lesson-25:session-03:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Вы встретили ещё одного старого друга. После пропуска — один человек.",
               "feedbackByLocale": {
-                "ru": "В записи звучит She used to eat something before school.",
-                "uk": "У записі звучить She used to eat something before school."
+                "ru": "Others употребляется без следующего существительного friend.",
+                "uk": "Others вживається без наступного іменника friend."
               }
             }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          ]
         },
         "scriptedAlternate": null
       },
@@ -698,8 +660,8 @@
               "responseId": "en:lesson-25:session-03:word:nowhere:r1",
               "targetText": "nowhere",
               "meaningByLocale": {
-                "ru": "нигде, некуда.",
-                "uk": "ніде, нікуди."
+                "ru": "нигде, некуда",
+                "uk": "ніде, нікуди"
               }
             }
           ],
@@ -709,8 +671,8 @@
           "wordCard": {
             "word": "nowhere",
             "definitionByLocale": {
-              "ru": "нигде, некуда.",
-              "uk": "ніде, нікуди."
+              "ru": "нигде, некуда",
+              "uk": "ніде, нікуди"
             }
           }
         },
@@ -720,175 +682,70 @@
         "interactionId": "en:lesson-25:session-03:i10",
         "ordinal": 17,
         "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Раньше нам негде было играть.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Раньше нам негде было играть.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We used to have nowhere to play.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Раньше нам негде было играть.»",
-            "uk": "Скажіть: «Раніше нам ніде було гратися.»"
-          },
-          "orderedTokens": [
-            "We",
-            "used",
-            "to",
-            "have",
-            "nowhere",
-            "to",
-            "play"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-03:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-03:i11:r1",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i11:r2",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i11:r3",
-            "text": "having"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "We used to ___ nowhere to play.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-03:i11:r1",
-              "text": "have"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i11:r2",
-              "text": "had"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i11:r3",
-              "text": "having"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-03:i11:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма have.",
-                "uk": "Після used to потрібна форма have."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i11:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма have.",
-                "uk": "Після used to потрібна форма have."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-03:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-03:i12:r1",
-            "text": "We used to have nowhere to play."
+            "responseId": "en:lesson-25:session-03:i10:r1",
+            "text": "I used to have nowhere to keep my books."
           },
           {
-            "responseId": "en:lesson-25:session-03:i12:r2",
-            "text": "They used to have nowhere to play."
+            "responseId": "en:lesson-25:session-03:i10:r2",
+            "text": "I used to have nowhere to keep my toys."
           },
           {
-            "responseId": "en:lesson-25:session-03:i12:r3",
-            "text": "We used to have nowhere to sit."
+            "responseId": "en:lesson-25:session-03:i10:r3",
+            "text": "We used to have nowhere to keep our books."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-03:i12:audio"
+          "en:lesson-25:session-03:i10:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:i12:audio",
-            "transcript": "We used to have nowhere to play."
+            "audioTargetId": "en:lesson-25:session-03:i10:audio",
+            "transcript": "I used to have nowhere to keep my books."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-03:i12:r1",
-              "targetText": "We used to have nowhere to play.",
+              "responseId": "en:lesson-25:session-03:i10:r1",
+              "targetText": "I used to have nowhere to keep my books.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-03:i12:r2",
-              "targetText": "They used to have nowhere to play.",
+              "responseId": "en:lesson-25:session-03:i10:r2",
+              "targetText": "I used to have nowhere to keep my toys.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-03:i12:r3",
-              "targetText": "We used to have nowhere to sit.",
+              "responseId": "en:lesson-25:session-03:i10:r3",
+              "targetText": "We used to have nowhere to keep our books.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-03:i12:r2",
+              "responseId": "en:lesson-25:session-03:i10:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We used to have nowhere to play.",
-                "uk": "У записі звучить We used to have nowhere to play."
+                "ru": "В записи звучит I used to have nowhere to keep my books.",
+                "uk": "У записі звучить I used to have nowhere to keep my books."
               }
             },
             {
-              "responseId": "en:lesson-25:session-03:i12:r3",
+              "responseId": "en:lesson-25:session-03:i10:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We used to have nowhere to play.",
-                "uk": "У записі звучить We used to have nowhere to play."
+                "ru": "В записи звучит I used to have nowhere to keep my books.",
+                "uk": "У записі звучить I used to have nowhere to keep my books."
               }
             }
           ],
@@ -898,21 +755,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-03:i13",
-        "ordinal": 20,
+        "interactionId": "en:lesson-25:session-03:i11",
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова с переводом",
+        "prompt": "Различите людей, вещи и отсутствие места",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова с переводом",
+        "accessibilityLabel": "Различите людей, вещи и отсутствие места",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-03:i13:p1",
+              "pairId": "en:lesson-25:session-03:i11:p1",
               "target": "everybody",
               "meaningByLocale": {
                 "ru": "все, каждый",
@@ -920,7 +777,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-03:i13:p2",
+              "pairId": "en:lesson-25:session-03:i11:p2",
               "target": "anybody",
               "meaningByLocale": {
                 "ru": "кто угодно",
@@ -928,7 +785,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-03:i13:p3",
+              "pairId": "en:lesson-25:session-03:i11:p3",
               "target": "something",
               "meaningByLocale": {
                 "ru": "что-то",
@@ -936,7 +793,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-03:i13:p4",
+              "pairId": "en:lesson-25:session-03:i11:p4",
               "target": "nowhere",
               "meaningByLocale": {
                 "ru": "нигде, некуда",
@@ -971,34 +828,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-03:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
+        "interactionId": "en:lesson-25:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Жду уже час",
+        "prompt": "Теперь вы часто пишете друзьям. Вспомните прошлое: «Раньше я звонил друзьям каждый вечер».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-03:i14:audio"
-        ],
-        "accessibilityLabel": "Жду уже час",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Теперь вы часто пишете друзьям. Вспомните прошлое: «Раньше я звонил друзьям каждый вечер».",
         "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:i14:audio",
-            "transcript": "I have been waiting for an hour."
+          "family": "phrase_builder",
+          "targetPhrase": "I used to call my friends every evening.",
+          "localizedMeaning": {
+            "ru": "Теперь вы часто пишете друзьям. Вспомните прошлое: «Раньше я звонил друзьям каждый вечер».",
+            "uk": "Тепер ви часто пишете друзям. Згадайте минуле: «Раніше я телефонував друзям щовечора»."
           },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I have been waiting for an hour.",
           "orderedTokens": [
             "I",
-            "have",
-            "been",
-            "waiting",
-            "for",
-            "an",
-            "hour"
+            "used",
+            "to",
+            "call",
+            "my",
+            "friends",
+            "every",
+            "evening"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1010,34 +865,35 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-03:i15",
-        "ordinal": 22,
-        "purpose": "independent_check",
+        "interactionId": "en:lesson-25:session-03:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Работает с утра",
+        "prompt": "Услышьте, где собирались люди раньше.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-03:i15:audio"
+          "en:lesson-25:session-03:i13:audio"
         ],
-        "accessibilityLabel": "Работает с утра",
+        "accessibilityLabel": "Услышьте, где собирались люди раньше.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:i15:audio",
-            "transcript": "She has been working since this morning."
+            "audioTargetId": "en:lesson-25:session-03:i13:audio",
+            "transcript": "Everybody used to meet at the same cafe."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She has been working since this morning.",
+          "hiddenTargetPhrase": "Everybody used to meet at the same cafe.",
           "orderedTokens": [
-            "She",
-            "has",
-            "been",
-            "working",
-            "since",
-            "this",
-            "morning"
+            "Everybody",
+            "used",
+            "to",
+            "meet",
+            "at",
+            "the",
+            "same",
+            "cafe"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1045,6 +901,151 @@
             "ru": "",
             "uk": ""
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-03:i14:r1",
+            "text": "called"
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i14:r2",
+            "text": "have called"
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i14:r3",
+            "text": "used to call"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.",
+            "uk": "Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події."
+          },
+          "gappedTargetPhrase": "I ___ my old neighbour last night.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-03:i14:r1",
+              "text": "called"
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i14:r2",
+              "text": "have called"
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i14:r3",
+              "text": "used to call"
+            }
+          ],
+          "testedDimension": "Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-03:i14:r2",
+              "correct": false,
+              "testedDimension": "Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.",
+              "feedbackByLocale": {
+                "ru": "Last night — законченное время: нужен Past Simple called.",
+                "uk": "Last night — завершений час: потрібен Past Simple called."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i14:r3",
+              "correct": false,
+              "testedDimension": "Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.",
+              "feedbackByLocale": {
+                "ru": "Used to call описывает прежнюю привычку, а здесь был один разговор.",
+                "uk": "Used to call описує колишню звичку, а тут була одна розмова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-03:i15:r1",
+            "text": "We used to have nowhere to sit after school."
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i15:r2",
+            "text": "We used to have nowhere to play after school."
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i15:r3",
+            "text": "We used to have nowhere to sit before school."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-03:i15:audio",
+            "transcript": "We used to have nowhere to sit after school."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-03:i15:r1",
+              "targetText": "We used to have nowhere to sit after school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i15:r2",
+              "targetText": "We used to have nowhere to play after school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i15:r3",
+              "targetText": "We used to have nowhere to sit before school.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-03:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to have nowhere to sit after school.",
+                "uk": "У записі звучить We used to have nowhere to sit after school."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to have nowhere to sit after school.",
+                "uk": "У записі звучить We used to have nowhere to sit after school."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1054,21 +1055,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Он раньше что-то ел перед школой».",
+        "prompt": "Скажите о сегодняшней находке: «Я нашёл что-то интересное».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-03:i16:audio"
         ],
-        "accessibilityLabel": "Скажите: «Он раньше что-то ел перед школой».",
+        "accessibilityLabel": "Скажите о сегодняшней находке: «Я нашёл что-то интересное».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-03:i16:audio",
-            "transcript": "He used to eat something before school."
+            "transcript": "I have found something interesting."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "He used to eat something before school.",
+          "targetPhrase": "I have found something interesting.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1087,21 +1088,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Им раньше негде было сидеть».",
+        "prompt": "Закончите воспоминание: «Раньше все называли меня этим именем».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-03:i17:audio"
         ],
-        "accessibilityLabel": "Скажите: «Им раньше негде было сидеть».",
+        "accessibilityLabel": "Закончите воспоминание: «Раньше все называли меня этим именем».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-03:i17:audio",
-            "transcript": "They used to have nowhere to sit."
+            "transcript": "Everybody used to call me by that name."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "They used to have nowhere to sit.",
+          "targetPhrase": "Everybody used to call me by that name.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1141,8 +1142,8 @@
               "responseId": "en:lesson-25:session-03:word:everybody:r1",
               "targetText": "everybody",
               "meaningByLocale": {
-                "ru": "все, каждый.",
-                "uk": "усі, кожен."
+                "ru": "все, каждый",
+                "uk": "усі, кожен"
               }
             }
           ],
@@ -1152,8 +1153,8 @@
           "wordCard": {
             "word": "everybody",
             "definitionByLocale": {
-              "ru": "все, каждый.",
-              "uk": "усі, кожен."
+              "ru": "все, каждый",
+              "uk": "усі, кожен"
             }
           }
         },
@@ -1163,34 +1164,75 @@
         "interactionId": "en:lesson-25:session-03:i01",
         "ordinal": 5,
         "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Раніше всі знали моє ім’я.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Раніше всі знали моє ім’я.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "Everybody used to know my name.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Раньше все знали моё имя.»",
-            "uk": "Скажіть: «Раніше всі знали моє ім’я.»"
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-03:i01:r1",
+            "text": "Everybody used to eat lunch together."
           },
-          "orderedTokens": [
-            "Everybody",
-            "used",
-            "to",
-            "know",
-            "my",
-            "name"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
+          {
+            "responseId": "en:lesson-25:session-03:i01:r2",
+            "text": "Everybody used to eat dinner together."
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i01:r3",
+            "text": "Everybody used to cook lunch together."
           }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-03:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-03:i01:audio",
+            "transcript": "Everybody used to eat lunch together."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-03:i01:r1",
+              "targetText": "Everybody used to eat lunch together.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i01:r2",
+              "targetText": "Everybody used to eat dinner together.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i01:r3",
+              "targetText": "Everybody used to cook lunch together.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-03:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Everybody used to eat lunch together.",
+                "uk": "У записі звучить Everybody used to eat lunch together."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Everybody used to eat lunch together.",
+                "uk": "У записі звучить Everybody used to eat lunch together."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1200,63 +1242,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
+        "prompt": "Тепер сусіди рідко спілкуються. Раніше всі знали одне одного. Виберіть колишній стан.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-03:i02:r1",
-            "text": "know"
+            "text": "used to know"
           },
           {
             "responseId": "en:lesson-25:session-03:i02:r2",
-            "text": "knew"
+            "text": "knows"
           },
           {
             "responseId": "en:lesson-25:session-03:i02:r3",
-            "text": "knowing"
+            "text": "is knowing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
+        "accessibilityLabel": "Тепер сусіди рідко спілкуються. Раніше всі знали одне одного. Виберіть колишній стан.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+            "ru": "Теперь соседи редко общаются. Раньше все знали друг друга. Выберите прежнее состояние.",
+            "uk": "Тепер сусіди рідко спілкуються. Раніше всі знали одне одного. Виберіть колишній стан."
           },
-          "gappedTargetPhrase": "Everybody used to ___ my name.",
+          "gappedTargetPhrase": "Everybody ___ each other.",
           "gapOptions": [
             {
               "responseId": "en:lesson-25:session-03:i02:r1",
-              "text": "know"
+              "text": "used to know"
             },
             {
               "responseId": "en:lesson-25:session-03:i02:r2",
-              "text": "knew"
+              "text": "knows"
             },
             {
               "responseId": "en:lesson-25:session-03:i02:r3",
-              "text": "knowing"
+              "text": "is knowing"
             }
           ],
-          "testedDimension": "Доповніть спогад.",
+          "testedDimension": "Тепер сусіди рідко спілкуються. Раніше всі знали одне одного. Виберіть колишній стан.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-25:session-03:i02:r2",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "Тепер сусіди рідко спілкуються. Раніше всі знали одне одного. Виберіть колишній стан.",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма know.",
-                "uk": "Після used to потрібна форма know."
+                "ru": "Knows описывает настоящее, а по ситуации речь о прежнем знакомстве.",
+                "uk": "Knows описує теперішнє, а за ситуацією йдеться про колишнє знайомство."
               }
             },
             {
               "responseId": "en:lesson-25:session-03:i02:r3",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "Тепер сусіди рідко спілкуються. Раніше всі знали одне одного. Виберіть колишній стан.",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма know.",
-                "uk": "Після used to потрібна форма know."
+                "ru": "Для прежнего состояния здесь нужна конструкция used to know.",
+                "uk": "Для колишнього стану тут потрібна конструкція used to know."
               }
             }
           ]
@@ -1267,146 +1309,31 @@
         "interactionId": "en:lesson-25:session-03:i03",
         "ordinal": 7,
         "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-03:i03:r1",
-            "text": "Everybody used to know my name."
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i03:r2",
-            "text": "Everybody used to know her name."
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i03:r3",
-            "text": "Everybody used to call my name."
-          }
-        ],
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, яким мовець був раніше.",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-03:i03:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть",
+        "accessibilityLabel": "Почуйте, яким мовець був раніше.",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-03:i03:audio",
-            "transcript": "Everybody used to know my name."
+            "transcript": "I used to be shy at school."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-03:i03:r1",
-              "targetText": "Everybody used to know my name.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i03:r2",
-              "targetText": "Everybody used to know her name.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i03:r3",
-              "targetText": "Everybody used to call my name.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-03:i03:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Everybody used to know my name.",
-                "uk": "У записі звучить Everybody used to know my name."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i03:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Everybody used to know my name.",
-                "uk": "У записі звучить Everybody used to know my name."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-03:word:anybody",
-        "ordinal": 8,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — anybody",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-03:word:anybody:audio"
-        ],
-        "accessibilityLabel": "Картка слова — anybody",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:word:anybody:audio",
-            "transcript": "anybody"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-03:word:anybody:r1",
-              "targetText": "anybody",
-              "meaningByLocale": {
-                "ru": "кто угодно.",
-                "uk": "хто завгодно."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "anybody",
-            "definitionByLocale": {
-              "ru": "кто угодно.",
-              "uk": "хто завгодно."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-03:i04",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Раніше я розмовляв із ким завгодно.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Раніше я розмовляв із ким завгодно.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I used to talk to anybody.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Раньше я разговаривал с кем угодно.»",
-            "uk": "Скажіть: «Раніше я розмовляв із ким завгодно.»"
-          },
+          "hiddenTargetPhrase": "I used to be shy at school.",
           "orderedTokens": [
             "I",
             "used",
             "to",
-            "talk",
-            "to",
-            "anybody"
+            "be",
+            "shy",
+            "at",
+            "school"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1418,154 +1345,9 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-03:i05",
-        "ordinal": 10,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-03:i05:r1",
-            "text": "talk"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i05:r2",
-            "text": "talked"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i05:r3",
-            "text": "talking"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "I used to ___ to anybody.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-03:i05:r1",
-              "text": "talk"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i05:r2",
-              "text": "talked"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i05:r3",
-              "text": "talking"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-03:i05:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма talk.",
-                "uk": "Після used to потрібна форма talk."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i05:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма talk.",
-                "uk": "Після used to потрібна форма talk."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-03:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-03:i06:r1",
-            "text": "I used to talk to anybody."
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i06:r2",
-            "text": "We used to talk to anybody."
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i06:r3",
-            "text": "I used to listen to anybody."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-03:i06:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:i06:audio",
-            "transcript": "I used to talk to anybody."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-03:i06:r1",
-              "targetText": "I used to talk to anybody.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i06:r2",
-              "targetText": "We used to talk to anybody.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i06:r3",
-              "targetText": "I used to listen to anybody.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-03:i06:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I used to talk to anybody.",
-                "uk": "У записі звучить I used to talk to anybody."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i06:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I used to talk to anybody.",
-                "uk": "У записі звучить I used to talk to anybody."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-03:word:something",
-        "ordinal": 12,
-        "purpose": "guided_practice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Картка слова — something",
@@ -1587,8 +1369,8 @@
               "responseId": "en:lesson-25:session-03:word:something:r1",
               "targetText": "something",
               "meaningByLocale": {
-                "ru": "что-то.",
-                "uk": "щось."
+                "ru": "что-то",
+                "uk": "щось"
               }
             }
           ],
@@ -1598,8 +1380,232 @@
           "wordCard": {
             "word": "something",
             "definitionByLocale": {
-              "ru": "что-то.",
-              "uk": "щось."
+              "ru": "что-то",
+              "uk": "щось"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Згадайте звичку: «Раніше я приносив щось на обід».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Згадайте звичку: «Раніше я приносив щось на обід».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to bring something for lunch.",
+          "localizedMeaning": {
+            "ru": "Вспомните привычку: «Раньше я приносил что-нибудь на обед».",
+            "uk": "Згадайте звичку: «Раніше я приносив щось на обід»."
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "bring",
+            "something",
+            "for",
+            "lunch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У коробці був якийсь предмет. Не людина й не місце. Виберіть потрібне слово.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-03:i05:r1",
+            "text": "something"
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i05:r2",
+            "text": "someone"
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i05:r3",
+            "text": "somewhere"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У коробці був якийсь предмет. Не людина й не місце. Виберіть потрібне слово.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В коробке был какой-то предмет. Не человек и не место. Выберите нужное слово.",
+            "uk": "У коробці був якийсь предмет. Не людина й не місце. Виберіть потрібне слово."
+          },
+          "gappedTargetPhrase": "There was ___ in the box.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-03:i05:r1",
+              "text": "something"
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i05:r2",
+              "text": "someone"
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i05:r3",
+              "text": "somewhere"
+            }
+          ],
+          "testedDimension": "У коробці був якийсь предмет. Не людина й не місце. Виберіть потрібне слово.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-03:i05:r2",
+              "correct": false,
+              "testedDimension": "У коробці був якийсь предмет. Не людина й не місце. Виберіть потрібне слово.",
+              "feedbackByLocale": {
+                "ru": "Someone обозначает человека; в ситуации речь о предмете.",
+                "uk": "Someone позначає людину; у ситуації йдеться про предмет."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i05:r3",
+              "correct": false,
+              "testedDimension": "У коробці був якийсь предмет. Не людина й не місце. Виберіть потрібне слово.",
+              "feedbackByLocale": {
+                "ru": "Somewhere обозначает место; здесь нужно назвать неопределённый предмет.",
+                "uk": "Somewhere позначає місце; тут потрібно назвати невизначений предмет."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-03:i06:r1",
+            "text": "I have found something in my old bag."
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i06:r2",
+            "text": "I have lost something from my old bag."
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i06:r3",
+            "text": "I have found something in my old coat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-03:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-03:i06:audio",
+            "transcript": "I have found something in my old bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-03:i06:r1",
+              "targetText": "I have found something in my old bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i06:r2",
+              "targetText": "I have lost something from my old bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i06:r3",
+              "targetText": "I have found something in my old coat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-03:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have found something in my old bag.",
+                "uk": "У записі звучить I have found something in my old bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have found something in my old bag.",
+                "uk": "У записі звучить I have found something in my old bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:word:anybody",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — anybody",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-03:word:anybody:audio"
+        ],
+        "accessibilityLabel": "Картка слова — anybody",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-03:word:anybody:audio",
+            "transcript": "anybody"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-03:word:anybody:r1",
+              "targetText": "anybody",
+              "meaningByLocale": {
+                "ru": "кто угодно",
+                "uk": "хто завгодно"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "anybody",
+            "definitionByLocale": {
+              "ru": "кто угодно",
+              "uk": "хто завгодно"
             }
           }
         },
@@ -1611,26 +1617,26 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Раніше вона щось їла перед школою.»",
+        "prompt": "Раніше ви не соромилися просити допомоги. Скажіть: «Раніше я просив допомоги в кого завгодно».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Раніше вона щось їла перед школою.»",
+        "accessibilityLabel": "Раніше ви не соромилися просити допомоги. Скажіть: «Раніше я просив допомоги в кого завгодно».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She used to eat something before school.",
+          "targetPhrase": "I used to ask anybody for help.",
           "localizedMeaning": {
-            "ru": "Скажите: «Раньше она что-то ела перед школой.»",
-            "uk": "Скажіть: «Раніше вона щось їла перед школою.»"
+            "ru": "Раньше вы не стеснялись просить помощи. Скажите: «Раньше я просил помощи у кого угодно».",
+            "uk": "Раніше ви не соромилися просити допомоги. Скажіть: «Раніше я просив допомоги в кого завгодно»."
           },
           "orderedTokens": [
-            "She",
+            "I",
             "used",
             "to",
-            "eat",
-            "something",
-            "before",
-            "school"
+            "ask",
+            "anybody",
+            "for",
+            "help"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1645,67 +1651,31 @@
         "interactionId": "en:lesson-25:session-03:i08",
         "ordinal": 14,
         "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-03:i08:r1",
-            "text": "eat"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i08:r2",
-            "text": "ate"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i08:r3",
-            "text": "eating"
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У запитанні anybody — «хто-небудь». Запитайте: «Тут є хто-небудь?»",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
+        "audioTargetIds": [
+          "en:lesson-25:session-03:i08:audio"
+        ],
+        "accessibilityLabel": "У запитанні anybody — «хто-небудь». Запитайте: «Тут є хто-небудь?»",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-03:i08:audio",
+            "transcript": "Is anybody here?"
           },
-          "gappedTargetPhrase": "She used to ___ something before school.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-03:i08:r1",
-              "text": "eat"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i08:r2",
-              "text": "ate"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i08:r3",
-              "text": "eating"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-03:i08:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма eat.",
-                "uk": "Після used to потрібна форма eat."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i08:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма eat.",
-                "uk": "Після used to потрібна форма eat."
-              }
-            }
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is anybody here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
@@ -1714,75 +1684,68 @@
         "interactionId": "en:lesson-25:session-03:i09",
         "ordinal": 15,
         "purpose": "guided_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
+        "prompt": "Ви зустріли ще одного старого друга. Після пропуску — одна людина.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-03:i09:r1",
-            "text": "She used to eat something before school."
+            "text": "another"
           },
           {
             "responseId": "en:lesson-25:session-03:i09:r2",
-            "text": "He used to eat something before school."
+            "text": "other"
           },
           {
             "responseId": "en:lesson-25:session-03:i09:r3",
-            "text": "She used to buy something before school."
+            "text": "others"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-03:i09:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зустріли ще одного старого друга. Після пропуску — одна людина.",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:i09:audio",
-            "transcript": "She used to eat something before school."
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы встретили ещё одного старого друга. После пропуска — один человек.",
+            "uk": "Ви зустріли ще одного старого друга. Після пропуску — одна людина."
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I met ___ old friend yesterday.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-25:session-03:i09:r1",
-              "targetText": "She used to eat something before school.",
-              "meaningByLocale": null
+              "text": "another"
             },
             {
               "responseId": "en:lesson-25:session-03:i09:r2",
-              "targetText": "He used to eat something before school.",
-              "meaningByLocale": null
+              "text": "other"
             },
             {
               "responseId": "en:lesson-25:session-03:i09:r3",
-              "targetText": "She used to buy something before school.",
-              "meaningByLocale": null
+              "text": "others"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Ви зустріли ще одного старого друга. Після пропуску — одна людина.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-25:session-03:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть",
+              "testedDimension": "Ви зустріли ще одного старого друга. Після пропуску — одна людина.",
               "feedbackByLocale": {
-                "ru": "В записи звучит She used to eat something before school.",
-                "uk": "У записі звучить She used to eat something before school."
+                "ru": "Перед одним исчисляемым friend нужно another.",
+                "uk": "Перед одним злічуваним friend потрібно another."
               }
             },
             {
               "responseId": "en:lesson-25:session-03:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть",
+              "testedDimension": "Ви зустріли ще одного старого друга. Після пропуску — одна людина.",
               "feedbackByLocale": {
-                "ru": "В записи звучит She used to eat something before school.",
-                "uk": "У записі звучить She used to eat something before school."
+                "ru": "Others употребляется без следующего существительного friend.",
+                "uk": "Others вживається без наступного іменника friend."
               }
             }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1811,8 +1774,8 @@
               "responseId": "en:lesson-25:session-03:word:nowhere:r1",
               "targetText": "nowhere",
               "meaningByLocale": {
-                "ru": "нигде, некуда.",
-                "uk": "ніде, нікуди."
+                "ru": "нигде, некуда",
+                "uk": "ніде, нікуди"
               }
             }
           ],
@@ -1822,8 +1785,8 @@
           "wordCard": {
             "word": "nowhere",
             "definitionByLocale": {
-              "ru": "нигде, некуда.",
-              "uk": "ніде, нікуди."
+              "ru": "нигде, некуда",
+              "uk": "ніде, нікуди"
             }
           }
         },
@@ -1833,175 +1796,70 @@
         "interactionId": "en:lesson-25:session-03:i10",
         "ordinal": 17,
         "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Раніше нам ніде було гратися.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Раніше нам ніде було гратися.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We used to have nowhere to play.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Раньше нам негде было играть.»",
-            "uk": "Скажіть: «Раніше нам ніде було гратися.»"
-          },
-          "orderedTokens": [
-            "We",
-            "used",
-            "to",
-            "have",
-            "nowhere",
-            "to",
-            "play"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-03:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-03:i11:r1",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i11:r2",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-03:i11:r3",
-            "text": "having"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "We used to ___ nowhere to play.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-03:i11:r1",
-              "text": "have"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i11:r2",
-              "text": "had"
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i11:r3",
-              "text": "having"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-03:i11:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма have.",
-                "uk": "Після used to потрібна форма have."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-03:i11:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма have.",
-                "uk": "Після used to потрібна форма have."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-03:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-03:i12:r1",
-            "text": "We used to have nowhere to play."
+            "responseId": "en:lesson-25:session-03:i10:r1",
+            "text": "I used to have nowhere to keep my books."
           },
           {
-            "responseId": "en:lesson-25:session-03:i12:r2",
-            "text": "They used to have nowhere to play."
+            "responseId": "en:lesson-25:session-03:i10:r2",
+            "text": "I used to have nowhere to keep my toys."
           },
           {
-            "responseId": "en:lesson-25:session-03:i12:r3",
-            "text": "We used to have nowhere to sit."
+            "responseId": "en:lesson-25:session-03:i10:r3",
+            "text": "We used to have nowhere to keep our books."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-03:i12:audio"
+          "en:lesson-25:session-03:i10:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:i12:audio",
-            "transcript": "We used to have nowhere to play."
+            "audioTargetId": "en:lesson-25:session-03:i10:audio",
+            "transcript": "I used to have nowhere to keep my books."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-03:i12:r1",
-              "targetText": "We used to have nowhere to play.",
+              "responseId": "en:lesson-25:session-03:i10:r1",
+              "targetText": "I used to have nowhere to keep my books.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-03:i12:r2",
-              "targetText": "They used to have nowhere to play.",
+              "responseId": "en:lesson-25:session-03:i10:r2",
+              "targetText": "I used to have nowhere to keep my toys.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-03:i12:r3",
-              "targetText": "We used to have nowhere to sit.",
+              "responseId": "en:lesson-25:session-03:i10:r3",
+              "targetText": "We used to have nowhere to keep our books.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-03:i12:r2",
+              "responseId": "en:lesson-25:session-03:i10:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We used to have nowhere to play.",
-                "uk": "У записі звучить We used to have nowhere to play."
+                "ru": "В записи звучит I used to have nowhere to keep my books.",
+                "uk": "У записі звучить I used to have nowhere to keep my books."
               }
             },
             {
-              "responseId": "en:lesson-25:session-03:i12:r3",
+              "responseId": "en:lesson-25:session-03:i10:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We used to have nowhere to play.",
-                "uk": "У записі звучить We used to have nowhere to play."
+                "ru": "В записи звучит I used to have nowhere to keep my books.",
+                "uk": "У записі звучить I used to have nowhere to keep my books."
               }
             }
           ],
@@ -2011,21 +1869,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-03:i13",
-        "ordinal": 20,
+        "interactionId": "en:lesson-25:session-03:i11",
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Поєднайте слова з перекладом",
+        "prompt": "Розрізніть людей, речі й відсутність місця",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "accessibilityLabel": "Розрізніть людей, речі й відсутність місця",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-03:i13:p1",
+              "pairId": "en:lesson-25:session-03:i11:p1",
               "target": "everybody",
               "meaningByLocale": {
                 "ru": "все, каждый",
@@ -2033,7 +1891,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-03:i13:p2",
+              "pairId": "en:lesson-25:session-03:i11:p2",
               "target": "anybody",
               "meaningByLocale": {
                 "ru": "кто угодно",
@@ -2041,7 +1899,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-03:i13:p3",
+              "pairId": "en:lesson-25:session-03:i11:p3",
               "target": "something",
               "meaningByLocale": {
                 "ru": "что-то",
@@ -2049,7 +1907,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-03:i13:p4",
+              "pairId": "en:lesson-25:session-03:i11:p4",
               "target": "nowhere",
               "meaningByLocale": {
                 "ru": "нигде, некуда",
@@ -2084,34 +1942,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-03:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
+        "interactionId": "en:lesson-25:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Чекаю вже годину",
+        "prompt": "Тепер ви часто пишете друзям. Згадайте минуле: «Раніше я телефонував друзям щовечора».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-03:i14:audio"
-        ],
-        "accessibilityLabel": "Чекаю вже годину",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тепер ви часто пишете друзям. Згадайте минуле: «Раніше я телефонував друзям щовечора».",
         "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:i14:audio",
-            "transcript": "I have been waiting for an hour."
+          "family": "phrase_builder",
+          "targetPhrase": "I used to call my friends every evening.",
+          "localizedMeaning": {
+            "ru": "Теперь вы часто пишете друзьям. Вспомните прошлое: «Раньше я звонил друзьям каждый вечер».",
+            "uk": "Тепер ви часто пишете друзям. Згадайте минуле: «Раніше я телефонував друзям щовечора»."
           },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I have been waiting for an hour.",
           "orderedTokens": [
             "I",
-            "have",
-            "been",
-            "waiting",
-            "for",
-            "an",
-            "hour"
+            "used",
+            "to",
+            "call",
+            "my",
+            "friends",
+            "every",
+            "evening"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2123,34 +1979,35 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-03:i15",
-        "ordinal": 22,
-        "purpose": "independent_check",
+        "interactionId": "en:lesson-25:session-03:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Працює з ранку",
+        "prompt": "Почуйте, де збиралися люди раніше.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-03:i15:audio"
+          "en:lesson-25:session-03:i13:audio"
         ],
-        "accessibilityLabel": "Працює з ранку",
+        "accessibilityLabel": "Почуйте, де збиралися люди раніше.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-03:i15:audio",
-            "transcript": "She has been working since this morning."
+            "audioTargetId": "en:lesson-25:session-03:i13:audio",
+            "transcript": "Everybody used to meet at the same cafe."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She has been working since this morning.",
+          "hiddenTargetPhrase": "Everybody used to meet at the same cafe.",
           "orderedTokens": [
-            "She",
-            "has",
-            "been",
-            "working",
-            "since",
-            "this",
-            "morning"
+            "Everybody",
+            "used",
+            "to",
+            "meet",
+            "at",
+            "the",
+            "same",
+            "cafe"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2158,6 +2015,151 @@
             "ru": "",
             "uk": ""
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-03:i14:r1",
+            "text": "called"
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i14:r2",
+            "text": "have called"
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i14:r3",
+            "text": "used to call"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.",
+            "uk": "Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події."
+          },
+          "gappedTargetPhrase": "I ___ my old neighbour last night.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-03:i14:r1",
+              "text": "called"
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i14:r2",
+              "text": "have called"
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i14:r3",
+              "text": "used to call"
+            }
+          ],
+          "testedDimension": "Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-03:i14:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події.",
+              "feedbackByLocale": {
+                "ru": "Last night — законченное время: нужен Past Simple called.",
+                "uk": "Last night — завершений час: потрібен Past Simple called."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i14:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події.",
+              "feedbackByLocale": {
+                "ru": "Used to call описывает прежнюю привычку, а здесь был один разговор.",
+                "uk": "Used to call описує колишню звичку, а тут була одна розмова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-03:i15:r1",
+            "text": "We used to have nowhere to sit after school."
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i15:r2",
+            "text": "We used to have nowhere to play after school."
+          },
+          {
+            "responseId": "en:lesson-25:session-03:i15:r3",
+            "text": "We used to have nowhere to sit before school."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-03:i15:audio",
+            "transcript": "We used to have nowhere to sit after school."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-03:i15:r1",
+              "targetText": "We used to have nowhere to sit after school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i15:r2",
+              "targetText": "We used to have nowhere to play after school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i15:r3",
+              "targetText": "We used to have nowhere to sit before school.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-03:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to have nowhere to sit after school.",
+                "uk": "У записі звучить We used to have nowhere to sit after school."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-03:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to have nowhere to sit after school.",
+                "uk": "У записі звучить We used to have nowhere to sit after school."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -2167,21 +2169,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Він раніше щось їв перед школою».",
+        "prompt": "Скажіть про сьогоднішню знахідку: «Я знайшов щось цікаве».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-03:i16:audio"
         ],
-        "accessibilityLabel": "Скажіть: «Він раніше щось їв перед школою».",
+        "accessibilityLabel": "Скажіть про сьогоднішню знахідку: «Я знайшов щось цікаве».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-03:i16:audio",
-            "transcript": "He used to eat something before school."
+            "transcript": "I have found something interesting."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "He used to eat something before school.",
+          "targetPhrase": "I have found something interesting.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2200,21 +2202,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Їм раніше ніде було сидіти».",
+        "prompt": "Закінчіть спогад: «Раніше всі називали мене цим ім’ям».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-03:i17:audio"
         ],
-        "accessibilityLabel": "Скажіть: «Їм раніше ніде було сидіти».",
+        "accessibilityLabel": "Закінчіть спогад: «Раніше всі називали мене цим ім’ям».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-03:i17:audio",
-            "transcript": "They used to have nowhere to sit."
+            "transcript": "Everybody used to call me by that name."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "They used to have nowhere to sit.",
+          "targetPhrase": "Everybody used to call me by that name.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2237,38 +2239,18 @@
     },
     {
       "interactionId": "en:lesson-25:session-03:i01",
-      "correctText": "Everybody used to know my name.",
-      "correctResponseId": null
+      "correctText": "Everybody used to eat lunch together.",
+      "correctResponseId": "en:lesson-25:session-03:i01:r1"
     },
     {
       "interactionId": "en:lesson-25:session-03:i02",
-      "correctText": "know",
+      "correctText": "used to know",
       "correctResponseId": "en:lesson-25:session-03:i02:r1"
     },
     {
       "interactionId": "en:lesson-25:session-03:i03",
-      "correctText": "Everybody used to know my name.",
-      "correctResponseId": "en:lesson-25:session-03:i03:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-03:word:anybody",
-      "correctText": "anybody",
+      "correctText": "I used to be shy at school.",
       "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-03:i04",
-      "correctText": "I used to talk to anybody.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-03:i05",
-      "correctText": "talk",
-      "correctResponseId": "en:lesson-25:session-03:i05:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-03:i06",
-      "correctText": "I used to talk to anybody.",
-      "correctResponseId": "en:lesson-25:session-03:i06:r1"
     },
     {
       "interactionId": "en:lesson-25:session-03:word:something",
@@ -2276,18 +2258,38 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-03:i04",
+      "correctText": "I used to bring something for lunch.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-03:i05",
+      "correctText": "something",
+      "correctResponseId": "en:lesson-25:session-03:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-03:i06",
+      "correctText": "I have found something in my old bag.",
+      "correctResponseId": "en:lesson-25:session-03:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-03:word:anybody",
+      "correctText": "anybody",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-25:session-03:i07",
-      "correctText": "She used to eat something before school.",
+      "correctText": "I used to ask anybody for help.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-03:i08",
-      "correctText": "eat",
-      "correctResponseId": "en:lesson-25:session-03:i08:r1"
+      "correctText": "Is anybody here?",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-03:i09",
-      "correctText": "She used to eat something before school.",
+      "correctText": "another",
       "correctResponseId": "en:lesson-25:session-03:i09:r1"
     },
     {
@@ -2297,42 +2299,42 @@
     },
     {
       "interactionId": "en:lesson-25:session-03:i10",
-      "correctText": "We used to have nowhere to play.",
-      "correctResponseId": null
+      "correctText": "I used to have nowhere to keep my books.",
+      "correctResponseId": "en:lesson-25:session-03:i10:r1"
     },
     {
       "interactionId": "en:lesson-25:session-03:i11",
-      "correctText": "have",
-      "correctResponseId": "en:lesson-25:session-03:i11:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-03:i12",
-      "correctText": "We used to have nowhere to play.",
-      "correctResponseId": "en:lesson-25:session-03:i12:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-03:i13",
       "correctText": "",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-03:i14",
-      "correctText": "I have been waiting for an hour.",
+      "interactionId": "en:lesson-25:session-03:i12",
+      "correctText": "I used to call my friends every evening.",
       "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-03:i13",
+      "correctText": "Everybody used to meet at the same cafe.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-03:i14",
+      "correctText": "called",
+      "correctResponseId": "en:lesson-25:session-03:i14:r1"
     },
     {
       "interactionId": "en:lesson-25:session-03:i15",
-      "correctText": "She has been working since this morning.",
-      "correctResponseId": null
+      "correctText": "We used to have nowhere to sit after school.",
+      "correctResponseId": "en:lesson-25:session-03:i15:r1"
     },
     {
       "interactionId": "en:lesson-25:session-03:i16",
-      "correctText": "He used to eat something before school.",
+      "correctText": "I have found something interesting.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-03:i17",
-      "correctText": "They used to have nowhere to sit.",
+      "correctText": "Everybody used to call me by that name.",
       "correctResponseId": null
     }
   ]

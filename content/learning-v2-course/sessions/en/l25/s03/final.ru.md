@@ -51,101 +51,101 @@ Nowhere — нигде, некуда. We used to have nowhere to play — ран
 
 **1 · Карточка слова — everybody**
 <!-- interaction_id: en:lesson-25:session-03:word:everybody; family: word_card -->
-> **everybody** — все, каждый.
+> **everybody** — все, каждый
 
-**2 · Скажите: «Раньше все знали моё имя.»**
-<!-- interaction_id: en:lesson-25:session-03:i01; family: phrase_builder -->
-Плитки: `name` `my` `know` `to` `used` `Everybody` → **Everybody used to know my name.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-03:i01; family: listen_choose -->
+🔊 *Everybody used to eat lunch together.* → **Everybody used to eat lunch together.** · Everybody used to eat dinner together. · Everybody used to cook lunch together.
+- Everybody used to eat dinner together. — *В записи звучит Everybody used to eat lunch together.*
+- Everybody used to cook lunch together. — *В записи звучит Everybody used to eat lunch together.*
 
-**3 · Дополните воспоминание.**
+**3 · Теперь соседи редко общаются. Раньше все знали друг друга. Выберите прежнее состояние.**
 <!-- interaction_id: en:lesson-25:session-03:i02; family: context_gap_grammar -->
-Everybody used to ___ my name. → **know** · knew · knowing
-- knew — *После used to нужна форма know.*
-- knowing — *После used to нужна форма know.*
+Everybody ___ each other. → **used to know** · knows · is knowing
+- knows — *Knows описывает настоящее, а по ситуации речь о прежнем знакомстве.*
+- is knowing — *Для прежнего состояния здесь нужна конструкция used to know.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-03:i03; family: listen_choose -->
-🔊 *Everybody used to know my name.* → **Everybody used to know my name.** · Everybody used to know her name. · Everybody used to call my name.
-- Everybody used to know her name. — *В записи звучит Everybody used to know my name.*
-- Everybody used to call my name. — *В записи звучит Everybody used to know my name.*
+**4 · Услышьте, каким говорящий был раньше.**
+<!-- interaction_id: en:lesson-25:session-03:i03; family: listen_build_dictation -->
+🔊 *I used to be shy at school.* Плитки: `school` `at` `shy` `be` `to` `used` `I` → **I used to be shy at school.**
 
-**5 · Карточка слова — anybody**
-<!-- interaction_id: en:lesson-25:session-03:word:anybody; family: word_card -->
-> **anybody** — кто угодно.
+**5 · Карточка слова — something**
+<!-- interaction_id: en:lesson-25:session-03:word:something; family: word_card -->
+> **something** — что-то
 
-**6 · Скажите: «Раньше я разговаривал с кем угодно.»**
+**6 · Вспомните привычку: «Раньше я приносил что-нибудь на обед».**
 <!-- interaction_id: en:lesson-25:session-03:i04; family: phrase_builder -->
-Плитки: `anybody` `to` `talk` `to` `used` `I` → **I used to talk to anybody.**
+Плитки: `lunch` `for` `something` `bring` `to` `used` `I` → **I used to bring something for lunch.**
 
-**7 · Дополните воспоминание.**
+**7 · В коробке был какой-то предмет. Не человек и не место. Выберите нужное слово.**
 <!-- interaction_id: en:lesson-25:session-03:i05; family: context_gap_grammar -->
-I used to ___ to anybody. → **talk** · talked · talking
-- talked — *После used to нужна форма talk.*
-- talking — *После used to нужна форма talk.*
+There was ___ in the box. → **something** · someone · somewhere
+- someone — *Someone обозначает человека; в ситуации речь о предмете.*
+- somewhere — *Somewhere обозначает место; здесь нужно назвать неопределённый предмет.*
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-03:i06; family: listen_choose -->
-🔊 *I used to talk to anybody.* → **I used to talk to anybody.** · We used to talk to anybody. · I used to listen to anybody.
-- We used to talk to anybody. — *В записи звучит I used to talk to anybody.*
-- I used to listen to anybody. — *В записи звучит I used to talk to anybody.*
+🔊 *I have found something in my old bag.* → **I have found something in my old bag.** · I have lost something from my old bag. · I have found something in my old coat.
+- I have lost something from my old bag. — *В записи звучит I have found something in my old bag.*
+- I have found something in my old coat. — *В записи звучит I have found something in my old bag.*
 
-**9 · Карточка слова — something**
-<!-- interaction_id: en:lesson-25:session-03:word:something; family: word_card -->
-> **something** — что-то.
+**9 · Карточка слова — anybody**
+<!-- interaction_id: en:lesson-25:session-03:word:anybody; family: word_card -->
+> **anybody** — кто угодно
 
-**10 · Скажите: «Раньше она что-то ела перед школой.»**
+**10 · Раньше вы не стеснялись просить помощи. Скажите: «Раньше я просил помощи у кого угодно».**
 <!-- interaction_id: en:lesson-25:session-03:i07; family: phrase_builder -->
-Плитки: `school` `before` `something` `eat` `to` `used` `She` → **She used to eat something before school.**
+Плитки: `help` `for` `anybody` `ask` `to` `used` `I` → **I used to ask anybody for help.**
 
-**11 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-03:i08; family: context_gap_grammar -->
-She used to ___ something before school. → **eat** · ate · eating
-- ate — *После used to нужна форма eat.*
-- eating — *После used to нужна форма eat.*
+**11 · В вопросе anybody — «кто-нибудь». Спросите: «Здесь есть кто-нибудь?»**
+<!-- interaction_id: en:lesson-25:session-03:i08; family: scripted_repeat_compare -->
+🎙 **Is anybody here?**
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-03:i09; family: listen_choose -->
-🔊 *She used to eat something before school.* → **She used to eat something before school.** · He used to eat something before school. · She used to buy something before school.
-- He used to eat something before school. — *В записи звучит She used to eat something before school.*
-- She used to buy something before school. — *В записи звучит She used to eat something before school.*
+**12 · Вы встретили ещё одного старого друга. После пропуска — один человек.**
+<!-- interaction_id: en:lesson-25:session-03:i09; family: context_gap_grammar -->
+I met ___ old friend yesterday. → **another** · other · others
+- other — *Перед одним исчисляемым friend нужно another.*
+- others — *Others употребляется без следующего существительного friend.*
 
 **13 · Карточка слова — nowhere**
 <!-- interaction_id: en:lesson-25:session-03:word:nowhere; family: word_card -->
-> **nowhere** — нигде, некуда.
+> **nowhere** — нигде, некуда
 
-**14 · Скажите: «Раньше нам негде было играть.»**
-<!-- interaction_id: en:lesson-25:session-03:i10; family: phrase_builder -->
-Плитки: `play` `to` `nowhere` `have` `to` `used` `We` → **We used to have nowhere to play.**
+**14 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-03:i10; family: listen_choose -->
+🔊 *I used to have nowhere to keep my books.* → **I used to have nowhere to keep my books.** · I used to have nowhere to keep my toys. · We used to have nowhere to keep our books.
+- I used to have nowhere to keep my toys. — *В записи звучит I used to have nowhere to keep my books.*
+- We used to have nowhere to keep our books. — *В записи звучит I used to have nowhere to keep my books.*
 
-**15 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-03:i11; family: context_gap_grammar -->
-We used to ___ nowhere to play. → **have** · had · having
-- had — *После used to нужна форма have.*
-- having — *После used to нужна форма have.*
-
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-03:i12; family: listen_choose -->
-🔊 *We used to have nowhere to play.* → **We used to have nowhere to play.** · They used to have nowhere to play. · We used to have nowhere to sit.
-- They used to have nowhere to play. — *В записи звучит We used to have nowhere to play.*
-- We used to have nowhere to sit. — *В записи звучит We used to have nowhere to play.*
-
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-03:i13; family: speed_match -->
+**15 · Различите людей, вещи и отсутствие места**
+<!-- interaction_id: en:lesson-25:session-03:i11; family: speed_match -->
 everybody — все, каждый · anybody — кто угодно · something — что-то · nowhere — нигде, некуда
 
-**18 · Жду уже час**
-<!-- interaction_id: en:lesson-25:session-03:i14; family: listen_build_dictation -->
-🔊 *I have been waiting for an hour.* Плитки: `hour` `an` `for` `waiting` `been` `have` `I` → **I have been waiting for an hour.**
+**16 · Теперь вы часто пишете друзьям. Вспомните прошлое: «Раньше я звонил друзьям каждый вечер».**
+<!-- interaction_id: en:lesson-25:session-03:i12; family: phrase_builder -->
+Плитки: `evening` `every` `friends` `my` `call` `to` `used` `I` → **I used to call my friends every evening.**
 
-**19 · Работает с утра**
-<!-- interaction_id: en:lesson-25:session-03:i15; family: listen_build_dictation -->
-🔊 *She has been working since this morning.* Плитки: `morning` `this` `since` `working` `been` `has` `She` → **She has been working since this morning.**
+**17 · Услышьте, где собирались люди раньше.**
+<!-- interaction_id: en:lesson-25:session-03:i13; family: listen_build_dictation -->
+🔊 *Everybody used to meet at the same cafe.* Плитки: `cafe` `same` `the` `at` `meet` `to` `used` `Everybody` → **Everybody used to meet at the same cafe.**
 
-**20 · Скажите: «Он раньше что-то ел перед школой».**
+**18 · Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.**
+<!-- interaction_id: en:lesson-25:session-03:i14; family: context_gap_grammar -->
+I ___ my old neighbour last night. → **called** · have called · used to call
+- have called — *Last night — законченное время: нужен Past Simple called.*
+- used to call — *Used to call описывает прежнюю привычку, а здесь был один разговор.*
+
+**19 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-03:i15; family: listen_choose -->
+🔊 *We used to have nowhere to sit after school.* → **We used to have nowhere to sit after school.** · We used to have nowhere to play after school. · We used to have nowhere to sit before school.
+- We used to have nowhere to play after school. — *В записи звучит We used to have nowhere to sit after school.*
+- We used to have nowhere to sit before school. — *В записи звучит We used to have nowhere to sit after school.*
+
+**20 · Скажите о сегодняшней находке: «Я нашёл что-то интересное».**
 <!-- interaction_id: en:lesson-25:session-03:i16; family: scripted_repeat_compare -->
-🎙 **He used to eat something before school.**
+🎙 **I have found something interesting.**
 
-**21 · Скажите: «Им раньше негде было сидеть».**
+**21 · Закончите воспоминание: «Раньше все называли меня этим именем».**
 <!-- interaction_id: en:lesson-25:session-03:i17; family: scripted_repeat_compare -->
-🎙 **They used to have nowhere to sit.**
+🎙 **Everybody used to call me by that name.**
 

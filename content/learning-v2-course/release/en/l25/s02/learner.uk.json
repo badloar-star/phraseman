@@ -4,8 +4,232 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-25:session-02:word:athletics",
+      "interactionId": "en:lesson-25:session-02:word:photography",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — photography",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-02:word:photography:audio"
+      ],
+      "accessibilityLabel": "Картка слова — photography",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-02:word:photography:audio",
+          "transcript": "photography"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-02:word:photography:r1",
+            "targetText": "photography",
+            "meaningByLocale": {
+              "ru": "фотография как занятие",
+              "uk": "фотографія як заняття"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "photography",
+          "definitionByLocale": {
+            "ru": "фотография как занятие",
+            "uk": "фотографія як заняття"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-02:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-02:i01:r1",
+          "text": "I used to teach photography at a small college."
+        },
+        {
+          "responseId": "en:lesson-25:session-02:i01:r2",
+          "text": "I used to study photography at a small college."
+        },
+        {
+          "responseId": "en:lesson-25:session-02:i01:r3",
+          "text": "I used to teach painting at a small college."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-02:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-02:i01:audio",
+          "transcript": "I used to teach photography at a small college."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-02:i01:r1",
+            "targetText": "I used to teach photography at a small college.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i01:r2",
+            "targetText": "I used to study photography at a small college.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i01:r3",
+            "targetText": "I used to teach painting at a small college.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-02:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to teach photography at a small college.",
+              "uk": "У записі звучить I used to teach photography at a small college."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to teach photography at a small college.",
+              "uk": "У записі звучить I used to teach photography at a small college."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про один урок учора, а не про колишню звичку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-02:i02:r1",
+          "text": "took"
+        },
+        {
+          "responseId": "en:lesson-25:session-02:i02:r2",
+          "text": "have taken"
+        },
+        {
+          "responseId": "en:lesson-25:session-02:i02:r3",
+          "text": "used to take"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про один урок учора, а не про колишню звичку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном уроке вчера, а не о прежней привычке.",
+          "uk": "Йдеться про один урок учора, а не про колишню звичку."
+        },
+        "gappedTargetPhrase": "I ___ a photo in class yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-02:i02:r1",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i02:r2",
+            "text": "have taken"
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i02:r3",
+            "text": "used to take"
+          }
+        ],
+        "testedDimension": "Йдеться про один урок учора, а не про колишню звичку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про один урок учора, а не про колишню звичку.",
+            "feedbackByLocale": {
+              "ru": "Yesterday — законченное время в прошлом, поэтому нужен Past Simple: took.",
+              "uk": "Yesterday — завершений час у минулому, тому потрібен Past Simple: took."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про один урок учора, а не про колишню звичку.",
+            "feedbackByLocale": {
+              "ru": "Used to take описывает прежнюю привычку; здесь речь об одном снимке вчера.",
+              "uk": "Used to take описує колишню звичку; тут ідеться про один знімок учора."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-02:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Тепер ви рідко користуєтеся камерою. Скажіть: «Раніше я носив камеру всюди».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тепер ви рідко користуєтеся камерою. Скажіть: «Раніше я носив камеру всюди».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used to carry a camera everywhere.",
+        "localizedMeaning": {
+          "ru": "Теперь вы редко пользуетесь камерой. Скажите: «Раньше я носил камеру повсюду».",
+          "uk": "Тепер ви рідко користуєтеся камерою. Скажіть: «Раніше я носив камеру всюди»."
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "carry",
+          "a",
+          "camera",
+          "everywhere"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-02:word:athletics",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -28,8 +252,8 @@
             "responseId": "en:lesson-25:session-02:word:athletics:r1",
             "targetText": "athletics",
             "meaningByLocale": {
-              "ru": "лёгкая атлетика.",
-              "uk": "легка атлетика."
+              "ru": "лёгкая атлетика",
+              "uk": "легка атлетика"
             }
           }
         ],
@@ -39,37 +263,41 @@
         "wordCard": {
           "word": "athletics",
           "definitionByLocale": {
-            "ru": "лёгкая атлетика.",
-            "uk": "легка атлетика."
+            "ru": "лёгкая атлетика",
+            "uk": "легка атлетика"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-02:i01",
-      "ordinal": 5,
+      "interactionId": "en:lesson-25:session-02:i04",
+      "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше я займався легкою атлетикою.»",
+      "prompt": "Почуйте колишню звичку сім’ї.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше я займався легкою атлетикою.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-02:i04:audio"
+      ],
+      "accessibilityLabel": "Почуйте колишню звичку сім’ї.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I used to do athletics.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Раньше я занимался лёгкой атлетикой.»",
-          "uk": "Скажіть: «Раніше я займався легкою атлетикою.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-02:i04:audio",
+          "transcript": "We used to watch athletics together."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We used to watch athletics together.",
         "orderedTokens": [
-          "I",
+          "We",
           "used",
           "to",
-          "do",
-          "athletics"
+          "watch",
+          "athletics",
+          "together"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -81,68 +309,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-02:i02",
-      "ordinal": 6,
+      "interactionId": "en:lesson-25:session-02:i05",
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть спогад про захоплення.",
+      "prompt": "Ви говорите про свій досвід без дати. Доповніть Present Perfect.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-02:i02:r1",
-          "text": "do"
+          "responseId": "en:lesson-25:session-02:i05:r1",
+          "text": "tried"
         },
         {
-          "responseId": "en:lesson-25:session-02:i02:r2",
-          "text": "did"
+          "responseId": "en:lesson-25:session-02:i05:r2",
+          "text": "try"
         },
         {
-          "responseId": "en:lesson-25:session-02:i02:r3",
-          "text": "doing"
+          "responseId": "en:lesson-25:session-02:i05:r3",
+          "text": "trying"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад про захоплення.",
+      "accessibilityLabel": "Ви говорите про свій досвід без дати. Доповніть Present Perfect.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните воспоминание об увлечении.",
-          "uk": "Доповніть спогад про захоплення."
+          "ru": "Вы говорите о своём опыте без даты. Дополните Present Perfect.",
+          "uk": "Ви говорите про свій досвід без дати. Доповніть Present Perfect."
         },
-        "gappedTargetPhrase": "I used to ___ athletics.",
+        "gappedTargetPhrase": "I have ___ this sport twice.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-02:i02:r1",
-            "text": "do"
+            "responseId": "en:lesson-25:session-02:i05:r1",
+            "text": "tried"
           },
           {
-            "responseId": "en:lesson-25:session-02:i02:r2",
-            "text": "did"
+            "responseId": "en:lesson-25:session-02:i05:r2",
+            "text": "try"
           },
           {
-            "responseId": "en:lesson-25:session-02:i02:r3",
-            "text": "doing"
+            "responseId": "en:lesson-25:session-02:i05:r3",
+            "text": "trying"
           }
         ],
-        "testedDimension": "Доповніть спогад про захоплення.",
+        "testedDimension": "Ви говорите про свій досвід без дати. Доповніть Present Perfect.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-02:i02:r2",
+            "responseId": "en:lesson-25:session-02:i05:r2",
             "correct": false,
-            "testedDimension": "Доповніть спогад про захоплення.",
+            "testedDimension": "Ви говорите про свій досвід без дати. Доповніть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "После used to нужна форма do.",
-              "uk": "Після used to потрібна форма do."
+              "ru": "После have в Present Perfect нужна форма tried.",
+              "uk": "Після have у Present Perfect потрібна форма tried."
             }
           },
           {
-            "responseId": "en:lesson-25:session-02:i02:r3",
+            "responseId": "en:lesson-25:session-02:i05:r3",
             "correct": false,
-            "testedDimension": "Доповніть спогад про захоплення.",
+            "testedDimension": "Ви говорите про свій досвід без дати. Доповніть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "После used to нужна форма do.",
-              "uk": "Після used to потрібна форма do."
+              "ru": "Trying не образует здесь Present Perfect; нужна форма tried.",
+              "uk": "Trying не утворює тут Present Perfect; потрібна форма tried."
             }
           }
         ]
@@ -150,85 +378,42 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-02:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-02:i03:r1",
-          "text": "I used to do athletics."
-        },
-        {
-          "responseId": "en:lesson-25:session-02:i03:r2",
-          "text": "We used to do athletics."
-        },
-        {
-          "responseId": "en:lesson-25:session-02:i03:r3",
-          "text": "I used to watch athletics."
-        }
-      ],
+      "interactionId": "en:lesson-25:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Розкажіть про дитинство: «Раніше я бігав після школи».",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-02:i03:audio"
+        "en:lesson-25:session-02:i06:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть",
+      "accessibilityLabel": "Розкажіть про дитинство: «Раніше я бігав після школи».",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-02:i03:audio",
-          "transcript": "I used to do athletics."
+          "audioTargetId": "en:lesson-25:session-02:i06:audio",
+          "transcript": "I used to run after school."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-02:i03:r1",
-            "targetText": "I used to do athletics.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i03:r2",
-            "targetText": "We used to do athletics.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i03:r3",
-            "targetText": "I used to watch athletics.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-02:i03:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I used to do athletics.",
-              "uk": "У записі звучить I used to do athletics."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i03:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I used to do athletics.",
-              "uk": "У записі звучить I used to do athletics."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "I used to run after school.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-25:session-02:word:archery",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Картка слова — archery",
@@ -250,8 +435,8 @@
             "responseId": "en:lesson-25:session-02:word:archery:r1",
             "targetText": "archery",
             "meaningByLocale": {
-              "ru": "стрельба из лука.",
-              "uk": "стрільба з лука."
+              "ru": "стрельба из лука",
+              "uk": "стрільба з лука"
             }
           }
         ],
@@ -261,36 +446,38 @@
         "wordCard": {
           "word": "archery",
           "definitionByLocale": {
-            "ru": "стрельба из лука.",
-            "uk": "стрільба з лука."
+            "ru": "стрельба из лука",
+            "uk": "стрільба з лука"
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-02:i04",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "interactionId": "en:lesson-25:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше вона займалася стрільбою з лука.»",
+      "prompt": "Згадайте колишнє заняття сім’ї: «Мій брат раніше навчав мене стрільби з лука».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше вона займалася стрільбою з лука.»",
+      "accessibilityLabel": "Згадайте колишнє заняття сім’ї: «Мій брат раніше навчав мене стрільби з лука».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She used to practise archery.",
+        "targetPhrase": "My brother used to teach me archery.",
         "localizedMeaning": {
-          "ru": "Скажите: «Раньше она занималась стрельбой из лука.»",
-          "uk": "Скажіть: «Раніше вона займалася стрільбою з лука.»"
+          "ru": "Вспомните прежнее занятие семьи: «Мой брат раньше учил меня стрельбе из лука».",
+          "uk": "Згадайте колишнє заняття сім’ї: «Мій брат раніше навчав мене стрільби з лука»."
         },
         "orderedTokens": [
-          "She",
+          "My",
+          "brother",
           "used",
           "to",
-          "practise",
+          "teach",
+          "me",
           "archery"
         ],
         "authoredDistractorTokens": [],
@@ -303,142 +490,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-02:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад про захоплення.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-02:i05:r1",
-          "text": "practise"
-        },
-        {
-          "responseId": "en:lesson-25:session-02:i05:r2",
-          "text": "practised"
-        },
-        {
-          "responseId": "en:lesson-25:session-02:i05:r3",
-          "text": "practising"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад про захоплення.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание об увлечении.",
-          "uk": "Доповніть спогад про захоплення."
-        },
-        "gappedTargetPhrase": "She used to ___ archery.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-02:i05:r1",
-            "text": "practise"
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i05:r2",
-            "text": "practised"
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i05:r3",
-            "text": "practising"
-          }
-        ],
-        "testedDimension": "Доповніть спогад про захоплення.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-02:i05:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад про захоплення.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма practise.",
-              "uk": "Після used to потрібна форма practise."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i05:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад про захоплення.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма practise.",
-              "uk": "Після used to потрібна форма practise."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-02:i06",
-      "ordinal": 11,
+      "interactionId": "en:lesson-25:session-02:i08",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-02:i06:r1",
-          "text": "She used to practise archery."
+          "responseId": "en:lesson-25:session-02:i08:r1",
+          "text": "I tried archery last summer."
         },
         {
-          "responseId": "en:lesson-25:session-02:i06:r2",
-          "text": "He used to practise archery."
+          "responseId": "en:lesson-25:session-02:i08:r2",
+          "text": "I tried swimming last summer."
         },
         {
-          "responseId": "en:lesson-25:session-02:i06:r3",
-          "text": "She used to teach archery."
+          "responseId": "en:lesson-25:session-02:i08:r3",
+          "text": "I tried archery last winter."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-02:i06:audio"
+        "en:lesson-25:session-02:i08:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-02:i06:audio",
-          "transcript": "She used to practise archery."
+          "audioTargetId": "en:lesson-25:session-02:i08:audio",
+          "transcript": "I tried archery last summer."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-02:i06:r1",
-            "targetText": "She used to practise archery.",
+            "responseId": "en:lesson-25:session-02:i08:r1",
+            "targetText": "I tried archery last summer.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-02:i06:r2",
-            "targetText": "He used to practise archery.",
+            "responseId": "en:lesson-25:session-02:i08:r2",
+            "targetText": "I tried swimming last summer.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-02:i06:r3",
-            "targetText": "She used to teach archery.",
+            "responseId": "en:lesson-25:session-02:i08:r3",
+            "targetText": "I tried archery last winter.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-02:i06:r2",
+            "responseId": "en:lesson-25:session-02:i08:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She used to practise archery.",
-              "uk": "У записі звучить She used to practise archery."
+              "ru": "В записи звучит I tried archery last summer.",
+              "uk": "У записі звучить I tried archery last summer."
             }
           },
           {
-            "responseId": "en:lesson-25:session-02:i06:r3",
+            "responseId": "en:lesson-25:session-02:i08:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She used to practise archery.",
-              "uk": "У записі звучить She used to practise archery."
+              "ru": "В записи звучит I tried archery last summer.",
+              "uk": "У записі звучить I tried archery last summer."
             }
           }
         ],
@@ -448,8 +566,77 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз ви займаєтеся на вихідних. Раніше це було щодня. Виберіть колишню звичку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-02:i09:r1",
+          "text": "used to practise"
+        },
+        {
+          "responseId": "en:lesson-25:session-02:i09:r2",
+          "text": "practise"
+        },
+        {
+          "responseId": "en:lesson-25:session-02:i09:r3",
+          "text": "am practising"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз ви займаєтеся на вихідних. Раніше це було щодня. Виберіть колишню звичку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас вы занимаетесь по выходным. Раньше это было каждый день. Выберите прежнюю привычку.",
+          "uk": "Зараз ви займаєтеся на вихідних. Раніше це було щодня. Виберіть колишню звичку."
+        },
+        "gappedTargetPhrase": "I ___ every day after school.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-02:i09:r1",
+            "text": "used to practise"
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i09:r2",
+            "text": "practise"
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i09:r3",
+            "text": "am practising"
+          }
+        ],
+        "testedDimension": "Зараз ви займаєтеся на вихідних. Раніше це було щодня. Виберіть колишню звичку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Зараз ви займаєтеся на вихідних. Раніше це було щодня. Виберіть колишню звичку.",
+            "feedbackByLocale": {
+              "ru": "Practise описывает нынешнюю привычку, а здесь нужно рассказать о прежней.",
+              "uk": "Practise описує нинішню звичку, а тут потрібно розповісти про колишню."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Зараз ви займаєтеся на вихідних. Раніше це було щодня. Виберіть колишню звичку.",
+            "feedbackByLocale": {
+              "ru": "Am practising описывает действие сейчас, а не прежнюю привычку.",
+              "uk": "Am practising описує дію зараз, а не колишню звичку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-02:word:fencing",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -472,8 +659,8 @@
             "responseId": "en:lesson-25:session-02:word:fencing:r1",
             "targetText": "fencing",
             "meaningByLocale": {
-              "ru": "фехтование.",
-              "uk": "фехтування."
+              "ru": "фехтование",
+              "uk": "фехтування"
             }
           }
         ],
@@ -483,230 +670,8 @@
         "wordCard": {
           "word": "fencing",
           "definitionByLocale": {
-            "ru": "фехтование.",
-            "uk": "фехтування."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-02:i07",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше ми ходили на фехтування.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше ми ходили на фехтування.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We used to go fencing.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Раньше мы ходили на фехтование.»",
-          "uk": "Скажіть: «Раніше ми ходили на фехтування.»"
-        },
-        "orderedTokens": [
-          "We",
-          "used",
-          "to",
-          "go",
-          "fencing"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-02:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад про захоплення.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-02:i08:r1",
-          "text": "go"
-        },
-        {
-          "responseId": "en:lesson-25:session-02:i08:r2",
-          "text": "went"
-        },
-        {
-          "responseId": "en:lesson-25:session-02:i08:r3",
-          "text": "going"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад про захоплення.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание об увлечении.",
-          "uk": "Доповніть спогад про захоплення."
-        },
-        "gappedTargetPhrase": "We used to ___ fencing.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-02:i08:r1",
-            "text": "go"
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i08:r2",
-            "text": "went"
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i08:r3",
-            "text": "going"
-          }
-        ],
-        "testedDimension": "Доповніть спогад про захоплення.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-02:i08:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад про захоплення.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма go.",
-              "uk": "Після used to потрібна форма go."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i08:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад про захоплення.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма go.",
-              "uk": "Після used to потрібна форма go."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-02:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-02:i09:r1",
-          "text": "We used to go fencing."
-        },
-        {
-          "responseId": "en:lesson-25:session-02:i09:r2",
-          "text": "They used to go fencing."
-        },
-        {
-          "responseId": "en:lesson-25:session-02:i09:r3",
-          "text": "We used to watch fencing."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-02:i09:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-02:i09:audio",
-          "transcript": "We used to go fencing."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-02:i09:r1",
-            "targetText": "We used to go fencing.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i09:r2",
-            "targetText": "They used to go fencing.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i09:r3",
-            "targetText": "We used to watch fencing.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-02:i09:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We used to go fencing.",
-              "uk": "У записі звучить We used to go fencing."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i09:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We used to go fencing.",
-              "uk": "У записі звучить We used to go fencing."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-02:word:photography",
-      "ordinal": 16,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — photography",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-02:word:photography:audio"
-      ],
-      "accessibilityLabel": "Картка слова — photography",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-02:word:photography:audio",
-          "transcript": "photography"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-02:word:photography:r1",
-            "targetText": "photography",
-            "meaningByLocale": {
-              "ru": "фотография как занятие.",
-              "uk": "фотографія як заняття."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "photography",
-          "definitionByLocale": {
-            "ru": "фотография как занятие.",
-            "uk": "фотографія як заняття."
+            "ru": "фехтование",
+            "uk": "фехтування"
           }
         }
       },
@@ -716,173 +681,70 @@
       "interactionId": "en:lesson-25:session-02:i10",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше він вивчав фотографію.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше він вивчав фотографію.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He used to study photography.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Раньше он изучал фотографию.»",
-          "uk": "Скажіть: «Раніше він вивчав фотографію.»"
-        },
-        "orderedTokens": [
-          "He",
-          "used",
-          "to",
-          "study",
-          "photography"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-02:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Доповніть спогад про захоплення.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-02:i11:r1",
-          "text": "study"
-        },
-        {
-          "responseId": "en:lesson-25:session-02:i11:r2",
-          "text": "studied"
-        },
-        {
-          "responseId": "en:lesson-25:session-02:i11:r3",
-          "text": "studying"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть спогад про захоплення.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните воспоминание об увлечении.",
-          "uk": "Доповніть спогад про захоплення."
-        },
-        "gappedTargetPhrase": "He used to ___ photography.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-02:i11:r1",
-            "text": "study"
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i11:r2",
-            "text": "studied"
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i11:r3",
-            "text": "studying"
-          }
-        ],
-        "testedDimension": "Доповніть спогад про захоплення.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-02:i11:r2",
-            "correct": false,
-            "testedDimension": "Доповніть спогад про захоплення.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма study.",
-              "uk": "Після used to потрібна форма study."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-02:i11:r3",
-            "correct": false,
-            "testedDimension": "Доповніть спогад про захоплення.",
-            "feedbackByLocale": {
-              "ru": "После used to нужна форма study.",
-              "uk": "Після used to потрібна форма study."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-02:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-02:i12:r1",
-          "text": "He used to study photography."
+          "responseId": "en:lesson-25:session-02:i10:r1",
+          "text": "My sister used to enjoy fencing."
         },
         {
-          "responseId": "en:lesson-25:session-02:i12:r2",
-          "text": "She used to study photography."
+          "responseId": "en:lesson-25:session-02:i10:r2",
+          "text": "My brother used to enjoy fencing."
         },
         {
-          "responseId": "en:lesson-25:session-02:i12:r3",
-          "text": "He used to teach photography."
+          "responseId": "en:lesson-25:session-02:i10:r3",
+          "text": "My sister used to enjoy athletics."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-02:i12:audio"
+        "en:lesson-25:session-02:i10:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-02:i12:audio",
-          "transcript": "He used to study photography."
+          "audioTargetId": "en:lesson-25:session-02:i10:audio",
+          "transcript": "My sister used to enjoy fencing."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-02:i12:r1",
-            "targetText": "He used to study photography.",
+            "responseId": "en:lesson-25:session-02:i10:r1",
+            "targetText": "My sister used to enjoy fencing.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-02:i12:r2",
-            "targetText": "She used to study photography.",
+            "responseId": "en:lesson-25:session-02:i10:r2",
+            "targetText": "My brother used to enjoy fencing.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-02:i12:r3",
-            "targetText": "He used to teach photography.",
+            "responseId": "en:lesson-25:session-02:i10:r3",
+            "targetText": "My sister used to enjoy athletics.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-02:i12:r2",
+            "responseId": "en:lesson-25:session-02:i10:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит He used to study photography.",
-              "uk": "У записі звучить He used to study photography."
+              "ru": "В записи звучит My sister used to enjoy fencing.",
+              "uk": "У записі звучить My sister used to enjoy fencing."
             }
           },
           {
-            "responseId": "en:lesson-25:session-02:i12:r3",
+            "responseId": "en:lesson-25:session-02:i10:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит He used to study photography.",
-              "uk": "У записі звучить He used to study photography."
+              "ru": "В записи звучит My sister used to enjoy fencing.",
+              "uk": "У записі звучить My sister used to enjoy fencing."
             }
           }
         ],
@@ -892,21 +754,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-02:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-25:session-02:i11",
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Поєднайте слова з перекладом",
+      "prompt": "Розрізніть заняття",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "accessibilityLabel": "Розрізніть заняття",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-02:i13:p1",
+            "pairId": "en:lesson-25:session-02:i11:p1",
             "target": "athletics",
             "meaningByLocale": {
               "ru": "лёгкая атлетика",
@@ -914,7 +776,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-02:i13:p2",
+            "pairId": "en:lesson-25:session-02:i11:p2",
             "target": "archery",
             "meaningByLocale": {
               "ru": "стрельба из лука",
@@ -922,7 +784,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-02:i13:p3",
+            "pairId": "en:lesson-25:session-02:i11:p3",
             "target": "fencing",
             "meaningByLocale": {
               "ru": "фехтование",
@@ -930,7 +792,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-02:i13:p4",
+            "pairId": "en:lesson-25:session-02:i11:p4",
             "target": "photography",
             "meaningByLocale": {
               "ru": "фотография как занятие",
@@ -965,104 +827,100 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-02:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-25:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Один урок завершився. Попросіть ще один: «Я хочу спробувати ще один урок».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Один урок завершився. Попросіть ще один: «Я хочу спробувати ще один урок».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to try another lesson.",
+        "localizedMeaning": {
+          "ru": "Один урок закончился. Попросите ещё один: «Я хочу попробовать ещё один урок».",
+          "uk": "Один урок завершився. Попросіть ще один: «Я хочу спробувати ще один урок»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "try",
+          "another",
+          "lesson"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Чекаю вже годину",
+      "prompt": "Почуйте, де відбувалися заняття раніше.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-02:i13:audio"
+      ],
+      "accessibilityLabel": "Почуйте, де відбувалися заняття раніше.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-02:i13:audio",
+          "transcript": "We used to practise in the park."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We used to practise in the park.",
+        "orderedTokens": [
+          "We",
+          "used",
+          "to",
+          "practise",
+          "in",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-02:i14",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повідомте про досвід без зазначення дати: «Я двічі пробував фехтування».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-02:i14:audio"
       ],
-      "accessibilityLabel": "Чекаю вже годину",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-02:i14:audio",
-          "transcript": "I have been waiting for an hour."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I have been waiting for an hour.",
-        "orderedTokens": [
-          "I",
-          "have",
-          "been",
-          "waiting",
-          "for",
-          "an",
-          "hour"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-02:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Працює з ранку",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-02:i15:audio"
-      ],
-      "accessibilityLabel": "Працює з ранку",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-02:i15:audio",
-          "transcript": "She has been working since this morning."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She has been working since this morning.",
-        "orderedTokens": [
-          "She",
-          "has",
-          "been",
-          "working",
-          "since",
-          "this",
-          "morning"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-02:i16",
-      "ordinal": 23,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Ми раніше займалися легкою атлетикою».",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-02:i16:audio"
-      ],
-      "accessibilityLabel": "Скажіть: «Ми раніше займалися легкою атлетикою».",
+      "accessibilityLabel": "Повідомте про досвід без зазначення дати: «Я двічі пробував фехтування».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-02:i16:audio",
-          "transcript": "We used to do athletics."
+          "audioTargetId": "en:lesson-25:session-02:i14:audio",
+          "transcript": "I have tried fencing twice."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We used to do athletics.",
+        "targetPhrase": "I have tried fencing twice.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1076,26 +934,171 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-02:i15:r1",
+          "text": "I have already booked another lesson."
+        },
+        {
+          "responseId": "en:lesson-25:session-02:i15:r2",
+          "text": "I have already cancelled another lesson."
+        },
+        {
+          "responseId": "en:lesson-25:session-02:i15:r3",
+          "text": "I have already finished another lesson."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-02:i15:audio",
+          "transcript": "I have already booked another lesson."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-02:i15:r1",
+            "targetText": "I have already booked another lesson.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i15:r2",
+            "targetText": "I have already cancelled another lesson.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i15:r3",
+            "targetText": "I have already finished another lesson.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-02:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already booked another lesson.",
+              "uk": "У записі звучить I have already booked another lesson."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already booked another lesson.",
+              "uk": "У записі звучить I have already booked another lesson."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-02:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-02:i16:r1",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-25:session-02:i16:r2",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-25:session-02:i16:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы знаете один вид спорта и спрашиваете о других. После пропуска — множественное число.",
+          "uk": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина."
+        },
+        "gappedTargetPhrase": "What ___ sports do you enjoy?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-02:i16:r1",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i16:r2",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i16:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-02:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина.",
+            "feedbackByLocale": {
+              "ru": "Another ставим перед исчисляемым существительным в единственном числе, а sports — множественное.",
+              "uk": "Another ставимо перед злічуваним іменником в однині, а sports — множина."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-02:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина.",
+            "feedbackByLocale": {
+              "ru": "Перед существительным sports нужно other без -s.",
+              "uk": "Перед іменником sports потрібно other без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-02:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Вона раніше вивчала фотографію».",
+      "prompt": "Тепер ви любите спорт. Скажіть про минуле: «Раніше я боявся пробувати нові заняття».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-02:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Вона раніше вивчала фотографію».",
+      "accessibilityLabel": "Тепер ви любите спорт. Скажіть про минуле: «Раніше я боявся пробувати нові заняття».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-02:i17:audio",
-          "transcript": "She used to study photography."
+          "transcript": "I used to be afraid to try new activities."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She used to study photography.",
+        "targetPhrase": "I used to be afraid to try new activities.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1115,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "155f1e5d5a5c403dffa99489b20d818e5e9c62f67aeb8d207680123745cd5bbd"
+  "learnerFingerprint": "8939d80280b4309e7a3b82e5ec10e2c6b4af4bc0f711760bcdd0a1c8ae00be69"
 }

@@ -1,23 +1,43 @@
 [
   {
+    "interactionId": "en:lesson-25:session-02:word:photography",
+    "correctText": "photography",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-02:i01",
+    "correctText": "I used to teach photography at a small college.",
+    "correctResponseId": "en:lesson-25:session-02:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-02:i02",
+    "correctText": "took",
+    "correctResponseId": "en:lesson-25:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-02:i03",
+    "correctText": "I used to carry a camera everywhere.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-25:session-02:word:athletics",
     "correctText": "athletics",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-02:i01",
-    "correctText": "I used to do athletics.",
+    "interactionId": "en:lesson-25:session-02:i04",
+    "correctText": "We used to watch athletics together.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-02:i02",
-    "correctText": "do",
-    "correctResponseId": "en:lesson-25:session-02:i02:r1"
+    "interactionId": "en:lesson-25:session-02:i05",
+    "correctText": "tried",
+    "correctResponseId": "en:lesson-25:session-02:i05:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-02:i03",
-    "correctText": "I used to do athletics.",
-    "correctResponseId": "en:lesson-25:session-02:i03:r1"
+    "interactionId": "en:lesson-25:session-02:i06",
+    "correctText": "I used to run after school.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-02:word:archery",
@@ -25,19 +45,19 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-02:i04",
-    "correctText": "She used to practise archery.",
+    "interactionId": "en:lesson-25:session-02:i07",
+    "correctText": "My brother used to teach me archery.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-02:i05",
-    "correctText": "practise",
-    "correctResponseId": "en:lesson-25:session-02:i05:r1"
+    "interactionId": "en:lesson-25:session-02:i08",
+    "correctText": "I tried archery last summer.",
+    "correctResponseId": "en:lesson-25:session-02:i08:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-02:i06",
-    "correctText": "She used to practise archery.",
-    "correctResponseId": "en:lesson-25:session-02:i06:r1"
+    "interactionId": "en:lesson-25:session-02:i09",
+    "correctText": "used to practise",
+    "correctResponseId": "en:lesson-25:session-02:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-02:word:fencing",
@@ -45,63 +65,43 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-02:i07",
-    "correctText": "We used to go fencing.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-02:i08",
-    "correctText": "go",
-    "correctResponseId": "en:lesson-25:session-02:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-02:i09",
-    "correctText": "We used to go fencing.",
-    "correctResponseId": "en:lesson-25:session-02:i09:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-02:word:photography",
-    "correctText": "photography",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-25:session-02:i10",
-    "correctText": "He used to study photography.",
-    "correctResponseId": null
+    "correctText": "My sister used to enjoy fencing.",
+    "correctResponseId": "en:lesson-25:session-02:i10:r1"
   },
   {
     "interactionId": "en:lesson-25:session-02:i11",
-    "correctText": "study",
-    "correctResponseId": "en:lesson-25:session-02:i11:r1"
+    "correctText": "en:lesson-25:session-02:i11:p1=athletics\nen:lesson-25:session-02:i11:p2=archery\nen:lesson-25:session-02:i11:p3=fencing\nen:lesson-25:session-02:i11:p4=photography",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-02:i12",
-    "correctText": "He used to study photography.",
-    "correctResponseId": "en:lesson-25:session-02:i12:r1"
+    "correctText": "I want to try another lesson.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-02:i13",
-    "correctText": "en:lesson-25:session-02:i13:p1=athletics\nen:lesson-25:session-02:i13:p2=archery\nen:lesson-25:session-02:i13:p3=fencing\nen:lesson-25:session-02:i13:p4=photography",
+    "correctText": "We used to practise in the park.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-02:i14",
-    "correctText": "I have been waiting for an hour.",
+    "correctText": "I have tried fencing twice.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-02:i15",
-    "correctText": "She has been working since this morning.",
-    "correctResponseId": null
+    "correctText": "I have already booked another lesson.",
+    "correctResponseId": "en:lesson-25:session-02:i15:r1"
   },
   {
     "interactionId": "en:lesson-25:session-02:i16",
-    "correctText": "We used to do athletics.",
-    "correctResponseId": null
+    "correctText": "other",
+    "correctResponseId": "en:lesson-25:session-02:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-02:i17",
-    "correctText": "She used to study photography.",
+    "correctText": "I used to be afraid to try new activities.",
     "correctResponseId": null
   }
 ]

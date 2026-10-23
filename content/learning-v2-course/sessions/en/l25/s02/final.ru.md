@@ -49,103 +49,103 @@ Photography — фотография как занятие или искусст
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — athletics**
-<!-- interaction_id: en:lesson-25:session-02:word:athletics; family: word_card -->
-> **athletics** — лёгкая атлетика.
-
-**2 · Скажите: «Раньше я занимался лёгкой атлетикой.»**
-<!-- interaction_id: en:lesson-25:session-02:i01; family: phrase_builder -->
-Плитки: `athletics` `do` `to` `used` `I` → **I used to do athletics.**
-
-**3 · Дополните воспоминание об увлечении.**
-<!-- interaction_id: en:lesson-25:session-02:i02; family: context_gap_grammar -->
-I used to ___ athletics. → **do** · did · doing
-- did — *После used to нужна форма do.*
-- doing — *После used to нужна форма do.*
-
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-02:i03; family: listen_choose -->
-🔊 *I used to do athletics.* → **I used to do athletics.** · We used to do athletics. · I used to watch athletics.
-- We used to do athletics. — *В записи звучит I used to do athletics.*
-- I used to watch athletics. — *В записи звучит I used to do athletics.*
-
-**5 · Карточка слова — archery**
-<!-- interaction_id: en:lesson-25:session-02:word:archery; family: word_card -->
-> **archery** — стрельба из лука.
-
-**6 · Скажите: «Раньше она занималась стрельбой из лука.»**
-<!-- interaction_id: en:lesson-25:session-02:i04; family: phrase_builder -->
-Плитки: `archery` `practise` `to` `used` `She` → **She used to practise archery.**
-
-**7 · Дополните воспоминание об увлечении.**
-<!-- interaction_id: en:lesson-25:session-02:i05; family: context_gap_grammar -->
-She used to ___ archery. → **practise** · practised · practising
-- practised — *После used to нужна форма practise.*
-- practising — *После used to нужна форма practise.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-02:i06; family: listen_choose -->
-🔊 *She used to practise archery.* → **She used to practise archery.** · He used to practise archery. · She used to teach archery.
-- He used to practise archery. — *В записи звучит She used to practise archery.*
-- She used to teach archery. — *В записи звучит She used to practise archery.*
-
-**9 · Карточка слова — fencing**
-<!-- interaction_id: en:lesson-25:session-02:word:fencing; family: word_card -->
-> **fencing** — фехтование.
-
-**10 · Скажите: «Раньше мы ходили на фехтование.»**
-<!-- interaction_id: en:lesson-25:session-02:i07; family: phrase_builder -->
-Плитки: `fencing` `go` `to` `used` `We` → **We used to go fencing.**
-
-**11 · Дополните воспоминание об увлечении.**
-<!-- interaction_id: en:lesson-25:session-02:i08; family: context_gap_grammar -->
-We used to ___ fencing. → **go** · went · going
-- went — *После used to нужна форма go.*
-- going — *После used to нужна форма go.*
-
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-02:i09; family: listen_choose -->
-🔊 *We used to go fencing.* → **We used to go fencing.** · They used to go fencing. · We used to watch fencing.
-- They used to go fencing. — *В записи звучит We used to go fencing.*
-- We used to watch fencing. — *В записи звучит We used to go fencing.*
-
-**13 · Карточка слова — photography**
+**1 · Карточка слова — photography**
 <!-- interaction_id: en:lesson-25:session-02:word:photography; family: word_card -->
-> **photography** — фотография как занятие.
+> **photography** — фотография как занятие
 
-**14 · Скажите: «Раньше он изучал фотографию.»**
-<!-- interaction_id: en:lesson-25:session-02:i10; family: phrase_builder -->
-Плитки: `photography` `study` `to` `used` `He` → **He used to study photography.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-02:i01; family: listen_choose -->
+🔊 *I used to teach photography at a small college.* → **I used to teach photography at a small college.** · I used to study photography at a small college. · I used to teach painting at a small college.
+- I used to study photography at a small college. — *В записи звучит I used to teach photography at a small college.*
+- I used to teach painting at a small college. — *В записи звучит I used to teach photography at a small college.*
 
-**15 · Дополните воспоминание об увлечении.**
-<!-- interaction_id: en:lesson-25:session-02:i11; family: context_gap_grammar -->
-He used to ___ photography. → **study** · studied · studying
-- studied — *После used to нужна форма study.*
-- studying — *После used to нужна форма study.*
+**3 · Речь об одном уроке вчера, а не о прежней привычке.**
+<!-- interaction_id: en:lesson-25:session-02:i02; family: context_gap_grammar -->
+I ___ a photo in class yesterday. → **took** · have taken · used to take
+- have taken — *Yesterday — законченное время в прошлом, поэтому нужен Past Simple: took.*
+- used to take — *Used to take описывает прежнюю привычку; здесь речь об одном снимке вчера.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-02:i12; family: listen_choose -->
-🔊 *He used to study photography.* → **He used to study photography.** · She used to study photography. · He used to teach photography.
-- She used to study photography. — *В записи звучит He used to study photography.*
-- He used to teach photography. — *В записи звучит He used to study photography.*
+**4 · Теперь вы редко пользуетесь камерой. Скажите: «Раньше я носил камеру повсюду».**
+<!-- interaction_id: en:lesson-25:session-02:i03; family: phrase_builder -->
+Плитки: `everywhere` `camera` `a` `carry` `to` `used` `I` → **I used to carry a camera everywhere.**
 
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-02:i13; family: speed_match -->
+**5 · Карточка слова — athletics**
+<!-- interaction_id: en:lesson-25:session-02:word:athletics; family: word_card -->
+> **athletics** — лёгкая атлетика
+
+**6 · Услышьте прежнюю привычку семьи.**
+<!-- interaction_id: en:lesson-25:session-02:i04; family: listen_build_dictation -->
+🔊 *We used to watch athletics together.* Плитки: `together` `athletics` `watch` `to` `used` `We` → **We used to watch athletics together.**
+
+**7 · Вы говорите о своём опыте без даты. Дополните Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-02:i05; family: context_gap_grammar -->
+I have ___ this sport twice. → **tried** · try · trying
+- try — *После have в Present Perfect нужна форма tried.*
+- trying — *Trying не образует здесь Present Perfect; нужна форма tried.*
+
+**8 · Расскажите о детстве: «Раньше я бегал после школы».**
+<!-- interaction_id: en:lesson-25:session-02:i06; family: scripted_repeat_compare -->
+🎙 **I used to run after school.**
+
+**9 · Карточка слова — archery**
+<!-- interaction_id: en:lesson-25:session-02:word:archery; family: word_card -->
+> **archery** — стрельба из лука
+
+**10 · Вспомните прежнее занятие семьи: «Мой брат раньше учил меня стрельбе из лука».**
+<!-- interaction_id: en:lesson-25:session-02:i07; family: phrase_builder -->
+Плитки: `archery` `me` `teach` `to` `used` `brother` `My` → **My brother used to teach me archery.**
+
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-02:i08; family: listen_choose -->
+🔊 *I tried archery last summer.* → **I tried archery last summer.** · I tried swimming last summer. · I tried archery last winter.
+- I tried swimming last summer. — *В записи звучит I tried archery last summer.*
+- I tried archery last winter. — *В записи звучит I tried archery last summer.*
+
+**12 · Сейчас вы занимаетесь по выходным. Раньше это было каждый день. Выберите прежнюю привычку.**
+<!-- interaction_id: en:lesson-25:session-02:i09; family: context_gap_grammar -->
+I ___ every day after school. → **used to practise** · practise · am practising
+- practise — *Practise описывает нынешнюю привычку, а здесь нужно рассказать о прежней.*
+- am practising — *Am practising описывает действие сейчас, а не прежнюю привычку.*
+
+**13 · Карточка слова — fencing**
+<!-- interaction_id: en:lesson-25:session-02:word:fencing; family: word_card -->
+> **fencing** — фехтование
+
+**14 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-02:i10; family: listen_choose -->
+🔊 *My sister used to enjoy fencing.* → **My sister used to enjoy fencing.** · My brother used to enjoy fencing. · My sister used to enjoy athletics.
+- My brother used to enjoy fencing. — *В записи звучит My sister used to enjoy fencing.*
+- My sister used to enjoy athletics. — *В записи звучит My sister used to enjoy fencing.*
+
+**15 · Различите занятия**
+<!-- interaction_id: en:lesson-25:session-02:i11; family: speed_match -->
 athletics — лёгкая атлетика · archery — стрельба из лука · fencing — фехтование · photography — фотография как занятие
 
-**18 · Жду уже час**
-<!-- interaction_id: en:lesson-25:session-02:i14; family: listen_build_dictation -->
-🔊 *I have been waiting for an hour.* Плитки: `hour` `an` `for` `waiting` `been` `have` `I` → **I have been waiting for an hour.**
+**16 · Один урок закончился. Попросите ещё один: «Я хочу попробовать ещё один урок».**
+<!-- interaction_id: en:lesson-25:session-02:i12; family: phrase_builder -->
+Плитки: `lesson` `another` `try` `to` `want` `I` → **I want to try another lesson.**
 
-**19 · Работает с утра**
-<!-- interaction_id: en:lesson-25:session-02:i15; family: listen_build_dictation -->
-🔊 *She has been working since this morning.* Плитки: `morning` `this` `since` `working` `been` `has` `She` → **She has been working since this morning.**
+**17 · Услышьте, где проходили занятия раньше.**
+<!-- interaction_id: en:lesson-25:session-02:i13; family: listen_build_dictation -->
+🔊 *We used to practise in the park.* Плитки: `park` `the` `in` `practise` `to` `used` `We` → **We used to practise in the park.**
 
-**20 · Скажите: «Мы раньше занимались лёгкой атлетикой».**
-<!-- interaction_id: en:lesson-25:session-02:i16; family: scripted_repeat_compare -->
-🎙 **We used to do athletics.**
+**18 · Сообщите об опыте без указания даты: «Я дважды пробовал фехтование».**
+<!-- interaction_id: en:lesson-25:session-02:i14; family: scripted_repeat_compare -->
+🎙 **I have tried fencing twice.**
 
-**21 · Скажите: «Она раньше изучала фотографию».**
+**19 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-02:i15; family: listen_choose -->
+🔊 *I have already booked another lesson.* → **I have already booked another lesson.** · I have already cancelled another lesson. · I have already finished another lesson.
+- I have already cancelled another lesson. — *В записи звучит I have already booked another lesson.*
+- I have already finished another lesson. — *В записи звучит I have already booked another lesson.*
+
+**20 · Вы знаете один вид спорта и спрашиваете о других. После пропуска — множественное число.**
+<!-- interaction_id: en:lesson-25:session-02:i16; family: context_gap_grammar -->
+What ___ sports do you enjoy? → **other** · another · others
+- another — *Another ставим перед исчисляемым существительным в единственном числе, а sports — множественное.*
+- others — *Перед существительным sports нужно other без -s.*
+
+**21 · Теперь вы любите спорт. Скажите о прошлом: «Раньше я боялся пробовать новые занятия».**
 <!-- interaction_id: en:lesson-25:session-02:i17; family: scripted_repeat_compare -->
-🎙 **She used to study photography.**
+🎙 **I used to be afraid to try new activities.**
 

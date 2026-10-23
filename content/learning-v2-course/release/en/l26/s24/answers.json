@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-24:word:gross",
+    "correctText": "gross",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i01",
+    "correctText": "That smell is gross.",
+    "correctResponseId": "en:lesson-26:session-24:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i02",
+    "correctText": "Can we open the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:word:scruffy",
+    "correctText": "scruffy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i03",
+    "correctText": "It looks a bit scruffy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i04",
+    "correctText": "leave",
+    "correctResponseId": "en:lesson-26:session-24:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:word:rowdy",
+    "correctText": "rowdy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i05",
+    "correctText": "The group at the back is rowdy.",
+    "correctResponseId": "en:lesson-26:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i06",
+    "correctText": "Let us sit outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:word:daft",
+    "correctText": "daft",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i07",
+    "correctText": "daft",
+    "correctResponseId": "en:lesson-26:session-24:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i08",
+    "correctText": "Have you checked the map yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i09",
+    "correctText": "I have already changed the plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i10",
+    "correctText": "leave",
+    "correctResponseId": "en:lesson-26:session-24:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i11",
+    "correctText": "These shoes look scruffy.",
+    "correctResponseId": "en:lesson-26:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i12",
+    "correctText": "I will text when we get home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-24:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i14",
+    "correctText": "That is gross.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i15",
+    "correctText": "We will talk after you get back.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i16",
+    "correctText": "I will wait outside if there is no room.",
+    "correctResponseId": "en:lesson-26:session-24:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-24:i17",
+    "correctText": "Let us try something else.",
+    "correctResponseId": null
+  }
+]

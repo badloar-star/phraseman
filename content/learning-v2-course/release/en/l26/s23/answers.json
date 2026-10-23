@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-23:word:tub",
+    "correctText": "tub",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i01",
+    "correctText": "There is an empty tub on the shelf.",
+    "correctResponseId": "en:lesson-26:session-23:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i02",
+    "correctText": "Do not throw it away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:word:scrap",
+    "correctText": "scrap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i03",
+    "correctText": "Give me a scrap of paper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i04",
+    "correctText": "finish",
+    "correctResponseId": "en:lesson-26:session-23:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:word:strip",
+    "correctText": "strip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i05",
+    "correctText": "Cut a strip of red paper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i06",
+    "correctText": "Have you found the scissors yet?",
+    "correctResponseId": "en:lesson-26:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:word:shell",
+    "correctText": "shell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i07",
+    "correctText": "shell",
+    "correctResponseId": "en:lesson-26:session-23:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i08",
+    "correctText": "I have already cut it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i09",
+    "correctText": "I will stop when you signal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i10",
+    "correctText": "Keep that scrap for the shopping list.",
+    "correctResponseId": "en:lesson-26:session-23:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i11",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-26:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i12",
+    "correctText": "Put the scissors in the tub.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i13",
+    "correctText": "This strip is too narrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-23:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i15",
+    "correctText": "I will get more paper if you need it.",
+    "correctResponseId": "en:lesson-26:session-23:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i16",
+    "correctText": "We will show Dad the card when he gets back.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-23:i17",
+    "correctText": "I will help after I finish.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-23:intro1:r2": {
+          "ru": "После when в придаточном времени finish без will.",
+          "uk": "Після when у підрядному часу finish без will."
+        },
+        "en:lesson-26:session-23:intro1:r3": {
+          "ru": "С we глагол finish без -s.",
+          "uk": "З we дієслово finish без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-23:intro2:r2": {
+          "ru": "Третья форма cut — cut, не cutted.",
+          "uk": "Третя форма cut — cut, не cutted."
+        },
+        "en:lesson-26:session-23:intro2:r3": {
+          "ru": "С I используем have.",
+          "uk": "З I вживаємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-23:intro3:r2": {
+          "ru": "После had нужна форма removed.",
+          "uk": "Після had потрібна форма removed."
+        },
+        "en:lesson-26:session-23:intro3:r3": {
+          "ru": "Looked задаёт прошлое; более раннее действие — had removed.",
+          "uk": "Looked задає минуле; раніша дія — had removed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "15cdadc1e79f483965580eaf34355f039e7e4a51d058972f2ebb38389e866af4"
+}

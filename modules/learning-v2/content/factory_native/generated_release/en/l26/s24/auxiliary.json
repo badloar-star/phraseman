@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-24:intro1:r2": {
+          "ru": "После before здесь leave без will.",
+          "uk": "Після before тут leave без will."
+        },
+        "en:lesson-26:session-24:intro1:r3": {
+          "ru": "С we используем leave без -s.",
+          "uk": "З we вживаємо leave без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-24:intro2:r2": {
+          "ru": "После if в условии о будущем gets без will.",
+          "uk": "Після if в умові про майбутнє gets без will."
+        },
+        "en:lesson-26:session-24:intro2:r3": {
+          "ru": "После will нужна форма leave без -s.",
+          "uk": "Після will потрібна форма leave без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-24:intro3:r2": {
+          "ru": "После had нужна форма turned.",
+          "uk": "Після had потрібна форма turned."
+        },
+        "en:lesson-26:session-24:intro3:r3": {
+          "ru": "Called задаёт прошлый момент; более раннее событие — had turned back.",
+          "uk": "Called задає минулий момент; раніша подія — had turned back."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "47a5f3f5354b15b2240eb71589d6a1a9011975bd7a13f140d92566ca89ef7afb"
+}

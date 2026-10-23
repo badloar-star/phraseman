@@ -1,0 +1,2253 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-23",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-23:word:tub",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tub",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:word:tub:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tub",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:word:tub:audio",
+            "transcript": "tub"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:word:tub:r1",
+              "targetText": "tub",
+              "meaningByLocale": {
+                "ru": "Широкая ёмкость, контейнер. A tub of ice cream — упаковка мороженого в контейнере.",
+                "uk": "Широка посудина, контейнер. A tub of ice cream — упаковка морозива в контейнері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tub",
+            "definitionByLocale": {
+              "ru": "Широкая ёмкость, контейнер. A tub of ice cream — упаковка мороженого в контейнере.",
+              "uk": "Широка посудина, контейнер. A tub of ice cream — упаковка морозива в контейнері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i01:r1",
+            "text": "There is an empty tub on the shelf."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i01:r2",
+            "text": "There is an empty tub on the table."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i01:r3",
+            "text": "There is an empty jar on the shelf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i01:audio",
+            "transcript": "There is an empty tub on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:i01:r1",
+              "targetText": "There is an empty tub on the shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i01:r2",
+              "targetText": "There is an empty tub on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i01:r3",
+              "targetText": "There is an empty jar on the shelf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is an empty tub on the shelf.",
+                "uk": "У записі звучить There is an empty tub on the shelf."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is an empty tub on the shelf.",
+                "uk": "У записі звучить There is an empty tub on the shelf."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите брата сохранить контейнер: «Не выбрасывай его».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите брата сохранить контейнер: «Не выбрасывай его».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do not throw it away.",
+          "localizedMeaning": {
+            "ru": "Попросите брата сохранить контейнер: «Не выбрасывай его».",
+            "uk": "Попросіть брата зберегти контейнер: «Не викидай його»."
+          },
+          "orderedTokens": [
+            "Do",
+            "not",
+            "throw",
+            "it",
+            "away"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:word:scrap",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scrap",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:word:scrap:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scrap",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:word:scrap:audio",
+            "transcript": "scrap"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:word:scrap:r1",
+              "targetText": "scrap",
+              "meaningByLocale": {
+                "ru": "Небольшой оставшийся кусочек. A scrap of paper — клочок бумаги.",
+                "uk": "Невеликий шматочок, що залишився. A scrap of paper — клаптик паперу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scrap",
+            "definitionByLocale": {
+              "ru": "Небольшой оставшийся кусочек. A scrap of paper — клочок бумаги.",
+              "uk": "Невеликий шматочок, що залишився. A scrap of paper — клаптик паперу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i03",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Нужно записать номер телефона. Попросите: «Дай мне клочок бумаги».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i03:audio"
+        ],
+        "accessibilityLabel": "Нужно записать номер телефона. Попросите: «Дай мне клочок бумаги».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i03:audio",
+            "transcript": "Give me a scrap of paper."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Give me a scrap of paper.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы уберёте контейнер после окончания работы. Дополните время.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i04:r1",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i04:r2",
+            "text": "will finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i04:r3",
+            "text": "finishes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уберёте контейнер после окончания работы. Дополните время.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уберёте контейнер после окончания работы. Дополните время.",
+            "uk": "Ви приберете контейнер після закінчення роботи. Доповніть час."
+          },
+          "gappedTargetPhrase": "I will put the tub away when we ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-23:i04:r1",
+              "text": "finish"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i04:r2",
+              "text": "will finish"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i04:r3",
+              "text": "finishes"
+            }
+          ],
+          "testedDimension": "Вы уберёте контейнер после окончания работы. Дополните время.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i04:r2",
+              "correct": false,
+              "testedDimension": "Вы уберёте контейнер после окончания работы. Дополните время.",
+              "feedbackByLocale": {
+                "ru": "После when в придаточном времени о будущем finish без will.",
+                "uk": "Після when у підрядному часу про майбутнє finish без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i04:r3",
+              "correct": false,
+              "testedDimension": "Вы уберёте контейнер после окончания работы. Дополните время.",
+              "feedbackByLocale": {
+                "ru": "С we используется finish без -s.",
+                "uk": "З we використовується finish без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:word:strip",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — strip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:word:strip:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — strip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:word:strip:audio",
+            "transcript": "strip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:word:strip:r1",
+              "targetText": "strip",
+              "meaningByLocale": {
+                "ru": "Длинная узкая полоска. A strip of paper — полоска бумаги.",
+                "uk": "Довга вузька смужка. A strip of paper — смужка паперу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "strip",
+            "definitionByLocale": {
+              "ru": "Длинная узкая полоска. A strip of paper — полоска бумаги.",
+              "uk": "Довга вузька смужка. A strip of paper — смужка паперу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте просьбу для открытки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Услышьте просьбу для открытки.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i05:audio",
+            "transcript": "Cut a strip of red paper."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Cut a strip of red paper.",
+          "orderedTokens": [
+            "Cut",
+            "a",
+            "strip",
+            "of",
+            "red",
+            "paper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i06:r1",
+            "text": "Have you found the scissors yet?"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i06:r2",
+            "text": "Have you found the glue yet?"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i06:r3",
+            "text": "Have you put away the scissors yet?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i06:audio",
+            "transcript": "Have you found the scissors yet?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:i06:r1",
+              "targetText": "Have you found the scissors yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i06:r2",
+              "targetText": "Have you found the glue yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i06:r3",
+              "targetText": "Have you put away the scissors yet?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you found the scissors yet?",
+                "uk": "У записі звучить Have you found the scissors yet?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you found the scissors yet?",
+                "uk": "У записі звучить Have you found the scissors yet?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:word:shell",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:word:shell:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:word:shell:audio",
+            "transcript": "shell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:word:shell:r1",
+              "targetText": "shell",
+              "meaningByLocale": {
+                "ru": "Твёрдая наружная оболочка; например скорлупа яйца или раковина.",
+                "uk": "Тверда зовнішня оболонка; наприклад шкаралупа яйця або мушля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shell",
+            "definitionByLocale": {
+              "ru": "Твёрдая наружная оболочка; например скорлупа яйца или раковина.",
+              "uk": "Тверда зовнішня оболонка; наприклад шкаралупа яйця або мушля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В миску попал твёрдый кусочек от разбитого яйца. Назовите его.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i07:r1",
+            "text": "shell"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i07:r2",
+            "text": "paper"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i07:r3",
+            "text": "cloth"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В миску попал твёрдый кусочек от разбитого яйца. Назовите его.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В миску попал твёрдый кусочек от разбитого яйца. Назовите его.",
+            "uk": "У миску потрапив твердий шматочок від розбитого яйця. Назвіть його."
+          },
+          "gappedTargetPhrase": "There is a piece of ___ in the bowl.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-23:i07:r1",
+              "text": "shell"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i07:r2",
+              "text": "paper"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i07:r3",
+              "text": "cloth"
+            }
+          ],
+          "testedDimension": "В миску попал твёрдый кусочек от разбитого яйца. Назовите его.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i07:r2",
+              "correct": false,
+              "testedDimension": "В миску попал твёрдый кусочек от разбитого яйца. Назовите его.",
+              "feedbackByLocale": {
+                "ru": "Paper — бумага, а кусочек от яйца — скорлупа.",
+                "uk": "Paper — папір, а шматочок від яйця — шкаралупа."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i07:r3",
+              "correct": false,
+              "testedDimension": "В миску попал твёрдый кусочек от разбитого яйца. Назовите его.",
+              "feedbackByLocale": {
+                "ru": "Cloth — ткань, а здесь скорлупа яйца.",
+                "uk": "Cloth — тканина, а тут шкаралупа яйця."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает, готова ли полоска. Ответьте: «Я уже отрезал её».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает, готова ли полоска. Ответьте: «Я уже отрезал её».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i08:audio",
+            "transcript": "I have already cut it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already cut it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг держит бумагу. Пообещайте: «Я остановлюсь, когда ты подашь знак».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг держит бумагу. Пообещайте: «Я остановлюсь, когда ты подашь знак».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will stop when you signal.",
+          "localizedMeaning": {
+            "ru": "Друг держит бумагу. Пообещайте: «Я остановлюсь, когда ты подашь знак».",
+            "uk": "Друг тримає папір. Пообіцяйте: «Я зупинюся, коли ти подаси знак»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "stop",
+            "when",
+            "you",
+            "signal"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i10:r1",
+            "text": "Keep that scrap for the shopping list."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i10:r2",
+            "text": "Keep that scrap for the phone number."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i10:r3",
+            "text": "Keep that box for the shopping list."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i10:audio",
+            "transcript": "Keep that scrap for the shopping list."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:i10:r1",
+              "targetText": "Keep that scrap for the shopping list.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i10:r2",
+              "targetText": "Keep that scrap for the phone number.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i10:r3",
+              "targetText": "Keep that box for the shopping list.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Keep that scrap for the shopping list.",
+                "uk": "У записі звучить Keep that scrap for the shopping list."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Keep that scrap for the shopping list.",
+                "uk": "У записі звучить Keep that scrap for the shopping list."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы всегда вынимаете скорлупу, если замечаете её в миске. Дополните привычку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i11:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i11:r2",
+            "text": "takes"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i11:r3",
+            "text": "taking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы всегда вынимаете скорлупу, если замечаете её в миске. Дополните привычку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы всегда вынимаете скорлупу, если замечаете её в миске. Дополните привычку.",
+            "uk": "Ви завжди виймаєте шкаралупу, якщо помічаєте її в мисці. Доповніть звичку."
+          },
+          "gappedTargetPhrase": "If I find shell in the bowl, I ___ it out.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-23:i11:r1",
+              "text": "take"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i11:r2",
+              "text": "takes"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i11:r3",
+              "text": "taking"
+            }
+          ],
+          "testedDimension": "Вы всегда вынимаете скорлупу, если замечаете её в миске. Дополните привычку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Вы всегда вынимаете скорлупу, если замечаете её в миске. Дополните привычку.",
+              "feedbackByLocale": {
+                "ru": "С I нужна форма take без -s.",
+                "uk": "З I потрібна форма take без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Вы всегда вынимаете скорлупу, если замечаете её в миске. Дополните привычку.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен глагол take, не отдельная форма taking.",
+                "uk": "Для звички потрібне дієслово take, а не окрема форма taking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте просьбу убрать инструменты после работы.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i12:audio"
+        ],
+        "accessibilityLabel": "Услышьте просьбу убрать инструменты после работы.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i12:audio",
+            "transcript": "Put the scissors in the tub."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Put the scissors in the tub.",
+          "orderedTokens": [
+            "Put",
+            "the",
+            "scissors",
+            "in",
+            "the",
+            "tub"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат хочет широкую деталь, но вы вырезали узкую. Скажите: «Эта полоска слишком узкая».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i13:audio"
+        ],
+        "accessibilityLabel": "Брат хочет широкую деталь, но вы вырезали узкую. Скажите: «Эта полоска слишком узкая».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i13:audio",
+            "transcript": "This strip is too narrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This strip is too narrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы убрали скорлупу до того, как мама посмотрела в миску. Дополните более раннее действие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i14:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы убрали скорлупу до того, как мама посмотрела в миску. Дополните более раннее действие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы убрали скорлупу до того, как мама посмотрела в миску. Дополните более раннее действие.",
+            "uk": "Ви прибрали шкаралупу до того, як мама подивилася в миску. Доповніть ранішу дію."
+          },
+          "gappedTargetPhrase": "I ___ removed it by the time Mum looked.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-23:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i14:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Вы убрали скорлупу до того, как мама посмотрела в миску. Дополните более раннее действие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы убрали скорлупу до того, как мама посмотрела в миску. Дополните более раннее действие.",
+              "feedbackByLocale": {
+                "ru": "Looked задаёт прошлый момент; более раннее действие — had removed.",
+                "uk": "Looked задає минулий момент; раніша дія — had removed."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы убрали скорлупу до того, как мама посмотрела в миску. Дополните более раннее действие.",
+              "feedbackByLocale": {
+                "ru": "Нужно had removed для действия, которое вы выполнили раньше.",
+                "uk": "Потрібно had removed для дії, яку ви виконали раніше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i15:r1",
+            "text": "I will get more paper if you need it."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i15:r2",
+            "text": "I will get more glue if you need it."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i15:r3",
+            "text": "I will get more paper when you leave."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i15:audio",
+            "transcript": "I will get more paper if you need it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:i15:r1",
+              "targetText": "I will get more paper if you need it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i15:r2",
+              "targetText": "I will get more glue if you need it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i15:r3",
+              "targetText": "I will get more paper when you leave.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will get more paper if you need it.",
+                "uk": "У записі звучить I will get more paper if you need it."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will get more paper if you need it.",
+                "uk": "У записі звучить I will get more paper if you need it."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пообещайте ребёнку: «Мы покажем открытку папе, когда он вернётся».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообещайте ребёнку: «Мы покажем открытку папе, когда он вернётся».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will show Dad the card when he gets back.",
+          "localizedMeaning": {
+            "ru": "Пообещайте ребёнку: «Мы покажем открытку папе, когда он вернётся».",
+            "uk": "Пообіцяйте дитині: «Ми покажемо листівку татові, коли він повернеться»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "show",
+            "Dad",
+            "the",
+            "card",
+            "when",
+            "he",
+            "gets",
+            "back"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг предлагает убрать кухню. Ответьте: «Я помогу после того, как закончу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Друг предлагает убрать кухню. Ответьте: «Я помогу после того, как закончу».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i17:audio",
+            "transcript": "I will help after I finish."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will help after I finish.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-23:word:tub",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tub",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:word:tub:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tub",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:word:tub:audio",
+            "transcript": "tub"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:word:tub:r1",
+              "targetText": "tub",
+              "meaningByLocale": {
+                "ru": "Широкая ёмкость, контейнер. A tub of ice cream — упаковка мороженого в контейнере.",
+                "uk": "Широка посудина, контейнер. A tub of ice cream — упаковка морозива в контейнері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tub",
+            "definitionByLocale": {
+              "ru": "Широкая ёмкость, контейнер. A tub of ice cream — упаковка мороженого в контейнере.",
+              "uk": "Широка посудина, контейнер. A tub of ice cream — упаковка морозива в контейнері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i01:r1",
+            "text": "There is an empty tub on the shelf."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i01:r2",
+            "text": "There is an empty tub on the table."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i01:r3",
+            "text": "There is an empty jar on the shelf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i01:audio",
+            "transcript": "There is an empty tub on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:i01:r1",
+              "targetText": "There is an empty tub on the shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i01:r2",
+              "targetText": "There is an empty tub on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i01:r3",
+              "targetText": "There is an empty jar on the shelf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is an empty tub on the shelf.",
+                "uk": "У записі звучить There is an empty tub on the shelf."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is an empty tub on the shelf.",
+                "uk": "У записі звучить There is an empty tub on the shelf."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть брата зберегти контейнер: «Не викидай його».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть брата зберегти контейнер: «Не викидай його».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do not throw it away.",
+          "localizedMeaning": {
+            "ru": "Попросите брата сохранить контейнер: «Не выбрасывай его».",
+            "uk": "Попросіть брата зберегти контейнер: «Не викидай його»."
+          },
+          "orderedTokens": [
+            "Do",
+            "not",
+            "throw",
+            "it",
+            "away"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:word:scrap",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scrap",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:word:scrap:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scrap",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:word:scrap:audio",
+            "transcript": "scrap"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:word:scrap:r1",
+              "targetText": "scrap",
+              "meaningByLocale": {
+                "ru": "Небольшой оставшийся кусочек. A scrap of paper — клочок бумаги.",
+                "uk": "Невеликий шматочок, що залишився. A scrap of paper — клаптик паперу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scrap",
+            "definitionByLocale": {
+              "ru": "Небольшой оставшийся кусочек. A scrap of paper — клочок бумаги.",
+              "uk": "Невеликий шматочок, що залишився. A scrap of paper — клаптик паперу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i03",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Треба записати номер телефону. Попросіть: «Дай мені клаптик паперу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i03:audio"
+        ],
+        "accessibilityLabel": "Треба записати номер телефону. Попросіть: «Дай мені клаптик паперу».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i03:audio",
+            "transcript": "Give me a scrap of paper."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Give me a scrap of paper.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви приберете контейнер після закінчення роботи. Доповніть час.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i04:r1",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i04:r2",
+            "text": "will finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i04:r3",
+            "text": "finishes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви приберете контейнер після закінчення роботи. Доповніть час.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уберёте контейнер после окончания работы. Дополните время.",
+            "uk": "Ви приберете контейнер після закінчення роботи. Доповніть час."
+          },
+          "gappedTargetPhrase": "I will put the tub away when we ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-23:i04:r1",
+              "text": "finish"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i04:r2",
+              "text": "will finish"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i04:r3",
+              "text": "finishes"
+            }
+          ],
+          "testedDimension": "Ви приберете контейнер після закінчення роботи. Доповніть час.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i04:r2",
+              "correct": false,
+              "testedDimension": "Ви приберете контейнер після закінчення роботи. Доповніть час.",
+              "feedbackByLocale": {
+                "ru": "После when в придаточном времени о будущем finish без will.",
+                "uk": "Після when у підрядному часу про майбутнє finish без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i04:r3",
+              "correct": false,
+              "testedDimension": "Ви приберете контейнер після закінчення роботи. Доповніть час.",
+              "feedbackByLocale": {
+                "ru": "С we используется finish без -s.",
+                "uk": "З we використовується finish без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:word:strip",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — strip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:word:strip:audio"
+        ],
+        "accessibilityLabel": "Картка слова — strip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:word:strip:audio",
+            "transcript": "strip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:word:strip:r1",
+              "targetText": "strip",
+              "meaningByLocale": {
+                "ru": "Длинная узкая полоска. A strip of paper — полоска бумаги.",
+                "uk": "Довга вузька смужка. A strip of paper — смужка паперу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "strip",
+            "definitionByLocale": {
+              "ru": "Длинная узкая полоска. A strip of paper — полоска бумаги.",
+              "uk": "Довга вузька смужка. A strip of paper — смужка паперу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте прохання для листівки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Почуйте прохання для листівки.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i05:audio",
+            "transcript": "Cut a strip of red paper."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Cut a strip of red paper.",
+          "orderedTokens": [
+            "Cut",
+            "a",
+            "strip",
+            "of",
+            "red",
+            "paper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i06:r1",
+            "text": "Have you found the scissors yet?"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i06:r2",
+            "text": "Have you found the glue yet?"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i06:r3",
+            "text": "Have you put away the scissors yet?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i06:audio",
+            "transcript": "Have you found the scissors yet?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:i06:r1",
+              "targetText": "Have you found the scissors yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i06:r2",
+              "targetText": "Have you found the glue yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i06:r3",
+              "targetText": "Have you put away the scissors yet?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you found the scissors yet?",
+                "uk": "У записі звучить Have you found the scissors yet?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you found the scissors yet?",
+                "uk": "У записі звучить Have you found the scissors yet?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:word:shell",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:word:shell:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:word:shell:audio",
+            "transcript": "shell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:word:shell:r1",
+              "targetText": "shell",
+              "meaningByLocale": {
+                "ru": "Твёрдая наружная оболочка; например скорлупа яйца или раковина.",
+                "uk": "Тверда зовнішня оболонка; наприклад шкаралупа яйця або мушля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shell",
+            "definitionByLocale": {
+              "ru": "Твёрдая наружная оболочка; например скорлупа яйца или раковина.",
+              "uk": "Тверда зовнішня оболонка; наприклад шкаралупа яйця або мушля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У миску потрапив твердий шматочок від розбитого яйця. Назвіть його.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i07:r1",
+            "text": "shell"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i07:r2",
+            "text": "paper"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i07:r3",
+            "text": "cloth"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У миску потрапив твердий шматочок від розбитого яйця. Назвіть його.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В миску попал твёрдый кусочек от разбитого яйца. Назовите его.",
+            "uk": "У миску потрапив твердий шматочок від розбитого яйця. Назвіть його."
+          },
+          "gappedTargetPhrase": "There is a piece of ___ in the bowl.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-23:i07:r1",
+              "text": "shell"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i07:r2",
+              "text": "paper"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i07:r3",
+              "text": "cloth"
+            }
+          ],
+          "testedDimension": "У миску потрапив твердий шматочок від розбитого яйця. Назвіть його.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i07:r2",
+              "correct": false,
+              "testedDimension": "У миску потрапив твердий шматочок від розбитого яйця. Назвіть його.",
+              "feedbackByLocale": {
+                "ru": "Paper — бумага, а кусочек от яйца — скорлупа.",
+                "uk": "Paper — папір, а шматочок від яйця — шкаралупа."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i07:r3",
+              "correct": false,
+              "testedDimension": "У миску потрапив твердий шматочок від розбитого яйця. Назвіть його.",
+              "feedbackByLocale": {
+                "ru": "Cloth — ткань, а здесь скорлупа яйца.",
+                "uk": "Cloth — тканина, а тут шкаралупа яйця."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра запитує, чи готова смужка. Дайте відповідь: «Я вже відрізав її».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Сестра запитує, чи готова смужка. Дайте відповідь: «Я вже відрізав її».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i08:audio",
+            "transcript": "I have already cut it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already cut it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг тримає папір. Пообіцяйте: «Я зупинюся, коли ти подаси знак».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг тримає папір. Пообіцяйте: «Я зупинюся, коли ти подаси знак».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will stop when you signal.",
+          "localizedMeaning": {
+            "ru": "Друг держит бумагу. Пообещайте: «Я остановлюсь, когда ты подашь знак».",
+            "uk": "Друг тримає папір. Пообіцяйте: «Я зупинюся, коли ти подаси знак»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "stop",
+            "when",
+            "you",
+            "signal"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i10:r1",
+            "text": "Keep that scrap for the shopping list."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i10:r2",
+            "text": "Keep that scrap for the phone number."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i10:r3",
+            "text": "Keep that box for the shopping list."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i10:audio",
+            "transcript": "Keep that scrap for the shopping list."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:i10:r1",
+              "targetText": "Keep that scrap for the shopping list.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i10:r2",
+              "targetText": "Keep that scrap for the phone number.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i10:r3",
+              "targetText": "Keep that box for the shopping list.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Keep that scrap for the shopping list.",
+                "uk": "У записі звучить Keep that scrap for the shopping list."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Keep that scrap for the shopping list.",
+                "uk": "У записі звучить Keep that scrap for the shopping list."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви завжди виймаєте шкаралупу, якщо помічаєте її в мисці. Доповніть звичку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i11:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i11:r2",
+            "text": "takes"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i11:r3",
+            "text": "taking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви завжди виймаєте шкаралупу, якщо помічаєте її в мисці. Доповніть звичку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы всегда вынимаете скорлупу, если замечаете её в миске. Дополните привычку.",
+            "uk": "Ви завжди виймаєте шкаралупу, якщо помічаєте її в мисці. Доповніть звичку."
+          },
+          "gappedTargetPhrase": "If I find shell in the bowl, I ___ it out.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-23:i11:r1",
+              "text": "take"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i11:r2",
+              "text": "takes"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i11:r3",
+              "text": "taking"
+            }
+          ],
+          "testedDimension": "Ви завжди виймаєте шкаралупу, якщо помічаєте її в мисці. Доповніть звичку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Ви завжди виймаєте шкаралупу, якщо помічаєте її в мисці. Доповніть звичку.",
+              "feedbackByLocale": {
+                "ru": "С I нужна форма take без -s.",
+                "uk": "З I потрібна форма take без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Ви завжди виймаєте шкаралупу, якщо помічаєте її в мисці. Доповніть звичку.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен глагол take, не отдельная форма taking.",
+                "uk": "Для звички потрібне дієслово take, а не окрема форма taking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте прохання прибрати інструменти після роботи.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i12:audio"
+        ],
+        "accessibilityLabel": "Почуйте прохання прибрати інструменти після роботи.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i12:audio",
+            "transcript": "Put the scissors in the tub."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Put the scissors in the tub.",
+          "orderedTokens": [
+            "Put",
+            "the",
+            "scissors",
+            "in",
+            "the",
+            "tub"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат хоче широку деталь, але ви вирізали вузьку. Скажіть: «Ця смужка завузька».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i13:audio"
+        ],
+        "accessibilityLabel": "Брат хоче широку деталь, але ви вирізали вузьку. Скажіть: «Ця смужка завузька».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i13:audio",
+            "transcript": "This strip is too narrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This strip is too narrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви прибрали шкаралупу до того, як мама подивилася в миску. Доповніть ранішу дію.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i14:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви прибрали шкаралупу до того, як мама подивилася в миску. Доповніть ранішу дію.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы убрали скорлупу до того, как мама посмотрела в миску. Дополните более раннее действие.",
+            "uk": "Ви прибрали шкаралупу до того, як мама подивилася в миску. Доповніть ранішу дію."
+          },
+          "gappedTargetPhrase": "I ___ removed it by the time Mum looked.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-23:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i14:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Ви прибрали шкаралупу до того, як мама подивилася в миску. Доповніть ранішу дію.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви прибрали шкаралупу до того, як мама подивилася в миску. Доповніть ранішу дію.",
+              "feedbackByLocale": {
+                "ru": "Looked задаёт прошлый момент; более раннее действие — had removed.",
+                "uk": "Looked задає минулий момент; раніша дія — had removed."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви прибрали шкаралупу до того, як мама подивилася в миску. Доповніть ранішу дію.",
+              "feedbackByLocale": {
+                "ru": "Нужно had removed для действия, которое вы выполнили раньше.",
+                "uk": "Потрібно had removed для дії, яку ви виконали раніше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-23:i15:r1",
+            "text": "I will get more paper if you need it."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i15:r2",
+            "text": "I will get more glue if you need it."
+          },
+          {
+            "responseId": "en:lesson-26:session-23:i15:r3",
+            "text": "I will get more paper when you leave."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i15:audio",
+            "transcript": "I will get more paper if you need it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-23:i15:r1",
+              "targetText": "I will get more paper if you need it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i15:r2",
+              "targetText": "I will get more glue if you need it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i15:r3",
+              "targetText": "I will get more paper when you leave.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will get more paper if you need it.",
+                "uk": "У записі звучить I will get more paper if you need it."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will get more paper if you need it.",
+                "uk": "У записі звучить I will get more paper if you need it."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пообіцяйте дитині: «Ми покажемо листівку татові, коли він повернеться».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообіцяйте дитині: «Ми покажемо листівку татові, коли він повернеться».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will show Dad the card when he gets back.",
+          "localizedMeaning": {
+            "ru": "Пообещайте ребёнку: «Мы покажем открытку папе, когда он вернётся».",
+            "uk": "Пообіцяйте дитині: «Ми покажемо листівку татові, коли він повернеться»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "show",
+            "Dad",
+            "the",
+            "card",
+            "when",
+            "he",
+            "gets",
+            "back"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг пропонує прибрати кухню. Дайте відповідь: «Я допоможу після того, як закінчу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Друг пропонує прибрати кухню. Дайте відповідь: «Я допоможу після того, як закінчу».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-23:i17:audio",
+            "transcript": "I will help after I finish."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will help after I finish.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-23:word:tub",
+      "correctText": "tub",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i01",
+      "correctText": "There is an empty tub on the shelf.",
+      "correctResponseId": "en:lesson-26:session-23:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i02",
+      "correctText": "Do not throw it away.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:word:scrap",
+      "correctText": "scrap",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i03",
+      "correctText": "Give me a scrap of paper.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i04",
+      "correctText": "finish",
+      "correctResponseId": "en:lesson-26:session-23:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:word:strip",
+      "correctText": "strip",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i05",
+      "correctText": "Cut a strip of red paper.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i06",
+      "correctText": "Have you found the scissors yet?",
+      "correctResponseId": "en:lesson-26:session-23:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:word:shell",
+      "correctText": "shell",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i07",
+      "correctText": "shell",
+      "correctResponseId": "en:lesson-26:session-23:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i08",
+      "correctText": "I have already cut it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i09",
+      "correctText": "I will stop when you signal.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i10",
+      "correctText": "Keep that scrap for the shopping list.",
+      "correctResponseId": "en:lesson-26:session-23:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i11",
+      "correctText": "take",
+      "correctResponseId": "en:lesson-26:session-23:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i12",
+      "correctText": "Put the scissors in the tub.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i13",
+      "correctText": "This strip is too narrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i14",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-23:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i15",
+      "correctText": "I will get more paper if you need it.",
+      "correctResponseId": "en:lesson-26:session-23:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i16",
+      "correctText": "We will show Dad the card when he gets back.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-23:i17",
+      "correctText": "I will help after I finish.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "future time clauses; zero and first conditional; already, yet; past perfect",
+    "uk": "future time clauses; zero and first conditional; already, yet; past perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Убрать в контейнер",
+        "uk": "Прибрати в контейнер"
+      },
+      "bodyByLocale": {
+        "ru": "Tub — широкая ёмкость или контейнер, например пластиковая упаковка мороженого: a tub of ice cream. Put it in the tub — положи это в контейнер. I will put it away when we finish — я уберу это, когда мы закончим. В главной части will put away, но после when о будущем — finish без will.",
+        "uk": "Tub — широка посудина або контейнер, наприклад пластикова упаковка морозива: a tub of ice cream. Put it in the tub — поклади це в контейнер. I will put it away when we finish — я приберу це, коли ми закінчимо. У головній частині will put away, але після when про майбутнє — finish без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-23:intro1:r1",
+              "text": "I will put it away when we finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro1:r2",
+              "text": "I will put it away when we will finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro1:r3",
+              "text": "I will put it away when we finishes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-23:intro1:r1",
+              "text": "I will put it away when we finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro1:r2",
+              "text": "I will put it away when we will finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro1:r3",
+              "text": "I will put it away when we finishes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бумага для записки",
+        "uk": "Папір для записки"
+      },
+      "bodyByLocale": {
+        "ru": "Scrap — небольшой оставшийся кусочек: a scrap of paper — клочок бумаги. Strip — длинная узкая полоска: a strip of paper — полоска бумаги. Это разные признаки: scrap — остаток, strip — форма. I have already cut a strip — я уже отрезал полоску. У cut все три формы одинаковы: cut — cut — cut. Already сообщает, что действие уже выполнено.",
+        "uk": "Scrap — невеликий шматочок, що залишився: a scrap of paper — клаптик паперу. Strip — довга вузька смужка: a strip of paper — смужка паперу. Це різні ознаки: scrap — залишок, strip — форма. I have already cut a strip — я вже відрізав смужку. У cut усі три форми однакові: cut — cut — cut. Already повідомляє, що дію вже виконано."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-23:intro2:r1",
+              "text": "I have already cut a strip."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro2:r2",
+              "text": "I have already cutted a strip."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro2:r3",
+              "text": "I has already cut a strip."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-23:intro2:r1",
+              "text": "I have already cut a strip."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro2:r2",
+              "text": "I have already cutted a strip."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro2:r3",
+              "text": "I has already cut a strip."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Скорлупа в миске",
+        "uk": "Шкаралупа в мисці"
+      },
+      "bodyByLocale": {
+        "ru": "Shell — твёрдая наружная оболочка, например скорлупа яйца или раковина. There is a piece of shell in the bowl — в миске кусочек скорлупы. I had removed it by the time Mum looked — я уже убрал его к тому времени, как мама посмотрела. Had removed произошло раньше looked. О привычке можно сказать If I find shell in the bowl, I take it out — если я нахожу скорлупу в миске, я её вынимаю.",
+        "uk": "Shell — тверда зовнішня оболонка, наприклад шкаралупа яйця або мушля. There is a piece of shell in the bowl — у мисці шматочок шкаралупи. I had removed it by the time Mum looked — я вже прибрав його на той час, коли мама подивилася. Had removed сталося раніше looked. Про звичку можна сказати If I find shell in the bowl, I take it out — якщо я знаходжу шкаралупу в мисці, я її виймаю."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-23:intro3:r1",
+              "text": "I had removed it by the time Mum looked."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro3:r2",
+              "text": "I had remove it by the time Mum looked."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro3:r3",
+              "text": "I have removed it by the time Mum looked."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-23:intro3:r1",
+              "text": "I had removed it by the time Mum looked."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro3:r2",
+              "text": "I had remove it by the time Mum looked."
+            },
+            {
+              "responseId": "en:lesson-26:session-23:intro3:r3",
+              "text": "I have removed it by the time Mum looked."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7c4c3f87e672292aba06dd639d8909a205ac4d264cffcebf6201cdf59f556767"
+}

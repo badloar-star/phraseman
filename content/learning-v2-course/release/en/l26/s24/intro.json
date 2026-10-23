@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "future time clauses; zero and first conditional; already, yet; past perfect",
+    "uk": "future time clauses; zero and first conditional; already, yet; past perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Неприятное впечатление",
+        "uk": "Неприємне враження"
+      },
+      "bodyByLocale": {
+        "ru": "Gross — противный, отвратительный в разговорной оценке. That smell is gross — этот запах отвратительный. Это сильная, не нейтральная реакция. Scruffy — неопрятный, потрёпанный на вид: a scruffy coat — потрёпанное пальто. I will change my coat before we leave — я сменю пальто перед выходом. После before в придаточном времени о будущем — leave, без will.",
+        "uk": "Gross — огидний, бридкий у розмовній оцінці. That smell is gross — цей запах огидний. Це сильна, не нейтральна реакція. Scruffy — неохайний, пошарпаний на вигляд: a scruffy coat — пошарпане пальто. I will change my coat before we leave — я зміню пальто перед виходом. Після before у підрядному часу про майбутнє — leave, без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-24:intro1:r1",
+              "text": "I will change my coat before we leave."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro1:r2",
+              "text": "I will change my coat before we will leave."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro1:r3",
+              "text": "I will change my coat before we leaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-24:intro1:r1",
+              "text": "I will change my coat before we leave."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro1:r2",
+              "text": "I will change my coat before we will leave."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro1:r3",
+              "text": "I will change my coat before we leaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слишком шумно",
+        "uk": "Надто галасливо"
+      },
+      "bodyByLocale": {
+        "ru": "Rowdy — шумный, буйный, плохо себя ведущий; часто о компании людей. A rowdy group — шумная компания, которая мешает окружающим. Это больше, чем просто громкий звук. If a place gets rowdy, I leave — если в месте становится шумно и неспокойно, я ухожу. Так описывают привычку. I will leave if it gets rowdy — я уйду, если станет шумно и неспокойно — план на конкретный случай.",
+        "uk": "Rowdy — галасливий, буйний, із поганою поведінкою; часто про компанію людей. A rowdy group — галаслива компанія, яка заважає іншим. Це більше, ніж просто гучний звук. If a place gets rowdy, I leave — якщо в місці стає галасливо й неспокійно, я йду. Так описують звичку. I will leave if it gets rowdy — я піду, якщо стане галасливо й неспокійно — план на конкретний випадок."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-24:intro2:r1",
+              "text": "I will leave if it gets rowdy."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro2:r2",
+              "text": "I will leave if it will get rowdy."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro2:r3",
+              "text": "I will leaves if it gets rowdy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-24:intro2:r1",
+              "text": "I will leave if it gets rowdy."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro2:r2",
+              "text": "I will leave if it will get rowdy."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro2:r3",
+              "text": "I will leaves if it gets rowdy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Неудачная затея",
+        "uk": "Невдала затія"
+      },
+      "bodyByLocale": {
+        "ru": "Daft — глупый, нелепый; разговорное британское слово. That was a daft idea — это была глупая идея. Можно так оценить свою затею, например идти далеко без карты. I had turned back by the time my friend called — я уже повернул назад к звонку друга. Had turned back произошло раньше called. А I have already changed the plan — я уже изменил план — сообщает результат сейчас.",
+        "uk": "Daft — дурний, безглуздий; розмовне британське слово. That was a daft idea — це була безглузда ідея. Можна так оцінити свою затію, наприклад іти далеко без мапи. I had turned back by the time my friend called — я вже повернув назад до дзвінка друга. Had turned back сталося раніше called. А I have already changed the plan — я вже змінив план — повідомляє результат зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-24:intro3:r1",
+              "text": "I had turned back by the time my friend called."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro3:r2",
+              "text": "I had turn back by the time my friend called."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro3:r3",
+              "text": "I have turned back by the time my friend called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-24:intro3:r1",
+              "text": "I had turned back by the time my friend called."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro3:r2",
+              "text": "I had turn back by the time my friend called."
+            },
+            {
+              "responseId": "en:lesson-26:session-24:intro3:r3",
+              "text": "I have turned back by the time my friend called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c142e00d98c801c6d5a5519e6954dde4fb4523c98ce0f9e84f0eec67f6723291"
+}

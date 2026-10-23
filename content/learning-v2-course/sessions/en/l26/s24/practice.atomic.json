@@ -1,0 +1,2247 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-24",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-24:word:gross",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gross",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:word:gross:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gross",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:word:gross:audio",
+            "transcript": "gross"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:word:gross:r1",
+              "targetText": "gross",
+              "meaningByLocale": {
+                "ru": "Противный, отвратительный; сильная разговорная оценка.",
+                "uk": "Огидний, бридкий; сильна розмовна оцінка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gross",
+            "definitionByLocale": {
+              "ru": "Противный, отвратительный; сильная разговорная оценка.",
+              "uk": "Огидний, бридкий; сильна розмовна оцінка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i01:r1",
+            "text": "That smell is gross."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i01:r2",
+            "text": "That taste is gross."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i01:r3",
+            "text": "That smell is strange."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i01:audio",
+            "transcript": "That smell is gross."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:i01:r1",
+              "targetText": "That smell is gross.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i01:r2",
+              "targetText": "That taste is gross.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i01:r3",
+              "targetText": "That smell is strange.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит That smell is gross.",
+                "uk": "У записі звучить That smell is gross."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит That smell is gross.",
+                "uk": "У записі звучить That smell is gross."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы почувствовали неприятный запах в комнате. Попросите: «Можем мы открыть окно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы почувствовали неприятный запах в комнате. Попросите: «Можем мы открыть окно?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can we open the window?",
+          "localizedMeaning": {
+            "ru": "Вы почувствовали неприятный запах в комнате. Попросите: «Можем мы открыть окно?»",
+            "uk": "Ви відчули неприємний запах у кімнаті. Попросіть: «Можемо ми відчинити вікно?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "we",
+            "open",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:word:scruffy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scruffy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:word:scruffy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scruffy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:word:scruffy:audio",
+            "transcript": "scruffy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:word:scruffy:r1",
+              "targetText": "scruffy",
+              "meaningByLocale": {
+                "ru": "Неопрятный, потрёпанный на вид. A scruffy coat — потрёпанное пальто.",
+                "uk": "Неохайний, пошарпаний на вигляд. A scruffy coat — пошарпане пальто."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scruffy",
+            "definitionByLocale": {
+              "ru": "Неопрятный, потрёпанный на вид. A scruffy coat — потрёпанное пальто.",
+              "uk": "Неохайний, пошарпаний на вигляд. A scruffy coat — пошарпане пальто."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i03",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы рассматриваете своё старое пальто. Скажите: «Оно выглядит немного потрёпанным».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i03:audio"
+        ],
+        "accessibilityLabel": "Вы рассматриваете своё старое пальто. Скажите: «Оно выглядит немного потрёпанным».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i03:audio",
+            "transcript": "It looks a bit scruffy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It looks a bit scruffy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы смените пальто до выхода. Дополните время действия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i04:r1",
+            "text": "leave"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i04:r2",
+            "text": "will leave"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i04:r3",
+            "text": "leaves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы смените пальто до выхода. Дополните время действия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы смените пальто до выхода. Дополните время действия.",
+            "uk": "Ви зміните пальто до виходу. Доповніть час дії."
+          },
+          "gappedTargetPhrase": "I will change my coat before we ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-24:i04:r1",
+              "text": "leave"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i04:r2",
+              "text": "will leave"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i04:r3",
+              "text": "leaves"
+            }
+          ],
+          "testedDimension": "Вы смените пальто до выхода. Дополните время действия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i04:r2",
+              "correct": false,
+              "testedDimension": "Вы смените пальто до выхода. Дополните время действия.",
+              "feedbackByLocale": {
+                "ru": "После before в придаточном времени leave без will.",
+                "uk": "Після before у підрядному часу leave без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i04:r3",
+              "correct": false,
+              "testedDimension": "Вы смените пальто до выхода. Дополните время действия.",
+              "feedbackByLocale": {
+                "ru": "С we глагол leave без -s.",
+                "uk": "З we дієслово leave без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:word:rowdy",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rowdy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:word:rowdy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rowdy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:word:rowdy:audio",
+            "transcript": "rowdy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:word:rowdy:r1",
+              "targetText": "rowdy",
+              "meaningByLocale": {
+                "ru": "Шумный и буйный; о поведении, которое мешает окружающим. A rowdy group — шумная компания.",
+                "uk": "Галасливий і буйний; про поведінку, яка заважає іншим. A rowdy group — галаслива компанія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rowdy",
+            "definitionByLocale": {
+              "ru": "Шумный и буйный; о поведении, которое мешает окружающим. A rowdy group — шумная компания.",
+              "uk": "Галасливий і буйний; про поведінку, яка заважає іншим. A rowdy group — галаслива компанія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i05:r1",
+            "text": "The group at the back is rowdy."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i05:r2",
+            "text": "The group at the front is rowdy."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i05:r3",
+            "text": "The group at the back is quiet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i05:audio",
+            "transcript": "The group at the back is rowdy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:i05:r1",
+              "targetText": "The group at the back is rowdy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i05:r2",
+              "targetText": "The group at the front is rowdy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i05:r3",
+              "targetText": "The group at the back is quiet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The group at the back is rowdy.",
+                "uk": "У записі звучить The group at the back is rowdy."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The group at the back is rowdy.",
+                "uk": "У записі звучить The group at the back is rowdy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Предложите другу найти другое место: «Давай сядем снаружи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предложите другу найти другое место: «Давай сядем снаружи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Let us sit outside.",
+          "localizedMeaning": {
+            "ru": "Предложите другу найти другое место: «Давай сядем снаружи».",
+            "uk": "Запропонуйте другові знайти інше місце: «Давай сядемо надворі»."
+          },
+          "orderedTokens": [
+            "Let",
+            "us",
+            "sit",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:word:daft",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — daft",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:word:daft:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — daft",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:word:daft:audio",
+            "transcript": "daft"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:word:daft:r1",
+              "targetText": "daft",
+              "meaningByLocale": {
+                "ru": "Глупый, нелепый; разговорное британское слово. A daft idea — глупая затея.",
+                "uk": "Дурний, безглуздий; розмовне британське слово. A daft idea — безглузда затія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "daft",
+            "definitionByLocale": {
+              "ru": "Глупый, нелепый; разговорное британское слово. A daft idea — глупая затея.",
+              "uk": "Дурний, безглуздий; розмовне британське слово. A daft idea — безглузда затія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили идти далеко без карты и заблудились. Теперь считаете свою затею нелепой. Дополните оценку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i07:r1",
+            "text": "daft"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i07:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i07:r3",
+            "text": "empty"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили идти далеко без карты и заблудились. Теперь считаете свою затею нелепой. Дополните оценку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили идти далеко без карты и заблудились. Теперь считаете свою затею нелепой. Дополните оценку.",
+            "uk": "Ви вирішили йти далеко без мапи й заблукали. Тепер вважаєте свою затію безглуздою. Доповніть оцінку."
+          },
+          "gappedTargetPhrase": "That was a ___ idea.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-24:i07:r1",
+              "text": "daft"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i07:r2",
+              "text": "quiet"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i07:r3",
+              "text": "empty"
+            }
+          ],
+          "testedDimension": "Вы решили идти далеко без карты и заблудились. Теперь считаете свою затею нелепой. Дополните оценку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i07:r2",
+              "correct": false,
+              "testedDimension": "Вы решили идти далеко без карты и заблудились. Теперь считаете свою затею нелепой. Дополните оценку.",
+              "feedbackByLocale": {
+                "ru": "Quiet означает тихий, а вы оцениваете неразумную затею.",
+                "uk": "Quiet означає тихий, а ви оцінюєте нерозумну затію."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i07:r3",
+              "correct": false,
+              "testedDimension": "Вы решили идти далеко без карты и заблудились. Теперь считаете свою затею нелепой. Дополните оценку.",
+              "feedbackByLocale": {
+                "ru": "Empty означает пустой, а здесь нужна оценка нелепой идеи.",
+                "uk": "Empty означає порожній, а тут потрібна оцінка безглуздої ідеї."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте вопрос о маршруте.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i08:audio"
+        ],
+        "accessibilityLabel": "Услышьте вопрос о маршруте.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i08:audio",
+            "transcript": "Have you checked the map yet?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Have you checked the map yet?",
+          "orderedTokens": [
+            "Have",
+            "you",
+            "checked",
+            "the",
+            "map",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга предлагает вернуться. Ответьте: «Я уже изменил план».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i09:audio"
+        ],
+        "accessibilityLabel": "Подруга предлагает вернуться. Ответьте: «Я уже изменил план».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i09:audio",
+            "transcript": "I have already changed the plan."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already changed the plan.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы обычно уходите из мест, где компания ведёт себя шумно и буйно. Дополните привычку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i10:r1",
+            "text": "leave"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i10:r2",
+            "text": "leaves"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i10:r3",
+            "text": "leaving"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы обычно уходите из мест, где компания ведёт себя шумно и буйно. Дополните привычку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обычно уходите из мест, где компания ведёт себя шумно и буйно. Дополните привычку.",
+            "uk": "Ви зазвичай ідете з місць, де компанія поводиться галасливо й буйно. Доповніть звичку."
+          },
+          "gappedTargetPhrase": "If a place gets rowdy, I ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-24:i10:r1",
+              "text": "leave"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i10:r2",
+              "text": "leaves"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i10:r3",
+              "text": "leaving"
+            }
+          ],
+          "testedDimension": "Вы обычно уходите из мест, где компания ведёт себя шумно и буйно. Дополните привычку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i10:r2",
+              "correct": false,
+              "testedDimension": "Вы обычно уходите из мест, где компания ведёт себя шумно и буйно. Дополните привычку.",
+              "feedbackByLocale": {
+                "ru": "С I нужна форма leave без -s.",
+                "uk": "З I потрібна форма leave без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i10:r3",
+              "correct": false,
+              "testedDimension": "Вы обычно уходите из мест, где компания ведёт себя шумно и буйно. Дополните привычку.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен глагол leave.",
+                "uk": "Для звички потрібне дієслово leave."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i11:r1",
+            "text": "These shoes look scruffy."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i11:r2",
+            "text": "These shoes look new."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i11:r3",
+            "text": "These trousers look scruffy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i11:audio",
+            "transcript": "These shoes look scruffy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:i11:r1",
+              "targetText": "These shoes look scruffy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i11:r2",
+              "targetText": "These shoes look new.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i11:r3",
+              "targetText": "These trousers look scruffy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит These shoes look scruffy.",
+                "uk": "У записі звучить These shoes look scruffy."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит These shoes look scruffy.",
+                "uk": "У записі звучить These shoes look scruffy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пообещайте маме: «Я напишу, когда мы доберёмся домой».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообещайте маме: «Я напишу, когда мы доберёмся домой».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will text when we get home.",
+          "localizedMeaning": {
+            "ru": "Пообещайте маме: «Я напишу, когда мы доберёмся домой».",
+            "uk": "Пообіцяйте мамі: «Я напишу, коли ми дістанемося додому»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "text",
+            "when",
+            "we",
+            "get",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы повернули назад раньше, чем позвонил друг. Дополните более раннее действие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i13:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы повернули назад раньше, чем позвонил друг. Дополните более раннее действие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы повернули назад раньше, чем позвонил друг. Дополните более раннее действие.",
+            "uk": "Ви повернули назад раніше, ніж зателефонував друг. Доповніть ранішу дію."
+          },
+          "gappedTargetPhrase": "I ___ turned back by the time my friend called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-24:i13:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i13:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i13:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Вы повернули назад раньше, чем позвонил друг. Дополните более раннее действие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i13:r2",
+              "correct": false,
+              "testedDimension": "Вы повернули назад раньше, чем позвонил друг. Дополните более раннее действие.",
+              "feedbackByLocale": {
+                "ru": "Called задаёт прошлое; более раннее событие — had turned back.",
+                "uk": "Called задає минуле; раніша подія — had turned back."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i13:r3",
+              "correct": false,
+              "testedDimension": "Вы повернули назад раньше, чем позвонил друг. Дополните более раннее действие.",
+              "feedbackByLocale": {
+                "ru": "Для действия, которое вы выполнили раньше, нужно had turned back.",
+                "uk": "Для дії, яку ви виконали раніше, потрібно had turned back."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы увидели испорченную еду и хотите выразить отвращение. Скажите: «Это отвратительно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Вы увидели испорченную еду и хотите выразить отвращение. Скажите: «Это отвратительно».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i14:audio",
+            "transcript": "That is gross."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That is gross.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте договорённость о следующей встрече.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Услышьте договорённость о следующей встрече.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i15:audio",
+            "transcript": "We will talk after you get back."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We will talk after you get back.",
+          "orderedTokens": [
+            "We",
+            "will",
+            "talk",
+            "after",
+            "you",
+            "get",
+            "back"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i16:r1",
+            "text": "I will wait outside if there is no room."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i16:r2",
+            "text": "I will wait inside if there is no room."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i16:r3",
+            "text": "I will come back if there is no room."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i16:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i16:audio",
+            "transcript": "I will wait outside if there is no room."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:i16:r1",
+              "targetText": "I will wait outside if there is no room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i16:r2",
+              "targetText": "I will wait inside if there is no room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i16:r3",
+              "targetText": "I will come back if there is no room.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i16:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will wait outside if there is no room.",
+                "uk": "У записі звучить I will wait outside if there is no room."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i16:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will wait outside if there is no room.",
+                "uk": "У записі звучить I will wait outside if there is no room."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы оценили свою прежнюю затею. Скажите: «Давай попробуем что-нибудь другое».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы оценили свою прежнюю затею. Скажите: «Давай попробуем что-нибудь другое».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Let us try something else.",
+          "localizedMeaning": {
+            "ru": "Вы оценили свою прежнюю затею. Скажите: «Давай попробуем что-нибудь другое».",
+            "uk": "Ви оцінили свою попередню затію. Скажіть: «Давай спробуємо щось інше»."
+          },
+          "orderedTokens": [
+            "Let",
+            "us",
+            "try",
+            "something",
+            "else"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-24:word:gross",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gross",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:word:gross:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gross",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:word:gross:audio",
+            "transcript": "gross"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:word:gross:r1",
+              "targetText": "gross",
+              "meaningByLocale": {
+                "ru": "Противный, отвратительный; сильная разговорная оценка.",
+                "uk": "Огидний, бридкий; сильна розмовна оцінка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gross",
+            "definitionByLocale": {
+              "ru": "Противный, отвратительный; сильная разговорная оценка.",
+              "uk": "Огидний, бридкий; сильна розмовна оцінка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i01:r1",
+            "text": "That smell is gross."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i01:r2",
+            "text": "That taste is gross."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i01:r3",
+            "text": "That smell is strange."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i01:audio",
+            "transcript": "That smell is gross."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:i01:r1",
+              "targetText": "That smell is gross.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i01:r2",
+              "targetText": "That taste is gross.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i01:r3",
+              "targetText": "That smell is strange.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит That smell is gross.",
+                "uk": "У записі звучить That smell is gross."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит That smell is gross.",
+                "uk": "У записі звучить That smell is gross."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви відчули неприємний запах у кімнаті. Попросіть: «Можемо ми відчинити вікно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви відчули неприємний запах у кімнаті. Попросіть: «Можемо ми відчинити вікно?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can we open the window?",
+          "localizedMeaning": {
+            "ru": "Вы почувствовали неприятный запах в комнате. Попросите: «Можем мы открыть окно?»",
+            "uk": "Ви відчули неприємний запах у кімнаті. Попросіть: «Можемо ми відчинити вікно?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "we",
+            "open",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:word:scruffy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scruffy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:word:scruffy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scruffy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:word:scruffy:audio",
+            "transcript": "scruffy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:word:scruffy:r1",
+              "targetText": "scruffy",
+              "meaningByLocale": {
+                "ru": "Неопрятный, потрёпанный на вид. A scruffy coat — потрёпанное пальто.",
+                "uk": "Неохайний, пошарпаний на вигляд. A scruffy coat — пошарпане пальто."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scruffy",
+            "definitionByLocale": {
+              "ru": "Неопрятный, потрёпанный на вид. A scruffy coat — потрёпанное пальто.",
+              "uk": "Неохайний, пошарпаний на вигляд. A scruffy coat — пошарпане пальто."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i03",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви розглядаєте своє старе пальто. Скажіть: «Воно виглядає трохи пошарпаним».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i03:audio"
+        ],
+        "accessibilityLabel": "Ви розглядаєте своє старе пальто. Скажіть: «Воно виглядає трохи пошарпаним».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i03:audio",
+            "transcript": "It looks a bit scruffy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It looks a bit scruffy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зміните пальто до виходу. Доповніть час дії.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i04:r1",
+            "text": "leave"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i04:r2",
+            "text": "will leave"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i04:r3",
+            "text": "leaves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зміните пальто до виходу. Доповніть час дії.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы смените пальто до выхода. Дополните время действия.",
+            "uk": "Ви зміните пальто до виходу. Доповніть час дії."
+          },
+          "gappedTargetPhrase": "I will change my coat before we ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-24:i04:r1",
+              "text": "leave"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i04:r2",
+              "text": "will leave"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i04:r3",
+              "text": "leaves"
+            }
+          ],
+          "testedDimension": "Ви зміните пальто до виходу. Доповніть час дії.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i04:r2",
+              "correct": false,
+              "testedDimension": "Ви зміните пальто до виходу. Доповніть час дії.",
+              "feedbackByLocale": {
+                "ru": "После before в придаточном времени leave без will.",
+                "uk": "Після before у підрядному часу leave без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i04:r3",
+              "correct": false,
+              "testedDimension": "Ви зміните пальто до виходу. Доповніть час дії.",
+              "feedbackByLocale": {
+                "ru": "С we глагол leave без -s.",
+                "uk": "З we дієслово leave без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:word:rowdy",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rowdy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:word:rowdy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rowdy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:word:rowdy:audio",
+            "transcript": "rowdy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:word:rowdy:r1",
+              "targetText": "rowdy",
+              "meaningByLocale": {
+                "ru": "Шумный и буйный; о поведении, которое мешает окружающим. A rowdy group — шумная компания.",
+                "uk": "Галасливий і буйний; про поведінку, яка заважає іншим. A rowdy group — галаслива компанія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rowdy",
+            "definitionByLocale": {
+              "ru": "Шумный и буйный; о поведении, которое мешает окружающим. A rowdy group — шумная компания.",
+              "uk": "Галасливий і буйний; про поведінку, яка заважає іншим. A rowdy group — галаслива компанія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i05:r1",
+            "text": "The group at the back is rowdy."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i05:r2",
+            "text": "The group at the front is rowdy."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i05:r3",
+            "text": "The group at the back is quiet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i05:audio",
+            "transcript": "The group at the back is rowdy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:i05:r1",
+              "targetText": "The group at the back is rowdy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i05:r2",
+              "targetText": "The group at the front is rowdy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i05:r3",
+              "targetText": "The group at the back is quiet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The group at the back is rowdy.",
+                "uk": "У записі звучить The group at the back is rowdy."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The group at the back is rowdy.",
+                "uk": "У записі звучить The group at the back is rowdy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запропонуйте другові знайти інше місце: «Давай сядемо надворі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запропонуйте другові знайти інше місце: «Давай сядемо надворі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Let us sit outside.",
+          "localizedMeaning": {
+            "ru": "Предложите другу найти другое место: «Давай сядем снаружи».",
+            "uk": "Запропонуйте другові знайти інше місце: «Давай сядемо надворі»."
+          },
+          "orderedTokens": [
+            "Let",
+            "us",
+            "sit",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:word:daft",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — daft",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:word:daft:audio"
+        ],
+        "accessibilityLabel": "Картка слова — daft",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:word:daft:audio",
+            "transcript": "daft"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:word:daft:r1",
+              "targetText": "daft",
+              "meaningByLocale": {
+                "ru": "Глупый, нелепый; разговорное британское слово. A daft idea — глупая затея.",
+                "uk": "Дурний, безглуздий; розмовне британське слово. A daft idea — безглузда затія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "daft",
+            "definitionByLocale": {
+              "ru": "Глупый, нелепый; разговорное британское слово. A daft idea — глупая затея.",
+              "uk": "Дурний, безглуздий; розмовне британське слово. A daft idea — безглузда затія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили йти далеко без мапи й заблукали. Тепер вважаєте свою затію безглуздою. Доповніть оцінку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i07:r1",
+            "text": "daft"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i07:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i07:r3",
+            "text": "empty"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили йти далеко без мапи й заблукали. Тепер вважаєте свою затію безглуздою. Доповніть оцінку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили идти далеко без карты и заблудились. Теперь считаете свою затею нелепой. Дополните оценку.",
+            "uk": "Ви вирішили йти далеко без мапи й заблукали. Тепер вважаєте свою затію безглуздою. Доповніть оцінку."
+          },
+          "gappedTargetPhrase": "That was a ___ idea.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-24:i07:r1",
+              "text": "daft"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i07:r2",
+              "text": "quiet"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i07:r3",
+              "text": "empty"
+            }
+          ],
+          "testedDimension": "Ви вирішили йти далеко без мапи й заблукали. Тепер вважаєте свою затію безглуздою. Доповніть оцінку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i07:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили йти далеко без мапи й заблукали. Тепер вважаєте свою затію безглуздою. Доповніть оцінку.",
+              "feedbackByLocale": {
+                "ru": "Quiet означает тихий, а вы оцениваете неразумную затею.",
+                "uk": "Quiet означає тихий, а ви оцінюєте нерозумну затію."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i07:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили йти далеко без мапи й заблукали. Тепер вважаєте свою затію безглуздою. Доповніть оцінку.",
+              "feedbackByLocale": {
+                "ru": "Empty означает пустой, а здесь нужна оценка нелепой идеи.",
+                "uk": "Empty означає порожній, а тут потрібна оцінка безглуздої ідеї."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте питання про маршрут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i08:audio"
+        ],
+        "accessibilityLabel": "Почуйте питання про маршрут.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i08:audio",
+            "transcript": "Have you checked the map yet?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Have you checked the map yet?",
+          "orderedTokens": [
+            "Have",
+            "you",
+            "checked",
+            "the",
+            "map",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга пропонує повернутися. Дайте відповідь: «Я вже змінив план».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i09:audio"
+        ],
+        "accessibilityLabel": "Подруга пропонує повернутися. Дайте відповідь: «Я вже змінив план».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i09:audio",
+            "transcript": "I have already changed the plan."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already changed the plan.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зазвичай ідете з місць, де компанія поводиться галасливо й буйно. Доповніть звичку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i10:r1",
+            "text": "leave"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i10:r2",
+            "text": "leaves"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i10:r3",
+            "text": "leaving"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зазвичай ідете з місць, де компанія поводиться галасливо й буйно. Доповніть звичку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обычно уходите из мест, где компания ведёт себя шумно и буйно. Дополните привычку.",
+            "uk": "Ви зазвичай ідете з місць, де компанія поводиться галасливо й буйно. Доповніть звичку."
+          },
+          "gappedTargetPhrase": "If a place gets rowdy, I ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-24:i10:r1",
+              "text": "leave"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i10:r2",
+              "text": "leaves"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i10:r3",
+              "text": "leaving"
+            }
+          ],
+          "testedDimension": "Ви зазвичай ідете з місць, де компанія поводиться галасливо й буйно. Доповніть звичку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i10:r2",
+              "correct": false,
+              "testedDimension": "Ви зазвичай ідете з місць, де компанія поводиться галасливо й буйно. Доповніть звичку.",
+              "feedbackByLocale": {
+                "ru": "С I нужна форма leave без -s.",
+                "uk": "З I потрібна форма leave без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i10:r3",
+              "correct": false,
+              "testedDimension": "Ви зазвичай ідете з місць, де компанія поводиться галасливо й буйно. Доповніть звичку.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен глагол leave.",
+                "uk": "Для звички потрібне дієслово leave."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i11:r1",
+            "text": "These shoes look scruffy."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i11:r2",
+            "text": "These shoes look new."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i11:r3",
+            "text": "These trousers look scruffy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i11:audio",
+            "transcript": "These shoes look scruffy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:i11:r1",
+              "targetText": "These shoes look scruffy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i11:r2",
+              "targetText": "These shoes look new.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i11:r3",
+              "targetText": "These trousers look scruffy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит These shoes look scruffy.",
+                "uk": "У записі звучить These shoes look scruffy."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит These shoes look scruffy.",
+                "uk": "У записі звучить These shoes look scruffy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пообіцяйте мамі: «Я напишу, коли ми дістанемося додому».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообіцяйте мамі: «Я напишу, коли ми дістанемося додому».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will text when we get home.",
+          "localizedMeaning": {
+            "ru": "Пообещайте маме: «Я напишу, когда мы доберёмся домой».",
+            "uk": "Пообіцяйте мамі: «Я напишу, коли ми дістанемося додому»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "text",
+            "when",
+            "we",
+            "get",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви повернули назад раніше, ніж зателефонував друг. Доповніть ранішу дію.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i13:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви повернули назад раніше, ніж зателефонував друг. Доповніть ранішу дію.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы повернули назад раньше, чем позвонил друг. Дополните более раннее действие.",
+            "uk": "Ви повернули назад раніше, ніж зателефонував друг. Доповніть ранішу дію."
+          },
+          "gappedTargetPhrase": "I ___ turned back by the time my friend called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-24:i13:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i13:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i13:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Ви повернули назад раніше, ніж зателефонував друг. Доповніть ранішу дію.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i13:r2",
+              "correct": false,
+              "testedDimension": "Ви повернули назад раніше, ніж зателефонував друг. Доповніть ранішу дію.",
+              "feedbackByLocale": {
+                "ru": "Called задаёт прошлое; более раннее событие — had turned back.",
+                "uk": "Called задає минуле; раніша подія — had turned back."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i13:r3",
+              "correct": false,
+              "testedDimension": "Ви повернули назад раніше, ніж зателефонував друг. Доповніть ранішу дію.",
+              "feedbackByLocale": {
+                "ru": "Для действия, которое вы выполнили раньше, нужно had turned back.",
+                "uk": "Для дії, яку ви виконали раніше, потрібно had turned back."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви побачили зіпсовану їжу й хочете висловити огиду. Скажіть: «Це огидно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Ви побачили зіпсовану їжу й хочете висловити огиду. Скажіть: «Це огидно».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i14:audio",
+            "transcript": "That is gross."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That is gross.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте домовленість про наступну зустріч.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Почуйте домовленість про наступну зустріч.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i15:audio",
+            "transcript": "We will talk after you get back."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We will talk after you get back.",
+          "orderedTokens": [
+            "We",
+            "will",
+            "talk",
+            "after",
+            "you",
+            "get",
+            "back"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-24:i16:r1",
+            "text": "I will wait outside if there is no room."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i16:r2",
+            "text": "I will wait inside if there is no room."
+          },
+          {
+            "responseId": "en:lesson-26:session-24:i16:r3",
+            "text": "I will come back if there is no room."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-24:i16:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-24:i16:audio",
+            "transcript": "I will wait outside if there is no room."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-24:i16:r1",
+              "targetText": "I will wait outside if there is no room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i16:r2",
+              "targetText": "I will wait inside if there is no room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i16:r3",
+              "targetText": "I will come back if there is no room.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-24:i16:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will wait outside if there is no room.",
+                "uk": "У записі звучить I will wait outside if there is no room."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-24:i16:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will wait outside if there is no room.",
+                "uk": "У записі звучить I will wait outside if there is no room."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-24:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви оцінили свою попередню затію. Скажіть: «Давай спробуємо щось інше».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви оцінили свою попередню затію. Скажіть: «Давай спробуємо щось інше».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Let us try something else.",
+          "localizedMeaning": {
+            "ru": "Вы оценили свою прежнюю затею. Скажите: «Давай попробуем что-нибудь другое».",
+            "uk": "Ви оцінили свою попередню затію. Скажіть: «Давай спробуємо щось інше»."
+          },
+          "orderedTokens": [
+            "Let",
+            "us",
+            "try",
+            "something",
+            "else"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-24:word:gross",
+      "correctText": "gross",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i01",
+      "correctText": "That smell is gross.",
+      "correctResponseId": "en:lesson-26:session-24:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i02",
+      "correctText": "Can we open the window?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:word:scruffy",
+      "correctText": "scruffy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i03",
+      "correctText": "It looks a bit scruffy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i04",
+      "correctText": "leave",
+      "correctResponseId": "en:lesson-26:session-24:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:word:rowdy",
+      "correctText": "rowdy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i05",
+      "correctText": "The group at the back is rowdy.",
+      "correctResponseId": "en:lesson-26:session-24:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i06",
+      "correctText": "Let us sit outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:word:daft",
+      "correctText": "daft",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i07",
+      "correctText": "daft",
+      "correctResponseId": "en:lesson-26:session-24:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i08",
+      "correctText": "Have you checked the map yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i09",
+      "correctText": "I have already changed the plan.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i10",
+      "correctText": "leave",
+      "correctResponseId": "en:lesson-26:session-24:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i11",
+      "correctText": "These shoes look scruffy.",
+      "correctResponseId": "en:lesson-26:session-24:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i12",
+      "correctText": "I will text when we get home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i13",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-24:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i14",
+      "correctText": "That is gross.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i15",
+      "correctText": "We will talk after you get back.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i16",
+      "correctText": "I will wait outside if there is no room.",
+      "correctResponseId": "en:lesson-26:session-24:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-24:i17",
+      "correctText": "Let us try something else.",
+      "correctResponseId": null
+    }
+  ]
+}

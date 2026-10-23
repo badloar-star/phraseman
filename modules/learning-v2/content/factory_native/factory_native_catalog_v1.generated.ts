@@ -9961,4 +9961,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future time clauses; zero and first conditional; already, yet; past perfect","uk":"future time clauses; zero and first conditional; already, yet; past perfect"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 23,
+    sourceFingerprint: "0b2bf794419da67a6e0a1f160b6bbbdc5fe3cc57dd538219221f679041a791d9",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future time clauses; zero and first conditional; already, yet; past perfect","uk":"future time clauses; zero and first conditional; already, yet; past perfect"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 24,
+    sourceFingerprint: "5074a6607c43f2e7ebd509a133ecc89e4333e66aba0513bde07f8bb814b5469d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future time clauses; zero and first conditional; already, yet; past perfect","uk":"future time clauses; zero and first conditional; already, yet; past perfect"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
 ]);

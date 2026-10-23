@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-10:intro1:r2": {
+          "ru": "Здесь единственное число: нужен has.",
+          "uk": "Тут однина: потрібне has."
+        },
+        "en:lesson-24:session-10:intro1:r3": {
+          "ru": "Для длительности нужно How long.",
+          "uk": "Для тривалості потрібно How long."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-10:intro2:r2": {
+          "ru": "Здесь единственное число: нужен has.",
+          "uk": "Тут однина: потрібне has."
+        },
+        "en:lesson-24:session-10:intro2:r3": {
+          "ru": "Для длительности нужно How long.",
+          "uk": "Для тривалості потрібно How long."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-10:intro3:r2": {
+          "ru": "Здесь единственное число: нужен has.",
+          "uk": "Тут однина: потрібне has."
+        },
+        "en:lesson-24:session-10:intro3:r3": {
+          "ru": "Для длительности нужно How long.",
+          "uk": "Для тривалості потрібно How long."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0e474c417734d58276ab87344ef8009d33aab0316e97827efb1dbf168f981d8c"
+}

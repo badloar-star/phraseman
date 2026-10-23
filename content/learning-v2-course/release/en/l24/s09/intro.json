@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "How long + have|has + subject + past participle?",
+    "uk": "How long + have|has + subject + past participle?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Как давно",
+        "uk": "Як давно"
+      },
+      "bodyByLocale": {
+        "ru": "Hairstyle — причёска. How long have you had this hairstyle? — как давно у тебя эта причёска? How long спрашивает о длительности: ответ For a year — уже год. Это не вопрос о длине волос: сантиметры оставим парикмахеру. Порядок: How long, затем have, затем you и had.",
+        "uk": "Hairstyle — зачіска. How long have you had this hairstyle? — як давно в тебе ця зачіска? How long запитує про тривалість: відповідь For a year — вже рік. Це не запитання про довжину волосся: сантиметри залишимо перукарю. Порядок: How long, потім have, потім you та had."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-09:intro1:r1",
+              "text": "How long have you had this hairstyle?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro1:r2",
+              "text": "How long you have had this hairstyle?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro1:r3",
+              "text": "How many have you had this hairstyle?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-09:intro1:r1",
+              "text": "How long have you had this hairstyle?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro1:r2",
+              "text": "How long you have had this hairstyle?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro1:r3",
+              "text": "How many have you had this hairstyle?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "У неё — has she",
+        "uk": "У неї — has she"
+      },
+      "bodyByLocale": {
+        "ru": "Fringe — чёлка, британское слово; в США говорят bangs. How long has she had a fringe? — как давно у неё чёлка? С she используем has и ставим его перед she. Had остаётся после she. Можно ответить Since May — с мая.",
+        "uk": "Fringe — чубчик, британське слово; у США кажуть bangs. How long has she had a fringe? — як давно в неї чубчик? Із she використовуємо has і ставимо його перед she. Had залишається після she. Можна відповісти Since May — з травня."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-09:intro2:r1",
+              "text": "How long has she had a fringe?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro2:r2",
+              "text": "How long have she had a fringe?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro2:r3",
+              "text": "How long has she have a fringe?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-09:intro2:r1",
+              "text": "How long has she had a fringe?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro2:r2",
+              "text": "How long have she had a fringe?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro2:r3",
+              "text": "How long has she have a fringe?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Изменения во внешности",
+        "uk": "Зміни в зовнішності"
+      },
+      "bodyByLocale": {
+        "ru": "Braces — брекеты. How long have you had braces? — как давно у тебя брекеты? Piercing — пирсинг. How long has he had this piercing? — как давно у него этот пирсинг? Во всех вопросах речь о том, что есть у человека сейчас, и о времени с момента появления.",
+        "uk": "Braces — брекети. How long have you had braces? — як давно в тебе брекети? Piercing — пірсинг. How long has he had this piercing? — як давно в нього цей пірсинг? У всіх запитаннях ідеться про те, що є в людини зараз, і про час від моменту появи."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-09:intro3:r1",
+              "text": "How long have you had braces?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro3:r2",
+              "text": "How long you have had braces?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro3:r3",
+              "text": "How long has you had braces?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-09:intro3:r1",
+              "text": "How long have you had braces?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro3:r2",
+              "text": "How long you have had braces?"
+            },
+            {
+              "responseId": "en:lesson-24:session-09:intro3:r3",
+              "text": "How long has you had braces?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "57832459355c7a195fb484c7b01a1f2cb7c5209a416be9310ea23b8c8149167e"
+}

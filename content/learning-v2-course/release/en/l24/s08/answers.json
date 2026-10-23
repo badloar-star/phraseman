@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-08:word:idea",
+    "correctText": "idea",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i01",
+    "correctText": "I have had this idea for years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i02",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i03",
+    "correctText": "I have had this idea for years.",
+    "correctResponseId": "en:lesson-24:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:word:goal",
+    "correctText": "goal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i04",
+    "correctText": "She has had this goal since childhood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i05",
+    "correctText": "since",
+    "correctResponseId": "en:lesson-24:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i06",
+    "correctText": "She has had this goal since childhood.",
+    "correctResponseId": "en:lesson-24:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:word:rule",
+    "correctText": "rule",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i07",
+    "correctText": "We have followed this rule for a year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i08",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i09",
+    "correctText": "We have followed this rule for a year.",
+    "correctResponseId": "en:lesson-24:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:word:sense",
+    "correctText": "sense",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i10",
+    "correctText": "He has had a good sense of smell since childhood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i11",
+    "correctText": "since",
+    "correctResponseId": "en:lesson-24:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i12",
+    "correctText": "He has had a good sense of smell since childhood.",
+    "correctResponseId": "en:lesson-24:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i13",
+    "correctText": "en:lesson-24:session-08:i13:p1=idea\nen:lesson-24:session-08:i13:p2=goal\nen:lesson-24:session-08:i13:p3=rule\nen:lesson-24:session-08:i13:p4=sense",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i14",
+    "correctText": "I have lived here for two years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i15",
+    "correctText": "She has worked here since June.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i16",
+    "correctText": "I have had this goal for a year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-08:i17",
+    "correctText": "We have followed this rule since May.",
+    "correctResponseId": null
+  }
+]

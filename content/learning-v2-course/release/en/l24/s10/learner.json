@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-10:word:exist",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — exist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:word:exist:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — exist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:word:exist:audio",
+          "transcript": "exist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-10:word:exist:r1",
+            "targetText": "exist",
+            "meaningByLocale": {
+              "ru": "существовать.",
+              "uk": "існувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exist",
+          "definitionByLocale": {
+            "ru": "существовать.",
+            "uk": "існувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Этот магазин ещё существует?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Этот магазин ещё существует?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does this shop still exist?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Этот магазин ещё существует?»",
+          "uk": "Запитайте: «Цей магазин ще існує?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "this",
+          "shop",
+          "still",
+          "exist"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-10:i02:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i02:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i02:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long ___ this shop existed?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-10:i02:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i02:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i02:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С this shop нужен has.",
+              "uk": "Із this shop потрібне has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С this shop нужен has.",
+              "uk": "Із this shop потрібне has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-10:i03:r1",
+          "text": "How long has this shop existed?"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i03:r2",
+          "text": "How long has this school existed?"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i03:r3",
+          "text": "How long has this club existed?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:i03:audio",
+          "transcript": "How long has this shop existed?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-10:i03:r1",
+            "targetText": "How long has this shop existed?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i03:r2",
+            "targetText": "How long has this school existed?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i03:r3",
+            "targetText": "How long has this club existed?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has this shop existed?",
+              "uk": "У записі звучить How long has this shop existed?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has this shop existed?",
+              "uk": "У записі звучить How long has this shop existed?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:word:remain",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — remain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:word:remain:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — remain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:word:remain:audio",
+          "transcript": "remain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-10:word:remain:r1",
+            "targetText": "remain",
+            "meaningByLocale": {
+              "ru": "оставаться.",
+              "uk": "залишатися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "remain",
+          "definitionByLocale": {
+            "ru": "оставаться.",
+            "uk": "залишатися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Эта дверь остаётся запертой?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Эта дверь остаётся запертой?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does this door remain locked?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Эта дверь остаётся запертой?»",
+          "uk": "Запитайте: «Ці двері залишаються замкненими?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "this",
+          "door",
+          "remain",
+          "locked"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-10:i05:r1",
+          "text": "How long"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i05:r2",
+          "text": "How many"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i05:r3",
+          "text": "How much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "___ has this door remained locked?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-10:i05:r1",
+            "text": "How long"
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i05:r2",
+            "text": "How many"
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i05:r3",
+            "text": "How much"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "Для длительности нужно How long.",
+              "uk": "Для тривалості потрібно How long."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "Для длительности нужно How long.",
+              "uk": "Для тривалості потрібно How long."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-10:i06:r1",
+          "text": "How long has this door remained locked?"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i06:r2",
+          "text": "How long has this door remained open?"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i06:r3",
+          "text": "How long has this gate remained locked?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:i06:audio",
+          "transcript": "How long has this door remained locked?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-10:i06:r1",
+            "targetText": "How long has this door remained locked?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i06:r2",
+            "targetText": "How long has this door remained open?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i06:r3",
+            "targetText": "How long has this gate remained locked?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has this door remained locked?",
+              "uk": "У записі звучить How long has this door remained locked?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has this door remained locked?",
+              "uk": "У записі звучить How long has this door remained locked?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:word:seem",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seem",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:word:seem:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seem",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:word:seem:audio",
+          "transcript": "seem"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-10:word:seem:r1",
+            "targetText": "seem",
+            "meaningByLocale": {
+              "ru": "казаться.",
+              "uk": "здаватися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seem",
+          "definitionByLocale": {
+            "ru": "казаться.",
+            "uk": "здаватися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Она кажется расстроенной?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Она кажется расстроенной?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does she seem upset?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Она кажется расстроенной?»",
+          "uk": "Запитайте: «Вона здається засмученою?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "she",
+          "seem",
+          "upset"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-10:i08:r1",
+          "text": "seemed"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i08:r2",
+          "text": "seem"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i08:r3",
+          "text": "seems"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long has she ___ upset?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-10:i08:r1",
+            "text": "seemed"
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i08:r2",
+            "text": "seem"
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i08:r3",
+            "text": "seems"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "После has she используем seemed.",
+              "uk": "Після has she використовуємо seemed."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "После has she используем seemed.",
+              "uk": "Після has she використовуємо seemed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-10:i09:r1",
+          "text": "How long has she seemed upset?"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i09:r2",
+          "text": "How long has he seemed upset?"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i09:r3",
+          "text": "How long has she seemed tired?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:i09:audio",
+          "transcript": "How long has she seemed upset?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-10:i09:r1",
+            "targetText": "How long has she seemed upset?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i09:r2",
+            "targetText": "How long has he seemed upset?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i09:r3",
+            "targetText": "How long has she seemed tired?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has she seemed upset?",
+              "uk": "У записі звучить How long has she seemed upset?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has she seemed upset?",
+              "uk": "У записі звучить How long has she seemed upset?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:word:depend",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — depend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:word:depend:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — depend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:word:depend:audio",
+          "transcript": "depend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-10:word:depend:r1",
+            "targetText": "depend",
+            "meaningByLocale": {
+              "ru": "зависеть.",
+              "uk": "залежати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "depend",
+          "definitionByLocale": {
+            "ru": "зависеть.",
+            "uk": "залежати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Ты зависишь от родителей?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Ты зависишь от родителей?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you depend on your parents?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Ты зависишь от родителей?»",
+          "uk": "Запитайте: «Ти залежиш від батьків?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "depend",
+          "on",
+          "your",
+          "parents"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-10:i11:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i11:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i11:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long ___ you depended on your parents?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-10:i11:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i11:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С you используем have.",
+              "uk": "Із you використовуємо have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С you используем have.",
+              "uk": "Із you використовуємо have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-10:i12:r1",
+          "text": "How long have you depended on your parents?"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i12:r2",
+          "text": "How long has he depended on his parents?"
+        },
+        {
+          "responseId": "en:lesson-24:session-10:i12:r3",
+          "text": "How long have they depended on their parents?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:i12:audio",
+          "transcript": "How long have you depended on your parents?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-10:i12:r1",
+            "targetText": "How long have you depended on your parents?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i12:r2",
+            "targetText": "How long has he depended on his parents?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i12:r3",
+            "targetText": "How long have they depended on their parents?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you depended on your parents?",
+              "uk": "У записі звучить How long have you depended on your parents?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you depended on your parents?",
+              "uk": "У записі звучить How long have you depended on your parents?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-10:i13:p1",
+            "target": "exist",
+            "meaningByLocale": {
+              "ru": "существовать",
+              "uk": "існувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-10:i13:p2",
+            "target": "remain",
+            "meaningByLocale": {
+              "ru": "оставаться",
+              "uk": "залишатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-10:i13:p3",
+            "target": "seem",
+            "meaningByLocale": {
+              "ru": "казаться",
+              "uk": "здаватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-10:i13:p4",
+            "target": "depend",
+            "meaningByLocale": {
+              "ru": "зависеть",
+              "uk": "залежати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "exist",
+          "remain",
+          "seem",
+          "depend"
+        ],
+        "rightColumn": [
+          "существовать",
+          "оставаться",
+          "казаться",
+          "зависеть"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже два года",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Уже два года",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:i14:audio",
+          "transcript": "I have lived here for two years."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have lived here for two years.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "lived",
+          "here",
+          "for",
+          "two",
+          "years"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "С июня",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "С июня",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:i15:audio",
+          "transcript": "She has worked here since June."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has worked here since June.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "worked",
+          "here",
+          "since",
+          "June"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Как давно существует эта школа?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Как давно существует эта школа?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:i16:audio",
+          "transcript": "How long has this school existed?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long has this school existed?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-10:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Как давно он кажется уставшим?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Как давно он кажется уставшим?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-10:i17:audio",
+          "transcript": "How long has he seemed tired?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long has he seemed tired?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ac5e481e46b1548c42338cf2d2405593d16ec97f4023308c0e5794ae8d93933c"
+}

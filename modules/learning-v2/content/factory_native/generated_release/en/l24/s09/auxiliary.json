@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-09:intro1:r2": {
+          "ru": "В вопросе have ставим перед you.",
+          "uk": "У запитанні have ставимо перед you."
+        },
+        "en:lesson-24:session-09:intro1:r3": {
+          "ru": "О длительности спрашиваем How long.",
+          "uk": "Про тривалість запитуємо How long."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-09:intro2:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-24:session-09:intro2:r3": {
+          "ru": "После has she нужна форма had.",
+          "uk": "Після has she потрібна форма had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-09:intro3:r2": {
+          "ru": "В вопросе have идёт перед you.",
+          "uk": "У запитанні have стоїть перед you."
+        },
+        "en:lesson-24:session-09:intro3:r3": {
+          "ru": "С you нужно have.",
+          "uk": "Із you потрібно have."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "60c88651c529899257f62fd1dbb0edeb47b18554a4a5e1887438659d79cbe16d"
+}

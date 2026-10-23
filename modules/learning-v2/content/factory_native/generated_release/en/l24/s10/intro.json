@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "How long + have|has + subject + past participle?",
+    "uk": "How long + have|has + subject + past participle?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "История места",
+        "uk": "Історія місця"
+      },
+      "bodyByLocale": {
+        "ru": "Exist — существовать. How long has this shop existed? — как давно существует этот магазин? Ответ может быть For twenty years — уже двадцать лет. Это вопрос об истории магазина, а не о сегодняшних часах работы. Магазин старше вашей любимой кружки, но младше города.",
+        "uk": "Exist — існувати. How long has this shop existed? — як давно існує цей магазин? Відповідь може бути For twenty years — вже двадцять років. Це запитання про історію магазину, а не про сьогоднішні години роботи. Магазин старший за вашу улюблену чашку, але молодший за місто."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-10:intro1:r1",
+              "text": "How long has this shop existed?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro1:r2",
+              "text": "How long have this shop existed?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro1:r3",
+              "text": "How many has this shop existed?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-10:intro1:r1",
+              "text": "How long has this shop existed?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro1:r2",
+              "text": "How long have this shop existed?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro1:r3",
+              "text": "How many has this shop existed?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Всё ещё заперто",
+        "uk": "Усе ще замкнено"
+      },
+      "bodyByLocale": {
+        "ru": "Remain — оставаться, не менять состояние или место. How long has this door remained locked? — как долго эта дверь остаётся запертой? Remained locked подчёркивает, что дверь всё ещё заперта. Это не вопрос о том, сколько времени её запирали.",
+        "uk": "Remain — залишатися, не змінювати стан або місце. How long has this door remained locked? — як довго ці двері залишаються замкненими? Remained locked підкреслює, що двері все ще замкнені. Це не запитання про те, скільки часу їх замикали."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-10:intro2:r1",
+              "text": "How long has this door remained locked?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro2:r2",
+              "text": "How long have this door remained locked?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro2:r3",
+              "text": "How many has this door remained locked?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-10:intro2:r1",
+              "text": "How long has this door remained locked?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro2:r2",
+              "text": "How long have this door remained locked?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro2:r3",
+              "text": "How many has this door remained locked?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Впечатление и помощь",
+        "uk": "Враження й допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Seem — казаться. How long has she seemed upset? — как давно она кажется расстроенной? Мы описываем впечатление, не утверждаем, что знаем её чувства. Depend — зависеть; говорим depend on. How long have you depended on your parents? — как давно ты зависишь от родителей? Например, речь о помощи с оплатой жилья.",
+        "uk": "Seem — здаватися. How long has she seemed upset? — як давно вона здається засмученою? Ми описуємо враження, не стверджуємо, що знаємо її почуття. Depend — залежати; кажемо depend on. How long have you depended on your parents? — як давно ти залежиш від батьків? Наприклад, ідеться про допомогу з оплатою житла."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-10:intro3:r1",
+              "text": "How long has she seemed upset?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro3:r2",
+              "text": "How long have she seemed upset?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro3:r3",
+              "text": "How many has she seemed upset?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-10:intro3:r1",
+              "text": "How long has she seemed upset?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro3:r2",
+              "text": "How long have she seemed upset?"
+            },
+            {
+              "responseId": "en:lesson-24:session-10:intro3:r3",
+              "text": "How many has she seemed upset?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "af8df9b85d44d452cf2b6a9e97ecb183ab964d458c2cca3c167efb5349d8c215"
+}

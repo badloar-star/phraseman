@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-09:word:hairstyle",
+    "correctText": "hairstyle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i01",
+    "correctText": "How long have you had this hairstyle?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i02",
+    "correctText": "How long",
+    "correctResponseId": "en:lesson-24:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i03",
+    "correctText": "How long have you had this hairstyle?",
+    "correctResponseId": "en:lesson-24:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:word:fringe",
+    "correctText": "fringe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i04",
+    "correctText": "How long has she had a fringe?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i05",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i06",
+    "correctText": "How long has she had a fringe?",
+    "correctResponseId": "en:lesson-24:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:word:braces",
+    "correctText": "braces",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i07",
+    "correctText": "How long have you had braces?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i09",
+    "correctText": "How long have you had braces?",
+    "correctResponseId": "en:lesson-24:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:word:piercing",
+    "correctText": "piercing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i10",
+    "correctText": "How long has he had this piercing?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-24:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i12",
+    "correctText": "How long has he had this piercing?",
+    "correctResponseId": "en:lesson-24:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i13",
+    "correctText": "en:lesson-24:session-09:i13:p1=hairstyle\nen:lesson-24:session-09:i13:p2=fringe\nen:lesson-24:session-09:i13:p3=braces\nen:lesson-24:session-09:i13:p4=piercing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i14",
+    "correctText": "How long has he lived here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i15",
+    "correctText": "How long have you known her?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i16",
+    "correctText": "How long has she had braces?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-09:i17",
+    "correctText": "How long have you had this piercing?",
+    "correctResponseId": null
+  }
+]

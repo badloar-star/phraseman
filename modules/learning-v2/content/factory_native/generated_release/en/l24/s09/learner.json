@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-09:word:hairstyle",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hairstyle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:word:hairstyle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hairstyle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:word:hairstyle:audio",
+          "transcript": "hairstyle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-09:word:hairstyle:r1",
+            "targetText": "hairstyle",
+            "meaningByLocale": {
+              "ru": "причёска.",
+              "uk": "зачіска."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hairstyle",
+          "definitionByLocale": {
+            "ru": "причёска.",
+            "uk": "зачіска."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Как давно у тебя эта причёска?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Как давно у тебя эта причёска?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long have you had this hairstyle?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как давно у тебя эта причёска?»",
+          "uk": "Запитайте: «Як давно в тебе ця зачіска?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "have",
+          "you",
+          "had",
+          "this",
+          "hairstyle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-09:i02:r1",
+          "text": "How long"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i02:r2",
+          "text": "How many"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i02:r3",
+          "text": "How much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "___ have you had this hairstyle?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-09:i02:r1",
+            "text": "How long"
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i02:r2",
+            "text": "How many"
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i02:r3",
+            "text": "How much"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "О длительности спрашиваем How long.",
+              "uk": "Про тривалість запитуємо How long."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "О длительности спрашиваем How long.",
+              "uk": "Про тривалість запитуємо How long."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-09:i03:r1",
+          "text": "How long have you had this hairstyle?"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i03:r2",
+          "text": "How long has she had this hairstyle?"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i03:r3",
+          "text": "How long have they had this hairstyle?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:i03:audio",
+          "transcript": "How long have you had this hairstyle?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-09:i03:r1",
+            "targetText": "How long have you had this hairstyle?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i03:r2",
+            "targetText": "How long has she had this hairstyle?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i03:r3",
+            "targetText": "How long have they had this hairstyle?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you had this hairstyle?",
+              "uk": "У записі звучить How long have you had this hairstyle?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you had this hairstyle?",
+              "uk": "У записі звучить How long have you had this hairstyle?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:word:fringe",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fringe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:word:fringe:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fringe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:word:fringe:audio",
+          "transcript": "fringe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-09:word:fringe:r1",
+            "targetText": "fringe",
+            "meaningByLocale": {
+              "ru": "чёлка.",
+              "uk": "чубчик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fringe",
+          "definitionByLocale": {
+            "ru": "чёлка.",
+            "uk": "чубчик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Как давно у неё чёлка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Как давно у неё чёлка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long has she had a fringe?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как давно у неё чёлка?»",
+          "uk": "Запитайте: «Як давно в неї чубчик?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "has",
+          "she",
+          "had",
+          "a",
+          "fringe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-09:i05:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i05:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i05:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long ___ she had a fringe?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-09:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i05:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-09:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С she используем has.",
+              "uk": "Із she використовуємо has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С she используем has.",
+              "uk": "Із she використовуємо has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-09:i06:r1",
+          "text": "How long has she had a fringe?"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i06:r2",
+          "text": "How long has he had a fringe?"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i06:r3",
+          "text": "How long have you had a fringe?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:i06:audio",
+          "transcript": "How long has she had a fringe?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-09:i06:r1",
+            "targetText": "How long has she had a fringe?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i06:r2",
+            "targetText": "How long has he had a fringe?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i06:r3",
+            "targetText": "How long have you had a fringe?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has she had a fringe?",
+              "uk": "У записі звучить How long has she had a fringe?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has she had a fringe?",
+              "uk": "У записі звучить How long has she had a fringe?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:word:braces",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — braces",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:word:braces:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — braces",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:word:braces:audio",
+          "transcript": "braces"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-09:word:braces:r1",
+            "targetText": "braces",
+            "meaningByLocale": {
+              "ru": "брекеты.",
+              "uk": "брекети."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "braces",
+          "definitionByLocale": {
+            "ru": "брекеты.",
+            "uk": "брекети."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Как давно у тебя брекеты?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Как давно у тебя брекеты?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long have you had braces?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как давно у тебя брекеты?»",
+          "uk": "Запитайте: «Як давно в тебе брекети?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "have",
+          "you",
+          "had",
+          "braces"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-09:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long ___ you had braces?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-09:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С you используем have.",
+              "uk": "Із you використовуємо have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С you используем have.",
+              "uk": "Із you використовуємо have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-09:i09:r1",
+          "text": "How long have you had braces?"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i09:r2",
+          "text": "How long has she had braces?"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i09:r3",
+          "text": "How long have they had braces?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:i09:audio",
+          "transcript": "How long have you had braces?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-09:i09:r1",
+            "targetText": "How long have you had braces?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i09:r2",
+            "targetText": "How long has she had braces?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i09:r3",
+            "targetText": "How long have they had braces?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you had braces?",
+              "uk": "У записі звучить How long have you had braces?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you had braces?",
+              "uk": "У записі звучить How long have you had braces?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:word:piercing",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — piercing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:word:piercing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — piercing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:word:piercing:audio",
+          "transcript": "piercing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-09:word:piercing:r1",
+            "targetText": "piercing",
+            "meaningByLocale": {
+              "ru": "пирсинг.",
+              "uk": "пірсинг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "piercing",
+          "definitionByLocale": {
+            "ru": "пирсинг.",
+            "uk": "пірсинг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Как давно у него этот пирсинг?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Как давно у него этот пирсинг?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long has he had this piercing?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как давно у него этот пирсинг?»",
+          "uk": "Запитайте: «Як давно в нього цей пірсинг?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "has",
+          "he",
+          "had",
+          "this",
+          "piercing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-09:i11:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i11:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i11:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long has he ___ this piercing?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-09:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i11:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i11:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-09:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "После has he нужна форма had.",
+              "uk": "Після has he потрібна форма had."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "После has he нужна форма had.",
+              "uk": "Після has he потрібна форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-09:i12:r1",
+          "text": "How long has he had this piercing?"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i12:r2",
+          "text": "How long has she had this piercing?"
+        },
+        {
+          "responseId": "en:lesson-24:session-09:i12:r3",
+          "text": "How long have you had this piercing?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:i12:audio",
+          "transcript": "How long has he had this piercing?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-09:i12:r1",
+            "targetText": "How long has he had this piercing?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i12:r2",
+            "targetText": "How long has she had this piercing?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i12:r3",
+            "targetText": "How long have you had this piercing?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has he had this piercing?",
+              "uk": "У записі звучить How long has he had this piercing?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has he had this piercing?",
+              "uk": "У записі звучить How long has he had this piercing?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-09:i13:p1",
+            "target": "hairstyle",
+            "meaningByLocale": {
+              "ru": "причёска",
+              "uk": "зачіска"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-09:i13:p2",
+            "target": "fringe",
+            "meaningByLocale": {
+              "ru": "чёлка",
+              "uk": "чубчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-09:i13:p3",
+            "target": "braces",
+            "meaningByLocale": {
+              "ru": "брекеты",
+              "uk": "брекети"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-09:i13:p4",
+            "target": "piercing",
+            "meaningByLocale": {
+              "ru": "пирсинг",
+              "uk": "пірсинг"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hairstyle",
+          "fringe",
+          "braces",
+          "piercing"
+        ],
+        "rightColumn": [
+          "причёска",
+          "чёлка",
+          "брекеты",
+          "пирсинг"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Как давно он здесь живёт",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Как давно он здесь живёт",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:i14:audio",
+          "transcript": "How long has he lived here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How long has he lived here?",
+        "orderedTokens": [
+          "How",
+          "long",
+          "has",
+          "he",
+          "lived",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Как давно вы её знаете",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Как давно вы её знаете",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:i15:audio",
+          "transcript": "How long have you known her?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How long have you known her?",
+        "orderedTokens": [
+          "How",
+          "long",
+          "have",
+          "you",
+          "known",
+          "her"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Как давно у неё брекеты?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Как давно у неё брекеты?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:i16:audio",
+          "transcript": "How long has she had braces?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long has she had braces?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-09:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Как давно у тебя этот пирсинг?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Как давно у тебя этот пирсинг?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-09:i17:audio",
+          "transcript": "How long have you had this piercing?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long have you had this piercing?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8c547bd354483ac16fb5f1ea3b59865f978c3450873bb881041c807ab340bf96"
+}

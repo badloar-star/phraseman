@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-08:word:idea",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — idea",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:word:idea:audio"
+      ],
+      "accessibilityLabel": "Картка слова — idea",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:word:idea:audio",
+          "transcript": "idea"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-08:word:idea:r1",
+            "targetText": "idea",
+            "meaningByLocale": {
+              "ru": "идея, мысль.",
+              "uk": "ідея, думка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "idea",
+          "definitionByLocale": {
+            "ru": "идея, мысль.",
+            "uk": "ідея, думка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У мене ця ідея вже багато років.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У мене ця ідея вже багато років.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have had this idea for years.",
+        "localizedMeaning": {
+          "ru": "Скажите: «У меня эта идея уже много лет.»",
+          "uk": "Скажіть: «У мене ця ідея вже багато років.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "had",
+          "this",
+          "idea",
+          "for",
+          "years"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-08:i02:r1",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i02:r2",
+          "text": "since"
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i02:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово перед сроком или началом.",
+          "uk": "Виберіть слово перед тривалістю або початком."
+        },
+        "gappedTargetPhrase": "I have had this idea ___ years.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-08:i02:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i02:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i02:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указан срок, нужен for.",
+              "uk": "Указано тривалість, потрібне for."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указан срок, нужен for.",
+              "uk": "Указано тривалість, потрібне for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-08:i03:r1",
+          "text": "I have had this idea for years."
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i03:r2",
+          "text": "We have had this idea for years."
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i03:r3",
+          "text": "She has had this idea for years."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:i03:audio",
+          "transcript": "I have had this idea for years."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-08:i03:r1",
+            "targetText": "I have had this idea for years.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i03:r2",
+            "targetText": "We have had this idea for years.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i03:r3",
+            "targetText": "She has had this idea for years.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have had this idea for years.",
+              "uk": "У записі звучить I have had this idea for years."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have had this idea for years.",
+              "uk": "У записі звучить I have had this idea for years."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:word:goal",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — goal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:word:goal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — goal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:word:goal:audio",
+          "transcript": "goal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-08:word:goal:r1",
+            "targetText": "goal",
+            "meaningByLocale": {
+              "ru": "цель.",
+              "uk": "мета."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "goal",
+          "definitionByLocale": {
+            "ru": "цель.",
+            "uk": "мета."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У неї ця мета з дитинства.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У неї ця мета з дитинства.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has had this goal since childhood.",
+        "localizedMeaning": {
+          "ru": "Скажите: «У неё эта цель с детства.»",
+          "uk": "Скажіть: «У неї ця мета з дитинства.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "had",
+          "this",
+          "goal",
+          "since",
+          "childhood"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-08:i05:r1",
+          "text": "since"
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i05:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i05:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово перед сроком или началом.",
+          "uk": "Виберіть слово перед тривалістю або початком."
+        },
+        "gappedTargetPhrase": "She has had this goal ___ childhood.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-08:i05:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i05:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i05:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указано начало, нужен since.",
+              "uk": "Указано початок, потрібне since."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указано начало, нужен since.",
+              "uk": "Указано початок, потрібне since."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-08:i06:r1",
+          "text": "She has had this goal since childhood."
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i06:r2",
+          "text": "He has had this goal since childhood."
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i06:r3",
+          "text": "I have had this goal since childhood."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:i06:audio",
+          "transcript": "She has had this goal since childhood."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-08:i06:r1",
+            "targetText": "She has had this goal since childhood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i06:r2",
+            "targetText": "He has had this goal since childhood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i06:r3",
+            "targetText": "I have had this goal since childhood.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-08:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has had this goal since childhood.",
+              "uk": "У записі звучить She has had this goal since childhood."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has had this goal since childhood.",
+              "uk": "У записі звучить She has had this goal since childhood."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:word:rule",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rule",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:word:rule:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rule",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:word:rule:audio",
+          "transcript": "rule"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-08:word:rule:r1",
+            "targetText": "rule",
+            "meaningByLocale": {
+              "ru": "правило.",
+              "uk": "правило."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rule",
+          "definitionByLocale": {
+            "ru": "правило.",
+            "uk": "правило."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми дотримуємося цього правила вже рік.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми дотримуємося цього правила вже рік.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have followed this rule for a year.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы соблюдаем это правило уже год.»",
+          "uk": "Скажіть: «Ми дотримуємося цього правила вже рік.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "followed",
+          "this",
+          "rule",
+          "for",
+          "a",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-08:i08:r1",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i08:r2",
+          "text": "since"
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i08:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово перед сроком или началом.",
+          "uk": "Виберіть слово перед тривалістю або початком."
+        },
+        "gappedTargetPhrase": "We have followed this rule ___ a year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-08:i08:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i08:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i08:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указан срок, нужен for.",
+              "uk": "Указано тривалість, потрібне for."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указан срок, нужен for.",
+              "uk": "Указано тривалість, потрібне for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-08:i09:r1",
+          "text": "We have followed this rule for a year."
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i09:r2",
+          "text": "They have followed this rule for a year."
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i09:r3",
+          "text": "We have followed this rule for two years."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:i09:audio",
+          "transcript": "We have followed this rule for a year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-08:i09:r1",
+            "targetText": "We have followed this rule for a year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i09:r2",
+            "targetText": "They have followed this rule for a year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i09:r3",
+            "targetText": "We have followed this rule for two years.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have followed this rule for a year.",
+              "uk": "У записі звучить We have followed this rule for a year."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have followed this rule for a year.",
+              "uk": "У записі звучить We have followed this rule for a year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:word:sense",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sense",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:word:sense:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sense",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:word:sense:audio",
+          "transcript": "sense"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-08:word:sense:r1",
+            "targetText": "sense",
+            "meaningByLocale": {
+              "ru": "чувство, способность воспринимать.",
+              "uk": "чуття, здатність сприймати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sense",
+          "definitionByLocale": {
+            "ru": "чувство, способность воспринимать.",
+            "uk": "чуття, здатність сприймати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У нього добрий нюх з дитинства.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У нього добрий нюх з дитинства.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has had a good sense of smell since childhood.",
+        "localizedMeaning": {
+          "ru": "Скажите: «У него хорошее обоняние с детства.»",
+          "uk": "Скажіть: «У нього добрий нюх з дитинства.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "had",
+          "a",
+          "good",
+          "sense",
+          "of",
+          "smell",
+          "since",
+          "childhood"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-08:i11:r1",
+          "text": "since"
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i11:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i11:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово перед сроком или началом.",
+          "uk": "Виберіть слово перед тривалістю або початком."
+        },
+        "gappedTargetPhrase": "He has had a good sense of smell ___ childhood.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-08:i11:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i11:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i11:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указано начало, нужен since.",
+              "uk": "Указано початок, потрібне since."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указано начало, нужен since.",
+              "uk": "Указано початок, потрібне since."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-08:i12:r1",
+          "text": "He has had a good sense of smell since childhood."
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i12:r2",
+          "text": "She has had a good sense of smell since childhood."
+        },
+        {
+          "responseId": "en:lesson-24:session-08:i12:r3",
+          "text": "I have had a good sense of smell since childhood."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:i12:audio",
+          "transcript": "He has had a good sense of smell since childhood."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-08:i12:r1",
+            "targetText": "He has had a good sense of smell since childhood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i12:r2",
+            "targetText": "She has had a good sense of smell since childhood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i12:r3",
+            "targetText": "I have had a good sense of smell since childhood.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has had a good sense of smell since childhood.",
+              "uk": "У записі звучить He has had a good sense of smell since childhood."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has had a good sense of smell since childhood.",
+              "uk": "У записі звучить He has had a good sense of smell since childhood."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-08:i13:p1",
+            "target": "idea",
+            "meaningByLocale": {
+              "ru": "идея, мысль",
+              "uk": "ідея, думка"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-08:i13:p2",
+            "target": "goal",
+            "meaningByLocale": {
+              "ru": "цель",
+              "uk": "мета"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-08:i13:p3",
+            "target": "rule",
+            "meaningByLocale": {
+              "ru": "правило",
+              "uk": "правило"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-08:i13:p4",
+            "target": "sense",
+            "meaningByLocale": {
+              "ru": "чувство, способность воспринимать",
+              "uk": "чуття, здатність сприймати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "idea",
+          "goal",
+          "rule",
+          "sense"
+        ],
+        "rightColumn": [
+          "ідея, думка",
+          "мета",
+          "правило",
+          "чуття, здатність сприймати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Тривалість: два роки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Тривалість: два роки",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:i14:audio",
+          "transcript": "I have lived here for two years."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have lived here for two years.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "lived",
+          "here",
+          "for",
+          "two",
+          "years"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Початок: червень",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Початок: червень",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:i15:audio",
+          "transcript": "She has worked here since June."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has worked here since June.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "worked",
+          "here",
+          "since",
+          "June"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «У мене ця мета вже рік».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «У мене ця мета вже рік».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:i16:audio",
+          "transcript": "I have had this goal for a year."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have had this goal for a year.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-08:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми дотримуємося цього правила з травня».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми дотримуємося цього правила з травня».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-08:i17:audio",
+          "transcript": "We have followed this rule since May."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have followed this rule since May.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fcca492bd380a33fbe6e565cd79557d85cedafeeafc950303879b70f9c072a55"
+}

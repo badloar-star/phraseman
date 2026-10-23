@@ -9072,4 +9072,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + for duration; since starting point","uk":"present perfect + for duration; since starting point"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 8,
+    sourceFingerprint: "42a5db5d9209ed7d99f17620803ee2da8215b4b2756400256f1c24eb159d7e99",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + for duration; since starting point","uk":"present perfect + for duration; since starting point"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 9,
+    sourceFingerprint: "36624fef397f041afe07809e2b984b87142fd76c824dff27f0ad0fd3c747e739",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"How long + have|has + subject + past participle?","uk":"How long + have|has + subject + past participle?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 10,
+    sourceFingerprint: "f62d7e02dabe50685cb3f44fff0de7842aaf121b9ac796cce3c25867da48cb59",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"How long + have|has + subject + past participle?","uk":"How long + have|has + subject + past participle?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
 ]);

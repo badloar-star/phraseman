@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + for duration; since starting point",
+    "uk": "present perfect + for duration; since starting point"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Давняя идея",
+        "uk": "Давня ідея"
+      },
+      "bodyByLocale": {
+        "ru": "Idea — идея или мысль. I have had this idea for years — у меня эта идея уже много лет. Have had выглядит непривычно: have помогает показать время, had передаёт «иметь». Идея открыть кафе живёт давно; чашки пока занимают только вашу кухню.",
+        "uk": "Idea — ідея або думка. I have had this idea for years — у мене ця ідея вже багато років. Have had виглядає незвично: have допомагає показати час, had передає «мати». Ідея відкрити кафе живе давно; чашки поки займають лише вашу кухню."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-08:intro1:r1",
+              "text": "I have had this idea for years."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro1:r2",
+              "text": "I have had this idea since years."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro1:r3",
+              "text": "I has had this idea for years."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-08:intro1:r1",
+              "text": "I have had this idea for years."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro1:r2",
+              "text": "I have had this idea since years."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro1:r3",
+              "text": "I has had this idea for years."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Цель и правило",
+        "uk": "Мета й правило"
+      },
+      "bodyByLocale": {
+        "ru": "Goal — цель. She has had this goal since childhood — у неё эта цель с детства. Rule — правило. We have followed this rule for a year — мы соблюдаем это правило уже год. Идея может стать целью, а правило помогает организовать привычные дела: например, убирать телефон за ужином.",
+        "uk": "Goal — мета. She has had this goal since childhood — у неї ця мета з дитинства. Rule — правило. We have followed this rule for a year — ми дотримуємося цього правила вже рік. Ідея може стати метою, а правило допомагає організувати звичні справи: наприклад, прибирати телефон за вечерею."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-08:intro2:r1",
+              "text": "We have followed this rule for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro2:r2",
+              "text": "We have followed this rule since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro2:r3",
+              "text": "We has followed this rule for a year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-08:intro2:r1",
+              "text": "We have followed this rule for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro2:r2",
+              "text": "We have followed this rule since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro2:r3",
+              "text": "We has followed this rule for a year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чувствуете запах",
+        "uk": "Відчуваєте запах"
+      },
+      "bodyByLocale": {
+        "ru": "Sense — чувство, способность воспринимать. Sense of smell — обоняние; знакомое smell уточняет, что речь о запахах. He has had a good sense of smell since childhood — у него хорошее обоняние с детства. Since childhood показывает начало; for years — длительность.",
+        "uk": "Sense — чуття, здатність сприймати. Sense of smell — нюх; знайоме smell уточнює, що йдеться про запахи. He has had a good sense of smell since childhood — у нього добрий нюх з дитинства. Since childhood показує початок; for years — тривалість."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-08:intro3:r1",
+              "text": "He has had a good sense of smell since childhood."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro3:r2",
+              "text": "He has had a good sense of smell for childhood."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro3:r3",
+              "text": "He have had a good sense of smell since childhood."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-08:intro3:r1",
+              "text": "He has had a good sense of smell since childhood."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro3:r2",
+              "text": "He has had a good sense of smell for childhood."
+            },
+            {
+              "responseId": "en:lesson-24:session-08:intro3:r3",
+              "text": "He have had a good sense of smell since childhood."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "50add6afeb066eabe94046e382276ed3c5230b74db7f8c702bb1d198272ce462"
+}

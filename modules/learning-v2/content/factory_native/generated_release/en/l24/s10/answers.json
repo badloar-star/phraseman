@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-10:word:exist",
+    "correctText": "exist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i01",
+    "correctText": "Does this shop still exist?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i02",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i03",
+    "correctText": "How long has this shop existed?",
+    "correctResponseId": "en:lesson-24:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:word:remain",
+    "correctText": "remain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i04",
+    "correctText": "Does this door remain locked?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i05",
+    "correctText": "How long",
+    "correctResponseId": "en:lesson-24:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i06",
+    "correctText": "How long has this door remained locked?",
+    "correctResponseId": "en:lesson-24:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:word:seem",
+    "correctText": "seem",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i07",
+    "correctText": "Does she seem upset?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i08",
+    "correctText": "seemed",
+    "correctResponseId": "en:lesson-24:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i09",
+    "correctText": "How long has she seemed upset?",
+    "correctResponseId": "en:lesson-24:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:word:depend",
+    "correctText": "depend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i10",
+    "correctText": "Do you depend on your parents?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i11",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i12",
+    "correctText": "How long have you depended on your parents?",
+    "correctResponseId": "en:lesson-24:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i13",
+    "correctText": "en:lesson-24:session-10:i13:p1=exist\nen:lesson-24:session-10:i13:p2=remain\nen:lesson-24:session-10:i13:p3=seem\nen:lesson-24:session-10:i13:p4=depend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i14",
+    "correctText": "I have lived here for two years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i15",
+    "correctText": "She has worked here since June.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i16",
+    "correctText": "How long has this school existed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-10:i17",
+    "correctText": "How long has he seemed tired?",
+    "correctResponseId": null
+  }
+]

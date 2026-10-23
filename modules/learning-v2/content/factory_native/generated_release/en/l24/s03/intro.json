@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + for duration; since starting point",
+    "uk": "present perfect + for duration; since starting point"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Год учёбы",
+        "uk": "Рік навчання"
+      },
+      "bodyByLocale": {
+        "ru": "Turkish — турецкий язык. I have studied Turkish for a year — я изучаю турецкий уже год и продолжаю учиться. For a year показывает длительность. Название языка пишем с большой буквы, без a. Через год меню уже понятнее, но официант всё ещё может говорить быстрее учебника.",
+        "uk": "Turkish — турецька мова. I have studied Turkish for a year — я вивчаю турецьку вже рік і продовжую вчитися. For a year показує тривалість. Назву мови пишемо з великої літери, без a. Через рік меню вже зрозуміліше, але офіціант усе ще може говорити швидше за підручник."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-03:intro1:r1",
+              "text": "I have studied Turkish for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro1:r2",
+              "text": "I have studied Turkish since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro1:r3",
+              "text": "I has studied Turkish for a year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-03:intro1:r1",
+              "text": "I have studied Turkish for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro1:r2",
+              "text": "I have studied Turkish since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro1:r3",
+              "text": "I has studied Turkish for a year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Начало и срок",
+        "uk": "Початок і тривалість"
+      },
+      "bodyByLocale": {
+        "ru": "Greek — греческий язык. She has studied Greek since May — она изучает греческий с мая. Dutch — нидерландский язык. We have studied Dutch for three months — мы изучаем нидерландский уже три месяца. После since называем начало, после for — длительность.",
+        "uk": "Greek — грецька мова. She has studied Greek since May — вона вивчає грецьку з травня. Dutch — нідерландська мова. We have studied Dutch for three months — ми вивчаємо нідерландську вже три місяці. Після since називаємо початок, після for — тривалість."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-03:intro2:r1",
+              "text": "We have studied Dutch for three months."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro2:r2",
+              "text": "We have studied Dutch since three months."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro2:r3",
+              "text": "We has studied Dutch for three months."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-03:intro2:r1",
+              "text": "We have studied Dutch for three months."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro2:r2",
+              "text": "We have studied Dutch since three months."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro2:r3",
+              "text": "We has studied Dutch for three months."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Преподавание",
+        "uk": "Викладання"
+      },
+      "bodyByLocale": {
+        "ru": "Swedish — шведский язык. He has taught Swedish since 2020 — он преподаёт шведский с 2020 года. Taught — форма teach после has. Studied — сам изучал, taught — преподавал другим. В этом примере он продолжает преподавать.",
+        "uk": "Swedish — шведська мова. He has taught Swedish since 2020 — він викладає шведську з 2020 року. Taught — форма teach після has. Studied — сам вивчав, taught — викладав іншим. У цьому прикладі він продовжує викладати."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-03:intro3:r1",
+              "text": "He has taught Swedish since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro3:r2",
+              "text": "He has taught Swedish for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro3:r3",
+              "text": "He have taught Swedish since 2020."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-03:intro3:r1",
+              "text": "He has taught Swedish since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro3:r2",
+              "text": "He has taught Swedish for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-03:intro3:r3",
+              "text": "He have taught Swedish since 2020."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3a4b0851d205b3f03bf058753c87b52d14459818ca0225f961a779aa3521c0c9"
+}

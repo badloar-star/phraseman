@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-01:word:flatmate",
+    "correctText": "flatmate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i01",
+    "correctText": "I have known my flatmate for a year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i02",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i03",
+    "correctText": "I have known my flatmate for a year.",
+    "correctResponseId": "en:lesson-24:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:word:roommate",
+    "correctText": "roommate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i04",
+    "correctText": "She has lived with her roommate since May.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i05",
+    "correctText": "since",
+    "correctResponseId": "en:lesson-24:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i06",
+    "correctText": "She has lived with her roommate since May.",
+    "correctResponseId": "en:lesson-24:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:word:district",
+    "correctText": "district",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i07",
+    "correctText": "We have lived in this district for three years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i08",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i09",
+    "correctText": "We have lived in this district for three years.",
+    "correctResponseId": "en:lesson-24:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:word:hometown",
+    "correctText": "hometown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i10",
+    "correctText": "He has worked in his hometown since 2020.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i11",
+    "correctText": "since",
+    "correctResponseId": "en:lesson-24:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i12",
+    "correctText": "He has worked in his hometown since 2020.",
+    "correctResponseId": "en:lesson-24:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i13",
+    "correctText": "en:lesson-24:session-01:i13:p1=flatmate\nen:lesson-24:session-01:i13:p2=roommate\nen:lesson-24:session-01:i13:p3=district\nen:lesson-24:session-01:i13:p4=hometown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i14",
+    "correctText": "I have lived here for two years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i15",
+    "correctText": "She has worked here since June.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i16",
+    "correctText": "I have lived in this district for a year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-01:i17",
+    "correctText": "We have known our flatmate since May.",
+    "correctResponseId": null
+  }
+]

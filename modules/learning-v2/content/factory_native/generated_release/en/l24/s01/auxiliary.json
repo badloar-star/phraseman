@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-01:intro1:r2": {
+          "ru": "A year — срок, поэтому for.",
+          "uk": "A year — тривалість, тому for."
+        },
+        "en:lesson-24:session-01:intro1:r3": {
+          "ru": "После have нужно known.",
+          "uk": "Після have потрібно known."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-01:intro2:r2": {
+          "ru": "May — момент начала, нужен since.",
+          "uk": "May — момент початку, потрібне since."
+        },
+        "en:lesson-24:session-01:intro2:r3": {
+          "ru": "С she используем has.",
+          "uk": "Із she використовуємо has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-01:intro3:r2": {
+          "ru": "2020 — начало, поэтому since.",
+          "uk": "2020 — початок, тому since."
+        },
+        "en:lesson-24:session-01:intro3:r3": {
+          "ru": "С he нужно has.",
+          "uk": "Із he потрібно has."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7061aef0cf95e29fbf7f1916b34a87374df1c83e507131efa146c9500117a4c3"
+}

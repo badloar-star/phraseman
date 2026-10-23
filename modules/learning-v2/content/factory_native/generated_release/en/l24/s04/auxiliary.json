@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-04:intro1:r2": {
+          "ru": "Срок — for, начало — since.",
+          "uk": "Тривалість — for, початок — since."
+        },
+        "en:lesson-24:session-04:intro1:r3": {
+          "ru": "С I и we нужно have, с he — has.",
+          "uk": "З I та we потрібно have, з he — has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-04:intro2:r2": {
+          "ru": "Срок — for, начало — since.",
+          "uk": "Тривалість — for, початок — since."
+        },
+        "en:lesson-24:session-04:intro2:r3": {
+          "ru": "С I и we нужно have, с he — has.",
+          "uk": "З I та we потрібно have, з he — has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-04:intro3:r2": {
+          "ru": "Срок — for, начало — since.",
+          "uk": "Тривалість — for, початок — since."
+        },
+        "en:lesson-24:session-04:intro3:r3": {
+          "ru": "С I и we нужно have, с he — has.",
+          "uk": "З I та we потрібно have, з he — has."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9c005f20d291c39f844afbd4f91e074db555fc23023223115e02860defbf3788"
+}

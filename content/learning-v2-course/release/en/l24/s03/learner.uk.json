@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-03:word:Turkish",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Turkish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:word:Turkish:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Turkish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:word:Turkish:audio",
+          "transcript": "Turkish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-03:word:Turkish:r1",
+            "targetText": "Turkish",
+            "meaningByLocale": {
+              "ru": "турецкий язык.",
+              "uk": "турецька мова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Turkish",
+          "definitionByLocale": {
+            "ru": "турецкий язык.",
+            "uk": "турецька мова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я вивчаю турецьку вже рік.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я вивчаю турецьку вже рік.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have studied Turkish for a year.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я изучаю турецкий уже год.»",
+          "uk": "Скажіть: «Я вивчаю турецьку вже рік.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "studied",
+          "Turkish",
+          "for",
+          "a",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-03:i02:r1",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i02:r2",
+          "text": "since"
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i02:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово перед сроком или началом.",
+          "uk": "Виберіть слово перед тривалістю або початком."
+        },
+        "gappedTargetPhrase": "I have studied Turkish ___ a year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-03:i02:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i02:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i02:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указан срок, нужен for.",
+              "uk": "Указано тривалість, потрібне for."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указан срок, нужен for.",
+              "uk": "Указано тривалість, потрібне for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-03:i03:r1",
+          "text": "I have studied Turkish for a year."
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i03:r2",
+          "text": "We have studied Turkish for a year."
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i03:r3",
+          "text": "I have studied Turkish for two years."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:i03:audio",
+          "transcript": "I have studied Turkish for a year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-03:i03:r1",
+            "targetText": "I have studied Turkish for a year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i03:r2",
+            "targetText": "We have studied Turkish for a year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i03:r3",
+            "targetText": "I have studied Turkish for two years.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have studied Turkish for a year.",
+              "uk": "У записі звучить I have studied Turkish for a year."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have studied Turkish for a year.",
+              "uk": "У записі звучить I have studied Turkish for a year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:word:Greek",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Greek",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:word:Greek:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Greek",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:word:Greek:audio",
+          "transcript": "Greek"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-03:word:Greek:r1",
+            "targetText": "Greek",
+            "meaningByLocale": {
+              "ru": "греческий язык.",
+              "uk": "грецька мова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Greek",
+          "definitionByLocale": {
+            "ru": "греческий язык.",
+            "uk": "грецька мова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Вона вивчає грецьку з травня.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Вона вивчає грецьку з травня.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has studied Greek since May.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Она изучает греческий с мая.»",
+          "uk": "Скажіть: «Вона вивчає грецьку з травня.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "studied",
+          "Greek",
+          "since",
+          "May"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-03:i05:r1",
+          "text": "since"
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i05:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i05:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово перед сроком или началом.",
+          "uk": "Виберіть слово перед тривалістю або початком."
+        },
+        "gappedTargetPhrase": "She has studied Greek ___ May.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-03:i05:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i05:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i05:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указано начало, нужен since.",
+              "uk": "Указано початок, потрібне since."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указано начало, нужен since.",
+              "uk": "Указано початок, потрібне since."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-03:i06:r1",
+          "text": "She has studied Greek since May."
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i06:r2",
+          "text": "He has studied Greek since May."
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i06:r3",
+          "text": "She has studied Greek since June."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:i06:audio",
+          "transcript": "She has studied Greek since May."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-03:i06:r1",
+            "targetText": "She has studied Greek since May.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i06:r2",
+            "targetText": "He has studied Greek since May.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i06:r3",
+            "targetText": "She has studied Greek since June.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has studied Greek since May.",
+              "uk": "У записі звучить She has studied Greek since May."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has studied Greek since May.",
+              "uk": "У записі звучить She has studied Greek since May."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:word:Dutch",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Dutch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:word:Dutch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Dutch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:word:Dutch:audio",
+          "transcript": "Dutch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-03:word:Dutch:r1",
+            "targetText": "Dutch",
+            "meaningByLocale": {
+              "ru": "нидерландский язык.",
+              "uk": "нідерландська мова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Dutch",
+          "definitionByLocale": {
+            "ru": "нидерландский язык.",
+            "uk": "нідерландська мова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми вивчаємо нідерландську вже три місяці.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми вивчаємо нідерландську вже три місяці.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have studied Dutch for three months.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы изучаем нидерландский уже три месяца.»",
+          "uk": "Скажіть: «Ми вивчаємо нідерландську вже три місяці.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "studied",
+          "Dutch",
+          "for",
+          "three",
+          "months"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-03:i08:r1",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i08:r2",
+          "text": "since"
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i08:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово перед сроком или началом.",
+          "uk": "Виберіть слово перед тривалістю або початком."
+        },
+        "gappedTargetPhrase": "We have studied Dutch ___ three months.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-03:i08:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i08:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i08:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указан срок, нужен for.",
+              "uk": "Указано тривалість, потрібне for."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указан срок, нужен for.",
+              "uk": "Указано тривалість, потрібне for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-03:i09:r1",
+          "text": "We have studied Dutch for three months."
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i09:r2",
+          "text": "They have studied Dutch for three months."
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i09:r3",
+          "text": "We have studied Dutch for two months."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:i09:audio",
+          "transcript": "We have studied Dutch for three months."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-03:i09:r1",
+            "targetText": "We have studied Dutch for three months.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i09:r2",
+            "targetText": "They have studied Dutch for three months.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i09:r3",
+            "targetText": "We have studied Dutch for two months.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have studied Dutch for three months.",
+              "uk": "У записі звучить We have studied Dutch for three months."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have studied Dutch for three months.",
+              "uk": "У записі звучить We have studied Dutch for three months."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:word:Swedish",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Swedish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:word:Swedish:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Swedish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:word:Swedish:audio",
+          "transcript": "Swedish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-03:word:Swedish:r1",
+            "targetText": "Swedish",
+            "meaningByLocale": {
+              "ru": "шведский язык.",
+              "uk": "шведська мова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Swedish",
+          "definitionByLocale": {
+            "ru": "шведский язык.",
+            "uk": "шведська мова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Він викладає шведську з 2020 року.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Він викладає шведську з 2020 року.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has taught Swedish since 2020.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Он преподаёт шведский с 2020 года.»",
+          "uk": "Скажіть: «Він викладає шведську з 2020 року.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "taught",
+          "Swedish",
+          "since",
+          "2020"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-03:i11:r1",
+          "text": "since"
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i11:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i11:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово перед сроком или началом.",
+          "uk": "Виберіть слово перед тривалістю або початком."
+        },
+        "gappedTargetPhrase": "He has taught Swedish ___ 2020.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-03:i11:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i11:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i11:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указано начало, нужен since.",
+              "uk": "Указано початок, потрібне since."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "feedbackByLocale": {
+              "ru": "Указано начало, нужен since.",
+              "uk": "Указано початок, потрібне since."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-03:i12:r1",
+          "text": "He has taught Swedish since 2020."
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i12:r2",
+          "text": "She has taught Swedish since 2020."
+        },
+        {
+          "responseId": "en:lesson-24:session-03:i12:r3",
+          "text": "He has taught Swedish since 2021."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:i12:audio",
+          "transcript": "He has taught Swedish since 2020."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-03:i12:r1",
+            "targetText": "He has taught Swedish since 2020.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i12:r2",
+            "targetText": "She has taught Swedish since 2020.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i12:r3",
+            "targetText": "He has taught Swedish since 2021.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has taught Swedish since 2020.",
+              "uk": "У записі звучить He has taught Swedish since 2020."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has taught Swedish since 2020.",
+              "uk": "У записі звучить He has taught Swedish since 2020."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-03:i13:p1",
+            "target": "Turkish",
+            "meaningByLocale": {
+              "ru": "турецкий язык",
+              "uk": "турецька мова"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-03:i13:p2",
+            "target": "Greek",
+            "meaningByLocale": {
+              "ru": "греческий язык",
+              "uk": "грецька мова"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-03:i13:p3",
+            "target": "Dutch",
+            "meaningByLocale": {
+              "ru": "нидерландский язык",
+              "uk": "нідерландська мова"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-03:i13:p4",
+            "target": "Swedish",
+            "meaningByLocale": {
+              "ru": "шведский язык",
+              "uk": "шведська мова"
+            }
+          }
+        ],
+        "leftColumn": [
+          "Turkish",
+          "Greek",
+          "Dutch",
+          "Swedish"
+        ],
+        "rightColumn": [
+          "турецька мова",
+          "грецька мова",
+          "нідерландська мова",
+          "шведська мова"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Тривалість: два роки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Тривалість: два роки",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:i14:audio",
+          "transcript": "I have lived here for two years."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have lived here for two years.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "lived",
+          "here",
+          "for",
+          "two",
+          "years"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Початок: червень",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Початок: червень",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:i15:audio",
+          "transcript": "She has worked here since June."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has worked here since June.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "worked",
+          "here",
+          "since",
+          "June"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я вивчаю нідерландську вже рік».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я вивчаю нідерландську вже рік».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:i16:audio",
+          "transcript": "I have studied Dutch for a year."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have studied Dutch for a year.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми вивчаємо турецьку з травня».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми вивчаємо турецьку з травня».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-03:i17:audio",
+          "transcript": "We have studied Turkish since May."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have studied Turkish since May.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "59f08f73161467007ca9cec11d418d4fe1219815667120d96efc88f4673cfeed"
+}

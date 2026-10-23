@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-04:word:custom",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — custom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:word:custom:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — custom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:word:custom:audio",
+            "transcript": "custom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:word:custom:r1",
+              "targetText": "custom",
+              "meaningByLocale": {
+                "ru": "обычай.",
+                "uk": "звичай."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "custom",
+            "definitionByLocale": {
+              "ru": "обычай.",
+              "uk": "звичай."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я соблюдаю этот обычай много лет.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я соблюдаю этот обычай много лет.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have followed this custom for years.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я соблюдаю этот обычай много лет.»",
+            "uk": "Скажіть: «Я дотримуюся цього звичаю багато років.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "followed",
+            "this",
+            "custom",
+            "for",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком или началом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i02:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i02:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i02:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "I have followed this custom ___ years.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-04:i02:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i02:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i02:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком или началом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i03:r1",
+            "text": "I have followed this custom for years."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i03:r2",
+            "text": "We have followed this custom for years."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i03:r3",
+            "text": "She has followed this custom for years."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i03:audio",
+            "transcript": "I have followed this custom for years."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:i03:r1",
+              "targetText": "I have followed this custom for years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i03:r2",
+              "targetText": "We have followed this custom for years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i03:r3",
+              "targetText": "She has followed this custom for years.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have followed this custom for years.",
+                "uk": "У записі звучить I have followed this custom for years."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have followed this custom for years.",
+                "uk": "У записі звучить I have followed this custom for years."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:word:belief",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — belief",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:word:belief:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — belief",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:word:belief:audio",
+            "transcript": "belief"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:word:belief:r1",
+              "targetText": "belief",
+              "meaningByLocale": {
+                "ru": "убеждение, вера.",
+                "uk": "переконання, віра."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "belief",
+            "definitionByLocale": {
+              "ru": "убеждение, вера.",
+              "uk": "переконання, віра."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она придерживается этого убеждения с детства.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она придерживается этого убеждения с детства.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has held this belief since childhood.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она придерживается этого убеждения с детства.»",
+            "uk": "Скажіть: «Вона дотримується цього переконання з дитинства.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "held",
+            "this",
+            "belief",
+            "since",
+            "childhood"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком или началом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i05:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i05:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i05:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "She has held this belief ___ childhood.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-04:i05:r1",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i05:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i05:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком или началом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i06:r1",
+            "text": "She has held this belief since childhood."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i06:r2",
+            "text": "He has held this belief since childhood."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i06:r3",
+            "text": "I have held this belief since childhood."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i06:audio",
+            "transcript": "She has held this belief since childhood."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:i06:r1",
+              "targetText": "She has held this belief since childhood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i06:r2",
+              "targetText": "He has held this belief since childhood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i06:r3",
+              "targetText": "I have held this belief since childhood.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has held this belief since childhood.",
+                "uk": "У записі звучить She has held this belief since childhood."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has held this belief since childhood.",
+                "uk": "У записі звучить She has held this belief since childhood."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:word:religion",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — religion",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:word:religion:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — religion",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:word:religion:audio",
+            "transcript": "religion"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:word:religion:r1",
+              "targetText": "religion",
+              "meaningByLocale": {
+                "ru": "религия.",
+                "uk": "релігія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "religion",
+            "definitionByLocale": {
+              "ru": "религия.",
+              "uk": "релігія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы изучаем религию уже два года.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы изучаем религию уже два года.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have studied religion for two years.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы изучаем религию уже два года.»",
+            "uk": "Скажіть: «Ми вивчаємо релігію вже два роки.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "studied",
+            "religion",
+            "for",
+            "two",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком или началом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i08:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i08:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i08:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "We have studied religion ___ two years.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-04:i08:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i08:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i08:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком или началом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i09:r1",
+            "text": "We have studied religion for two years."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i09:r2",
+            "text": "They have studied religion for two years."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i09:r3",
+            "text": "We have studied religion for three years."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i09:audio",
+            "transcript": "We have studied religion for two years."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:i09:r1",
+              "targetText": "We have studied religion for two years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i09:r2",
+              "targetText": "They have studied religion for two years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i09:r3",
+              "targetText": "We have studied religion for three years.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied religion for two years.",
+                "uk": "У записі звучить We have studied religion for two years."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied religion for two years.",
+                "uk": "У записі звучить We have studied religion for two years."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:word:society",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — society",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:word:society:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — society",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:word:society:audio",
+            "transcript": "society"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:word:society:r1",
+              "targetText": "society",
+              "meaningByLocale": {
+                "ru": "общество.",
+                "uk": "суспільство."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "society",
+            "definitionByLocale": {
+              "ru": "общество.",
+              "uk": "суспільство."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он изучает общество с 2020 года.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он изучает общество с 2020 года.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has studied society since 2020.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он изучает общество с 2020 года.»",
+            "uk": "Скажіть: «Він вивчає суспільство з 2020 року.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "studied",
+            "society",
+            "since",
+            "2020"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком или началом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i11:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i11:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i11:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "He has studied society ___ 2020.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-04:i11:r1",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i11:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i11:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком или началом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком или началом.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i12:r1",
+            "text": "He has studied society since 2020."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i12:r2",
+            "text": "She has studied society since 2020."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i12:r3",
+            "text": "He has studied society since 2021."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i12:audio",
+            "transcript": "He has studied society since 2020."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:i12:r1",
+              "targetText": "He has studied society since 2020.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i12:r2",
+              "targetText": "She has studied society since 2020.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i12:r3",
+              "targetText": "He has studied society since 2021.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has studied society since 2020.",
+                "uk": "У записі звучить He has studied society since 2020."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has studied society since 2020.",
+                "uk": "У записі звучить He has studied society since 2020."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-04:i13:p1",
+              "target": "custom",
+              "meaningByLocale": {
+                "ru": "обычай",
+                "uk": "звичай"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-04:i13:p2",
+              "target": "belief",
+              "meaningByLocale": {
+                "ru": "убеждение, вера",
+                "uk": "переконання, віра"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-04:i13:p3",
+              "target": "religion",
+              "meaningByLocale": {
+                "ru": "религия",
+                "uk": "релігія"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-04:i13:p4",
+              "target": "society",
+              "meaningByLocale": {
+                "ru": "общество",
+                "uk": "суспільство"
+              }
+            }
+          ],
+          "leftColumn": [
+            "custom",
+            "belief",
+            "religion",
+            "society"
+          ],
+          "rightColumn": [
+            "обычай",
+            "убеждение, вера",
+            "религия",
+            "общество"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Срок: два года",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Срок: два года",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i14:audio",
+            "transcript": "I have lived here for two years."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have lived here for two years.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "lived",
+            "here",
+            "for",
+            "two",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начало: июнь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Начало: июнь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i15:audio",
+            "transcript": "She has worked here since June."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has worked here since June.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "worked",
+            "here",
+            "since",
+            "June"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я изучаю религию уже год».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я изучаю религию уже год».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i16:audio",
+            "transcript": "I have studied religion for a year."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have studied religion for a year.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы соблюдаем этот обычай с мая».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы соблюдаем этот обычай с мая».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i17:audio",
+            "transcript": "We have followed this custom since May."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have followed this custom since May.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-04:word:custom",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — custom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:word:custom:audio"
+        ],
+        "accessibilityLabel": "Картка слова — custom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:word:custom:audio",
+            "transcript": "custom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:word:custom:r1",
+              "targetText": "custom",
+              "meaningByLocale": {
+                "ru": "обычай.",
+                "uk": "звичай."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "custom",
+            "definitionByLocale": {
+              "ru": "обычай.",
+              "uk": "звичай."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я дотримуюся цього звичаю багато років.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я дотримуюся цього звичаю багато років.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have followed this custom for years.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я соблюдаю этот обычай много лет.»",
+            "uk": "Скажіть: «Я дотримуюся цього звичаю багато років.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "followed",
+            "this",
+            "custom",
+            "for",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i02:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i02:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i02:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "I have followed this custom ___ years.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-04:i02:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i02:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i02:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i03:r1",
+            "text": "I have followed this custom for years."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i03:r2",
+            "text": "We have followed this custom for years."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i03:r3",
+            "text": "She has followed this custom for years."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i03:audio",
+            "transcript": "I have followed this custom for years."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:i03:r1",
+              "targetText": "I have followed this custom for years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i03:r2",
+              "targetText": "We have followed this custom for years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i03:r3",
+              "targetText": "She has followed this custom for years.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have followed this custom for years.",
+                "uk": "У записі звучить I have followed this custom for years."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have followed this custom for years.",
+                "uk": "У записі звучить I have followed this custom for years."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:word:belief",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — belief",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:word:belief:audio"
+        ],
+        "accessibilityLabel": "Картка слова — belief",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:word:belief:audio",
+            "transcript": "belief"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:word:belief:r1",
+              "targetText": "belief",
+              "meaningByLocale": {
+                "ru": "убеждение, вера.",
+                "uk": "переконання, віра."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "belief",
+            "definitionByLocale": {
+              "ru": "убеждение, вера.",
+              "uk": "переконання, віра."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона дотримується цього переконання з дитинства.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона дотримується цього переконання з дитинства.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has held this belief since childhood.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она придерживается этого убеждения с детства.»",
+            "uk": "Скажіть: «Вона дотримується цього переконання з дитинства.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "held",
+            "this",
+            "belief",
+            "since",
+            "childhood"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i05:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i05:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i05:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "She has held this belief ___ childhood.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-04:i05:r1",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i05:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i05:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i06:r1",
+            "text": "She has held this belief since childhood."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i06:r2",
+            "text": "He has held this belief since childhood."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i06:r3",
+            "text": "I have held this belief since childhood."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i06:audio",
+            "transcript": "She has held this belief since childhood."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:i06:r1",
+              "targetText": "She has held this belief since childhood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i06:r2",
+              "targetText": "He has held this belief since childhood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i06:r3",
+              "targetText": "I have held this belief since childhood.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has held this belief since childhood.",
+                "uk": "У записі звучить She has held this belief since childhood."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has held this belief since childhood.",
+                "uk": "У записі звучить She has held this belief since childhood."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:word:religion",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — religion",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:word:religion:audio"
+        ],
+        "accessibilityLabel": "Картка слова — religion",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:word:religion:audio",
+            "transcript": "religion"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:word:religion:r1",
+              "targetText": "religion",
+              "meaningByLocale": {
+                "ru": "религия.",
+                "uk": "релігія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "religion",
+            "definitionByLocale": {
+              "ru": "религия.",
+              "uk": "релігія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми вивчаємо релігію вже два роки.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми вивчаємо релігію вже два роки.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have studied religion for two years.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы изучаем религию уже два года.»",
+            "uk": "Скажіть: «Ми вивчаємо релігію вже два роки.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "studied",
+            "religion",
+            "for",
+            "two",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i08:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i08:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i08:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "We have studied religion ___ two years.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-04:i08:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i08:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i08:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указан срок, нужен for.",
+                "uk": "Указано тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i09:r1",
+            "text": "We have studied religion for two years."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i09:r2",
+            "text": "They have studied religion for two years."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i09:r3",
+            "text": "We have studied religion for three years."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i09:audio",
+            "transcript": "We have studied religion for two years."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:i09:r1",
+              "targetText": "We have studied religion for two years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i09:r2",
+              "targetText": "They have studied religion for two years.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i09:r3",
+              "targetText": "We have studied religion for three years.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied religion for two years.",
+                "uk": "У записі звучить We have studied religion for two years."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied religion for two years.",
+                "uk": "У записі звучить We have studied religion for two years."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:word:society",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — society",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:word:society:audio"
+        ],
+        "accessibilityLabel": "Картка слова — society",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:word:society:audio",
+            "transcript": "society"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:word:society:r1",
+              "targetText": "society",
+              "meaningByLocale": {
+                "ru": "общество.",
+                "uk": "суспільство."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "society",
+            "definitionByLocale": {
+              "ru": "общество.",
+              "uk": "суспільство."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він вивчає суспільство з 2020 року.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він вивчає суспільство з 2020 року.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has studied society since 2020.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он изучает общество с 2020 года.»",
+            "uk": "Скажіть: «Він вивчає суспільство з 2020 року.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "studied",
+            "society",
+            "since",
+            "2020"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i11:r1",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i11:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i11:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком или началом.",
+            "uk": "Виберіть слово перед тривалістю або початком."
+          },
+          "gappedTargetPhrase": "He has studied society ___ 2020.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-04:i11:r1",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i11:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i11:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "feedbackByLocale": {
+                "ru": "Указано начало, нужен since.",
+                "uk": "Указано початок, потрібне since."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-04:i12:r1",
+            "text": "He has studied society since 2020."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i12:r2",
+            "text": "She has studied society since 2020."
+          },
+          {
+            "responseId": "en:lesson-24:session-04:i12:r3",
+            "text": "He has studied society since 2021."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i12:audio",
+            "transcript": "He has studied society since 2020."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-04:i12:r1",
+              "targetText": "He has studied society since 2020.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i12:r2",
+              "targetText": "She has studied society since 2020.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i12:r3",
+              "targetText": "He has studied society since 2021.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has studied society since 2020.",
+                "uk": "У записі звучить He has studied society since 2020."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has studied society since 2020.",
+                "uk": "У записі звучить He has studied society since 2020."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-04:i13:p1",
+              "target": "custom",
+              "meaningByLocale": {
+                "ru": "обычай",
+                "uk": "звичай"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-04:i13:p2",
+              "target": "belief",
+              "meaningByLocale": {
+                "ru": "убеждение, вера",
+                "uk": "переконання, віра"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-04:i13:p3",
+              "target": "religion",
+              "meaningByLocale": {
+                "ru": "религия",
+                "uk": "релігія"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-04:i13:p4",
+              "target": "society",
+              "meaningByLocale": {
+                "ru": "общество",
+                "uk": "суспільство"
+              }
+            }
+          ],
+          "leftColumn": [
+            "custom",
+            "belief",
+            "religion",
+            "society"
+          ],
+          "rightColumn": [
+            "звичай",
+            "переконання, віра",
+            "релігія",
+            "суспільство"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тривалість: два роки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Тривалість: два роки",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i14:audio",
+            "transcript": "I have lived here for two years."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have lived here for two years.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "lived",
+            "here",
+            "for",
+            "two",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Початок: червень",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Початок: червень",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i15:audio",
+            "transcript": "She has worked here since June."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has worked here since June.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "worked",
+            "here",
+            "since",
+            "June"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я вивчаю релігію вже рік».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я вивчаю релігію вже рік».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i16:audio",
+            "transcript": "I have studied religion for a year."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have studied religion for a year.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми дотримуємося цього звичаю з травня».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми дотримуємося цього звичаю з травня».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-04:i17:audio",
+            "transcript": "We have followed this custom since May."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have followed this custom since May.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-04:word:custom",
+      "correctText": "custom",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i01",
+      "correctText": "I have followed this custom for years.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i02",
+      "correctText": "for",
+      "correctResponseId": "en:lesson-24:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i03",
+      "correctText": "I have followed this custom for years.",
+      "correctResponseId": "en:lesson-24:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:word:belief",
+      "correctText": "belief",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i04",
+      "correctText": "She has held this belief since childhood.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i05",
+      "correctText": "since",
+      "correctResponseId": "en:lesson-24:session-04:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i06",
+      "correctText": "She has held this belief since childhood.",
+      "correctResponseId": "en:lesson-24:session-04:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:word:religion",
+      "correctText": "religion",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i07",
+      "correctText": "We have studied religion for two years.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i08",
+      "correctText": "for",
+      "correctResponseId": "en:lesson-24:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i09",
+      "correctText": "We have studied religion for two years.",
+      "correctResponseId": "en:lesson-24:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:word:society",
+      "correctText": "society",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i10",
+      "correctText": "He has studied society since 2020.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i11",
+      "correctText": "since",
+      "correctResponseId": "en:lesson-24:session-04:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i12",
+      "correctText": "He has studied society since 2020.",
+      "correctResponseId": "en:lesson-24:session-04:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i14",
+      "correctText": "I have lived here for two years.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i15",
+      "correctText": "She has worked here since June.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i16",
+      "correctText": "I have studied religion for a year.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-04:i17",
+      "correctText": "We have followed this custom since May.",
+      "correctResponseId": null
+    }
+  ]
+}

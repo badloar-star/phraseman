@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + for duration; since starting point",
+    "uk": "present perfect + for duration; since starting point"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Десять лет",
+        "uk": "Десять років"
+      },
+      "bodyByLocale": {
+        "ru": "Decade — десятилетие, десять лет. I have worked here for a decade — я работаю здесь уже десять лет. Работа продолжается сейчас. A decade — срок, поэтому перед ним for. Это не десять дней: за decade успеет устареть не один рабочий календарь.",
+        "uk": "Decade — десятиліття, десять років. I have worked here for a decade — я працюю тут уже десять років. Робота триває зараз. A decade — тривалість, тому перед ним for. Це не десять днів: за decade встигне застаріти не один робочий календар."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-02:intro1:r1",
+              "text": "I have worked here for a decade."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro1:r2",
+              "text": "I have worked here since a decade."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro1:r3",
+              "text": "I has worked here for a decade."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-02:intro1:r1",
+              "text": "I have worked here for a decade."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro1:r2",
+              "text": "I have worked here since a decade."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro1:r3",
+              "text": "I has worked here for a decade."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сто лет и один семестр",
+        "uk": "Сто років і один семестр"
+      },
+      "bodyByLocale": {
+        "ru": "Century — век, сто лет. This bridge has stood here for a century — этот мост стоит здесь уже сто лет. Stood — форма stand после has. Semester — семестр, одна из частей учебного года. We have studied here for a semester — мы учимся здесь уже семестр. Studied — форма study после have.",
+        "uk": "Century — століття, сто років. This bridge has stood here for a century — цей міст стоїть тут уже сто років. Stood — форма stand після has. Semester — семестр, одна з частин навчального року. We have studied here for a semester — ми навчаємося тут уже семестр. Studied — форма study після have."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-02:intro2:r1",
+              "text": "We have studied here for a semester."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro2:r2",
+              "text": "We have studied here since a semester."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro2:r3",
+              "text": "We have study here for a semester."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-02:intro2:r1",
+              "text": "We have studied here for a semester."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro2:r2",
+              "text": "We have studied here since a semester."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro2:r3",
+              "text": "We have study here for a semester."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Целая жизнь",
+        "uk": "Ціле життя"
+      },
+      "bodyByLocale": {
+        "ru": "Lifetime — вся жизнь. He has known her for a lifetime — он знает её целую жизнь. Так можно подчеркнуть очень давнее знакомство; это не точное число лет. Для точного срока можно сказать for twenty years. Для начала — since 2006.",
+        "uk": "Lifetime — усе життя. He has known her for a lifetime — він знає її ціле життя. Так можна підкреслити дуже давнє знайомство; це не точна кількість років. Для точної тривалості можна сказати for twenty years. Для початку — since 2006."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-02:intro3:r1",
+              "text": "He has known her for a lifetime."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro3:r2",
+              "text": "He has known her since a lifetime."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro3:r3",
+              "text": "He have known her for a lifetime."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-02:intro3:r1",
+              "text": "He has known her for a lifetime."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro3:r2",
+              "text": "He has known her since a lifetime."
+            },
+            {
+              "responseId": "en:lesson-24:session-02:intro3:r3",
+              "text": "He have known her for a lifetime."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6bd210ce830d524643e5a55bb4726af5e4329375485f5a43d3dda29c7cfe6fde"
+}

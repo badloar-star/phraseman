@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-02:intro1:r2": {
+          "ru": "Десять лет — срок: for a decade.",
+          "uk": "Десять років — тривалість: for a decade."
+        },
+        "en:lesson-24:session-02:intro1:r3": {
+          "ru": "С I используем have.",
+          "uk": "З I використовуємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-02:intro2:r2": {
+          "ru": "A semester — срок, нужен for.",
+          "uk": "A semester — тривалість, потрібне for."
+        },
+        "en:lesson-24:session-02:intro2:r3": {
+          "ru": "После have нужно studied.",
+          "uk": "Після have потрібно studied."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-02:intro3:r2": {
+          "ru": "A lifetime — срок, поэтому for.",
+          "uk": "A lifetime — тривалість, тому for."
+        },
+        "en:lesson-24:session-02:intro3:r3": {
+          "ru": "С he нужно has.",
+          "uk": "Із he потрібно has."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "095f98340d2d119a6fdc299dd5cc8385c73496d59a600b9bfbc82c9178ba81ee"
+}

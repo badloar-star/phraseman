@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-03:word:Turkish",
+    "correctText": "Turkish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i01",
+    "correctText": "I have studied Turkish for a year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i02",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i03",
+    "correctText": "I have studied Turkish for a year.",
+    "correctResponseId": "en:lesson-24:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:word:Greek",
+    "correctText": "Greek",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i04",
+    "correctText": "She has studied Greek since May.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i05",
+    "correctText": "since",
+    "correctResponseId": "en:lesson-24:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i06",
+    "correctText": "She has studied Greek since May.",
+    "correctResponseId": "en:lesson-24:session-03:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:word:Dutch",
+    "correctText": "Dutch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i07",
+    "correctText": "We have studied Dutch for three months.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i08",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i09",
+    "correctText": "We have studied Dutch for three months.",
+    "correctResponseId": "en:lesson-24:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:word:Swedish",
+    "correctText": "Swedish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i10",
+    "correctText": "He has taught Swedish since 2020.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i11",
+    "correctText": "since",
+    "correctResponseId": "en:lesson-24:session-03:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i12",
+    "correctText": "He has taught Swedish since 2020.",
+    "correctResponseId": "en:lesson-24:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i13",
+    "correctText": "en:lesson-24:session-03:i13:p1=Turkish\nen:lesson-24:session-03:i13:p2=Greek\nen:lesson-24:session-03:i13:p3=Dutch\nen:lesson-24:session-03:i13:p4=Swedish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i14",
+    "correctText": "I have lived here for two years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i15",
+    "correctText": "She has worked here since June.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i16",
+    "correctText": "I have studied Dutch for a year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-03:i17",
+    "correctText": "We have studied Turkish since May.",
+    "correctResponseId": null
+  }
+]

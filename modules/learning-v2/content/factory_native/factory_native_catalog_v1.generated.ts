@@ -9023,4 +9023,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + life experience","uk":"present perfect + life experience"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 1,
+    sourceFingerprint: "fea51934d273e75b64ef44775bad82a6bb82c87d5a3fbac647dc2b2821ad15b3",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + for duration; since starting point","uk":"present perfect + for duration; since starting point"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 2,
+    sourceFingerprint: "9c98f580f11c13837632d783bf8408fb82687fd34b2ece669e63f4d6cc3a5665",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + for duration; since starting point","uk":"present perfect + for duration; since starting point"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 3,
+    sourceFingerprint: "4a8ceceeba27745eb3b53af66785399f346001e6f700a6b652d96ea80b0b3840",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + for duration; since starting point","uk":"present perfect + for duration; since starting point"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 4,
+    sourceFingerprint: "2147583472a959851ef0cf55673ad91909585f65e285cd11c8a3b70523dd2e36",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + for duration; since starting point","uk":"present perfect + for duration; since starting point"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
 ]);

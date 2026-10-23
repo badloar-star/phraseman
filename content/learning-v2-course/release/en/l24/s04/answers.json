@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-04:word:custom",
+    "correctText": "custom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i01",
+    "correctText": "I have followed this custom for years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i02",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i03",
+    "correctText": "I have followed this custom for years.",
+    "correctResponseId": "en:lesson-24:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:word:belief",
+    "correctText": "belief",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i04",
+    "correctText": "She has held this belief since childhood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i05",
+    "correctText": "since",
+    "correctResponseId": "en:lesson-24:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i06",
+    "correctText": "She has held this belief since childhood.",
+    "correctResponseId": "en:lesson-24:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:word:religion",
+    "correctText": "religion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i07",
+    "correctText": "We have studied religion for two years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i08",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i09",
+    "correctText": "We have studied religion for two years.",
+    "correctResponseId": "en:lesson-24:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:word:society",
+    "correctText": "society",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i10",
+    "correctText": "He has studied society since 2020.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i11",
+    "correctText": "since",
+    "correctResponseId": "en:lesson-24:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i12",
+    "correctText": "He has studied society since 2020.",
+    "correctResponseId": "en:lesson-24:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i13",
+    "correctText": "en:lesson-24:session-04:i13:p1=custom\nen:lesson-24:session-04:i13:p2=belief\nen:lesson-24:session-04:i13:p3=religion\nen:lesson-24:session-04:i13:p4=society",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i14",
+    "correctText": "I have lived here for two years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i15",
+    "correctText": "She has worked here since June.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i16",
+    "correctText": "I have studied religion for a year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-04:i17",
+    "correctText": "We have followed this custom since May.",
+    "correctResponseId": null
+  }
+]

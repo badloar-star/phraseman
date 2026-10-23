@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + for duration; since starting point",
+    "uk": "present perfect + for duration; since starting point"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Началось раньше и продолжается",
+        "uk": "Почалося раніше й триває"
+      },
+      "bodyByLocale": {
+        "ru": "Flatmate — сосед по квартире. I have known my flatmate for a year — я знаю своего соседа по квартире уже год. Мы познакомились год назад и знакомы сейчас. For показывает срок: for a year, в течение года. Known — форма know после have. За год можно хорошо узнать соседа — особенно если он регулярно допивает ваше молоко.",
+        "uk": "Flatmate — сусід по квартирі. I have known my flatmate for a year — я знаю свого сусіда по квартирі вже рік. Ми познайомилися рік тому й знайомі зараз. For показує тривалість: for a year, протягом року. Known — форма know після have. За рік можна добре пізнати сусіда — особливо якщо він регулярно допиває ваше молоко."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-01:intro1:r1",
+              "text": "I have known my flatmate for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro1:r2",
+              "text": "I have known my flatmate since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro1:r3",
+              "text": "I have know my flatmate for a year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-01:intro1:r1",
+              "text": "I have known my flatmate for a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro1:r2",
+              "text": "I have known my flatmate since a year."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro1:r3",
+              "text": "I have know my flatmate for a year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "С какого момента",
+        "uk": "Від якого моменту"
+      },
+      "bodyByLocale": {
+        "ru": "Roommate — сосед по комнате; в американском английском так называют и соседа по квартире. She has lived with her roommate since May — она живёт с соседкой с мая и продолжает жить сейчас. Since указывает начало: since May, с мая. For a month — срок в один месяц, это другой смысл.",
+        "uk": "Roommate — сусід по кімнаті; в американській англійській так називають і сусіда по квартирі. She has lived with her roommate since May — вона живе із сусідкою з травня й продовжує жити зараз. Since вказує початок: since May, із травня. For a month — тривалість в один місяць, це інше значення."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-01:intro2:r1",
+              "text": "She has lived with her roommate since May."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro2:r2",
+              "text": "She has lived with her roommate for May."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro2:r3",
+              "text": "She have lived with her roommate since May."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-01:intro2:r1",
+              "text": "She has lived with her roommate since May."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro2:r2",
+              "text": "She has lived with her roommate for May."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro2:r3",
+              "text": "She have lived with her roommate since May."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Срок или начало",
+        "uk": "Тривалість чи початок"
+      },
+      "bodyByLocale": {
+        "ru": "District — район. We have lived in this district for three years — мы живём здесь уже три года. Hometown — родной город. He has worked in his hometown since 2020 — он работает там с 2020 года. Three years — сколько времени, поэтому for. 2020 — когда началось, поэтому since. В обоих примерах ситуация продолжается сейчас.",
+        "uk": "District — район. We have lived in this district for three years — ми живемо тут уже три роки. Hometown — рідне місто. He has worked in his hometown since 2020 — він працює там із 2020 року. Three years — скільки часу, тому for. 2020 — коли почалося, тому since. В обох прикладах ситуація триває зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-01:intro3:r1",
+              "text": "He has worked in his hometown since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro3:r2",
+              "text": "He has worked in his hometown for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro3:r3",
+              "text": "He have worked in his hometown since 2020."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-01:intro3:r1",
+              "text": "He has worked in his hometown since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro3:r2",
+              "text": "He has worked in his hometown for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-01:intro3:r3",
+              "text": "He have worked in his hometown since 2020."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8511aa55bc837f05eb65bf5ef0e1c71e14d51ff2cdbb9e73e25e780110de8c32"
+}

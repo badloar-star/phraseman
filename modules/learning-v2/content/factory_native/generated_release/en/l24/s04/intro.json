@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + for duration; since starting point",
+    "uk": "present perfect + for duration; since starting point"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обычай",
+        "uk": "Звичай"
+      },
+      "bodyByLocale": {
+        "ru": "Custom — обычай: например, особый способ встречать гостей. I have followed this custom for years — я соблюдаю этот обычай много лет. Follow здесь означает соблюдать, не идти следом. Если гостей по обычаю кормят три раза, лучше прийти голодным. For years показывает длительный срок без точного числа.",
+        "uk": "Custom — звичай: наприклад, особливий спосіб зустрічати гостей. I have followed this custom for years — я дотримуюся цього звичаю багато років. Follow тут означає дотримуватися, не йти слідом. Якщо гостей за звичаєм годують тричі, краще прийти голодним. For years показує тривалу дію без точної кількості років."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-04:intro1:r1",
+              "text": "I have followed this custom for years."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro1:r2",
+              "text": "I have followed this custom since years."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro1:r3",
+              "text": "I has followed this custom for years."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-04:intro1:r1",
+              "text": "I have followed this custom for years."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro1:r2",
+              "text": "I have followed this custom since years."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro1:r3",
+              "text": "I has followed this custom for years."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Убеждения и изучение",
+        "uk": "Переконання й вивчення"
+      },
+      "bodyByLocale": {
+        "ru": "Belief — убеждение или вера во что-то. She has held this belief since childhood — она придерживается этого убеждения с детства. Held — форма hold после has; hold a belief означает придерживаться убеждения. Religion — религия. We have studied religion for two years — мы изучаем религию уже два года. Изучать религию не обязательно означает исповедовать её.",
+        "uk": "Belief — переконання або віра в щось. She has held this belief since childhood — вона дотримується цього переконання з дитинства. Held — форма hold після has; hold a belief означає дотримуватися переконання. Religion — релігія. We have studied religion for two years — ми вивчаємо релігію вже два роки. Вивчати релігію не обов’язково означає сповідувати її."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-04:intro2:r1",
+              "text": "We have studied religion for two years."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro2:r2",
+              "text": "We have studied religion since two years."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro2:r3",
+              "text": "We has studied religion for two years."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-04:intro2:r1",
+              "text": "We have studied religion for two years."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro2:r2",
+              "text": "We have studied religion since two years."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro2:r3",
+              "text": "We has studied religion for two years."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Жизнь общества",
+        "uk": "Життя суспільства"
+      },
+      "bodyByLocale": {
+        "ru": "Society — общество: люди и то, как устроена их совместная жизнь. He has studied society since 2020 — он изучает общество с 2020 года. Когда говорим об обществе в целом, здесь нет a. Since 2020 называет начало, for two years — длительность.",
+        "uk": "Society — суспільство: люди й те, як улаштоване їхнє спільне життя. He has studied society since 2020 — він вивчає суспільство з 2020 року. Коли говоримо про суспільство загалом, тут немає a. Since 2020 називає початок, for two years — тривалість."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-04:intro3:r1",
+              "text": "He has studied society since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro3:r2",
+              "text": "He has studied society for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro3:r3",
+              "text": "He have studied society since 2020."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-04:intro3:r1",
+              "text": "He has studied society since 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro3:r2",
+              "text": "He has studied society for 2020."
+            },
+            {
+              "responseId": "en:lesson-24:session-04:intro3:r3",
+              "text": "He have studied society since 2020."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b808fd8e57d2021905eeb569470f8926bb05b33d6be927b732a38027c792b961"
+}

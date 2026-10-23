@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-02:word:decade",
+    "correctText": "decade",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i01",
+    "correctText": "I have worked here for a decade.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i02",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i03",
+    "correctText": "I have worked here for a decade.",
+    "correctResponseId": "en:lesson-24:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:word:century",
+    "correctText": "century",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i04",
+    "correctText": "This bridge has stood here for a century.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i05",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i06",
+    "correctText": "This bridge has stood here for a century.",
+    "correctResponseId": "en:lesson-24:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:word:semester",
+    "correctText": "semester",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i07",
+    "correctText": "We have studied here for a semester.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i08",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i09",
+    "correctText": "We have studied here for a semester.",
+    "correctResponseId": "en:lesson-24:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:word:lifetime",
+    "correctText": "lifetime",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i10",
+    "correctText": "He has known her for a lifetime.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i11",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i12",
+    "correctText": "He has known her for a lifetime.",
+    "correctResponseId": "en:lesson-24:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i13",
+    "correctText": "en:lesson-24:session-02:i13:p1=decade\nen:lesson-24:session-02:i13:p2=century\nen:lesson-24:session-02:i13:p3=semester\nen:lesson-24:session-02:i13:p4=lifetime",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i14",
+    "correctText": "I have lived here since May.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i15",
+    "correctText": "She has already called me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i16",
+    "correctText": "I have studied here for a semester.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-02:i17",
+    "correctText": "She has worked here for a decade.",
+    "correctResponseId": null
+  }
+]

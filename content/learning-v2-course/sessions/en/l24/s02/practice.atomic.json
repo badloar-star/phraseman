@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-02",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-02:word:decade",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — decade",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:word:decade:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — decade",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:word:decade:audio",
+            "transcript": "decade"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:word:decade:r1",
+              "targetText": "decade",
+              "meaningByLocale": {
+                "ru": "десятилетие.",
+                "uk": "десятиліття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "decade",
+            "definitionByLocale": {
+              "ru": "десятилетие.",
+              "uk": "десятиліття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я работаю здесь уже десять лет.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я работаю здесь уже десять лет.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have worked here for a decade.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я работаю здесь уже десять лет.»",
+            "uk": "Скажіть: «Я працюю тут уже десять років.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "worked",
+            "here",
+            "for",
+            "a",
+            "decade"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i02:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i02:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i02:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком.",
+            "uk": "Виберіть слово перед тривалістю."
+          },
+          "gappedTargetPhrase": "I have worked here ___ a decade.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-02:i02:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i02:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i02:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i02:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i02:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i03:r1",
+            "text": "I have worked here for a decade."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i03:r2",
+            "text": "She has worked here for a decade."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i03:r3",
+            "text": "We have worked here for a decade."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i03:audio",
+            "transcript": "I have worked here for a decade."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:i03:r1",
+              "targetText": "I have worked here for a decade.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i03:r2",
+              "targetText": "She has worked here for a decade.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i03:r3",
+              "targetText": "We have worked here for a decade.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have worked here for a decade.",
+                "uk": "У записі звучить I have worked here for a decade."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have worked here for a decade.",
+                "uk": "У записі звучить I have worked here for a decade."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:word:century",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — century",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:word:century:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — century",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:word:century:audio",
+            "transcript": "century"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:word:century:r1",
+              "targetText": "century",
+              "meaningByLocale": {
+                "ru": "век, сто лет.",
+                "uk": "століття, сто років."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "century",
+            "definitionByLocale": {
+              "ru": "век, сто лет.",
+              "uk": "століття, сто років."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Этот мост стоит здесь уже сто лет.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Этот мост стоит здесь уже сто лет.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This bridge has stood here for a century.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Этот мост стоит здесь уже сто лет.»",
+            "uk": "Скажіть: «Цей міст стоїть тут уже сто років.»"
+          },
+          "orderedTokens": [
+            "This",
+            "bridge",
+            "has",
+            "stood",
+            "here",
+            "for",
+            "a",
+            "century"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i05:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i05:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i05:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком.",
+            "uk": "Виберіть слово перед тривалістю."
+          },
+          "gappedTargetPhrase": "This bridge has stood here ___ a century.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-02:i05:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i05:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i05:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i05:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i05:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i06:r1",
+            "text": "This bridge has stood here for a century."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i06:r2",
+            "text": "This church has stood here for a century."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i06:r3",
+            "text": "This house has stood here for a century."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i06:audio",
+            "transcript": "This bridge has stood here for a century."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:i06:r1",
+              "targetText": "This bridge has stood here for a century.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i06:r2",
+              "targetText": "This church has stood here for a century.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i06:r3",
+              "targetText": "This house has stood here for a century.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This bridge has stood here for a century.",
+                "uk": "У записі звучить This bridge has stood here for a century."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This bridge has stood here for a century.",
+                "uk": "У записі звучить This bridge has stood here for a century."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:word:semester",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — semester",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:word:semester:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — semester",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:word:semester:audio",
+            "transcript": "semester"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:word:semester:r1",
+              "targetText": "semester",
+              "meaningByLocale": {
+                "ru": "семестр.",
+                "uk": "семестр."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "semester",
+            "definitionByLocale": {
+              "ru": "семестр.",
+              "uk": "семестр."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы учимся здесь уже семестр.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы учимся здесь уже семестр.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have studied here for a semester.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы учимся здесь уже семестр.»",
+            "uk": "Скажіть: «Ми навчаємося тут уже семестр.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "studied",
+            "here",
+            "for",
+            "a",
+            "semester"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i08:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i08:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i08:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком.",
+            "uk": "Виберіть слово перед тривалістю."
+          },
+          "gappedTargetPhrase": "We have studied here ___ a semester.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-02:i08:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i08:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i08:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i09:r1",
+            "text": "We have studied here for a semester."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i09:r2",
+            "text": "They have studied here for a semester."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i09:r3",
+            "text": "I have studied here for a semester."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i09:audio",
+            "transcript": "We have studied here for a semester."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:i09:r1",
+              "targetText": "We have studied here for a semester.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i09:r2",
+              "targetText": "They have studied here for a semester.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i09:r3",
+              "targetText": "I have studied here for a semester.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied here for a semester.",
+                "uk": "У записі звучить We have studied here for a semester."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied here for a semester.",
+                "uk": "У записі звучить We have studied here for a semester."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:word:lifetime",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lifetime",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:word:lifetime:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lifetime",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:word:lifetime:audio",
+            "transcript": "lifetime"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:word:lifetime:r1",
+              "targetText": "lifetime",
+              "meaningByLocale": {
+                "ru": "вся жизнь.",
+                "uk": "усе життя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lifetime",
+            "definitionByLocale": {
+              "ru": "вся жизнь.",
+              "uk": "усе життя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он знает её целую жизнь.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он знает её целую жизнь.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has known her for a lifetime.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он знает её целую жизнь.»",
+            "uk": "Скажіть: «Він знає її ціле життя.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "known",
+            "her",
+            "for",
+            "a",
+            "lifetime"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово перед сроком.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i11:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i11:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i11:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово перед сроком.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком.",
+            "uk": "Виберіть слово перед тривалістю."
+          },
+          "gappedTargetPhrase": "He has known her ___ a lifetime.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-02:i11:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i11:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i11:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Выберите слово перед сроком.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i11:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i11:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово перед сроком.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i12:r1",
+            "text": "He has known her for a lifetime."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i12:r2",
+            "text": "She has known him for a lifetime."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i12:r3",
+            "text": "I have known her for a lifetime."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i12:audio",
+            "transcript": "He has known her for a lifetime."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:i12:r1",
+              "targetText": "He has known her for a lifetime.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i12:r2",
+              "targetText": "She has known him for a lifetime.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i12:r3",
+              "targetText": "I have known her for a lifetime.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has known her for a lifetime.",
+                "uk": "У записі звучить He has known her for a lifetime."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has known her for a lifetime.",
+                "uk": "У записі звучить He has known her for a lifetime."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-02:i13:p1",
+              "target": "decade",
+              "meaningByLocale": {
+                "ru": "десятилетие",
+                "uk": "десятиліття"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-02:i13:p2",
+              "target": "century",
+              "meaningByLocale": {
+                "ru": "век, сто лет",
+                "uk": "століття, сто років"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-02:i13:p3",
+              "target": "semester",
+              "meaningByLocale": {
+                "ru": "семестр",
+                "uk": "семестр"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-02:i13:p4",
+              "target": "lifetime",
+              "meaningByLocale": {
+                "ru": "вся жизнь",
+                "uk": "усе життя"
+              }
+            }
+          ],
+          "leftColumn": [
+            "decade",
+            "century",
+            "semester",
+            "lifetime"
+          ],
+          "rightColumn": [
+            "десятилетие",
+            "век, сто лет",
+            "семестр",
+            "вся жизнь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: начало",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: начало",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i14:audio",
+            "transcript": "I have lived here since May."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have lived here since May.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "lived",
+            "here",
+            "since",
+            "May"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: уже",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: уже",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i15:audio",
+            "transcript": "She has already called me."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has already called me.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "already",
+            "called",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я учусь здесь уже семестр».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я учусь здесь уже семестр».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i16:audio",
+            "transcript": "I have studied here for a semester."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have studied here for a semester.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она работает здесь уже десять лет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она работает здесь уже десять лет».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i17:audio",
+            "transcript": "She has worked here for a decade."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has worked here for a decade.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-02:word:decade",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — decade",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:word:decade:audio"
+        ],
+        "accessibilityLabel": "Картка слова — decade",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:word:decade:audio",
+            "transcript": "decade"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:word:decade:r1",
+              "targetText": "decade",
+              "meaningByLocale": {
+                "ru": "десятилетие.",
+                "uk": "десятиліття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "decade",
+            "definitionByLocale": {
+              "ru": "десятилетие.",
+              "uk": "десятиліття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я працюю тут уже десять років.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я працюю тут уже десять років.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have worked here for a decade.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я работаю здесь уже десять лет.»",
+            "uk": "Скажіть: «Я працюю тут уже десять років.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "worked",
+            "here",
+            "for",
+            "a",
+            "decade"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i02:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i02:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i02:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком.",
+            "uk": "Виберіть слово перед тривалістю."
+          },
+          "gappedTargetPhrase": "I have worked here ___ a decade.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-02:i02:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i02:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i02:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i02:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i02:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i03:r1",
+            "text": "I have worked here for a decade."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i03:r2",
+            "text": "She has worked here for a decade."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i03:r3",
+            "text": "We have worked here for a decade."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i03:audio",
+            "transcript": "I have worked here for a decade."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:i03:r1",
+              "targetText": "I have worked here for a decade.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i03:r2",
+              "targetText": "She has worked here for a decade.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i03:r3",
+              "targetText": "We have worked here for a decade.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have worked here for a decade.",
+                "uk": "У записі звучить I have worked here for a decade."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have worked here for a decade.",
+                "uk": "У записі звучить I have worked here for a decade."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:word:century",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — century",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:word:century:audio"
+        ],
+        "accessibilityLabel": "Картка слова — century",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:word:century:audio",
+            "transcript": "century"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:word:century:r1",
+              "targetText": "century",
+              "meaningByLocale": {
+                "ru": "век, сто лет.",
+                "uk": "століття, сто років."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "century",
+            "definitionByLocale": {
+              "ru": "век, сто лет.",
+              "uk": "століття, сто років."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Цей міст стоїть тут уже сто років.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Цей міст стоїть тут уже сто років.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This bridge has stood here for a century.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Этот мост стоит здесь уже сто лет.»",
+            "uk": "Скажіть: «Цей міст стоїть тут уже сто років.»"
+          },
+          "orderedTokens": [
+            "This",
+            "bridge",
+            "has",
+            "stood",
+            "here",
+            "for",
+            "a",
+            "century"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i05:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i05:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i05:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком.",
+            "uk": "Виберіть слово перед тривалістю."
+          },
+          "gappedTargetPhrase": "This bridge has stood here ___ a century.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-02:i05:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i05:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i05:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i05:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i05:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i06:r1",
+            "text": "This bridge has stood here for a century."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i06:r2",
+            "text": "This church has stood here for a century."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i06:r3",
+            "text": "This house has stood here for a century."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i06:audio",
+            "transcript": "This bridge has stood here for a century."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:i06:r1",
+              "targetText": "This bridge has stood here for a century.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i06:r2",
+              "targetText": "This church has stood here for a century.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i06:r3",
+              "targetText": "This house has stood here for a century.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This bridge has stood here for a century.",
+                "uk": "У записі звучить This bridge has stood here for a century."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This bridge has stood here for a century.",
+                "uk": "У записі звучить This bridge has stood here for a century."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:word:semester",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — semester",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:word:semester:audio"
+        ],
+        "accessibilityLabel": "Картка слова — semester",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:word:semester:audio",
+            "transcript": "semester"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:word:semester:r1",
+              "targetText": "semester",
+              "meaningByLocale": {
+                "ru": "семестр.",
+                "uk": "семестр."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "semester",
+            "definitionByLocale": {
+              "ru": "семестр.",
+              "uk": "семестр."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми навчаємося тут уже семестр.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми навчаємося тут уже семестр.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have studied here for a semester.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы учимся здесь уже семестр.»",
+            "uk": "Скажіть: «Ми навчаємося тут уже семестр.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "studied",
+            "here",
+            "for",
+            "a",
+            "semester"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i08:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i08:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i08:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком.",
+            "uk": "Виберіть слово перед тривалістю."
+          },
+          "gappedTargetPhrase": "We have studied here ___ a semester.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-02:i08:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i08:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i08:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i09:r1",
+            "text": "We have studied here for a semester."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i09:r2",
+            "text": "They have studied here for a semester."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i09:r3",
+            "text": "I have studied here for a semester."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i09:audio",
+            "transcript": "We have studied here for a semester."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:i09:r1",
+              "targetText": "We have studied here for a semester.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i09:r2",
+              "targetText": "They have studied here for a semester.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i09:r3",
+              "targetText": "I have studied here for a semester.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied here for a semester.",
+                "uk": "У записі звучить We have studied here for a semester."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied here for a semester.",
+                "uk": "У записі звучить We have studied here for a semester."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:word:lifetime",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lifetime",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:word:lifetime:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lifetime",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:word:lifetime:audio",
+            "transcript": "lifetime"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:word:lifetime:r1",
+              "targetText": "lifetime",
+              "meaningByLocale": {
+                "ru": "вся жизнь.",
+                "uk": "усе життя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lifetime",
+            "definitionByLocale": {
+              "ru": "вся жизнь.",
+              "uk": "усе життя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він знає її ціле життя.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він знає її ціле життя.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has known her for a lifetime.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он знает её целую жизнь.»",
+            "uk": "Скажіть: «Він знає її ціле життя.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "known",
+            "her",
+            "for",
+            "a",
+            "lifetime"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово перед тривалістю.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i11:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i11:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i11:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово перед тривалістю.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово перед сроком.",
+            "uk": "Виберіть слово перед тривалістю."
+          },
+          "gappedTargetPhrase": "He has known her ___ a lifetime.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-02:i11:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i11:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i11:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Виберіть слово перед тривалістю.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i11:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i11:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово перед тривалістю.",
+              "feedbackByLocale": {
+                "ru": "Это длительность, нужен for.",
+                "uk": "Це тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-02:i12:r1",
+            "text": "He has known her for a lifetime."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i12:r2",
+            "text": "She has known him for a lifetime."
+          },
+          {
+            "responseId": "en:lesson-24:session-02:i12:r3",
+            "text": "I have known her for a lifetime."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i12:audio",
+            "transcript": "He has known her for a lifetime."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-02:i12:r1",
+              "targetText": "He has known her for a lifetime.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i12:r2",
+              "targetText": "She has known him for a lifetime.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i12:r3",
+              "targetText": "I have known her for a lifetime.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-02:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has known her for a lifetime.",
+                "uk": "У записі звучить He has known her for a lifetime."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-02:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has known her for a lifetime.",
+                "uk": "У записі звучить He has known her for a lifetime."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-02:i13:p1",
+              "target": "decade",
+              "meaningByLocale": {
+                "ru": "десятилетие",
+                "uk": "десятиліття"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-02:i13:p2",
+              "target": "century",
+              "meaningByLocale": {
+                "ru": "век, сто лет",
+                "uk": "століття, сто років"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-02:i13:p3",
+              "target": "semester",
+              "meaningByLocale": {
+                "ru": "семестр",
+                "uk": "семестр"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-02:i13:p4",
+              "target": "lifetime",
+              "meaningByLocale": {
+                "ru": "вся жизнь",
+                "uk": "усе життя"
+              }
+            }
+          ],
+          "leftColumn": [
+            "decade",
+            "century",
+            "semester",
+            "lifetime"
+          ],
+          "rightColumn": [
+            "десятиліття",
+            "століття, сто років",
+            "семестр",
+            "усе життя"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: початок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: початок",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i14:audio",
+            "transcript": "I have lived here since May."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have lived here since May.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "lived",
+            "here",
+            "since",
+            "May"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: вже",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: вже",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i15:audio",
+            "transcript": "She has already called me."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has already called me.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "already",
+            "called",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я навчаюся тут уже семестр».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я навчаюся тут уже семестр».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i16:audio",
+            "transcript": "I have studied here for a semester."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have studied here for a semester.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-02:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона працює тут уже десять років».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона працює тут уже десять років».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-02:i17:audio",
+            "transcript": "She has worked here for a decade."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has worked here for a decade.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-02:word:decade",
+      "correctText": "decade",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i01",
+      "correctText": "I have worked here for a decade.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i02",
+      "correctText": "for",
+      "correctResponseId": "en:lesson-24:session-02:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i03",
+      "correctText": "I have worked here for a decade.",
+      "correctResponseId": "en:lesson-24:session-02:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:word:century",
+      "correctText": "century",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i04",
+      "correctText": "This bridge has stood here for a century.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i05",
+      "correctText": "for",
+      "correctResponseId": "en:lesson-24:session-02:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i06",
+      "correctText": "This bridge has stood here for a century.",
+      "correctResponseId": "en:lesson-24:session-02:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:word:semester",
+      "correctText": "semester",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i07",
+      "correctText": "We have studied here for a semester.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i08",
+      "correctText": "for",
+      "correctResponseId": "en:lesson-24:session-02:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i09",
+      "correctText": "We have studied here for a semester.",
+      "correctResponseId": "en:lesson-24:session-02:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:word:lifetime",
+      "correctText": "lifetime",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i10",
+      "correctText": "He has known her for a lifetime.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i11",
+      "correctText": "for",
+      "correctResponseId": "en:lesson-24:session-02:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i12",
+      "correctText": "He has known her for a lifetime.",
+      "correctResponseId": "en:lesson-24:session-02:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i14",
+      "correctText": "I have lived here since May.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i15",
+      "correctText": "She has already called me.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i16",
+      "correctText": "I have studied here for a semester.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-02:i17",
+      "correctText": "She has worked here for a decade.",
+      "correctResponseId": null
+    }
+  ]
+}

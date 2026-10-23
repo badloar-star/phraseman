@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-28:word:crave",
+    "correctText": "crave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i01",
+    "correctText": "I sometimes crave something sweet.",
+    "correctResponseId": "en:lesson-26:session-28:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i02",
+    "correctText": "Would you like a biscuit?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:word:dunk",
+    "correctText": "dunk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i03",
+    "correctText": "I like to dunk biscuits in tea.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i04",
+    "correctText": "get",
+    "correctResponseId": "en:lesson-26:session-28:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:word:marinate",
+    "correctText": "marinate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i05",
+    "correctText": "I will marinate the vegetables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i06",
+    "correctText": "Have you washed the peppers yet?",
+    "correctResponseId": "en:lesson-26:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:word:sizzle",
+    "correctText": "sizzle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i07",
+    "correctText": "Onions sizzle in hot oil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i08",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i09",
+    "correctText": "I have already marinated them.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i10",
+    "correctText": "The onions are sizzling in the pan.",
+    "correctResponseId": "en:lesson-26:session-28:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i11",
+    "correctText": "I will set the table if you cook dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i12",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i13",
+    "correctText": "Do you ever crave chocolate?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i14",
+    "correctText": "Come in and sit down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i15",
+    "correctText": "eat",
+    "correctResponseId": "en:lesson-26:session-28:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i16",
+    "correctText": "I will stay unless I have to leave early.",
+    "correctResponseId": "en:lesson-26:session-28:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-28:i17",
+    "correctText": "I will wash the dishes.",
+    "correctResponseId": null
+  }
+]

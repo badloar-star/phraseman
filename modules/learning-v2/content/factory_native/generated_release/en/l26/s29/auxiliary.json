@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-29:intro1:r2": {
+          "ru": "После have нужна форма taken, не took.",
+          "uk": "Після have потрібна форма taken, не took."
+        },
+        "en:lesson-26:session-29:intro1:r3": {
+          "ru": "Garbage в этом значении неисчисляемое; a не нужно.",
+          "uk": "Garbage у цьому значенні незлічуване; a не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-29:intro2:r2": {
+          "ru": "После before в этом будущем придаточном leave без will.",
+          "uk": "Після before у цьому майбутньому підрядному leave без will."
+        },
+        "en:lesson-26:session-29:intro2:r3": {
+          "ru": "С we нужно leave без -s.",
+          "uk": "З we потрібно leave без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-29:intro3:r2": {
+          "ru": "После unless здесь rains без will.",
+          "uk": "Після unless тут rains без will."
+        },
+        "en:lesson-26:session-29:intro3:r3": {
+          "ru": "С it нужна форма rains с -s.",
+          "uk": "З it потрібна форма rains із -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "52658a34d86b1d6637f9be611f3fe79a73cf1beef628f710f507b3e5b6d2e496"
+}

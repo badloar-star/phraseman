@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, yet; by the time",
+    "uk": "if, when, unless; already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Убрать перед выходом",
+        "uk": "Прибрати перед виходом"
+      },
+      "bodyByLocale": {
+        "ru": "Garbage — мусор, бытовые отходы. Это ещё одно распространённое слово для знакомого rubbish. Take out the garbage — вынеси мусор. Garbage здесь неисчисляемое: без a и без окончания -s. Если вас спрашивают, выполнено ли дело: Have you taken out the garbage yet? — ты уже вынес мусор? Можно ответить I have already done it — я уже это сделал.",
+        "uk": "Garbage — сміття, побутові відходи. Це ще одне поширене слово для знайомого rubbish. Take out the garbage — винеси сміття. Garbage тут незлічуване: без a та без закінчення -s. Якщо вас запитують, чи виконано справу: Have you taken out the garbage yet? — ти вже виніс сміття? Можна відповісти I have already done it — я вже це зробив."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-29:intro1:r1",
+              "text": "Have you taken out the garbage yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro1:r2",
+              "text": "Have you took out the garbage yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro1:r3",
+              "text": "Have you taken out a garbage yet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-29:intro1:r1",
+              "text": "Have you taken out the garbage yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro1:r2",
+              "text": "Have you took out the garbage yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro1:r3",
+              "text": "Have you taken out a garbage yet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Найти вещи и закрыть кран",
+        "uk": "Знайти речі й закрити кран"
+      },
+      "bodyByLocale": {
+        "ru": "Faucet — водопроводный кран; то же бытовое значение, что у tap. The faucet is dripping — из крана капает. Closet — шкаф или небольшая кладовая для одежды и вещей. My coat is in the closet — моё пальто в шкафу. Перед выходом можно пообещать I will turn off the faucet before we leave — я закрою кран, прежде чем мы уйдём. После before здесь leave без will.",
+        "uk": "Faucet — водопровідний кран; те саме побутове значення, що в tap. The faucet is dripping — з крана капає. Closet — шафа або невелика комора для одягу й речей. My coat is in the closet — моє пальто в шафі. Перед виходом можна пообіцяти I will turn off the faucet before we leave — я закрию кран, перш ніж ми підемо. Після before тут leave без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-29:intro2:r1",
+              "text": "I will turn off the faucet before we leave."
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro2:r2",
+              "text": "I will turn off the faucet before we will leave."
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro2:r3",
+              "text": "I will turn off the faucet before we leaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-29:intro2:r1",
+              "text": "I will turn off the faucet before we leave."
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro2:r2",
+              "text": "I will turn off the faucet before we will leave."
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro2:r3",
+              "text": "I will turn off the faucet before we leaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договориться, где ждать",
+        "uk": "Домовитися, де чекати"
+      },
+      "bodyByLocale": {
+        "ru": "Sidewalk — тротуар, дорожка для пешеходов рядом с дорогой. Please stay on the sidewalk — пожалуйста, оставайся на тротуаре. Если вы договорились ждать у дома: I will wait outside unless it rains — я подожду снаружи, если не пойдёт дождь. Unless называет исключение; после него rains без will. Ожидаемый момент можно выразить с when: I will leave when you arrive — я уйду, когда ты придёшь.",
+        "uk": "Sidewalk — тротуар, доріжка для пішоходів поруч із дорогою. Please stay on the sidewalk — будь ласка, залишайся на тротуарі. Якщо ви домовилися чекати біля будинку: I will wait outside unless it rains — я почекаю надворі, якщо не піде дощ. Unless називає виняток; після нього rains без will. Очікуваний момент можна виразити з when: I will leave when you arrive — я піду, коли ти прийдеш."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-29:intro3:r1",
+              "text": "I will wait outside unless it rains."
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro3:r2",
+              "text": "I will wait outside unless it will rain."
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro3:r3",
+              "text": "I will wait outside unless it rain."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-29:intro3:r1",
+              "text": "I will wait outside unless it rains."
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro3:r2",
+              "text": "I will wait outside unless it will rain."
+            },
+            {
+              "responseId": "en:lesson-26:session-29:intro3:r3",
+              "text": "I will wait outside unless it rain."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0174804e94b35b6778ede1371c0dd748ce85bf6520be41d5250e77df722ca9bf"
+}

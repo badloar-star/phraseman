@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, yet; by the time",
+    "uk": "if, when, unless; already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чего хочется к чаю",
+        "uk": "Чого хочеться до чаю"
+      },
+      "bodyByLocale": {
+        "ru": "Crave — очень хотеть, испытывать сильное желание, часто съесть что-то определённое. I sometimes crave something sweet — мне иногда очень хочется сладкого. Dunk — ненадолго окунать: I like to dunk biscuits in tea — я люблю макать печенье в чай. О своей привычке можно сказать If I dunk a biscuit, I eat it straight away — если я макаю печенье, я сразу его съедаю. В обеих частях Present Simple, потому что речь об обычном действии.",
+        "uk": "Crave — дуже хотіти, відчувати сильне бажання, часто з’їсти щось певне. I sometimes crave something sweet — мені іноді дуже хочеться солодкого. Dunk — ненадовго занурювати: I like to dunk biscuits in tea — я люблю вмочати печиво в чай. Про свою звичку можна сказати If I dunk a biscuit, I eat it straight away — якщо я вмочаю печиво, я відразу його з’їдаю. В обох частинах Present Simple, бо йдеться про звичну дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-28:intro1:r1",
+              "text": "If I dunk a biscuit, I eat it straight away."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro1:r2",
+              "text": "If I dunk a biscuit, I eats it straight away."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro1:r3",
+              "text": "If I dunk a biscuit, I eating it straight away."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-28:intro1:r1",
+              "text": "If I dunk a biscuit, I eat it straight away."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro1:r2",
+              "text": "If I dunk a biscuit, I eats it straight away."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro1:r3",
+              "text": "If I dunk a biscuit, I eating it straight away."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Готовить к приходу гостей",
+        "uk": "Готувати до приходу гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Marinate — мариновать, оставлять продукт в смеси масла, специй и других ингредиентов для вкуса. I have already marinated the vegetables — я уже замариновал овощи. Already показывает готовый результат сейчас. Если вы только обещаете это сделать до прихода гостей: I will marinate them before everyone arrives — я замариную их до того, как все придут. После before в этом придаточном о будущем стоит arrives без will.",
+        "uk": "Marinate — маринувати, залишати продукт у суміші олії, спецій та інших інгредієнтів для смаку. I have already marinated the vegetables — я вже замаринував овочі. Already показує готовий результат зараз. Якщо ви лише обіцяєте зробити це до приходу гостей: I will marinate them before everyone arrives — я замариную їх до того, як усі прийдуть. Після before у цьому підрядному про майбутнє стоїть arrives без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-28:intro2:r1",
+              "text": "I will marinate them before everyone arrives."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro2:r2",
+              "text": "I will marinate them before everyone will arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro2:r3",
+              "text": "I will marinate them before everyone arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-28:intro2:r1",
+              "text": "I will marinate them before everyone arrives."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro2:r2",
+              "text": "I will marinate them before everyone will arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro2:r3",
+              "text": "I will marinate them before everyone arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что слышно на кухне",
+        "uk": "Що чути на кухні"
+      },
+      "bodyByLocale": {
+        "ru": "Sizzle — шипеть при жарке. The onions are sizzling — лук шипит на сковороде. Вы слышите звук сейчас, поэтому здесь are sizzling. Рядом друг готовит соус. Можно попросить: Do not add salt unless it needs more — не добавляй соль, если её не нужно больше. Unless вводит исключение из просьбы не добавлять соль; внутри условия needs без will.",
+        "uk": "Sizzle — шипіти під час смаження. The onions are sizzling — цибуля шипить на сковороді. Ви чуєте звук зараз, тому тут are sizzling. Поруч друг готує соус. Можна попросити: Do not add salt unless it needs more — не додавай сіль, якщо її не потрібно більше. Unless вводить виняток із прохання не додавати сіль; усередині умови needs без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-28:intro3:r1",
+              "text": "Do not add salt unless it needs more."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro3:r2",
+              "text": "Do not add salt unless it will need more."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro3:r3",
+              "text": "Do not add salt unless it need more."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-28:intro3:r1",
+              "text": "Do not add salt unless it needs more."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro3:r2",
+              "text": "Do not add salt unless it will need more."
+            },
+            {
+              "responseId": "en:lesson-26:session-28:intro3:r3",
+              "text": "Do not add salt unless it need more."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "86795525f4a18d84fa5878a40517e017fc8429f9cfdeaf36ee51193d3f88c128"
+}

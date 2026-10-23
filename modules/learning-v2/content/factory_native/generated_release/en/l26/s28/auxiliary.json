@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-28:intro1:r2": {
+          "ru": "С I нужно eat без -s.",
+          "uk": "З I потрібно eat без -s."
+        },
+        "en:lesson-26:session-28:intro1:r3": {
+          "ru": "Для привычки нужен eat, а не отдельное eating.",
+          "uk": "Для звички потрібне eat, а не окреме eating."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-28:intro2:r2": {
+          "ru": "После before здесь arrives без will.",
+          "uk": "Після before тут arrives без will."
+        },
+        "en:lesson-26:session-28:intro2:r3": {
+          "ru": "С everyone глагол получает -s: arrives.",
+          "uk": "З everyone дієслово отримує -s: arrives."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-28:intro3:r2": {
+          "ru": "После unless в этом условии needs без will.",
+          "uk": "Після unless у цій умові needs без will."
+        },
+        "en:lesson-26:session-28:intro3:r3": {
+          "ru": "С it нужно needs с -s.",
+          "uk": "З it потрібно needs із -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "eb6b14851f57de05d578b046ffd44fcbe01b84dcf626d73141aef3a9d1913c7c"
+}

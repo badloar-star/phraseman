@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-29:word:garbage",
+    "correctText": "garbage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i01",
+    "correctText": "Please take out the garbage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i02",
+    "correctText": "I have already done it.",
+    "correctResponseId": "en:lesson-26:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:word:faucet",
+    "correctText": "faucet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i03",
+    "correctText": "The faucet is dripping.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i04",
+    "correctText": "leave",
+    "correctResponseId": "en:lesson-26:session-29:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:word:closet",
+    "correctText": "closet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i05",
+    "correctText": "Your jacket is in the closet.",
+    "correctResponseId": "en:lesson-26:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i06",
+    "correctText": "Have you seen my keys?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:word:sidewalk",
+    "correctText": "sidewalk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i07",
+    "correctText": "Please stay on the sidewalk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i08",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i09",
+    "correctText": "Put it in the closet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i10",
+    "correctText": "Have you taken out the garbage yet?",
+    "correctResponseId": "en:lesson-26:session-29:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i12",
+    "correctText": "I will wait until you arrive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i13",
+    "correctText": "We need a new faucet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i14",
+    "correctText": "The sidewalk is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i15",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-26:session-29:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i16",
+    "correctText": "I will bring a bag if you need one.",
+    "correctResponseId": "en:lesson-26:session-29:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-29:i17",
+    "correctText": "Can I close the door?",
+    "correctResponseId": null
+  }
+]

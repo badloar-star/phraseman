@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-32:intro1:r2": {
+          "ru": "После when в этом будущем придаточном finish без will.",
+          "uk": "Після when у цьому майбутньому підрядному finish без will."
+        },
+        "en:lesson-26:session-32:intro1:r3": {
+          "ru": "С you нужно finish без -s.",
+          "uk": "З you потрібно finish без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-32:intro2:r2": {
+          "ru": "После if в этом условии is без will.",
+          "uk": "Після if у цій умові is без will."
+        },
+        "en:lesson-26:session-32:intro2:r3": {
+          "ru": "Здесь eggplant в единственном числе; нужно is.",
+          "uk": "Тут eggplant в однині; потрібно is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-32:intro3:r2": {
+          "ru": "Closed задаёт прошлое; более раннее действие — had paid.",
+          "uk": "Closed задає минуле; раніша дія — had paid."
+        },
+        "en:lesson-26:session-32:intro3:r3": {
+          "ru": "Was paid означает, что заплатили мне; здесь я сам заплатил за покупку.",
+          "uk": "Was paid означає, що заплатили мені; тут я сам заплатив за покупку."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fcd006933b50a1b6cb4504fe7ff71d43b3c69843c6cadb35b099932aa1681861"
+}

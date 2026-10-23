@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-32:word:trash",
+    "correctText": "trash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i01",
+    "correctText": "Please take out the trash.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i02",
+    "correctText": "finish",
+    "correctResponseId": "en:lesson-26:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:word:drugstore",
+    "correctText": "drugstore",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i03",
+    "correctText": "Is the drugstore still open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i04",
+    "correctText": "It closes at eight.",
+    "correctResponseId": "en:lesson-26:session-32:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:word:zucchini",
+    "correctText": "zucchini",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i05",
+    "correctText": "We need one zucchini.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i06",
+    "correctText": "Can I see the list?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:word:eggplant",
+    "correctText": "eggplant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i07",
+    "correctText": "This eggplant is too big.",
+    "correctResponseId": "en:lesson-26:session-32:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-26:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i09",
+    "correctText": "I have already bought the bread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i10",
+    "correctText": "Have you checked the list yet?",
+    "correctResponseId": "en:lesson-26:session-32:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i11",
+    "correctText": "How much is this zucchini?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i12",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i13",
+    "correctText": "Can you carry this bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i14",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-32:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i15",
+    "correctText": "The trash is in the bin.",
+    "correctResponseId": "en:lesson-26:session-32:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i16",
+    "correctText": "lock",
+    "correctResponseId": "en:lesson-26:session-32:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-32:i17",
+    "correctText": "I will wash the dishes.",
+    "correctResponseId": null
+  }
+]

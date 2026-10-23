@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, yet; by the time",
+    "uk": "if, when, unless; already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "По делам после уборки",
+        "uk": "У справах після прибирання"
+      },
+      "bodyByLocale": {
+        "ru": "Trash — мусор; ещё одно повседневное слово наряду с rubbish и garbage. Please take out the trash — пожалуйста, вынеси мусор. Drugstore — аптека-магазин: помимо лекарств там могут продаваться средства ухода и другие товары. Is the drugstore still open? — аптека ещё открыта? Вы договариваетесь о встрече после дел: I will meet you when you finish — я встречусь с тобой, когда ты закончишь. После when здесь finish без will.",
+        "uk": "Trash — сміття; ще одне повсякденне слово поряд із rubbish і garbage. Please take out the trash — будь ласка, винеси сміття. Drugstore — аптека-магазин: крім ліків там можуть продаватися засоби догляду та інші товари. Is the drugstore still open? — аптека ще відкрита? Ви домовляєтеся про зустріч після справ: I will meet you when you finish — я зустрінуся з тобою, коли ти закінчиш. Після when тут finish без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-32:intro1:r1",
+              "text": "I will meet you when you finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro1:r2",
+              "text": "I will meet you when you will finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro1:r3",
+              "text": "I will meet you when you finishes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-32:intro1:r1",
+              "text": "I will meet you when you finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro1:r2",
+              "text": "I will meet you when you will finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro1:r3",
+              "text": "I will meet you when you finishes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Овощи для ужина",
+        "uk": "Овочі до вечері"
+      },
+      "bodyByLocale": {
+        "ru": "Zucchini — кабачок, цукини; другое название courgette. Eggplant — баклажан, другое название aubergine. We need one zucchini and one eggplant — нам нужен один кабачок и один баклажан. Вы не находите баклажан и предлагаете замену: I will get mushrooms if there is no eggplant — я куплю грибы, если баклажана нет. В условии после if стоит is, а обещание выражено через will get.",
+        "uk": "Zucchini — кабачок, цукіні; інша назва courgette. Eggplant — баклажан, інша назва aubergine. We need one zucchini and one eggplant — нам потрібен один кабачок і один баклажан. Ви не знаходите баклажана й пропонуєте заміну: I will get mushrooms if there is no eggplant — я куплю гриби, якщо баклажана немає. В умові після if стоїть is, а обіцянку виражено через will get."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-32:intro2:r1",
+              "text": "I will get mushrooms if there is no eggplant."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro2:r2",
+              "text": "I will get mushrooms if there will be no eggplant."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro2:r3",
+              "text": "I will get mushrooms if there are no eggplant."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-32:intro2:r1",
+              "text": "I will get mushrooms if there is no eggplant."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro2:r2",
+              "text": "I will get mushrooms if there will be no eggplant."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro2:r3",
+              "text": "I will get mushrooms if there are no eggplant."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить покупки",
+        "uk": "Перевірити покупки"
+      },
+      "bodyByLocale": {
+        "ru": "Have you checked the list yet? — ты уже проверил список? I have already bought the bread — я уже купил хлеб. Эти фразы касаются результата сейчас. Если рассказываете о вчерашней покупке: I had paid by the time the shop closed — я заплатил к тому времени, как магазин закрылся. Had paid показывает действие раньше закрытия. На обратном пути можно изменить план из-за погоды: We will walk unless it rains — мы пойдём пешком, если не пойдёт дождь.",
+        "uk": "Have you checked the list yet? — ти вже перевірив список? I have already bought the bread — я вже купив хліб. Ці фрази стосуються результату зараз. Якщо розповідаєте про вчорашню покупку: I had paid by the time the shop closed — я заплатив до того часу, як магазин зачинився. Had paid показує дію раніше за закриття. Дорогою назад можна змінити план через погоду: We will walk unless it rains — ми підемо пішки, якщо не піде дощ."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-32:intro3:r1",
+              "text": "I had paid by the time the shop closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro3:r2",
+              "text": "I have paid by the time the shop closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro3:r3",
+              "text": "I was paid by the time the shop closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-32:intro3:r1",
+              "text": "I had paid by the time the shop closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro3:r2",
+              "text": "I have paid by the time the shop closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-32:intro3:r3",
+              "text": "I was paid by the time the shop closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4715be90ff8af30393b84d73b48f80806505bb40adda148d7d247c2ca3964653"
+}

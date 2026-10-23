@@ -1,0 +1,1110 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-32:word:trash",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — trash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:word:trash:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — trash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:word:trash:audio",
+          "transcript": "trash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-32:word:trash:r1",
+            "targetText": "trash",
+            "meaningByLocale": {
+              "ru": "Мусор; в этом значении неисчисляемое слово.",
+              "uk": "Сміття; у цьому значенні незлічуване слово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trash",
+          "definitionByLocale": {
+            "ru": "Мусор; в этом значении неисчисляемое слово.",
+            "uk": "Сміття; у цьому значенні незлічуване слово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите брата перед выходом: «Пожалуйста, вынеси мусор».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:i01:audio"
+      ],
+      "accessibilityLabel": "Попросите брата перед выходом: «Пожалуйста, вынеси мусор».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:i01:audio",
+          "transcript": "Please take out the trash."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please take out the trash.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы встретитесь после того, как друг закончит дела. Дополните время.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-32:i02:r1",
+          "text": "finish"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i02:r2",
+          "text": "will finish"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i02:r3",
+          "text": "finishes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы встретитесь после того, как друг закончит дела. Дополните время.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы встретитесь после того, как друг закончит дела. Дополните время.",
+          "uk": "Ви зустрінетеся після того, як друг закінчить справи. Доповніть час."
+        },
+        "gappedTargetPhrase": "I will meet you when you ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-32:i02:r1",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i02:r2",
+            "text": "will finish"
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i02:r3",
+            "text": "finishes"
+          }
+        ],
+        "testedDimension": "Вы встретитесь после того, как друг закончит дела. Дополните время.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Вы встретитесь после того, как друг закончит дела. Дополните время.",
+            "feedbackByLocale": {
+              "ru": "После when здесь finish без will.",
+              "uk": "Після when тут finish без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Вы встретитесь после того, как друг закончит дела. Дополните время.",
+            "feedbackByLocale": {
+              "ru": "С you используется finish без -s.",
+              "uk": "З you вживається finish без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:word:drugstore",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drugstore",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:word:drugstore:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drugstore",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:word:drugstore:audio",
+          "transcript": "drugstore"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-32:word:drugstore:r1",
+            "targetText": "drugstore",
+            "meaningByLocale": {
+              "ru": "Аптека-магазин, где могут продаваться и другие повседневные товары.",
+              "uk": "Аптека-магазин, де можуть продаватися й інші повсякденні товари."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drugstore",
+          "definitionByLocale": {
+            "ru": "Аптека-магазин, где могут продаваться и другие повседневные товары.",
+            "uk": "Аптека-магазин, де можуть продаватися й інші повсякденні товари."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже вечер. Спросите, открыта ли ещё аптека.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уже вечер. Спросите, открыта ли ещё аптека.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is the drugstore still open?",
+        "localizedMeaning": {
+          "ru": "Уже вечер. Спросите, открыта ли ещё аптека.",
+          "uk": "Уже вечір. Запитайте, чи ще відкрита аптека."
+        },
+        "orderedTokens": [
+          "Is",
+          "the",
+          "drugstore",
+          "still",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-32:i04:r1",
+          "text": "It closes at eight."
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i04:r2",
+          "text": "It opens at eight."
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i04:r3",
+          "text": "It closes at nine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:i04:audio",
+          "transcript": "It closes at eight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-32:i04:r1",
+            "targetText": "It closes at eight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i04:r2",
+            "targetText": "It opens at eight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i04:r3",
+            "targetText": "It closes at nine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-32:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It closes at eight.",
+              "uk": "У записі звучить It closes at eight."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It closes at eight.",
+              "uk": "У записі звучить It closes at eight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:word:zucchini",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — zucchini",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:word:zucchini:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — zucchini",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:word:zucchini:audio",
+          "transcript": "zucchini"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-32:word:zucchini:r1",
+            "targetText": "zucchini",
+            "meaningByLocale": {
+              "ru": "Кабачок, цукини; другое название courgette.",
+              "uk": "Кабачок, цукіні; інша назва courgette."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "zucchini",
+          "definitionByLocale": {
+            "ru": "Кабачок, цукини; другое название courgette.",
+            "uk": "Кабачок, цукіні; інша назва courgette."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, сколько кабачков нужно для ужина.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте, сколько кабачков нужно для ужина.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:i05:audio",
+          "transcript": "We need one zucchini."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We need one zucchini.",
+        "orderedTokens": [
+          "We",
+          "need",
+          "one",
+          "zucchini"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг держит список покупок. Попросите: «Можно посмотреть список?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:i06:audio"
+      ],
+      "accessibilityLabel": "Друг держит список покупок. Попросите: «Можно посмотреть список?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:i06:audio",
+          "transcript": "Can I see the list?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I see the list?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:word:eggplant",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — eggplant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:word:eggplant:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — eggplant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:word:eggplant:audio",
+          "transcript": "eggplant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-32:word:eggplant:r1",
+            "targetText": "eggplant",
+            "meaningByLocale": {
+              "ru": "Баклажан; другое название aubergine.",
+              "uk": "Баклажан; інша назва aubergine."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eggplant",
+          "definitionByLocale": {
+            "ru": "Баклажан; другое название aubergine.",
+            "uk": "Баклажан; інша назва aubergine."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-32:i07:r1",
+          "text": "This eggplant is too big."
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i07:r2",
+          "text": "This eggplant is too small."
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i07:r3",
+          "text": "This zucchini is too big."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:i07:audio",
+          "transcript": "This eggplant is too big."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-32:i07:r1",
+            "targetText": "This eggplant is too big.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i07:r2",
+            "targetText": "This eggplant is too small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i07:r3",
+            "targetText": "This zucchini is too big.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-32:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This eggplant is too big.",
+              "uk": "У записі звучить This eggplant is too big."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This eggplant is too big.",
+              "uk": "У записі звучить This eggplant is too big."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Если баклажана нет, вы купите грибы. Дополните условие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-32:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i08:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Если баклажана нет, вы купите грибы. Дополните условие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Если баклажана нет, вы купите грибы. Дополните условие.",
+          "uk": "Якщо баклажана немає, ви купите гриби. Доповніть умову."
+        },
+        "gappedTargetPhrase": "I will get mushrooms if there ___ no eggplant.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-32:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i08:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Если баклажана нет, вы купите грибы. Дополните условие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Если баклажана нет, вы купите грибы. Дополните условие.",
+            "feedbackByLocale": {
+              "ru": "После if здесь is без will.",
+              "uk": "Після if тут is без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Если баклажана нет, вы купите грибы. Дополните условие.",
+            "feedbackByLocale": {
+              "ru": "Eggplant здесь в единственном числе: is.",
+              "uk": "Eggplant тут в однині: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "По телефону сообщите, что хлеб уже куплен.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "По телефону сообщите, что хлеб уже куплен.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already bought the bread.",
+        "localizedMeaning": {
+          "ru": "По телефону сообщите, что хлеб уже куплен.",
+          "uk": "Телефоном повідомте, що хліб уже куплено."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "bought",
+          "the",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-32:i10:r1",
+          "text": "Have you checked the list yet?"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i10:r2",
+          "text": "Have you written the list yet?"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i10:r3",
+          "text": "Have you checked the price yet?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:i10:audio",
+          "transcript": "Have you checked the list yet?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-32:i10:r1",
+            "targetText": "Have you checked the list yet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i10:r2",
+            "targetText": "Have you written the list yet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i10:r3",
+            "targetText": "Have you checked the price yet?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-32:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you checked the list yet?",
+              "uk": "У записі звучить Have you checked the list yet?"
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you checked the list yet?",
+              "uk": "У записі звучить Have you checked the list yet?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i11",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы выбрали кабачок, но не видите ценника. Спросите: «Сколько стоит этот кабачок?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Вы выбрали кабачок, но не видите ценника. Спросите: «Сколько стоит этот кабачок?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:i11:audio",
+          "transcript": "How much is this zucchini?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much is this zucchini?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы заплатили до закрытия магазина. Дополните более раннее действие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-32:i12:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i12:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i12:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы заплатили до закрытия магазина. Дополните более раннее действие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы заплатили до закрытия магазина. Дополните более раннее действие.",
+          "uk": "Ви заплатили до закриття магазину. Доповніть ранішу дію."
+        },
+        "gappedTargetPhrase": "I ___ paid by the time the shop closed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-32:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i12:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Вы заплатили до закрытия магазина. Дополните более раннее действие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы заплатили до закрытия магазина. Дополните более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Closed задаёт прошлое; раньше него — had paid.",
+              "uk": "Closed задає минуле; раніше за нього — had paid."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы заплатили до закрытия магазина. Дополните более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Was paid означает, что деньги получил я, а здесь я оплатил покупку.",
+              "uk": "Was paid означає, що гроші отримав я, а тут я оплатив покупку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу о помощи с покупками.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу о помощи с покупками.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:i13:audio",
+          "transcript": "Can you carry this bag?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Can you carry this bag?",
+        "orderedTokens": [
+          "Can",
+          "you",
+          "carry",
+          "this",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы пойдёте домой пешком, если дождь не изменит план.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-32:i14:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i14:r2",
+          "text": "when"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i14:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пойдёте домой пешком, если дождь не изменит план.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пойдёте домой пешком, если дождь не изменит план.",
+          "uk": "Ви підете додому пішки, якщо дощ не змінить план."
+        },
+        "gappedTargetPhrase": "We will walk ___ it rains.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-32:i14:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i14:r2",
+            "text": "when"
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i14:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Вы пойдёте домой пешком, если дождь не изменит план.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-32:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы пойдёте домой пешком, если дождь не изменит план.",
+            "feedbackByLocale": {
+              "ru": "When означало бы идти именно во время дождя.",
+              "uk": "When означало б іти саме під час дощу."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы пойдёте домой пешком, если дождь не изменит план.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы дождь причиной идти пешком.",
+              "uk": "Because зробило б дощ причиною йти пішки."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-32:i15:r1",
+          "text": "The trash is in the bin."
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i15:r2",
+          "text": "The trash is beside the bin."
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i15:r3",
+          "text": "The bag is in the bin."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-32:i15:audio",
+          "transcript": "The trash is in the bin."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-32:i15:r1",
+            "targetText": "The trash is in the bin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i15:r2",
+            "targetText": "The trash is beside the bin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i15:r3",
+            "targetText": "The bag is in the bin.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-32:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The trash is in the bin.",
+              "uk": "У записі звучить The trash is in the bin."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The trash is in the bin.",
+              "uk": "У записі звучить The trash is in the bin."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы описываете привычку закрывать дверь, когда уходите.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-32:i16:r1",
+          "text": "lock"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i16:r2",
+          "text": "locks"
+        },
+        {
+          "responseId": "en:lesson-26:session-32:i16:r3",
+          "text": "locking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы описываете привычку закрывать дверь, когда уходите.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете привычку закрывать дверь, когда уходите.",
+          "uk": "Ви описуєте звичку зачиняти двері, коли йдете."
+        },
+        "gappedTargetPhrase": "I ___ the door when I leave.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-32:i16:r1",
+            "text": "lock"
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i16:r2",
+            "text": "locks"
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i16:r3",
+            "text": "locking"
+          }
+        ],
+        "testedDimension": "Вы описываете привычку закрывать дверь, когда уходите.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-32:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы описываете привычку закрывать дверь, когда уходите.",
+            "feedbackByLocale": {
+              "ru": "С I нужно lock без -s.",
+              "uk": "З I потрібно lock без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-32:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы описываете привычку закрывать дверь, когда уходите.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужен lock, не отдельное locking.",
+              "uk": "Для звички потрібне lock, не окреме locking."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-32:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг предлагает готовить. Возьмите на себя уборку: «Я помою посуду».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг предлагает готовить. Возьмите на себя уборку: «Я помою посуду».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will wash the dishes.",
+        "localizedMeaning": {
+          "ru": "Друг предлагает готовить. Возьмите на себя уборку: «Я помою посуду».",
+          "uk": "Друг пропонує готувати. Візьміть на себе прибирання: «Я помию посуд»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "wash",
+          "the",
+          "dishes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1f5aa4d8a7cf09961a330071a53cdb69e5b4e065b22a37d293a606d5b01a350b"
+}

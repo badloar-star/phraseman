@@ -1,0 +1,2255 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-21",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-21:word:till",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — till",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:word:till:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — till",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:word:till:audio",
+            "transcript": "till"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:word:till:r1",
+              "targetText": "till",
+              "meaningByLocale": {
+                "ru": "Касса, кассовый аппарат в магазине; британское слово. At the till — на кассе.",
+                "uk": "Каса, касовий апарат у магазині; британське слово. At the till — на касі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "till",
+            "definitionByLocale": {
+              "ru": "Касса, кассовый аппарат в магазине; британское слово. At the till — на кассе.",
+              "uk": "Каса, касовий апарат у магазині; британське слово. At the till — на касі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i01:r1",
+            "text": "You can pay at the till."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i01:r2",
+            "text": "You can wait at the till."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i01:r3",
+            "text": "You can pay at the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i01:audio",
+            "transcript": "You can pay at the till."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:i01:r1",
+              "targetText": "You can pay at the till.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i01:r2",
+              "targetText": "You can wait at the till.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i01:r3",
+              "targetText": "You can pay at the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can pay at the till.",
+                "uk": "У записі звучить You can pay at the till."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can pay at the till.",
+                "uk": "У записі звучить You can pay at the till."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы заплатите, когда подойдёте к кассе. Дополните время оплаты.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i02:r1",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i02:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i02:r3",
+            "text": "gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы заплатите, когда подойдёте к кассе. Дополните время оплаты.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заплатите, когда подойдёте к кассе. Дополните время оплаты.",
+            "uk": "Ви заплатите, коли підійдете до каси. Доповніть час оплати."
+          },
+          "gappedTargetPhrase": "I will pay when we ___ to the till.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-21:i02:r1",
+              "text": "get"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i02:r2",
+              "text": "will get"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i02:r3",
+              "text": "gets"
+            }
+          ],
+          "testedDimension": "Вы заплатите, когда подойдёте к кассе. Дополните время оплаты.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Вы заплатите, когда подойдёте к кассе. Дополните время оплаты.",
+              "feedbackByLocale": {
+                "ru": "После when в придаточном времени о будущем get без will.",
+                "uk": "Після when у підрядному часу про майбутнє get без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Вы заплатите, когда подойдёте к кассе. Дополните время оплаты.",
+              "feedbackByLocale": {
+                "ru": "С we нужен get без -s.",
+                "uk": "З we потрібне get без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:word:tale",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tale",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:word:tale:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tale",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:word:tale:audio",
+            "transcript": "tale"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:word:tale:r1",
+              "targetText": "tale",
+              "meaningByLocale": {
+                "ru": "Рассказ, история, часто выдуманная. A tale about a dragon — история о драконе.",
+                "uk": "Оповідь, історія, часто вигадана. A tale about a dragon — історія про дракона."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tale",
+            "definitionByLocale": {
+              "ru": "Рассказ, история, часто выдуманная. A tale about a dragon — история о драконе.",
+              "uk": "Оповідь, історія, часто вигадана. A tale about a dragon — історія про дракона."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ребёнок просит почитать. Скажите: «Я знаю историю о драконе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ребёнок просит почитать. Скажите: «Я знаю историю о драконе».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I know a tale about a dragon.",
+          "localizedMeaning": {
+            "ru": "Ребёнок просит почитать. Скажите: «Я знаю историю о драконе».",
+            "uk": "Дитина просить почитати. Скажіть: «Я знаю історію про дракона»."
+          },
+          "orderedTokens": [
+            "I",
+            "know",
+            "a",
+            "tale",
+            "about",
+            "a",
+            "dragon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i04",
+        "ordinal": 9,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает о книге. Ответьте: «Я уже купил её».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i04:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает о книге. Ответьте: «Я уже купил её».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i04:audio",
+            "transcript": "I have already bought it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already bought it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:word:hint",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:word:hint:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:word:hint:audio",
+            "transcript": "hint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:word:hint:r1",
+              "targetText": "hint",
+              "meaningByLocale": {
+                "ru": "Намёк, подсказка, которая помогает догадаться. Give me a hint — дай мне подсказку.",
+                "uk": "Натяк, підказка, яка допомагає здогадатися. Give me a hint — дай мені підказку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hint",
+            "definitionByLocale": {
+              "ru": "Намёк, подсказка, которая помогает догадаться. Give me a hint — дай мне подсказку.",
+              "uk": "Натяк, підказка, яка допомагає здогадатися. Give me a hint — дай мені підказку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг загадал слово, а вы не можете угадать. Попросите: «Дай мне подсказку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Друг загадал слово, а вы не можете угадать. Попросите: «Дай мне подсказку».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i05:audio",
+            "transcript": "Give me a hint."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Give me a hint.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i06:r1",
+            "text": "We will read after dinner."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i06:r2",
+            "text": "We will read before dinner."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i06:r3",
+            "text": "We will play after dinner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i06:audio",
+            "transcript": "We will read after dinner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:i06:r1",
+              "targetText": "We will read after dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i06:r2",
+              "targetText": "We will read before dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i06:r3",
+              "targetText": "We will play after dinner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will read after dinner.",
+                "uk": "У записі звучить We will read after dinner."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will read after dinner.",
+                "uk": "У записі звучить We will read after dinner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:word:fib",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fib",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:word:fib:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fib",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:word:fib:audio",
+            "transcript": "fib"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:word:fib:r1",
+              "targetText": "fib",
+              "meaningByLocale": {
+                "ru": "Небольшая ложь, неправда; мягкое разговорное слово. Tell a fib — сказать неправду.",
+                "uk": "Невелика брехня, неправда; м’яке розмовне слово. Tell a fib — сказати неправду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fib",
+            "definitionByLocale": {
+              "ru": "Небольшая ложь, неправда; мягкое разговорное слово. Tell a fib — сказать неправду.",
+              "uk": "Невелика брехня, неправда; м’яке розмовне слово. Tell a fib — сказати неправду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы сказали, что убрали комнату, хотя не убрали. Признайтесь в небольшой лжи.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i07:r1",
+            "text": "fib"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i07:r2",
+            "text": "hint"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i07:r3",
+            "text": "till"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сказали, что убрали комнату, хотя не убрали. Признайтесь в небольшой лжи.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сказали, что убрали комнату, хотя не убрали. Признайтесь в небольшой лжи.",
+            "uk": "Ви сказали, що прибрали кімнату, хоча не прибрали. Зізнайтеся в невеликій брехні."
+          },
+          "gappedTargetPhrase": "I told a ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-21:i07:r1",
+              "text": "fib"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i07:r2",
+              "text": "hint"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i07:r3",
+              "text": "till"
+            }
+          ],
+          "testedDimension": "Вы сказали, что убрали комнату, хотя не убрали. Признайтесь в небольшой лжи.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i07:r2",
+              "correct": false,
+              "testedDimension": "Вы сказали, что убрали комнату, хотя не убрали. Признайтесь в небольшой лжи.",
+              "feedbackByLocale": {
+                "ru": "Hint — подсказка, а вы признались в неправде.",
+                "uk": "Hint — підказка, а ви зізналися в неправді."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i07:r3",
+              "correct": false,
+              "testedDimension": "Вы сказали, что убрали комнату, хотя не убрали. Признайтесь в небольшой лжи.",
+              "feedbackByLocale": {
+                "ru": "Till — касса, а здесь нужно назвать ложь.",
+                "uk": "Till — каса, а тут потрібно назвати брехню."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте вопрос о домашнем деле.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i08:audio"
+        ],
+        "accessibilityLabel": "Услышьте вопрос о домашнем деле.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i08:audio",
+            "transcript": "Have you tidied your room yet?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Have you tidied your room yet?",
+          "orderedTokens": [
+            "Have",
+            "you",
+            "tidied",
+            "your",
+            "room",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы обычно просите подсказку, если не можете угадать. Дополните привычку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i09:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i09:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i09:r3",
+            "text": "asking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы обычно просите подсказку, если не можете угадать. Дополните привычку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обычно просите подсказку, если не можете угадать. Дополните привычку.",
+            "uk": "Ви зазвичай просите підказку, якщо не можете вгадати. Доповніть звичку."
+          },
+          "gappedTargetPhrase": "If I cannot guess, I ___ for a hint.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-21:i09:r1",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i09:r2",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i09:r3",
+              "text": "asking"
+            }
+          ],
+          "testedDimension": "Вы обычно просите подсказку, если не можете угадать. Дополните привычку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы обычно просите подсказку, если не можете угадать. Дополните привычку.",
+              "feedbackByLocale": {
+                "ru": "С I используем ask без -s.",
+                "uk": "З I вживаємо ask без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы обычно просите подсказку, если не можете угадать. Дополните привычку.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен глагол ask, не отдельная форма asking.",
+                "uk": "Для звички потрібне дієслово ask, а не окрема форма asking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i10:r1",
+            "text": "There is a queue at the till."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i10:r2",
+            "text": "There is a queue at the door."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i10:r3",
+            "text": "There is a bag at the till."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i10:audio",
+            "transcript": "There is a queue at the till."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:i10:r1",
+              "targetText": "There is a queue at the till.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i10:r2",
+              "targetText": "There is a queue at the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i10:r3",
+              "targetText": "There is a bag at the till.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a queue at the till.",
+                "uk": "У записі звучить There is a queue at the till."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a queue at the till.",
+                "uk": "У записі звучить There is a queue at the till."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пообещайте закончить историю после еды: «Я закончу историю после того, как мы поедим».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообещайте закончить историю после еды: «Я закончу историю после того, как мы поедим».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will finish the tale after we eat.",
+          "localizedMeaning": {
+            "ru": "Пообещайте закончить историю после еды: «Я закончу историю после того, как мы поедим».",
+            "uk": "Пообіцяйте закінчити історію після їжі: «Я закінчу історію після того, як ми поїмо»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "finish",
+            "the",
+            "tale",
+            "after",
+            "we",
+            "eat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы сказали правду до возвращения папы. Дополните более раннее действие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i12:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сказали правду до возвращения папы. Дополните более раннее действие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сказали правду до возвращения папы. Дополните более раннее действие.",
+            "uk": "Ви сказали правду до повернення тата. Доповніть ранішу дію."
+          },
+          "gappedTargetPhrase": "I ___ told the truth by the time Dad came home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-21:i12:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i12:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i12:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Вы сказали правду до возвращения папы. Дополните более раннее действие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы сказали правду до возвращения папы. Дополните более раннее действие.",
+              "feedbackByLocale": {
+                "ru": "Came задаёт прошлый момент; более раннее событие — had told.",
+                "uk": "Came задає минулий момент; раніша подія — had told."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы сказали правду до возвращения папы. Дополните более раннее действие.",
+              "feedbackByLocale": {
+                "ru": "Нужно had told для действия, которое вы выполнили раньше.",
+                "uk": "Потрібно had told для дії, яку ви виконали раніше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат снова говорит неправду. Мягко попросите: «Не говори неправду». Используйте fibs.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Брат снова говорит неправду. Мягко попросите: «Не говори неправду». Используйте fibs.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i13:audio",
+            "transcript": "Do not tell fibs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do not tell fibs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте план перед чтением.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i14:audio"
+        ],
+        "accessibilityLabel": "Услышьте план перед чтением.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i14:audio",
+            "transcript": "I will wash the dishes before we start."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will wash the dishes before we start.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "wash",
+            "the",
+            "dishes",
+            "before",
+            "we",
+            "start"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i15:r1",
+            "text": "I will help if you get stuck."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i15:r2",
+            "text": "I will wait if you get stuck."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i15:r3",
+            "text": "I will help when you get back."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i15:audio",
+            "transcript": "I will help if you get stuck."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:i15:r1",
+              "targetText": "I will help if you get stuck.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i15:r2",
+              "targetText": "I will wait if you get stuck.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i15:r3",
+              "targetText": "I will help when you get back.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will help if you get stuck.",
+                "uk": "У записі звучить I will help if you get stuck."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will help if you get stuck.",
+                "uk": "У записі звучить I will help if you get stuck."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ребёнок просит другую историю. Ответьте: «Давай выберем другую книгу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ребёнок просит другую историю. Ответьте: «Давай выберем другую книгу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Let us choose another book.",
+          "localizedMeaning": {
+            "ru": "Ребёнок просит другую историю. Ответьте: «Давай выберем другую книгу».",
+            "uk": "Дитина просить іншу історію. Дайте відповідь: «Давай виберемо іншу книжку»."
+          },
+          "orderedTokens": [
+            "Let",
+            "us",
+            "choose",
+            "another",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Для записи в книжный клуб нужно подписать форму. Скажите другу: «Я подожду, пока ты подпишешь». Используйте while.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Для записи в книжный клуб нужно подписать форму. Скажите другу: «Я подожду, пока ты подпишешь». Используйте while.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i17:audio",
+            "transcript": "I will wait while you sign."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will wait while you sign.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-21:word:till",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — till",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:word:till:audio"
+        ],
+        "accessibilityLabel": "Картка слова — till",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:word:till:audio",
+            "transcript": "till"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:word:till:r1",
+              "targetText": "till",
+              "meaningByLocale": {
+                "ru": "Касса, кассовый аппарат в магазине; британское слово. At the till — на кассе.",
+                "uk": "Каса, касовий апарат у магазині; британське слово. At the till — на касі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "till",
+            "definitionByLocale": {
+              "ru": "Касса, кассовый аппарат в магазине; британское слово. At the till — на кассе.",
+              "uk": "Каса, касовий апарат у магазині; британське слово. At the till — на касі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i01:r1",
+            "text": "You can pay at the till."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i01:r2",
+            "text": "You can wait at the till."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i01:r3",
+            "text": "You can pay at the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i01:audio",
+            "transcript": "You can pay at the till."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:i01:r1",
+              "targetText": "You can pay at the till.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i01:r2",
+              "targetText": "You can wait at the till.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i01:r3",
+              "targetText": "You can pay at the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can pay at the till.",
+                "uk": "У записі звучить You can pay at the till."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can pay at the till.",
+                "uk": "У записі звучить You can pay at the till."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви заплатите, коли підійдете до каси. Доповніть час оплати.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i02:r1",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i02:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i02:r3",
+            "text": "gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви заплатите, коли підійдете до каси. Доповніть час оплати.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заплатите, когда подойдёте к кассе. Дополните время оплаты.",
+            "uk": "Ви заплатите, коли підійдете до каси. Доповніть час оплати."
+          },
+          "gappedTargetPhrase": "I will pay when we ___ to the till.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-21:i02:r1",
+              "text": "get"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i02:r2",
+              "text": "will get"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i02:r3",
+              "text": "gets"
+            }
+          ],
+          "testedDimension": "Ви заплатите, коли підійдете до каси. Доповніть час оплати.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Ви заплатите, коли підійдете до каси. Доповніть час оплати.",
+              "feedbackByLocale": {
+                "ru": "После when в придаточном времени о будущем get без will.",
+                "uk": "Після when у підрядному часу про майбутнє get без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Ви заплатите, коли підійдете до каси. Доповніть час оплати.",
+              "feedbackByLocale": {
+                "ru": "С we нужен get без -s.",
+                "uk": "З we потрібне get без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:word:tale",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tale",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:word:tale:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tale",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:word:tale:audio",
+            "transcript": "tale"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:word:tale:r1",
+              "targetText": "tale",
+              "meaningByLocale": {
+                "ru": "Рассказ, история, часто выдуманная. A tale about a dragon — история о драконе.",
+                "uk": "Оповідь, історія, часто вигадана. A tale about a dragon — історія про дракона."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tale",
+            "definitionByLocale": {
+              "ru": "Рассказ, история, часто выдуманная. A tale about a dragon — история о драконе.",
+              "uk": "Оповідь, історія, часто вигадана. A tale about a dragon — історія про дракона."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дитина просить почитати. Скажіть: «Я знаю історію про дракона».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дитина просить почитати. Скажіть: «Я знаю історію про дракона».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I know a tale about a dragon.",
+          "localizedMeaning": {
+            "ru": "Ребёнок просит почитать. Скажите: «Я знаю историю о драконе».",
+            "uk": "Дитина просить почитати. Скажіть: «Я знаю історію про дракона»."
+          },
+          "orderedTokens": [
+            "I",
+            "know",
+            "a",
+            "tale",
+            "about",
+            "a",
+            "dragon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i04",
+        "ordinal": 9,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра запитує про книжку. Дайте відповідь: «Я вже купив її».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i04:audio"
+        ],
+        "accessibilityLabel": "Сестра запитує про книжку. Дайте відповідь: «Я вже купив її».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i04:audio",
+            "transcript": "I have already bought it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already bought it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:word:hint",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:word:hint:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:word:hint:audio",
+            "transcript": "hint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:word:hint:r1",
+              "targetText": "hint",
+              "meaningByLocale": {
+                "ru": "Намёк, подсказка, которая помогает догадаться. Give me a hint — дай мне подсказку.",
+                "uk": "Натяк, підказка, яка допомагає здогадатися. Give me a hint — дай мені підказку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hint",
+            "definitionByLocale": {
+              "ru": "Намёк, подсказка, которая помогает догадаться. Give me a hint — дай мне подсказку.",
+              "uk": "Натяк, підказка, яка допомагає здогадатися. Give me a hint — дай мені підказку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг загадав слово, а ви не можете вгадати. Попросіть: «Дай мені підказку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Друг загадав слово, а ви не можете вгадати. Попросіть: «Дай мені підказку».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i05:audio",
+            "transcript": "Give me a hint."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Give me a hint.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i06:r1",
+            "text": "We will read after dinner."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i06:r2",
+            "text": "We will read before dinner."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i06:r3",
+            "text": "We will play after dinner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i06:audio",
+            "transcript": "We will read after dinner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:i06:r1",
+              "targetText": "We will read after dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i06:r2",
+              "targetText": "We will read before dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i06:r3",
+              "targetText": "We will play after dinner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will read after dinner.",
+                "uk": "У записі звучить We will read after dinner."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will read after dinner.",
+                "uk": "У записі звучить We will read after dinner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:word:fib",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fib",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:word:fib:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fib",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:word:fib:audio",
+            "transcript": "fib"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:word:fib:r1",
+              "targetText": "fib",
+              "meaningByLocale": {
+                "ru": "Небольшая ложь, неправда; мягкое разговорное слово. Tell a fib — сказать неправду.",
+                "uk": "Невелика брехня, неправда; м’яке розмовне слово. Tell a fib — сказати неправду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fib",
+            "definitionByLocale": {
+              "ru": "Небольшая ложь, неправда; мягкое разговорное слово. Tell a fib — сказать неправду.",
+              "uk": "Невелика брехня, неправда; м’яке розмовне слово. Tell a fib — сказати неправду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви сказали, що прибрали кімнату, хоча не прибрали. Зізнайтеся в невеликій брехні.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i07:r1",
+            "text": "fib"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i07:r2",
+            "text": "hint"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i07:r3",
+            "text": "till"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви сказали, що прибрали кімнату, хоча не прибрали. Зізнайтеся в невеликій брехні.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сказали, что убрали комнату, хотя не убрали. Признайтесь в небольшой лжи.",
+            "uk": "Ви сказали, що прибрали кімнату, хоча не прибрали. Зізнайтеся в невеликій брехні."
+          },
+          "gappedTargetPhrase": "I told a ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-21:i07:r1",
+              "text": "fib"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i07:r2",
+              "text": "hint"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i07:r3",
+              "text": "till"
+            }
+          ],
+          "testedDimension": "Ви сказали, що прибрали кімнату, хоча не прибрали. Зізнайтеся в невеликій брехні.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i07:r2",
+              "correct": false,
+              "testedDimension": "Ви сказали, що прибрали кімнату, хоча не прибрали. Зізнайтеся в невеликій брехні.",
+              "feedbackByLocale": {
+                "ru": "Hint — подсказка, а вы признались в неправде.",
+                "uk": "Hint — підказка, а ви зізналися в неправді."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i07:r3",
+              "correct": false,
+              "testedDimension": "Ви сказали, що прибрали кімнату, хоча не прибрали. Зізнайтеся в невеликій брехні.",
+              "feedbackByLocale": {
+                "ru": "Till — касса, а здесь нужно назвать ложь.",
+                "uk": "Till — каса, а тут потрібно назвати брехню."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте питання про домашню справу.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i08:audio"
+        ],
+        "accessibilityLabel": "Почуйте питання про домашню справу.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i08:audio",
+            "transcript": "Have you tidied your room yet?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Have you tidied your room yet?",
+          "orderedTokens": [
+            "Have",
+            "you",
+            "tidied",
+            "your",
+            "room",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зазвичай просите підказку, якщо не можете вгадати. Доповніть звичку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i09:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i09:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i09:r3",
+            "text": "asking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зазвичай просите підказку, якщо не можете вгадати. Доповніть звичку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обычно просите подсказку, если не можете угадать. Дополните привычку.",
+            "uk": "Ви зазвичай просите підказку, якщо не можете вгадати. Доповніть звичку."
+          },
+          "gappedTargetPhrase": "If I cannot guess, I ___ for a hint.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-21:i09:r1",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i09:r2",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i09:r3",
+              "text": "asking"
+            }
+          ],
+          "testedDimension": "Ви зазвичай просите підказку, якщо не можете вгадати. Доповніть звичку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви зазвичай просите підказку, якщо не можете вгадати. Доповніть звичку.",
+              "feedbackByLocale": {
+                "ru": "С I используем ask без -s.",
+                "uk": "З I вживаємо ask без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви зазвичай просите підказку, якщо не можете вгадати. Доповніть звичку.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен глагол ask, не отдельная форма asking.",
+                "uk": "Для звички потрібне дієслово ask, а не окрема форма asking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i10:r1",
+            "text": "There is a queue at the till."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i10:r2",
+            "text": "There is a queue at the door."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i10:r3",
+            "text": "There is a bag at the till."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i10:audio",
+            "transcript": "There is a queue at the till."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:i10:r1",
+              "targetText": "There is a queue at the till.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i10:r2",
+              "targetText": "There is a queue at the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i10:r3",
+              "targetText": "There is a bag at the till.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a queue at the till.",
+                "uk": "У записі звучить There is a queue at the till."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a queue at the till.",
+                "uk": "У записі звучить There is a queue at the till."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пообіцяйте закінчити історію після їжі: «Я закінчу історію після того, як ми поїмо».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообіцяйте закінчити історію після їжі: «Я закінчу історію після того, як ми поїмо».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will finish the tale after we eat.",
+          "localizedMeaning": {
+            "ru": "Пообещайте закончить историю после еды: «Я закончу историю после того, как мы поедим».",
+            "uk": "Пообіцяйте закінчити історію після їжі: «Я закінчу історію після того, як ми поїмо»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "finish",
+            "the",
+            "tale",
+            "after",
+            "we",
+            "eat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви сказали правду до повернення тата. Доповніть ранішу дію.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i12:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви сказали правду до повернення тата. Доповніть ранішу дію.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сказали правду до возвращения папы. Дополните более раннее действие.",
+            "uk": "Ви сказали правду до повернення тата. Доповніть ранішу дію."
+          },
+          "gappedTargetPhrase": "I ___ told the truth by the time Dad came home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-21:i12:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i12:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i12:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Ви сказали правду до повернення тата. Доповніть ранішу дію.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви сказали правду до повернення тата. Доповніть ранішу дію.",
+              "feedbackByLocale": {
+                "ru": "Came задаёт прошлый момент; более раннее событие — had told.",
+                "uk": "Came задає минулий момент; раніша подія — had told."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви сказали правду до повернення тата. Доповніть ранішу дію.",
+              "feedbackByLocale": {
+                "ru": "Нужно had told для действия, которое вы выполнили раньше.",
+                "uk": "Потрібно had told для дії, яку ви виконали раніше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат знову каже неправду. М’яко попросіть: «Не кажи неправди». Використайте fibs.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Брат знову каже неправду. М’яко попросіть: «Не кажи неправди». Використайте fibs.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i13:audio",
+            "transcript": "Do not tell fibs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do not tell fibs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте план перед читанням.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i14:audio"
+        ],
+        "accessibilityLabel": "Почуйте план перед читанням.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i14:audio",
+            "transcript": "I will wash the dishes before we start."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will wash the dishes before we start.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "wash",
+            "the",
+            "dishes",
+            "before",
+            "we",
+            "start"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-21:i15:r1",
+            "text": "I will help if you get stuck."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i15:r2",
+            "text": "I will wait if you get stuck."
+          },
+          {
+            "responseId": "en:lesson-26:session-21:i15:r3",
+            "text": "I will help when you get back."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i15:audio",
+            "transcript": "I will help if you get stuck."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-21:i15:r1",
+              "targetText": "I will help if you get stuck.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i15:r2",
+              "targetText": "I will wait if you get stuck.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i15:r3",
+              "targetText": "I will help when you get back.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-21:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will help if you get stuck.",
+                "uk": "У записі звучить I will help if you get stuck."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-21:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will help if you get stuck.",
+                "uk": "У записі звучить I will help if you get stuck."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дитина просить іншу історію. Дайте відповідь: «Давай виберемо іншу книжку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дитина просить іншу історію. Дайте відповідь: «Давай виберемо іншу книжку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Let us choose another book.",
+          "localizedMeaning": {
+            "ru": "Ребёнок просит другую историю. Ответьте: «Давай выберем другую книгу».",
+            "uk": "Дитина просить іншу історію. Дайте відповідь: «Давай виберемо іншу книжку»."
+          },
+          "orderedTokens": [
+            "Let",
+            "us",
+            "choose",
+            "another",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-21:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Для запису до книжкового клубу потрібно підписати форму. Скажіть другові: «Я зачекаю, поки ти підпишеш». Використайте while.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Для запису до книжкового клубу потрібно підписати форму. Скажіть другові: «Я зачекаю, поки ти підпишеш». Використайте while.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-21:i17:audio",
+            "transcript": "I will wait while you sign."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will wait while you sign.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-21:word:till",
+      "correctText": "till",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i01",
+      "correctText": "You can pay at the till.",
+      "correctResponseId": "en:lesson-26:session-21:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i02",
+      "correctText": "get",
+      "correctResponseId": "en:lesson-26:session-21:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:word:tale",
+      "correctText": "tale",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i03",
+      "correctText": "I know a tale about a dragon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i04",
+      "correctText": "I have already bought it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:word:hint",
+      "correctText": "hint",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i05",
+      "correctText": "Give me a hint.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i06",
+      "correctText": "We will read after dinner.",
+      "correctResponseId": "en:lesson-26:session-21:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:word:fib",
+      "correctText": "fib",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i07",
+      "correctText": "fib",
+      "correctResponseId": "en:lesson-26:session-21:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i08",
+      "correctText": "Have you tidied your room yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i09",
+      "correctText": "ask",
+      "correctResponseId": "en:lesson-26:session-21:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i10",
+      "correctText": "There is a queue at the till.",
+      "correctResponseId": "en:lesson-26:session-21:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i11",
+      "correctText": "I will finish the tale after we eat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i12",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-21:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i13",
+      "correctText": "Do not tell fibs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i14",
+      "correctText": "I will wash the dishes before we start.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i15",
+      "correctText": "I will help if you get stuck.",
+      "correctResponseId": "en:lesson-26:session-21:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i16",
+      "correctText": "Let us choose another book.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:i17",
+      "correctText": "I will wait while you sign.",
+      "correctResponseId": null
+    }
+  ]
+}

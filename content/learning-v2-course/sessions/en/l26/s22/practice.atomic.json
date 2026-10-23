@@ -1,0 +1,2255 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-22:word:heap",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — heap",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:word:heap:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — heap",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:word:heap:audio",
+            "transcript": "heap"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:word:heap:r1",
+              "targetText": "heap",
+              "meaningByLocale": {
+                "ru": "Куча вещей, часто беспорядочная. A heap of clothes — куча одежды.",
+                "uk": "Купа речей, часто безладна. A heap of clothes — купа одягу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "heap",
+            "definitionByLocale": {
+              "ru": "Куча вещей, часто беспорядочная. A heap of clothes — куча одежды.",
+              "uk": "Купа речей, часто безладна. A heap of clothes — купа одягу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i01:r1",
+            "text": "There is a heap of clothes on the chair."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i01:r2",
+            "text": "There is a heap of clothes on the bed."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i01:r3",
+            "text": "There is a heap of books on the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i01:audio",
+            "transcript": "There is a heap of clothes on the chair."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:i01:r1",
+              "targetText": "There is a heap of clothes on the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i01:r2",
+              "targetText": "There is a heap of clothes on the bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i01:r3",
+              "targetText": "There is a heap of books on the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a heap of clothes on the chair.",
+                "uk": "У записі звучить There is a heap of clothes on the chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a heap of clothes on the chair.",
+                "uk": "У записі звучить There is a heap of clothes on the chair."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите брата освободить стол: «Можешь убрать эти вещи?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите брата освободить стол: «Можешь убрать эти вещи?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you move these things?",
+          "localizedMeaning": {
+            "ru": "Попросите брата освободить стол: «Можешь убрать эти вещи?»",
+            "uk": "Попросіть брата звільнити стіл: «Можеш прибрати ці речі?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "move",
+            "these",
+            "things"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:word:batch",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — batch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:word:batch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — batch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:word:batch:audio",
+            "transcript": "batch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:word:batch:r1",
+              "targetText": "batch",
+              "meaningByLocale": {
+                "ru": "Партия, порция, сделанная за один раз. A batch of biscuits — партия печенья.",
+                "uk": "Партія, порція, зроблена за один раз. A batch of biscuits — партія печива."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "batch",
+            "definitionByLocale": {
+              "ru": "Партия, порция, сделанная за один раз. A batch of biscuits — партия печенья.",
+              "uk": "Партія, порція, зроблена за один раз. A batch of biscuits — партія печива."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i03",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает, что уже готово. Скажите: «Я уже испёк одну партию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i03:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает, что уже готово. Скажите: «Я уже испёк одну партию».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i03:audio",
+            "transcript": "I have already baked one batch."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already baked one batch.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы уберёте кучу вещей до начала готовки. Дополните время уборки.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i04:r1",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i04:r2",
+            "text": "will start"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i04:r3",
+            "text": "starts"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уберёте кучу вещей до начала готовки. Дополните время уборки.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уберёте кучу вещей до начала готовки. Дополните время уборки.",
+            "uk": "Ви приберете купу речей до початку готування. Доповніть час прибирання."
+          },
+          "gappedTargetPhrase": "I will move this heap before we ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-22:i04:r1",
+              "text": "start"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i04:r2",
+              "text": "will start"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i04:r3",
+              "text": "starts"
+            }
+          ],
+          "testedDimension": "Вы уберёте кучу вещей до начала готовки. Дополните время уборки.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i04:r2",
+              "correct": false,
+              "testedDimension": "Вы уберёте кучу вещей до начала готовки. Дополните время уборки.",
+              "feedbackByLocale": {
+                "ru": "После before в придаточном времени start без will.",
+                "uk": "Після before у підрядному часу start без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i04:r3",
+              "correct": false,
+              "testedDimension": "Вы уберёте кучу вещей до начала готовки. Дополните время уборки.",
+              "feedbackByLocale": {
+                "ru": "С we глагол start без -s.",
+                "uk": "З we дієслово start без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:word:blob",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — blob",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:word:blob:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — blob",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:word:blob:audio",
+            "transcript": "blob"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:word:blob:r1",
+              "targetText": "blob",
+              "meaningByLocale": {
+                "ru": "Небольшая бесформенная порция густого вещества. A blob of cream — немного крема одной порцией.",
+                "uk": "Невелика безформна порція густої речовини. A blob of cream — трохи крему однією порцією."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blob",
+            "definitionByLocale": {
+              "ru": "Небольшая бесформенная порция густого вещества. A blob of cream — немного крема одной порцией.",
+              "uk": "Невелика безформна порція густої речовини. A blob of cream — трохи крему однією порцією."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте просьбу украсить печенье.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Услышьте просьбу украсить печенье.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i05:audio",
+            "transcript": "Add a blob of cream."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Add a blob of cream.",
+          "orderedTokens": [
+            "Add",
+            "a",
+            "blob",
+            "of",
+            "cream"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i06:r1",
+            "text": "Have you washed the apples yet?"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i06:r2",
+            "text": "Have you cut the apples yet?"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i06:r3",
+            "text": "Have you washed the bowls yet?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i06:audio",
+            "transcript": "Have you washed the apples yet?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:i06:r1",
+              "targetText": "Have you washed the apples yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i06:r2",
+              "targetText": "Have you cut the apples yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i06:r3",
+              "targetText": "Have you washed the bowls yet?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you washed the apples yet?",
+                "uk": "У записі звучить Have you washed the apples yet?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you washed the apples yet?",
+                "uk": "У записі звучить Have you washed the apples yet?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:word:core",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — core",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:word:core:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — core",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:word:core:audio",
+            "transcript": "core"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:word:core:r1",
+              "targetText": "core",
+              "meaningByLocale": {
+                "ru": "Сердцевина. An apple core — сердцевина яблока с семечками или оставшийся огрызок.",
+                "uk": "Серцевина. An apple core — серцевина яблука з насінням або огризок, що залишився."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "core",
+            "definitionByLocale": {
+              "ru": "Сердцевина. An apple core — сердцевина яблока с семечками или оставшийся огрызок.",
+              "uk": "Серцевина. An apple core — серцевина яблука з насінням або огризок, що залишився."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Серединку яблока с семечками нужно убрать. Назовите её.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i07:r1",
+            "text": "core"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i07:r2",
+            "text": "blob"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i07:r3",
+            "text": "batch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Серединку яблока с семечками нужно убрать. Назовите её.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Серединку яблока с семечками нужно убрать. Назовите её.",
+            "uk": "Серединку яблука з насінням треба прибрати. Назвіть її."
+          },
+          "gappedTargetPhrase": "Remove the ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-22:i07:r1",
+              "text": "core"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i07:r2",
+              "text": "blob"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i07:r3",
+              "text": "batch"
+            }
+          ],
+          "testedDimension": "Серединку яблока с семечками нужно убрать. Назовите её.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i07:r2",
+              "correct": false,
+              "testedDimension": "Серединку яблока с семечками нужно убрать. Назовите её.",
+              "feedbackByLocale": {
+                "ru": "Blob — порция густого вещества, а не середина яблока.",
+                "uk": "Blob — порція густої речовини, а не середина яблука."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i07:r3",
+              "correct": false,
+              "testedDimension": "Серединку яблока с семечками нужно убрать. Назовите её.",
+              "feedbackByLocale": {
+                "ru": "Batch — партия, приготовленная вместе, а не часть яблока.",
+                "uk": "Batch — партія, приготована разом, а не частина яблука."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг предлагает заняться посудой. Ответьте: «Спасибо, это очень поможет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Друг предлагает заняться посудой. Ответьте: «Спасибо, это очень поможет».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i08:audio",
+            "transcript": "Thanks, that will really help."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Thanks, that will really help.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пообещайте добавить крем после остывания печенья: «Я добавлю крем, когда печенье остынет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообещайте добавить крем после остывания печенья: «Я добавлю крем, когда печенье остынет».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will add the cream when the biscuits cool.",
+          "localizedMeaning": {
+            "ru": "Пообещайте добавить крем после остывания печенья: «Я добавлю крем, когда печенье остынет».",
+            "uk": "Пообіцяйте додати крем після охолодження печива: «Я додам крем, коли печиво охолоне»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "add",
+            "the",
+            "cream",
+            "when",
+            "the",
+            "biscuits",
+            "cool"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i10:r1",
+            "text": "This batch is for our neighbours."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i10:r2",
+            "text": "This batch is for our friends."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i10:r3",
+            "text": "The next batch is for our neighbours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i10:audio",
+            "transcript": "This batch is for our neighbours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:i10:r1",
+              "targetText": "This batch is for our neighbours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i10:r2",
+              "targetText": "This batch is for our friends.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i10:r3",
+              "targetText": "The next batch is for our neighbours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This batch is for our neighbours.",
+                "uk": "У записі звучить This batch is for our neighbours."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This batch is for our neighbours.",
+                "uk": "У записі звучить This batch is for our neighbours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы обычно удаляете сердцевину перед запеканием яблок. Дополните привычку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i11:r1",
+            "text": "remove"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i11:r2",
+            "text": "removes"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i11:r3",
+            "text": "removing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы обычно удаляете сердцевину перед запеканием яблок. Дополните привычку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обычно удаляете сердцевину перед запеканием яблок. Дополните привычку.",
+            "uk": "Ви зазвичай видаляєте серцевину перед запіканням яблук. Доповніть звичку."
+          },
+          "gappedTargetPhrase": "If I bake apples, I ___ the core.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-22:i11:r1",
+              "text": "remove"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i11:r2",
+              "text": "removes"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i11:r3",
+              "text": "removing"
+            }
+          ],
+          "testedDimension": "Вы обычно удаляете сердцевину перед запеканием яблок. Дополните привычку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Вы обычно удаляете сердцевину перед запеканием яблок. Дополните привычку.",
+              "feedbackByLocale": {
+                "ru": "С I нужна форма remove без -s.",
+                "uk": "З I потрібна форма remove без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Вы обычно удаляете сердцевину перед запеканием яблок. Дополните привычку.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен глагол remove, не отдельная форма removing.",
+                "uk": "Для звички потрібне дієслово remove, а не окрема форма removing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, что нужно для украшения.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i12:audio"
+        ],
+        "accessibilityLabel": "Услышьте, что нужно для украшения.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i12:audio",
+            "transcript": "One small blob is enough."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "One small blob is enough.",
+          "orderedTokens": [
+            "One",
+            "small",
+            "blob",
+            "is",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат спрашивает, куда положить огрызок. Скажите: «Положи его в мусорное ведро».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i13:audio"
+        ],
+        "accessibilityLabel": "Брат спрашивает, куда положить огрызок. Скажите: «Положи его в мусорное ведро».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i13:audio",
+            "transcript": "Put it in the bin."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Put it in the bin.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сердцевину вы удалили раньше, чем нагрелась духовка. Дополните более раннее действие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i14:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сердцевину вы удалили раньше, чем нагрелась духовка. Дополните более раннее действие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сердцевину вы удалили раньше, чем нагрелась духовка. Дополните более раннее действие.",
+            "uk": "Серцевину ви видалили раніше, ніж нагрілася духовка. Доповніть ранішу дію."
+          },
+          "gappedTargetPhrase": "I ___ removed the core by the time the oven was hot.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-22:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i14:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Сердцевину вы удалили раньше, чем нагрелась духовка. Дополните более раннее действие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i14:r2",
+              "correct": false,
+              "testedDimension": "Сердцевину вы удалили раньше, чем нагрелась духовка. Дополните более раннее действие.",
+              "feedbackByLocale": {
+                "ru": "Was hot — прошлый ориентир; более раннее событие — had removed.",
+                "uk": "Was hot — минулий орієнтир; раніша подія — had removed."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i14:r3",
+              "correct": false,
+              "testedDimension": "Сердцевину вы удалили раньше, чем нагрелась духовка. Дополните более раннее действие.",
+              "feedbackByLocale": {
+                "ru": "Нужно had removed для действия, которое вы выполнили раньше.",
+                "uk": "Потрібно had removed для дії, яку ви виконали раніше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i15:r1",
+            "text": "I will make tea if you want some."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i15:r2",
+            "text": "I will make coffee if you want some."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i15:r3",
+            "text": "I will make tea when you get here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i15:audio",
+            "transcript": "I will make tea if you want some."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:i15:r1",
+              "targetText": "I will make tea if you want some.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i15:r2",
+              "targetText": "I will make coffee if you want some.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i15:r3",
+              "targetText": "I will make tea when you get here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will make tea if you want some.",
+                "uk": "У записі звучить I will make tea if you want some."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will make tea if you want some.",
+                "uk": "У записі звучить I will make tea if you want some."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг написал, что стоит снаружи. Ответьте: «Я открою дверь после того, как вымою руки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг написал, что стоит снаружи. Ответьте: «Я открою дверь после того, как вымою руки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will open the door after I wash my hands.",
+          "localizedMeaning": {
+            "ru": "Друг написал, что стоит снаружи. Ответьте: «Я открою дверь после того, как вымою руки».",
+            "uk": "Друг написав, що стоїть надворі. Дайте відповідь: «Я відчиню двері після того, як помию руки»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "open",
+            "the",
+            "door",
+            "after",
+            "I",
+            "wash",
+            "my",
+            "hands"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает, когда можно пробовать угощение. Ответьте: «Мы поедим после того, как всё остынет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает, когда можно пробовать угощение. Ответьте: «Мы поедим после того, как всё остынет».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i17:audio",
+            "transcript": "We will eat after everything cools."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We will eat after everything cools.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-22:word:heap",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — heap",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:word:heap:audio"
+        ],
+        "accessibilityLabel": "Картка слова — heap",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:word:heap:audio",
+            "transcript": "heap"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:word:heap:r1",
+              "targetText": "heap",
+              "meaningByLocale": {
+                "ru": "Куча вещей, часто беспорядочная. A heap of clothes — куча одежды.",
+                "uk": "Купа речей, часто безладна. A heap of clothes — купа одягу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "heap",
+            "definitionByLocale": {
+              "ru": "Куча вещей, часто беспорядочная. A heap of clothes — куча одежды.",
+              "uk": "Купа речей, часто безладна. A heap of clothes — купа одягу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i01:r1",
+            "text": "There is a heap of clothes on the chair."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i01:r2",
+            "text": "There is a heap of clothes on the bed."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i01:r3",
+            "text": "There is a heap of books on the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i01:audio",
+            "transcript": "There is a heap of clothes on the chair."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:i01:r1",
+              "targetText": "There is a heap of clothes on the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i01:r2",
+              "targetText": "There is a heap of clothes on the bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i01:r3",
+              "targetText": "There is a heap of books on the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a heap of clothes on the chair.",
+                "uk": "У записі звучить There is a heap of clothes on the chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a heap of clothes on the chair.",
+                "uk": "У записі звучить There is a heap of clothes on the chair."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть брата звільнити стіл: «Можеш прибрати ці речі?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть брата звільнити стіл: «Можеш прибрати ці речі?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you move these things?",
+          "localizedMeaning": {
+            "ru": "Попросите брата освободить стол: «Можешь убрать эти вещи?»",
+            "uk": "Попросіть брата звільнити стіл: «Можеш прибрати ці речі?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "move",
+            "these",
+            "things"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:word:batch",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — batch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:word:batch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — batch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:word:batch:audio",
+            "transcript": "batch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:word:batch:r1",
+              "targetText": "batch",
+              "meaningByLocale": {
+                "ru": "Партия, порция, сделанная за один раз. A batch of biscuits — партия печенья.",
+                "uk": "Партія, порція, зроблена за один раз. A batch of biscuits — партія печива."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "batch",
+            "definitionByLocale": {
+              "ru": "Партия, порция, сделанная за один раз. A batch of biscuits — партия печенья.",
+              "uk": "Партія, порція, зроблена за один раз. A batch of biscuits — партія печива."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i03",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра запитує, що вже готове. Скажіть: «Я вже спік одну партію».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i03:audio"
+        ],
+        "accessibilityLabel": "Сестра запитує, що вже готове. Скажіть: «Я вже спік одну партію».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i03:audio",
+            "transcript": "I have already baked one batch."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already baked one batch.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви приберете купу речей до початку готування. Доповніть час прибирання.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i04:r1",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i04:r2",
+            "text": "will start"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i04:r3",
+            "text": "starts"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви приберете купу речей до початку готування. Доповніть час прибирання.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уберёте кучу вещей до начала готовки. Дополните время уборки.",
+            "uk": "Ви приберете купу речей до початку готування. Доповніть час прибирання."
+          },
+          "gappedTargetPhrase": "I will move this heap before we ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-22:i04:r1",
+              "text": "start"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i04:r2",
+              "text": "will start"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i04:r3",
+              "text": "starts"
+            }
+          ],
+          "testedDimension": "Ви приберете купу речей до початку готування. Доповніть час прибирання.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i04:r2",
+              "correct": false,
+              "testedDimension": "Ви приберете купу речей до початку готування. Доповніть час прибирання.",
+              "feedbackByLocale": {
+                "ru": "После before в придаточном времени start без will.",
+                "uk": "Після before у підрядному часу start без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i04:r3",
+              "correct": false,
+              "testedDimension": "Ви приберете купу речей до початку готування. Доповніть час прибирання.",
+              "feedbackByLocale": {
+                "ru": "С we глагол start без -s.",
+                "uk": "З we дієслово start без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:word:blob",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — blob",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:word:blob:audio"
+        ],
+        "accessibilityLabel": "Картка слова — blob",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:word:blob:audio",
+            "transcript": "blob"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:word:blob:r1",
+              "targetText": "blob",
+              "meaningByLocale": {
+                "ru": "Небольшая бесформенная порция густого вещества. A blob of cream — немного крема одной порцией.",
+                "uk": "Невелика безформна порція густої речовини. A blob of cream — трохи крему однією порцією."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blob",
+            "definitionByLocale": {
+              "ru": "Небольшая бесформенная порция густого вещества. A blob of cream — немного крема одной порцией.",
+              "uk": "Невелика безформна порція густої речовини. A blob of cream — трохи крему однією порцією."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте прохання прикрасити печиво.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Почуйте прохання прикрасити печиво.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i05:audio",
+            "transcript": "Add a blob of cream."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Add a blob of cream.",
+          "orderedTokens": [
+            "Add",
+            "a",
+            "blob",
+            "of",
+            "cream"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i06:r1",
+            "text": "Have you washed the apples yet?"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i06:r2",
+            "text": "Have you cut the apples yet?"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i06:r3",
+            "text": "Have you washed the bowls yet?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i06:audio",
+            "transcript": "Have you washed the apples yet?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:i06:r1",
+              "targetText": "Have you washed the apples yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i06:r2",
+              "targetText": "Have you cut the apples yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i06:r3",
+              "targetText": "Have you washed the bowls yet?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you washed the apples yet?",
+                "uk": "У записі звучить Have you washed the apples yet?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you washed the apples yet?",
+                "uk": "У записі звучить Have you washed the apples yet?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:word:core",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — core",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:word:core:audio"
+        ],
+        "accessibilityLabel": "Картка слова — core",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:word:core:audio",
+            "transcript": "core"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:word:core:r1",
+              "targetText": "core",
+              "meaningByLocale": {
+                "ru": "Сердцевина. An apple core — сердцевина яблока с семечками или оставшийся огрызок.",
+                "uk": "Серцевина. An apple core — серцевина яблука з насінням або огризок, що залишився."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "core",
+            "definitionByLocale": {
+              "ru": "Сердцевина. An apple core — сердцевина яблока с семечками или оставшийся огрызок.",
+              "uk": "Серцевина. An apple core — серцевина яблука з насінням або огризок, що залишився."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Серединку яблука з насінням треба прибрати. Назвіть її.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i07:r1",
+            "text": "core"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i07:r2",
+            "text": "blob"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i07:r3",
+            "text": "batch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Серединку яблука з насінням треба прибрати. Назвіть її.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Серединку яблока с семечками нужно убрать. Назовите её.",
+            "uk": "Серединку яблука з насінням треба прибрати. Назвіть її."
+          },
+          "gappedTargetPhrase": "Remove the ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-22:i07:r1",
+              "text": "core"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i07:r2",
+              "text": "blob"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i07:r3",
+              "text": "batch"
+            }
+          ],
+          "testedDimension": "Серединку яблука з насінням треба прибрати. Назвіть її.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i07:r2",
+              "correct": false,
+              "testedDimension": "Серединку яблука з насінням треба прибрати. Назвіть її.",
+              "feedbackByLocale": {
+                "ru": "Blob — порция густого вещества, а не середина яблока.",
+                "uk": "Blob — порція густої речовини, а не середина яблука."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i07:r3",
+              "correct": false,
+              "testedDimension": "Серединку яблука з насінням треба прибрати. Назвіть її.",
+              "feedbackByLocale": {
+                "ru": "Batch — партия, приготовленная вместе, а не часть яблока.",
+                "uk": "Batch — партія, приготована разом, а не частина яблука."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг пропонує зайнятися посудом. Дайте відповідь: «Дякую, це дуже допоможе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Друг пропонує зайнятися посудом. Дайте відповідь: «Дякую, це дуже допоможе».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i08:audio",
+            "transcript": "Thanks, that will really help."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Thanks, that will really help.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пообіцяйте додати крем після охолодження печива: «Я додам крем, коли печиво охолоне».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообіцяйте додати крем після охолодження печива: «Я додам крем, коли печиво охолоне».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will add the cream when the biscuits cool.",
+          "localizedMeaning": {
+            "ru": "Пообещайте добавить крем после остывания печенья: «Я добавлю крем, когда печенье остынет».",
+            "uk": "Пообіцяйте додати крем після охолодження печива: «Я додам крем, коли печиво охолоне»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "add",
+            "the",
+            "cream",
+            "when",
+            "the",
+            "biscuits",
+            "cool"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i10:r1",
+            "text": "This batch is for our neighbours."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i10:r2",
+            "text": "This batch is for our friends."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i10:r3",
+            "text": "The next batch is for our neighbours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i10:audio",
+            "transcript": "This batch is for our neighbours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:i10:r1",
+              "targetText": "This batch is for our neighbours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i10:r2",
+              "targetText": "This batch is for our friends.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i10:r3",
+              "targetText": "The next batch is for our neighbours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This batch is for our neighbours.",
+                "uk": "У записі звучить This batch is for our neighbours."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This batch is for our neighbours.",
+                "uk": "У записі звучить This batch is for our neighbours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зазвичай видаляєте серцевину перед запіканням яблук. Доповніть звичку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i11:r1",
+            "text": "remove"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i11:r2",
+            "text": "removes"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i11:r3",
+            "text": "removing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зазвичай видаляєте серцевину перед запіканням яблук. Доповніть звичку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обычно удаляете сердцевину перед запеканием яблок. Дополните привычку.",
+            "uk": "Ви зазвичай видаляєте серцевину перед запіканням яблук. Доповніть звичку."
+          },
+          "gappedTargetPhrase": "If I bake apples, I ___ the core.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-22:i11:r1",
+              "text": "remove"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i11:r2",
+              "text": "removes"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i11:r3",
+              "text": "removing"
+            }
+          ],
+          "testedDimension": "Ви зазвичай видаляєте серцевину перед запіканням яблук. Доповніть звичку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Ви зазвичай видаляєте серцевину перед запіканням яблук. Доповніть звичку.",
+              "feedbackByLocale": {
+                "ru": "С I нужна форма remove без -s.",
+                "uk": "З I потрібна форма remove без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Ви зазвичай видаляєте серцевину перед запіканням яблук. Доповніть звичку.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен глагол remove, не отдельная форма removing.",
+                "uk": "Для звички потрібне дієслово remove, а не окрема форма removing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, що потрібно для прикрашання.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i12:audio"
+        ],
+        "accessibilityLabel": "Почуйте, що потрібно для прикрашання.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i12:audio",
+            "transcript": "One small blob is enough."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "One small blob is enough.",
+          "orderedTokens": [
+            "One",
+            "small",
+            "blob",
+            "is",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат запитує, куди покласти огризок. Скажіть: «Поклади його у відро для сміття».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i13:audio"
+        ],
+        "accessibilityLabel": "Брат запитує, куди покласти огризок. Скажіть: «Поклади його у відро для сміття».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i13:audio",
+            "transcript": "Put it in the bin."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Put it in the bin.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Серцевину ви видалили раніше, ніж нагрілася духовка. Доповніть ранішу дію.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i14:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Серцевину ви видалили раніше, ніж нагрілася духовка. Доповніть ранішу дію.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сердцевину вы удалили раньше, чем нагрелась духовка. Дополните более раннее действие.",
+            "uk": "Серцевину ви видалили раніше, ніж нагрілася духовка. Доповніть ранішу дію."
+          },
+          "gappedTargetPhrase": "I ___ removed the core by the time the oven was hot.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-22:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i14:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Серцевину ви видалили раніше, ніж нагрілася духовка. Доповніть ранішу дію.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i14:r2",
+              "correct": false,
+              "testedDimension": "Серцевину ви видалили раніше, ніж нагрілася духовка. Доповніть ранішу дію.",
+              "feedbackByLocale": {
+                "ru": "Was hot — прошлый ориентир; более раннее событие — had removed.",
+                "uk": "Was hot — минулий орієнтир; раніша подія — had removed."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i14:r3",
+              "correct": false,
+              "testedDimension": "Серцевину ви видалили раніше, ніж нагрілася духовка. Доповніть ранішу дію.",
+              "feedbackByLocale": {
+                "ru": "Нужно had removed для действия, которое вы выполнили раньше.",
+                "uk": "Потрібно had removed для дії, яку ви виконали раніше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-22:i15:r1",
+            "text": "I will make tea if you want some."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i15:r2",
+            "text": "I will make coffee if you want some."
+          },
+          {
+            "responseId": "en:lesson-26:session-22:i15:r3",
+            "text": "I will make tea when you get here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i15:audio",
+            "transcript": "I will make tea if you want some."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-22:i15:r1",
+              "targetText": "I will make tea if you want some.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i15:r2",
+              "targetText": "I will make coffee if you want some.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i15:r3",
+              "targetText": "I will make tea when you get here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-22:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will make tea if you want some.",
+                "uk": "У записі звучить I will make tea if you want some."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-22:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will make tea if you want some.",
+                "uk": "У записі звучить I will make tea if you want some."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг написав, що стоїть надворі. Дайте відповідь: «Я відчиню двері після того, як помию руки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг написав, що стоїть надворі. Дайте відповідь: «Я відчиню двері після того, як помию руки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will open the door after I wash my hands.",
+          "localizedMeaning": {
+            "ru": "Друг написал, что стоит снаружи. Ответьте: «Я открою дверь после того, как вымою руки».",
+            "uk": "Друг написав, що стоїть надворі. Дайте відповідь: «Я відчиню двері після того, як помию руки»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "open",
+            "the",
+            "door",
+            "after",
+            "I",
+            "wash",
+            "my",
+            "hands"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра запитує, коли можна куштувати частування. Дайте відповідь: «Ми поїмо після того, як усе охолоне».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Сестра запитує, коли можна куштувати частування. Дайте відповідь: «Ми поїмо після того, як усе охолоне».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-22:i17:audio",
+            "transcript": "We will eat after everything cools."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We will eat after everything cools.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-22:word:heap",
+      "correctText": "heap",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i01",
+      "correctText": "There is a heap of clothes on the chair.",
+      "correctResponseId": "en:lesson-26:session-22:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i02",
+      "correctText": "Can you move these things?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:word:batch",
+      "correctText": "batch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i03",
+      "correctText": "I have already baked one batch.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i04",
+      "correctText": "start",
+      "correctResponseId": "en:lesson-26:session-22:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:word:blob",
+      "correctText": "blob",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i05",
+      "correctText": "Add a blob of cream.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i06",
+      "correctText": "Have you washed the apples yet?",
+      "correctResponseId": "en:lesson-26:session-22:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:word:core",
+      "correctText": "core",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i07",
+      "correctText": "core",
+      "correctResponseId": "en:lesson-26:session-22:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i08",
+      "correctText": "Thanks, that will really help.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i09",
+      "correctText": "I will add the cream when the biscuits cool.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i10",
+      "correctText": "This batch is for our neighbours.",
+      "correctResponseId": "en:lesson-26:session-22:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i11",
+      "correctText": "remove",
+      "correctResponseId": "en:lesson-26:session-22:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i12",
+      "correctText": "One small blob is enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i13",
+      "correctText": "Put it in the bin.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i14",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-22:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i15",
+      "correctText": "I will make tea if you want some.",
+      "correctResponseId": "en:lesson-26:session-22:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i16",
+      "correctText": "I will open the door after I wash my hands.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:i17",
+      "correctText": "We will eat after everything cools.",
+      "correctResponseId": null
+    }
+  ]
+}

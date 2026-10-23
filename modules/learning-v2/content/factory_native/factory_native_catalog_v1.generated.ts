@@ -9940,4 +9940,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future time clauses; first and zero conditional; already, yet; past perfect","uk":"future time clauses; first and zero conditional; already, yet; past perfect"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 20,
+    sourceFingerprint: "ed46846223985c51a99af40cbd5b4eeba735020c9c6fcea1a47e28920f25cd5e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future time clauses; first and zero conditional; already, yet; past perfect","uk":"future time clauses; first and zero conditional; already, yet; past perfect"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 21,
+    sourceFingerprint: "78c710d006200454b0abac5ff92d14ed2d79dad7e158151a6819350a17671896",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future time clauses; zero and first conditional; already, yet; past perfect","uk":"future time clauses; zero and first conditional; already, yet; past perfect"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 22,
+    sourceFingerprint: "010beb0444ce7fba16e6f3d8f1371d07d886c114d7a7b2a41e8df052942ca8d4",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future time clauses; zero and first conditional; already, yet; past perfect","uk":"future time clauses; zero and first conditional; already, yet; past perfect"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
 ]);

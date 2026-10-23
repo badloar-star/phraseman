@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-21:word:till",
+    "correctText": "till",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i01",
+    "correctText": "You can pay at the till.",
+    "correctResponseId": "en:lesson-26:session-21:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i02",
+    "correctText": "get",
+    "correctResponseId": "en:lesson-26:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:word:tale",
+    "correctText": "tale",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i03",
+    "correctText": "I know a tale about a dragon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i04",
+    "correctText": "I have already bought it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:word:hint",
+    "correctText": "hint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i05",
+    "correctText": "Give me a hint.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i06",
+    "correctText": "We will read after dinner.",
+    "correctResponseId": "en:lesson-26:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:word:fib",
+    "correctText": "fib",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i07",
+    "correctText": "fib",
+    "correctResponseId": "en:lesson-26:session-21:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i08",
+    "correctText": "Have you tidied your room yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i09",
+    "correctText": "ask",
+    "correctResponseId": "en:lesson-26:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i10",
+    "correctText": "There is a queue at the till.",
+    "correctResponseId": "en:lesson-26:session-21:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i11",
+    "correctText": "I will finish the tale after we eat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i12",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i13",
+    "correctText": "Do not tell fibs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i14",
+    "correctText": "I will wash the dishes before we start.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i15",
+    "correctText": "I will help if you get stuck.",
+    "correctResponseId": "en:lesson-26:session-21:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i16",
+    "correctText": "Let us choose another book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-21:i17",
+    "correctText": "I will wait while you sign.",
+    "correctResponseId": null
+  }
+]

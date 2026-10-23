@@ -1,0 +1,1081 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-20:word:snooze",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — snooze",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:word:snooze:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — snooze",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:word:snooze:audio",
+          "transcript": "snooze"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-20:word:snooze:r1",
+            "targetText": "snooze",
+            "meaningByLocale": {
+              "ru": "Недолго дремать. Snooze for ten minutes — подремать десять минут.",
+              "uk": "Недовго дрімати. Snooze for ten minutes — подрімати десять хвилин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "snooze",
+          "definitionByLocale": {
+            "ru": "Недолго дремать. Snooze for ten minutes — подремать десять минут.",
+            "uk": "Недовго дрімати. Snooze for ten minutes — подрімати десять хвилин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-20:i01:r1",
+          "text": "I will snooze for ten minutes."
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i01:r2",
+          "text": "I will snooze for twenty minutes."
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i01:r3",
+          "text": "I will wait for ten minutes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:i01:audio",
+          "transcript": "I will snooze for ten minutes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-20:i01:r1",
+            "targetText": "I will snooze for ten minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i01:r2",
+            "targetText": "I will snooze for twenty minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i01:r3",
+            "targetText": "I will wait for ten minutes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-20:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will snooze for ten minutes.",
+              "uk": "У записі звучить I will snooze for ten minutes."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will snooze for ten minutes.",
+              "uk": "У записі звучить I will snooze for ten minutes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы поставили будильник и встанете после его сигнала. Дополните время подъёма.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-20:i02:r1",
+          "text": "rings"
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i02:r2",
+          "text": "will ring"
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i02:r3",
+          "text": "ring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы поставили будильник и встанете после его сигнала. Дополните время подъёма.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы поставили будильник и встанете после его сигнала. Дополните время подъёма.",
+          "uk": "Ви поставили будильник і встанете після його сигналу. Доповніть час підйому."
+        },
+        "gappedTargetPhrase": "I will get up when the alarm ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-20:i02:r1",
+            "text": "rings"
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i02:r2",
+            "text": "will ring"
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i02:r3",
+            "text": "ring"
+          }
+        ],
+        "testedDimension": "Вы поставили будильник и встанете после его сигнала. Дополните время подъёма.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Вы поставили будильник и встанете после его сигнала. Дополните время подъёма.",
+            "feedbackByLocale": {
+              "ru": "После when в придаточном времени о будущем rings без will.",
+              "uk": "Після when у підрядному часу про майбутнє rings без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Вы поставили будильник и встанете после его сигнала. Дополните время подъёма.",
+            "feedbackByLocale": {
+              "ru": "The alarm — единственное число: rings.",
+              "uk": "The alarm — однина: rings."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:word:stash",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:word:stash:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:word:stash:audio",
+          "transcript": "stash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-20:word:stash:r1",
+            "targetText": "stash",
+            "meaningByLocale": {
+              "ru": "Припрятать, убрать в укромное место. Stash the present — припрятать подарок.",
+              "uk": "Приховати, прибрати в затишне місце. Stash the present — приховати подарунок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stash",
+          "definitionByLocale": {
+            "ru": "Припрятать, убрать в укромное место. Stash the present — припрятать подарок.",
+            "uk": "Приховати, прибрати в затишне місце. Stash the present — приховати подарунок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите брата: «Припрячь подарок в шкафу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите брата: «Припрячь подарок в шкафу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Stash the present in the cupboard.",
+        "localizedMeaning": {
+          "ru": "Попросите брата: «Припрячь подарок в шкафу».",
+          "uk": "Попросіть брата: «Приховай подарунок у шафі»."
+        },
+        "orderedTokens": [
+          "Stash",
+          "the",
+          "present",
+          "in",
+          "the",
+          "cupboard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра спрашивает, готова ли комната. Ответьте: «Я уже убрал стол».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:i04:audio"
+      ],
+      "accessibilityLabel": "Сестра спрашивает, готова ли комната. Ответьте: «Я уже убрал стол».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:i04:audio",
+          "transcript": "I have already cleared the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have already cleared the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:word:dump",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dump",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:word:dump:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dump",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:word:dump:audio",
+          "transcript": "dump"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-20:word:dump:r1",
+            "targetText": "dump",
+            "meaningByLocale": {
+              "ru": "Бросить, свалить небрежно в одно место. Dump clothes on the floor — бросить одежду на пол.",
+              "uk": "Кинути, звалити недбало в одне місце. Dump clothes on the floor — кинути одяг на підлогу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dump",
+          "definitionByLocale": {
+            "ru": "Бросить, свалить небрежно в одно место. Dump clothes on the floor — бросить одежду на пол.",
+            "uk": "Кинути, звалити недбало в одне місце. Dump clothes on the floor — кинути одяг на підлогу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-20:i05:r1",
+          "text": "Do not dump your clothes on the floor."
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i05:r2",
+          "text": "Do not dump your bags on the floor."
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i05:r3",
+          "text": "Do not dump your clothes on the bed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:i05:audio",
+          "transcript": "Do not dump your clothes on the floor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-20:i05:r1",
+            "targetText": "Do not dump your clothes on the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i05:r2",
+            "targetText": "Do not dump your bags on the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i05:r3",
+            "targetText": "Do not dump your clothes on the bed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do not dump your clothes on the floor.",
+              "uk": "У записі звучить Do not dump your clothes on the floor."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do not dump your clothes on the floor.",
+              "uk": "У записі звучить Do not dump your clothes on the floor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос о ключах перед выходом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:i06:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос о ключах перед выходом.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:i06:audio",
+          "transcript": "Have you found your keys yet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you found your keys yet?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "found",
+          "your",
+          "keys",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:word:chuck",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chuck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:word:chuck:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chuck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:word:chuck:audio",
+          "transcript": "chuck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-20:word:chuck:r1",
+            "targetText": "chuck",
+            "meaningByLocale": {
+              "ru": "Бросить; разговорное слово. Chuck it away — выбросить это.",
+              "uk": "Кинути; розмовне слово. Chuck it away — викинути це."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chuck",
+          "definitionByLocale": {
+            "ru": "Бросить; разговорное слово. Chuck it away — выбросить это.",
+            "uk": "Кинути; розмовне слово. Chuck it away — викинути це."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг сидит рядом с мягкой подушкой. Попросите: «Брось мне подушку». Используйте chuck.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:i07:audio"
+      ],
+      "accessibilityLabel": "Друг сидит рядом с мягкой подушкой. Попросите: «Брось мне подушку». Используйте chuck.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:i07:audio",
+          "transcript": "Chuck me the cushion."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Chuck me the cushion.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы всегда убираете обувь, чтобы не оставлять проход занятым. Дополните привычку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-20:i08:r1",
+          "text": "move"
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i08:r2",
+          "text": "moves"
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i08:r3",
+          "text": "moving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы всегда убираете обувь, чтобы не оставлять проход занятым. Дополните привычку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы всегда убираете обувь, чтобы не оставлять проход занятым. Дополните привычку.",
+          "uk": "Ви завжди прибираєте взуття, щоб не залишати прохід зайнятим. Доповніть звичку."
+        },
+        "gappedTargetPhrase": "If my shoes are in the way, I ___ them.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-20:i08:r1",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i08:r2",
+            "text": "moves"
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i08:r3",
+            "text": "moving"
+          }
+        ],
+        "testedDimension": "Вы всегда убираете обувь, чтобы не оставлять проход занятым. Дополните привычку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы всегда убираете обувь, чтобы не оставлять проход занятым. Дополните привычку.",
+            "feedbackByLocale": {
+              "ru": "С I глагол move без -s.",
+              "uk": "З I дієслово move без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы всегда убираете обувь, чтобы не оставлять проход занятым. Дополните привычку.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужен глагол move, не отдельная форма moving.",
+              "uk": "Для звички потрібне дієслово move, а не окрема форма moving."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Брат замечает сломанную ручку. Скажите: «Можешь её выбросить». Используйте chuck.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат замечает сломанную ручку. Скажите: «Можешь её выбросить». Используйте chuck.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can chuck it away.",
+        "localizedMeaning": {
+          "ru": "Брат замечает сломанную ручку. Скажите: «Можешь её выбросить». Используйте chuck.",
+          "uk": "Брат помічає зламану ручку. Скажіть: «Можеш її викинути». Використайте chuck."
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "chuck",
+          "it",
+          "away"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-20:i10:r1",
+          "text": "I had stashed the gift before Anna arrived."
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i10:r2",
+          "text": "I had wrapped the gift before Anna arrived."
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i10:r3",
+          "text": "I had stashed the gift before Sam arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:i10:audio",
+          "transcript": "I had stashed the gift before Anna arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-20:i10:r1",
+            "targetText": "I had stashed the gift before Anna arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i10:r2",
+            "targetText": "I had wrapped the gift before Anna arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i10:r3",
+            "targetText": "I had stashed the gift before Sam arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-20:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I had stashed the gift before Anna arrived.",
+              "uk": "У записі звучить I had stashed the gift before Anna arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I had stashed the gift before Anna arrived.",
+              "uk": "У записі звучить I had stashed the gift before Anna arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пообещайте освободить пол до прихода друга. Дополните время.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-20:i11:r1",
+          "text": "get"
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i11:r2",
+          "text": "will get"
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i11:r3",
+          "text": "gets"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообещайте освободить пол до прихода друга. Дополните время.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пообещайте освободить пол до прихода друга. Дополните время.",
+          "uk": "Пообіцяйте звільнити підлогу до приходу друга. Доповніть час."
+        },
+        "gappedTargetPhrase": "I will clear the floor before you ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-20:i11:r1",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i11:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i11:r3",
+            "text": "gets"
+          }
+        ],
+        "testedDimension": "Пообещайте освободить пол до прихода друга. Дополните время.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Пообещайте освободить пол до прихода друга. Дополните время.",
+            "feedbackByLocale": {
+              "ru": "После before в придаточном времени get без will.",
+              "uk": "Після before у підрядному часу get без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Пообещайте освободить пол до прихода друга. Дополните время.",
+            "feedbackByLocale": {
+              "ru": "С you нужен get без -s.",
+              "uk": "З you потрібне get без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Мама спрашивает, чем вы занимались на диване. Ответьте: «Я немного подремал». Используйте snoozed.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Мама спрашивает, чем вы занимались на диване. Ответьте: «Я немного подремал». Используйте snoozed.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:i12:audio",
+          "transcript": "I snoozed for a while."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I snoozed for a while.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте план после уборки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Услышьте план после уборки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:i13:audio",
+          "transcript": "We will have tea after we finish."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will have tea after we finish.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "have",
+          "tea",
+          "after",
+          "we",
+          "finish"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "К приходу Анны вы уже припрятали подарок. Дополните более раннее событие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-20:i14:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i14:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i14:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "К приходу Анны вы уже припрятали подарок. Дополните более раннее событие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "К приходу Анны вы уже припрятали подарок. Дополните более раннее событие.",
+          "uk": "До приходу Анни ви вже приховали подарунок. Доповніть ранішу подію."
+        },
+        "gappedTargetPhrase": "I ___ stashed the present by the time Anna arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-20:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i14:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "К приходу Анны вы уже припрятали подарок. Дополните более раннее событие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-20:i14:r2",
+            "correct": false,
+            "testedDimension": "К приходу Анны вы уже припрятали подарок. Дополните более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "Arrived задаёт прошлый момент, поэтому had stashed.",
+              "uk": "Arrived задає минулий момент, тому had stashed."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i14:r3",
+            "correct": false,
+            "testedDimension": "К приходу Анны вы уже припрятали подарок. Дополните более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "Нужно had stashed для действия, которое вы выполнили раньше.",
+              "uk": "Потрібно had stashed для дії, яку ви виконали раніше."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-20:i15:r1",
+          "text": "Please do not dump everything here."
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i15:r2",
+          "text": "Please do not leave anything here."
+        },
+        {
+          "responseId": "en:lesson-26:session-20:i15:r3",
+          "text": "Please do not dump everything there."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:i15:audio",
+          "transcript": "Please do not dump everything here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-20:i15:r1",
+            "targetText": "Please do not dump everything here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i15:r2",
+            "targetText": "Please do not leave anything here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i15:r3",
+            "targetText": "Please do not dump everything there.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-20:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please do not dump everything here.",
+              "uk": "У записі звучить Please do not dump everything here."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-20:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please do not dump everything here.",
+              "uk": "У записі звучить Please do not dump everything here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы обещаете помочь брату, если останется время. Скажите: «Я помогу тебе, если закончу рано».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы обещаете помочь брату, если останется время. Скажите: «Я помогу тебе, если закончу рано».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will help you if I finish early.",
+        "localizedMeaning": {
+          "ru": "Вы обещаете помочь брату, если останется время. Скажите: «Я помогу тебе, если закончу рано».",
+          "uk": "Ви обіцяєте допомогти братові, якщо залишиться час. Скажіть: «Я допоможу тобі, якщо закінчу рано»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "help",
+          "you",
+          "if",
+          "I",
+          "finish",
+          "early"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга пока болеет и не придёт сегодня. Скажите о своих планах: «Мы встретимся, когда ты поправишься».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Подруга пока болеет и не придёт сегодня. Скажите о своих планах: «Мы встретимся, когда ты поправишься».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-20:i17:audio",
+          "transcript": "We will meet when you recover."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We will meet when you recover.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9e4924e104ae7c4a87906fcee044a966cdf1d371393d08cc03f17b7d2fae83e1"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "future time clauses; zero and first conditional; already, yet; past perfect",
+    "uk": "future time clauses; zero and first conditional; already, yet; past perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Освободить место",
+        "uk": "Звільнити місце"
+      },
+      "bodyByLocale": {
+        "ru": "Heap — куча вещей, сложенных вместе, часто беспорядочно: a heap of clothes — куча одежды. I will move this heap before we start — я уберу эту кучу перед тем, как мы начнём. После before о будущем — start, без will. I have already cleared the table — я уже освободил стол — сообщает результат сейчас, с already между have и cleared.",
+        "uk": "Heap — купа речей, складених разом, часто безладно: a heap of clothes — купа одягу. I will move this heap before we start — я приберу цю купу перед тим, як ми почнемо. Після before про майбутнє — start, без will. I have already cleared the table — я вже звільнив стіл — повідомляє результат зараз, з already між have та cleared."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-22:intro1:r1",
+              "text": "I will move this heap before we start."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro1:r2",
+              "text": "I will move this heap before we will start."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro1:r3",
+              "text": "I will move this heap before we starts."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-22:intro1:r1",
+              "text": "I will move this heap before we start."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro1:r2",
+              "text": "I will move this heap before we will start."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro1:r3",
+              "text": "I will move this heap before we starts."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Испечь печенье",
+        "uk": "Спекти печиво"
+      },
+      "bodyByLocale": {
+        "ru": "Batch — партия, порция вещей, которые сделаны вместе: a batch of biscuits — партия печенья, испечённая за один раз. Blob — небольшая бесформенная порция густого вещества: a blob of cream — немного крема одной порцией. I will add the cream when the biscuits cool — я добавлю крем, когда печенье остынет. После when — cool, хотя речь о будущем.",
+        "uk": "Batch — партія, порція речей, які зроблено разом: a batch of biscuits — партія печива, спечена за один раз. Blob — невелика безформна порція густої речовини: a blob of cream — трохи крему однією порцією. I will add the cream when the biscuits cool — я додам крем, коли печиво охолоне. Після when — cool, хоча йдеться про майбутнє."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-22:intro2:r1",
+              "text": "I will add the cream when the biscuits cool."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro2:r2",
+              "text": "I will add the cream when the biscuits will cool."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro2:r3",
+              "text": "I will add the cream when the biscuits cools."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-22:intro2:r1",
+              "text": "I will add the cream when the biscuits cool."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro2:r2",
+              "text": "I will add the cream when the biscuits will cool."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro2:r3",
+              "text": "I will add the cream when the biscuits cools."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Серединка яблока",
+        "uk": "Серединка яблука"
+      },
+      "bodyByLocale": {
+        "ru": "Core — сердцевина; у яблока это середина с семечками, которая часто остаётся после еды. An apple core — огрызок или сердцевина яблока. I had removed the core by the time the oven was hot — я уже удалил сердцевину к тому времени, как духовка нагрелась. Had removed — более раннее действие. Если описываем обычное действие: If I bake apples, I remove the core — когда я запекаю яблоки, я удаляю сердцевину.",
+        "uk": "Core — серцевина; у яблука це середина з насінням, яка часто залишається після їжі. An apple core — огризок або серцевина яблука. I had removed the core by the time the oven was hot — я вже видалив серцевину на той час, коли духовка нагрілася. Had removed — раніша дія. Якщо описуємо звичайну дію: If I bake apples, I remove the core — коли я запікаю яблука, я видаляю серцевину."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-22:intro3:r1",
+              "text": "I had removed the core by the time the oven was hot."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro3:r2",
+              "text": "I had remove the core by the time the oven was hot."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro3:r3",
+              "text": "I have removed the core by the time the oven was hot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-22:intro3:r1",
+              "text": "I had removed the core by the time the oven was hot."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro3:r2",
+              "text": "I had remove the core by the time the oven was hot."
+            },
+            {
+              "responseId": "en:lesson-26:session-22:intro3:r3",
+              "text": "I have removed the core by the time the oven was hot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b762304e270efb30eda33c0c3f45a955a9628b142463c74b63414d0c82d8642b"
+}

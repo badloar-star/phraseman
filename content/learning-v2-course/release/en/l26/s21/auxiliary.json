@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-21:intro1:r2": {
+          "ru": "После when здесь get без will.",
+          "uk": "Після when тут get без will."
+        },
+        "en:lesson-26:session-21:intro1:r3": {
+          "ru": "С we используется get без -s.",
+          "uk": "З we використовується get без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-21:intro2:r2": {
+          "ru": "В придаточном времени после after нужна форма eat без will.",
+          "uk": "У підрядному часу після after потрібна форма eat без will."
+        },
+        "en:lesson-26:session-21:intro2:r3": {
+          "ru": "С we глагол eat без -s.",
+          "uk": "З we дієслово eat без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-21:intro3:r2": {
+          "ru": "После have нужна третья форма told.",
+          "uk": "Після have потрібна третя форма told."
+        },
+        "en:lesson-26:session-21:intro3:r3": {
+          "ru": "С I используем have.",
+          "uk": "З I вживаємо have."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e00c40b5bd59b441a445539ecf7bd8daf876e85353ea4ea575771e4c543173c8"
+}

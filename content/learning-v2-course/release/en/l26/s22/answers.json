@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-22:word:heap",
+    "correctText": "heap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i01",
+    "correctText": "There is a heap of clothes on the chair.",
+    "correctResponseId": "en:lesson-26:session-22:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i02",
+    "correctText": "Can you move these things?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:word:batch",
+    "correctText": "batch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i03",
+    "correctText": "I have already baked one batch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i04",
+    "correctText": "start",
+    "correctResponseId": "en:lesson-26:session-22:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:word:blob",
+    "correctText": "blob",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i05",
+    "correctText": "Add a blob of cream.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i06",
+    "correctText": "Have you washed the apples yet?",
+    "correctResponseId": "en:lesson-26:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:word:core",
+    "correctText": "core",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i07",
+    "correctText": "core",
+    "correctResponseId": "en:lesson-26:session-22:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i08",
+    "correctText": "Thanks, that will really help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i09",
+    "correctText": "I will add the cream when the biscuits cool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i10",
+    "correctText": "This batch is for our neighbours.",
+    "correctResponseId": "en:lesson-26:session-22:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i11",
+    "correctText": "remove",
+    "correctResponseId": "en:lesson-26:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i12",
+    "correctText": "One small blob is enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i13",
+    "correctText": "Put it in the bin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-22:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i15",
+    "correctText": "I will make tea if you want some.",
+    "correctResponseId": "en:lesson-26:session-22:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i16",
+    "correctText": "I will open the door after I wash my hands.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-22:i17",
+    "correctText": "We will eat after everything cools.",
+    "correctResponseId": null
+  }
+]

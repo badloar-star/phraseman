@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-20:intro1:r2": {
+          "ru": "После when в придаточном времени о будущем rings без will.",
+          "uk": "Після when у підрядному часу про майбутнє rings без will."
+        },
+        "en:lesson-26:session-20:intro1:r3": {
+          "ru": "The alarm — единственное число: rings.",
+          "uk": "The alarm — однина: rings."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-20:intro2:r2": {
+          "ru": "После had нужна форма stashed.",
+          "uk": "Після had потрібна форма stashed."
+        },
+        "en:lesson-26:session-20:intro2:r3": {
+          "ru": "Arrived задаёт прошлый момент; более раннее событие — had stashed.",
+          "uk": "Arrived задає минулий момент; раніша подія — had stashed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-20:intro3:r2": {
+          "ru": "После before в придаточном времени о будущем get без will.",
+          "uk": "Після before у підрядному часу про майбутнє get без will."
+        },
+        "en:lesson-26:session-20:intro3:r3": {
+          "ru": "С you глагол get без -s.",
+          "uk": "З you дієслово get без -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d2a4eec76b1a4c3aa0ff08b78642b811e06fd11fddc91af413509c51015afc42"
+}

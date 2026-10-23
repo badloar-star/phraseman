@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-22:intro1:r2": {
+          "ru": "После before в придаточном времени о будущем start без will.",
+          "uk": "Після before у підрядному часу про майбутнє start без will."
+        },
+        "en:lesson-26:session-22:intro1:r3": {
+          "ru": "С we глагол start без -s.",
+          "uk": "З we дієслово start без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-22:intro2:r2": {
+          "ru": "В придаточном времени после when cool без will.",
+          "uk": "У підрядному часу після when cool без will."
+        },
+        "en:lesson-26:session-22:intro2:r3": {
+          "ru": "The biscuits — множественное число, поэтому cool без -s.",
+          "uk": "The biscuits — множина, тому cool без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-22:intro3:r2": {
+          "ru": "После had нужна форма removed.",
+          "uk": "Після had потрібна форма removed."
+        },
+        "en:lesson-26:session-22:intro3:r3": {
+          "ru": "Was hot задаёт прошлый момент; более раннее событие — had removed.",
+          "uk": "Was hot задає минулий момент; раніша подія — had removed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e98b1bfadede16296ea92c50d4d5d200ad39424e0585869e2d17893fe3618bbd"
+}

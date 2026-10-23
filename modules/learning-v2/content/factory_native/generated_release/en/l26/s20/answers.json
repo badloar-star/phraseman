@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-20:word:snooze",
+    "correctText": "snooze",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i01",
+    "correctText": "I will snooze for ten minutes.",
+    "correctResponseId": "en:lesson-26:session-20:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i02",
+    "correctText": "rings",
+    "correctResponseId": "en:lesson-26:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:word:stash",
+    "correctText": "stash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i03",
+    "correctText": "Stash the present in the cupboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i04",
+    "correctText": "I have already cleared the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:word:dump",
+    "correctText": "dump",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i05",
+    "correctText": "Do not dump your clothes on the floor.",
+    "correctResponseId": "en:lesson-26:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i06",
+    "correctText": "Have you found your keys yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:word:chuck",
+    "correctText": "chuck",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i07",
+    "correctText": "Chuck me the cushion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i08",
+    "correctText": "move",
+    "correctResponseId": "en:lesson-26:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i09",
+    "correctText": "You can chuck it away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i10",
+    "correctText": "I had stashed the gift before Anna arrived.",
+    "correctResponseId": "en:lesson-26:session-20:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i11",
+    "correctText": "get",
+    "correctResponseId": "en:lesson-26:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i12",
+    "correctText": "I snoozed for a while.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i13",
+    "correctText": "We will have tea after we finish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-20:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i15",
+    "correctText": "Please do not dump everything here.",
+    "correctResponseId": "en:lesson-26:session-20:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i16",
+    "correctText": "I will help you if I finish early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-20:i17",
+    "correctText": "We will meet when you recover.",
+    "correctResponseId": null
+  }
+]

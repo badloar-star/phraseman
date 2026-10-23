@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-18:intro1:r2": {
+          "ru": "Для более раннего действия в прошлом нужно had.",
+          "uk": "Для ранішої дії в минулому потрібно had."
+        },
+        "en:lesson-25:session-18:intro1:r3": {
+          "ru": "Здесь нужно had + третья форма.",
+          "uk": "Тут потрібно had + третя форма."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-18:intro2:r2": {
+          "ru": "Для более раннего действия в прошлом нужно had.",
+          "uk": "Для ранішої дії в минулому потрібно had."
+        },
+        "en:lesson-25:session-18:intro2:r3": {
+          "ru": "Здесь нужно had + третья форма.",
+          "uk": "Тут потрібно had + третя форма."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-18:intro3:r2": {
+          "ru": "Для более раннего действия в прошлом нужно had.",
+          "uk": "Для ранішої дії в минулому потрібно had."
+        },
+        "en:lesson-25:session-18:intro3:r3": {
+          "ru": "Здесь нужно had + третья форма.",
+          "uk": "Тут потрібно had + третя форма."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "338776fe95cfb7e7b14ea5d733e71d085d9fee6c938a68c2339524f96a68cade"
+}

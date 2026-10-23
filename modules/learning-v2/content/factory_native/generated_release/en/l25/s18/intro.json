@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "had + past participle before later past event",
+    "uk": "had + past participle before later past event"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Перед отправкой приглашения",
+        "uk": "Перед надсиланням запрошення"
+      },
+      "bodyByLocale": {
+        "ru": "Rewrite — переписать, написать заново. She had rewritten the invitation before she posted it — она переписала приглашение до того, как отправила его по почте. Сначала переписала, затем отправила. Had rewritten — Past Perfect; rewritten — третья форма rewrite. Posted здесь означает «отправила по почте»: приглашение было бумажным.",
+        "uk": "Rewrite — переписати, написати заново. She had rewritten the invitation before she posted it — вона переписала запрошення до того, як надіслала його поштою. Спочатку переписала, потім надіслала. Had rewritten — Past Perfect; rewritten — третя форма rewrite. Posted тут означає «надіслала поштою»: запрошення було паперовим."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-18:intro1:r1",
+              "text": "She had rewritten the invitation before she posted it."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro1:r2",
+              "text": "She has rewritten the invitation before she posted it."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro1:r3",
+              "text": "She was rewritten the invitation before she posted it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-18:intro1:r1",
+              "text": "She had rewritten the invitation before she posted it."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro1:r2",
+              "text": "She has rewritten the invitation before she posted it."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro1:r3",
+              "text": "She was rewritten the invitation before she posted it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "История и прежняя школа",
+        "uk": "Історія та колишня школа"
+      },
+      "bodyByLocale": {
+        "ru": "Retell — пересказать, рассказать историю своими словами. He had retold the story before the children went to bed — он пересказал историю до того, как дети легли спать. Retold — третья форма retell. Revisit — снова посетить знакомое место. We had revisited our old school before we moved away — мы снова посетили свою прежнюю школу до того, как переехали. Had retold и had revisited показывают более ранние события, went и moved — более поздние.",
+        "uk": "Retell — переказати, розповісти історію своїми словами. He had retold the story before the children went to bed — він переказав історію до того, як діти лягли спати. Retold — третя форма retell. Revisit — знову відвідати знайоме місце. We had revisited our old school before we moved away — ми знову відвідали свою колишню школу до того, як переїхали. Had retold і had revisited показують раніші події, went і moved — пізніші."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-18:intro2:r1",
+              "text": "He had retold the story before the children went to bed."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro2:r2",
+              "text": "He has retold the story before the children went to bed."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro2:r3",
+              "text": "He was retold the story before the children went to bed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-18:intro2:r1",
+              "text": "He had retold the story before the children went to bed."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro2:r2",
+              "text": "He has retold the story before the children went to bed."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro2:r3",
+              "text": "He was retold the story before the children went to bed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Семья снова вместе",
+        "uk": "Родина знову разом"
+      },
+      "bodyByLocale": {
+        "ru": "Reunite — снова собраться вместе после разлуки. The family had reunited before the holiday began — семья снова собралась вместе до начала праздника. Сначала приехали члены семьи, затем начался праздник. Had reunited обозначает первое событие. Reunite подходит для людей, которые раньше были вместе, а потом какое-то время жили или находились отдельно.",
+        "uk": "Reunite — знову зібратися разом після розлуки. The family had reunited before the holiday began — родина знову зібралася разом до початку свята. Спочатку приїхали члени родини, потім почалося свято. Had reunited позначає першу подію. Reunite підходить для людей, які раніше були разом, а потім певний час жили або перебували окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-18:intro3:r1",
+              "text": "The family had reunited before the holiday began."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro3:r2",
+              "text": "The family has reunited before the holiday began."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro3:r3",
+              "text": "The family was reunited before the holiday began."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-18:intro3:r1",
+              "text": "The family had reunited before the holiday began."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro3:r2",
+              "text": "The family has reunited before the holiday began."
+            },
+            {
+              "responseId": "en:lesson-25:session-18:intro3:r3",
+              "text": "The family was reunited before the holiday began."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8b236cf962498857b6e1b78a304f53eeb3037b6c4878102ce6b709a8d3666b26"
+}

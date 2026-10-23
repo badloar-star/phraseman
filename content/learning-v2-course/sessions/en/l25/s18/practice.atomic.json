@@ -1,0 +1,2361 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-18",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-18:word:rewritten",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rewritten",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:word:rewritten:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rewritten",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:word:rewritten:audio",
+            "transcript": "rewritten"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:word:rewritten:r1",
+              "targetText": "rewritten",
+              "meaningByLocale": {
+                "ru": "переписал. Rewrite — переписать; rewritten — третья форма.",
+                "uk": "переписав. Rewrite — переписати; rewritten — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rewritten",
+            "definitionByLocale": {
+              "ru": "переписал. Rewrite — переписать; rewritten — третья форма.",
+              "uk": "переписав. Rewrite — переписати; rewritten — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она переписала приглашение до того, как отправила его по почте.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она переписала приглашение до того, как отправила его по почте.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She had rewritten the invitation before she posted it.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она переписала приглашение до того, как отправила его по почте.»",
+            "uk": "Скажіть: «Вона переписала запрошення до того, як надіслала його поштою.»"
+          },
+          "orderedTokens": [
+            "She",
+            "had",
+            "rewritten",
+            "the",
+            "invitation",
+            "before",
+            "she",
+            "posted",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i02:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "She ___ rewritten the invitation before she posted it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-18:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i02:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i03:r1",
+            "text": "She had rewritten the invitation before she posted it."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i03:r2",
+            "text": "He had rewritten the invitation before he posted it."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i03:r3",
+            "text": "She had rewritten the letter before she posted it."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i03:audio",
+            "transcript": "She had rewritten the invitation before she posted it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:i03:r1",
+              "targetText": "She had rewritten the invitation before she posted it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i03:r2",
+              "targetText": "He had rewritten the invitation before he posted it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i03:r3",
+              "targetText": "She had rewritten the letter before she posted it.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had rewritten the invitation before she posted it.",
+                "uk": "У записі звучить She had rewritten the invitation before she posted it."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had rewritten the invitation before she posted it.",
+                "uk": "У записі звучить She had rewritten the invitation before she posted it."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:word:retold",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — retold",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:word:retold:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — retold",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:word:retold:audio",
+            "transcript": "retold"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:word:retold:r1",
+              "targetText": "retold",
+              "meaningByLocale": {
+                "ru": "пересказал. Retell — пересказать; retold — третья форма.",
+                "uk": "переказав. Retell — переказати; retold — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "retold",
+            "definitionByLocale": {
+              "ru": "пересказал. Retell — пересказать; retold — третья форма.",
+              "uk": "переказав. Retell — переказати; retold — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он пересказал историю до того, как дети легли спать.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он пересказал историю до того, как дети легли спать.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had retold the story before the children went to bed.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он пересказал историю до того, как дети легли спать.»",
+            "uk": "Скажіть: «Він переказав історію до того, як діти лягли спати.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "retold",
+            "the",
+            "story",
+            "before",
+            "the",
+            "children",
+            "went",
+            "to",
+            "bed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i05:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ retold the story before the children went to bed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-18:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i05:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i06:r1",
+            "text": "He had retold the story before the children went to bed."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i06:r2",
+            "text": "She had retold the story before the children went to bed."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i06:r3",
+            "text": "He had retold the story before the children went home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i06:audio",
+            "transcript": "He had retold the story before the children went to bed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:i06:r1",
+              "targetText": "He had retold the story before the children went to bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i06:r2",
+              "targetText": "She had retold the story before the children went to bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i06:r3",
+              "targetText": "He had retold the story before the children went home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had retold the story before the children went to bed.",
+                "uk": "У записі звучить He had retold the story before the children went to bed."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had retold the story before the children went to bed.",
+                "uk": "У записі звучить He had retold the story before the children went to bed."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:word:revisited",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — revisited",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:word:revisited:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — revisited",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:word:revisited:audio",
+            "transcript": "revisited"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:word:revisited:r1",
+              "targetText": "revisited",
+              "meaningByLocale": {
+                "ru": "снова посетил. Revisit — снова посетить; revisited — третья форма.",
+                "uk": "знову відвідав. Revisit — знову відвідати; revisited — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "revisited",
+            "definitionByLocale": {
+              "ru": "снова посетил. Revisit — снова посетить; revisited — третья форма.",
+              "uk": "знову відвідав. Revisit — знову відвідати; revisited — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы снова посетили свою прежнюю школу до того, как переехали.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы снова посетили свою прежнюю школу до того, как переехали.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had revisited our old school before we moved away.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы снова посетили свою прежнюю школу до того, как переехали.»",
+            "uk": "Скажіть: «Ми знову відвідали свою колишню школу до того, як переїхали.»"
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "revisited",
+            "our",
+            "old",
+            "school",
+            "before",
+            "we",
+            "moved",
+            "away"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i08:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "We ___ revisited our old school before we moved away.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-18:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i08:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i09:r1",
+            "text": "We had revisited our old school before we moved away."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i09:r2",
+            "text": "They had revisited their old school before they moved away."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i09:r3",
+            "text": "We had revisited our old house before we moved away."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i09:audio",
+            "transcript": "We had revisited our old school before we moved away."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:i09:r1",
+              "targetText": "We had revisited our old school before we moved away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i09:r2",
+              "targetText": "They had revisited their old school before they moved away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i09:r3",
+              "targetText": "We had revisited our old house before we moved away.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had revisited our old school before we moved away.",
+                "uk": "У записі звучить We had revisited our old school before we moved away."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had revisited our old school before we moved away.",
+                "uk": "У записі звучить We had revisited our old school before we moved away."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:word:reunited",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reunited",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:word:reunited:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reunited",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:word:reunited:audio",
+            "transcript": "reunited"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:word:reunited:r1",
+              "targetText": "reunited",
+              "meaningByLocale": {
+                "ru": "снова собрались вместе. Reunite — снова собраться вместе; reunited — третья форма.",
+                "uk": "знову зібралися разом. Reunite — знову зібратися разом; reunited — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reunited",
+            "definitionByLocale": {
+              "ru": "снова собрались вместе. Reunite — снова собраться вместе; reunited — третья форма.",
+              "uk": "знову зібралися разом. Reunite — знову зібратися разом; reunited — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Семья снова собралась вместе до начала праздника.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Семья снова собралась вместе до начала праздника.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The family had reunited before the holiday began.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Семья снова собралась вместе до начала праздника.»",
+            "uk": "Скажіть: «Родина знову зібралася разом до початку свята.»"
+          },
+          "orderedTokens": [
+            "The",
+            "family",
+            "had",
+            "reunited",
+            "before",
+            "the",
+            "holiday",
+            "began"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i11:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The family ___ reunited before the holiday began.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-18:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i11:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i12:r1",
+            "text": "The family had reunited before the holiday began."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i12:r2",
+            "text": "The friends had reunited before the holiday began."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i12:r3",
+            "text": "The family had reunited before the holiday ended."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i12:audio",
+            "transcript": "The family had reunited before the holiday began."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:i12:r1",
+              "targetText": "The family had reunited before the holiday began.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i12:r2",
+              "targetText": "The friends had reunited before the holiday began.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i12:r3",
+              "targetText": "The family had reunited before the holiday ended.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The family had reunited before the holiday began.",
+                "uk": "У записі звучить The family had reunited before the holiday began."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The family had reunited before the holiday began.",
+                "uk": "У записі звучить The family had reunited before the holiday began."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините формы с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините формы с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-18:i13:p1",
+              "target": "rewritten",
+              "meaningByLocale": {
+                "ru": "переписала",
+                "uk": "переписала"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-18:i13:p2",
+              "target": "retold",
+              "meaningByLocale": {
+                "ru": "пересказал",
+                "uk": "переказав"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-18:i13:p3",
+              "target": "revisited",
+              "meaningByLocale": {
+                "ru": "снова посетили",
+                "uk": "знову відвідали"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-18:i13:p4",
+              "target": "reunited",
+              "meaningByLocale": {
+                "ru": "снова собрались вместе",
+                "uk": "знову зібралися разом"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rewritten",
+            "retold",
+            "revisited",
+            "reunited"
+          ],
+          "rightColumn": [
+            "переписала",
+            "пересказал",
+            "снова посетили",
+            "снова собрались вместе"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закончил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закончил",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поезд уже ушёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i15:audio"
+        ],
+        "accessibilityLabel": "Поезд уже ушёл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Они снова посетили свою прежнюю школу до её закрытия».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Они снова посетили свою прежнюю школу до её закрытия».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i16:audio",
+            "transcript": "They had revisited their old school before it closed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They had revisited their old school before it closed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я пересказал историю до того, как дети легли спать».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я пересказал историю до того, как дети легли спать».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i17:audio",
+            "transcript": "I had retold the story before the children went to bed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I had retold the story before the children went to bed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-18:word:rewritten",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rewritten",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:word:rewritten:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rewritten",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:word:rewritten:audio",
+            "transcript": "rewritten"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:word:rewritten:r1",
+              "targetText": "rewritten",
+              "meaningByLocale": {
+                "ru": "переписал. Rewrite — переписать; rewritten — третья форма.",
+                "uk": "переписав. Rewrite — переписати; rewritten — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rewritten",
+            "definitionByLocale": {
+              "ru": "переписал. Rewrite — переписать; rewritten — третья форма.",
+              "uk": "переписав. Rewrite — переписати; rewritten — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона переписала запрошення до того, як надіслала його поштою.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона переписала запрошення до того, як надіслала його поштою.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She had rewritten the invitation before she posted it.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она переписала приглашение до того, как отправила его по почте.»",
+            "uk": "Скажіть: «Вона переписала запрошення до того, як надіслала його поштою.»"
+          },
+          "orderedTokens": [
+            "She",
+            "had",
+            "rewritten",
+            "the",
+            "invitation",
+            "before",
+            "she",
+            "posted",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i02:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "She ___ rewritten the invitation before she posted it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-18:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i02:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i03:r1",
+            "text": "She had rewritten the invitation before she posted it."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i03:r2",
+            "text": "He had rewritten the invitation before he posted it."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i03:r3",
+            "text": "She had rewritten the letter before she posted it."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i03:audio",
+            "transcript": "She had rewritten the invitation before she posted it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:i03:r1",
+              "targetText": "She had rewritten the invitation before she posted it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i03:r2",
+              "targetText": "He had rewritten the invitation before he posted it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i03:r3",
+              "targetText": "She had rewritten the letter before she posted it.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had rewritten the invitation before she posted it.",
+                "uk": "У записі звучить She had rewritten the invitation before she posted it."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had rewritten the invitation before she posted it.",
+                "uk": "У записі звучить She had rewritten the invitation before she posted it."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:word:retold",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — retold",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:word:retold:audio"
+        ],
+        "accessibilityLabel": "Картка слова — retold",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:word:retold:audio",
+            "transcript": "retold"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:word:retold:r1",
+              "targetText": "retold",
+              "meaningByLocale": {
+                "ru": "пересказал. Retell — пересказать; retold — третья форма.",
+                "uk": "переказав. Retell — переказати; retold — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "retold",
+            "definitionByLocale": {
+              "ru": "пересказал. Retell — пересказать; retold — третья форма.",
+              "uk": "переказав. Retell — переказати; retold — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він переказав історію до того, як діти лягли спати.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він переказав історію до того, як діти лягли спати.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had retold the story before the children went to bed.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он пересказал историю до того, как дети легли спать.»",
+            "uk": "Скажіть: «Він переказав історію до того, як діти лягли спати.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "retold",
+            "the",
+            "story",
+            "before",
+            "the",
+            "children",
+            "went",
+            "to",
+            "bed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i05:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ retold the story before the children went to bed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-18:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i05:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i06:r1",
+            "text": "He had retold the story before the children went to bed."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i06:r2",
+            "text": "She had retold the story before the children went to bed."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i06:r3",
+            "text": "He had retold the story before the children went home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i06:audio",
+            "transcript": "He had retold the story before the children went to bed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:i06:r1",
+              "targetText": "He had retold the story before the children went to bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i06:r2",
+              "targetText": "She had retold the story before the children went to bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i06:r3",
+              "targetText": "He had retold the story before the children went home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had retold the story before the children went to bed.",
+                "uk": "У записі звучить He had retold the story before the children went to bed."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had retold the story before the children went to bed.",
+                "uk": "У записі звучить He had retold the story before the children went to bed."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:word:revisited",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — revisited",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:word:revisited:audio"
+        ],
+        "accessibilityLabel": "Картка слова — revisited",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:word:revisited:audio",
+            "transcript": "revisited"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:word:revisited:r1",
+              "targetText": "revisited",
+              "meaningByLocale": {
+                "ru": "снова посетил. Revisit — снова посетить; revisited — третья форма.",
+                "uk": "знову відвідав. Revisit — знову відвідати; revisited — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "revisited",
+            "definitionByLocale": {
+              "ru": "снова посетил. Revisit — снова посетить; revisited — третья форма.",
+              "uk": "знову відвідав. Revisit — знову відвідати; revisited — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми знову відвідали свою колишню школу до того, як переїхали.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми знову відвідали свою колишню школу до того, як переїхали.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had revisited our old school before we moved away.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы снова посетили свою прежнюю школу до того, как переехали.»",
+            "uk": "Скажіть: «Ми знову відвідали свою колишню школу до того, як переїхали.»"
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "revisited",
+            "our",
+            "old",
+            "school",
+            "before",
+            "we",
+            "moved",
+            "away"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i08:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "We ___ revisited our old school before we moved away.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-18:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i08:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i09:r1",
+            "text": "We had revisited our old school before we moved away."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i09:r2",
+            "text": "They had revisited their old school before they moved away."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i09:r3",
+            "text": "We had revisited our old house before we moved away."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i09:audio",
+            "transcript": "We had revisited our old school before we moved away."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:i09:r1",
+              "targetText": "We had revisited our old school before we moved away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i09:r2",
+              "targetText": "They had revisited their old school before they moved away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i09:r3",
+              "targetText": "We had revisited our old house before we moved away.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had revisited our old school before we moved away.",
+                "uk": "У записі звучить We had revisited our old school before we moved away."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had revisited our old school before we moved away.",
+                "uk": "У записі звучить We had revisited our old school before we moved away."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:word:reunited",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reunited",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:word:reunited:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reunited",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:word:reunited:audio",
+            "transcript": "reunited"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:word:reunited:r1",
+              "targetText": "reunited",
+              "meaningByLocale": {
+                "ru": "снова собрались вместе. Reunite — снова собраться вместе; reunited — третья форма.",
+                "uk": "знову зібралися разом. Reunite — знову зібратися разом; reunited — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reunited",
+            "definitionByLocale": {
+              "ru": "снова собрались вместе. Reunite — снова собраться вместе; reunited — третья форма.",
+              "uk": "знову зібралися разом. Reunite — знову зібратися разом; reunited — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Родина знову зібралася разом до початку свята.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Родина знову зібралася разом до початку свята.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The family had reunited before the holiday began.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Семья снова собралась вместе до начала праздника.»",
+            "uk": "Скажіть: «Родина знову зібралася разом до початку свята.»"
+          },
+          "orderedTokens": [
+            "The",
+            "family",
+            "had",
+            "reunited",
+            "before",
+            "the",
+            "holiday",
+            "began"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i11:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The family ___ reunited before the holiday began.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-18:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i11:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-18:i12:r1",
+            "text": "The family had reunited before the holiday began."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i12:r2",
+            "text": "The friends had reunited before the holiday began."
+          },
+          {
+            "responseId": "en:lesson-25:session-18:i12:r3",
+            "text": "The family had reunited before the holiday ended."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i12:audio",
+            "transcript": "The family had reunited before the holiday began."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-18:i12:r1",
+              "targetText": "The family had reunited before the holiday began.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i12:r2",
+              "targetText": "The friends had reunited before the holiday began.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i12:r3",
+              "targetText": "The family had reunited before the holiday ended.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The family had reunited before the holiday began.",
+                "uk": "У записі звучить The family had reunited before the holiday began."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The family had reunited before the holiday began.",
+                "uk": "У записі звучить The family had reunited before the holiday began."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте форми з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-18:i13:p1",
+              "target": "rewritten",
+              "meaningByLocale": {
+                "ru": "переписала",
+                "uk": "переписала"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-18:i13:p2",
+              "target": "retold",
+              "meaningByLocale": {
+                "ru": "пересказал",
+                "uk": "переказав"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-18:i13:p3",
+              "target": "revisited",
+              "meaningByLocale": {
+                "ru": "снова посетили",
+                "uk": "знову відвідали"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-18:i13:p4",
+              "target": "reunited",
+              "meaningByLocale": {
+                "ru": "снова собрались вместе",
+                "uk": "знову зібралися разом"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rewritten",
+            "retold",
+            "revisited",
+            "reunited"
+          ],
+          "rightColumn": [
+            "переписала",
+            "переказав",
+            "знову відвідали",
+            "знову зібралися разом"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закінчив",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закінчив",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Потяг уже поїхав",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i15:audio"
+        ],
+        "accessibilityLabel": "Потяг уже поїхав",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вони знову відвідали свою колишню школу до її закриття».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вони знову відвідали свою колишню школу до її закриття».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i16:audio",
+            "transcript": "They had revisited their old school before it closed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They had revisited their old school before it closed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-18:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я переказав історію до того, як діти лягли спати».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я переказав історію до того, як діти лягли спати».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-18:i17:audio",
+            "transcript": "I had retold the story before the children went to bed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I had retold the story before the children went to bed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-18:word:rewritten",
+      "correctText": "rewritten",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i01",
+      "correctText": "She had rewritten the invitation before she posted it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i02",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-18:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i03",
+      "correctText": "She had rewritten the invitation before she posted it.",
+      "correctResponseId": "en:lesson-25:session-18:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:word:retold",
+      "correctText": "retold",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i04",
+      "correctText": "He had retold the story before the children went to bed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i05",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-18:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i06",
+      "correctText": "He had retold the story before the children went to bed.",
+      "correctResponseId": "en:lesson-25:session-18:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:word:revisited",
+      "correctText": "revisited",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i07",
+      "correctText": "We had revisited our old school before we moved away.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i08",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-18:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i09",
+      "correctText": "We had revisited our old school before we moved away.",
+      "correctResponseId": "en:lesson-25:session-18:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:word:reunited",
+      "correctText": "reunited",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i10",
+      "correctText": "The family had reunited before the holiday began.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i11",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-18:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i12",
+      "correctText": "The family had reunited before the holiday began.",
+      "correctResponseId": "en:lesson-25:session-18:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i14",
+      "correctText": "She had finished before I called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i15",
+      "correctText": "The train had left when we arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i16",
+      "correctText": "They had revisited their old school before it closed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-18:i17",
+      "correctText": "I had retold the story before the children went to bed.",
+      "correctResponseId": null
+    }
+  ]
+}

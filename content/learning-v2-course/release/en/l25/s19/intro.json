@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "had + past participle before later past event",
+    "uk": "had + past participle before later past event"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не разобрался с инструкцией",
+        "uk": "Не розібрався з інструкцією"
+      },
+      "bodyByLocale": {
+        "ru": "Confuse — запутать, сделать что-то непонятным для человека. The instructions had confused me before I asked for help — инструкции запутали меня до того, как я попросил о помощи. Сначала я не смог разобраться, затем попросил помочь. Had confused обозначает первое событие; asked — следующее. Me показывает, кого запутали инструкции.",
+        "uk": "Confuse — заплутати, зробити щось незрозумілим для людини. The instructions had confused me before I asked for help — інструкції заплутали мене до того, як я попросив про допомогу. Спочатку я не зміг розібратися, потім попросив допомогти. Had confused позначає першу подію; asked — наступну. Me показує, кого заплутали інструкції."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-19:intro1:r1",
+              "text": "The instructions had confused me before I asked for help."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro1:r2",
+              "text": "The instructions have confused me before I asked for help."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro1:r3",
+              "text": "The instructions were confused me before I asked for help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-19:intro1:r1",
+              "text": "The instructions had confused me before I asked for help."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro1:r2",
+              "text": "The instructions have confused me before I asked for help."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro1:r3",
+              "text": "The instructions were confused me before I asked for help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что вызвало реакцию",
+        "uk": "Що викликало реакцію"
+      },
+      "bodyByLocale": {
+        "ru": "Embarrass — поставить в неловкое положение. The joke had embarrassed him before he left — шутка поставила его в неловкое положение до того, как он ушёл. Scare — напугать. The noise had scared the baby before we closed the window — шум напугал малыша до того, как мы закрыли окно. Had embarrassed и had scared показывают события, которые уже произошли к следующему моменту рассказа. Это глаголы действия: шутка смутила его, шум напугал малыша.",
+        "uk": "Embarrass — поставити в незручне становище. The joke had embarrassed him before he left — жарт поставив його в незручне становище до того, як він пішов. Scare — налякати. The noise had scared the baby before we closed the window — шум налякав малюка до того, як ми зачинили вікно. Had embarrassed і had scared показують події, які вже відбулися до наступного моменту розповіді. Це дієслова дії: жарт збентежив його, шум налякав малюка."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-19:intro2:r1",
+              "text": "The joke had embarrassed him before he left."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro2:r2",
+              "text": "The joke has embarrassed him before he left."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro2:r3",
+              "text": "The joke was embarrassed him before he left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-19:intro2:r1",
+              "text": "The joke had embarrassed him before he left."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro2:r2",
+              "text": "The joke has embarrassed him before he left."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro2:r3",
+              "text": "The joke was embarrassed him before he left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Получил достаточный ответ",
+        "uk": "Отримав достатню відповідь"
+      },
+      "bodyByLocale": {
+        "ru": "Satisfy — удовлетворить, оказаться достаточным для чьих-то ожиданий или вопросов. Her answer had satisfied me before I signed the form — её ответ удовлетворил меня до того, как я подписал бланк. Например, перед записью на занятия я спросил о расписании и получил подходящий ответ. Сначала ответ снял мой вопрос, потом я подписал бланк. В форме satisfied буква y меняется на i перед -ed.",
+        "uk": "Satisfy — задовольнити, виявитися достатнім для чиїхось очікувань або запитань. Her answer had satisfied me before I signed the form — її відповідь задовольнила мене до того, як я підписав бланк. Наприклад, перед записом на заняття я запитав про розклад і отримав прийнятну відповідь. Спочатку відповідь зняла моє запитання, потім я підписав бланк. У формі satisfied літера y змінюється на i перед -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-19:intro3:r1",
+              "text": "Her answer had satisfied me before I signed the form."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro3:r2",
+              "text": "Her answer has satisfied me before I signed the form."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro3:r3",
+              "text": "Her answer was satisfied me before I signed the form."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-19:intro3:r1",
+              "text": "Her answer had satisfied me before I signed the form."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro3:r2",
+              "text": "Her answer has satisfied me before I signed the form."
+            },
+            {
+              "responseId": "en:lesson-25:session-19:intro3:r3",
+              "text": "Her answer was satisfied me before I signed the form."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9f174e92ecb5c4c9ce3c9421fc8e23d97a9004c3b91b31bc04e3c0a10f43cb4e"
+}

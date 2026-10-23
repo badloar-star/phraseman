@@ -28,8 +28,8 @@
             "responseId": "en:lesson-25:session-17:word:redone:r1",
             "targetText": "redone",
             "meaningByLocale": {
-              "ru": "Redo — переделать; redone — третья форма.",
-              "uk": "Redo — переробити; redone — третя форма."
+              "ru": "переделал. Redo — переделать; redone — третья форма.",
+              "uk": "переробив. Redo — переробити; redone — третя форма."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "redone",
           "definitionByLocale": {
-            "ru": "Redo — переделать; redone — третья форма.",
-            "uk": "Redo — переробити; redone — третя форма."
+            "ru": "переделал. Redo — переделать; redone — третья форма.",
+            "uk": "переробив. Redo — переробити; redone — третя форма."
           }
         }
       },
@@ -254,8 +254,8 @@
             "responseId": "en:lesson-25:session-17:word:rebuilt:r1",
             "targetText": "rebuilt",
             "meaningByLocale": {
-              "ru": "Rebuild — построить заново; rebuilt — третья форма.",
-              "uk": "Rebuild — збудувати наново; rebuilt — третя форма."
+              "ru": "построил заново. Rebuild — построить заново; rebuilt — третья форма.",
+              "uk": "збудував наново. Rebuild — збудувати наново; rebuilt — третя форма."
             }
           }
         ],
@@ -265,8 +265,8 @@
         "wordCard": {
           "word": "rebuilt",
           "definitionByLocale": {
-            "ru": "Rebuild — построить заново; rebuilt — третья форма.",
-            "uk": "Rebuild — збудувати наново; rebuilt — третя форма."
+            "ru": "построил заново. Rebuild — построить заново; rebuilt — третья форма.",
+            "uk": "збудував наново. Rebuild — збудувати наново; rebuilt — третя форма."
           }
         }
       },
@@ -479,8 +479,8 @@
             "responseId": "en:lesson-25:session-17:word:rewashed:r1",
             "targetText": "rewashed",
             "meaningByLocale": {
-              "ru": "Rewash — постирать заново; rewashed — третья форма.",
-              "uk": "Rewash — випрати заново; rewashed — третя форма."
+              "ru": "постирал заново. Rewash — постирать заново; rewashed — третья форма.",
+              "uk": "виправ заново. Rewash — випрати заново; rewashed — третя форма."
             }
           }
         ],
@@ -490,8 +490,8 @@
         "wordCard": {
           "word": "rewashed",
           "definitionByLocale": {
-            "ru": "Rewash — постирать заново; rewashed — третья форма.",
-            "uk": "Rewash — випрати заново; rewashed — третя форма."
+            "ru": "постирал заново. Rewash — постирать заново; rewashed — третья форма.",
+            "uk": "виправ заново. Rewash — випрати заново; rewashed — третя форма."
           }
         }
       },
@@ -706,8 +706,8 @@
             "responseId": "en:lesson-25:session-17:word:reread:r1",
             "targetText": "reread",
             "meaningByLocale": {
-              "ru": "Reread — перечитать; третья форма пишется так же.",
-              "uk": "Reread — перечитати; третя форма пишеться так само."
+              "ru": "перечитал. Reread — перечитать; третья форма пишется так же.",
+              "uk": "перечитав. Reread — перечитати; третя форма пишеться так само."
             }
           }
         ],
@@ -717,8 +717,8 @@
         "wordCard": {
           "word": "reread",
           "definitionByLocale": {
-            "ru": "Reread — перечитать; третья форма пишется так же.",
-            "uk": "Reread — перечитати; третя форма пишеться так само."
+            "ru": "перечитал. Reread — перечитать; третья форма пишется так же.",
+            "uk": "перечитав. Reread — перечитати; третя форма пишеться так само."
           }
         }
       },
@@ -1130,5 +1130,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e3c243077591ae6ed7bf4971e32ff92e3ce27d922dd62deafcd1b9886596e24f"
+  "learnerFingerprint": "4bff0e257cb23c80d187753a023d9870557919af902f0021523eb75b951ac306"
 }

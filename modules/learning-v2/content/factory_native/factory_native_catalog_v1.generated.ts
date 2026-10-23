@@ -9354,7 +9354,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 48,
-    sourceFingerprint: "4385743275984898cce0390deb4e11fba31a386480f439c014d668b2e44bf899",
+    sourceFingerprint: "3204f914a61979c768fe3e75250867cdefd7c61f9840ef91b774511690ab2f32",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect / past simple","uk":"present perfect / past simple"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
@@ -9529,7 +9529,21 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 17,
-    sourceFingerprint: "46e00410ba114df6fa9394950d10cf2365c65313550890ebade0fc47603580cf",
+    sourceFingerprint: "5c434f15b4560e671bfd127da7a22fcd995a093082fa414c420117e0330c3393",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"had + past participle before later past event","uk":"had + past participle before later past event"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 18,
+    sourceFingerprint: "5279129c6fcf5660a144c5df91ad30418dfc596dc16c33de651f24f4c85ef5fb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"had + past participle before later past event","uk":"had + past participle before later past event"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 19,
+    sourceFingerprint: "04673df24f9b03fa861834354fb8a98ad6f1c430c5d6a2edbf4e5e5294deefe8",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"had + past participle before later past event","uk":"had + past participle before later past event"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),

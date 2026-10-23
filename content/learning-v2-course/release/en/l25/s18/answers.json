@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-18:word:rewritten",
+    "correctText": "rewritten",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i01",
+    "correctText": "She had rewritten the invitation before she posted it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i03",
+    "correctText": "She had rewritten the invitation before she posted it.",
+    "correctResponseId": "en:lesson-25:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:word:retold",
+    "correctText": "retold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i04",
+    "correctText": "He had retold the story before the children went to bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i05",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i06",
+    "correctText": "He had retold the story before the children went to bed.",
+    "correctResponseId": "en:lesson-25:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:word:revisited",
+    "correctText": "revisited",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i07",
+    "correctText": "We had revisited our old school before we moved away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i09",
+    "correctText": "We had revisited our old school before we moved away.",
+    "correctResponseId": "en:lesson-25:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:word:reunited",
+    "correctText": "reunited",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i10",
+    "correctText": "The family had reunited before the holiday began.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i12",
+    "correctText": "The family had reunited before the holiday began.",
+    "correctResponseId": "en:lesson-25:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i13",
+    "correctText": "en:lesson-25:session-18:i13:p1=rewritten\nen:lesson-25:session-18:i13:p2=retold\nen:lesson-25:session-18:i13:p3=revisited\nen:lesson-25:session-18:i13:p4=reunited",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i15",
+    "correctText": "The train had left when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i16",
+    "correctText": "They had revisited their old school before it closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-18:i17",
+    "correctText": "I had retold the story before the children went to bed.",
+    "correctResponseId": null
+  }
+]

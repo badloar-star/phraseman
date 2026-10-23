@@ -51,7 +51,7 @@ Reread — перечитати. Написання третьої форми т
 
 **1 · Картка слова — redone**
 <!-- interaction_id: en:lesson-25:session-17:word:redone; family: word_card -->
-> **redone** — Redo — переробити; redone — третя форма.
+> **redone** — переробив. Redo — переробити; redone — третя форма.
 
 **2 · Скажіть: «Вона переробила вправу до початку уроку.»**
 <!-- interaction_id: en:lesson-25:session-17:i01; family: phrase_builder -->
@@ -71,7 +71,7 @@ She ___ redone the exercise before the lesson began. → **had** · has · was
 
 **5 · Картка слова — rebuilt**
 <!-- interaction_id: en:lesson-25:session-17:word:rebuilt; family: word_card -->
-> **rebuilt** — Rebuild — збудувати наново; rebuilt — третя форма.
+> **rebuilt** — збудував наново. Rebuild — збудувати наново; rebuilt — третя форма.
 
 **6 · Скажіть: «Вони збудували стіну наново до нашого приїзду.»**
 <!-- interaction_id: en:lesson-25:session-17:i04; family: phrase_builder -->
@@ -91,7 +91,7 @@ They ___ rebuilt the wall before we arrived. → **had** · have · were
 
 **9 · Картка слова — rewashed**
 <!-- interaction_id: en:lesson-25:session-17:word:rewashed; family: word_card -->
-> **rewashed** — Rewash — випрати заново; rewashed — третя форма.
+> **rewashed** — виправ заново. Rewash — випрати заново; rewashed — третя форма.
 
 **10 · Скажіть: «Я виправ сорочку заново до того, як зібрав сумку.»**
 <!-- interaction_id: en:lesson-25:session-17:i07; family: phrase_builder -->
@@ -111,7 +111,7 @@ I ___ rewashed the shirt before I packed my bag. → **had** · have · was
 
 **13 · Картка слова — reread**
 <!-- interaction_id: en:lesson-25:session-17:word:reread; family: word_card -->
-> **reread** — Reread — перечитати; третя форма пишеться так само.
+> **reread** — перечитав. Reread — перечитати; третя форма пишеться так само.
 
 **14 · Скажіть: «Він перечитав лист до того, як надіслав його.»**
 <!-- interaction_id: en:lesson-25:session-17:i10; family: phrase_builder -->

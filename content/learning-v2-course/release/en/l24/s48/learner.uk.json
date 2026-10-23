@@ -28,8 +28,8 @@
             "responseId": "en:lesson-24:session-48:word:cuddled:r1",
             "targetText": "cuddled",
             "meaningByLocale": {
-              "ru": "cuddle — ласково обнимать. Cuddled — ласково обнял.",
-              "uk": "cuddle — ніжно обіймати. Cuddled — ніжно обійняв."
+              "ru": "ласково обнял. cuddle — ласково обнимать. Cuddled — ласково обнял.",
+              "uk": "ніжно обійняв. cuddle — ніжно обіймати. Cuddled — ніжно обійняв."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "cuddled",
           "definitionByLocale": {
-            "ru": "cuddle — ласково обнимать. Cuddled — ласково обнял.",
-            "uk": "cuddle — ніжно обіймати. Cuddled — ніжно обійняв."
+            "ru": "ласково обнял. cuddle — ласково обнимать. Cuddled — ласково обнял.",
+            "uk": "ніжно обійняв. cuddle — ніжно обіймати. Cuddled — ніжно обійняв."
           }
         }
       },
@@ -250,8 +250,8 @@
             "responseId": "en:lesson-24:session-48:word:sobbed:r1",
             "targetText": "sobbed",
             "meaningByLocale": {
-              "ru": "sob — рыдать. Sobbed — рыдал.",
-              "uk": "sob — ридати. Sobbed — ридав."
+              "ru": "рыдал. sob — рыдать. Sobbed — рыдал.",
+              "uk": "ридав. sob — ридати. Sobbed — ридав."
             }
           }
         ],
@@ -261,8 +261,8 @@
         "wordCard": {
           "word": "sobbed",
           "definitionByLocale": {
-            "ru": "sob — рыдать. Sobbed — рыдал.",
-            "uk": "sob — ридати. Sobbed — ридав."
+            "ru": "рыдал. sob — рыдать. Sobbed — рыдал.",
+            "uk": "ридав. sob — ридати. Sobbed — ридав."
           }
         }
       },
@@ -473,8 +473,8 @@
             "responseId": "en:lesson-24:session-48:word:groaned:r1",
             "targetText": "groaned",
             "meaningByLocale": {
-              "ru": "groan — стонать. Groaned — стонал.",
-              "uk": "groan — стогнати. Groaned — стогнав."
+              "ru": "стонал. groan — стонать. Groaned — стонал.",
+              "uk": "стогнав. groan — стогнати. Groaned — стогнав."
             }
           }
         ],
@@ -484,8 +484,8 @@
         "wordCard": {
           "word": "groaned",
           "definitionByLocale": {
-            "ru": "groan — стонать. Groaned — стонал.",
-            "uk": "groan — стогнати. Groaned — стогнав."
+            "ru": "стонал. groan — стонать. Groaned — стонал.",
+            "uk": "стогнав. groan — стогнати. Groaned — стогнав."
           }
         }
       },
@@ -697,8 +697,8 @@
             "responseId": "en:lesson-24:session-48:word:yelled:r1",
             "targetText": "yelled",
             "meaningByLocale": {
-              "ru": "yell — кричать. Yelled — кричал.",
-              "uk": "yell — кричати. Yelled — кричав."
+              "ru": "кричал. yell — кричать. Yelled — кричал.",
+              "uk": "кричав. yell — кричати. Yelled — кричав."
             }
           }
         ],
@@ -708,8 +708,8 @@
         "wordCard": {
           "word": "yelled",
           "definitionByLocale": {
-            "ru": "yell — кричать. Yelled — кричал.",
-            "uk": "yell — кричати. Yelled — кричав."
+            "ru": "кричал. yell — кричать. Yelled — кричал.",
+            "uk": "кричав. yell — кричати. Yelled — кричав."
           }
         }
       },
@@ -1118,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f05f28ce3ef7fc97e7446d56c6aef39c8f7df8b3cb6f6b38fca83f751f71579d"
+  "learnerFingerprint": "732c16bed99c7ef0bb19df81e361ae530f5f8657d894d6ffcfd2ede1c95dcd46"
 }

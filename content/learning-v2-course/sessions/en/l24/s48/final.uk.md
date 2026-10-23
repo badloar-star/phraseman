@@ -51,7 +51,7 @@ Yell — кричати гучним голосом. They yelled for help yester
 
 **1 · Картка слова — cuddled**
 <!-- interaction_id: en:lesson-24:session-48:word:cuddled; family: word_card -->
-> **cuddled** — cuddle — ніжно обіймати. Cuddled — ніжно обійняв.
+> **cuddled** — ніжно обійняв. cuddle — ніжно обіймати. Cuddled — ніжно обійняв.
 
 **2 · Скажіть: «Вона ніжно обійняла малюка.»**
 <!-- interaction_id: en:lesson-24:session-48:i01; family: phrase_builder -->
@@ -71,7 +71,7 @@ She ___ cuddled the baby. → **has** · have · is
 
 **5 · Картка слова — sobbed**
 <!-- interaction_id: en:lesson-24:session-48:word:sobbed; family: word_card -->
-> **sobbed** — sob — ридати. Sobbed — ридав.
+> **sobbed** — ридав. sob — ридати. Sobbed — ридав.
 
 **6 · Скажіть: «Учора він ридав після фільму.»**
 <!-- interaction_id: en:lesson-24:session-48:i04; family: phrase_builder -->
@@ -91,7 +91,7 @@ He ___ after the film yesterday. → **sobbed** · sob · sobbing
 
 **9 · Картка слова — groaned**
 <!-- interaction_id: en:lesson-24:session-48:word:groaned; family: word_card -->
-> **groaned** — groan — стогнати. Groaned — стогнав.
+> **groaned** — стогнав. groan — стогнати. Groaned — стогнав.
 
 **10 · Скажіть: «Я весь ранок стогну від болю.»**
 <!-- interaction_id: en:lesson-24:session-48:i07; family: phrase_builder -->
@@ -111,7 +111,7 @@ I ___ groaned with pain all morning. → **have** · has · am
 
 **13 · Картка слова — yelled**
 <!-- interaction_id: en:lesson-24:session-48:word:yelled; family: word_card -->
-> **yelled** — yell — кричати. Yelled — кричав.
+> **yelled** — кричав. yell — кричати. Yelled — кричав.
 
 **14 · Скажіть: «Учора вони кричали, кличучи на допомогу.»**
 <!-- interaction_id: en:lesson-24:session-48:i10; family: phrase_builder -->

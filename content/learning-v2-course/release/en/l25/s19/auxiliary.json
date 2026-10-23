@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-19:intro1:r2": {
+          "ru": "Для более раннего события в прошлом используем had.",
+          "uk": "Для ранішої події в минулому використовуємо had."
+        },
+        "en:lesson-25:session-19:intro1:r3": {
+          "ru": "Здесь нужно had + третья форма.",
+          "uk": "Тут потрібно had + третя форма."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-19:intro2:r2": {
+          "ru": "Для более раннего события в прошлом используем had.",
+          "uk": "Для ранішої події в минулому використовуємо had."
+        },
+        "en:lesson-25:session-19:intro2:r3": {
+          "ru": "Здесь нужно had + третья форма.",
+          "uk": "Тут потрібно had + третя форма."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-19:intro3:r2": {
+          "ru": "Для более раннего события в прошлом используем had.",
+          "uk": "Для ранішої події в минулому використовуємо had."
+        },
+        "en:lesson-25:session-19:intro3:r3": {
+          "ru": "Здесь нужно had + третья форма.",
+          "uk": "Тут потрібно had + третя форма."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a3513df68440d57b52a66d6a2c150c346e5f35f2b06933392cdf69955b41282d"
+}

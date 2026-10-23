@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-55:word:refundable",
+    "correctText": "refundable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i01",
+    "correctText": "Could I buy a refundable ticket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i02",
+    "correctText": "Could I buy a refundable ticket?",
+    "correctResponseId": "en:lesson-22:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i03",
+    "correctText": "buy",
+    "correctResponseId": "en:lesson-22:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:word:non-refundable",
+    "correctText": "non-refundable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i04",
+    "correctText": "Could I check this non-refundable fare?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i05",
+    "correctText": "Could I check this non-refundable fare?",
+    "correctResponseId": "en:lesson-22:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i06",
+    "correctText": "check",
+    "correctResponseId": "en:lesson-22:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:word:complimentary",
+    "correctText": "complimentary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i07",
+    "correctText": "Could I use the complimentary shuttle?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i08",
+    "correctText": "Could I use the complimentary shuttle?",
+    "correctResponseId": "en:lesson-22:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i09",
+    "correctText": "use",
+    "correctResponseId": "en:lesson-22:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:word:reserved",
+    "correctText": "reserved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i10",
+    "correctText": "Could I sit in this reserved seat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i11",
+    "correctText": "Could I sit in this reserved seat?",
+    "correctResponseId": "en:lesson-22:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i12",
+    "correctText": "sit",
+    "correctResponseId": "en:lesson-22:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i13",
+    "correctText": "en:lesson-22:session-55:i13:p1=buy a refundable ticket\nen:lesson-22:session-55:i13:p2=check this non-refundable fare\nen:lesson-22:session-55:i13:p3=use the complimentary shuttle\nen:lesson-22:session-55:i13:p4=sit in this reserved seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i16",
+    "correctText": "Could we buy a refundable ticket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-55:i17",
+    "correctText": "Could we use the complimentary shuttle?",
+    "correctResponseId": null
+  }
+]

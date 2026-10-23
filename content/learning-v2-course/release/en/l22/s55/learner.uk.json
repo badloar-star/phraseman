@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-55:word:refundable",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — refundable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:word:refundable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — refundable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:word:refundable:audio",
+          "transcript": "refundable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-55:word:refundable:r1",
+            "targetText": "refundable",
+            "meaningByLocale": {
+              "ru": "возвратный.",
+              "uk": "із можливістю повернення коштів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "refundable",
+          "definitionByLocale": {
+            "ru": "возвратный.",
+            "uk": "із можливістю повернення коштів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваші плани можуть змінитися. Запитайте: «Можна мені купити квиток із можливістю повернення коштів?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші плани можуть змінитися. Запитайте: «Можна мені купити квиток із можливістю повернення коштів?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I buy a refundable ticket?",
+        "localizedMeaning": {
+          "ru": "Ваши планы могут измениться. Спросите: «Можно мне купить возвратный билет?»",
+          "uk": "Ваші плани можуть змінитися. Запитайте: «Можна мені купити квиток із можливістю повернення коштів?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "buy",
+          "a",
+          "refundable",
+          "ticket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-55:i02:r1",
+          "text": "Could I buy a refundable ticket?"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i02:r2",
+          "text": "Could you buy a refundable ticket?"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i02:r3",
+          "text": "Could we buy a refundable ticket?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:i02:audio",
+          "transcript": "Could I buy a refundable ticket?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-55:i02:r1",
+            "targetText": "Could I buy a refundable ticket?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i02:r2",
+            "targetText": "Could you buy a refundable ticket?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i02:r3",
+            "targetText": "Could we buy a refundable ticket?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I buy a refundable ticket?",
+              "uk": "У записі звучить Could I buy a refundable ticket?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I buy a refundable ticket?",
+              "uk": "У записі звучить Could I buy a refundable ticket?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-55:i03:r1",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i03:r2",
+          "text": "buys"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i03:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a refundable ticket?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-55:i03:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i03:r2",
+            "text": "buys"
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i03:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:word:non-refundable",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — non-refundable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:word:non-refundable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — non-refundable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:word:non-refundable:audio",
+          "transcript": "non-refundable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-55:word:non-refundable:r1",
+            "targetText": "non-refundable",
+            "meaningByLocale": {
+              "ru": "невозвратный.",
+              "uk": "без можливості повернення коштів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "non-refundable",
+          "definitionByLocale": {
+            "ru": "невозвратный.",
+            "uk": "без можливості повернення коштів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перед оплатою ви хочете перевірити умови. Запитайте: «Можна мені перевірити цей тариф без можливості повернення коштів?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед оплатою ви хочете перевірити умови. Запитайте: «Можна мені перевірити цей тариф без можливості повернення коштів?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I check this non-refundable fare?",
+        "localizedMeaning": {
+          "ru": "Перед оплатой вы хотите проверить условия. Спросите: «Можно мне проверить этот невозвратный тариф?»",
+          "uk": "Перед оплатою ви хочете перевірити умови. Запитайте: «Можна мені перевірити цей тариф без можливості повернення коштів?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "check",
+          "this",
+          "non-refundable",
+          "fare"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-55:i05:r1",
+          "text": "Could I check this non-refundable fare?"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i05:r2",
+          "text": "Could you check this non-refundable fare?"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i05:r3",
+          "text": "Could we check this non-refundable fare?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:i05:audio",
+          "transcript": "Could I check this non-refundable fare?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-55:i05:r1",
+            "targetText": "Could I check this non-refundable fare?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i05:r2",
+            "targetText": "Could you check this non-refundable fare?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i05:r3",
+            "targetText": "Could we check this non-refundable fare?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-55:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I check this non-refundable fare?",
+              "uk": "У записі звучить Could I check this non-refundable fare?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I check this non-refundable fare?",
+              "uk": "У записі звучить Could I check this non-refundable fare?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-55:i06:r1",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i06:r2",
+          "text": "checks"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i06:r3",
+          "text": "checking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ this non-refundable fare?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-55:i06:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i06:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i06:r3",
+            "text": "checking"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-55:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:word:complimentary",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — complimentary",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:word:complimentary:audio"
+      ],
+      "accessibilityLabel": "Картка слова — complimentary",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:word:complimentary:audio",
+          "transcript": "complimentary"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-55:word:complimentary:r1",
+            "targetText": "complimentary",
+            "meaningByLocale": {
+              "ru": "бесплатный для гостя.",
+              "uk": "безкоштовний для гостя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "complimentary",
+          "definitionByLocale": {
+            "ru": "бесплатный для гостя.",
+            "uk": "безкоштовний для гостя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Готель пропонує гостям безкоштовний трансфер. Запитайте: «Можна мені скористатися безкоштовним трансфером?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Готель пропонує гостям безкоштовний трансфер. Запитайте: «Можна мені скористатися безкоштовним трансфером?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I use the complimentary shuttle?",
+        "localizedMeaning": {
+          "ru": "Отель предлагает гостям бесплатный трансфер. Спросите: «Можно мне воспользоваться бесплатным трансфером?»",
+          "uk": "Готель пропонує гостям безкоштовний трансфер. Запитайте: «Можна мені скористатися безкоштовним трансфером?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "use",
+          "the",
+          "complimentary",
+          "shuttle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-55:i08:r1",
+          "text": "Could I use the complimentary shuttle?"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i08:r2",
+          "text": "Could you use the complimentary shuttle?"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i08:r3",
+          "text": "Could we use the complimentary shuttle?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:i08:audio",
+          "transcript": "Could I use the complimentary shuttle?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-55:i08:r1",
+            "targetText": "Could I use the complimentary shuttle?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i08:r2",
+            "targetText": "Could you use the complimentary shuttle?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i08:r3",
+            "targetText": "Could we use the complimentary shuttle?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I use the complimentary shuttle?",
+              "uk": "У записі звучить Could I use the complimentary shuttle?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I use the complimentary shuttle?",
+              "uk": "У записі звучить Could I use the complimentary shuttle?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-55:i09:r1",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i09:r2",
+          "text": "uses"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i09:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ the complimentary shuttle?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-55:i09:r1",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i09:r2",
+            "text": "uses"
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i09:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:word:reserved",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reserved",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:word:reserved:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reserved",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:word:reserved:audio",
+          "transcript": "reserved"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-55:word:reserved:r1",
+            "targetText": "reserved",
+            "meaningByLocale": {
+              "ru": "зарезервированный.",
+              "uk": "зарезервований."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reserved",
+          "definitionByLocale": {
+            "ru": "зарезервированный.",
+            "uk": "зарезервований."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Провідник пропонує вам вільне місце з позначкою бронювання. Запитайте: «Можна мені сісти на це зарезервоване місце?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Провідник пропонує вам вільне місце з позначкою бронювання. Запитайте: «Можна мені сісти на це зарезервоване місце?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I sit in this reserved seat?",
+        "localizedMeaning": {
+          "ru": "Проводник предлагает вам свободное место с отметкой о бронировании. Спросите: «Можно мне сесть на это зарезервированное место?»",
+          "uk": "Провідник пропонує вам вільне місце з позначкою бронювання. Запитайте: «Можна мені сісти на це зарезервоване місце?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "sit",
+          "in",
+          "this",
+          "reserved",
+          "seat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-55:i11:r1",
+          "text": "Could I sit in this reserved seat?"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i11:r2",
+          "text": "Could you sit in this reserved seat?"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i11:r3",
+          "text": "Could we sit in this reserved seat?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:i11:audio",
+          "transcript": "Could I sit in this reserved seat?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-55:i11:r1",
+            "targetText": "Could I sit in this reserved seat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i11:r2",
+            "targetText": "Could you sit in this reserved seat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i11:r3",
+            "targetText": "Could we sit in this reserved seat?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-55:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I sit in this reserved seat?",
+              "uk": "У записі звучить Could I sit in this reserved seat?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I sit in this reserved seat?",
+              "uk": "У записі звучить Could I sit in this reserved seat?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-55:i12:r1",
+          "text": "sit"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i12:r2",
+          "text": "sits"
+        },
+        {
+          "responseId": "en:lesson-22:session-55:i12:r3",
+          "text": "sitting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ in this reserved seat?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-55:i12:r1",
+            "text": "sit"
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i12:r2",
+            "text": "sits"
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i12:r3",
+            "text": "sitting"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-55:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-55:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вислови з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-55:i13:p1",
+            "target": "buy a refundable ticket",
+            "meaningByLocale": {
+              "ru": "купить возвратный билет",
+              "uk": "купити квиток із можливістю повернення коштів"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-55:i13:p2",
+            "target": "check this non-refundable fare",
+            "meaningByLocale": {
+              "ru": "проверить этот невозвратный тариф",
+              "uk": "перевірити цей тариф без можливості повернення коштів"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-55:i13:p3",
+            "target": "use the complimentary shuttle",
+            "meaningByLocale": {
+              "ru": "воспользоваться бесплатным трансфером",
+              "uk": "скористатися безкоштовним трансфером"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-55:i13:p4",
+            "target": "sit in this reserved seat",
+            "meaningByLocale": {
+              "ru": "сесть на это зарезервированное место",
+              "uk": "сісти на це зарезервоване місце"
+            }
+          }
+        ],
+        "leftColumn": [
+          "buy a refundable ticket",
+          "check this non-refundable fare",
+          "use the complimentary shuttle",
+          "sit in this reserved seat"
+        ],
+        "rightColumn": [
+          "купити квиток із можливістю повернення коштів",
+          "перевірити цей тариф без можливості повернення коштів",
+          "скористатися безкоштовним трансфером",
+          "сісти на це зарезервоване місце"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: її річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: її річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: моя річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: моя річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Можна нам купити квиток із можливістю повернення коштів?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Можна нам купити квиток із можливістю повернення коштів?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:i16:audio",
+          "transcript": "Could we buy a refundable ticket?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we buy a refundable ticket?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-55:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Можна нам скористатися безкоштовним трансфером?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Можна нам скористатися безкоштовним трансфером?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-55:i17:audio",
+          "transcript": "Could we use the complimentary shuttle?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we use the complimentary shuttle?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c8a558306c9c976d1d5658265d7c1f5cba23b8c3b70640eb84ec8ab26e455e86"
+}

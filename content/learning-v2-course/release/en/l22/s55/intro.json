@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возврат билета",
+        "uk": "Повернення квитка"
+      },
+      "bodyByLocale": {
+        "ru": "Refundable означает, что деньги можно вернуть по условиям покупки. A refundable ticket — возвратный билет. Конкретные условия нужно уточнять у продавца. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Refundable означає, що кошти можна повернути за умовами купівлі. A refundable ticket — квиток із можливістю повернення коштів. Конкретні умови потрібно уточнювати у продавця. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-55:intro1:r1",
+              "text": "Could I buy a refundable ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro1:r2",
+              "text": "Could I buys a refundable ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro1:r3",
+              "text": "Could I buying a refundable ticket?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-55:intro1:r1",
+              "text": "Could I buy a refundable ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro1:r2",
+              "text": "Could I buys a refundable ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro1:r3",
+              "text": "Could I buying a refundable ticket?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Условия и услуги",
+        "uk": "Умови й послуги"
+      },
+      "bodyByLocale": {
+        "ru": "Non-refundable — без обычной возможности возврата денег. Complimentary — бесплатный для гостя или клиента: например, трансфер от отеля. Здесь слово не означает комплимент человеку. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Non-refundable — без звичайної можливості повернення коштів. Complimentary — безкоштовний для гостя або клієнта: наприклад, трансфер від готелю. Тут слово не означає комплімент людині. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-55:intro2:r1",
+              "text": "Could I check this non-refundable fare?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro2:r2",
+              "text": "Could I checks this non-refundable fare?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro2:r3",
+              "text": "Could I checking this non-refundable fare?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-55:intro2:r1",
+              "text": "Could I check this non-refundable fare?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro2:r2",
+              "text": "Could I checks this non-refundable fare?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro2:r3",
+              "text": "Could I checking this non-refundable fare?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Забронированное место",
+        "uk": "Заброньоване місце"
+      },
+      "bodyByLocale": {
+        "ru": "Reserved — зарезервированный, оставленный для определённого человека. Даже если место пустое, лучше спросить, можно ли его занять. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Reserved — зарезервований, залишений для певної людини. Навіть якщо місце порожнє, краще запитати, чи можна його зайняти. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-55:intro3:r1",
+              "text": "Could I sit in this reserved seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro3:r2",
+              "text": "Could I sits in this reserved seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro3:r3",
+              "text": "Could I sitting in this reserved seat?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-55:intro3:r1",
+              "text": "Could I sit in this reserved seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro3:r2",
+              "text": "Could I sits in this reserved seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-55:intro3:r3",
+              "text": "Could I sitting in this reserved seat?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3d84eb07082f003faa3cc90e8c745608293837d468e9f640ae7304769d4e84c8"
+}

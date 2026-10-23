@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-56:word:resealable",
+    "correctText": "resealable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i01",
+    "correctText": "Could I buy a resealable bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i02",
+    "correctText": "Could I buy a resealable bag?",
+    "correctResponseId": "en:lesson-22:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i03",
+    "correctText": "buy",
+    "correctResponseId": "en:lesson-22:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:word:removable",
+    "correctText": "removable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i04",
+    "correctText": "Could I wash this removable cover?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i05",
+    "correctText": "Could I wash this removable cover?",
+    "correctResponseId": "en:lesson-22:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i06",
+    "correctText": "wash",
+    "correctResponseId": "en:lesson-22:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:word:detachable",
+    "correctText": "detachable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i07",
+    "correctText": "Could I try the detachable strap?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i08",
+    "correctText": "Could I try the detachable strap?",
+    "correctResponseId": "en:lesson-22:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i09",
+    "correctText": "try",
+    "correctResponseId": "en:lesson-22:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:word:unbreakable",
+    "correctText": "unbreakable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i10",
+    "correctText": "Could I choose an unbreakable cup?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i11",
+    "correctText": "Could I choose an unbreakable cup?",
+    "correctResponseId": "en:lesson-22:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i12",
+    "correctText": "choose",
+    "correctResponseId": "en:lesson-22:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i13",
+    "correctText": "en:lesson-22:session-56:i13:p1=buy a resealable bag\nen:lesson-22:session-56:i13:p2=wash this removable cover\nen:lesson-22:session-56:i13:p3=try the detachable strap\nen:lesson-22:session-56:i13:p4=choose an unbreakable cup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i16",
+    "correctText": "Could we buy a resealable bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-56:i17",
+    "correctText": "Could we try the detachable strap?",
+    "correctResponseId": null
+  }
+]

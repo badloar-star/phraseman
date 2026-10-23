@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-56:word:resealable",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — resealable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:word:resealable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — resealable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:word:resealable:audio",
+          "transcript": "resealable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-56:word:resealable:r1",
+            "targetText": "resealable",
+            "meaningByLocale": {
+              "ru": "с возможностью повторного закрывания.",
+              "uk": "із можливістю повторного закривання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "resealable",
+          "definitionByLocale": {
+            "ru": "с возможностью повторного закрывания.",
+            "uk": "із можливістю повторного закривання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотите закрывать пакет после каждого использования. Спросите: «Можно мне купить пакет, который можно снова закрыть?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите закрывать пакет после каждого использования. Спросите: «Можно мне купить пакет, который можно снова закрыть?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I buy a resealable bag?",
+        "localizedMeaning": {
+          "ru": "Вы хотите закрывать пакет после каждого использования. Спросите: «Можно мне купить пакет, который можно снова закрыть?»",
+          "uk": "Ви хочете закривати пакет після кожного використання. Запитайте: «Можна мені купити пакет, який можна знову закрити?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "buy",
+          "a",
+          "resealable",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-56:i02:r1",
+          "text": "Could I buy a resealable bag?"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i02:r2",
+          "text": "Could you buy a resealable bag?"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i02:r3",
+          "text": "Could we buy a resealable bag?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:i02:audio",
+          "transcript": "Could I buy a resealable bag?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-56:i02:r1",
+            "targetText": "Could I buy a resealable bag?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i02:r2",
+            "targetText": "Could you buy a resealable bag?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i02:r3",
+            "targetText": "Could we buy a resealable bag?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I buy a resealable bag?",
+              "uk": "У записі звучить Could I buy a resealable bag?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I buy a resealable bag?",
+              "uk": "У записі звучить Could I buy a resealable bag?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-56:i03:r1",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i03:r2",
+          "text": "buys"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i03:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a resealable bag?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-56:i03:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i03:r2",
+            "text": "buys"
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i03:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:word:removable",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — removable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:word:removable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — removable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:word:removable:audio",
+          "transcript": "removable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-56:word:removable:r1",
+            "targetText": "removable",
+            "meaningByLocale": {
+              "ru": "съёмный.",
+              "uk": "знімний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "removable",
+          "definitionByLocale": {
+            "ru": "съёмный.",
+            "uk": "знімний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы уточняете правила ухода у продавца. Спросите: «Можно мне постирать этот съёмный чехол?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы уточняете правила ухода у продавца. Спросите: «Можно мне постирать этот съёмный чехол?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I wash this removable cover?",
+        "localizedMeaning": {
+          "ru": "Вы уточняете правила ухода у продавца. Спросите: «Можно мне постирать этот съёмный чехол?»",
+          "uk": "Ви уточнюєте правила догляду у продавця. Запитайте: «Можна мені випрати цей знімний чохол?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "wash",
+          "this",
+          "removable",
+          "cover"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-56:i05:r1",
+          "text": "Could I wash this removable cover?"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i05:r2",
+          "text": "Could you wash this removable cover?"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i05:r3",
+          "text": "Could we wash this removable cover?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:i05:audio",
+          "transcript": "Could I wash this removable cover?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-56:i05:r1",
+            "targetText": "Could I wash this removable cover?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i05:r2",
+            "targetText": "Could you wash this removable cover?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i05:r3",
+            "targetText": "Could we wash this removable cover?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I wash this removable cover?",
+              "uk": "У записі звучить Could I wash this removable cover?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I wash this removable cover?",
+              "uk": "У записі звучить Could I wash this removable cover?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-56:i06:r1",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i06:r2",
+          "text": "washes"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i06:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ this removable cover?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-56:i06:r1",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i06:r2",
+            "text": "washes"
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i06:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:word:detachable",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — detachable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:word:detachable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — detachable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:word:detachable:audio",
+          "transcript": "detachable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-56:word:detachable:r1",
+            "targetText": "detachable",
+            "meaningByLocale": {
+              "ru": "отстёгивающийся.",
+              "uk": "відстібний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "detachable",
+          "definitionByLocale": {
+            "ru": "отстёгивающийся.",
+            "uk": "відстібний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотите проверить, удобен ли ремень сумки. Спросите: «Можно мне попробовать отстёгивающийся ремень?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите проверить, удобен ли ремень сумки. Спросите: «Можно мне попробовать отстёгивающийся ремень?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I try the detachable strap?",
+        "localizedMeaning": {
+          "ru": "Вы хотите проверить, удобен ли ремень сумки. Спросите: «Можно мне попробовать отстёгивающийся ремень?»",
+          "uk": "Ви хочете перевірити, чи зручний ремінь сумки. Запитайте: «Можна мені спробувати відстібний ремінь?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "try",
+          "the",
+          "detachable",
+          "strap"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-56:i08:r1",
+          "text": "Could I try the detachable strap?"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i08:r2",
+          "text": "Could you try the detachable strap?"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i08:r3",
+          "text": "Could we try the detachable strap?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:i08:audio",
+          "transcript": "Could I try the detachable strap?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-56:i08:r1",
+            "targetText": "Could I try the detachable strap?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i08:r2",
+            "targetText": "Could you try the detachable strap?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i08:r3",
+            "targetText": "Could we try the detachable strap?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I try the detachable strap?",
+              "uk": "У записі звучить Could I try the detachable strap?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I try the detachable strap?",
+              "uk": "У записі звучить Could I try the detachable strap?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-56:i09:r1",
+          "text": "try"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i09:r2",
+          "text": "tries"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i09:r3",
+          "text": "trying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ the detachable strap?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-56:i09:r1",
+            "text": "try"
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i09:r2",
+            "text": "tries"
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i09:r3",
+            "text": "trying"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:word:unbreakable",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unbreakable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:word:unbreakable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unbreakable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:word:unbreakable:audio",
+          "transcript": "unbreakable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-56:word:unbreakable:r1",
+            "targetText": "unbreakable",
+            "meaningByLocale": {
+              "ru": "небьющийся.",
+              "uk": "небиткий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unbreakable",
+          "definitionByLocale": {
+            "ru": "небьющийся.",
+            "uk": "небиткий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы выбираете чашку для пикника. Спросите: «Можно мне выбрать небьющуюся чашку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы выбираете чашку для пикника. Спросите: «Можно мне выбрать небьющуюся чашку?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I choose an unbreakable cup?",
+        "localizedMeaning": {
+          "ru": "Вы выбираете чашку для пикника. Спросите: «Можно мне выбрать небьющуюся чашку?»",
+          "uk": "Ви вибираєте чашку для пікніка. Запитайте: «Можна мені вибрати небитку чашку?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "choose",
+          "an",
+          "unbreakable",
+          "cup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-56:i11:r1",
+          "text": "Could I choose an unbreakable cup?"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i11:r2",
+          "text": "Could you choose an unbreakable cup?"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i11:r3",
+          "text": "Could we choose an unbreakable cup?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:i11:audio",
+          "transcript": "Could I choose an unbreakable cup?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-56:i11:r1",
+            "targetText": "Could I choose an unbreakable cup?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i11:r2",
+            "targetText": "Could you choose an unbreakable cup?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i11:r3",
+            "targetText": "Could we choose an unbreakable cup?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I choose an unbreakable cup?",
+              "uk": "У записі звучить Could I choose an unbreakable cup?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I choose an unbreakable cup?",
+              "uk": "У записі звучить Could I choose an unbreakable cup?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-56:i12:r1",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i12:r2",
+          "text": "chooses"
+        },
+        {
+          "responseId": "en:lesson-22:session-56:i12:r3",
+          "text": "choosing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ an unbreakable cup?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-56:i12:r1",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i12:r2",
+            "text": "chooses"
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i12:r3",
+            "text": "choosing"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-56:i13:p1",
+            "target": "buy a resealable bag",
+            "meaningByLocale": {
+              "ru": "купить пакет, который можно снова закрыть",
+              "uk": "купити пакет, який можна знову закрити"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-56:i13:p2",
+            "target": "wash this removable cover",
+            "meaningByLocale": {
+              "ru": "постирать этот съёмный чехол",
+              "uk": "випрати цей знімний чохол"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-56:i13:p3",
+            "target": "try the detachable strap",
+            "meaningByLocale": {
+              "ru": "попробовать отстёгивающийся ремень",
+              "uk": "спробувати відстібний ремінь"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-56:i13:p4",
+            "target": "choose an unbreakable cup",
+            "meaningByLocale": {
+              "ru": "выбрать небьющуюся чашку",
+              "uk": "вибрати небитку чашку"
+            }
+          }
+        ],
+        "leftColumn": [
+          "buy a resealable bag",
+          "wash this removable cover",
+          "try the detachable strap",
+          "choose an unbreakable cup"
+        ],
+        "rightColumn": [
+          "купить пакет, который можно снова закрыть",
+          "постирать этот съёмный чехол",
+          "попробовать отстёгивающийся ремень",
+          "выбрать небьющуюся чашку"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: её вещь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: её вещь",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: моя вещь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: моя вещь",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Можно нам купить пакет, который можно снова закрыть?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Можно нам купить пакет, который можно снова закрыть?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:i16:audio",
+          "transcript": "Could we buy a resealable bag?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we buy a resealable bag?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Можно нам попробовать отстёгивающийся ремень?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Можно нам попробовать отстёгивающийся ремень?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-56:i17:audio",
+          "transcript": "Could we try the detachable strap?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we try the detachable strap?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8b6097d7add70c376868425f7e0fc1243a7bc539b05bad77860a9b5ff2aea1be"
+}

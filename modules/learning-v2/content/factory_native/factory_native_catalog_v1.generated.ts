@@ -310,7 +310,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 44,
-    sourceFingerprint: "b6f99469fec4d95d6045832cd503c504d50ac90f163bdd4230a8b2a1dbd73e76",
+    sourceFingerprint: "a34b2ebb4b6c2e38321f27aa789d3dc8ff5ab20cced96f78710672048677729d",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"коротко сказать, что вам интересно и какие бывают вещи: I'm, it's, they're, you're","uk":"коротко сказати, що вам цікаво і якими бувають речі: I'm, it's, they're, you're"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 1","uk":"Англійська · Урок 1"}),
@@ -338,7 +338,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 48,
-    sourceFingerprint: "6ea732618a2100fa2e27209a0a13715e71407d7fa9e2268d6ad1052c5eb3c093",
+    sourceFingerprint: "b7ff7f1537a8eeab9f52b60dc80505d7ae2f772e6115f43c141c0abbd0a3110d",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"коротко оценить вещи в мастерской It's и They're: что острое, что липкое, что сделано руками и что чудесное, и повторить слова главы","uk":"коротко оцінити речі в майстерні It's і They're: що гостре, що липке, що зроблено руками і що чудове, і повторити слова розділу"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 1","uk":"Англійська · Урок 1"}),
@@ -772,7 +772,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 54,
-    sourceFingerprint: "988d88362654ae6812baa9aad78a5b3deb94abfce29021e511d76a85d195c2eb",
+    sourceFingerprint: "dd5168e057c3213548756c40c4a816d97d0f7695a988a5623aa11e365d622762",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать выступающих и номера и спросить о них","uk":"описати виконавців і номери та запитати про них"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 2","uk":"Англійська · Урок 2"}),
@@ -842,7 +842,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 8,
-    sourceFingerprint: "5aa203d33e9f363f66ef3a3bc96cae0bb21e5ddb68c03bbec3e2dfa7dd3bfc5a",
+    sourceFingerprint: "644adc7e44f665d16bed310b11727388f7c930dcdc5e7d73f612ca380305f58f",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать и назвать предмет: утверждение, вопрос, отрицание","uk":"вибрати й назвати предмет: твердження, запитання, заперечення"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 3","uk":"Англійська · Урок 3"}),
@@ -2242,7 +2242,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 40,
-    sourceFingerprint: "0c57e3637803918a502f3b22a11cd7d44c5672c72c597dfe93fe62bb6d6cc0bf",
+    sourceFingerprint: "59072da9d158beeb002f6ebfdbe6a1b0b1d864f379ed079c2c1f2c99e8ac9a32",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самому выбрать между «без s» и «с s» и рассказать о соседях","uk":"самому вибрати між «без s» і «з s» та розповісти про сусідів"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 6","uk":"Англійська · Урок 6"}),
@@ -8613,6 +8613,20 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 54,
     sourceFingerprint: "8512819a24185c738a70474a0493a36afe001a895b2b2e1dc75bfaccaf8539f9",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 22, sessionOrdinal: 55,
+    sourceFingerprint: "87ba5f50ec906f4083cb56fa2b57ea15b756ce8e2bf873b13b197efb2a36357c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 22, sessionOrdinal: 56,
+    sourceFingerprint: "84f4b33b7849cd32b6c59c2bc000f8f198efb7ddbb9167d7144f952cf3b9336e",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),

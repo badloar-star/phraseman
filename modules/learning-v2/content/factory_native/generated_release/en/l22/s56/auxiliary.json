@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-22:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-22:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-56:intro1:r2": {
+          "ru": "После could нужна начальная форма глагола.",
+          "uk": "Після could потрібна початкова форма дієслова."
+        },
+        "en:lesson-22:session-56:intro1:r3": {
+          "ru": "После could нужна начальная форма глагола.",
+          "uk": "Після could потрібна початкова форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-56:intro2:r2": {
+          "ru": "После could нужна начальная форма глагола.",
+          "uk": "Після could потрібна початкова форма дієслова."
+        },
+        "en:lesson-22:session-56:intro2:r3": {
+          "ru": "После could нужна начальная форма глагола.",
+          "uk": "Після could потрібна початкова форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-56:intro3:r2": {
+          "ru": "После could нужна начальная форма глагола.",
+          "uk": "Після could потрібна початкова форма дієслова."
+        },
+        "en:lesson-22:session-56:intro3:r3": {
+          "ru": "После could нужна начальная форма глагола.",
+          "uk": "Після could потрібна початкова форма дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "68dbfc3a22653b305b3cac7032310d82d183eb67cb54b3cb8b412e6212268c50"
+}

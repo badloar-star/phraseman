@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, yet; by the time",
+    "uk": "if, when, unless; already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбрать дорогу",
+        "uk": "Вибрати дорогу"
+      },
+      "bodyByLocale": {
+        "ru": "Freeway — скоростная автомобильная дорога с въездами и съездами. We will take the freeway unless it is closed — мы поедем по скоростной дороге, если она не закрыта. Unless вводит исключение из плана; после него is без will. Gasoline — бензин, другое распространённое слово для petrol. We need more gasoline — нам нужно больше бензина. В этом значении gasoline неисчисляемое: без a и без множественного -s.",
+        "uk": "Freeway — швидкісна автомобільна дорога з в’їздами та з’їздами. We will take the freeway unless it is closed — ми поїдемо швидкісною дорогою, якщо її не закрито. Unless вводить виняток із плану; після нього is без will. Gasoline — бензин, інше поширене слово для petrol. We need more gasoline — нам потрібно більше бензину. У цьому значенні gasoline незлічуване: без a та без множинного -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-31:intro1:r1",
+              "text": "We will take the freeway unless it is closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro1:r2",
+              "text": "We will take the freeway unless it will be closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro1:r3",
+              "text": "We will take the freeway unless it are closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-31:intro1:r1",
+              "text": "We will take the freeway unless it is closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro1:r2",
+              "text": "We will take the freeway unless it will be closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro1:r3",
+              "text": "We will take the freeway unless it are closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Попросить об остановке",
+        "uk": "Попросити про зупинку"
+      },
+      "bodyByLocale": {
+        "ru": "Restroom — туалет в общественном месте. Where is the restroom? — где туалет? В дороге можно попросить We need to stop — нам нужно остановиться. Если остановку обещают после съезда: We will stop when we leave the freeway — мы остановимся, когда съедем со скоростной дороги. После when в придаточном о будущем leave без will.",
+        "uk": "Restroom — туалет у громадському місці. Where is the restroom? — де туалет? У дорозі можна попросити We need to stop — нам потрібно зупинитися. Якщо зупинку обіцяють після з’їзду: We will stop when we leave the freeway — ми зупинимося, коли з’їдемо зі швидкісної дороги. Після when у підрядному про майбутнє leave без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-31:intro2:r1",
+              "text": "We will stop when we leave the freeway."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro2:r2",
+              "text": "We will stop when we will leave the freeway."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro2:r3",
+              "text": "We will stop when we leaves the freeway."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-31:intro2:r1",
+              "text": "We will stop when we leave the freeway."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro2:r2",
+              "text": "We will stop when we will leave the freeway."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro2:r3",
+              "text": "We will stop when we leaves the freeway."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сообщить, где вы",
+        "uk": "Повідомити, де ви"
+      },
+      "bodyByLocale": {
+        "ru": "Cellphone — мобильный телефон. My cellphone is in my bag — мой телефон в сумке. Вы проверяете, заряжен ли он: Have you charged your cellphone yet? — ты уже зарядил телефон? Ответ I have already charged it — я уже его зарядил сообщает о готовом результате. Если он был заряжен до начала поездки: I had charged it by the time we left — я зарядил его к тому времени, как мы выехали.",
+        "uk": "Cellphone — мобільний телефон. My cellphone is in my bag — мій телефон у сумці. Ви перевіряєте, чи заряджено його: Have you charged your cellphone yet? — ти вже зарядив телефон? Відповідь I have already charged it — я вже його зарядив повідомляє про готовий результат. Якщо його було заряджено до початку поїздки: I had charged it by the time we left — я зарядив його до того часу, як ми виїхали."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-31:intro3:r1",
+              "text": "I had charged it by the time we left."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro3:r2",
+              "text": "I have charged it by the time we left."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro3:r3",
+              "text": "I was charged it by the time we left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-31:intro3:r1",
+              "text": "I had charged it by the time we left."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro3:r2",
+              "text": "I have charged it by the time we left."
+            },
+            {
+              "responseId": "en:lesson-26:session-31:intro3:r3",
+              "text": "I was charged it by the time we left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2c12c3c27c08705049c5b9d25a747e8e85d35f18d77412d6585634b1d9c855bd"
+}

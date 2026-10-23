@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-30:word:apartment",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — apartment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:word:apartment:audio"
+      ],
+      "accessibilityLabel": "Картка слова — apartment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:word:apartment:audio",
+          "transcript": "apartment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-30:word:apartment:r1",
+            "targetText": "apartment",
+            "meaningByLocale": {
+              "ru": "Квартира; распространённое слово наряду с flat.",
+              "uk": "Квартира; поширене слово поряд із flat."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "apartment",
+          "definitionByLocale": {
+            "ru": "Квартира; распространённое слово наряду с flat.",
+            "uk": "Квартира; поширене слово поряд із flat."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-30:i01:r1",
+          "text": "Her apartment is on the third floor."
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i01:r2",
+          "text": "Her apartment is on the fourth floor."
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i01:r3",
+          "text": "His apartment is on the third floor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:i01:audio",
+          "transcript": "Her apartment is on the third floor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-30:i01:r1",
+            "targetText": "Her apartment is on the third floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i01:r2",
+            "targetText": "Her apartment is on the fourth floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i01:r3",
+            "targetText": "His apartment is on the third floor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-30:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Her apartment is on the third floor.",
+              "uk": "У записі звучить Her apartment is on the third floor."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Her apartment is on the third floor.",
+              "uk": "У записі звучить Her apartment is on the third floor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви біля входу, але двері зачинено. Попросіть друга: «Можеш мене впустити?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви біля входу, але двері зачинено. Попросіть друга: «Можеш мене впустити?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you let me in?",
+        "localizedMeaning": {
+          "ru": "Вы у входа, но дверь закрыта. Попросите друга: «Можешь меня впустить?»",
+          "uk": "Ви біля входу, але двері зачинено. Попросіть друга: «Можеш мене впустити?»"
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "let",
+          "me",
+          "in"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:word:crosswalk",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — crosswalk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:word:crosswalk:audio"
+      ],
+      "accessibilityLabel": "Картка слова — crosswalk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:word:crosswalk:audio",
+          "transcript": "crosswalk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-30:word:crosswalk:r1",
+            "targetText": "crosswalk",
+            "meaningByLocale": {
+              "ru": "Пешеходный переход через дорогу.",
+              "uk": "Пішохідний перехід через дорогу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crosswalk",
+          "definitionByLocale": {
+            "ru": "Пешеходный переход через дорогу.",
+            "uk": "Пішохідний перехід через дорогу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i03",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Призначте місце зустрічі: «Зустрінь мене біля переходу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:i03:audio"
+      ],
+      "accessibilityLabel": "Призначте місце зустрічі: «Зустрінь мене біля переходу».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:i03:audio",
+          "transcript": "Meet me at the crosswalk."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Meet me at the crosswalk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви зателефонуєте, коли підійдете до будинку друга. Доповніть час.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-30:i04:r1",
+          "text": "reach"
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i04:r2",
+          "text": "will reach"
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i04:r3",
+          "text": "reaches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зателефонуєте, коли підійдете до будинку друга. Доповніть час.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы позвоните, когда подойдёте к дому друга. Дополните время.",
+          "uk": "Ви зателефонуєте, коли підійдете до будинку друга. Доповніть час."
+        },
+        "gappedTargetPhrase": "I will call when I ___ your building.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-30:i04:r1",
+            "text": "reach"
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i04:r2",
+            "text": "will reach"
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i04:r3",
+            "text": "reaches"
+          }
+        ],
+        "testedDimension": "Ви зателефонуєте, коли підійдете до будинку друга. Доповніть час.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-30:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви зателефонуєте, коли підійдете до будинку друга. Доповніть час.",
+            "feedbackByLocale": {
+              "ru": "После when здесь reach без will.",
+              "uk": "Після when тут reach без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви зателефонуєте, коли підійдете до будинку друга. Доповніть час.",
+            "feedbackByLocale": {
+              "ru": "С I используется reach без -s.",
+              "uk": "З I вживається reach без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:word:cookie",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cookie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:word:cookie:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cookie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:word:cookie:audio",
+          "transcript": "cookie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-30:word:cookie:r1",
+            "targetText": "cookie",
+            "meaningByLocale": {
+              "ru": "Печенье, отдельная печенюшка. Во множественном числе cookies.",
+              "uk": "Печиво, окрема печивина. У множині cookies."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cookie",
+          "definitionByLocale": {
+            "ru": "Печенье, отдельная печенюшка. Во множественном числе cookies.",
+            "uk": "Печиво, окрема печивина. У множині cookies."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте другові одне печиво.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте другові одне печиво.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Would you like a cookie?",
+        "localizedMeaning": {
+          "ru": "Предложите другу одно печенье.",
+          "uk": "Запропонуйте другові одне печиво."
+        },
+        "orderedTokens": [
+          "Would",
+          "you",
+          "like",
+          "a",
+          "cookie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-30:i06:r1",
+          "text": "I have already packed them."
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i06:r2",
+          "text": "I have already eaten them."
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i06:r3",
+          "text": "I have just packed them."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:i06:audio",
+          "transcript": "I have already packed them."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-30:i06:r1",
+            "targetText": "I have already packed them.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i06:r2",
+            "targetText": "I have already eaten them.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i06:r3",
+            "targetText": "I have just packed them.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already packed them.",
+              "uk": "У записі звучить I have already packed them."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already packed them.",
+              "uk": "У записі звучить I have already packed them."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:word:candy",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — candy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:word:candy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — candy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:word:candy:audio",
+          "transcript": "candy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-30:word:candy:r1",
+            "targetText": "candy",
+            "meaningByLocale": {
+              "ru": "Конфеты, сладости. A bag of candy — пакет конфет.",
+              "uk": "Цукерки, солодощі. A bag of candy — пакет цукерок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "candy",
+          "definitionByLocale": {
+            "ru": "Конфеты, сладости. A bag of candy — пакет конфет.",
+            "uk": "Цукерки, солодощі. A bag of candy — пакет цукерок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте повідомлення про покупку до чаю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Почуйте повідомлення про покупку до чаю.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:i07:audio",
+          "transcript": "I bought a bag of candy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I bought a bag of candy.",
+        "orderedTokens": [
+          "I",
+          "bought",
+          "a",
+          "bag",
+          "of",
+          "candy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви запитуєте, чи куплено частування на цей момент.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-30:i08:r1",
+          "text": "yet"
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i08:r2",
+          "text": "ago"
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i08:r3",
+          "text": "yesterday"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви запитуєте, чи куплено частування на цей момент.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы спрашиваете, куплено ли угощение к настоящему моменту.",
+          "uk": "Ви запитуєте, чи куплено частування на цей момент."
+        },
+        "gappedTargetPhrase": "Have you bought any candy ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-30:i08:r1",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i08:r2",
+            "text": "ago"
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i08:r3",
+            "text": "yesterday"
+          }
+        ],
+        "testedDimension": "Ви запитуєте, чи куплено частування на цей момент.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви запитуєте, чи куплено частування на цей момент.",
+            "feedbackByLocale": {
+              "ru": "Ago требует срока давности, а здесь вопрос о результате сейчас.",
+              "uk": "Ago потребує строку давності, а тут запитання про результат зараз."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви запитуєте, чи куплено частування на цей момент.",
+            "feedbackByLocale": {
+              "ru": "Yesterday задаёт завершённое прошлое и не подходит к этому вопросу с have bought.",
+              "uk": "Yesterday задає завершене минуле й не підходить до цього запитання з have bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг показує квартиру. Скажіть: «Мені подобається твоя квартира».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Друг показує квартиру. Скажіть: «Мені подобається твоя квартира».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:i09:audio",
+          "transcript": "I like your apartment."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I like your apartment.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-30:i10:r1",
+          "text": "The crosswalk is beside the shop."
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i10:r2",
+          "text": "The crosswalk is beside the school."
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i10:r3",
+          "text": "The bus stop is beside the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:i10:audio",
+          "transcript": "The crosswalk is beside the shop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-30:i10:r1",
+            "targetText": "The crosswalk is beside the shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i10:r2",
+            "targetText": "The crosswalk is beside the school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i10:r3",
+            "targetText": "The bus stop is beside the shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-30:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The crosswalk is beside the shop.",
+              "uk": "У записі звучить The crosswalk is beside the shop."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The crosswalk is beside the shop.",
+              "uk": "У записі звучить The crosswalk is beside the shop."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сильніший дощ — прогулянка скасовується. Виберіть виняток із плану вийти.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-30:i11:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i11:r2",
+          "text": "when"
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i11:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сильніший дощ — прогулянка скасовується. Виберіть виняток із плану вийти.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сильнее дождь — прогулка отменяется. Выберите исключение из плана выйти.",
+          "uk": "Сильніший дощ — прогулянка скасовується. Виберіть виняток із плану вийти."
+        },
+        "gappedTargetPhrase": "We will go out ___ the rain gets worse.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-30:i11:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i11:r2",
+            "text": "when"
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i11:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Сильніший дощ — прогулянка скасовується. Виберіть виняток із плану вийти.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Сильніший дощ — прогулянка скасовується. Виберіть виняток із плану вийти.",
+            "feedbackByLocale": {
+              "ru": "When означало бы выйти именно при усилении дождя.",
+              "uk": "When означало б вийти саме під час посилення дощу."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Сильніший дощ — прогулянка скасовується. Виберіть виняток із плану вийти.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы усиление дождя причиной выйти.",
+              "uk": "Because зробило б посилення дощу причиною вийти."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пообіцяйте другові: «Я принесу парасолю, якщо вона тобі потрібна».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообіцяйте другові: «Я принесу парасолю, якщо вона тобі потрібна».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will bring an umbrella if you need one.",
+        "localizedMeaning": {
+          "ru": "Пообещайте другу: «Я принесу зонт, если он тебе нужен».",
+          "uk": "Пообіцяйте другові: «Я принесу парасолю, якщо вона тобі потрібна»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "bring",
+          "an",
+          "umbrella",
+          "if",
+          "you",
+          "need",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте прохання про частування.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:i13:audio"
+      ],
+      "accessibilityLabel": "Почуйте прохання про частування.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:i13:audio",
+          "transcript": "Please save me a cookie."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please save me a cookie.",
+        "orderedTokens": [
+          "Please",
+          "save",
+          "me",
+          "a",
+          "cookie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг заварив чай до вашого приходу. Доповніть ранішу дію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-30:i14:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i14:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг заварив чай до вашого приходу. Доповніть ранішу дію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг заварил чай до вашего прихода. Дополните более раннее действие.",
+          "uk": "Друг заварив чай до вашого приходу. Доповніть ранішу дію."
+        },
+        "gappedTargetPhrase": "He ___ made tea by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-30:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Друг заварив чай до вашого приходу. Доповніть ранішу дію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-30:i14:r2",
+            "correct": false,
+            "testedDimension": "Друг заварив чай до вашого приходу. Доповніть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "Arrived задаёт прошлое; более раннее действие — had made.",
+              "uk": "Arrived задає минуле; раніша дія — had made."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i14:r3",
+            "correct": false,
+            "testedDimension": "Друг заварив чай до вашого приходу. Доповніть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "Для завершённого раньше действия здесь нужно had made.",
+              "uk": "Для завершеної раніше дії тут потрібно had made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг пропонує ще цукерок, але ви більше не хочете. Відмовтеся: «Мені досить».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Друг пропонує ще цукерок, але ви більше не хочете. Відмовтеся: «Мені досить».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:i15:audio",
+          "transcript": "I have had enough."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have had enough.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви описуєте звичний план на дощові дні.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-30:i16:r1",
+          "text": "stay"
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i16:r2",
+          "text": "stays"
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i16:r3",
+          "text": "staying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви описуєте звичний план на дощові дні.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете обычный план на дождливые дни.",
+          "uk": "Ви описуєте звичний план на дощові дні."
+        },
+        "gappedTargetPhrase": "We ___ indoors if it rains.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-30:i16:r1",
+            "text": "stay"
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i16:r2",
+            "text": "stays"
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i16:r3",
+            "text": "staying"
+          }
+        ],
+        "testedDimension": "Ви описуєте звичний план на дощові дні.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-30:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви описуєте звичний план на дощові дні.",
+            "feedbackByLocale": {
+              "ru": "С we нужно stay без -s.",
+              "uk": "З we потрібно stay без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви описуєте звичний план на дощові дні.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужно stay, не отдельное staying.",
+              "uk": "Для звички потрібно stay, не окреме staying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-30:i17:r1",
+          "text": "Let us play a game instead."
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i17:r2",
+          "text": "Let us watch a film instead."
+        },
+        {
+          "responseId": "en:lesson-26:session-30:i17:r3",
+          "text": "Let us play a game outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-30:i17:audio",
+          "transcript": "Let us play a game instead."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-30:i17:r1",
+            "targetText": "Let us play a game instead.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i17:r2",
+            "targetText": "Let us watch a film instead.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i17:r3",
+            "targetText": "Let us play a game outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-30:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Let us play a game instead.",
+              "uk": "У записі звучить Let us play a game instead."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-30:i17:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Let us play a game instead.",
+              "uk": "У записі звучить Let us play a game instead."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c759c8cf2ff9f862af4a68c89d80cb1991a6c6118d0f037d6e22e89942fc5cf5"
+}

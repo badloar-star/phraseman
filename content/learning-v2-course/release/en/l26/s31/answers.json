@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-31:word:freeway",
+    "correctText": "freeway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i01",
+    "correctText": "The freeway is closed today.",
+    "correctResponseId": "en:lesson-26:session-31:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i02",
+    "correctText": "Let us take another road.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:word:gasoline",
+    "correctText": "gasoline",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i03",
+    "correctText": "We need more gasoline.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i04",
+    "correctText": "will",
+    "correctResponseId": "en:lesson-26:session-31:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:word:restroom",
+    "correctText": "restroom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i05",
+    "correctText": "Where is the restroom?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i06",
+    "correctText": "It is at the end of the hall.",
+    "correctResponseId": "en:lesson-26:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:word:cellphone",
+    "correctText": "cellphone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i07",
+    "correctText": "My cellphone is in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i08",
+    "correctText": "yet",
+    "correctResponseId": "en:lesson-26:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i09",
+    "correctText": "I will call when we arrive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i10",
+    "correctText": "There is a restroom inside the cafe.",
+    "correctResponseId": "en:lesson-26:session-31:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i11",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i12",
+    "correctText": "I have already charged it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i13",
+    "correctText": "How much does the gasoline cost?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-31:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i15",
+    "correctText": "You can use my cellphone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i16",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-26:session-31:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-31:i17",
+    "correctText": "Is everyone ready?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-31:intro1:r2": {
+          "ru": "После unless здесь is без will.",
+          "uk": "Після unless тут is без will."
+        },
+        "en:lesson-26:session-31:intro1:r3": {
+          "ru": "С it используется is.",
+          "uk": "З it вживається is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-31:intro2:r2": {
+          "ru": "После when здесь leave без will.",
+          "uk": "Після when тут leave без will."
+        },
+        "en:lesson-26:session-31:intro2:r3": {
+          "ru": "С we нужно leave без -s.",
+          "uk": "З we потрібно leave без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-31:intro3:r2": {
+          "ru": "Left задаёт прошлое; раньше него — had charged.",
+          "uk": "Left задає минуле; раніше за нього — had charged."
+        },
+        "en:lesson-26:session-31:intro3:r3": {
+          "ru": "Здесь нужно had charged для действия, которое я выполнил раньше.",
+          "uk": "Тут потрібно had charged для дії, яку я виконав раніше."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0b83c55eacb61354b80823307f796de1f5e8d22353ce786f3cd0dc344d30128b"
+}

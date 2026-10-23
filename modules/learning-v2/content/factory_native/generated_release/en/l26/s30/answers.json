@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-30:word:apartment",
+    "correctText": "apartment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i01",
+    "correctText": "Her apartment is on the third floor.",
+    "correctResponseId": "en:lesson-26:session-30:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i02",
+    "correctText": "Can you let me in?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:word:crosswalk",
+    "correctText": "crosswalk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i03",
+    "correctText": "Meet me at the crosswalk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i04",
+    "correctText": "reach",
+    "correctResponseId": "en:lesson-26:session-30:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:word:cookie",
+    "correctText": "cookie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i05",
+    "correctText": "Would you like a cookie?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i06",
+    "correctText": "I have already packed them.",
+    "correctResponseId": "en:lesson-26:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:word:candy",
+    "correctText": "candy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i07",
+    "correctText": "I bought a bag of candy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i08",
+    "correctText": "yet",
+    "correctResponseId": "en:lesson-26:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i09",
+    "correctText": "I like your apartment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i10",
+    "correctText": "The crosswalk is beside the shop.",
+    "correctResponseId": "en:lesson-26:session-30:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i11",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i12",
+    "correctText": "I will bring an umbrella if you need one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i13",
+    "correctText": "Please save me a cookie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-30:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i15",
+    "correctText": "I have had enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i16",
+    "correctText": "stay",
+    "correctResponseId": "en:lesson-26:session-30:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-30:i17",
+    "correctText": "Let us play a game instead.",
+    "correctResponseId": "en:lesson-26:session-30:i17:r1"
+  }
+]

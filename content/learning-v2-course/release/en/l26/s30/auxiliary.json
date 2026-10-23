@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-30:intro1:r2": {
+          "ru": "После when здесь reach без will.",
+          "uk": "Після when тут reach без will."
+        },
+        "en:lesson-26:session-30:intro1:r3": {
+          "ru": "С I используется reach без -s.",
+          "uk": "З I вживається reach без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-30:intro2:r2": {
+          "ru": "После have нужна форма bought.",
+          "uk": "Після have потрібна форма bought."
+        },
+        "en:lesson-26:session-30:intro2:r3": {
+          "ru": "В вопросе о результате здесь have bought, не have buying.",
+          "uk": "У запитанні про результат тут have bought, не have buying."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-30:intro3:r2": {
+          "ru": "После unless здесь gets без will.",
+          "uk": "Після unless тут gets без will."
+        },
+        "en:lesson-26:session-30:intro3:r3": {
+          "ru": "The rain требует формы gets с -s.",
+          "uk": "The rain потребує форми gets із -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "13d7f0e8792dcbc6ddde393293750fc103e99e04b3370ed1f2e238a94621a5fd"
+}

@@ -1,0 +1,2223 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-31",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-31:word:freeway",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — freeway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:word:freeway:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — freeway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:word:freeway:audio",
+            "transcript": "freeway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:word:freeway:r1",
+              "targetText": "freeway",
+              "meaningByLocale": {
+                "ru": "Скоростная автомобильная дорога с въездами и съездами.",
+                "uk": "Швидкісна автомобільна дорога з в’їздами та з’їздами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "freeway",
+            "definitionByLocale": {
+              "ru": "Скоростная автомобильная дорога с въездами и съездами.",
+              "uk": "Швидкісна автомобільна дорога з в’їздами та з’їздами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i01:r1",
+            "text": "The freeway is closed today."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i01:r2",
+            "text": "The bridge is closed today."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i01:r3",
+            "text": "The freeway is open today."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i01:audio",
+            "transcript": "The freeway is closed today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:i01:r1",
+              "targetText": "The freeway is closed today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i01:r2",
+              "targetText": "The bridge is closed today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i01:r3",
+              "targetText": "The freeway is open today.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The freeway is closed today.",
+                "uk": "У записі звучить The freeway is closed today."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The freeway is closed today.",
+                "uk": "У записі звучить The freeway is closed today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Предложите изменить маршрут: «Давай поедем другой дорогой».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предложите изменить маршрут: «Давай поедем другой дорогой».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Let us take another road.",
+          "localizedMeaning": {
+            "ru": "Предложите изменить маршрут: «Давай поедем другой дорогой».",
+            "uk": "Запропонуйте змінити маршрут: «Давай поїдемо іншою дорогою»."
+          },
+          "orderedTokens": [
+            "Let",
+            "us",
+            "take",
+            "another",
+            "road"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:word:gasoline",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gasoline",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:word:gasoline:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gasoline",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:word:gasoline:audio",
+            "transcript": "gasoline"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:word:gasoline:r1",
+              "targetText": "gasoline",
+              "meaningByLocale": {
+                "ru": "Бензин; неисчисляемое слово, как petrol в этом значении.",
+                "uk": "Бензин; незлічуване слово, як petrol у цьому значенні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gasoline",
+            "definitionByLocale": {
+              "ru": "Бензин; неисчисляемое слово, как petrol в этом значении.",
+              "uk": "Бензин; незлічуване слово, як petrol у цьому значенні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i03",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Перед поездкой сообщите: «Нам нужно больше бензина».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i03:audio"
+        ],
+        "accessibilityLabel": "Перед поездкой сообщите: «Нам нужно больше бензина».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i03:audio",
+            "transcript": "We need more gasoline."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need more gasoline.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы обещаете остановиться при необходимости. Дополните обещание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i04:r1",
+            "text": "will"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i04:r2",
+            "text": "did"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i04:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы обещаете остановиться при необходимости. Дополните обещание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обещаете остановиться при необходимости. Дополните обещание.",
+            "uk": "Ви обіцяєте зупинитися за потреби. Доповніть обіцянку."
+          },
+          "gappedTargetPhrase": "I ___ stop if you need a break.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-31:i04:r1",
+              "text": "will"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i04:r2",
+              "text": "did"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i04:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Вы обещаете остановиться при необходимости. Дополните обещание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i04:r2",
+              "correct": false,
+              "testedDimension": "Вы обещаете остановиться при необходимости. Дополните обещание.",
+              "feedbackByLocale": {
+                "ru": "Did относится к прошлому, а здесь обещание на будущее.",
+                "uk": "Did стосується минулого, а тут обіцянка на майбутнє."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i04:r3",
+              "correct": false,
+              "testedDimension": "Вы обещаете остановиться при необходимости. Дополните обещание.",
+              "feedbackByLocale": {
+                "ru": "Перед stop в этом обещании нужен will, не am.",
+                "uk": "Перед stop у цій обіцянці потрібне will, не am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:word:restroom",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — restroom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:word:restroom:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — restroom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:word:restroom:audio",
+            "transcript": "restroom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:word:restroom:r1",
+              "targetText": "restroom",
+              "meaningByLocale": {
+                "ru": "Туалет в общественном месте.",
+                "uk": "Туалет у громадському місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "restroom",
+            "definitionByLocale": {
+              "ru": "Туалет в общественном месте.",
+              "uk": "Туалет у громадському місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В кафе спросите, где туалет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В кафе спросите, где туалет.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the restroom?",
+          "localizedMeaning": {
+            "ru": "В кафе спросите, где туалет.",
+            "uk": "У кафе запитайте, де туалет."
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "restroom"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i06:r1",
+            "text": "It is at the end of the hall."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i06:r2",
+            "text": "It is beside the entrance."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i06:r3",
+            "text": "It is at the end of the street."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i06:audio",
+            "transcript": "It is at the end of the hall."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:i06:r1",
+              "targetText": "It is at the end of the hall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i06:r2",
+              "targetText": "It is beside the entrance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i06:r3",
+              "targetText": "It is at the end of the street.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is at the end of the hall.",
+                "uk": "У записі звучить It is at the end of the hall."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is at the end of the hall.",
+                "uk": "У записі звучить It is at the end of the hall."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:word:cellphone",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cellphone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:word:cellphone:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cellphone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:word:cellphone:audio",
+            "transcript": "cellphone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:word:cellphone:r1",
+              "targetText": "cellphone",
+              "meaningByLocale": {
+                "ru": "Мобильный телефон.",
+                "uk": "Мобільний телефон."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cellphone",
+            "definitionByLocale": {
+              "ru": "Мобильный телефон.",
+              "uk": "Мобільний телефон."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, где лежит телефон.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i07:audio"
+        ],
+        "accessibilityLabel": "Услышьте, где лежит телефон.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i07:audio",
+            "transcript": "My cellphone is in my bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My cellphone is in my bag.",
+          "orderedTokens": [
+            "My",
+            "cellphone",
+            "is",
+            "in",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы спрашиваете о готовности телефона к поездке.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i08:r1",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i08:r2",
+            "text": "yesterday"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i08:r3",
+            "text": "ago"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете о готовности телефона к поездке.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете о готовности телефона к поездке.",
+            "uk": "Ви запитуєте про готовність телефона до поїздки."
+          },
+          "gappedTargetPhrase": "Have you charged it ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-31:i08:r1",
+              "text": "yet"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i08:r2",
+              "text": "yesterday"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i08:r3",
+              "text": "ago"
+            }
+          ],
+          "testedDimension": "Вы спрашиваете о готовности телефона к поездке.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете о готовности телефона к поездке.",
+              "feedbackByLocale": {
+                "ru": "Yesterday задаёт завершённое прошлое; здесь вопрос о результате сейчас.",
+                "uk": "Yesterday задає завершене минуле; тут запитання про результат зараз."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете о готовности телефона к поездке.",
+              "feedbackByLocale": {
+                "ru": "Ago требует указания давности, а здесь нужен yet.",
+                "uk": "Ago потребує вказівки давності, а тут потрібне yet."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мама ждёт новостей. Пообещайте: «Я позвоню, когда мы приедем».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i09:audio"
+        ],
+        "accessibilityLabel": "Мама ждёт новостей. Пообещайте: «Я позвоню, когда мы приедем».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i09:audio",
+            "transcript": "I will call when we arrive."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will call when we arrive.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i10:r1",
+            "text": "There is a restroom inside the cafe."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i10:r2",
+            "text": "There is a restroom beside the cafe."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i10:r3",
+            "text": "There is a shop inside the cafe."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i10:audio",
+            "transcript": "There is a restroom inside the cafe."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:i10:r1",
+              "targetText": "There is a restroom inside the cafe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i10:r2",
+              "targetText": "There is a restroom beside the cafe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i10:r3",
+              "targetText": "There is a shop inside the cafe.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a restroom inside the cafe.",
+                "uk": "У записі звучить There is a restroom inside the cafe."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a restroom inside the cafe.",
+                "uk": "У записі звучить There is a restroom inside the cafe."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скоростная дорога — основной план; закрытие дороги его изменит.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i11:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i11:r2",
+            "text": "when"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i11:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скоростная дорога — основной план; закрытие дороги его изменит.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скоростная дорога — основной план; закрытие дороги его изменит.",
+            "uk": "Швидкісна дорога — основний план; закриття дороги його змінить."
+          },
+          "gappedTargetPhrase": "We will take the freeway ___ it is closed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-31:i11:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i11:r2",
+              "text": "when"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i11:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Скоростная дорога — основной план; закрытие дороги его изменит.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Скоростная дорога — основной план; закрытие дороги его изменит.",
+              "feedbackByLocale": {
+                "ru": "When означало бы ехать именно при закрытой дороге.",
+                "uk": "When означало б їхати саме за закритої дороги."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Скоростная дорога — основной план; закрытие дороги его изменит.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы закрытие дороги причиной ехать по ней.",
+                "uk": "Because зробило б закриття дороги причиною їхати нею."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, нужно ли зарядить телефон. Ответьте: «Я уже его зарядил».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, нужно ли зарядить телефон. Ответьте: «Я уже его зарядил».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have already charged it.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, нужно ли зарядить телефон. Ответьте: «Я уже его зарядил».",
+            "uk": "Друг запитує, чи потрібно зарядити телефон. Дайте відповідь: «Я вже його зарядив»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "charged",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте вопрос о цене топлива.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i13:audio"
+        ],
+        "accessibilityLabel": "Услышьте вопрос о цене топлива.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i13:audio",
+            "transcript": "How much does the gasoline cost?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "How much does the gasoline cost?",
+          "orderedTokens": [
+            "How",
+            "much",
+            "does",
+            "the",
+            "gasoline",
+            "cost"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы зарядили телефон раньше выезда. Дополните действие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i14:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы зарядили телефон раньше выезда. Дополните действие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы зарядили телефон раньше выезда. Дополните действие.",
+            "uk": "Ви зарядили телефон раніше за виїзд. Доповніть дію."
+          },
+          "gappedTargetPhrase": "I ___ charged it by the time we left.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-31:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i14:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Вы зарядили телефон раньше выезда. Дополните действие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы зарядили телефон раньше выезда. Дополните действие.",
+              "feedbackByLocale": {
+                "ru": "Left задаёт прошлое; более раннее действие — had charged.",
+                "uk": "Left задає минуле; раніша дія — had charged."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы зарядили телефон раньше выезда. Дополните действие.",
+              "feedbackByLocale": {
+                "ru": "Для действия, выполненного раньше, здесь нужно had charged.",
+                "uk": "Для дії, виконаної раніше, тут потрібно had charged."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг потерял свой телефон. Предложите: «Можешь воспользоваться моим».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Друг потерял свой телефон. Предложите: «Можешь воспользоваться моим».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i15:audio",
+            "transcript": "You can use my cellphone."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You can use my cellphone.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы рассказываете о своей привычке делать перерыв при усталости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i16:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i16:r2",
+            "text": "takes"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i16:r3",
+            "text": "taking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете о своей привычке делать перерыв при усталости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете о своей привычке делать перерыв при усталости.",
+            "uk": "Ви розповідаєте про свою звичку робити перерву під час втоми."
+          },
+          "gappedTargetPhrase": "I ___ a break when I feel tired.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-31:i16:r1",
+              "text": "take"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i16:r2",
+              "text": "takes"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i16:r3",
+              "text": "taking"
+            }
+          ],
+          "testedDimension": "Вы рассказываете о своей привычке делать перерыв при усталости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о своей привычке делать перерыв при усталости.",
+              "feedbackByLocale": {
+                "ru": "С I используется take без -s.",
+                "uk": "З I вживається take без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о своей привычке делать перерыв при усталости.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен take, не отдельное taking.",
+                "uk": "Для звички потрібне take, не окреме taking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже пора ехать. Спросите пассажиров: «Все готовы?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уже пора ехать. Спросите пассажиров: «Все готовы?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is everyone ready?",
+          "localizedMeaning": {
+            "ru": "Уже пора ехать. Спросите пассажиров: «Все готовы?»",
+            "uk": "Уже час їхати. Запитайте пасажирів: «Усі готові?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "everyone",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-31:word:freeway",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — freeway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:word:freeway:audio"
+        ],
+        "accessibilityLabel": "Картка слова — freeway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:word:freeway:audio",
+            "transcript": "freeway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:word:freeway:r1",
+              "targetText": "freeway",
+              "meaningByLocale": {
+                "ru": "Скоростная автомобильная дорога с въездами и съездами.",
+                "uk": "Швидкісна автомобільна дорога з в’їздами та з’їздами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "freeway",
+            "definitionByLocale": {
+              "ru": "Скоростная автомобильная дорога с въездами и съездами.",
+              "uk": "Швидкісна автомобільна дорога з в’їздами та з’їздами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i01:r1",
+            "text": "The freeway is closed today."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i01:r2",
+            "text": "The bridge is closed today."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i01:r3",
+            "text": "The freeway is open today."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i01:audio",
+            "transcript": "The freeway is closed today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:i01:r1",
+              "targetText": "The freeway is closed today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i01:r2",
+              "targetText": "The bridge is closed today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i01:r3",
+              "targetText": "The freeway is open today.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The freeway is closed today.",
+                "uk": "У записі звучить The freeway is closed today."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The freeway is closed today.",
+                "uk": "У записі звучить The freeway is closed today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запропонуйте змінити маршрут: «Давай поїдемо іншою дорогою».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запропонуйте змінити маршрут: «Давай поїдемо іншою дорогою».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Let us take another road.",
+          "localizedMeaning": {
+            "ru": "Предложите изменить маршрут: «Давай поедем другой дорогой».",
+            "uk": "Запропонуйте змінити маршрут: «Давай поїдемо іншою дорогою»."
+          },
+          "orderedTokens": [
+            "Let",
+            "us",
+            "take",
+            "another",
+            "road"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:word:gasoline",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gasoline",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:word:gasoline:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gasoline",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:word:gasoline:audio",
+            "transcript": "gasoline"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:word:gasoline:r1",
+              "targetText": "gasoline",
+              "meaningByLocale": {
+                "ru": "Бензин; неисчисляемое слово, как petrol в этом значении.",
+                "uk": "Бензин; незлічуване слово, як petrol у цьому значенні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gasoline",
+            "definitionByLocale": {
+              "ru": "Бензин; неисчисляемое слово, как petrol в этом значении.",
+              "uk": "Бензин; незлічуване слово, як petrol у цьому значенні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i03",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Перед поїздкою повідомте: «Нам потрібно більше бензину».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i03:audio"
+        ],
+        "accessibilityLabel": "Перед поїздкою повідомте: «Нам потрібно більше бензину».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i03:audio",
+            "transcript": "We need more gasoline."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need more gasoline.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви обіцяєте зупинитися за потреби. Доповніть обіцянку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i04:r1",
+            "text": "will"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i04:r2",
+            "text": "did"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i04:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви обіцяєте зупинитися за потреби. Доповніть обіцянку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обещаете остановиться при необходимости. Дополните обещание.",
+            "uk": "Ви обіцяєте зупинитися за потреби. Доповніть обіцянку."
+          },
+          "gappedTargetPhrase": "I ___ stop if you need a break.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-31:i04:r1",
+              "text": "will"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i04:r2",
+              "text": "did"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i04:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Ви обіцяєте зупинитися за потреби. Доповніть обіцянку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i04:r2",
+              "correct": false,
+              "testedDimension": "Ви обіцяєте зупинитися за потреби. Доповніть обіцянку.",
+              "feedbackByLocale": {
+                "ru": "Did относится к прошлому, а здесь обещание на будущее.",
+                "uk": "Did стосується минулого, а тут обіцянка на майбутнє."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i04:r3",
+              "correct": false,
+              "testedDimension": "Ви обіцяєте зупинитися за потреби. Доповніть обіцянку.",
+              "feedbackByLocale": {
+                "ru": "Перед stop в этом обещании нужен will, не am.",
+                "uk": "Перед stop у цій обіцянці потрібне will, не am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:word:restroom",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — restroom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:word:restroom:audio"
+        ],
+        "accessibilityLabel": "Картка слова — restroom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:word:restroom:audio",
+            "transcript": "restroom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:word:restroom:r1",
+              "targetText": "restroom",
+              "meaningByLocale": {
+                "ru": "Туалет в общественном месте.",
+                "uk": "Туалет у громадському місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "restroom",
+            "definitionByLocale": {
+              "ru": "Туалет в общественном месте.",
+              "uk": "Туалет у громадському місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У кафе запитайте, де туалет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У кафе запитайте, де туалет.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the restroom?",
+          "localizedMeaning": {
+            "ru": "В кафе спросите, где туалет.",
+            "uk": "У кафе запитайте, де туалет."
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "restroom"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i06:r1",
+            "text": "It is at the end of the hall."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i06:r2",
+            "text": "It is beside the entrance."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i06:r3",
+            "text": "It is at the end of the street."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i06:audio",
+            "transcript": "It is at the end of the hall."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:i06:r1",
+              "targetText": "It is at the end of the hall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i06:r2",
+              "targetText": "It is beside the entrance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i06:r3",
+              "targetText": "It is at the end of the street.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is at the end of the hall.",
+                "uk": "У записі звучить It is at the end of the hall."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is at the end of the hall.",
+                "uk": "У записі звучить It is at the end of the hall."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:word:cellphone",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cellphone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:word:cellphone:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cellphone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:word:cellphone:audio",
+            "transcript": "cellphone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:word:cellphone:r1",
+              "targetText": "cellphone",
+              "meaningByLocale": {
+                "ru": "Мобильный телефон.",
+                "uk": "Мобільний телефон."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cellphone",
+            "definitionByLocale": {
+              "ru": "Мобильный телефон.",
+              "uk": "Мобільний телефон."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, де лежить телефон.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i07:audio"
+        ],
+        "accessibilityLabel": "Почуйте, де лежить телефон.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i07:audio",
+            "transcript": "My cellphone is in my bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My cellphone is in my bag.",
+          "orderedTokens": [
+            "My",
+            "cellphone",
+            "is",
+            "in",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви запитуєте про готовність телефона до поїздки.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i08:r1",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i08:r2",
+            "text": "yesterday"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i08:r3",
+            "text": "ago"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви запитуєте про готовність телефона до поїздки.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете о готовности телефона к поездке.",
+            "uk": "Ви запитуєте про готовність телефона до поїздки."
+          },
+          "gappedTargetPhrase": "Have you charged it ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-31:i08:r1",
+              "text": "yet"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i08:r2",
+              "text": "yesterday"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i08:r3",
+              "text": "ago"
+            }
+          ],
+          "testedDimension": "Ви запитуєте про готовність телефона до поїздки.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Ви запитуєте про готовність телефона до поїздки.",
+              "feedbackByLocale": {
+                "ru": "Yesterday задаёт завершённое прошлое; здесь вопрос о результате сейчас.",
+                "uk": "Yesterday задає завершене минуле; тут запитання про результат зараз."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Ви запитуєте про готовність телефона до поїздки.",
+              "feedbackByLocale": {
+                "ru": "Ago требует указания давности, а здесь нужен yet.",
+                "uk": "Ago потребує вказівки давності, а тут потрібне yet."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мама чекає новин. Пообіцяйте: «Я зателефоную, коли ми приїдемо».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i09:audio"
+        ],
+        "accessibilityLabel": "Мама чекає новин. Пообіцяйте: «Я зателефоную, коли ми приїдемо».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i09:audio",
+            "transcript": "I will call when we arrive."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will call when we arrive.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i10:r1",
+            "text": "There is a restroom inside the cafe."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i10:r2",
+            "text": "There is a restroom beside the cafe."
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i10:r3",
+            "text": "There is a shop inside the cafe."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i10:audio",
+            "transcript": "There is a restroom inside the cafe."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-31:i10:r1",
+              "targetText": "There is a restroom inside the cafe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i10:r2",
+              "targetText": "There is a restroom beside the cafe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i10:r3",
+              "targetText": "There is a shop inside the cafe.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a restroom inside the cafe.",
+                "uk": "У записі звучить There is a restroom inside the cafe."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a restroom inside the cafe.",
+                "uk": "У записі звучить There is a restroom inside the cafe."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Швидкісна дорога — основний план; закриття дороги його змінить.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i11:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i11:r2",
+            "text": "when"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i11:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Швидкісна дорога — основний план; закриття дороги його змінить.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скоростная дорога — основной план; закрытие дороги его изменит.",
+            "uk": "Швидкісна дорога — основний план; закриття дороги його змінить."
+          },
+          "gappedTargetPhrase": "We will take the freeway ___ it is closed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-31:i11:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i11:r2",
+              "text": "when"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i11:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Швидкісна дорога — основний план; закриття дороги його змінить.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Швидкісна дорога — основний план; закриття дороги його змінить.",
+              "feedbackByLocale": {
+                "ru": "When означало бы ехать именно при закрытой дороге.",
+                "uk": "When означало б їхати саме за закритої дороги."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Швидкісна дорога — основний план; закриття дороги його змінить.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы закрытие дороги причиной ехать по ней.",
+                "uk": "Because зробило б закриття дороги причиною їхати нею."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг запитує, чи потрібно зарядити телефон. Дайте відповідь: «Я вже його зарядив».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитує, чи потрібно зарядити телефон. Дайте відповідь: «Я вже його зарядив».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have already charged it.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, нужно ли зарядить телефон. Ответьте: «Я уже его зарядил».",
+            "uk": "Друг запитує, чи потрібно зарядити телефон. Дайте відповідь: «Я вже його зарядив»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "charged",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте запитання про ціну пального.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i13:audio"
+        ],
+        "accessibilityLabel": "Почуйте запитання про ціну пального.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i13:audio",
+            "transcript": "How much does the gasoline cost?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "How much does the gasoline cost?",
+          "orderedTokens": [
+            "How",
+            "much",
+            "does",
+            "the",
+            "gasoline",
+            "cost"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зарядили телефон раніше за виїзд. Доповніть дію.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i14:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зарядили телефон раніше за виїзд. Доповніть дію.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы зарядили телефон раньше выезда. Дополните действие.",
+            "uk": "Ви зарядили телефон раніше за виїзд. Доповніть дію."
+          },
+          "gappedTargetPhrase": "I ___ charged it by the time we left.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-31:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i14:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Ви зарядили телефон раніше за виїзд. Доповніть дію.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви зарядили телефон раніше за виїзд. Доповніть дію.",
+              "feedbackByLocale": {
+                "ru": "Left задаёт прошлое; более раннее действие — had charged.",
+                "uk": "Left задає минуле; раніша дія — had charged."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви зарядили телефон раніше за виїзд. Доповніть дію.",
+              "feedbackByLocale": {
+                "ru": "Для действия, выполненного раньше, здесь нужно had charged.",
+                "uk": "Для дії, виконаної раніше, тут потрібно had charged."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг загубив свій телефон. Запропонуйте: «Можеш скористатися моїм».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Друг загубив свій телефон. Запропонуйте: «Можеш скористатися моїм».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-31:i15:audio",
+            "transcript": "You can use my cellphone."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You can use my cellphone.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви розповідаєте про свою звичку робити перерву під час втоми.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-31:i16:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i16:r2",
+            "text": "takes"
+          },
+          {
+            "responseId": "en:lesson-26:session-31:i16:r3",
+            "text": "taking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте про свою звичку робити перерву під час втоми.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете о своей привычке делать перерыв при усталости.",
+            "uk": "Ви розповідаєте про свою звичку робити перерву під час втоми."
+          },
+          "gappedTargetPhrase": "I ___ a break when I feel tired.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-31:i16:r1",
+              "text": "take"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i16:r2",
+              "text": "takes"
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i16:r3",
+              "text": "taking"
+            }
+          ],
+          "testedDimension": "Ви розповідаєте про свою звичку робити перерву під час втоми.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-31:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про свою звичку робити перерву під час втоми.",
+              "feedbackByLocale": {
+                "ru": "С I используется take без -s.",
+                "uk": "З I вживається take без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-31:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про свою звичку робити перерву під час втоми.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужен take, не отдельное taking.",
+                "uk": "Для звички потрібне take, не окреме taking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-31:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже час їхати. Запитайте пасажирів: «Усі готові?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уже час їхати. Запитайте пасажирів: «Усі готові?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is everyone ready?",
+          "localizedMeaning": {
+            "ru": "Уже пора ехать. Спросите пассажиров: «Все готовы?»",
+            "uk": "Уже час їхати. Запитайте пасажирів: «Усі готові?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "everyone",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-31:word:freeway",
+      "correctText": "freeway",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i01",
+      "correctText": "The freeway is closed today.",
+      "correctResponseId": "en:lesson-26:session-31:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i02",
+      "correctText": "Let us take another road.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:word:gasoline",
+      "correctText": "gasoline",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i03",
+      "correctText": "We need more gasoline.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i04",
+      "correctText": "will",
+      "correctResponseId": "en:lesson-26:session-31:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:word:restroom",
+      "correctText": "restroom",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i05",
+      "correctText": "Where is the restroom?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i06",
+      "correctText": "It is at the end of the hall.",
+      "correctResponseId": "en:lesson-26:session-31:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:word:cellphone",
+      "correctText": "cellphone",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i07",
+      "correctText": "My cellphone is in my bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i08",
+      "correctText": "yet",
+      "correctResponseId": "en:lesson-26:session-31:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i09",
+      "correctText": "I will call when we arrive.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i10",
+      "correctText": "There is a restroom inside the cafe.",
+      "correctResponseId": "en:lesson-26:session-31:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i11",
+      "correctText": "unless",
+      "correctResponseId": "en:lesson-26:session-31:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i12",
+      "correctText": "I have already charged it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i13",
+      "correctText": "How much does the gasoline cost?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i14",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-31:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i15",
+      "correctText": "You can use my cellphone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i16",
+      "correctText": "take",
+      "correctResponseId": "en:lesson-26:session-31:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-31:i17",
+      "correctText": "Is everyone ready?",
+      "correctResponseId": null
+    }
+  ]
+}

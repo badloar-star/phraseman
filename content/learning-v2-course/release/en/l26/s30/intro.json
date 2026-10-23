@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, yet; by the time",
+    "uk": "if, when, unless; already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "В гости к другу",
+        "uk": "У гості до друга"
+      },
+      "bodyByLocale": {
+        "ru": "Apartment — квартира. My friend has a small apartment — у моего друга небольшая квартира. Это ещё одно распространённое слово наряду с flat. Crosswalk — пешеходный переход: Meet me at the crosswalk — встреть меня у перехода. Договориться о звонке можно так: I will call when I reach your building — я позвоню, когда подойду к твоему дому. После when в этом будущем придаточном reach без will.",
+        "uk": "Apartment — квартира. My friend has a small apartment — у мого друга невелика квартира. Це ще одне поширене слово поряд із flat. Crosswalk — пішохідний перехід: Meet me at the crosswalk — зустрінь мене біля переходу. Домовитися про дзвінок можна так: I will call when I reach your building — я зателефоную, коли підійду до твого будинку. Після when у цьому майбутньому підрядному reach без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-30:intro1:r1",
+              "text": "I will call when I reach your building."
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro1:r2",
+              "text": "I will call when I will reach your building."
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro1:r3",
+              "text": "I will call when I reaches your building."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-30:intro1:r1",
+              "text": "I will call when I reach your building."
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro1:r2",
+              "text": "I will call when I will reach your building."
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro1:r3",
+              "text": "I will call when I reaches your building."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что принести к чаю",
+        "uk": "Що принести до чаю"
+      },
+      "bodyByLocale": {
+        "ru": "Cookie — печенье, отдельная печенюшка: a cookie, two cookies. Candy — конфеты, сладости. В выражении a bag of candy слово candy обозначает содержимое пакета в целом: пакет конфет. Вы уже приготовили угощение: I have already packed the cookies — я уже упаковал печенье. Друг спрашивает Have you bought any candy yet? — ты уже купил конфеты? Вопрос с yet уточняет результат к настоящему моменту.",
+        "uk": "Cookie — печиво, окрема печивина: a cookie, two cookies. Candy — цукерки, солодощі. У виразі a bag of candy слово candy позначає вміст пакета загалом: пакет цукерок. Ви вже підготували частування: I have already packed the cookies — я вже запакував печиво. Друг запитує Have you bought any candy yet? — ти вже купив цукерки? Запитання з yet уточнює результат на цей момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-30:intro2:r1",
+              "text": "Have you bought any candy yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro2:r2",
+              "text": "Have you buy any candy yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro2:r3",
+              "text": "Have you buying any candy yet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-30:intro2:r1",
+              "text": "Have you bought any candy yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro2:r2",
+              "text": "Have you buy any candy yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro2:r3",
+              "text": "Have you buying any candy yet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если планы изменятся",
+        "uk": "Якщо плани зміняться"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь гулять, но хотите оставить возможность зайти внутрь: We will go out unless the rain gets worse — мы выйдем, если дождь не усилится. Unless называет исключение из плана; после него gets без will. Если дождь обычно меняет ваши планы: If it rains, we stay indoors — если идёт дождь, мы остаёмся в помещении. В этой привычной ситуации обе части стоят в Present Simple.",
+        "uk": "Ви збираєтеся гуляти, але хочете залишити можливість зайти всередину: We will go out unless the rain gets worse — ми вийдемо, якщо дощ не посилиться. Unless називає виняток із плану; після нього gets без will. Якщо дощ зазвичай змінює ваші плани: If it rains, we stay indoors — якщо йде дощ, ми залишаємося в приміщенні. У цій звичній ситуації обидві частини стоять у Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-30:intro3:r1",
+              "text": "We will go out unless the rain gets worse."
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro3:r2",
+              "text": "We will go out unless the rain will get worse."
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro3:r3",
+              "text": "We will go out unless the rain get worse."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-30:intro3:r1",
+              "text": "We will go out unless the rain gets worse."
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro3:r2",
+              "text": "We will go out unless the rain will get worse."
+            },
+            {
+              "responseId": "en:lesson-26:session-30:intro3:r3",
+              "text": "We will go out unless the rain get worse."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "801074ae07d690c71bc0b7b427a22d1ba454125216ceae815d6d4f9e14d383b7"
+}

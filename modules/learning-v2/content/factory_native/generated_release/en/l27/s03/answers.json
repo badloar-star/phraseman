@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-03:word:wag",
+    "correctText": "wag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i01",
+    "correctText": "Dogs wag their tails.",
+    "correctResponseId": "en:lesson-27:session-03:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i02",
+    "correctText": "May I stroke him?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i03",
+    "correctText": "I have already fed him.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-03:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:word:pee",
+    "correctText": "pee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i05",
+    "correctText": "The dog needs to pee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i06",
+    "correctText": "Could you pass me the leash?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i07",
+    "correctText": "There are bags by the door.",
+    "correctResponseId": "en:lesson-27:session-03:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:word:poop",
+    "correctText": "poop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i08",
+    "correctText": "Please pick up the poop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i09",
+    "correctText": "took",
+    "correctResponseId": "en:lesson-27:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i10",
+    "correctText": "He has had enough water.",
+    "correctResponseId": "en:lesson-27:session-03:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:word:drool",
+    "correctText": "drool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i11",
+    "correctText": "Some dogs drool a lot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i12",
+    "correctText": "Where is the towel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i13",
+    "correctText": "lived",
+    "correctResponseId": "en:lesson-27:session-03:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i14",
+    "correctText": "I would take him to the park if I had a car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i15",
+    "correctText": "We can meet at the park.",
+    "correctResponseId": "en:lesson-27:session-03:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i16",
+    "correctText": "What time shall I come?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-03:i17",
+    "correctText": "That works for me.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-03:intro1:r2": {
+          "ru": "После would нужна начальная форма keep.",
+          "uk": "Після would потрібна початкова форма keep."
+        },
+        "en:lesson-27:session-03:intro1:r3": {
+          "ru": "После if здесь had без would.",
+          "uk": "Після if тут had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-03:intro2:r2": {
+          "ru": "Have took неверно; при законченном времени здесь took.",
+          "uk": "Have took неправильно; із завершеним часом тут took."
+        },
+        "en:lesson-27:session-03:intro2:r3": {
+          "ru": "Речь о завершённой утренней прогулке: took.",
+          "uk": "Йдеться про завершену ранкову прогулянку: took."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-03:intro3:r2": {
+          "ru": "После would нужно visit.",
+          "uk": "Після would потрібно visit."
+        },
+        "en:lesson-27:session-03:intro3:r3": {
+          "ru": "В условии lived без would.",
+          "uk": "В умові lived без would."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "08fb62e4b0c28a7c0da33113c4c7991ce843cd3581f0ebfd28fb3ea286ea2daf"
+}

@@ -1,0 +1,2185 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-27:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-27:session-04:word:wisely",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wisely",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:word:wisely:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wisely",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:word:wisely:audio",
+            "transcript": "wisely"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:word:wisely:r1",
+              "targetText": "wisely",
+              "meaningByLocale": {
+                "ru": "Разумно, обдуманно.",
+                "uk": "Розумно, обдумано."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wisely",
+            "definitionByLocale": {
+              "ru": "Разумно, обдуманно.",
+              "uk": "Розумно, обдумано."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Посоветуйте разумно тратить деньги.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Посоветуйте разумно тратить деньги.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Spend your money wisely.",
+          "localizedMeaning": {
+            "ru": "Посоветуйте разумно тратить деньги.",
+            "uk": "Порадьте розумно витрачати гроші."
+          },
+          "orderedTokens": [
+            "Spend",
+            "your",
+            "money",
+            "wisely"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i02:r1",
+            "text": "This one costs less."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i02:r2",
+            "text": "This one costs more."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i02:r3",
+            "text": "That one costs less."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i02:audio",
+            "transcript": "This one costs less."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:i02:r1",
+              "targetText": "This one costs less.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i02:r2",
+              "targetText": "This one costs more.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i02:r3",
+              "targetText": "That one costs less.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This one costs less.",
+                "uk": "У записі звучить This one costs less."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This one costs less.",
+                "uk": "У записі звучить This one costs less."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i03",
+        "ordinal": 7,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните, входит ли доставка в цену.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i03:audio"
+        ],
+        "accessibilityLabel": "Уточните, входит ли доставка в цену.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i03:audio",
+            "transcript": "Is delivery included?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is delivery included?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы бы купили кровать получше, если бы хватало денег.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i04:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i04:r2",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i04:r3",
+            "text": "to buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы бы купили кровать получше, если бы хватало денег.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы бы купили кровать получше, если бы хватало денег.",
+            "uk": "Ви б купили краще ліжко, якби вистачало грошей."
+          },
+          "gappedTargetPhrase": "I would ___ a better bed if I had enough money.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-04:i04:r1",
+              "text": "buy"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i04:r2",
+              "text": "bought"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i04:r3",
+              "text": "to buy"
+            }
+          ],
+          "testedDimension": "Вы бы купили кровать получше, если бы хватало денег.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i04:r2",
+              "correct": false,
+              "testedDimension": "Вы бы купили кровать получше, если бы хватало денег.",
+              "feedbackByLocale": {
+                "ru": "После would нужна начальная форма buy.",
+                "uk": "Після would потрібна початкова форма buy."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i04:r3",
+              "correct": false,
+              "testedDimension": "Вы бы купили кровать получше, если бы хватало денег.",
+              "feedbackByLocale": {
+                "ru": "После would не ставим to.",
+                "uk": "Після would не ставимо to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:word:eagerly",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — eagerly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:word:eagerly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — eagerly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:word:eagerly:audio",
+            "transcript": "eagerly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:word:eagerly:r1",
+              "targetText": "eagerly",
+              "meaningByLocale": {
+                "ru": "С нетерпением, с большим желанием.",
+                "uk": "З нетерпінням, із великим бажанням."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eagerly",
+            "definitionByLocale": {
+              "ru": "С нетерпением, с большим желанием.",
+              "uk": "З нетерпінням, із великим бажанням."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i05:r1",
+            "text": "The children are eagerly waiting for you."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i05:r2",
+            "text": "The children are eagerly waiting for us."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i05:r3",
+            "text": "The children are eagerly waiting for dinner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i05:audio",
+            "transcript": "The children are eagerly waiting for you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:i05:r1",
+              "targetText": "The children are eagerly waiting for you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i05:r2",
+              "targetText": "The children are eagerly waiting for us.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i05:r3",
+              "targetText": "The children are eagerly waiting for dinner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The children are eagerly waiting for you.",
+                "uk": "У записі звучить The children are eagerly waiting for you."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The children are eagerly waiting for you.",
+                "uk": "У записі звучить The children are eagerly waiting for you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте вопрос о времени приезда.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i06:audio"
+        ],
+        "accessibilityLabel": "Услышьте вопрос о времени приезда.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i06:audio",
+            "transcript": "When does your train arrive?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "When does your train arrive?",
+          "orderedTokens": [
+            "When",
+            "does",
+            "your",
+            "train",
+            "arrive"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Обещайте встретить родственников на станции.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i07:audio"
+        ],
+        "accessibilityLabel": "Обещайте встретить родственников на станции.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i07:audio",
+            "transcript": "I will meet you at the station."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will meet you at the station.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:word:deeply",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — deeply",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:word:deeply:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — deeply",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:word:deeply:audio",
+            "transcript": "deeply"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:word:deeply:r1",
+              "targetText": "deeply",
+              "meaningByLocale": {
+                "ru": "Глубоко; с чувствами — очень сильно.",
+                "uk": "Глибоко; з почуттями — дуже сильно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "deeply",
+            "definitionByLocale": {
+              "ru": "Глубоко; с чувствами — очень сильно.",
+              "uk": "Глибоко; з почуттями — дуже сильно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что она очень заботится о семье.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что она очень заботится о семье.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She cares deeply about her family.",
+          "localizedMeaning": {
+            "ru": "Скажите, что она очень заботится о семье.",
+            "uk": "Скажіть, що вона дуже піклується про сім’ю."
+          },
+          "orderedTokens": [
+            "She",
+            "cares",
+            "deeply",
+            "about",
+            "her",
+            "family"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы бы чаще виделись, если бы ваша работа была рядом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i09:r1",
+            "text": "worked"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i09:r2",
+            "text": "would worked"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i09:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы бы чаще виделись, если бы ваша работа была рядом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы бы чаще виделись, если бы ваша работа была рядом.",
+            "uk": "Ви б частіше бачилися, якби ваша робота була поруч."
+          },
+          "gappedTargetPhrase": "I would see them more often if I ___ nearby.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-04:i09:r1",
+              "text": "worked"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i09:r2",
+              "text": "would worked"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i09:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Вы бы чаще виделись, если бы ваша работа была рядом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы бы чаще виделись, если бы ваша работа была рядом.",
+              "feedbackByLocale": {
+                "ru": "В условии нужно worked без would.",
+                "uk": "В умові потрібно worked без would."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы бы чаще виделись, если бы ваша работа была рядом.",
+              "feedbackByLocale": {
+                "ru": "Working не заменяет личную форму worked.",
+                "uk": "Working не замінює особову форму worked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i10:r1",
+            "text": "We have bought some extra towels."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i10:r2",
+            "text": "We have bought some extra pillows."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i10:r3",
+            "text": "We have brought some extra towels."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i10:audio",
+            "transcript": "We have bought some extra towels."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:i10:r1",
+              "targetText": "We have bought some extra towels.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i10:r2",
+              "targetText": "We have bought some extra pillows.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i10:r3",
+              "targetText": "We have brought some extra towels.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have bought some extra towels.",
+                "uk": "У записі звучить We have bought some extra towels."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have bought some extra towels.",
+                "uk": "У записі звучить We have bought some extra towels."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:word:practically",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — practically",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:word:practically:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — practically",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:word:practically:audio",
+            "transcript": "practically"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:word:practically:r1",
+              "targetText": "practically",
+              "meaningByLocale": {
+                "ru": "Практически, почти — в этой ситуации.",
+                "uk": "Практично, майже — у цій ситуації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "practically",
+            "definitionByLocale": {
+              "ru": "Практически, почти — в этой ситуации.",
+              "uk": "Практично, майже — у цій ситуації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сообщите, что вы почти закончили.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Сообщите, что вы почти закончили.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i11:audio",
+            "transcript": "We have practically finished."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have practically finished.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите помочь с последней коробкой.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите помочь с последней коробкой.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could you help me with this box?",
+          "localizedMeaning": {
+            "ru": "Попросите помочь с последней коробкой.",
+            "uk": "Попросіть допомогти з останньою коробкою."
+          },
+          "orderedTokens": [
+            "Could",
+            "you",
+            "help",
+            "me",
+            "with",
+            "this",
+            "box"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Расскажите о вчерашней сборке кровати.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i13:r1",
+            "text": "built"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i13:r2",
+            "text": "have built"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i13:r3",
+            "text": "builded"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о вчерашней сборке кровати.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Расскажите о вчерашней сборке кровати.",
+            "uk": "Розкажіть про вчорашнє складання ліжка."
+          },
+          "gappedTargetPhrase": "We ___ it yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-04:i13:r1",
+              "text": "built"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i13:r2",
+              "text": "have built"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i13:r3",
+              "text": "builded"
+            }
+          ],
+          "testedDimension": "Расскажите о вчерашней сборке кровати.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i13:r2",
+              "correct": false,
+              "testedDimension": "Расскажите о вчерашней сборке кровати.",
+              "feedbackByLocale": {
+                "ru": "С yesterday здесь past simple.",
+                "uk": "Із yesterday тут past simple."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i13:r3",
+              "correct": false,
+              "testedDimension": "Расскажите о вчерашней сборке кровати.",
+              "feedbackByLocale": {
+                "ru": "У build неправильная форма built.",
+                "uk": "У build неправильна форма built."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с результата: If we had more chairs, everyone would sit at the table.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с результата: If we had more chairs, everyone would sit at the table.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Everyone would sit at the table if we had more chairs.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we had more chairs, everyone would sit at the table.",
+            "uk": "Почніть із результату: If we had more chairs, everyone would sit at the table."
+          },
+          "orderedTokens": [
+            "Everyone",
+            "would",
+            "sit",
+            "at",
+            "the",
+            "table",
+            "if",
+            "we",
+            "had",
+            "more",
+            "chairs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i15:r1",
+            "text": "We can borrow two chairs."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i15:r2",
+            "text": "We can borrow three chairs."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i15:r3",
+            "text": "We can buy two chairs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i15:audio",
+            "transcript": "We can borrow two chairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:i15:r1",
+              "targetText": "We can borrow two chairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i15:r2",
+              "targetText": "We can borrow three chairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i15:r3",
+              "targetText": "We can buy two chairs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can borrow two chairs.",
+                "uk": "У записі звучить We can borrow two chairs."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can borrow two chairs.",
+                "uk": "У записі звучить We can borrow two chairs."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите сделать перерыв перед приездом гостей.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Предложите сделать перерыв перед приездом гостей.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i16:audio",
+            "transcript": "Let us take a break."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Let us take a break.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте предложение приготовить чай.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Услышьте предложение приготовить чай.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i17:audio",
+            "transcript": "I will put the kettle on."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will put the kettle on.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "put",
+            "the",
+            "kettle",
+            "on"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-27:session-04:word:wisely",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wisely",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:word:wisely:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wisely",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:word:wisely:audio",
+            "transcript": "wisely"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:word:wisely:r1",
+              "targetText": "wisely",
+              "meaningByLocale": {
+                "ru": "Разумно, обдуманно.",
+                "uk": "Розумно, обдумано."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wisely",
+            "definitionByLocale": {
+              "ru": "Разумно, обдуманно.",
+              "uk": "Розумно, обдумано."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Порадьте розумно витрачати гроші.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Порадьте розумно витрачати гроші.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Spend your money wisely.",
+          "localizedMeaning": {
+            "ru": "Посоветуйте разумно тратить деньги.",
+            "uk": "Порадьте розумно витрачати гроші."
+          },
+          "orderedTokens": [
+            "Spend",
+            "your",
+            "money",
+            "wisely"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i02:r1",
+            "text": "This one costs less."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i02:r2",
+            "text": "This one costs more."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i02:r3",
+            "text": "That one costs less."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i02:audio",
+            "transcript": "This one costs less."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:i02:r1",
+              "targetText": "This one costs less.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i02:r2",
+              "targetText": "This one costs more.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i02:r3",
+              "targetText": "That one costs less.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This one costs less.",
+                "uk": "У записі звучить This one costs less."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This one costs less.",
+                "uk": "У записі звучить This one costs less."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i03",
+        "ordinal": 7,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть, чи входить доставка в ціну.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i03:audio"
+        ],
+        "accessibilityLabel": "Уточніть, чи входить доставка в ціну.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i03:audio",
+            "transcript": "Is delivery included?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is delivery included?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви б купили краще ліжко, якби вистачало грошей.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i04:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i04:r2",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i04:r3",
+            "text": "to buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви б купили краще ліжко, якби вистачало грошей.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы бы купили кровать получше, если бы хватало денег.",
+            "uk": "Ви б купили краще ліжко, якби вистачало грошей."
+          },
+          "gappedTargetPhrase": "I would ___ a better bed if I had enough money.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-04:i04:r1",
+              "text": "buy"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i04:r2",
+              "text": "bought"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i04:r3",
+              "text": "to buy"
+            }
+          ],
+          "testedDimension": "Ви б купили краще ліжко, якби вистачало грошей.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i04:r2",
+              "correct": false,
+              "testedDimension": "Ви б купили краще ліжко, якби вистачало грошей.",
+              "feedbackByLocale": {
+                "ru": "После would нужна начальная форма buy.",
+                "uk": "Після would потрібна початкова форма buy."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i04:r3",
+              "correct": false,
+              "testedDimension": "Ви б купили краще ліжко, якби вистачало грошей.",
+              "feedbackByLocale": {
+                "ru": "После would не ставим to.",
+                "uk": "Після would не ставимо to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:word:eagerly",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — eagerly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:word:eagerly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — eagerly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:word:eagerly:audio",
+            "transcript": "eagerly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:word:eagerly:r1",
+              "targetText": "eagerly",
+              "meaningByLocale": {
+                "ru": "С нетерпением, с большим желанием.",
+                "uk": "З нетерпінням, із великим бажанням."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eagerly",
+            "definitionByLocale": {
+              "ru": "С нетерпением, с большим желанием.",
+              "uk": "З нетерпінням, із великим бажанням."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i05:r1",
+            "text": "The children are eagerly waiting for you."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i05:r2",
+            "text": "The children are eagerly waiting for us."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i05:r3",
+            "text": "The children are eagerly waiting for dinner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i05:audio",
+            "transcript": "The children are eagerly waiting for you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:i05:r1",
+              "targetText": "The children are eagerly waiting for you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i05:r2",
+              "targetText": "The children are eagerly waiting for us.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i05:r3",
+              "targetText": "The children are eagerly waiting for dinner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The children are eagerly waiting for you.",
+                "uk": "У записі звучить The children are eagerly waiting for you."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The children are eagerly waiting for you.",
+                "uk": "У записі звучить The children are eagerly waiting for you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте запитання про час приїзду.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i06:audio"
+        ],
+        "accessibilityLabel": "Почуйте запитання про час приїзду.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i06:audio",
+            "transcript": "When does your train arrive?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "When does your train arrive?",
+          "orderedTokens": [
+            "When",
+            "does",
+            "your",
+            "train",
+            "arrive"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Пообіцяйте зустріти рідних на станції.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i07:audio"
+        ],
+        "accessibilityLabel": "Пообіцяйте зустріти рідних на станції.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i07:audio",
+            "transcript": "I will meet you at the station."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will meet you at the station.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:word:deeply",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — deeply",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:word:deeply:audio"
+        ],
+        "accessibilityLabel": "Картка слова — deeply",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:word:deeply:audio",
+            "transcript": "deeply"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:word:deeply:r1",
+              "targetText": "deeply",
+              "meaningByLocale": {
+                "ru": "Глубоко; с чувствами — очень сильно.",
+                "uk": "Глибоко; з почуттями — дуже сильно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "deeply",
+            "definitionByLocale": {
+              "ru": "Глубоко; с чувствами — очень сильно.",
+              "uk": "Глибоко; з почуттями — дуже сильно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що вона дуже піклується про сім’ю.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що вона дуже піклується про сім’ю.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She cares deeply about her family.",
+          "localizedMeaning": {
+            "ru": "Скажите, что она очень заботится о семье.",
+            "uk": "Скажіть, що вона дуже піклується про сім’ю."
+          },
+          "orderedTokens": [
+            "She",
+            "cares",
+            "deeply",
+            "about",
+            "her",
+            "family"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви б частіше бачилися, якби ваша робота була поруч.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i09:r1",
+            "text": "worked"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i09:r2",
+            "text": "would worked"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i09:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви б частіше бачилися, якби ваша робота була поруч.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы бы чаще виделись, если бы ваша работа была рядом.",
+            "uk": "Ви б частіше бачилися, якби ваша робота була поруч."
+          },
+          "gappedTargetPhrase": "I would see them more often if I ___ nearby.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-04:i09:r1",
+              "text": "worked"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i09:r2",
+              "text": "would worked"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i09:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Ви б частіше бачилися, якби ваша робота була поруч.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви б частіше бачилися, якби ваша робота була поруч.",
+              "feedbackByLocale": {
+                "ru": "В условии нужно worked без would.",
+                "uk": "В умові потрібно worked без would."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви б частіше бачилися, якби ваша робота була поруч.",
+              "feedbackByLocale": {
+                "ru": "Working не заменяет личную форму worked.",
+                "uk": "Working не замінює особову форму worked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i10:r1",
+            "text": "We have bought some extra towels."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i10:r2",
+            "text": "We have bought some extra pillows."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i10:r3",
+            "text": "We have brought some extra towels."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i10:audio",
+            "transcript": "We have bought some extra towels."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:i10:r1",
+              "targetText": "We have bought some extra towels.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i10:r2",
+              "targetText": "We have bought some extra pillows.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i10:r3",
+              "targetText": "We have brought some extra towels.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have bought some extra towels.",
+                "uk": "У записі звучить We have bought some extra towels."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have bought some extra towels.",
+                "uk": "У записі звучить We have bought some extra towels."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:word:practically",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — practically",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:word:practically:audio"
+        ],
+        "accessibilityLabel": "Картка слова — practically",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:word:practically:audio",
+            "transcript": "practically"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:word:practically:r1",
+              "targetText": "practically",
+              "meaningByLocale": {
+                "ru": "Практически, почти — в этой ситуации.",
+                "uk": "Практично, майже — у цій ситуації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "practically",
+            "definitionByLocale": {
+              "ru": "Практически, почти — в этой ситуации.",
+              "uk": "Практично, майже — у цій ситуації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повідомте, що ви майже закінчили.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Повідомте, що ви майже закінчили.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i11:audio",
+            "transcript": "We have practically finished."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have practically finished.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть допомогти з останньою коробкою.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть допомогти з останньою коробкою.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could you help me with this box?",
+          "localizedMeaning": {
+            "ru": "Попросите помочь с последней коробкой.",
+            "uk": "Попросіть допомогти з останньою коробкою."
+          },
+          "orderedTokens": [
+            "Could",
+            "you",
+            "help",
+            "me",
+            "with",
+            "this",
+            "box"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Розкажіть про вчорашнє складання ліжка.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i13:r1",
+            "text": "built"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i13:r2",
+            "text": "have built"
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i13:r3",
+            "text": "builded"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про вчорашнє складання ліжка.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Расскажите о вчерашней сборке кровати.",
+            "uk": "Розкажіть про вчорашнє складання ліжка."
+          },
+          "gappedTargetPhrase": "We ___ it yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-04:i13:r1",
+              "text": "built"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i13:r2",
+              "text": "have built"
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i13:r3",
+              "text": "builded"
+            }
+          ],
+          "testedDimension": "Розкажіть про вчорашнє складання ліжка.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i13:r2",
+              "correct": false,
+              "testedDimension": "Розкажіть про вчорашнє складання ліжка.",
+              "feedbackByLocale": {
+                "ru": "С yesterday здесь past simple.",
+                "uk": "Із yesterday тут past simple."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i13:r3",
+              "correct": false,
+              "testedDimension": "Розкажіть про вчорашнє складання ліжка.",
+              "feedbackByLocale": {
+                "ru": "У build неправильная форма built.",
+                "uk": "У build неправильна форма built."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть із результату: If we had more chairs, everyone would sit at the table.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть із результату: If we had more chairs, everyone would sit at the table.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Everyone would sit at the table if we had more chairs.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we had more chairs, everyone would sit at the table.",
+            "uk": "Почніть із результату: If we had more chairs, everyone would sit at the table."
+          },
+          "orderedTokens": [
+            "Everyone",
+            "would",
+            "sit",
+            "at",
+            "the",
+            "table",
+            "if",
+            "we",
+            "had",
+            "more",
+            "chairs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-04:i15:r1",
+            "text": "We can borrow two chairs."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i15:r2",
+            "text": "We can borrow three chairs."
+          },
+          {
+            "responseId": "en:lesson-27:session-04:i15:r3",
+            "text": "We can buy two chairs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i15:audio",
+            "transcript": "We can borrow two chairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-04:i15:r1",
+              "targetText": "We can borrow two chairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i15:r2",
+              "targetText": "We can borrow three chairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i15:r3",
+              "targetText": "We can buy two chairs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-04:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can borrow two chairs.",
+                "uk": "У записі звучить We can borrow two chairs."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-04:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can borrow two chairs.",
+                "uk": "У записі звучить We can borrow two chairs."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте зробити перерву перед приїздом гостей.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте зробити перерву перед приїздом гостей.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i16:audio",
+            "transcript": "Let us take a break."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Let us take a break.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-04:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте пропозицію приготувати чай.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Почуйте пропозицію приготувати чай.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-04:i17:audio",
+            "transcript": "I will put the kettle on."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will put the kettle on.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "put",
+            "the",
+            "kettle",
+            "on"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-27:session-04:word:wisely",
+      "correctText": "wisely",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i01",
+      "correctText": "Spend your money wisely.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i02",
+      "correctText": "This one costs less.",
+      "correctResponseId": "en:lesson-27:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i03",
+      "correctText": "Is delivery included?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i04",
+      "correctText": "buy",
+      "correctResponseId": "en:lesson-27:session-04:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:word:eagerly",
+      "correctText": "eagerly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i05",
+      "correctText": "The children are eagerly waiting for you.",
+      "correctResponseId": "en:lesson-27:session-04:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i06",
+      "correctText": "When does your train arrive?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i07",
+      "correctText": "I will meet you at the station.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:word:deeply",
+      "correctText": "deeply",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i08",
+      "correctText": "She cares deeply about her family.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i09",
+      "correctText": "worked",
+      "correctResponseId": "en:lesson-27:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i10",
+      "correctText": "We have bought some extra towels.",
+      "correctResponseId": "en:lesson-27:session-04:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:word:practically",
+      "correctText": "practically",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i11",
+      "correctText": "We have practically finished.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i12",
+      "correctText": "Could you help me with this box?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i13",
+      "correctText": "built",
+      "correctResponseId": "en:lesson-27:session-04:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i14",
+      "correctText": "Everyone would sit at the table if we had more chairs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i15",
+      "correctText": "We can borrow two chairs.",
+      "correctResponseId": "en:lesson-27:session-04:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i16",
+      "correctText": "Let us take a break.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:i17",
+      "correctText": "I will put the kettle on.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-04:intro1:r2": {
+          "ru": "После would нужна форма buy.",
+          "uk": "Після would потрібна форма buy."
+        },
+        "en:lesson-27:session-04:intro1:r3": {
+          "ru": "В условии had без would.",
+          "uk": "В умові had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-04:intro2:r2": {
+          "ru": "После would нужно see.",
+          "uk": "Після would потрібно see."
+        },
+        "en:lesson-27:session-04:intro2:r3": {
+          "ru": "В условии worked без would.",
+          "uk": "В умові worked без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-04:intro3:r2": {
+          "ru": "При законченном yesterday здесь past simple.",
+          "uk": "Із завершеним yesterday тут past simple."
+        },
+        "en:lesson-27:session-04:intro3:r3": {
+          "ru": "Прошедшая форма build — built.",
+          "uk": "Минула форма build — built."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9250cd51726a2f377de12c04772d6142ab6de75e5d0061db8d3ed14182c6999a"
+}

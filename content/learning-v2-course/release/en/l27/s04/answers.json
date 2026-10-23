@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-04:word:wisely",
+    "correctText": "wisely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i01",
+    "correctText": "Spend your money wisely.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i02",
+    "correctText": "This one costs less.",
+    "correctResponseId": "en:lesson-27:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i03",
+    "correctText": "Is delivery included?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i04",
+    "correctText": "buy",
+    "correctResponseId": "en:lesson-27:session-04:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:word:eagerly",
+    "correctText": "eagerly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i05",
+    "correctText": "The children are eagerly waiting for you.",
+    "correctResponseId": "en:lesson-27:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i06",
+    "correctText": "When does your train arrive?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i07",
+    "correctText": "I will meet you at the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:word:deeply",
+    "correctText": "deeply",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i08",
+    "correctText": "She cares deeply about her family.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i09",
+    "correctText": "worked",
+    "correctResponseId": "en:lesson-27:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i10",
+    "correctText": "We have bought some extra towels.",
+    "correctResponseId": "en:lesson-27:session-04:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:word:practically",
+    "correctText": "practically",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i11",
+    "correctText": "We have practically finished.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i12",
+    "correctText": "Could you help me with this box?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i13",
+    "correctText": "built",
+    "correctResponseId": "en:lesson-27:session-04:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i14",
+    "correctText": "Everyone would sit at the table if we had more chairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i15",
+    "correctText": "We can borrow two chairs.",
+    "correctResponseId": "en:lesson-27:session-04:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i16",
+    "correctText": "Let us take a break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-04:i17",
+    "correctText": "I will put the kettle on.",
+    "correctResponseId": null
+  }
+]

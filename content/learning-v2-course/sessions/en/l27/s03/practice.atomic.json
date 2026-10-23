@@ -1,0 +1,2179 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-27:session-03",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-27:session-03:word:wag",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:word:wag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:word:wag:audio",
+            "transcript": "wag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:word:wag:r1",
+              "targetText": "wag",
+              "meaningByLocale": {
+                "ru": "Вилять, обычно хвостом.",
+                "uk": "Виляти, зазвичай хвостом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wag",
+            "definitionByLocale": {
+              "ru": "Вилять, обычно хвостом.",
+              "uk": "Виляти, зазвичай хвостом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i01:r1",
+            "text": "Dogs wag their tails."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i01:r2",
+            "text": "Dogs chase their tails."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i01:r3",
+            "text": "Cats wag their tails."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i01:audio",
+            "transcript": "Dogs wag their tails."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:i01:r1",
+              "targetText": "Dogs wag their tails.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i01:r2",
+              "targetText": "Dogs chase their tails.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i01:r3",
+              "targetText": "Cats wag their tails.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Dogs wag their tails.",
+                "uk": "У записі звучить Dogs wag their tails."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Dogs wag their tails.",
+                "uk": "У записі звучить Dogs wag their tails."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите хозяина, можно ли погладить собаку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Спросите хозяина, можно ли погладить собаку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i02:audio",
+            "transcript": "May I stroke him?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "May I stroke him?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, что хозяин уже покормил собаку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i03:audio"
+        ],
+        "accessibilityLabel": "Услышьте, что хозяин уже покормил собаку.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i03:audio",
+            "transcript": "I have already fed him."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have already fed him.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "fed",
+            "him"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У вас мало места. Представьте, что места больше и собаку можно оставить у себя.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i04:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i04:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вас мало места. Представьте, что места больше и собаку можно оставить у себя.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У вас мало места. Представьте, что места больше и собаку можно оставить у себя.",
+            "uk": "У вас мало місця. Уявіть, що місця більше й собаку можна залишити в себе."
+          },
+          "gappedTargetPhrase": "I would keep him if I ___ more space.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-03:i04:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i04:r2",
+              "text": "would had"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i04:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "У вас мало места. Представьте, что места больше и собаку можно оставить у себя.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i04:r2",
+              "correct": false,
+              "testedDimension": "У вас мало места. Представьте, что места больше и собаку можно оставить у себя.",
+              "feedbackByLocale": {
+                "ru": "В условии нужно had без would.",
+                "uk": "В умові потрібно had без would."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i04:r3",
+              "correct": false,
+              "testedDimension": "У вас мало места. Представьте, что места больше и собаку можно оставить у себя.",
+              "feedbackByLocale": {
+                "ru": "Нужна личная форма had.",
+                "uk": "Потрібна особова форма had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:word:pee",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:word:pee:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:word:pee:audio",
+            "transcript": "pee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:word:pee:r1",
+              "targetText": "pee",
+              "meaningByLocale": {
+                "ru": "Писать, мочиться; неформальное слово.",
+                "uk": "Пісяти, мочитися; неформальне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pee",
+            "definitionByLocale": {
+              "ru": "Писать, мочиться; неформальное слово.",
+              "uk": "Пісяти, мочитися; неформальне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Объясните, почему собаке нужно выйти.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Объясните, почему собаке нужно выйти.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The dog needs to pee.",
+          "localizedMeaning": {
+            "ru": "Объясните, почему собаке нужно выйти.",
+            "uk": "Поясніть, чому собаці треба вийти."
+          },
+          "orderedTokens": [
+            "The",
+            "dog",
+            "needs",
+            "to",
+            "pee"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите хозяина передать вам поводок.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i06:audio"
+        ],
+        "accessibilityLabel": "Попросите хозяина передать вам поводок.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i06:audio",
+            "transcript": "Could you pass me the leash?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you pass me the leash?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i07:r1",
+            "text": "There are bags by the door."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i07:r2",
+            "text": "There are bowls by the door."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i07:r3",
+            "text": "There are bags by the window."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i07:audio",
+            "transcript": "There are bags by the door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:i07:r1",
+              "targetText": "There are bags by the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i07:r2",
+              "targetText": "There are bowls by the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i07:r3",
+              "targetText": "There are bags by the window.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i07:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are bags by the door.",
+                "uk": "У записі звучить There are bags by the door."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i07:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are bags by the door.",
+                "uk": "У записі звучить There are bags by the door."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:word:poop",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — poop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:word:poop:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — poop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:word:poop:audio",
+            "transcript": "poop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:word:poop:r1",
+              "targetText": "poop",
+              "meaningByLocale": {
+                "ru": "Какать; также испражнения. Неформальное слово.",
+                "uk": "Какати; також випорожнення. Неформальне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "poop",
+            "definitionByLocale": {
+              "ru": "Какать; также испражнения. Неформальное слово.",
+              "uk": "Какати; також випорожнення. Неформальне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Восстановите просьбу убрать за собакой.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i08:audio"
+        ],
+        "accessibilityLabel": "Восстановите просьбу убрать за собакой.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i08:audio",
+            "transcript": "Please pick up the poop."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please pick up the poop.",
+          "orderedTokens": [
+            "Please",
+            "pick",
+            "up",
+            "the",
+            "poop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сейчас вечер. Расскажите о завершённой утренней прогулке.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i09:r1",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i09:r2",
+            "text": "have taken"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i09:r3",
+            "text": "taking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сейчас вечер. Расскажите о завершённой утренней прогулке.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас вечер. Расскажите о завершённой утренней прогулке.",
+            "uk": "Зараз вечір. Розкажіть про завершену ранкову прогулянку."
+          },
+          "gappedTargetPhrase": "I ___ him out this morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-03:i09:r1",
+              "text": "took"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i09:r2",
+              "text": "have taken"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i09:r3",
+              "text": "taking"
+            }
+          ],
+          "testedDimension": "Сейчас вечер. Расскажите о завершённой утренней прогулке.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Сейчас вечер. Расскажите о завершённой утренней прогулке.",
+              "feedbackByLocale": {
+                "ru": "Утро закончилось: здесь past simple.",
+                "uk": "Ранок закінчився: тут past simple."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Сейчас вечер. Расскажите о завершённой утренней прогулке.",
+              "feedbackByLocale": {
+                "ru": "Taking само по себе не образует сказуемое.",
+                "uk": "Taking саме по собі не утворює присудок."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i10:r1",
+            "text": "He has had enough water."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i10:r2",
+            "text": "He has had enough food."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i10:r3",
+            "text": "He has not had enough water."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i10:audio",
+            "transcript": "He has had enough water."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:i10:r1",
+              "targetText": "He has had enough water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i10:r2",
+              "targetText": "He has had enough food.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i10:r3",
+              "targetText": "He has not had enough water.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has had enough water.",
+                "uk": "У записі звучить He has had enough water."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has had enough water.",
+                "uk": "У записі звучить He has had enough water."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:word:drool",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — drool",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:word:drool:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — drool",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:word:drool:audio",
+            "transcript": "drool"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:word:drool:r1",
+              "targetText": "drool",
+              "meaningByLocale": {
+                "ru": "Пускать слюни.",
+                "uk": "Пускати слину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drool",
+            "definitionByLocale": {
+              "ru": "Пускать слюни.",
+              "uk": "Пускати слину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что некоторые собаки пускают много слюней.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что некоторые собаки пускают много слюней.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Some dogs drool a lot.",
+          "localizedMeaning": {
+            "ru": "Скажите, что некоторые собаки пускают много слюней.",
+            "uk": "Скажіть, що деякі собаки пускають багато слини."
+          },
+          "orderedTokens": [
+            "Some",
+            "dogs",
+            "drool",
+            "a",
+            "lot"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните, где лежит полотенце.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i12:audio"
+        ],
+        "accessibilityLabel": "Уточните, где лежит полотенце.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i12:audio",
+            "transcript": "Where is the towel?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where is the towel?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы приходили бы каждый день, если бы жили рядом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i13:r1",
+            "text": "lived"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i13:r2",
+            "text": "would lived"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i13:r3",
+            "text": "living"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы приходили бы каждый день, если бы жили рядом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы приходили бы каждый день, если бы жили рядом.",
+            "uk": "Ви приходили б щодня, якби жили поруч."
+          },
+          "gappedTargetPhrase": "I would visit every day if I ___ nearby.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-03:i13:r1",
+              "text": "lived"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i13:r2",
+              "text": "would lived"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i13:r3",
+              "text": "living"
+            }
+          ],
+          "testedDimension": "Вы приходили бы каждый день, если бы жили рядом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i13:r2",
+              "correct": false,
+              "testedDimension": "Вы приходили бы каждый день, если бы жили рядом.",
+              "feedbackByLocale": {
+                "ru": "В условии здесь lived без would.",
+                "uk": "В умові тут lived без would."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i13:r3",
+              "correct": false,
+              "testedDimension": "Вы приходили бы каждый день, если бы жили рядом.",
+              "feedbackByLocale": {
+                "ru": "Living не заменяет здесь личную форму lived.",
+                "uk": "Living тут не замінює особову форму lived."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с результата: If I had a car, I would take him to the park.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с результата: If I had a car, I would take him to the park.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I would take him to the park if I had a car.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If I had a car, I would take him to the park.",
+            "uk": "Почніть із результату: If I had a car, I would take him to the park."
+          },
+          "orderedTokens": [
+            "I",
+            "would",
+            "take",
+            "him",
+            "to",
+            "the",
+            "park",
+            "if",
+            "I",
+            "had",
+            "a",
+            "car"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i15:r1",
+            "text": "We can meet at the park."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i15:r2",
+            "text": "We can meet at the station."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i15:r3",
+            "text": "We can wait at the park."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i15:audio",
+            "transcript": "We can meet at the park."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:i15:r1",
+              "targetText": "We can meet at the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i15:r2",
+              "targetText": "We can meet at the station.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i15:r3",
+              "targetText": "We can wait at the park.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can meet at the park.",
+                "uk": "У записі звучить We can meet at the park."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can meet at the park.",
+                "uk": "У записі звучить We can meet at the park."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните время своего следующего визита.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i16:audio"
+        ],
+        "accessibilityLabel": "Уточните время своего следующего визита.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i16:audio",
+            "transcript": "What time shall I come?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "What time shall I come?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подтвердите, что предложенное время вам подходит.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подтвердите, что предложенное время вам подходит.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That works for me.",
+          "localizedMeaning": {
+            "ru": "Подтвердите, что предложенное время вам подходит.",
+            "uk": "Підтвердьте, що запропонований час вам підходить."
+          },
+          "orderedTokens": [
+            "That",
+            "works",
+            "for",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-27:session-03:word:wag",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:word:wag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:word:wag:audio",
+            "transcript": "wag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:word:wag:r1",
+              "targetText": "wag",
+              "meaningByLocale": {
+                "ru": "Вилять, обычно хвостом.",
+                "uk": "Виляти, зазвичай хвостом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wag",
+            "definitionByLocale": {
+              "ru": "Вилять, обычно хвостом.",
+              "uk": "Виляти, зазвичай хвостом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i01:r1",
+            "text": "Dogs wag their tails."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i01:r2",
+            "text": "Dogs chase their tails."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i01:r3",
+            "text": "Cats wag their tails."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i01:audio",
+            "transcript": "Dogs wag their tails."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:i01:r1",
+              "targetText": "Dogs wag their tails.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i01:r2",
+              "targetText": "Dogs chase their tails.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i01:r3",
+              "targetText": "Cats wag their tails.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Dogs wag their tails.",
+                "uk": "У записі звучить Dogs wag their tails."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Dogs wag their tails.",
+                "uk": "У записі звучить Dogs wag their tails."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте господаря, чи можна погладити собаку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Запитайте господаря, чи можна погладити собаку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i02:audio",
+            "transcript": "May I stroke him?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "May I stroke him?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, що господар уже нагодував собаку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i03:audio"
+        ],
+        "accessibilityLabel": "Почуйте, що господар уже нагодував собаку.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i03:audio",
+            "transcript": "I have already fed him."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have already fed him.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "fed",
+            "him"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У вас мало місця. Уявіть, що місця більше й собаку можна залишити в себе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i04:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i04:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вас мало місця. Уявіть, що місця більше й собаку можна залишити в себе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У вас мало места. Представьте, что места больше и собаку можно оставить у себя.",
+            "uk": "У вас мало місця. Уявіть, що місця більше й собаку можна залишити в себе."
+          },
+          "gappedTargetPhrase": "I would keep him if I ___ more space.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-03:i04:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i04:r2",
+              "text": "would had"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i04:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "У вас мало місця. Уявіть, що місця більше й собаку можна залишити в себе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i04:r2",
+              "correct": false,
+              "testedDimension": "У вас мало місця. Уявіть, що місця більше й собаку можна залишити в себе.",
+              "feedbackByLocale": {
+                "ru": "В условии нужно had без would.",
+                "uk": "В умові потрібно had без would."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i04:r3",
+              "correct": false,
+              "testedDimension": "У вас мало місця. Уявіть, що місця більше й собаку можна залишити в себе.",
+              "feedbackByLocale": {
+                "ru": "Нужна личная форма had.",
+                "uk": "Потрібна особова форма had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:word:pee",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:word:pee:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:word:pee:audio",
+            "transcript": "pee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:word:pee:r1",
+              "targetText": "pee",
+              "meaningByLocale": {
+                "ru": "Писать, мочиться; неформальное слово.",
+                "uk": "Пісяти, мочитися; неформальне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pee",
+            "definitionByLocale": {
+              "ru": "Писать, мочиться; неформальное слово.",
+              "uk": "Пісяти, мочитися; неформальне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поясніть, чому собаці треба вийти.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поясніть, чому собаці треба вийти.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The dog needs to pee.",
+          "localizedMeaning": {
+            "ru": "Объясните, почему собаке нужно выйти.",
+            "uk": "Поясніть, чому собаці треба вийти."
+          },
+          "orderedTokens": [
+            "The",
+            "dog",
+            "needs",
+            "to",
+            "pee"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть господаря передати вам повідець.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i06:audio"
+        ],
+        "accessibilityLabel": "Попросіть господаря передати вам повідець.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i06:audio",
+            "transcript": "Could you pass me the leash?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you pass me the leash?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i07:r1",
+            "text": "There are bags by the door."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i07:r2",
+            "text": "There are bowls by the door."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i07:r3",
+            "text": "There are bags by the window."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i07:audio",
+            "transcript": "There are bags by the door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:i07:r1",
+              "targetText": "There are bags by the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i07:r2",
+              "targetText": "There are bowls by the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i07:r3",
+              "targetText": "There are bags by the window.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i07:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are bags by the door.",
+                "uk": "У записі звучить There are bags by the door."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i07:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are bags by the door.",
+                "uk": "У записі звучить There are bags by the door."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:word:poop",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — poop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:word:poop:audio"
+        ],
+        "accessibilityLabel": "Картка слова — poop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:word:poop:audio",
+            "transcript": "poop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:word:poop:r1",
+              "targetText": "poop",
+              "meaningByLocale": {
+                "ru": "Какать; также испражнения. Неформальное слово.",
+                "uk": "Какати; також випорожнення. Неформальне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "poop",
+            "definitionByLocale": {
+              "ru": "Какать; также испражнения. Неформальное слово.",
+              "uk": "Какати; також випорожнення. Неформальне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Відновіть прохання прибрати за собакою.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i08:audio"
+        ],
+        "accessibilityLabel": "Відновіть прохання прибрати за собакою.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i08:audio",
+            "transcript": "Please pick up the poop."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please pick up the poop.",
+          "orderedTokens": [
+            "Please",
+            "pick",
+            "up",
+            "the",
+            "poop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зараз вечір. Розкажіть про завершену ранкову прогулянку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i09:r1",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i09:r2",
+            "text": "have taken"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i09:r3",
+            "text": "taking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зараз вечір. Розкажіть про завершену ранкову прогулянку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас вечер. Расскажите о завершённой утренней прогулке.",
+            "uk": "Зараз вечір. Розкажіть про завершену ранкову прогулянку."
+          },
+          "gappedTargetPhrase": "I ___ him out this morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-03:i09:r1",
+              "text": "took"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i09:r2",
+              "text": "have taken"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i09:r3",
+              "text": "taking"
+            }
+          ],
+          "testedDimension": "Зараз вечір. Розкажіть про завершену ранкову прогулянку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Зараз вечір. Розкажіть про завершену ранкову прогулянку.",
+              "feedbackByLocale": {
+                "ru": "Утро закончилось: здесь past simple.",
+                "uk": "Ранок закінчився: тут past simple."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Зараз вечір. Розкажіть про завершену ранкову прогулянку.",
+              "feedbackByLocale": {
+                "ru": "Taking само по себе не образует сказуемое.",
+                "uk": "Taking саме по собі не утворює присудок."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i10:r1",
+            "text": "He has had enough water."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i10:r2",
+            "text": "He has had enough food."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i10:r3",
+            "text": "He has not had enough water."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i10:audio",
+            "transcript": "He has had enough water."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:i10:r1",
+              "targetText": "He has had enough water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i10:r2",
+              "targetText": "He has had enough food.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i10:r3",
+              "targetText": "He has not had enough water.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has had enough water.",
+                "uk": "У записі звучить He has had enough water."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has had enough water.",
+                "uk": "У записі звучить He has had enough water."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:word:drool",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — drool",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:word:drool:audio"
+        ],
+        "accessibilityLabel": "Картка слова — drool",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:word:drool:audio",
+            "transcript": "drool"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:word:drool:r1",
+              "targetText": "drool",
+              "meaningByLocale": {
+                "ru": "Пускать слюни.",
+                "uk": "Пускати слину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drool",
+            "definitionByLocale": {
+              "ru": "Пускать слюни.",
+              "uk": "Пускати слину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що деякі собаки пускають багато слини.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що деякі собаки пускають багато слини.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Some dogs drool a lot.",
+          "localizedMeaning": {
+            "ru": "Скажите, что некоторые собаки пускают много слюней.",
+            "uk": "Скажіть, що деякі собаки пускають багато слини."
+          },
+          "orderedTokens": [
+            "Some",
+            "dogs",
+            "drool",
+            "a",
+            "lot"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть, де лежить рушник.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i12:audio"
+        ],
+        "accessibilityLabel": "Уточніть, де лежить рушник.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i12:audio",
+            "transcript": "Where is the towel?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where is the towel?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви приходили б щодня, якби жили поруч.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i13:r1",
+            "text": "lived"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i13:r2",
+            "text": "would lived"
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i13:r3",
+            "text": "living"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви приходили б щодня, якби жили поруч.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы приходили бы каждый день, если бы жили рядом.",
+            "uk": "Ви приходили б щодня, якби жили поруч."
+          },
+          "gappedTargetPhrase": "I would visit every day if I ___ nearby.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-03:i13:r1",
+              "text": "lived"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i13:r2",
+              "text": "would lived"
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i13:r3",
+              "text": "living"
+            }
+          ],
+          "testedDimension": "Ви приходили б щодня, якби жили поруч.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i13:r2",
+              "correct": false,
+              "testedDimension": "Ви приходили б щодня, якби жили поруч.",
+              "feedbackByLocale": {
+                "ru": "В условии здесь lived без would.",
+                "uk": "В умові тут lived без would."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i13:r3",
+              "correct": false,
+              "testedDimension": "Ви приходили б щодня, якби жили поруч.",
+              "feedbackByLocale": {
+                "ru": "Living не заменяет здесь личную форму lived.",
+                "uk": "Living тут не замінює особову форму lived."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть із результату: If I had a car, I would take him to the park.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть із результату: If I had a car, I would take him to the park.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I would take him to the park if I had a car.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If I had a car, I would take him to the park.",
+            "uk": "Почніть із результату: If I had a car, I would take him to the park."
+          },
+          "orderedTokens": [
+            "I",
+            "would",
+            "take",
+            "him",
+            "to",
+            "the",
+            "park",
+            "if",
+            "I",
+            "had",
+            "a",
+            "car"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-03:i15:r1",
+            "text": "We can meet at the park."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i15:r2",
+            "text": "We can meet at the station."
+          },
+          {
+            "responseId": "en:lesson-27:session-03:i15:r3",
+            "text": "We can wait at the park."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i15:audio",
+            "transcript": "We can meet at the park."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-03:i15:r1",
+              "targetText": "We can meet at the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i15:r2",
+              "targetText": "We can meet at the station.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i15:r3",
+              "targetText": "We can wait at the park.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-03:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can meet at the park.",
+                "uk": "У записі звучить We can meet at the park."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-03:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can meet at the park.",
+                "uk": "У записі звучить We can meet at the park."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть час свого наступного візиту.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-03:i16:audio"
+        ],
+        "accessibilityLabel": "Уточніть час свого наступного візиту.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-03:i16:audio",
+            "transcript": "What time shall I come?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "What time shall I come?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-03:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Підтвердьте, що запропонований час вам підходить.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підтвердьте, що запропонований час вам підходить.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That works for me.",
+          "localizedMeaning": {
+            "ru": "Подтвердите, что предложенное время вам подходит.",
+            "uk": "Підтвердьте, що запропонований час вам підходить."
+          },
+          "orderedTokens": [
+            "That",
+            "works",
+            "for",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-27:session-03:word:wag",
+      "correctText": "wag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i01",
+      "correctText": "Dogs wag their tails.",
+      "correctResponseId": "en:lesson-27:session-03:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i02",
+      "correctText": "May I stroke him?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i03",
+      "correctText": "I have already fed him.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i04",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-27:session-03:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:word:pee",
+      "correctText": "pee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i05",
+      "correctText": "The dog needs to pee.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i06",
+      "correctText": "Could you pass me the leash?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i07",
+      "correctText": "There are bags by the door.",
+      "correctResponseId": "en:lesson-27:session-03:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:word:poop",
+      "correctText": "poop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i08",
+      "correctText": "Please pick up the poop.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i09",
+      "correctText": "took",
+      "correctResponseId": "en:lesson-27:session-03:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i10",
+      "correctText": "He has had enough water.",
+      "correctResponseId": "en:lesson-27:session-03:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:word:drool",
+      "correctText": "drool",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i11",
+      "correctText": "Some dogs drool a lot.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i12",
+      "correctText": "Where is the towel?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i13",
+      "correctText": "lived",
+      "correctResponseId": "en:lesson-27:session-03:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i14",
+      "correctText": "I would take him to the park if I had a car.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i15",
+      "correctText": "We can meet at the park.",
+      "correctResponseId": "en:lesson-27:session-03:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i16",
+      "correctText": "What time shall I come?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-03:i17",
+      "correctText": "That works for me.",
+      "correctResponseId": null
+    }
+  ]
+}

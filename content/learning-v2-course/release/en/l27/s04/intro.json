@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; past simple / present perfect",
+    "uk": "if + past simple, would + base verb; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Покупка без спешки",
+        "uk": "Покупка без поспіху"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете вещи для комнаты. Wisely — разумно, с обдуманным выбором: Spend your money wisely — трать деньги разумно. Вы представляете, что сделали бы с большей суммой: I would buy a better bed if I had enough money — я бы купил кровать получше, если бы у меня было достаточно денег. После would — buy, после if — had. Это воображаемый вариант сейчас, а не рассказ о прошлой покупке.",
+        "uk": "Ви обираєте речі для кімнати. Wisely — розумно, з обдуманим вибором: Spend your money wisely — витрачай гроші розумно. Ви уявляєте, що зробили б із більшою сумою: I would buy a better bed if I had enough money — я б купив краще ліжко, якби в мене було достатньо грошей. Після would — buy, після if — had. Це уявний варіант зараз, а не розповідь про минулу покупку."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-04:intro1:r1",
+              "text": "I would buy a better bed if I had enough money."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro1:r2",
+              "text": "I would bought a better bed if I had enough money."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro1:r3",
+              "text": "I would buy a better bed if I would had enough money."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-04:intro1:r1",
+              "text": "I would buy a better bed if I had enough money."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro1:r2",
+              "text": "I would bought a better bed if I had enough money."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro1:r3",
+              "text": "I would buy a better bed if I would had enough money."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ждать близких",
+        "uk": "Чекати на близьких"
+      },
+      "bodyByLocale": {
+        "ru": "Eagerly — с нетерпением, с большим желанием. The children are eagerly waiting for you — дети с нетерпением ждут тебя. Deeply — глубоко; с чувствами часто означает «очень сильно». She cares deeply about her family — семья для неё очень важна, она очень заботится о своих близких. Вы хотите чаще приезжать: I would see them more often if I worked nearby — я бы чаще с ними виделся, если бы работал рядом. Сейчас работа далеко, поэтому здесь воображаемое условие worked.",
+        "uk": "Eagerly — з нетерпінням, із великим бажанням. The children are eagerly waiting for you — діти з нетерпінням чекають на тебе. Deeply — глибоко; з почуттями часто означає «дуже сильно». She cares deeply about her family — сім’я для неї дуже важлива, вона дуже піклується про своїх близьких. Ви хочете частіше приїжджати: I would see them more often if I worked nearby — я б частіше з ними бачився, якби працював поруч. Зараз робота далеко, тому тут уявна умова worked."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-04:intro2:r1",
+              "text": "I would see them more often if I worked nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro2:r2",
+              "text": "I would seeing them more often if I worked nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro2:r3",
+              "text": "I would see them more often if I would worked nearby."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-04:intro2:r1",
+              "text": "I would see them more often if I worked nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro2:r2",
+              "text": "I would seeing them more often if I worked nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro2:r3",
+              "text": "I would see them more often if I would worked nearby."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Почти готово",
+        "uk": "Майже готово"
+      },
+      "bodyByLocale": {
+        "ru": "Practically здесь означает «практически, почти». We have practically finished — мы практически закончили. Осталось немного работы. Это не всегда «практично»: смысл зависит от фразы. Вы собирали кровать вчера: We built it yesterday — мы собрали её вчера. Yesterday называет законченное время, поэтому built без have. Комната почти готова; осталось найти винтик, который всё это время лежал у вас в кармане.",
+        "uk": "Practically тут означає «практично, майже». We have practically finished — ми практично закінчили. Залишилося небагато роботи. Це не завжди «практично» в сенсі зручності: значення залежить від фрази. Ви складали ліжко вчора: We built it yesterday — ми склали його вчора. Yesterday називає завершений час, тому built без have. Кімната майже готова; залишилося знайти гвинтик, який увесь цей час лежав у вас у кишені."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-04:intro3:r1",
+              "text": "We built it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro3:r2",
+              "text": "We have built it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro3:r3",
+              "text": "We builded it yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-04:intro3:r1",
+              "text": "We built it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro3:r2",
+              "text": "We have built it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-04:intro3:r3",
+              "text": "We builded it yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b8f825525e19a81bf8809ab3bf5fbbce7ab56b39d843dea8709459a0e033e8d5"
+}

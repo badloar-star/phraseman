@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; past simple / present perfect",
+    "uk": "if + past simple, would + base verb; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Знакомство с собакой",
+        "uk": "Знайомство із собакою"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли помочь другу с собакой. Wag — вилять, обычно хвостом: Dogs wag their tails — собаки виляют хвостами. Tail — хвост. Само по себе движение хвоста не говорит, что незнакомую собаку можно трогать: сначала спросите хозяина. Вы обсуждаете, смогли бы взять собаку к себе: I would keep him if I had more space — я бы оставил его у себя, если бы у меня было больше места. Сейчас места мало. Had описывает воображаемое условие; would keep — его результат.",
+        "uk": "Ви прийшли допомогти другові із собакою. Wag — виляти, зазвичай хвостом: Dogs wag their tails — собаки виляють хвостами. Tail — хвіст. Сам по собі рух хвоста не означає, що незнайомого собаку можна торкатися: спочатку запитайте господаря. Ви обговорюєте, чи могли б узяти собаку до себе: I would keep him if I had more space — я б залишив його в себе, якби в мене було більше місця. Зараз місця мало. Had описує уявну умову; would keep — її результат."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-03:intro1:r1",
+              "text": "I would keep him if I had more space."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro1:r2",
+              "text": "I would kept him if I had more space."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro1:r3",
+              "text": "I would keep him if I would had more space."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-03:intro1:r1",
+              "text": "I would keep him if I had more space."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro1:r2",
+              "text": "I would kept him if I had more space."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro1:r3",
+              "text": "I would keep him if I would had more space."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пора выходить",
+        "uk": "Час виходити"
+      },
+      "bodyByLocale": {
+        "ru": "Pee — писать, мочиться; Poop — какать. Это обычные неформальные слова в разговорах о животных и маленьких детях. The dog needs to pee — собаке нужно пописать. Poop также называют собачьи испражнения: Please pick up the poop — пожалуйста, убери за собакой. В официальном разговоре эти слова могут быть неуместны. Хозяин уже погулял с собакой: I have taken him out — я вывел его на улицу. Если называем законченное время, меняем форму: I took him out this morning — я выводил его сегодня утром; в этой ситуации утро уже прошло.",
+        "uk": "Pee — пісяти, мочитися; Poop — какати. Це звичайні неформальні слова в розмовах про тварин і маленьких дітей. The dog needs to pee — собаці треба попісяти. Poop також називають собачі випорожнення: Please pick up the poop — будь ласка, прибери за собакою. В офіційній розмові ці слова можуть бути недоречними. Господар уже погуляв із собакою: I have taken him out — я вивів його надвір. Якщо називаємо завершений час, змінюємо форму: I took him out this morning — я виводив його сьогодні вранці; у цій ситуації ранок уже минув."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-03:intro2:r1",
+              "text": "I took him out this morning."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro2:r2",
+              "text": "I have took him out this morning."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro2:r3",
+              "text": "I take him out this morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-03:intro2:r1",
+              "text": "I took him out this morning."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro2:r2",
+              "text": "I have took him out this morning."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro2:r3",
+              "text": "I take him out this morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договориться о помощи",
+        "uk": "Домовитися про допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "Drool — пускать слюни. Some dogs drool a lot — некоторые собаки пускают много слюней. Это слово описывает то, что вы видите; оно само по себе не объясняет причину. Хозяин оставляет полотенце рядом с миской. Вы могли бы помочь чаще: I would visit every day if I lived nearby — я бы приходил каждый день, если бы жил рядом. В условии lived, в результате would visit. Собака уже принесла поводок: ваш разговор о прогулке, похоже, она считает слишком длинным.",
+        "uk": "Drool — пускати слину. Some dogs drool a lot — деякі собаки пускають багато слини. Це слово описує те, що ви бачите; саме по собі воно не пояснює причину. Господар залишає рушник поруч із мискою. Ви могли б допомагати частіше: I would visit every day if I lived nearby — я б приходив щодня, якби жив поруч. В умові lived, у результаті would visit. Собака вже приніс повідець: вашу розмову про прогулянку, схоже, він вважає задовгою."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-03:intro3:r1",
+              "text": "I would visit every day if I lived nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro3:r2",
+              "text": "I would visiting every day if I lived nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro3:r3",
+              "text": "I would visit every day if I would lived nearby."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-03:intro3:r1",
+              "text": "I would visit every day if I lived nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro3:r2",
+              "text": "I would visiting every day if I lived nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-03:intro3:r3",
+              "text": "I would visit every day if I would lived nearby."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c40972f08431ca8e8c70ba46d283754017b88d6518e8d625076b8669df9f69e6"
+}

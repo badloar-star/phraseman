@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-11:word:crutches",
+    "correctText": "crutches",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i01",
+    "correctText": "How long have you used crutches?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i03",
+    "correctText": "How long have you used crutches?",
+    "correctResponseId": "en:lesson-24:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:word:sling",
+    "correctText": "sling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i04",
+    "correctText": "How long has she worn a sling?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i05",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i06",
+    "correctText": "How long has she worn a sling?",
+    "correctResponseId": "en:lesson-24:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:word:bruise",
+    "correctText": "bruise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i07",
+    "correctText": "How long have you had this bruise?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i08",
+    "correctText": "How long",
+    "correctResponseId": "en:lesson-24:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i09",
+    "correctText": "How long have you had this bruise?",
+    "correctResponseId": "en:lesson-24:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:word:scar",
+    "correctText": "scar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i10",
+    "correctText": "How long has he had this scar?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-24:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i12",
+    "correctText": "How long has he had this scar?",
+    "correctResponseId": "en:lesson-24:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i13",
+    "correctText": "en:lesson-24:session-11:i13:p1=crutches\nen:lesson-24:session-11:i13:p2=sling\nen:lesson-24:session-11:i13:p3=bruise\nen:lesson-24:session-11:i13:p4=scar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i14",
+    "correctText": "I have used crutches for two weeks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i15",
+    "correctText": "She has worn a sling since Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i16",
+    "correctText": "How long has she had this scar?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-11:i17",
+    "correctText": "How long has he had this bruise?",
+    "correctResponseId": null
+  }
+]

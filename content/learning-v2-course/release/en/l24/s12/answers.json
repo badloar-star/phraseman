@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-12:word:asthma",
+    "correctText": "asthma",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i01",
+    "correctText": "How long have you had asthma?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i03",
+    "correctText": "How long have you had asthma?",
+    "correctResponseId": "en:lesson-24:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:word:diabetes",
+    "correctText": "diabetes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i04",
+    "correctText": "How long has he had diabetes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i05",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i06",
+    "correctText": "How long has he had diabetes?",
+    "correctResponseId": "en:lesson-24:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:word:migraine",
+    "correctText": "migraine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i07",
+    "correctText": "How long have you had this migraine?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i08",
+    "correctText": "How long",
+    "correctResponseId": "en:lesson-24:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i09",
+    "correctText": "How long have you had this migraine?",
+    "correctResponseId": "en:lesson-24:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:word:inhaler",
+    "correctText": "inhaler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i10",
+    "correctText": "How long has she used this inhaler?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i11",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-24:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i12",
+    "correctText": "How long has she used this inhaler?",
+    "correctResponseId": "en:lesson-24:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i13",
+    "correctText": "en:lesson-24:session-12:i13:p1=asthma\nen:lesson-24:session-12:i13:p2=diabetes\nen:lesson-24:session-12:i13:p3=migraine\nen:lesson-24:session-12:i13:p4=inhaler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i14",
+    "correctText": "I have used this inhaler for two weeks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i15",
+    "correctText": "She has had this migraine since Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i16",
+    "correctText": "How long has she had asthma?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-12:i17",
+    "correctText": "How long have you had diabetes?",
+    "correctResponseId": null
+  }
+]

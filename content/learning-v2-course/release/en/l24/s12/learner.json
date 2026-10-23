@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-12:word:asthma",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — asthma",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:word:asthma:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — asthma",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:word:asthma:audio",
+          "transcript": "asthma"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-12:word:asthma:r1",
+            "targetText": "asthma",
+            "meaningByLocale": {
+              "ru": "астма.",
+              "uk": "астма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "asthma",
+          "definitionByLocale": {
+            "ru": "астма.",
+            "uk": "астма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Как давно у тебя астма?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Как давно у тебя астма?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long have you had asthma?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как давно у тебя астма?»",
+          "uk": "Запитайте: «Як давно в тебе астма?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "have",
+          "you",
+          "had",
+          "asthma"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-12:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i02:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long ___ you had asthma?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-12:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i02:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С you используем have.",
+              "uk": "Із you використовуємо have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С you используем have.",
+              "uk": "Із you використовуємо have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-12:i03:r1",
+          "text": "How long have you had asthma?"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i03:r2",
+          "text": "How long has she had asthma?"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i03:r3",
+          "text": "How long has he had asthma?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:i03:audio",
+          "transcript": "How long have you had asthma?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-12:i03:r1",
+            "targetText": "How long have you had asthma?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i03:r2",
+            "targetText": "How long has she had asthma?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i03:r3",
+            "targetText": "How long has he had asthma?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you had asthma?",
+              "uk": "У записі звучить How long have you had asthma?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you had asthma?",
+              "uk": "У записі звучить How long have you had asthma?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:word:diabetes",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — diabetes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:word:diabetes:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — diabetes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:word:diabetes:audio",
+          "transcript": "diabetes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-12:word:diabetes:r1",
+            "targetText": "diabetes",
+            "meaningByLocale": {
+              "ru": "диабет.",
+              "uk": "діабет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "diabetes",
+          "definitionByLocale": {
+            "ru": "диабет.",
+            "uk": "діабет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Как давно у него диабет?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Как давно у него диабет?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long has he had diabetes?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как давно у него диабет?»",
+          "uk": "Запитайте: «Як давно в нього діабет?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "has",
+          "he",
+          "had",
+          "diabetes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-12:i05:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i05:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i05:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long ___ he had diabetes?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-12:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i05:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С he используем has.",
+              "uk": "Із he використовуємо has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "С he используем has.",
+              "uk": "Із he використовуємо has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-12:i06:r1",
+          "text": "How long has he had diabetes?"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i06:r2",
+          "text": "How long has she had diabetes?"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i06:r3",
+          "text": "How long have you had diabetes?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:i06:audio",
+          "transcript": "How long has he had diabetes?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-12:i06:r1",
+            "targetText": "How long has he had diabetes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i06:r2",
+            "targetText": "How long has she had diabetes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i06:r3",
+            "targetText": "How long have you had diabetes?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has he had diabetes?",
+              "uk": "У записі звучить How long has he had diabetes?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has he had diabetes?",
+              "uk": "У записі звучить How long has he had diabetes?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:word:migraine",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — migraine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:word:migraine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — migraine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:word:migraine:audio",
+          "transcript": "migraine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-12:word:migraine:r1",
+            "targetText": "migraine",
+            "meaningByLocale": {
+              "ru": "мигрень.",
+              "uk": "мігрень."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "migraine",
+          "definitionByLocale": {
+            "ru": "мигрень.",
+            "uk": "мігрень."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Как долго у тебя длится эта мигрень?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Как долго у тебя длится эта мигрень?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long have you had this migraine?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как долго у тебя длится эта мигрень?»",
+          "uk": "Запитайте: «Як довго в тебе триває ця мігрень?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "have",
+          "you",
+          "had",
+          "this",
+          "migraine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-12:i08:r1",
+          "text": "How long"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i08:r2",
+          "text": "How many"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i08:r3",
+          "text": "How much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "___ have you had this migraine?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-12:i08:r1",
+            "text": "How long"
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i08:r2",
+            "text": "How many"
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i08:r3",
+            "text": "How much"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "Для длительности нужно How long.",
+              "uk": "Для тривалості потрібно How long."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "Для длительности нужно How long.",
+              "uk": "Для тривалості потрібно How long."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-12:i09:r1",
+          "text": "How long have you had this migraine?"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i09:r2",
+          "text": "How long has she had this migraine?"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i09:r3",
+          "text": "How long has he had this migraine?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:i09:audio",
+          "transcript": "How long have you had this migraine?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-12:i09:r1",
+            "targetText": "How long have you had this migraine?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i09:r2",
+            "targetText": "How long has she had this migraine?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i09:r3",
+            "targetText": "How long has he had this migraine?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you had this migraine?",
+              "uk": "У записі звучить How long have you had this migraine?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you had this migraine?",
+              "uk": "У записі звучить How long have you had this migraine?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:word:inhaler",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — inhaler",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:word:inhaler:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — inhaler",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:word:inhaler:audio",
+          "transcript": "inhaler"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-12:word:inhaler:r1",
+            "targetText": "inhaler",
+            "meaningByLocale": {
+              "ru": "ингалятор.",
+              "uk": "інгалятор."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inhaler",
+          "definitionByLocale": {
+            "ru": "ингалятор.",
+            "uk": "інгалятор."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите: «Как давно она пользуется этим ингалятором?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите: «Как давно она пользуется этим ингалятором?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long has she used this inhaler?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как давно она пользуется этим ингалятором?»",
+          "uk": "Запитайте: «Як давно вона користується цим інгалятором?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "has",
+          "she",
+          "used",
+          "this",
+          "inhaler"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните вопрос о длительности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-12:i11:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i11:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i11:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните вопрос о длительности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long has she ___ this inhaler?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-12:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i11:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Дополните вопрос о длительности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "После has she нужна форма used.",
+              "uk": "Після has she потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните вопрос о длительности.",
+            "feedbackByLocale": {
+              "ru": "После has she нужна форма used.",
+              "uk": "Після has she потрібна форма used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-12:i12:r1",
+          "text": "How long has she used this inhaler?"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i12:r2",
+          "text": "How long has he used this inhaler?"
+        },
+        {
+          "responseId": "en:lesson-24:session-12:i12:r3",
+          "text": "How long have you used this inhaler?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:i12:audio",
+          "transcript": "How long has she used this inhaler?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-12:i12:r1",
+            "targetText": "How long has she used this inhaler?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i12:r2",
+            "targetText": "How long has he used this inhaler?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i12:r3",
+            "targetText": "How long have you used this inhaler?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has she used this inhaler?",
+              "uk": "У записі звучить How long has she used this inhaler?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has she used this inhaler?",
+              "uk": "У записі звучить How long has she used this inhaler?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-12:i13:p1",
+            "target": "asthma",
+            "meaningByLocale": {
+              "ru": "астма",
+              "uk": "астма"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-12:i13:p2",
+            "target": "diabetes",
+            "meaningByLocale": {
+              "ru": "диабет",
+              "uk": "діабет"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-12:i13:p3",
+            "target": "migraine",
+            "meaningByLocale": {
+              "ru": "мигрень",
+              "uk": "мігрень"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-12:i13:p4",
+            "target": "inhaler",
+            "meaningByLocale": {
+              "ru": "ингалятор",
+              "uk": "інгалятор"
+            }
+          }
+        ],
+        "leftColumn": [
+          "asthma",
+          "diabetes",
+          "migraine",
+          "inhaler"
+        ],
+        "rightColumn": [
+          "астма",
+          "диабет",
+          "мигрень",
+          "ингалятор"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже две недели",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Уже две недели",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:i14:audio",
+          "transcript": "I have used this inhaler for two weeks."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have used this inhaler for two weeks.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "used",
+          "this",
+          "inhaler",
+          "for",
+          "two",
+          "weeks"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "С понедельника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "С понедельника",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:i15:audio",
+          "transcript": "She has had this migraine since Monday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has had this migraine since Monday.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "had",
+          "this",
+          "migraine",
+          "since",
+          "Monday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Как давно у неё астма?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Как давно у неё астма?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:i16:audio",
+          "transcript": "How long has she had asthma?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long has she had asthma?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-12:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Как давно у тебя диабет?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Как давно у тебя диабет?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-12:i17:audio",
+          "transcript": "How long have you had diabetes?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long have you had diabetes?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9b1641c73d17ea7406867a6948b98a279b2785c89562743c36681de09f98b790"
+}

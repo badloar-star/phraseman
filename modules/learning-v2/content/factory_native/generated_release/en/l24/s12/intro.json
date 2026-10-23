@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "How long + have|has + subject + past participle?",
+    "uk": "How long + have|has + subject + past participle?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Как давно это началось",
+        "uk": "Як давно це почалося"
+      },
+      "bodyByLocale": {
+        "ru": "Asthma — астма. How long have you had asthma? — как давно у тебя астма? Ответ может начинаться с for или since: For years — много лет; since childhood — с детства. Had здесь — форма have, то есть «иметь».",
+        "uk": "Asthma — астма. How long have you had asthma? — як давно в тебе астма? Відповідь може починатися з for або since: For years — багато років; since childhood — з дитинства. Had тут — форма have, тобто «мати»."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-12:intro1:r1",
+              "text": "How long have you had asthma?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro1:r2",
+              "text": "How long has you had asthma?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro1:r3",
+              "text": "How many have you had asthma?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-12:intro1:r1",
+              "text": "How long have you had asthma?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro1:r2",
+              "text": "How long has you had asthma?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro1:r3",
+              "text": "How many have you had asthma?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Называем заболевание",
+        "uk": "Називаємо захворювання"
+      },
+      "bodyByLocale": {
+        "ru": "Diabetes — диабет. How long has he had diabetes? — как давно у него диабет? В этом слове конечная s не делает его множественным числом. В выражениях have asthma и have diabetes нет a. С he в вопросе ставим has перед he.",
+        "uk": "Diabetes — діабет. How long has he had diabetes? — як давно в нього діабет? У цьому слові кінцева s не робить його множиною. У виразах have asthma та have diabetes немає a. Із he в запитанні ставимо has перед he."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-12:intro2:r1",
+              "text": "How long has he had diabetes?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro2:r2",
+              "text": "How long have he had diabetes?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro2:r3",
+              "text": "How many has he had diabetes?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-12:intro2:r1",
+              "text": "How long has he had diabetes?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro2:r2",
+              "text": "How long have he had diabetes?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro2:r3",
+              "text": "How many has he had diabetes?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нынешний приступ",
+        "uk": "Нинішній напад"
+      },
+      "bodyByLocale": {
+        "ru": "Migraine — мигрень. How long have you had this migraine? — как долго длится эта мигрень? This указывает на нынешний приступ. Inhaler — ингалятор. How long has she used this inhaler? — как давно она пользуется этим ингалятором? Слова помогают точно описать ситуацию на приёме.",
+        "uk": "Migraine — мігрень. How long have you had this migraine? — як довго триває ця мігрень? This указує на нинішній напад. Inhaler — інгалятор. How long has she used this inhaler? — як давно вона користується цим інгалятором? Слова допомагають точно описати ситуацію на прийомі."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-12:intro3:r1",
+              "text": "How long have you had this migraine?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro3:r2",
+              "text": "How long has you had this migraine?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro3:r3",
+              "text": "How many have you had this migraine?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-12:intro3:r1",
+              "text": "How long have you had this migraine?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro3:r2",
+              "text": "How long has you had this migraine?"
+            },
+            {
+              "responseId": "en:lesson-24:session-12:intro3:r3",
+              "text": "How many have you had this migraine?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "539793df4ea62fac0569e2092f50bfc59ae28608b87b8158be9943ca6ddf0c63"
+}

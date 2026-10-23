@@ -1,0 +1,2341 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-11",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-11:word:crutches",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — crutches",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:word:crutches:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — crutches",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:word:crutches:audio",
+            "transcript": "crutches"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:word:crutches:r1",
+              "targetText": "crutches",
+              "meaningByLocale": {
+                "ru": "костыли.",
+                "uk": "милиці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crutches",
+            "definitionByLocale": {
+              "ru": "костыли.",
+              "uk": "милиці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите: «Как давно ты пользуешься костылями?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите: «Как давно ты пользуешься костылями?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How long have you used crutches?",
+          "localizedMeaning": {
+            "ru": "Спросите: «Как давно ты пользуешься костылями?»",
+            "uk": "Запитайте: «Як давно ти користуєшся милицями?»"
+          },
+          "orderedTokens": [
+            "How",
+            "long",
+            "have",
+            "you",
+            "used",
+            "crutches"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните вопрос о длительности.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i02:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните вопрос о длительности.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните вопрос о длительности.",
+            "uk": "Доповніть запитання про тривалість."
+          },
+          "gappedTargetPhrase": "How long ___ you used crutches?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-11:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i02:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Дополните вопрос о длительности.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните вопрос о длительности.",
+              "feedbackByLocale": {
+                "ru": "С you используем have.",
+                "uk": "Із you використовуємо have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните вопрос о длительности.",
+              "feedbackByLocale": {
+                "ru": "С you используем have.",
+                "uk": "Із you використовуємо have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i03:r1",
+            "text": "How long have you used crutches?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i03:r2",
+            "text": "How long has she used crutches?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i03:r3",
+            "text": "How long have they used crutches?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i03:audio",
+            "transcript": "How long have you used crutches?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:i03:r1",
+              "targetText": "How long have you used crutches?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i03:r2",
+              "targetText": "How long has she used crutches?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i03:r3",
+              "targetText": "How long have they used crutches?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long have you used crutches?",
+                "uk": "У записі звучить How long have you used crutches?"
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long have you used crutches?",
+                "uk": "У записі звучить How long have you used crutches?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:word:sling",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sling",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:word:sling:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sling",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:word:sling:audio",
+            "transcript": "sling"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:word:sling:r1",
+              "targetText": "sling",
+              "meaningByLocale": {
+                "ru": "повязка для поддержки руки.",
+                "uk": "пов’язка для підтримки руки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sling",
+            "definitionByLocale": {
+              "ru": "повязка для поддержки руки.",
+              "uk": "пов’язка для підтримки руки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите: «Как давно она носит поддерживающую повязку на руке?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите: «Как давно она носит поддерживающую повязку на руке?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How long has she worn a sling?",
+          "localizedMeaning": {
+            "ru": "Спросите: «Как давно она носит поддерживающую повязку на руке?»",
+            "uk": "Запитайте: «Як давно вона носить підтримувальну пов’язку на руці?»"
+          },
+          "orderedTokens": [
+            "How",
+            "long",
+            "has",
+            "she",
+            "worn",
+            "a",
+            "sling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните вопрос о длительности.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните вопрос о длительности.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните вопрос о длительности.",
+            "uk": "Доповніть запитання про тривалість."
+          },
+          "gappedTargetPhrase": "How long ___ she worn a sling?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-11:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Дополните вопрос о длительности.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните вопрос о длительности.",
+              "feedbackByLocale": {
+                "ru": "С she используем has.",
+                "uk": "Із she використовуємо has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните вопрос о длительности.",
+              "feedbackByLocale": {
+                "ru": "С she используем has.",
+                "uk": "Із she використовуємо has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i06:r1",
+            "text": "How long has she worn a sling?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i06:r2",
+            "text": "How long has he worn a sling?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i06:r3",
+            "text": "How long have you worn a sling?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i06:audio",
+            "transcript": "How long has she worn a sling?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:i06:r1",
+              "targetText": "How long has she worn a sling?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i06:r2",
+              "targetText": "How long has he worn a sling?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i06:r3",
+              "targetText": "How long have you worn a sling?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has she worn a sling?",
+                "uk": "У записі звучить How long has she worn a sling?"
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has she worn a sling?",
+                "uk": "У записі звучить How long has she worn a sling?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:word:bruise",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bruise",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:word:bruise:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bruise",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:word:bruise:audio",
+            "transcript": "bruise"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:word:bruise:r1",
+              "targetText": "bruise",
+              "meaningByLocale": {
+                "ru": "синяк.",
+                "uk": "синець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bruise",
+            "definitionByLocale": {
+              "ru": "синяк.",
+              "uk": "синець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите: «Как давно у тебя этот синяк?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите: «Как давно у тебя этот синяк?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How long have you had this bruise?",
+          "localizedMeaning": {
+            "ru": "Спросите: «Как давно у тебя этот синяк?»",
+            "uk": "Запитайте: «Як давно в тебе цей синець?»"
+          },
+          "orderedTokens": [
+            "How",
+            "long",
+            "have",
+            "you",
+            "had",
+            "this",
+            "bruise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните вопрос о длительности.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i08:r1",
+            "text": "How long"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i08:r2",
+            "text": "How many"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i08:r3",
+            "text": "How much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните вопрос о длительности.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните вопрос о длительности.",
+            "uk": "Доповніть запитання про тривалість."
+          },
+          "gappedTargetPhrase": "___ have you had this bruise?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-11:i08:r1",
+              "text": "How long"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i08:r2",
+              "text": "How many"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i08:r3",
+              "text": "How much"
+            }
+          ],
+          "testedDimension": "Дополните вопрос о длительности.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните вопрос о длительности.",
+              "feedbackByLocale": {
+                "ru": "Для длительности нужно How long.",
+                "uk": "Для тривалості потрібно How long."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните вопрос о длительности.",
+              "feedbackByLocale": {
+                "ru": "Для длительности нужно How long.",
+                "uk": "Для тривалості потрібно How long."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i09:r1",
+            "text": "How long have you had this bruise?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i09:r2",
+            "text": "How long has she had this bruise?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i09:r3",
+            "text": "How long has he had this bruise?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i09:audio",
+            "transcript": "How long have you had this bruise?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:i09:r1",
+              "targetText": "How long have you had this bruise?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i09:r2",
+              "targetText": "How long has she had this bruise?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i09:r3",
+              "targetText": "How long has he had this bruise?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long have you had this bruise?",
+                "uk": "У записі звучить How long have you had this bruise?"
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long have you had this bruise?",
+                "uk": "У записі звучить How long have you had this bruise?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:word:scar",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:word:scar:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:word:scar:audio",
+            "transcript": "scar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:word:scar:r1",
+              "targetText": "scar",
+              "meaningByLocale": {
+                "ru": "шрам.",
+                "uk": "шрам."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scar",
+            "definitionByLocale": {
+              "ru": "шрам.",
+              "uk": "шрам."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите: «Как давно у него этот шрам?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите: «Как давно у него этот шрам?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How long has he had this scar?",
+          "localizedMeaning": {
+            "ru": "Спросите: «Как давно у него этот шрам?»",
+            "uk": "Запитайте: «Як давно в нього цей шрам?»"
+          },
+          "orderedTokens": [
+            "How",
+            "long",
+            "has",
+            "he",
+            "had",
+            "this",
+            "scar"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните вопрос о длительности.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i11:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i11:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните вопрос о длительности.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните вопрос о длительности.",
+            "uk": "Доповніть запитання про тривалість."
+          },
+          "gappedTargetPhrase": "How long has he ___ this scar?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-11:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i11:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i11:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Дополните вопрос о длительности.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните вопрос о длительности.",
+              "feedbackByLocale": {
+                "ru": "После has he нужна форма had.",
+                "uk": "Після has he потрібна форма had."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните вопрос о длительности.",
+              "feedbackByLocale": {
+                "ru": "После has he нужна форма had.",
+                "uk": "Після has he потрібна форма had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i12:r1",
+            "text": "How long has he had this scar?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i12:r2",
+            "text": "How long has she had this scar?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i12:r3",
+            "text": "How long have you had this scar?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i12:audio",
+            "transcript": "How long has he had this scar?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:i12:r1",
+              "targetText": "How long has he had this scar?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i12:r2",
+              "targetText": "How long has she had this scar?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i12:r3",
+              "targetText": "How long have you had this scar?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has he had this scar?",
+                "uk": "У записі звучить How long has he had this scar?"
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has he had this scar?",
+                "uk": "У записі звучить How long has he had this scar?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-11:i13:p1",
+              "target": "crutches",
+              "meaningByLocale": {
+                "ru": "костыли",
+                "uk": "милиці"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-11:i13:p2",
+              "target": "sling",
+              "meaningByLocale": {
+                "ru": "повязка для поддержки руки",
+                "uk": "пов’язка для підтримки руки"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-11:i13:p3",
+              "target": "bruise",
+              "meaningByLocale": {
+                "ru": "синяк",
+                "uk": "синець"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-11:i13:p4",
+              "target": "scar",
+              "meaningByLocale": {
+                "ru": "шрам",
+                "uk": "шрам"
+              }
+            }
+          ],
+          "leftColumn": [
+            "crutches",
+            "sling",
+            "bruise",
+            "scar"
+          ],
+          "rightColumn": [
+            "костыли",
+            "повязка для поддержки руки",
+            "синяк",
+            "шрам"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже две недели",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i14:audio"
+        ],
+        "accessibilityLabel": "Уже две недели",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i14:audio",
+            "transcript": "I have used crutches for two weeks."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have used crutches for two weeks.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "used",
+            "crutches",
+            "for",
+            "two",
+            "weeks"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "С понедельника",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i15:audio"
+        ],
+        "accessibilityLabel": "С понедельника",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i15:audio",
+            "transcript": "She has worn a sling since Monday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has worn a sling since Monday.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "worn",
+            "a",
+            "sling",
+            "since",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Как давно у неё этот шрам?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Как давно у неё этот шрам?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i16:audio",
+            "transcript": "How long has she had this scar?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "How long has she had this scar?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Как давно у него этот синяк?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Как давно у него этот синяк?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i17:audio",
+            "transcript": "How long has he had this bruise?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "How long has he had this bruise?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-11:word:crutches",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — crutches",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:word:crutches:audio"
+        ],
+        "accessibilityLabel": "Картка слова — crutches",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:word:crutches:audio",
+            "transcript": "crutches"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:word:crutches:r1",
+              "targetText": "crutches",
+              "meaningByLocale": {
+                "ru": "костыли.",
+                "uk": "милиці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crutches",
+            "definitionByLocale": {
+              "ru": "костыли.",
+              "uk": "милиці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте: «Як давно ти користуєшся милицями?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте: «Як давно ти користуєшся милицями?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How long have you used crutches?",
+          "localizedMeaning": {
+            "ru": "Спросите: «Как давно ты пользуешься костылями?»",
+            "uk": "Запитайте: «Як давно ти користуєшся милицями?»"
+          },
+          "orderedTokens": [
+            "How",
+            "long",
+            "have",
+            "you",
+            "used",
+            "crutches"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть запитання про тривалість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i02:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть запитання про тривалість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните вопрос о длительности.",
+            "uk": "Доповніть запитання про тривалість."
+          },
+          "gappedTargetPhrase": "How long ___ you used crutches?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-11:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i02:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Доповніть запитання про тривалість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть запитання про тривалість.",
+              "feedbackByLocale": {
+                "ru": "С you используем have.",
+                "uk": "Із you використовуємо have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть запитання про тривалість.",
+              "feedbackByLocale": {
+                "ru": "С you используем have.",
+                "uk": "Із you використовуємо have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i03:r1",
+            "text": "How long have you used crutches?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i03:r2",
+            "text": "How long has she used crutches?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i03:r3",
+            "text": "How long have they used crutches?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i03:audio",
+            "transcript": "How long have you used crutches?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:i03:r1",
+              "targetText": "How long have you used crutches?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i03:r2",
+              "targetText": "How long has she used crutches?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i03:r3",
+              "targetText": "How long have they used crutches?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long have you used crutches?",
+                "uk": "У записі звучить How long have you used crutches?"
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long have you used crutches?",
+                "uk": "У записі звучить How long have you used crutches?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:word:sling",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sling",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:word:sling:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sling",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:word:sling:audio",
+            "transcript": "sling"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:word:sling:r1",
+              "targetText": "sling",
+              "meaningByLocale": {
+                "ru": "повязка для поддержки руки.",
+                "uk": "пов’язка для підтримки руки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sling",
+            "definitionByLocale": {
+              "ru": "повязка для поддержки руки.",
+              "uk": "пов’язка для підтримки руки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте: «Як давно вона носить підтримувальну пов’язку на руці?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте: «Як давно вона носить підтримувальну пов’язку на руці?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How long has she worn a sling?",
+          "localizedMeaning": {
+            "ru": "Спросите: «Как давно она носит поддерживающую повязку на руке?»",
+            "uk": "Запитайте: «Як давно вона носить підтримувальну пов’язку на руці?»"
+          },
+          "orderedTokens": [
+            "How",
+            "long",
+            "has",
+            "she",
+            "worn",
+            "a",
+            "sling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть запитання про тривалість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть запитання про тривалість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните вопрос о длительности.",
+            "uk": "Доповніть запитання про тривалість."
+          },
+          "gappedTargetPhrase": "How long ___ she worn a sling?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-11:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Доповніть запитання про тривалість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть запитання про тривалість.",
+              "feedbackByLocale": {
+                "ru": "С she используем has.",
+                "uk": "Із she використовуємо has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть запитання про тривалість.",
+              "feedbackByLocale": {
+                "ru": "С she используем has.",
+                "uk": "Із she використовуємо has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i06:r1",
+            "text": "How long has she worn a sling?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i06:r2",
+            "text": "How long has he worn a sling?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i06:r3",
+            "text": "How long have you worn a sling?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i06:audio",
+            "transcript": "How long has she worn a sling?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:i06:r1",
+              "targetText": "How long has she worn a sling?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i06:r2",
+              "targetText": "How long has he worn a sling?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i06:r3",
+              "targetText": "How long have you worn a sling?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has she worn a sling?",
+                "uk": "У записі звучить How long has she worn a sling?"
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has she worn a sling?",
+                "uk": "У записі звучить How long has she worn a sling?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:word:bruise",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bruise",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:word:bruise:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bruise",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:word:bruise:audio",
+            "transcript": "bruise"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:word:bruise:r1",
+              "targetText": "bruise",
+              "meaningByLocale": {
+                "ru": "синяк.",
+                "uk": "синець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bruise",
+            "definitionByLocale": {
+              "ru": "синяк.",
+              "uk": "синець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте: «Як давно в тебе цей синець?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте: «Як давно в тебе цей синець?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How long have you had this bruise?",
+          "localizedMeaning": {
+            "ru": "Спросите: «Как давно у тебя этот синяк?»",
+            "uk": "Запитайте: «Як давно в тебе цей синець?»"
+          },
+          "orderedTokens": [
+            "How",
+            "long",
+            "have",
+            "you",
+            "had",
+            "this",
+            "bruise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть запитання про тривалість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i08:r1",
+            "text": "How long"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i08:r2",
+            "text": "How many"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i08:r3",
+            "text": "How much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть запитання про тривалість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните вопрос о длительности.",
+            "uk": "Доповніть запитання про тривалість."
+          },
+          "gappedTargetPhrase": "___ have you had this bruise?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-11:i08:r1",
+              "text": "How long"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i08:r2",
+              "text": "How many"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i08:r3",
+              "text": "How much"
+            }
+          ],
+          "testedDimension": "Доповніть запитання про тривалість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть запитання про тривалість.",
+              "feedbackByLocale": {
+                "ru": "Для длительности нужно How long.",
+                "uk": "Для тривалості потрібно How long."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть запитання про тривалість.",
+              "feedbackByLocale": {
+                "ru": "Для длительности нужно How long.",
+                "uk": "Для тривалості потрібно How long."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i09:r1",
+            "text": "How long have you had this bruise?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i09:r2",
+            "text": "How long has she had this bruise?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i09:r3",
+            "text": "How long has he had this bruise?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i09:audio",
+            "transcript": "How long have you had this bruise?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:i09:r1",
+              "targetText": "How long have you had this bruise?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i09:r2",
+              "targetText": "How long has she had this bruise?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i09:r3",
+              "targetText": "How long has he had this bruise?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long have you had this bruise?",
+                "uk": "У записі звучить How long have you had this bruise?"
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long have you had this bruise?",
+                "uk": "У записі звучить How long have you had this bruise?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:word:scar",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:word:scar:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:word:scar:audio",
+            "transcript": "scar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:word:scar:r1",
+              "targetText": "scar",
+              "meaningByLocale": {
+                "ru": "шрам.",
+                "uk": "шрам."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scar",
+            "definitionByLocale": {
+              "ru": "шрам.",
+              "uk": "шрам."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте: «Як давно в нього цей шрам?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте: «Як давно в нього цей шрам?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How long has he had this scar?",
+          "localizedMeaning": {
+            "ru": "Спросите: «Как давно у него этот шрам?»",
+            "uk": "Запитайте: «Як давно в нього цей шрам?»"
+          },
+          "orderedTokens": [
+            "How",
+            "long",
+            "has",
+            "he",
+            "had",
+            "this",
+            "scar"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть запитання про тривалість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i11:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i11:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть запитання про тривалість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните вопрос о длительности.",
+            "uk": "Доповніть запитання про тривалість."
+          },
+          "gappedTargetPhrase": "How long has he ___ this scar?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-11:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i11:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i11:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Доповніть запитання про тривалість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть запитання про тривалість.",
+              "feedbackByLocale": {
+                "ru": "После has he нужна форма had.",
+                "uk": "Після has he потрібна форма had."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть запитання про тривалість.",
+              "feedbackByLocale": {
+                "ru": "После has he нужна форма had.",
+                "uk": "Після has he потрібна форма had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-11:i12:r1",
+            "text": "How long has he had this scar?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i12:r2",
+            "text": "How long has she had this scar?"
+          },
+          {
+            "responseId": "en:lesson-24:session-11:i12:r3",
+            "text": "How long have you had this scar?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i12:audio",
+            "transcript": "How long has he had this scar?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-11:i12:r1",
+              "targetText": "How long has he had this scar?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i12:r2",
+              "targetText": "How long has she had this scar?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i12:r3",
+              "targetText": "How long have you had this scar?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-11:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has he had this scar?",
+                "uk": "У записі звучить How long has he had this scar?"
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-11:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has he had this scar?",
+                "uk": "У записі звучить How long has he had this scar?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-11:i13:p1",
+              "target": "crutches",
+              "meaningByLocale": {
+                "ru": "костыли",
+                "uk": "милиці"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-11:i13:p2",
+              "target": "sling",
+              "meaningByLocale": {
+                "ru": "повязка для поддержки руки",
+                "uk": "пов’язка для підтримки руки"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-11:i13:p3",
+              "target": "bruise",
+              "meaningByLocale": {
+                "ru": "синяк",
+                "uk": "синець"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-11:i13:p4",
+              "target": "scar",
+              "meaningByLocale": {
+                "ru": "шрам",
+                "uk": "шрам"
+              }
+            }
+          ],
+          "leftColumn": [
+            "crutches",
+            "sling",
+            "bruise",
+            "scar"
+          ],
+          "rightColumn": [
+            "милиці",
+            "пов’язка для підтримки руки",
+            "синець",
+            "шрам"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вже два тижні",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i14:audio"
+        ],
+        "accessibilityLabel": "Вже два тижні",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i14:audio",
+            "transcript": "I have used crutches for two weeks."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have used crutches for two weeks.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "used",
+            "crutches",
+            "for",
+            "two",
+            "weeks"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "З понеділка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i15:audio"
+        ],
+        "accessibilityLabel": "З понеділка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i15:audio",
+            "transcript": "She has worn a sling since Monday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has worn a sling since Monday.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "worn",
+            "a",
+            "sling",
+            "since",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Як давно в неї цей шрам?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Як давно в неї цей шрам?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i16:audio",
+            "transcript": "How long has she had this scar?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "How long has she had this scar?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-11:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Як давно в нього цей синець?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-11:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Як давно в нього цей синець?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-11:i17:audio",
+            "transcript": "How long has he had this bruise?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "How long has he had this bruise?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-11:word:crutches",
+      "correctText": "crutches",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i01",
+      "correctText": "How long have you used crutches?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i02",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-11:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i03",
+      "correctText": "How long have you used crutches?",
+      "correctResponseId": "en:lesson-24:session-11:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:word:sling",
+      "correctText": "sling",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i04",
+      "correctText": "How long has she worn a sling?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i05",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-24:session-11:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i06",
+      "correctText": "How long has she worn a sling?",
+      "correctResponseId": "en:lesson-24:session-11:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:word:bruise",
+      "correctText": "bruise",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i07",
+      "correctText": "How long have you had this bruise?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i08",
+      "correctText": "How long",
+      "correctResponseId": "en:lesson-24:session-11:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i09",
+      "correctText": "How long have you had this bruise?",
+      "correctResponseId": "en:lesson-24:session-11:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:word:scar",
+      "correctText": "scar",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i10",
+      "correctText": "How long has he had this scar?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i11",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-24:session-11:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i12",
+      "correctText": "How long has he had this scar?",
+      "correctResponseId": "en:lesson-24:session-11:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i14",
+      "correctText": "I have used crutches for two weeks.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i15",
+      "correctText": "She has worn a sling since Monday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i16",
+      "correctText": "How long has she had this scar?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:i17",
+      "correctText": "How long has he had this bruise?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-11:intro1:r2": {
+          "ru": "С you нужно have, с she — has.",
+          "uk": "З you потрібно have, з she — has."
+        },
+        "en:lesson-24:session-11:intro1:r3": {
+          "ru": "О длительности спрашиваем How long.",
+          "uk": "Про тривалість запитуємо How long."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-11:intro2:r2": {
+          "ru": "С you нужно have, с she — has.",
+          "uk": "З you потрібно have, з she — has."
+        },
+        "en:lesson-24:session-11:intro2:r3": {
+          "ru": "О длительности спрашиваем How long.",
+          "uk": "Про тривалість запитуємо How long."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-11:intro3:r2": {
+          "ru": "С you нужно have, с she — has.",
+          "uk": "З you потрібно have, з she — has."
+        },
+        "en:lesson-24:session-11:intro3:r3": {
+          "ru": "О длительности спрашиваем How long.",
+          "uk": "Про тривалість запитуємо How long."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6a21cf9034902a0d3e1d1ca6092a495941a168dbd33d713cb3fd0709b0153701"
+}

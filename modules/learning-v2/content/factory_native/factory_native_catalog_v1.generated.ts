@@ -9093,4 +9093,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"How long + have|has + subject + past participle?","uk":"How long + have|has + subject + past participle?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 11,
+    sourceFingerprint: "97d7ec187925684744d19cd07fc4019b9c304da7fcb1282312ccc2ebf13eb497",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"How long + have|has + subject + past participle?","uk":"How long + have|has + subject + past participle?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 12,
+    sourceFingerprint: "20de1b9a78950059da281860f4384b390dd7afda63f948e6ee7f1c005068e866",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"How long + have|has + subject + past participle?","uk":"How long + have|has + subject + past participle?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
 ]);

@@ -51,101 +51,101 @@ Fidget — соватися або робити дрібні неспокійн�
 
 **1 · Картка слова — squint**
 <!-- interaction_id: en:lesson-25:session-16:word:squint; family: word_card -->
-> **squint** — мружитися.
+> **squint** — мружитися
 
-**2 · Скажіть: «У дитинстві я часто мружився на яскравому сонці.»**
-<!-- interaction_id: en:lesson-25:session-16:i01; family: phrase_builder -->
-Плитки: `sunlight` `bright` `in` `squint` `would` `I` `child` `a` `As` → **As a child I would squint in bright sunlight.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-16:i01; family: listen_choose -->
+🔊 *I used to squint at the board.* → **I used to squint at the board.** · I used to squint at the screen. · She used to squint at the board.
+- I used to squint at the screen. — *У записі звучить I used to squint at the board.*
+- She used to squint at the board. — *У записі звучить I used to squint at the board.*
 
-**3 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-16:i02; family: context_gap_grammar -->
-As a child I would ___ in bright sunlight. → **squint** · squinted · squinting
-- squinted — *Після would потрібна базова форма дієслова.*
-- squinting — *Після would потрібна базова форма дієслова.*
+**3 · Вам погано видно напис. Попросіть: «Можна мені сісти ближче?»**
+<!-- interaction_id: en:lesson-25:session-16:i02; family: scripted_repeat_compare -->
+🎙 **Can I sit closer?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-16:i03; family: listen_choose -->
-🔊 *As a child I would squint in bright sunlight.* → **As a child I would squint in bright sunlight.** · As a child she would squint in bright sunlight. · As a child I would squint at the screen.
-- As a child she would squint in bright sunlight. — *У записі звучить As a child I would squint in bright sunlight.*
-- As a child I would squint at the screen. — *У записі звучить As a child I would squint in bright sunlight.*
-
-**5 · Картка слова — limp**
-<!-- interaction_id: en:lesson-25:session-16:word:limp; family: word_card -->
-> **limp** — кульгати.
-
-**6 · Скажіть: «Після нещасного випадку я зазвичай ішов зі школи додому кульгаючи.»**
-<!-- interaction_id: en:lesson-25:session-16:i04; family: phrase_builder -->
-Плитки: `school` `from` `home` `limp` `would` `I` `accident` `my` `After` → **After my accident I would limp home from school.**
-
-**7 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-16:i05; family: context_gap_grammar -->
-After my accident I would ___ home from school. → **limp** · limped · limping
-- limped — *Після would потрібна базова форма дієслова.*
-- limping — *Після would потрібна базова форма дієслова.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-16:i06; family: listen_choose -->
-🔊 *After my accident I would limp home from school.* → **After my accident I would limp home from school.** · After his accident he would limp home from school. · After my accident I would limp home from work.
-- After his accident he would limp home from school. — *У записі звучить After my accident I would limp home from school.*
-- After my accident I would limp home from work. — *У записі звучить After my accident I would limp home from school.*
-
-**9 · Картка слова — stutter**
-<!-- interaction_id: en:lesson-25:session-16:word:stutter; family: word_card -->
-> **stutter** — заїкатися.
-
-**10 · Скажіть: «У школі я часто заїкався під час виступів.»**
-<!-- interaction_id: en:lesson-25:session-16:i07; family: phrase_builder -->
-Плитки: `presentations` `during` `stutter` `would` `I` `school` `At` → **At school I would stutter during presentations.**
-
-**11 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-16:i08; family: context_gap_grammar -->
-At school I would ___ during presentations. → **stutter** · stuttered · stuttering
-- stuttered — *Після would потрібна базова форма дієслова.*
-- stuttering — *Після would потрібна базова форма дієслова.*
-
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-16:i09; family: listen_choose -->
-🔊 *At school I would stutter during presentations.* → **At school I would stutter during presentations.** · At school he would stutter during presentations. · At school I would stutter during conversations.
-- At school he would stutter during presentations. — *У записі звучить At school I would stutter during presentations.*
-- At school I would stutter during conversations. — *У записі звучить At school I would stutter during presentations.*
-
-**13 · Картка слова — fidget**
+**4 · Картка слова — fidget**
 <!-- interaction_id: en:lesson-25:session-16:word:fidget; family: word_card -->
-> **fidget** — соватися, неспокійно рухатися.
+> **fidget** — соватися, неспокійно рухатися
 
-**14 · Скажіть: «У дитинстві він часто совався під час довгих уроків.»**
-<!-- interaction_id: en:lesson-25:session-16:i10; family: phrase_builder -->
-Плитки: `lessons` `long` `during` `fidget` `would` `he` `child` `a` `As` → **As a child he would fidget during long lessons.**
+**5 · Ви згадуєте дрібні неспокійні рухи на довгих уроках.**
+<!-- interaction_id: en:lesson-25:session-16:i03; family: context_gap_grammar -->
+As a child I would ___ during long lessons. → **fidget** · fidgeted · fidgeting
+- fidgeted — *Після would потрібна базова форма fidget.*
+- fidgeting — *Would fidgeting тут не підходить.*
 
-**15 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-16:i11; family: context_gap_grammar -->
-As a child he would ___ during long lessons. → **fidget** · fidgeted · fidgeting
-- fidgeted — *Після would потрібна базова форма дієслова.*
-- fidgeting — *Після would потрібна базова форма дієслова.*
+**6 · Почуйте колишню звичку в дорозі.**
+<!-- interaction_id: en:lesson-25:session-16:i04; family: listen_build_dictation -->
+🔊 *On those journeys I would count the cars outside.* Плитки: `outside` `cars` `the` `count` `would` `I` `journeys` `those` `On` → **On those journeys I would count the cars outside.**
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-16:i12; family: listen_choose -->
-🔊 *As a child he would fidget during long lessons.* → **As a child he would fidget during long lessons.** · As a child she would fidget during long lessons. · As a child he would fidget during long journeys.
-- As a child she would fidget during long lessons. — *У записі звучить As a child he would fidget during long lessons.*
-- As a child he would fidget during long journeys. — *У записі звучить As a child he would fidget during long lessons.*
+**7 · Картка слова — limp**
+<!-- interaction_id: en:lesson-25:session-16:word:limp; family: word_card -->
+> **limp** — кульгати
 
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-16:i13; family: speed_match -->
+**8 · Опишіть колишній рух: «Після тієї травми я кульгав». Використайте used to.**
+<!-- interaction_id: en:lesson-25:session-16:i05; family: phrase_builder -->
+Плитки: `limp` `to` `used` `I` `injury` `that` `After` → **After that injury I used to limp.**
+
+**9 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-16:i06; family: listen_choose -->
+🔊 *Can we walk a little more slowly?* → **Can we walk a little more slowly?** · Can we walk a little faster? · Can we sit here for a little longer?
+- Can we walk a little faster? — *У записі звучить Can we walk a little more slowly?*
+- Can we sit here for a little longer? — *У записі звучить Can we walk a little more slowly?*
+
+**10 · Картка слова — stutter**
+<!-- interaction_id: en:lesson-25:session-16:word:stutter; family: word_card -->
+> **stutter** — заїкатися
+
+**11 · Розкажіть про своє мовлення: «Іноді я заїкаюся».**
+<!-- interaction_id: en:lesson-25:session-16:i07; family: scripted_repeat_compare -->
+🎙 **I sometimes stutter.**
+
+**12 · Людина описує саме мовлення, а не ходу чи рух очей.**
+<!-- interaction_id: en:lesson-25:session-16:i08; family: context_gap_grammar -->
+I sometimes ___ when I speak. → **stutter** · limp · squint
+- limp — *Limp — кульгати; це опис ходи.*
+- squint — *Squint — мружитися; це рух очей, не мовлення.*
+
+**13 · Розрізніть рухи й особливість мовлення**
+<!-- interaction_id: en:lesson-25:session-16:i09; family: speed_match -->
 squint — мружитися · limp — кульгати · stutter — заїкатися · fidget — соватися, неспокійно рухатися
 
-**18 · Колишнє місце проживання**
+**14 · Дайте співрозмовникові час: «Не поспішай».**
+<!-- interaction_id: en:lesson-25:session-16:i10; family: phrase_builder -->
+Плитки: `time` `your` `Take` → **Take your time.**
+
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-16:i11; family: listen_choose -->
+🔊 *At school our teacher would give us time to answer.* → **At school our teacher would give us time to answer.** · At school our teacher would ask us to answer quickly. · At home our parents would give us time to answer.
+- At school our teacher would ask us to answer quickly. — *У записі звучить At school our teacher would give us time to answer.*
+- At home our parents would give us time to answer. — *У записі звучить At school our teacher would give us time to answer.*
+
+**16 · Учора ви поговорили з учителем один раз.**
+<!-- interaction_id: en:lesson-25:session-16:i12; family: context_gap_grammar -->
+I ___ to my teacher yesterday. → **spoke** · have spoken · would speak
+- have spoken — *Yesterday потребує Past Simple spoke.*
+- would speak — *Тут одна вчорашня подія, не дія, що повторювалася.*
+
+**17 · Вам потрібно більше часу. Скажіть: «Мені потрібна ще одна хвилина».**
+<!-- interaction_id: en:lesson-25:session-16:i13; family: scripted_repeat_compare -->
+🎙 **I need another minute.**
+
+**18 · Почуйте звичайний шкільний розпорядок у минулому.**
 <!-- interaction_id: en:lesson-25:session-16:i14; family: listen_build_dictation -->
-🔊 *I used to live by the lake.* Плитки: `lake` `the` `by` `live` `to` `used` `I` → **I used to live by the lake.**
+🔊 *After lunch we would go outside for a break.* Плитки: `break` `a` `for` `outside` `go` `would` `we` `lunch` `After` → **After lunch we would go outside for a break.**
 
-**19 · Раніше я був сором’язливим**
-<!-- interaction_id: en:lesson-25:session-16:i15; family: listen_build_dictation -->
-🔊 *I used to be shy.* Плитки: `shy` `be` `to` `used` `I` → **I used to be shy.**
+**19 · Ви вже відповіли на запитання. Доповніть Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-16:i15; family: context_gap_grammar -->
+I have already ___ that question. → **answered** · answer · answering
+- answer — *Після have потрібна форма answered.*
+- answering — *Have answering неправильно; потрібно have answered.*
 
-**20 · Скажіть: «У школі вона часто заїкалася під час виступів».**
-<!-- interaction_id: en:lesson-25:session-16:i16; family: scripted_repeat_compare -->
-🎙 **At school she would stutter during presentations.**
+**20 · Одне крісло зайняте. Скажіть: «Інше крісло вільне».**
+<!-- interaction_id: en:lesson-25:session-16:i16; family: phrase_builder -->
+Плитки: `free` `is` `chair` `other` `The` → **The other chair is free.**
 
-**21 · Скажіть: «У дитинстві вони часто совалися під час довгих уроків».**
-<!-- interaction_id: en:lesson-25:session-16:i17; family: scripted_repeat_compare -->
-🎙 **As children they would fidget during long lessons.**
+**21 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-16:i17; family: listen_choose -->
+🔊 *I used to prefer sitting at the front.* → **I used to prefer sitting at the front.** · I used to prefer sitting at the back. · She used to prefer sitting at the front.
+- I used to prefer sitting at the back. — *У записі звучить I used to prefer sitting at the front.*
+- She used to prefer sitting at the front. — *У записі звучить I used to prefer sitting at the front.*
 

@@ -53,99 +53,99 @@ Reread — перечитать. Написание третьей формы т
 <!-- interaction_id: en:lesson-25:session-17:word:redone; family: word_card -->
 > **redone** — переделал. Redo — переделать; redone — третья форма.
 
-**2 · Скажите: «Она переделала упражнение до начала урока.»**
-<!-- interaction_id: en:lesson-25:session-17:i01; family: phrase_builder -->
-Плитки: `began` `lesson` `the` `before` `exercise` `the` `redone` `had` `She` → **She had redone the exercise before the lesson began.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-17:i01; family: listen_choose -->
+🔊 *I had redone my homework before the teacher arrived.* → **I had redone my homework before the teacher arrived.** · I had redone my homework before the teacher left. · She had redone her homework before the teacher arrived.
+- I had redone my homework before the teacher left. — *В записи звучит I had redone my homework before the teacher arrived.*
+- She had redone her homework before the teacher arrived. — *В записи звучит I had redone my homework before the teacher arrived.*
 
-**3 · Дополните рассказ о прошлом.**
+**3 · Сначала вы закончили работу, позже позвонил друг. Покажите более раннее действие.**
 <!-- interaction_id: en:lesson-25:session-17:i02; family: context_gap_grammar -->
-She ___ redone the exercise before the lesson began. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+I ___ finished when my friend called. → **had** · have · was
+- have — *Have finished связано с настоящим; здесь точка отсчёта — звонок в прошлом.*
+- was — *Нужна форма had finished для действия, завершённого до звонка.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-17:i03; family: listen_choose -->
-🔊 *She had redone the exercise before the lesson began.* → **She had redone the exercise before the lesson began.** · He had redone the exercise before the lesson began. · She had redone the exercise before the lesson ended.
-- He had redone the exercise before the lesson began. — *В записи звучит She had redone the exercise before the lesson began.*
-- She had redone the exercise before the lesson ended. — *В записи звучит She had redone the exercise before the lesson began.*
-
-**5 · Карточка слова — rebuilt**
+**4 · Карточка слова — rebuilt**
 <!-- interaction_id: en:lesson-25:session-17:word:rebuilt; family: word_card -->
 > **rebuilt** — построил заново. Rebuild — построить заново; rebuilt — третья форма.
 
-**6 · Скажите: «Они построили стену заново до нашего приезда.»**
-<!-- interaction_id: en:lesson-25:session-17:i04; family: phrase_builder -->
-Плитки: `arrived` `we` `before` `wall` `the` `rebuilt` `had` `They` → **They had rebuilt the wall before we arrived.**
+**5 · Когда вы вернулись, мост уже восстановили: «Они построили мост заново до нашего возвращения».**
+<!-- interaction_id: en:lesson-25:session-17:i03; family: phrase_builder -->
+Плитки: `returned` `we` `before` `bridge` `the` `rebuilt` `had` `They` → **They had rebuilt the bridge before we returned.**
 
-**7 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-17:i05; family: context_gap_grammar -->
-They ___ rebuilt the wall before we arrived. → **had** · have · were
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- were — *Для действия до другого события в прошлом нужно had + третья форма.*
+**6 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-17:i04; family: listen_choose -->
+🔊 *The shop had closed when we got there.* → **The shop had closed when we got there.** · The shop had opened when we got there. · The school had closed when we got there.
+- The shop had opened when we got there. — *В записи звучит The shop had closed when we got there.*
+- The school had closed when we got there. — *В записи звучит The shop had closed when we got there.*
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-17:i06; family: listen_choose -->
-🔊 *They had rebuilt the wall before we arrived.* → **They had rebuilt the wall before we arrived.** · We had rebuilt the wall before they arrived. · They had rebuilt the wall before we left.
-- We had rebuilt the wall before they arrived. — *В записи звучит They had rebuilt the wall before we arrived.*
-- They had rebuilt the wall before we left. — *В записи звучит They had rebuilt the wall before we arrived.*
-
-**9 · Карточка слова — rewashed**
-<!-- interaction_id: en:lesson-25:session-17:word:rewashed; family: word_card -->
-> **rewashed** — постирал заново. Rewash — постирать заново; rewashed — третья форма.
-
-**10 · Скажите: «Я постирал рубашку заново до того, как собрал сумку.»**
-<!-- interaction_id: en:lesson-25:session-17:i07; family: phrase_builder -->
-Плитки: `bag` `my` `packed` `I` `before` `shirt` `the` `rewashed` `had` `I` → **I had rewashed the shirt before I packed my bag.**
-
-**11 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-17:i08; family: context_gap_grammar -->
-I ___ rewashed the shirt before I packed my bag. → **had** · have · was
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
-
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-17:i09; family: listen_choose -->
-🔊 *I had rewashed the shirt before I packed my bag.* → **I had rewashed the shirt before I packed my bag.** · She had rewashed the shirt before she packed her bag. · I had rewashed the shirt before I packed my suitcase.
-- She had rewashed the shirt before she packed her bag. — *В записи звучит I had rewashed the shirt before I packed my bag.*
-- I had rewashed the shirt before I packed my suitcase. — *В записи звучит I had rewashed the shirt before I packed my bag.*
-
-**13 · Карточка слова — reread**
+**7 · Карточка слова — reread**
 <!-- interaction_id: en:lesson-25:session-17:word:reread; family: word_card -->
 > **reread** — перечитал. Reread — перечитать; третья форма пишется так же.
 
-**14 · Скажите: «Он перечитал письмо до того, как отправил его.»**
-<!-- interaction_id: en:lesson-25:session-17:i10; family: phrase_builder -->
-Плитки: `it` `sent` `he` `before` `letter` `the` `reread` `had` `He` → **He had reread the letter before he sent it.**
+**8 · Услышьте, что было сделано до урока.**
+<!-- interaction_id: en:lesson-25:session-17:i05; family: listen_build_dictation -->
+🔊 *I had reread the story before the class started.* Плитки: `started` `class` `the` `before` `story` `the` `reread` `had` `I` → **I had reread the story before the class started.**
 
-**15 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-17:i11; family: context_gap_grammar -->
-He ___ reread the letter before he sent it. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**9 · Перечитывание было раньше отправки письма. Дополните третью форму.**
+<!-- interaction_id: en:lesson-25:session-17:i06; family: context_gap_grammar -->
+I had ___ the letter before I sent it. → **reread** · rereading · rereads
+- rereading — *После had нужна третья форма reread.*
+- rereads — *Rereads — настоящее время с -s; здесь нужна третья форма reread.*
+
+**10 · Карточка слова — rewashed**
+<!-- interaction_id: en:lesson-25:session-17:word:rewashed; family: word_card -->
+> **rewashed** — постирал заново. Rewash — постирать заново; rewashed — третья форма.
+
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-17:i07; family: listen_choose -->
+🔊 *I had rewashed the towels before our guests arrived.* → **I had rewashed the towels before our guests arrived.** · I had rewashed the sheets before our guests arrived. · I had rewashed the towels before our guests left.
+- I had rewashed the sheets before our guests arrived. — *В записи звучит I had rewashed the towels before our guests arrived.*
+- I had rewashed the towels before our guests left. — *В записи звучит I had rewashed the towels before our guests arrived.*
+
+**12 · Объясните, почему вы не голодны: «Я уже поел до начала встречи».**
+<!-- interaction_id: en:lesson-25:session-17:i08; family: scripted_repeat_compare -->
+🎙 **I had eaten before the meeting started.**
+
+**13 · Соотнесите третьи формы с действиями**
+<!-- interaction_id: en:lesson-25:session-17:i09; family: speed_match -->
+redone — переделал · rebuilt — перестроили, построили заново · rewashed — постирал заново · reread — перечитал
+
+**14 · Сначала поезд ушёл, потом вы приехали. Выберите had для более раннего события.**
+<!-- interaction_id: en:lesson-25:session-17:i10; family: context_gap_grammar -->
+The train ___ left when we arrived. → **had** · has · is
+- has — *Has left относится к настоящему; рассказ здесь о двух прошлых событиях.*
+- is — *Нужно had left: поезд ушёл раньше вашего приезда.*
+
+**15 · Вы не смогли позвонить: «Я потерял телефон до того, как ушёл из дома».**
+<!-- interaction_id: en:lesson-25:session-17:i11; family: phrase_builder -->
+Плитки: `home` `left` `I` `before` `phone` `my` `lost` `had` `I` → **I had lost my phone before I left home.**
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-17:i12; family: listen_choose -->
-🔊 *He had reread the letter before he sent it.* → **He had reread the letter before he sent it.** · She had reread the letter before she sent it. · He had reread the message before he sent it.
-- She had reread the letter before she sent it. — *В записи звучит He had reread the letter before he sent it.*
-- He had reread the message before he sent it. — *В записи звучит He had reread the letter before he sent it.*
+🔊 *We had bought the tickets before the price changed.* → **We had bought the tickets before the price changed.** · We had sold the tickets before the price changed. · They had bought the tickets before the price changed.
+- We had sold the tickets before the price changed. — *В записи звучит We had bought the tickets before the price changed.*
+- They had bought the tickets before the price changed. — *В записи звучит We had bought the tickets before the price changed.*
 
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-17:i13; family: speed_match -->
-redone — переделал · rebuilt — перестроили, построили заново · rewashed — постирал заново · reread — перечитал
+**17 · Услышьте, почему дома было чисто.**
+<!-- interaction_id: en:lesson-25:session-17:i13; family: listen_build_dictation -->
+🔊 *We had cleaned the kitchen before our friends came.* Плитки: `came` `friends` `our` `before` `kitchen` `the` `cleaned` `had` `We` → **We had cleaned the kitchen before our friends came.**
 
-**18 · Уже закончил**
-<!-- interaction_id: en:lesson-25:session-17:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**18 · Вспомните приготовления: «Я упаковал подарки до начала вечеринки».**
+<!-- interaction_id: en:lesson-25:session-17:i14; family: scripted_repeat_compare -->
+🎙 **I had wrapped the presents before the party began.**
 
-**19 · Поезд уже ушёл**
-<!-- interaction_id: en:lesson-25:session-17:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**19 · Вы приехали позже окончания фильма. Дополните третью форму.**
+<!-- interaction_id: en:lesson-25:session-17:i15; family: context_gap_grammar -->
+The film had ___ when we arrived. → **ended** · end · ending
+- end — *После had нужна форма ended.*
+- ending — *Had ending не образует Past Perfect.*
 
-**20 · Скажите: «Мы построили стену заново до её приезда».**
-<!-- interaction_id: en:lesson-25:session-17:i16; family: scripted_repeat_compare -->
-🎙 **We had rebuilt the wall before she arrived.**
+**20 · Сначала вы нашли ключи, потом вышли: «Я нашёл ключи до того, как вышел».**
+<!-- interaction_id: en:lesson-25:session-17:i16; family: phrase_builder -->
+Плитки: `out` `went` `I` `before` `keys` `my` `found` `had` `I` → **I had found my keys before I went out.**
 
-**21 · Скажите: «Я перечитал письмо до того, как отправил его».**
+**21 · Сообщите о времени прихода: «Я пришёл до того, как начался дождь».**
 <!-- interaction_id: en:lesson-25:session-17:i17; family: scripted_repeat_compare -->
-🎙 **I had reread the letter before I sent it.**
+🎙 **I had arrived before the rain started.**
 

@@ -53,99 +53,99 @@ Reunite — знову зібратися разом після розлуки. 
 <!-- interaction_id: en:lesson-25:session-18:word:rewritten; family: word_card -->
 > **rewritten** — переписав. Rewrite — переписати; rewritten — третя форма.
 
-**2 · Скажіть: «Вона переписала запрошення до того, як надіслала його поштою.»**
+**2 · Поясніть, чому записка стала зрозумілішою: «Я переписав записку до того, як залишив її».**
 <!-- interaction_id: en:lesson-25:session-18:i01; family: phrase_builder -->
-Плитки: `it` `posted` `she` `before` `invitation` `the` `rewritten` `had` `She` → **She had rewritten the invitation before she posted it.**
+Плитки: `it` `left` `I` `before` `note` `the` `rewritten` `had` `I` → **I had rewritten the note before I left it.**
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-18:i02; family: context_gap_grammar -->
-She ___ rewritten the invitation before she posted it. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-18:i02; family: listen_choose -->
+🔊 *I have already sent the invitations.* → **I have already sent the invitations.** · I have already written the invitations. · They have already sent the invitations.
+- I have already written the invitations. — *У записі звучить I have already sent the invitations.*
+- They have already sent the invitations. — *У записі звучить I have already sent the invitations.*
 
-**4 · Послухайте й виберіть**
+**4 · Картка слова — reunited**
+<!-- interaction_id: en:lesson-25:session-18:word:reunited; family: word_card -->
+> **reunited** — знову зібралися разом. Reunite — знову зібратися після розлуки.
+
+**5 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-18:i03; family: listen_choose -->
-🔊 *She had rewritten the invitation before she posted it.* → **She had rewritten the invitation before she posted it.** · He had rewritten the invitation before he posted it. · She had rewritten the letter before she posted it.
-- He had rewritten the invitation before he posted it. — *У записі звучить She had rewritten the invitation before she posted it.*
-- She had rewritten the letter before she posted it. — *У записі звучить She had rewritten the invitation before she posted it.*
+🔊 *Our family had reunited before dinner started.* → **Our family had reunited before dinner started.** · Our family had reunited before lunch started. · Our friends had reunited before dinner started.
+- Our family had reunited before lunch started. — *У записі звучить Our family had reunited before dinner started.*
+- Our friends had reunited before dinner started. — *У записі звучить Our family had reunited before dinner started.*
 
-**5 · Картка слова — retold**
+**6 · Родина зустрілася після довгої розлуки. Виберіть потрібну дію.**
+<!-- interaction_id: en:lesson-25:session-18:i04; family: context_gap_grammar -->
+Our family had ___ before the celebration began. → **reunited** · rewritten · slept
+- rewritten — *Rewritten — переписали текст; тут люди знову зустрілися.*
+- slept — *Slept — спали; потрібне слово про зустріч після розлуки.*
+
+**7 · Картка слова — retold**
 <!-- interaction_id: en:lesson-25:session-18:word:retold; family: word_card -->
 > **retold** — переказав. Retell — переказати; retold — третя форма.
 
-**6 · Скажіть: «Він переказав історію до того, як діти лягли спати.»**
-<!-- interaction_id: en:lesson-25:session-18:i04; family: phrase_builder -->
-Плитки: `bed` `to` `went` `children` `the` `before` `story` `the` `retold` `had` `He` → **He had retold the story before the children went to bed.**
+**8 · Почуйте підготовку до уроку.**
+<!-- interaction_id: en:lesson-25:session-18:i05; family: listen_build_dictation -->
+🔊 *I had retold the story to my sister before the lesson.* Плитки: `lesson` `the` `before` `sister` `my` `to` `story` `the` `retold` `had` `I` → **I had retold the story to my sister before the lesson.**
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-18:i05; family: context_gap_grammar -->
-He ___ retold the story before the children went to bed. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**9 · Попросіть пояснити почуте: «Можеш пояснити це ще раз?»**
+<!-- interaction_id: en:lesson-25:session-18:i06; family: scripted_repeat_compare -->
+🎙 **Can you explain that again?**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-18:i06; family: listen_choose -->
-🔊 *He had retold the story before the children went to bed.* → **He had retold the story before the children went to bed.** · She had retold the story before the children went to bed. · He had retold the story before the children went home.
-- She had retold the story before the children went to bed. — *У записі звучить He had retold the story before the children went to bed.*
-- He had retold the story before the children went home. — *У записі звучить He had retold the story before the children went to bed.*
-
-**9 · Картка слова — revisited**
+**10 · Картка слова — revisited**
 <!-- interaction_id: en:lesson-25:session-18:word:revisited; family: word_card -->
 > **revisited** — знову відвідав. Revisit — знову відвідати; revisited — третя форма.
 
-**10 · Скажіть: «Ми знову відвідали свою колишню школу до того, як переїхали.»**
+**11 · Ви встигли знову побачити колишній будинок: «Ми знову відвідали колишній будинок до переїзду».**
 <!-- interaction_id: en:lesson-25:session-18:i07; family: phrase_builder -->
-Плитки: `away` `moved` `we` `before` `school` `old` `our` `revisited` `had` `We` → **We had revisited our old school before we moved away.**
+Плитки: `moved` `we` `before` `house` `old` `our` `revisited` `had` `We` → **We had revisited our old house before we moved.**
 
-**11 · Доповніть розповідь про минуле.**
+**12 · Квитки купили раніше, ніж ви зателефонували. Доповніть Past Perfect.**
 <!-- interaction_id: en:lesson-25:session-18:i08; family: context_gap_grammar -->
-We ___ revisited our old school before we moved away. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
+They ___ bought the tickets before I called. → **had** · have · were
+- have — *Have bought пов’язане з теперішнім; тут купівля передує минулому дзвінку.*
+- were — *Для ранішої купівлі потрібна форма had bought.*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-18:i09; family: listen_choose -->
-🔊 *We had revisited our old school before we moved away.* → **We had revisited our old school before we moved away.** · They had revisited their old school before they moved away. · We had revisited our old house before we moved away.
-- They had revisited their old school before they moved away. — *У записі звучить We had revisited our old school before we moved away.*
-- We had revisited our old house before we moved away. — *У записі звучить We had revisited our old school before we moved away.*
-
-**13 · Картка слова — reunited**
-<!-- interaction_id: en:lesson-25:session-18:word:reunited; family: word_card -->
-> **reunited** — знову зібралися разом. Reunite — знову зібратися разом; reunited — третя форма.
-
-**14 · Скажіть: «Родина знову зібралася разом до початку свята.»**
-<!-- interaction_id: en:lesson-25:session-18:i10; family: phrase_builder -->
-Плитки: `began` `holiday` `the` `before` `reunited` `had` `family` `The` → **The family had reunited before the holiday began.**
-
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-18:i11; family: context_gap_grammar -->
-The family ___ reunited before the holiday began. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-18:i12; family: listen_choose -->
-🔊 *The family had reunited before the holiday began.* → **The family had reunited before the holiday began.** · The friends had reunited before the holiday began. · The family had reunited before the holiday ended.
-- The friends had reunited before the holiday began. — *У записі звучить The family had reunited before the holiday began.*
-- The family had reunited before the holiday ended. — *У записі звучить The family had reunited before the holiday began.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-18:i13; family: speed_match -->
+**13 · Зіставте зроблене наново та зустріч із перекладом**
+<!-- interaction_id: en:lesson-25:session-18:i09; family: speed_match -->
 rewritten — переписала · retold — переказав · revisited — знову відвідали · reunited — знову зібралися разом
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-18:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-18:i10; family: listen_choose -->
+🔊 *We used to visit that house every summer.* → **We used to visit that house every summer.** · We used to visit that house every winter. · They used to visit that house every summer.
+- We used to visit that house every winter. — *У записі звучить We used to visit that house every summer.*
+- They used to visit that house every summer. — *У записі звучить We used to visit that house every summer.*
 
-**19 · Потяг уже поїхав**
-<!-- interaction_id: en:lesson-25:session-18:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**15 · Згадайте звичай на сімейних зустрічах: «У ті часи ми співали після вечері». Використайте would.**
+<!-- interaction_id: en:lesson-25:session-18:i11; family: scripted_repeat_compare -->
+🎙 **In those days we would sing after dinner.**
 
-**20 · Скажіть: «Вони знову відвідали свою колишню школу до її закриття».**
-<!-- interaction_id: en:lesson-25:session-18:i16; family: scripted_repeat_compare -->
-🎙 **They had revisited their old school before it closed.**
+**16 · Учора ви побачилися з двоюрідним братом один раз.**
+<!-- interaction_id: en:lesson-25:session-18:i12; family: context_gap_grammar -->
+I ___ my cousin yesterday. → **met** · have met · would meet
+- have met — *Yesterday потребує Past Simple met.*
+- would meet — *Це одна зустріч учора; would meet описувало б звичку.*
 
-**21 · Скажіть: «Я переказав історію до того, як діти лягли спати».**
+**17 · Почуйте, чому не вистачило місця.**
+<!-- interaction_id: en:lesson-25:session-18:i13; family: listen_build_dictation -->
+🔊 *More guests had arrived before we brought the chairs.* Плитки: `chairs` `the` `brought` `we` `before` `arrived` `had` `guests` `More` → **More guests had arrived before we brought the chairs.**
+
+**18 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-18:i14; family: listen_choose -->
+🔊 *Where are the other guests?* → **Where are the other guests?** · Where are the other chairs? · Where is the other guest?
+- Where are the other chairs? — *У записі звучить Where are the other guests?*
+- Where is the other guest? — *У записі звучить Where are the other guests?*
+
+**19 · Потрібен ще один стілець. Попросіть: «Принеси ще один стілець, будь ласка».**
+<!-- interaction_id: en:lesson-25:session-18:i15; family: phrase_builder -->
+Плитки: `please` `chair,` `another` `Bring` → **Bring another chair, please.**
+
+**20 · Ви вже відповіли на запрошення. Доповніть Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-18:i16; family: context_gap_grammar -->
+I have already ___ to the invitation. → **replied** · reply · replying
+- reply — *Після have потрібна форма replied.*
+- replying — *Have replying не утворює Present Perfect.*
+
+**21 · Поясніть, чому гість не встиг скуштувати пиріг: «Ми з’їли пиріг до твого приходу».**
 <!-- interaction_id: en:lesson-25:session-18:i17; family: scripted_repeat_compare -->
-🎙 **I had retold the story before the children went to bed.**
+🎙 **We had eaten the cake before you arrived.**
 

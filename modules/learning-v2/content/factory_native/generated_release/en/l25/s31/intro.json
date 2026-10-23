@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "before|after + past clause; another + singular noun",
+    "uk": "before|after + past clause; another + singular noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Огонь погас",
+        "uk": "Вогонь згас"
+      },
+      "bodyByLocale": {
+        "ru": "Flame — пламя. The flame went out before we left — пламя погасло до того, как мы ушли. Went out здесь значит «погасло», а не «вышло из комнаты». Сначала пламя погасло, потом мы ушли: before показывает этот порядок. Went и left — формы Past Simple.",
+        "uk": "Flame — полум’я. The flame went out before we left — полум’я згасло до того, як ми пішли. Went out тут означає «згасло», а не «вийшло з кімнати». Спочатку полум’я згасло, потім ми пішли: before показує цей порядок. Went і left — форми Past Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-31:intro1:r1",
+              "text": "The flame went out before we left."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro1:r2",
+              "text": "The flame go out before we left."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro1:r3",
+              "text": "The flame going out before we left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-31:intro1:r1",
+              "text": "The flame went out before we left."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro1:r2",
+              "text": "The flame go out before we left."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro1:r3",
+              "text": "The flame going out before we left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Зола и поленья",
+        "uk": "Попіл і поліна"
+      },
+      "bodyByLocale": {
+        "ru": "Ash — зола, порошок после горения. The ash was cold before I cleaned the room — зола была холодной до того, как я убрал комнату. В этом значении ash не считаем по штукам: здесь нет a. Log — полено. We added another log after the fire got low — мы добавили ещё одно полено после того, как огонь стал слабее. Поленья можно считать, поэтому another log — ещё одно полено.",
+        "uk": "Ash — попіл, порошок після горіння. The ash was cold before I cleaned the room — попіл був холодним до того, як я прибрав кімнату. У цьому значенні ash не рахуємо поштучно: тут немає a. Log — поліно. We added another log after the fire got low — ми додали ще одне поліно після того, як вогонь став слабшим. Поліна можна рахувати, тому another log — ще одне поліно."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-31:intro2:r1",
+              "text": "The ash was cold before I cleaned the room."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro2:r2",
+              "text": "The ash is cold before I cleaned the room."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro2:r3",
+              "text": "The ash be cold before I cleaned the room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-31:intro2:r1",
+              "text": "The ash was cold before I cleaned the room."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro2:r2",
+              "text": "The ash is cold before I cleaned the room."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro2:r3",
+              "text": "The ash be cold before I cleaned the room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "У камина",
+        "uk": "Біля каміна"
+      },
+      "bodyByLocale": {
+        "ru": "Fireplace — камин. We cleaned the fireplace after the fire went out — мы почистили камин после того, как огонь погас. The fireplace — сам камин, the fire — огонь в нём. Сначала огонь погас, затем мы почистили камин. After сообщает порядок событий; обе части здесь стоят в Past Simple.",
+        "uk": "Fireplace — камін. We cleaned the fireplace after the fire went out — ми почистили камін після того, як вогонь згас. The fireplace — сам камін, the fire — вогонь у ньому. Спочатку вогонь згас, потім ми почистили камін. After повідомляє порядок подій; обидві частини тут стоять у Past Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-31:intro3:r1",
+              "text": "We cleaned the fireplace after the fire went out."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro3:r2",
+              "text": "We clean the fireplace after the fire went out."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro3:r3",
+              "text": "We cleaning the fireplace after the fire went out."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-31:intro3:r1",
+              "text": "We cleaned the fireplace after the fire went out."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro3:r2",
+              "text": "We clean the fireplace after the fire went out."
+            },
+            {
+              "responseId": "en:lesson-25:session-31:intro3:r3",
+              "text": "We cleaning the fireplace after the fire went out."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4ca877419ba416b8a99dd90a217c1eed3f5d9c4ab908deb753b54bdfe927dd18"
+}

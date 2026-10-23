@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-32:intro1:r2": {
+          "ru": "Для рассказа о прошлом нужна форма called.",
+          "uk": "Для розповіді про минуле потрібна форма called."
+        },
+        "en:lesson-25:session-32:intro1:r3": {
+          "ru": "Здесь используем Past Simple: called.",
+          "uk": "Тут використовуємо Past Simple: called."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-32:intro2:r2": {
+          "ru": "Для рассказа о прошлом нужна форма arrived.",
+          "uk": "Для розповіді про минуле потрібна форма arrived."
+        },
+        "en:lesson-25:session-32:intro2:r3": {
+          "ru": "Здесь используем Past Simple: arrived.",
+          "uk": "Тут використовуємо Past Simple: arrived."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-32:intro3:r2": {
+          "ru": "Для рассказа о прошлом нужна форма helped.",
+          "uk": "Для розповіді про минуле потрібна форма helped."
+        },
+        "en:lesson-25:session-32:intro3:r3": {
+          "ru": "Здесь используем Past Simple: helped.",
+          "uk": "Тут використовуємо Past Simple: helped."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "61953bf68dcf1338c3889f7076c36cb9b281dc3e8f657fbeffce4dadcdd61c87"
+}

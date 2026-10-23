@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-31:word:flame",
+    "correctText": "flame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i01",
+    "correctText": "The flame went out before we left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i02",
+    "correctText": "went",
+    "correctResponseId": "en:lesson-25:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i03",
+    "correctText": "The flame went out before we left.",
+    "correctResponseId": "en:lesson-25:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:word:ash",
+    "correctText": "ash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i04",
+    "correctText": "The ash was cold before I cleaned the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i05",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-25:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i06",
+    "correctText": "The ash was cold before I cleaned the room.",
+    "correctResponseId": "en:lesson-25:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:word:log",
+    "correctText": "log",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i07",
+    "correctText": "We added another log after the fire got low.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i08",
+    "correctText": "added",
+    "correctResponseId": "en:lesson-25:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i09",
+    "correctText": "We added another log after the fire got low.",
+    "correctResponseId": "en:lesson-25:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:word:fireplace",
+    "correctText": "fireplace",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i10",
+    "correctText": "We cleaned the fireplace after the fire went out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i11",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-25:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i12",
+    "correctText": "We cleaned the fireplace after the fire went out.",
+    "correctResponseId": "en:lesson-25:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i13",
+    "correctText": "en:lesson-25:session-31:i13:p1=flame\nen:lesson-25:session-31:i13:p2=ash\nen:lesson-25:session-31:i13:p3=log\nen:lesson-25:session-31:i13:p4=fireplace",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i14",
+    "correctText": "We ate before we left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i15",
+    "correctText": "We started after she arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i16",
+    "correctText": "The flame went out before they left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-31:i17",
+    "correctText": "She cleaned the fireplace after the fire went out.",
+    "correctResponseId": null
+  }
+]

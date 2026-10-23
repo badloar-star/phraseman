@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-32:word:fiancé",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fiancé",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:word:fiancé:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fiancé",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:word:fiancé:audio",
+          "transcript": "fiancé"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-32:word:fiancé:r1",
+            "targetText": "fiancé",
+            "meaningByLocale": {
+              "ru": "Жених. Fiancé — мужчина, с которым человек помолвлен.",
+              "uk": "Наречений. Fiancé — чоловік, із яким людина заручена."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fiancé",
+          "definitionByLocale": {
+            "ru": "Жених. Fiancé — мужчина, с которым человек помолвлен.",
+            "uk": "Наречений. Fiancé — чоловік, із яким людина заручена."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мой жених позвонил до того, как я ушла.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мой жених позвонил до того, как я ушла.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My fiancé called before I left.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мой жених позвонил до того, как я ушла.»",
+          "uk": "Скажіть: «Мій наречений зателефонував до того, як я пішла.»"
+        },
+        "orderedTokens": [
+          "My",
+          "fiancé",
+          "called",
+          "before",
+          "I",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-32:i02:r1",
+          "text": "called"
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i02:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i02:r3",
+          "text": "calling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "My fiancé ___ before I left.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-32:i02:r1",
+            "text": "called"
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i02:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i02:r3",
+            "text": "calling"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма called.",
+              "uk": "Для завершеної події потрібна минула форма called."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма called.",
+              "uk": "Для завершеної події потрібна минула форма called."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-32:i03:r1",
+          "text": "My fiancé called before I left."
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i03:r2",
+          "text": "Her fiancé called before she left."
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i03:r3",
+          "text": "My fiancé called before I ate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:i03:audio",
+          "transcript": "My fiancé called before I left."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-32:i03:r1",
+            "targetText": "My fiancé called before I left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i03:r2",
+            "targetText": "Her fiancé called before she left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i03:r3",
+            "targetText": "My fiancé called before I ate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My fiancé called before I left.",
+              "uk": "У записі звучить My fiancé called before I left."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My fiancé called before I left.",
+              "uk": "У записі звучить My fiancé called before I left."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:word:fiancée",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fiancée",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:word:fiancée:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fiancée",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:word:fiancée:audio",
+          "transcript": "fiancée"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-32:word:fiancée:r1",
+            "targetText": "fiancée",
+            "meaningByLocale": {
+              "ru": "Невеста. Fiancée — женщина, с которой человек помолвлен.",
+              "uk": "Наречена. Fiancée — жінка, з якою людина заручена."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fiancée",
+          "definitionByLocale": {
+            "ru": "Невеста. Fiancée — женщина, с которой человек помолвлен.",
+            "uk": "Наречена. Fiancée — жінка, з якою людина заручена."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Моя невеста приехала после того, как я приготовил ужин.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Моя невеста приехала после того, как я приготовил ужин.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My fiancée arrived after I cooked dinner.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Моя невеста приехала после того, как я приготовил ужин.»",
+          "uk": "Скажіть: «Моя наречена приїхала після того, як я приготував вечерю.»"
+        },
+        "orderedTokens": [
+          "My",
+          "fiancée",
+          "arrived",
+          "after",
+          "I",
+          "cooked",
+          "dinner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-32:i05:r1",
+          "text": "arrived"
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i05:r2",
+          "text": "arrive"
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i05:r3",
+          "text": "arriving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "My fiancée ___ after I cooked dinner.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-32:i05:r1",
+            "text": "arrived"
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i05:r2",
+            "text": "arrive"
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i05:r3",
+            "text": "arriving"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-32:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма arrived.",
+              "uk": "Для завершеної події потрібна минула форма arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма arrived.",
+              "uk": "Для завершеної події потрібна минула форма arrived."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-32:i06:r1",
+          "text": "My fiancée arrived after I cooked dinner."
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i06:r2",
+          "text": "His fiancée arrived after he cooked dinner."
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i06:r3",
+          "text": "My fiancée arrived after I cleaned the kitchen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:i06:audio",
+          "transcript": "My fiancée arrived after I cooked dinner."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-32:i06:r1",
+            "targetText": "My fiancée arrived after I cooked dinner.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i06:r2",
+            "targetText": "His fiancée arrived after he cooked dinner.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i06:r3",
+            "targetText": "My fiancée arrived after I cleaned the kitchen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-32:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My fiancée arrived after I cooked dinner.",
+              "uk": "У записі звучить My fiancée arrived after I cooked dinner."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My fiancée arrived after I cooked dinner.",
+              "uk": "У записі звучить My fiancée arrived after I cooked dinner."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:word:stepson",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stepson",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:word:stepson:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stepson",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:word:stepson:audio",
+          "transcript": "stepson"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-32:word:stepson:r1",
+            "targetText": "stepson",
+            "meaningByLocale": {
+              "ru": "Пасынок. Stepson — сын супруга или супруги от других отношений.",
+              "uk": "Пасинок. Stepson — син чоловіка чи дружини від інших стосунків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stepson",
+          "definitionByLocale": {
+            "ru": "Пасынок. Stepson — сын супруга или супруги от других отношений.",
+            "uk": "Пасинок. Stepson — син чоловіка чи дружини від інших стосунків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мой пасынок помыл руки перед тем, как поел.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мой пасынок помыл руки перед тем, как поел.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My stepson washed his hands before he ate.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мой пасынок помыл руки перед тем, как поел.»",
+          "uk": "Скажіть: «Мій пасинок помив руки перед тим, як поїв.»"
+        },
+        "orderedTokens": [
+          "My",
+          "stepson",
+          "washed",
+          "his",
+          "hands",
+          "before",
+          "he",
+          "ate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-32:i08:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i08:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i08:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "My stepson ___ his hands before he ate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-32:i08:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i08:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i08:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма washed.",
+              "uk": "Для завершеної події потрібна минула форма washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма washed.",
+              "uk": "Для завершеної події потрібна минула форма washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-32:i09:r1",
+          "text": "My stepson washed his hands before he ate."
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i09:r2",
+          "text": "Her stepson washed his hands before he ate."
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i09:r3",
+          "text": "My stepson washed his hands before he cooked."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:i09:audio",
+          "transcript": "My stepson washed his hands before he ate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-32:i09:r1",
+            "targetText": "My stepson washed his hands before he ate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i09:r2",
+            "targetText": "Her stepson washed his hands before he ate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i09:r3",
+            "targetText": "My stepson washed his hands before he cooked.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepson washed his hands before he ate.",
+              "uk": "У записі звучить My stepson washed his hands before he ate."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepson washed his hands before he ate.",
+              "uk": "У записі звучить My stepson washed his hands before he ate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:word:stepdaughter",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stepdaughter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:word:stepdaughter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stepdaughter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:word:stepdaughter:audio",
+          "transcript": "stepdaughter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-32:word:stepdaughter:r1",
+            "targetText": "stepdaughter",
+            "meaningByLocale": {
+              "ru": "Падчерица. Stepdaughter — дочь супруга или супруги от других отношений.",
+              "uk": "Падчерка. Stepdaughter — донька чоловіка чи дружини від інших стосунків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stepdaughter",
+          "definitionByLocale": {
+            "ru": "Падчерица. Stepdaughter — дочь супруга или супруги от других отношений.",
+            "uk": "Падчерка. Stepdaughter — донька чоловіка чи дружини від інших стосунків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Моя падчерица помогла после того, как закончила домашнее задание.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Моя падчерица помогла после того, как закончила домашнее задание.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My stepdaughter helped after she finished her homework.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Моя падчерица помогла после того, как закончила домашнее задание.»",
+          "uk": "Скажіть: «Моя падчерка допомогла після того, як закінчила домашнє завдання.»"
+        },
+        "orderedTokens": [
+          "My",
+          "stepdaughter",
+          "helped",
+          "after",
+          "she",
+          "finished",
+          "her",
+          "homework"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-32:i11:r1",
+          "text": "helped"
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i11:r2",
+          "text": "help"
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i11:r3",
+          "text": "helping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "My stepdaughter ___ after she finished her homework.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-32:i11:r1",
+            "text": "helped"
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i11:r2",
+            "text": "help"
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i11:r3",
+            "text": "helping"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-32:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма helped.",
+              "uk": "Для завершеної події потрібна минула форма helped."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "Для законченного события нужна прошедшая форма helped.",
+              "uk": "Для завершеної події потрібна минула форма helped."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-32:i12:r1",
+          "text": "My stepdaughter helped after she finished her homework."
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i12:r2",
+          "text": "His stepdaughter helped after she finished her homework."
+        },
+        {
+          "responseId": "en:lesson-25:session-32:i12:r3",
+          "text": "My stepdaughter helped after she finished her lunch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:i12:audio",
+          "transcript": "My stepdaughter helped after she finished her homework."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-32:i12:r1",
+            "targetText": "My stepdaughter helped after she finished her homework.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i12:r2",
+            "targetText": "His stepdaughter helped after she finished her homework.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i12:r3",
+            "targetText": "My stepdaughter helped after she finished her lunch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepdaughter helped after she finished her homework.",
+              "uk": "У записі звучить My stepdaughter helped after she finished her homework."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepdaughter helped after she finished her homework.",
+              "uk": "У записі звучить My stepdaughter helped after she finished her homework."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините формы с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините формы с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-32:i13:p1",
+            "target": "fiancé",
+            "meaningByLocale": {
+              "ru": "жених",
+              "uk": "наречений"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-32:i13:p2",
+            "target": "fiancée",
+            "meaningByLocale": {
+              "ru": "невеста",
+              "uk": "наречена"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-32:i13:p3",
+            "target": "stepson",
+            "meaningByLocale": {
+              "ru": "пасынок",
+              "uk": "пасинок"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-32:i13:p4",
+            "target": "stepdaughter",
+            "meaningByLocale": {
+              "ru": "падчерица",
+              "uk": "падчерка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fiancé",
+          "fiancée",
+          "stepson",
+          "stepdaughter"
+        ],
+        "rightColumn": [
+          "жених",
+          "невеста",
+          "пасынок",
+          "падчерица"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поели перед отъездом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Поели перед отъездом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:i14:audio",
+          "transcript": "We ate before we left."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We ate before we left.",
+        "orderedTokens": [
+          "We",
+          "ate",
+          "before",
+          "we",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начали после её прихода",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Начали после её прихода",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:i15:audio",
+          "transcript": "We started after she arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We started after she arrived.",
+        "orderedTokens": [
+          "We",
+          "started",
+          "after",
+          "she",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Её жених позвонил до того, как она ушла».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Её жених позвонил до того, как она ушла».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:i16:audio",
+          "transcript": "Her fiancé called before she left."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Her fiancé called before she left.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-32:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Его пасынок помыл руки перед едой».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Его пасынок помыл руки перед едой».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-32:i17:audio",
+          "transcript": "His stepson washed his hands before he ate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "His stepson washed his hands before he ate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "72922f28e7d2cbeca79b8ed32dbce67c6612323ce8896310a1cb3f723f838071"
+}

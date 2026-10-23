@@ -1,0 +1,1147 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-33:word:inserted",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — inserted",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:word:inserted:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — inserted",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:word:inserted:audio",
+          "transcript": "inserted"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-33:word:inserted:r1",
+            "targetText": "inserted",
+            "meaningByLocale": {
+              "ru": "Вставил. Insert — вставить внутрь; inserted — третья форма.",
+              "uk": "Вставив. Insert — вставити всередину; inserted — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inserted",
+          "definitionByLocale": {
+            "ru": "Вставил. Insert — вставить внутрь; inserted — третья форма.",
+            "uk": "Вставив. Insert — вставити всередину; inserted — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я уже вставил ключ к тому моменту, когда она подошла к двери.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я уже вставил ключ к тому моменту, когда она подошла к двери.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I had inserted the key by the time she reached the door.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я уже вставил ключ к тому моменту, когда она подошла к двери.»",
+          "uk": "Скажіть: «Я вже вставив ключ до того моменту, коли вона підійшла до дверей.»"
+        },
+        "orderedTokens": [
+          "I",
+          "had",
+          "inserted",
+          "the",
+          "key",
+          "by",
+          "the",
+          "time",
+          "she",
+          "reached",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о прошлом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-33:i02:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i02:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i02:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "I ___ inserted the key by the time she reached the door.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-33:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i02:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i02:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о прошлом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-33:i03:r1",
+          "text": "I had inserted the key by the time she reached the door."
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i03:r2",
+          "text": "He had inserted the key by the time she reached the door."
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i03:r3",
+          "text": "I had inserted the key by the time he reached the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:i03:audio",
+          "transcript": "I had inserted the key by the time she reached the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-33:i03:r1",
+            "targetText": "I had inserted the key by the time she reached the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i03:r2",
+            "targetText": "He had inserted the key by the time she reached the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i03:r3",
+            "targetText": "I had inserted the key by the time he reached the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I had inserted the key by the time she reached the door.",
+              "uk": "У записі звучить I had inserted the key by the time she reached the door."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I had inserted the key by the time she reached the door.",
+              "uk": "У записі звучить I had inserted the key by the time she reached the door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:word:undone",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — undone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:word:undone:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — undone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:word:undone:audio",
+          "transcript": "undone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-33:word:undone:r1",
+            "targetText": "undone",
+            "meaningByLocale": {
+              "ru": "Расстегнула. Undo — расстегнуть, развязать или отменить результат действия; undone — третья форма.",
+              "uk": "Розстебнула. Undo — розстебнути, розв’язати або скасувати результат дії; undone — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "undone",
+          "definitionByLocale": {
+            "ru": "Расстегнула. Undo — расстегнуть, развязать или отменить результат действия; undone — третья форма.",
+            "uk": "Розстебнула. Undo — розстебнути, розв’язати або скасувати результат дії; undone — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Она уже расстегнула пуговицы к тому моменту, когда я нашёл иглу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Она уже расстегнула пуговицы к тому моменту, когда я нашёл иглу.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She had undone the buttons by the time I found the needle.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Она уже расстегнула пуговицы к тому моменту, когда я нашёл иглу.»",
+          "uk": "Скажіть: «Вона вже розстебнула ґудзики до того моменту, коли я знайшов голку.»"
+        },
+        "orderedTokens": [
+          "She",
+          "had",
+          "undone",
+          "the",
+          "buttons",
+          "by",
+          "the",
+          "time",
+          "I",
+          "found",
+          "the",
+          "needle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о прошлом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-33:i05:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i05:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i05:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "She ___ undone the buttons by the time I found the needle.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-33:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i05:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о прошлом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-33:i06:r1",
+          "text": "She had undone the buttons by the time I found the needle."
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i06:r2",
+          "text": "He had undone the buttons by the time I found the needle."
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i06:r3",
+          "text": "She had undone the buttons by the time we found the needle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:i06:audio",
+          "transcript": "She had undone the buttons by the time I found the needle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-33:i06:r1",
+            "targetText": "She had undone the buttons by the time I found the needle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i06:r2",
+            "targetText": "He had undone the buttons by the time I found the needle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i06:r3",
+            "targetText": "She had undone the buttons by the time we found the needle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She had undone the buttons by the time I found the needle.",
+              "uk": "У записі звучить She had undone the buttons by the time I found the needle."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She had undone the buttons by the time I found the needle.",
+              "uk": "У записі звучить She had undone the buttons by the time I found the needle."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:word:piled",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — piled",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:word:piled:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — piled",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:word:piled:audio",
+          "transcript": "piled"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-33:word:piled:r1",
+            "targetText": "piled",
+            "meaningByLocale": {
+              "ru": "Сложили в кучу. Pile — складывать в кучу; piled — третья форма.",
+              "uk": "Склали в купу. Pile — складати в купу; piled — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "piled",
+          "definitionByLocale": {
+            "ru": "Сложили в кучу. Pile — складывать в кучу; piled — третья форма.",
+            "uk": "Склали в купу. Pile — складати в купу; piled — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы уже сложили одежду в кучу на кровати к тому моменту, когда она приехала.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы уже сложили одежду в кучу на кровати к тому моменту, когда она приехала.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We had piled the clothes on the bed by the time she arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы уже сложили одежду в кучу на кровати к тому моменту, когда она приехала.»",
+          "uk": "Скажіть: «Ми вже склали одяг у купу на ліжку до того моменту, коли вона приїхала.»"
+        },
+        "orderedTokens": [
+          "We",
+          "had",
+          "piled",
+          "the",
+          "clothes",
+          "on",
+          "the",
+          "bed",
+          "by",
+          "the",
+          "time",
+          "she",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о прошлом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-33:i08:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i08:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i08:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "We ___ piled the clothes on the bed by the time she arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-33:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i08:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о прошлом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-33:i09:r1",
+          "text": "We had piled the clothes on the bed by the time she arrived."
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i09:r2",
+          "text": "They had piled the clothes on the bed by the time she arrived."
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i09:r3",
+          "text": "We had piled the clothes on the floor by the time she arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:i09:audio",
+          "transcript": "We had piled the clothes on the bed by the time she arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-33:i09:r1",
+            "targetText": "We had piled the clothes on the bed by the time she arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i09:r2",
+            "targetText": "They had piled the clothes on the bed by the time she arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i09:r3",
+            "targetText": "We had piled the clothes on the floor by the time she arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We had piled the clothes on the bed by the time she arrived.",
+              "uk": "У записі звучить We had piled the clothes on the bed by the time she arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We had piled the clothes on the bed by the time she arrived.",
+              "uk": "У записі звучить We had piled the clothes on the bed by the time she arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:word:unhooked",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unhooked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:word:unhooked:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unhooked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:word:unhooked:audio",
+          "transcript": "unhooked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-33:word:unhooked:r1",
+            "targetText": "unhooked",
+            "meaningByLocale": {
+              "ru": "Снял с крючка. Unhook — снять с крючка или отцепить; unhooked — третья форма.",
+              "uk": "Зняв із гачка. Unhook — зняти з гачка чи відчепити; unhooked — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unhooked",
+          "definitionByLocale": {
+            "ru": "Снял с крючка. Unhook — снять с крючка или отцепить; unhooked — третья форма.",
+            "uk": "Зняв із гачка. Unhook — зняти з гачка чи відчепити; unhooked — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я уже снял сумку с крючка к тому моменту, когда он открыл дверь.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я уже снял сумку с крючка к тому моменту, когда он открыл дверь.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I had unhooked the bag by the time he opened the door.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я уже снял сумку с крючка к тому моменту, когда он открыл дверь.»",
+          "uk": "Скажіть: «Я вже зняв сумку з гачка до того моменту, коли він відчинив двері.»"
+        },
+        "orderedTokens": [
+          "I",
+          "had",
+          "unhooked",
+          "the",
+          "bag",
+          "by",
+          "the",
+          "time",
+          "he",
+          "opened",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о прошлом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-33:i11:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i11:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i11:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "I ___ unhooked the bag by the time he opened the door.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-33:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i11:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i11:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о прошлом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-33:i12:r1",
+          "text": "I had unhooked the bag by the time he opened the door."
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i12:r2",
+          "text": "She had unhooked the bag by the time he opened the door."
+        },
+        {
+          "responseId": "en:lesson-25:session-33:i12:r3",
+          "text": "I had unhooked the bag by the time she opened the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:i12:audio",
+          "transcript": "I had unhooked the bag by the time he opened the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-33:i12:r1",
+            "targetText": "I had unhooked the bag by the time he opened the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i12:r2",
+            "targetText": "She had unhooked the bag by the time he opened the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i12:r3",
+            "targetText": "I had unhooked the bag by the time she opened the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I had unhooked the bag by the time he opened the door.",
+              "uk": "У записі звучить I had unhooked the bag by the time he opened the door."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I had unhooked the bag by the time he opened the door.",
+              "uk": "У записі звучить I had unhooked the bag by the time he opened the door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините формы с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините формы с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-33:i13:p1",
+            "target": "inserted",
+            "meaningByLocale": {
+              "ru": "вставил",
+              "uk": "вставив"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-33:i13:p2",
+            "target": "undone",
+            "meaningByLocale": {
+              "ru": "расстегнула",
+              "uk": "розстебнула"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-33:i13:p3",
+            "target": "piled",
+            "meaningByLocale": {
+              "ru": "сложили в кучу",
+              "uk": "склали в купу"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-33:i13:p4",
+            "target": "unhooked",
+            "meaningByLocale": {
+              "ru": "снял с крючка",
+              "uk": "зняв із гачка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "inserted",
+          "undone",
+          "piled",
+          "unhooked"
+        ],
+        "rightColumn": [
+          "вставил",
+          "расстегнула",
+          "сложили в кучу",
+          "снял с крючка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже закончил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Уже закончил",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:i14:audio",
+          "transcript": "She had finished before I called."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She had finished before I called.",
+        "orderedTokens": [
+          "She",
+          "had",
+          "finished",
+          "before",
+          "I",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поезд уже ушёл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Поезд уже ушёл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:i15:audio",
+          "transcript": "The train had left when we arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The train had left when we arrived.",
+        "orderedTokens": [
+          "The",
+          "train",
+          "had",
+          "left",
+          "when",
+          "we",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Он уже вставил ключ к тому моменту, когда я подошёл к двери».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Он уже вставил ключ к тому моменту, когда я подошёл к двери».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:i16:audio",
+          "transcript": "He had inserted the key by the time I reached the door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He had inserted the key by the time I reached the door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она уже сняла сумку с крючка к тому моменту, когда я открыл дверь».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она уже сняла сумку с крючка к тому моменту, когда я открыл дверь».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-33:i17:audio",
+          "transcript": "She had unhooked the bag by the time I opened the door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She had unhooked the bag by the time I opened the door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "42ea34fe7cb613ab5a6fcf19112156ad9338277e2bc713c52824f9487b3c81f2"
+}

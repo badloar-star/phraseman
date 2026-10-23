@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "past perfect + by the time + past simple",
+    "uk": "past perfect + by the time + past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "К тому моменту уже",
+        "uk": "До того моменту вже"
+      },
+      "bodyByLocale": {
+        "ru": "Insert — вставить внутрь. I had inserted the key by the time she reached the door — я уже вставил ключ к тому моменту, когда она подошла к двери. By the time означает «к тому моменту, когда». Мы называем момент в прошлом — she reached the door — и говорим, что к нему уже было сделано: had inserted. Для завершённого к тому моменту действия используем Past Perfect, для самого момента — Past Simple.",
+        "uk": "Insert — вставити всередину. I had inserted the key by the time she reached the door — я вже вставив ключ до того моменту, коли вона підійшла до дверей. By the time означає «до того моменту, коли». Ми називаємо момент у минулому — she reached the door — і кажемо, що до нього вже було зроблено: had inserted. Для завершеної до того моменту дії використовуємо Past Perfect, для самого моменту — Past Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-33:intro1:r1",
+              "text": "I had inserted the key by the time she reached the door."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro1:r2",
+              "text": "I have inserted the key by the time she reached the door."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro1:r3",
+              "text": "I was inserted the key by the time she reached the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-33:intro1:r1",
+              "text": "I had inserted the key by the time she reached the door."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro1:r2",
+              "text": "I have inserted the key by the time she reached the door."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro1:r3",
+              "text": "I was inserted the key by the time she reached the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что успели сделать",
+        "uk": "Що встигли зробити"
+      },
+      "bodyByLocale": {
+        "ru": "Undo здесь значит расстегнуть; третья форма — undone. She had undone the buttons by the time I found the needle — она уже расстегнула пуговицы к тому моменту, когда я нашёл иглу. Pile — складывать в кучу. We had piled the clothes on the bed by the time she arrived — мы уже сложили одежду в кучу на кровати к её приезду. Had undone и had piled показывают готовый результат к указанному моменту.",
+        "uk": "Undo тут означає розстебнути; третя форма — undone. She had undone the buttons by the time I found the needle — вона вже розстебнула ґудзики до того моменту, коли я знайшов голку. Pile — складати в купу. We had piled the clothes on the bed by the time she arrived — ми вже склали одяг у купу на ліжку до її приїзду. Had undone і had piled показують готовий результат до вказаного моменту."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-33:intro2:r1",
+              "text": "She had undone the buttons by the time I found the needle."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro2:r2",
+              "text": "She has undone the buttons by the time I found the needle."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro2:r3",
+              "text": "She was undone the buttons by the time I found the needle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-33:intro2:r1",
+              "text": "She had undone the buttons by the time I found the needle."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro2:r2",
+              "text": "She has undone the buttons by the time I found the needle."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro2:r3",
+              "text": "She was undone the buttons by the time I found the needle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Меняем порядок частей",
+        "uk": "Міняємо порядок частин"
+      },
+      "bodyByLocale": {
+        "ru": "Unhook — снять с крючка или отцепить. I had unhooked the bag by the time he opened the door — я уже снял сумку с крючка к тому моменту, когда он открыл дверь. Можно начать с момента: By the time he opened the door, I had unhooked the bag. Смысл тот же; после первой части нужна запятая. By the time не означает «в течение»: здесь важен результат к моменту, а не длительность работы.",
+        "uk": "Unhook — зняти з гачка чи відчепити. I had unhooked the bag by the time he opened the door — я вже зняв сумку з гачка до того моменту, коли він відчинив двері. Можна почати з моменту: By the time he opened the door, I had unhooked the bag. Зміст той самий; після першої частини потрібна кома. By the time не означає «протягом»: тут важливий результат до моменту, а не тривалість роботи."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-33:intro3:r1",
+              "text": "I had unhooked the bag by the time he opened the door."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro3:r2",
+              "text": "I have unhooked the bag by the time he opened the door."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro3:r3",
+              "text": "I was unhooked the bag by the time he opened the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-33:intro3:r1",
+              "text": "I had unhooked the bag by the time he opened the door."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro3:r2",
+              "text": "I have unhooked the bag by the time he opened the door."
+            },
+            {
+              "responseId": "en:lesson-25:session-33:intro3:r3",
+              "text": "I was unhooked the bag by the time he opened the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "17a3dd0b5af3e01200e2a162a7f9cdc3c5c6d95c4a6a482939f211997d86174f"
+}

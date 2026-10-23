@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "before|after + past clause",
+    "uk": "before|after + past clause"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Звонок перед выходом",
+        "uk": "Дзвінок перед виходом"
+      },
+      "bodyByLocale": {
+        "ru": "Fiancé — жених, мужчина, с которым человек помолвлен. My fiancé called before I left — мой жених позвонил до того, как я ушла. Сначала был звонок, затем уход. Fiancé называют человека и до дня свадьбы. Это не муж: о браке пока не сказано. После my артикль не ставим.",
+        "uk": "Fiancé — наречений, чоловік, із яким людина заручена. My fiancé called before I left — мій наречений зателефонував до того, як я пішла. Спочатку був дзвінок, потім вихід. Fiancé називають людину й до дня весілля. Це не чоловік у шлюбі: про шлюб поки не сказано. Після my артикль не ставимо."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-32:intro1:r1",
+              "text": "My fiancé called before I left."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro1:r2",
+              "text": "My fiancé call before I left."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro1:r3",
+              "text": "My fiancé calling before I left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-32:intro1:r1",
+              "text": "My fiancé called before I left."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro1:r2",
+              "text": "My fiancé call before I left."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro1:r3",
+              "text": "My fiancé calling before I left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто пришёл к ужину",
+        "uk": "Хто прийшов на вечерю"
+      },
+      "bodyByLocale": {
+        "ru": "Fiancée — невеста, женщина, с которой человек помолвлен. My fiancée arrived after I cooked dinner — моя невеста приехала после того, как я приготовил ужин. Fiancé и fiancée обычно звучат одинаково, но пишутся по-разному: в fiancée в конце дополнительная e. Stepson — пасынок. My stepson washed his hands before he ate — мой пасынок помыл руки перед едой. Stepson — сын супруга или супруги от других отношений.",
+        "uk": "Fiancée — наречена, жінка, з якою людина заручена. My fiancée arrived after I cooked dinner — моя наречена приїхала після того, як я приготував вечерю. Fiancé і fiancée зазвичай звучать однаково, але пишуться по-різному: у fiancée в кінці додаткова e. Stepson — пасинок. My stepson washed his hands before he ate — мій пасинок помив руки перед їжею. Stepson — син чоловіка чи дружини від інших стосунків."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-32:intro2:r1",
+              "text": "My fiancée arrived after I cooked dinner."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro2:r2",
+              "text": "My fiancée arrive after I cooked dinner."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro2:r3",
+              "text": "My fiancée arriving after I cooked dinner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-32:intro2:r1",
+              "text": "My fiancée arrived after I cooked dinner."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro2:r2",
+              "text": "My fiancée arrive after I cooked dinner."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro2:r3",
+              "text": "My fiancée arriving after I cooked dinner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Помощь после уроков",
+        "uk": "Допомога після уроків"
+      },
+      "bodyByLocale": {
+        "ru": "Stepdaughter — падчерица, дочь супруга или супруги от других отношений. My stepdaughter helped after she finished her homework — моя падчерица помогла после того, как закончила домашнее задание. Сначала закончила задание, затем помогла: это показывает after. Stepson и stepdaughter — названия родственных отношений, а не оценка близости людей в семье.",
+        "uk": "Stepdaughter — падчерка, донька чоловіка чи дружини від інших стосунків. My stepdaughter helped after she finished her homework — моя падчерка допомогла після того, як закінчила домашнє завдання. Спочатку закінчила завдання, потім допомогла: це показує after. Stepson і stepdaughter — назви родинних зв’язків, а не оцінка близькості людей в сім’ї."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-32:intro3:r1",
+              "text": "My stepdaughter helped after she finished her homework."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro3:r2",
+              "text": "My stepdaughter help after she finished her homework."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro3:r3",
+              "text": "My stepdaughter helping after she finished her homework."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-32:intro3:r1",
+              "text": "My stepdaughter helped after she finished her homework."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro3:r2",
+              "text": "My stepdaughter help after she finished her homework."
+            },
+            {
+              "responseId": "en:lesson-25:session-32:intro3:r3",
+              "text": "My stepdaughter helping after she finished her homework."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "754a327abd171e7dc62a48727b7009100895c48fe4f95f774a5717ade0d78cc1"
+}

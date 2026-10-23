@@ -9625,4 +9625,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"before|after + past clause","uk":"before|after + past clause"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 31,
+    sourceFingerprint: "b78c041d9069b38c135332a4e70dad0392a6076bf0edf12752412a024cc5fac5",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"before|after + past clause; another + singular noun","uk":"before|after + past clause; another + singular noun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 32,
+    sourceFingerprint: "a5d0153c169f038ae7406899d5c2b3b7600b659bd062fc51415ac217a7cd48c9",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"before|after + past clause","uk":"before|after + past clause"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 33,
+    sourceFingerprint: "0617a51c297a1ba3a7096230deb0ba0e2953243de1487d0786b0da515a34aa58",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"past perfect + by the time + past simple","uk":"past perfect + by the time + past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
 ]);

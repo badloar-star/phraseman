@@ -1,0 +1,2373 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-22:word:coast",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — coast",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:word:coast:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — coast",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:word:coast:audio",
+            "transcript": "coast"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:word:coast:r1",
+              "targetText": "coast",
+              "meaningByLocale": {
+                "ru": "побережье.",
+                "uk": "узбережжя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coast",
+            "definitionByLocale": {
+              "ru": "побережье.",
+              "uk": "узбережжя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я гуляю вдоль побережья уже час.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я гуляю вдоль побережья уже час.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have been walking along the coast for an hour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я гуляю вдоль побережья уже час.»",
+            "uk": "Скажіть: «Я гуляю вздовж узбережжя вже годину.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "walking",
+            "along",
+            "the",
+            "coast",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о дне у моря.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о дне у моря.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о дне у моря.",
+            "uk": "Доповніть розповідь про день біля моря."
+          },
+          "gappedTargetPhrase": "I ___ been walking along the coast for an hour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-22:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о дне у моря.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о дне у моря.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о дне у моря.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i03:r1",
+            "text": "I have been walking along the coast for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i03:r2",
+            "text": "We have been walking along the coast for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i03:r3",
+            "text": "I have been walking along the coast for two hours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i03:audio",
+            "transcript": "I have been walking along the coast for an hour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:i03:r1",
+              "targetText": "I have been walking along the coast for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i03:r2",
+              "targetText": "We have been walking along the coast for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i03:r3",
+              "targetText": "I have been walking along the coast for two hours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been walking along the coast for an hour.",
+                "uk": "У записі звучить I have been walking along the coast for an hour."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been walking along the coast for an hour.",
+                "uk": "У записі звучить I have been walking along the coast for an hour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:word:harbour",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — harbour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:word:harbour:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — harbour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:word:harbour:audio",
+            "transcript": "harbour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:word:harbour:r1",
+              "targetText": "harbour",
+              "meaningByLocale": {
+                "ru": "гавань.",
+                "uk": "гавань."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "harbour",
+            "definitionByLocale": {
+              "ru": "гавань.",
+              "uk": "гавань."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она наблюдает за лодками в гавани всё утро.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она наблюдает за лодками в гавани всё утро.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has been watching the boats in the harbour all morning.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она наблюдает за лодками в гавани всё утро.»",
+            "uk": "Скажіть: «Вона спостерігає за човнами в гавані весь ранок.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "watching",
+            "the",
+            "boats",
+            "in",
+            "the",
+            "harbour",
+            "all",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о дне у моря.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о дне у моря.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о дне у моря.",
+            "uk": "Доповніть розповідь про день біля моря."
+          },
+          "gappedTargetPhrase": "She ___ been watching the boats in the harbour all morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-22:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о дне у моря.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о дне у моря.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о дне у моря.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i06:r1",
+            "text": "She has been watching the boats in the harbour all morning."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i06:r2",
+            "text": "He has been watching the boats in the harbour all morning."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i06:r3",
+            "text": "She has been watching the boats in the harbour all afternoon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i06:audio",
+            "transcript": "She has been watching the boats in the harbour all morning."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:i06:r1",
+              "targetText": "She has been watching the boats in the harbour all morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i06:r2",
+              "targetText": "He has been watching the boats in the harbour all morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i06:r3",
+              "targetText": "She has been watching the boats in the harbour all afternoon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been watching the boats in the harbour all morning.",
+                "uk": "У записі звучить She has been watching the boats in the harbour all morning."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been watching the boats in the harbour all morning.",
+                "uk": "У записі звучить She has been watching the boats in the harbour all morning."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:word:sand",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:word:sand:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:word:sand:audio",
+            "transcript": "sand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:word:sand:r1",
+              "targetText": "sand",
+              "meaningByLocale": {
+                "ru": "песок.",
+                "uk": "пісок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sand",
+            "definitionByLocale": {
+              "ru": "песок.",
+              "uk": "пісок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы играем в песке уже час.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы играем в песке уже час.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have been playing in the sand for an hour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы играем в песке уже час.»",
+            "uk": "Скажіть: «Ми граємося в піску вже годину.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "been",
+            "playing",
+            "in",
+            "the",
+            "sand",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о дне у моря.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i08:r1",
+            "text": "playing"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i08:r2",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i08:r3",
+            "text": "played"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о дне у моря.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о дне у моря.",
+            "uk": "Доповніть розповідь про день біля моря."
+          },
+          "gappedTargetPhrase": "We have been ___ in the sand for an hour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-22:i08:r1",
+              "text": "playing"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i08:r2",
+              "text": "play"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i08:r3",
+              "text": "played"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о дне у моря.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о дне у моря.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма playing.",
+                "uk": "Після have been потрібна форма playing."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о дне у моря.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма playing.",
+                "uk": "Після have been потрібна форма playing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i09:r1",
+            "text": "We have been playing in the sand for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i09:r2",
+            "text": "They have been playing in the sand for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i09:r3",
+            "text": "We have been playing in the sand for two hours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i09:audio",
+            "transcript": "We have been playing in the sand for an hour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:i09:r1",
+              "targetText": "We have been playing in the sand for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i09:r2",
+              "targetText": "They have been playing in the sand for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i09:r3",
+              "targetText": "We have been playing in the sand for two hours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been playing in the sand for an hour.",
+                "uk": "У записі звучить We have been playing in the sand for an hour."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been playing in the sand for an hour.",
+                "uk": "У записі звучить We have been playing in the sand for an hour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:word:tide",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tide",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:word:tide:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tide",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:word:tide:audio",
+            "transcript": "tide"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:word:tide:r1",
+              "targetText": "tide",
+              "meaningByLocale": {
+                "ru": "прилив и отлив, уровень моря при них.",
+                "uk": "приплив і відплив, рівень моря під час них."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tide",
+            "definitionByLocale": {
+              "ru": "прилив и отлив, уровень моря при них.",
+              "uk": "приплив і відплив, рівень моря під час них."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Они ждут отлива с полудня.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Они ждут отлива с полудня.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They have been waiting for the tide to go out since noon.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Они ждут отлива с полудня.»",
+            "uk": "Скажіть: «Вони чекають на відплив із полудня.»"
+          },
+          "orderedTokens": [
+            "They",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "the",
+            "tide",
+            "to",
+            "go",
+            "out",
+            "since",
+            "noon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о дне у моря.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i11:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i11:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i11:r3",
+            "text": "being"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о дне у моря.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о дне у моря.",
+            "uk": "Доповніть розповідь про день біля моря."
+          },
+          "gappedTargetPhrase": "They have ___ waiting for the tide to go out since noon.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-22:i11:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i11:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i11:r3",
+              "text": "being"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о дне у моря.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о дне у моря.",
+              "feedbackByLocale": {
+                "ru": "Между have и waiting нужно been.",
+                "uk": "Між have та waiting потрібне been."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о дне у моря.",
+              "feedbackByLocale": {
+                "ru": "Между have и waiting нужно been.",
+                "uk": "Між have та waiting потрібне been."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i12:r1",
+            "text": "They have been waiting for the tide to go out since noon."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i12:r2",
+            "text": "We have been waiting for the tide to go out since noon."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i12:r3",
+            "text": "They have been waiting for the tide to go out since morning."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i12:audio",
+            "transcript": "They have been waiting for the tide to go out since noon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:i12:r1",
+              "targetText": "They have been waiting for the tide to go out since noon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i12:r2",
+              "targetText": "We have been waiting for the tide to go out since noon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i12:r3",
+              "targetText": "They have been waiting for the tide to go out since morning.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been waiting for the tide to go out since noon.",
+                "uk": "У записі звучить They have been waiting for the tide to go out since noon."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been waiting for the tide to go out since noon.",
+                "uk": "У записі звучить They have been waiting for the tide to go out since noon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-22:i13:p1",
+              "target": "coast",
+              "meaningByLocale": {
+                "ru": "побережье",
+                "uk": "узбережжя"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-22:i13:p2",
+              "target": "harbour",
+              "meaningByLocale": {
+                "ru": "гавань",
+                "uk": "гавань"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-22:i13:p3",
+              "target": "sand",
+              "meaningByLocale": {
+                "ru": "песок",
+                "uk": "пісок"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-22:i13:p4",
+              "target": "tide",
+              "meaningByLocale": {
+                "ru": "прилив и отлив, уровень моря при них",
+                "uk": "приплив і відплив, рівень моря під час них"
+              }
+            }
+          ],
+          "leftColumn": [
+            "coast",
+            "harbour",
+            "sand",
+            "tide"
+          ],
+          "rightColumn": [
+            "побережье",
+            "гавань",
+            "песок",
+            "прилив и отлив, уровень моря при них"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работает с утра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Работает с утра",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы гуляем вдоль побережья уже два часа».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы гуляем вдоль побережья уже два часа».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i16:audio",
+            "transcript": "We have been walking along the coast for two hours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have been walking along the coast for two hours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Они играют в песке уже час».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Они играют в песке уже час».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i17:audio",
+            "transcript": "They have been playing in the sand for an hour."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They have been playing in the sand for an hour.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-22:word:coast",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — coast",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:word:coast:audio"
+        ],
+        "accessibilityLabel": "Картка слова — coast",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:word:coast:audio",
+            "transcript": "coast"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:word:coast:r1",
+              "targetText": "coast",
+              "meaningByLocale": {
+                "ru": "побережье.",
+                "uk": "узбережжя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coast",
+            "definitionByLocale": {
+              "ru": "побережье.",
+              "uk": "узбережжя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я гуляю вздовж узбережжя вже годину.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я гуляю вздовж узбережжя вже годину.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have been walking along the coast for an hour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я гуляю вдоль побережья уже час.»",
+            "uk": "Скажіть: «Я гуляю вздовж узбережжя вже годину.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "walking",
+            "along",
+            "the",
+            "coast",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про день біля моря.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про день біля моря.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о дне у моря.",
+            "uk": "Доповніть розповідь про день біля моря."
+          },
+          "gappedTargetPhrase": "I ___ been walking along the coast for an hour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-22:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про день біля моря.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про день біля моря.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про день біля моря.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i03:r1",
+            "text": "I have been walking along the coast for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i03:r2",
+            "text": "We have been walking along the coast for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i03:r3",
+            "text": "I have been walking along the coast for two hours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i03:audio",
+            "transcript": "I have been walking along the coast for an hour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:i03:r1",
+              "targetText": "I have been walking along the coast for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i03:r2",
+              "targetText": "We have been walking along the coast for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i03:r3",
+              "targetText": "I have been walking along the coast for two hours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been walking along the coast for an hour.",
+                "uk": "У записі звучить I have been walking along the coast for an hour."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been walking along the coast for an hour.",
+                "uk": "У записі звучить I have been walking along the coast for an hour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:word:harbour",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — harbour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:word:harbour:audio"
+        ],
+        "accessibilityLabel": "Картка слова — harbour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:word:harbour:audio",
+            "transcript": "harbour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:word:harbour:r1",
+              "targetText": "harbour",
+              "meaningByLocale": {
+                "ru": "гавань.",
+                "uk": "гавань."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "harbour",
+            "definitionByLocale": {
+              "ru": "гавань.",
+              "uk": "гавань."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона спостерігає за човнами в гавані весь ранок.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона спостерігає за човнами в гавані весь ранок.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has been watching the boats in the harbour all morning.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она наблюдает за лодками в гавани всё утро.»",
+            "uk": "Скажіть: «Вона спостерігає за човнами в гавані весь ранок.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "watching",
+            "the",
+            "boats",
+            "in",
+            "the",
+            "harbour",
+            "all",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про день біля моря.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про день біля моря.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о дне у моря.",
+            "uk": "Доповніть розповідь про день біля моря."
+          },
+          "gappedTargetPhrase": "She ___ been watching the boats in the harbour all morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-22:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про день біля моря.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про день біля моря.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про день біля моря.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i06:r1",
+            "text": "She has been watching the boats in the harbour all morning."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i06:r2",
+            "text": "He has been watching the boats in the harbour all morning."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i06:r3",
+            "text": "She has been watching the boats in the harbour all afternoon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i06:audio",
+            "transcript": "She has been watching the boats in the harbour all morning."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:i06:r1",
+              "targetText": "She has been watching the boats in the harbour all morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i06:r2",
+              "targetText": "He has been watching the boats in the harbour all morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i06:r3",
+              "targetText": "She has been watching the boats in the harbour all afternoon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been watching the boats in the harbour all morning.",
+                "uk": "У записі звучить She has been watching the boats in the harbour all morning."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been watching the boats in the harbour all morning.",
+                "uk": "У записі звучить She has been watching the boats in the harbour all morning."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:word:sand",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:word:sand:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:word:sand:audio",
+            "transcript": "sand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:word:sand:r1",
+              "targetText": "sand",
+              "meaningByLocale": {
+                "ru": "песок.",
+                "uk": "пісок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sand",
+            "definitionByLocale": {
+              "ru": "песок.",
+              "uk": "пісок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми граємося в піску вже годину.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми граємося в піску вже годину.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have been playing in the sand for an hour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы играем в песке уже час.»",
+            "uk": "Скажіть: «Ми граємося в піску вже годину.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "been",
+            "playing",
+            "in",
+            "the",
+            "sand",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про день біля моря.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i08:r1",
+            "text": "playing"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i08:r2",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i08:r3",
+            "text": "played"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про день біля моря.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о дне у моря.",
+            "uk": "Доповніть розповідь про день біля моря."
+          },
+          "gappedTargetPhrase": "We have been ___ in the sand for an hour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-22:i08:r1",
+              "text": "playing"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i08:r2",
+              "text": "play"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i08:r3",
+              "text": "played"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про день біля моря.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про день біля моря.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма playing.",
+                "uk": "Після have been потрібна форма playing."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про день біля моря.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма playing.",
+                "uk": "Після have been потрібна форма playing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i09:r1",
+            "text": "We have been playing in the sand for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i09:r2",
+            "text": "They have been playing in the sand for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i09:r3",
+            "text": "We have been playing in the sand for two hours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i09:audio",
+            "transcript": "We have been playing in the sand for an hour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:i09:r1",
+              "targetText": "We have been playing in the sand for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i09:r2",
+              "targetText": "They have been playing in the sand for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i09:r3",
+              "targetText": "We have been playing in the sand for two hours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been playing in the sand for an hour.",
+                "uk": "У записі звучить We have been playing in the sand for an hour."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been playing in the sand for an hour.",
+                "uk": "У записі звучить We have been playing in the sand for an hour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:word:tide",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tide",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:word:tide:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tide",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:word:tide:audio",
+            "transcript": "tide"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:word:tide:r1",
+              "targetText": "tide",
+              "meaningByLocale": {
+                "ru": "прилив и отлив, уровень моря при них.",
+                "uk": "приплив і відплив, рівень моря під час них."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tide",
+            "definitionByLocale": {
+              "ru": "прилив и отлив, уровень моря при них.",
+              "uk": "приплив і відплив, рівень моря під час них."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вони чекають на відплив із полудня.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вони чекають на відплив із полудня.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They have been waiting for the tide to go out since noon.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Они ждут отлива с полудня.»",
+            "uk": "Скажіть: «Вони чекають на відплив із полудня.»"
+          },
+          "orderedTokens": [
+            "They",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "the",
+            "tide",
+            "to",
+            "go",
+            "out",
+            "since",
+            "noon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про день біля моря.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i11:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i11:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i11:r3",
+            "text": "being"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про день біля моря.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о дне у моря.",
+            "uk": "Доповніть розповідь про день біля моря."
+          },
+          "gappedTargetPhrase": "They have ___ waiting for the tide to go out since noon.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-22:i11:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i11:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i11:r3",
+              "text": "being"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про день біля моря.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про день біля моря.",
+              "feedbackByLocale": {
+                "ru": "Между have и waiting нужно been.",
+                "uk": "Між have та waiting потрібне been."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про день біля моря.",
+              "feedbackByLocale": {
+                "ru": "Между have и waiting нужно been.",
+                "uk": "Між have та waiting потрібне been."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-22:i12:r1",
+            "text": "They have been waiting for the tide to go out since noon."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i12:r2",
+            "text": "We have been waiting for the tide to go out since noon."
+          },
+          {
+            "responseId": "en:lesson-24:session-22:i12:r3",
+            "text": "They have been waiting for the tide to go out since morning."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i12:audio",
+            "transcript": "They have been waiting for the tide to go out since noon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-22:i12:r1",
+              "targetText": "They have been waiting for the tide to go out since noon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i12:r2",
+              "targetText": "We have been waiting for the tide to go out since noon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i12:r3",
+              "targetText": "They have been waiting for the tide to go out since morning.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been waiting for the tide to go out since noon.",
+                "uk": "У записі звучить They have been waiting for the tide to go out since noon."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been waiting for the tide to go out since noon.",
+                "uk": "У записі звучить They have been waiting for the tide to go out since noon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-22:i13:p1",
+              "target": "coast",
+              "meaningByLocale": {
+                "ru": "побережье",
+                "uk": "узбережжя"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-22:i13:p2",
+              "target": "harbour",
+              "meaningByLocale": {
+                "ru": "гавань",
+                "uk": "гавань"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-22:i13:p3",
+              "target": "sand",
+              "meaningByLocale": {
+                "ru": "песок",
+                "uk": "пісок"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-22:i13:p4",
+              "target": "tide",
+              "meaningByLocale": {
+                "ru": "прилив и отлив, уровень моря при них",
+                "uk": "приплив і відплив, рівень моря під час них"
+              }
+            }
+          ],
+          "leftColumn": [
+            "coast",
+            "harbour",
+            "sand",
+            "tide"
+          ],
+          "rightColumn": [
+            "узбережжя",
+            "гавань",
+            "пісок",
+            "приплив і відплив, рівень моря під час них"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працює з ранку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Працює з ранку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми гуляємо вздовж узбережжя вже дві години».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми гуляємо вздовж узбережжя вже дві години».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i16:audio",
+            "transcript": "We have been walking along the coast for two hours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have been walking along the coast for two hours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вони граються в піску вже годину».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вони граються в піску вже годину».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-22:i17:audio",
+            "transcript": "They have been playing in the sand for an hour."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They have been playing in the sand for an hour.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-22:word:coast",
+      "correctText": "coast",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i01",
+      "correctText": "I have been walking along the coast for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i02",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-22:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i03",
+      "correctText": "I have been walking along the coast for an hour.",
+      "correctResponseId": "en:lesson-24:session-22:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:word:harbour",
+      "correctText": "harbour",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i04",
+      "correctText": "She has been watching the boats in the harbour all morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i05",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-24:session-22:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i06",
+      "correctText": "She has been watching the boats in the harbour all morning.",
+      "correctResponseId": "en:lesson-24:session-22:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:word:sand",
+      "correctText": "sand",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i07",
+      "correctText": "We have been playing in the sand for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i08",
+      "correctText": "playing",
+      "correctResponseId": "en:lesson-24:session-22:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i09",
+      "correctText": "We have been playing in the sand for an hour.",
+      "correctResponseId": "en:lesson-24:session-22:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:word:tide",
+      "correctText": "tide",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i10",
+      "correctText": "They have been waiting for the tide to go out since noon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i11",
+      "correctText": "been",
+      "correctResponseId": "en:lesson-24:session-22:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i12",
+      "correctText": "They have been waiting for the tide to go out since noon.",
+      "correctResponseId": "en:lesson-24:session-22:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i15",
+      "correctText": "She has been working since this morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i16",
+      "correctText": "We have been walking along the coast for two hours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-22:i17",
+      "correctText": "They have been playing in the sand for an hour.",
+      "correctResponseId": null
+    }
+  ]
+}

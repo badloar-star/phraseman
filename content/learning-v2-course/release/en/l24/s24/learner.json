@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-24:word:bleed",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bleed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:word:bleed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bleed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:word:bleed:audio",
+          "transcript": "bleed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-24:word:bleed:r1",
+            "targetText": "bleed",
+            "meaningByLocale": {
+              "ru": "кровоточить.",
+              "uk": "кровоточити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bleed",
+          "definitionByLocale": {
+            "ru": "кровоточить.",
+            "uk": "кровоточити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мои пальцы иногда кровоточат.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мои пальцы иногда кровоточат.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My fingers sometimes bleed.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мои пальцы иногда кровоточат.»",
+          "uk": "Скажіть: «Мої пальці іноді кровоточать.»"
+        },
+        "orderedTokens": [
+          "My",
+          "fingers",
+          "sometimes",
+          "bleed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание ощущений.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-24:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i02:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание ощущений.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание ощущений.",
+          "uk": "Доповніть опис відчуттів."
+        },
+        "gappedTargetPhrase": "My fingers ___ been bleeding since this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-24:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i02:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Дополните описание ощущений.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание ощущений.",
+            "feedbackByLocale": {
+              "ru": "С fingers нужно have.",
+              "uk": "Із fingers потрібно have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание ощущений.",
+            "feedbackByLocale": {
+              "ru": "С fingers нужно have.",
+              "uk": "Із fingers потрібно have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-24:i03:r1",
+          "text": "My fingers have been bleeding since this morning."
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i03:r2",
+          "text": "My fingers have been bleeding since yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i03:r3",
+          "text": "Her fingers have been bleeding since this morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:i03:audio",
+          "transcript": "My fingers have been bleeding since this morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-24:i03:r1",
+            "targetText": "My fingers have been bleeding since this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i03:r2",
+            "targetText": "My fingers have been bleeding since yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i03:r3",
+            "targetText": "Her fingers have been bleeding since this morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My fingers have been bleeding since this morning.",
+              "uk": "У записі звучить My fingers have been bleeding since this morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My fingers have been bleeding since this morning.",
+              "uk": "У записі звучить My fingers have been bleeding since this morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:word:itch",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — itch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:word:itch:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — itch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:word:itch:audio",
+          "transcript": "itch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-24:word:itch:r1",
+            "targetText": "itch",
+            "meaningByLocale": {
+              "ru": "чесаться, зудеть.",
+              "uk": "свербіти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "itch",
+          "definitionByLocale": {
+            "ru": "чесаться, зудеть.",
+            "uk": "свербіти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Почему у меня чешется кожа?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Почему у меня чешется кожа?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Why does my skin itch?",
+        "localizedMeaning": {
+          "ru": "Скажите: «Почему у меня чешется кожа?»",
+          "uk": "Скажіть: «Чому в мене свербить шкіра?»"
+        },
+        "orderedTokens": [
+          "Why",
+          "does",
+          "my",
+          "skin",
+          "itch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание ощущений.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-24:i05:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i05:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i05:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание ощущений.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание ощущений.",
+          "uk": "Доповніть опис відчуттів."
+        },
+        "gappedTargetPhrase": "My skin ___ been itching all morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-24:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i05:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Дополните описание ощущений.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-24:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание ощущений.",
+            "feedbackByLocale": {
+              "ru": "С skin нужно has.",
+              "uk": "Із skin потрібно has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание ощущений.",
+            "feedbackByLocale": {
+              "ru": "С skin нужно has.",
+              "uk": "Із skin потрібно has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-24:i06:r1",
+          "text": "My skin has been itching all morning."
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i06:r2",
+          "text": "My skin has been itching all afternoon."
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i06:r3",
+          "text": "Her skin has been itching all morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:i06:audio",
+          "transcript": "My skin has been itching all morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-24:i06:r1",
+            "targetText": "My skin has been itching all morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i06:r2",
+            "targetText": "My skin has been itching all afternoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i06:r3",
+            "targetText": "Her skin has been itching all morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-24:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My skin has been itching all morning.",
+              "uk": "У записі звучить My skin has been itching all morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My skin has been itching all morning.",
+              "uk": "У записі звучить My skin has been itching all morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:word:sting",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sting",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:word:sting:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sting",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:word:sting:audio",
+          "transcript": "sting"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-24:word:sting:r1",
+            "targetText": "sting",
+            "meaningByLocale": {
+              "ru": "щипать, вызывать жжение.",
+              "uk": "щипати, викликати печіння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sting",
+          "definitionByLocale": {
+            "ru": "щипать, вызывать жжение.",
+            "uk": "щипати, викликати печіння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «От этого мыла щиплет глаза.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «От этого мыла щиплет глаза.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This soap makes my eyes sting.",
+        "localizedMeaning": {
+          "ru": "Скажите: «От этого мыла щиплет глаза.»",
+          "uk": "Скажіть: «Від цього мила щипає очі.»"
+        },
+        "orderedTokens": [
+          "This",
+          "soap",
+          "makes",
+          "my",
+          "eyes",
+          "sting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание ощущений.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-24:i08:r1",
+          "text": "stinging"
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i08:r2",
+          "text": "sting"
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i08:r3",
+          "text": "stung"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание ощущений.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание ощущений.",
+          "uk": "Доповніть опис відчуттів."
+        },
+        "gappedTargetPhrase": "My eyes have been ___ for ten minutes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-24:i08:r1",
+            "text": "stinging"
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i08:r2",
+            "text": "sting"
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i08:r3",
+            "text": "stung"
+          }
+        ],
+        "testedDimension": "Дополните описание ощущений.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание ощущений.",
+            "feedbackByLocale": {
+              "ru": "После have been нужна форма stinging.",
+              "uk": "Після have been потрібна форма stinging."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание ощущений.",
+            "feedbackByLocale": {
+              "ru": "После have been нужна форма stinging.",
+              "uk": "Після have been потрібна форма stinging."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-24:i09:r1",
+          "text": "My eyes have been stinging for ten minutes."
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i09:r2",
+          "text": "My eyes have been stinging for twenty minutes."
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i09:r3",
+          "text": "Her eyes have been stinging for ten minutes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:i09:audio",
+          "transcript": "My eyes have been stinging for ten minutes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-24:i09:r1",
+            "targetText": "My eyes have been stinging for ten minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i09:r2",
+            "targetText": "My eyes have been stinging for twenty minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i09:r3",
+            "targetText": "Her eyes have been stinging for ten minutes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My eyes have been stinging for ten minutes.",
+              "uk": "У записі звучить My eyes have been stinging for ten minutes."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My eyes have been stinging for ten minutes.",
+              "uk": "У записі звучить My eyes have been stinging for ten minutes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:word:swell",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — swell",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:word:swell:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — swell",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:word:swell:audio",
+          "transcript": "swell"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-24:word:swell:r1",
+            "targetText": "swell",
+            "meaningByLocale": {
+              "ru": "опухать.",
+              "uk": "набрякати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swell",
+          "definitionByLocale": {
+            "ru": "опухать.",
+            "uk": "набрякати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мои ноги опухают в жаркую погоду.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мои ноги опухают в жаркую погоду.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My feet swell in hot weather.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мои ноги опухают в жаркую погоду.»",
+          "uk": "Скажіть: «Мої ноги набрякають у спекотну погоду.»"
+        },
+        "orderedTokens": [
+          "My",
+          "feet",
+          "swell",
+          "in",
+          "hot",
+          "weather"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание ощущений.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-24:i11:r1",
+          "text": "been"
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i11:r2",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание ощущений.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание ощущений.",
+          "uk": "Доповніть опис відчуттів."
+        },
+        "gappedTargetPhrase": "My feet have ___ swelling since this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-24:i11:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i11:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Дополните описание ощущений.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание ощущений.",
+            "feedbackByLocale": {
+              "ru": "Между have и swelling нужно been.",
+              "uk": "Між have та swelling потрібне been."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание ощущений.",
+            "feedbackByLocale": {
+              "ru": "Между have и swelling нужно been.",
+              "uk": "Між have та swelling потрібне been."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-24:i12:r1",
+          "text": "My feet have been swelling since this morning."
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i12:r2",
+          "text": "Her feet have been swelling since this morning."
+        },
+        {
+          "responseId": "en:lesson-24:session-24:i12:r3",
+          "text": "My feet have been swelling since yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:i12:audio",
+          "transcript": "My feet have been swelling since this morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-24:i12:r1",
+            "targetText": "My feet have been swelling since this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i12:r2",
+            "targetText": "Her feet have been swelling since this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i12:r3",
+            "targetText": "My feet have been swelling since yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-24:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My feet have been swelling since this morning.",
+              "uk": "У записі звучить My feet have been swelling since this morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-24:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My feet have been swelling since this morning.",
+              "uk": "У записі звучить My feet have been swelling since this morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-24:i13:p1",
+            "target": "bleed",
+            "meaningByLocale": {
+              "ru": "кровоточить",
+              "uk": "кровоточити"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-24:i13:p2",
+            "target": "itch",
+            "meaningByLocale": {
+              "ru": "чесаться, зудеть",
+              "uk": "свербіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-24:i13:p3",
+            "target": "sting",
+            "meaningByLocale": {
+              "ru": "щипать, вызывать жжение",
+              "uk": "щипати, викликати печіння"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-24:i13:p4",
+            "target": "swell",
+            "meaningByLocale": {
+              "ru": "опухать",
+              "uk": "набрякати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bleed",
+          "itch",
+          "sting",
+          "swell"
+        ],
+        "rightColumn": [
+          "кровоточить",
+          "чесаться, зудеть",
+          "щипать, вызывать жжение",
+          "опухать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Жду уже час",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "Жду уже час",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Работает с утра",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Работает с утра",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «У меня щиплет глаза уже десять минут».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «У меня щиплет глаза уже десять минут».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:i16:audio",
+          "transcript": "My eyes have been stinging for ten minutes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My eyes have been stinging for ten minutes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «У меня чешется кожа всё утро».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «У меня чешется кожа всё утро».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-24:i17:audio",
+          "transcript": "My skin has been itching all morning."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My skin has been itching all morning.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "121e6f3ba64d17155ca6b80b57ba188f52ba7c7637d2490533b2d5a31933cd8c"
+}

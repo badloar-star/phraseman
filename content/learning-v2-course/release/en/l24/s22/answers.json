@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-22:word:coast",
+    "correctText": "coast",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i01",
+    "correctText": "I have been walking along the coast for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i03",
+    "correctText": "I have been walking along the coast for an hour.",
+    "correctResponseId": "en:lesson-24:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:word:harbour",
+    "correctText": "harbour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i04",
+    "correctText": "She has been watching the boats in the harbour all morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i05",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i06",
+    "correctText": "She has been watching the boats in the harbour all morning.",
+    "correctResponseId": "en:lesson-24:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:word:sand",
+    "correctText": "sand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i07",
+    "correctText": "We have been playing in the sand for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i08",
+    "correctText": "playing",
+    "correctResponseId": "en:lesson-24:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i09",
+    "correctText": "We have been playing in the sand for an hour.",
+    "correctResponseId": "en:lesson-24:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:word:tide",
+    "correctText": "tide",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i10",
+    "correctText": "They have been waiting for the tide to go out since noon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i11",
+    "correctText": "been",
+    "correctResponseId": "en:lesson-24:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i12",
+    "correctText": "They have been waiting for the tide to go out since noon.",
+    "correctResponseId": "en:lesson-24:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i13",
+    "correctText": "en:lesson-24:session-22:i13:p1=coast\nen:lesson-24:session-22:i13:p2=harbour\nen:lesson-24:session-22:i13:p3=sand\nen:lesson-24:session-22:i13:p4=tide",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i16",
+    "correctText": "We have been walking along the coast for two hours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-22:i17",
+    "correctText": "They have been playing in the sand for an hour.",
+    "correctResponseId": null
+  }
+]

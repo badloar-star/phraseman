@@ -9170,4 +9170,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have|has been + verb-ing","uk":"have|has been + verb-ing"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 22,
+    sourceFingerprint: "578b89a23fced625802a9e71f7364dccf8d580a1bccab8184027ef5aab74bcc8",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have|has been + verb-ing","uk":"have|has been + verb-ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 23,
+    sourceFingerprint: "9721556110eb22581af8afb926fbfcab87d36632228b8bff9a9d8ddb47e28eb2",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have|has been + verb-ing","uk":"have|has been + verb-ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 24,
+    sourceFingerprint: "fb434e432cc3cd6053cc151f97a3f8dd8293ea51db8e006e3edf6ac27ce5511d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have|has been + verb-ing","uk":"have|has been + verb-ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
 ]);

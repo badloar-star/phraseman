@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-24:intro1:r2": {
+          "ru": "Перед действием с -ing нужно been.",
+          "uk": "Перед дією з -ing потрібне been."
+        },
+        "en:lesson-24:session-24:intro1:r3": {
+          "ru": "С fingers и feet нужно have, с skin — has.",
+          "uk": "З fingers і feet потрібно have, зі skin — has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-24:intro2:r2": {
+          "ru": "Перед действием с -ing нужно been.",
+          "uk": "Перед дією з -ing потрібне been."
+        },
+        "en:lesson-24:session-24:intro2:r3": {
+          "ru": "С fingers и feet нужно have, с skin — has.",
+          "uk": "З fingers і feet потрібно have, зі skin — has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-24:intro3:r2": {
+          "ru": "Перед действием с -ing нужно been.",
+          "uk": "Перед дією з -ing потрібне been."
+        },
+        "en:lesson-24:session-24:intro3:r3": {
+          "ru": "С fingers и feet нужно have, с skin — has.",
+          "uk": "З fingers і feet потрібно have, зі skin — has."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7115ca5f76a2be69a207fd04d2b352289bbf532bedd890d01c10f891016ff757"
+}

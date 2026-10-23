@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-24:word:bleed",
+    "correctText": "bleed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i01",
+    "correctText": "My fingers sometimes bleed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i03",
+    "correctText": "My fingers have been bleeding since this morning.",
+    "correctResponseId": "en:lesson-24:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:word:itch",
+    "correctText": "itch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i04",
+    "correctText": "Why does my skin itch?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i05",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i06",
+    "correctText": "My skin has been itching all morning.",
+    "correctResponseId": "en:lesson-24:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:word:sting",
+    "correctText": "sting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i07",
+    "correctText": "This soap makes my eyes sting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i08",
+    "correctText": "stinging",
+    "correctResponseId": "en:lesson-24:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i09",
+    "correctText": "My eyes have been stinging for ten minutes.",
+    "correctResponseId": "en:lesson-24:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:word:swell",
+    "correctText": "swell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i10",
+    "correctText": "My feet swell in hot weather.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i11",
+    "correctText": "been",
+    "correctResponseId": "en:lesson-24:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i12",
+    "correctText": "My feet have been swelling since this morning.",
+    "correctResponseId": "en:lesson-24:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i13",
+    "correctText": "en:lesson-24:session-24:i13:p1=bleed\nen:lesson-24:session-24:i13:p2=itch\nen:lesson-24:session-24:i13:p3=sting\nen:lesson-24:session-24:i13:p4=swell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i16",
+    "correctText": "My eyes have been stinging for ten minutes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-24:i17",
+    "correctText": "My skin has been itching all morning.",
+    "correctResponseId": null
+  }
+]

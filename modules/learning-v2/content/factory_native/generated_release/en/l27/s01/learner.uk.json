@@ -1,0 +1,1083 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-01:word:possibly",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — possibly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:word:possibly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — possibly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:word:possibly:audio",
+          "transcript": "possibly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-01:word:possibly:r1",
+            "targetText": "possibly",
+            "meaningByLocale": {
+              "ru": "Возможно; показывает неуверенность.",
+              "uk": "Можливо; показує невпевненість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "possibly",
+          "definitionByLocale": {
+            "ru": "Возможно; показывает неуверенность.",
+            "uk": "Можливо; показує невпевненість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-01:i01:r1",
+          "text": "I would possibly take a train."
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i01:r2",
+          "text": "I would possibly take a bus."
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i01:r3",
+          "text": "I would possibly rent a car."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:i01:audio",
+          "transcript": "I would possibly take a train."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-01:i01:r1",
+            "targetText": "I would possibly take a train.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i01:r2",
+            "targetText": "I would possibly take a bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i01:r3",
+            "targetText": "I would possibly rent a car.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-01:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I would possibly take a train.",
+              "uk": "У записі звучить I would possibly take a train."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I would possibly take a train.",
+              "uk": "У записі звучить I would possibly take a train."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз у вас мало часу. Уявіть іншу ситуацію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-01:i02:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i02:r2",
+          "text": "would have"
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i02:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз у вас мало часу. Уявіть іншу ситуацію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас у вас мало времени. Представьте другую ситуацию.",
+          "uk": "Зараз у вас мало часу. Уявіть іншу ситуацію."
+        },
+        "gappedTargetPhrase": "If I ___ more time, I would travel.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-01:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i02:r2",
+            "text": "would have"
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i02:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Зараз у вас мало часу. Уявіть іншу ситуацію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Зараз у вас мало часу. Уявіть іншу ситуацію.",
+            "feedbackByLocale": {
+              "ru": "В условии здесь past simple: had.",
+              "uk": "В умові тут past simple: had."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Зараз у вас мало часу. Уявіть іншу ситуацію.",
+            "feedbackByLocale": {
+              "ru": "Having не образует здесь сказуемое.",
+              "uk": "Having тут не утворює присудок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i03",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга, куди він поїхав би.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:i03:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга, куди він поїхав би.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:i03:audio",
+          "transcript": "Where would you go?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where would you go?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Відновіть почуту відповідь про море.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:i04:audio"
+      ],
+      "accessibilityLabel": "Відновіть почуту відповідь про море.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:i04:audio",
+          "transcript": "I would go to the coast."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I would go to the coast.",
+        "orderedTokens": [
+          "I",
+          "would",
+          "go",
+          "to",
+          "the",
+          "coast"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви не можете дозволити собі цей варіант зараз. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви не можете дозволити собі цей варіант зараз. Скажіть про це.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cannot afford it right now.",
+        "localizedMeaning": {
+          "ru": "Вы не можете позволить себе этот вариант сейчас. Скажите об этом.",
+          "uk": "Ви не можете дозволити собі цей варіант зараз. Скажіть про це."
+        },
+        "orderedTokens": [
+          "I",
+          "cannot",
+          "afford",
+          "it",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:word:naturally",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — naturally",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:word:naturally:audio"
+      ],
+      "accessibilityLabel": "Картка слова — naturally",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:word:naturally:audio",
+          "transcript": "naturally"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-01:word:naturally:r1",
+            "targetText": "naturally",
+            "meaningByLocale": {
+              "ru": "Естественным образом, без вмешательства человека.",
+              "uk": "Природним чином, без втручання людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "naturally",
+          "definitionByLocale": {
+            "ru": "Естественным образом, без вмешательства человека.",
+            "uk": "Природним чином, без втручання людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-01:i06:r1",
+          "text": "These flowers grow naturally here."
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i06:r2",
+          "text": "These flowers grow naturally there."
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i06:r3",
+          "text": "These trees grow naturally here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:i06:audio",
+          "transcript": "These flowers grow naturally here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-01:i06:r1",
+            "targetText": "These flowers grow naturally here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i06:r2",
+            "targetText": "These flowers grow naturally there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i06:r3",
+            "targetText": "These trees grow naturally here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These flowers grow naturally here.",
+              "uk": "У записі звучить These flowers grow naturally here."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These flowers grow naturally here.",
+              "uk": "У записі звучить These flowers grow naturally here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уявіть сад: ви вирощували б овочі, якби він у вас був.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уявіть сад: ви вирощували б овочі, якби він у вас був.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would grow vegetables if we had a garden.",
+        "localizedMeaning": {
+          "ru": "Вообразите сад: вы выращивали бы овощи, если бы он у вас был.",
+          "uk": "Уявіть сад: ви вирощували б овочі, якби він у вас був."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "grow",
+          "vegetables",
+          "if",
+          "we",
+          "had",
+          "a",
+          "garden"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i08",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У друга немає собаки. Поясніть, як змінилися б його прогулянки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-01:i08:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i08:r2",
+          "text": "would had"
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i08:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У друга немає собаки. Поясніть, як змінилися б його прогулянки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У друга нет собаки. Объясните, как изменились бы его прогулки.",
+          "uk": "У друга немає собаки. Поясніть, як змінилися б його прогулянки."
+        },
+        "gappedTargetPhrase": "He would walk more if he ___ a dog.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-01:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i08:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i08:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "У друга немає собаки. Поясніть, як змінилися б його прогулянки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "У друга немає собаки. Поясніть, як змінилися б його прогулянки.",
+            "feedbackByLocale": {
+              "ru": "В условии нужно had, без would.",
+              "uk": "В умові потрібно had, без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "У друга немає собаки. Поясніть, як змінилися б його прогулянки.",
+            "feedbackByLocale": {
+              "ru": "Воображаемое условие здесь выражает had.",
+              "uk": "Уявну умову тут виражає had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i09",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи далеко будинок від станції.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:i09:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи далеко будинок від станції.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:i09:audio",
+          "transcript": "Is it far from the station?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it far from the station?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:word:obviously",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — obviously",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:word:obviously:audio"
+      ],
+      "accessibilityLabel": "Картка слова — obviously",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:word:obviously:audio",
+          "transcript": "obviously"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-01:word:obviously:r1",
+            "targetText": "obviously",
+            "meaningByLocale": {
+              "ru": "Очевидно, явно.",
+              "uk": "Очевидно, явно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "obviously",
+          "definitionByLocale": {
+            "ru": "Очевидно, явно.",
+            "uk": "Очевидно, явно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-01:i10:r1",
+          "text": "It is obviously too small."
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i10:r2",
+          "text": "It is obviously too dark."
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i10:r3",
+          "text": "It is obviously too cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:i10:audio",
+          "transcript": "It is obviously too small."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-01:i10:r1",
+            "targetText": "It is obviously too small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i10:r2",
+            "targetText": "It is obviously too dark.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i10:r3",
+            "targetText": "It is obviously too cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-01:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It is obviously too small.",
+              "uk": "У записі звучить It is obviously too small."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It is obviously too small.",
+              "uk": "У записі звучить It is obviously too small."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте обрати дешевше місце.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте обрати дешевше місце.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let us choose a cheaper place.",
+        "localizedMeaning": {
+          "ru": "Предложите выбрать более дешёвое место.",
+          "uk": "Запропонуйте обрати дешевше місце."
+        },
+        "orderedTokens": [
+          "Let",
+          "us",
+          "choose",
+          "a",
+          "cheaper",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i12",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви б переїхали за умови, що знайшли роботу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-01:i12:r1",
+          "text": "move"
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i12:r2",
+          "text": "to move"
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i12:r3",
+          "text": "moved"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви б переїхали за умови, що знайшли роботу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы бы переехали при условии, что нашли работу.",
+          "uk": "Ви б переїхали за умови, що знайшли роботу."
+        },
+        "gappedTargetPhrase": "I would ___ if I found a job.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-01:i12:r1",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i12:r2",
+            "text": "to move"
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i12:r3",
+            "text": "moved"
+          }
+        ],
+        "testedDimension": "Ви б переїхали за умови, що знайшли роботу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви б переїхали за умови, що знайшли роботу.",
+            "feedbackByLocale": {
+              "ru": "После would не нужно to.",
+              "uk": "Після would не потрібно to."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви б переїхали за умови, що знайшли роботу.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма move.",
+              "uk": "Після would потрібна початкова форма move."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:word:frankly",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — frankly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:word:frankly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — frankly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:word:frankly:audio",
+          "transcript": "frankly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-01:word:frankly:r1",
+            "targetText": "frankly",
+            "meaningByLocale": {
+              "ru": "Откровенно говоря; вводит прямое мнение.",
+              "uk": "Відверто кажучи; вводить пряму думку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frankly",
+          "definitionByLocale": {
+            "ru": "Откровенно говоря; вводит прямое мнение.",
+            "uk": "Відверто кажучи; вводить пряму думку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Відверто скажіть другові, що вам потрібна перерва.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Відверто скажіть другові, що вам потрібна перерва.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:i13:audio",
+          "transcript": "Frankly, I need a break."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Frankly, I need a break.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте пропозицію друга трохи посидіти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Почуйте пропозицію друга трохи посидіти.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:i14:audio",
+          "transcript": "Shall we sit down for a while?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Shall we sit down for a while?",
+        "orderedTokens": [
+          "Shall",
+          "we",
+          "sit",
+          "down",
+          "for",
+          "a",
+          "while"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви б частіше бачилися, якби друг жив поруч.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-01:i15:r1",
+          "text": "would"
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i15:r2",
+          "text": "did"
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i15:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви б частіше бачилися, якби друг жив поруч.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы бы чаще виделись, если бы друг жил рядом.",
+          "uk": "Ви б частіше бачилися, якби друг жив поруч."
+        },
+        "gappedTargetPhrase": "We ___ meet more often if you lived nearby.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-01:i15:r1",
+            "text": "would"
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i15:r2",
+            "text": "did"
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i15:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Ви б частіше бачилися, якби друг жив поруч.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-01:i15:r2",
+            "correct": false,
+            "testedDimension": "Ви б частіше бачилися, якби друг жив поруч.",
+            "feedbackByLocale": {
+              "ru": "Did не выражает воображаемый результат здесь.",
+              "uk": "Did тут не виражає уявний результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i15:r3",
+            "correct": false,
+            "testedDimension": "Ви б частіше бачилися, якби друг жив поруч.",
+            "feedbackByLocale": {
+              "ru": "Перед meet здесь нужно would, не were.",
+              "uk": "Перед meet тут потрібно would, не were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-01:i16:r1",
+          "text": "I would visit you every weekend."
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i16:r2",
+          "text": "I would visit you every evening."
+        },
+        {
+          "responseId": "en:lesson-27:session-01:i16:r3",
+          "text": "I would call you every weekend."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-01:i16:audio",
+          "transcript": "I would visit you every weekend."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-01:i16:r1",
+            "targetText": "I would visit you every weekend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i16:r2",
+            "targetText": "I would visit you every evening.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i16:r3",
+            "targetText": "I would call you every weekend.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-01:i16:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I would visit you every weekend.",
+              "uk": "У записі звучить I would visit you every weekend."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-01:i16:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I would visit you every weekend.",
+              "uk": "У записі звучить I would visit you every weekend."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Завершіть розмову подякою за допомогу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Завершіть розмову подякою за допомогу.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thanks for your help.",
+        "localizedMeaning": {
+          "ru": "Закончите разговор благодарностью за помощь.",
+          "uk": "Завершіть розмову подякою за допомогу."
+        },
+        "orderedTokens": [
+          "Thanks",
+          "for",
+          "your",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cb51a8fc202a3b20342c596848954d2fd544eb6d714f6f19e7c396ceb9cc189e"
+}

@@ -1,0 +1,151 @@
+# Урок 27 · Занятие 02 — Поговорим спокойно
+
+**Ситуация.** Вы миритесь после неловкого разговора, стараетесь не разбудить ребёнка и помогаете другу разобрать фотографию.
+
+**Что вы освоите:** if + past simple, would + base verb; past simple / present perfect
+**Новые слова:** truly, rudely, softly, closely
+
+## Интро 1
+
+### После неловкого разговора
+
+Truly — действительно, искренне. I am truly sorry — мне искренне жаль. Rudely — грубо, невежливо. He spoke rudely to me — он грубо со мной разговаривал. Это описание его манеры говорить, а не оценка всех его поступков. Друг спрашивает, как вы поступили бы на его месте. I would talk to him if I had his number — я бы поговорил с ним, если бы у меня был его номер. Номера сейчас нет: после if стоит had, а would talk описывает возможное действие в воображаемой ситуации.
+
+**Выберите фразу для этой ситуации.**
+
+- ✅ **I would talk to him if I had his number.**
+- ❌ I would talked to him if I had his number. — *После would нужна начальная форма talk.*
+- ❌ I would talk to him if I would had his number. — *В условии нужно had без would.*
+
+---
+
+## Интро 2
+
+### Потише, пожалуйста
+
+Softly — тихо, негромко, когда речь о голосе. Please speak softly — пожалуйста, говори тихо. В соседней комнате спит ребёнок. Друг рассказывает о вчерашнем вечере: I called her yesterday — я позвонил ей вчера. Yesterday называет законченное время, поэтому здесь called. I have spoken to her — я с ней поговорил: сообщаем результат сейчас, без указания законченного времени. Нельзя просто добавить yesterday к этой форме have spoken.
+
+**Выберите фразу для этой ситуации.**
+
+- ✅ **I called her yesterday.**
+- ❌ I have called her yesterday. — *С законченным yesterday здесь past simple.*
+- ❌ I call her yesterday. — *Для вчерашнего события нужно called.*
+
+---
+
+## Интро 3
+
+### Рассмотреть внимательнее
+
+Closely — внимательно, пристально. Look closely at the photo — внимательно посмотри на фотографию. Здесь closely описывает внимание; для физической близости часто используют close. Вы пытаетесь прочитать мелкую надпись: I would read it if I had my glasses — я бы прочитал это, если бы у меня были очки. Друг уже ищет свои очки. Они у него на голове — там искать обычно забывают.
+
+**Выберите фразу для этой ситуации.**
+
+- ✅ **I would read it if I had my glasses.**
+- ❌ I would reading it if I had my glasses. — *После would нужно read без -ing.*
+- ❌ I would read it if I would have my glasses. — *В условии здесь had, не would have.*
+
+---
+
+## Практика (21 задание)
+
+**1 · Карточка слова — truly**
+<!-- interaction_id: en:lesson-27:session-02:word:truly; family: word_card -->
+> **truly** — Действительно, искренне.
+
+**2 · Искренне извинитесь перед другом.**
+<!-- interaction_id: en:lesson-27:session-02:i01; family: scripted_repeat_compare -->
+🎙 **I am truly sorry.**
+
+**3 · Услышьте ответ друга.**
+<!-- interaction_id: en:lesson-27:session-02:i02; family: listen_build_dictation -->
+🔊 *It is all right.* Плитки: `right` `all` `is` `It` → **It is all right.**
+
+**4 · Карточка слова — rudely**
+<!-- interaction_id: en:lesson-27:session-02:word:rudely; family: word_card -->
+> **rudely** — Грубо, невежливо.
+
+**5 · Расскажите, что он грубо разговаривал с вами.**
+<!-- interaction_id: en:lesson-27:session-02:i03; family: phrase_builder -->
+Плитки: `me` `to` `rudely` `spoke` `He` → **He spoke rudely to me.**
+
+**6 · Вы поговорили бы с ним, но у вас нет его номера.**
+<!-- interaction_id: en:lesson-27:session-02:i04; family: context_gap_grammar -->
+I would talk to him if I ___ his number. → **had** · would had · having
+- would had — *После if здесь had без would.*
+- having — *Нужна личная форма had.*
+
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-27:session-02:i05; family: listen_choose -->
+🔊 *I have spoken to her.* → **I have spoken to her.** · I have written to her. · I have spoken to him.
+- I have written to her. — *В записи звучит I have spoken to her.*
+- I have spoken to him. — *В записи звучит I have spoken to her.*
+
+**8 · Назовите конкретное законченное время: вчера.**
+<!-- interaction_id: en:lesson-27:session-02:i06; family: context_gap_grammar -->
+I ___ her yesterday. → **called** · have called · calling
+- have called — *С yesterday здесь past simple.*
+- calling — *Calling само по себе не образует сказуемое.*
+
+**9 · Карточка слова — softly**
+<!-- interaction_id: en:lesson-27:session-02:word:softly; family: word_card -->
+> **softly** — Тихо, негромко — о голосе.
+
+**10 · Рядом спит ребёнок. Попросите говорить тихо.**
+<!-- interaction_id: en:lesson-27:session-02:i07; family: scripted_repeat_compare -->
+🎙 **Please speak softly.**
+
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-27:session-02:i08; family: listen_choose -->
+🔊 *The baby is asleep.* → **The baby is asleep.** · The baby is awake. · The baby is hungry.
+- The baby is awake. — *В записи звучит The baby is asleep.*
+- The baby is hungry. — *В записи звучит The baby is asleep.*
+
+**12 · Предложите поговорить на улице.**
+<!-- interaction_id: en:lesson-27:session-02:i09; family: phrase_builder -->
+Плитки: `outside` `talk` `we` `Shall` → **Shall we talk outside?**
+
+**13 · Друг не слышит звонок. Он открыл бы дверь, если бы услышал его.**
+<!-- interaction_id: en:lesson-27:session-02:i10; family: context_gap_grammar -->
+He would open the door if he ___ the bell. → **heard** · would heard · hearing
+- would heard — *В условии past simple без would.*
+- hearing — *Hearing здесь не заменяет личную форму heard.*
+
+**14 · Карточка слова — closely**
+<!-- interaction_id: en:lesson-27:session-02:word:closely; family: word_card -->
+> **closely** — Внимательно, пристально.
+
+**15 · Попросите внимательно посмотреть на фотографию.**
+<!-- interaction_id: en:lesson-27:session-02:i11; family: phrase_builder -->
+Плитки: `photo` `the` `at` `closely` `Look` → **Look closely at the photo.**
+
+**16 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-27:session-02:i12; family: listen_choose -->
+🔊 *I cannot read the sign.* → **I cannot read the sign.** · I cannot find the sign. · I cannot read the letter.
+- I cannot find the sign. — *В записи звучит I cannot read the sign.*
+- I cannot read the letter. — *В записи звучит I cannot read the sign.*
+
+**17 · Вы прочитали бы надпись, если бы у вас были очки.**
+<!-- interaction_id: en:lesson-27:session-02:i13; family: context_gap_grammar -->
+I would ___ it if I had my glasses. → **read** · reading · to read
+- reading — *После would нужна начальная форма.*
+- to read — *После would не ставим to.*
+
+**18 · Восстановите услышанную подсказку об очках.**
+<!-- interaction_id: en:lesson-27:session-02:i14; family: listen_build_dictation -->
+🔊 *They are on your head.* Плитки: `head` `your` `on` `are` `They` → **They are on your head.**
+
+**19 · Поблагодарите друга за терпение.**
+<!-- interaction_id: en:lesson-27:session-02:i15; family: scripted_repeat_compare -->
+🎙 **Thanks for being patient.**
+
+**20 · Переставьте части, начав с результата: If I had a car, I would drive you home.**
+<!-- interaction_id: en:lesson-27:session-02:i16; family: phrase_builder -->
+Плитки: `car` `a` `had` `I` `if` `home` `you` `drive` `would` `I` → **I would drive you home if I had a car.**
+
+**21 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-27:session-02:i17; family: listen_choose -->
+🔊 *I can walk home from here.* → **I can walk home from here.** · I can cycle home from here. · I can walk home with you.
+- I can cycle home from here. — *В записи звучит I can walk home from here.*
+- I can walk home with you. — *В записи звучит I can walk home from here.*
+

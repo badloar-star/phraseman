@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-02:word:truly",
+    "correctText": "truly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i01",
+    "correctText": "I am truly sorry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i02",
+    "correctText": "It is all right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:word:rudely",
+    "correctText": "rudely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i03",
+    "correctText": "He spoke rudely to me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-02:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i05",
+    "correctText": "I have spoken to her.",
+    "correctResponseId": "en:lesson-27:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i06",
+    "correctText": "called",
+    "correctResponseId": "en:lesson-27:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:word:softly",
+    "correctText": "softly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i07",
+    "correctText": "Please speak softly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i08",
+    "correctText": "The baby is asleep.",
+    "correctResponseId": "en:lesson-27:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i09",
+    "correctText": "Shall we talk outside?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i10",
+    "correctText": "heard",
+    "correctResponseId": "en:lesson-27:session-02:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:word:closely",
+    "correctText": "closely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i11",
+    "correctText": "Look closely at the photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i12",
+    "correctText": "I cannot read the sign.",
+    "correctResponseId": "en:lesson-27:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i13",
+    "correctText": "read",
+    "correctResponseId": "en:lesson-27:session-02:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i14",
+    "correctText": "They are on your head.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i15",
+    "correctText": "Thanks for being patient.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i16",
+    "correctText": "I would drive you home if I had a car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-02:i17",
+    "correctText": "I can walk home from here.",
+    "correctResponseId": "en:lesson-27:session-02:i17:r1"
+  }
+]

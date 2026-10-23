@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-02:intro1:r2": {
+          "ru": "После would нужна начальная форма talk.",
+          "uk": "Після would потрібна початкова форма talk."
+        },
+        "en:lesson-27:session-02:intro1:r3": {
+          "ru": "В условии нужно had без would.",
+          "uk": "В умові потрібно had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-02:intro2:r2": {
+          "ru": "С законченным yesterday здесь past simple.",
+          "uk": "Із завершеним yesterday тут past simple."
+        },
+        "en:lesson-27:session-02:intro2:r3": {
+          "ru": "Для вчерашнего события нужно called.",
+          "uk": "Для вчорашньої події потрібно called."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-02:intro3:r2": {
+          "ru": "После would нужно read без -ing.",
+          "uk": "Після would потрібно read без -ing."
+        },
+        "en:lesson-27:session-02:intro3:r3": {
+          "ru": "В условии здесь had, не would have.",
+          "uk": "В умові тут had, не would have."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a0a0e42562900c1575fc822576a42f69fb9dde28ab2913b029fa62dea66e348f"
+}

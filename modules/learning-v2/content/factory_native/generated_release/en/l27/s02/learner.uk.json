@@ -1,0 +1,1078 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-02:word:truly",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — truly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:word:truly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — truly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:word:truly:audio",
+          "transcript": "truly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-02:word:truly:r1",
+            "targetText": "truly",
+            "meaningByLocale": {
+              "ru": "Действительно, искренне.",
+              "uk": "Справді, щиро."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "truly",
+          "definitionByLocale": {
+            "ru": "Действительно, искренне.",
+            "uk": "Справді, щиро."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Щиро вибачтеся перед другом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:i01:audio"
+      ],
+      "accessibilityLabel": "Щиро вибачтеся перед другом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:i01:audio",
+          "transcript": "I am truly sorry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am truly sorry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте відповідь друга.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Почуйте відповідь друга.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:i02:audio",
+          "transcript": "It is all right."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is all right.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "all",
+          "right"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:word:rudely",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rudely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:word:rudely:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rudely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:word:rudely:audio",
+          "transcript": "rudely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-02:word:rudely:r1",
+            "targetText": "rudely",
+            "meaningByLocale": {
+              "ru": "Грубо, невежливо.",
+              "uk": "Грубо, неввічливо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rudely",
+          "definitionByLocale": {
+            "ru": "Грубо, невежливо.",
+            "uk": "Грубо, неввічливо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть, що він грубо розмовляв із вами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть, що він грубо розмовляв із вами.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He spoke rudely to me.",
+        "localizedMeaning": {
+          "ru": "Расскажите, что он грубо разговаривал с вами.",
+          "uk": "Розкажіть, що він грубо розмовляв із вами."
+        },
+        "orderedTokens": [
+          "He",
+          "spoke",
+          "rudely",
+          "to",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви поговорили б із ним, але у вас немає його номера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-02:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i04:r2",
+          "text": "would had"
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i04:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви поговорили б із ним, але у вас немає його номера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы поговорили бы с ним, но у вас нет его номера.",
+          "uk": "Ви поговорили б із ним, але у вас немає його номера."
+        },
+        "gappedTargetPhrase": "I would talk to him if I ___ his number.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-02:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i04:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i04:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Ви поговорили б із ним, але у вас немає його номера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-02:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви поговорили б із ним, але у вас немає його номера.",
+            "feedbackByLocale": {
+              "ru": "После if здесь had без would.",
+              "uk": "Після if тут had без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви поговорили б із ним, але у вас немає його номера.",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма had.",
+              "uk": "Потрібна особова форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-02:i05:r1",
+          "text": "I have spoken to her."
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i05:r2",
+          "text": "I have written to her."
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i05:r3",
+          "text": "I have spoken to him."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:i05:audio",
+          "transcript": "I have spoken to her."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-02:i05:r1",
+            "targetText": "I have spoken to her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i05:r2",
+            "targetText": "I have written to her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i05:r3",
+            "targetText": "I have spoken to him.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have spoken to her.",
+              "uk": "У записі звучить I have spoken to her."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have spoken to her.",
+              "uk": "У записі звучить I have spoken to her."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть конкретний завершений час: учора.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-02:i06:r1",
+          "text": "called"
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i06:r2",
+          "text": "have called"
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i06:r3",
+          "text": "calling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть конкретний завершений час: учора.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите конкретное законченное время: вчера.",
+          "uk": "Назвіть конкретний завершений час: учора."
+        },
+        "gappedTargetPhrase": "I ___ her yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-02:i06:r1",
+            "text": "called"
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i06:r2",
+            "text": "have called"
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i06:r3",
+            "text": "calling"
+          }
+        ],
+        "testedDimension": "Назвіть конкретний завершений час: учора.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "Назвіть конкретний завершений час: учора.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь past simple.",
+              "uk": "Із yesterday тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "Назвіть конкретний завершений час: учора.",
+            "feedbackByLocale": {
+              "ru": "Calling само по себе не образует сказуемое.",
+              "uk": "Calling саме по собі не утворює присудок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:word:softly",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — softly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:word:softly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — softly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:word:softly:audio",
+          "transcript": "softly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-02:word:softly:r1",
+            "targetText": "softly",
+            "meaningByLocale": {
+              "ru": "Тихо, негромко — о голосе.",
+              "uk": "Тихо, неголосно — про голос."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "softly",
+          "definitionByLocale": {
+            "ru": "Тихо, негромко — о голосе.",
+            "uk": "Тихо, неголосно — про голос."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поруч спить дитина. Попросіть говорити тихо.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:i07:audio"
+      ],
+      "accessibilityLabel": "Поруч спить дитина. Попросіть говорити тихо.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:i07:audio",
+          "transcript": "Please speak softly."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please speak softly.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-02:i08:r1",
+          "text": "The baby is asleep."
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i08:r2",
+          "text": "The baby is awake."
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i08:r3",
+          "text": "The baby is hungry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:i08:audio",
+          "transcript": "The baby is asleep."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-02:i08:r1",
+            "targetText": "The baby is asleep.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i08:r2",
+            "targetText": "The baby is awake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i08:r3",
+            "targetText": "The baby is hungry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The baby is asleep.",
+              "uk": "У записі звучить The baby is asleep."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The baby is asleep.",
+              "uk": "У записі звучить The baby is asleep."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте поговорити надворі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте поговорити надворі.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall we talk outside?",
+        "localizedMeaning": {
+          "ru": "Предложите поговорить на улице.",
+          "uk": "Запропонуйте поговорити надворі."
+        },
+        "orderedTokens": [
+          "Shall",
+          "we",
+          "talk",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг не чує дзвінка. Він відчинив би двері, якби почув його.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-02:i10:r1",
+          "text": "heard"
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i10:r2",
+          "text": "would heard"
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i10:r3",
+          "text": "hearing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг не чує дзвінка. Він відчинив би двері, якби почув його.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг не слышит звонок. Он открыл бы дверь, если бы услышал его.",
+          "uk": "Друг не чує дзвінка. Він відчинив би двері, якби почув його."
+        },
+        "gappedTargetPhrase": "He would open the door if he ___ the bell.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-02:i10:r1",
+            "text": "heard"
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i10:r2",
+            "text": "would heard"
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i10:r3",
+            "text": "hearing"
+          }
+        ],
+        "testedDimension": "Друг не чує дзвінка. Він відчинив би двері, якби почув його.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-02:i10:r2",
+            "correct": false,
+            "testedDimension": "Друг не чує дзвінка. Він відчинив би двері, якби почув його.",
+            "feedbackByLocale": {
+              "ru": "В условии past simple без would.",
+              "uk": "В умові past simple без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i10:r3",
+            "correct": false,
+            "testedDimension": "Друг не чує дзвінка. Він відчинив би двері, якби почув його.",
+            "feedbackByLocale": {
+              "ru": "Hearing здесь не заменяет личную форму heard.",
+              "uk": "Hearing тут не замінює особову форму heard."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:word:closely",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — closely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:word:closely:audio"
+      ],
+      "accessibilityLabel": "Картка слова — closely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:word:closely:audio",
+          "transcript": "closely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-02:word:closely:r1",
+            "targetText": "closely",
+            "meaningByLocale": {
+              "ru": "Внимательно, пристально.",
+              "uk": "Уважно, пильно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "closely",
+          "definitionByLocale": {
+            "ru": "Внимательно, пристально.",
+            "uk": "Уважно, пильно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть уважно подивитися на фотографію.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть уважно подивитися на фотографію.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Look closely at the photo.",
+        "localizedMeaning": {
+          "ru": "Попросите внимательно посмотреть на фотографию.",
+          "uk": "Попросіть уважно подивитися на фотографію."
+        },
+        "orderedTokens": [
+          "Look",
+          "closely",
+          "at",
+          "the",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-02:i12:r1",
+          "text": "I cannot read the sign."
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i12:r2",
+          "text": "I cannot find the sign."
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i12:r3",
+          "text": "I cannot read the letter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:i12:audio",
+          "transcript": "I cannot read the sign."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-02:i12:r1",
+            "targetText": "I cannot read the sign.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i12:r2",
+            "targetText": "I cannot find the sign.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i12:r3",
+            "targetText": "I cannot read the letter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cannot read the sign.",
+              "uk": "У записі звучить I cannot read the sign."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cannot read the sign.",
+              "uk": "У записі звучить I cannot read the sign."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви прочитали б напис, якби у вас були окуляри.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-02:i13:r1",
+          "text": "read"
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i13:r2",
+          "text": "reading"
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i13:r3",
+          "text": "to read"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви прочитали б напис, якби у вас були окуляри.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы прочитали бы надпись, если бы у вас были очки.",
+          "uk": "Ви прочитали б напис, якби у вас були окуляри."
+        },
+        "gappedTargetPhrase": "I would ___ it if I had my glasses.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-02:i13:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i13:r2",
+            "text": "reading"
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i13:r3",
+            "text": "to read"
+          }
+        ],
+        "testedDimension": "Ви прочитали б напис, якби у вас були окуляри.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-02:i13:r2",
+            "correct": false,
+            "testedDimension": "Ви прочитали б напис, якби у вас були окуляри.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма.",
+              "uk": "Після would потрібна початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i13:r3",
+            "correct": false,
+            "testedDimension": "Ви прочитали б напис, якби у вас були окуляри.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Відновіть почуту підказку про окуляри.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Відновіть почуту підказку про окуляри.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:i14:audio",
+          "transcript": "They are on your head."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are on your head.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "on",
+          "your",
+          "head"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подякуйте другові за терпіння.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Подякуйте другові за терпіння.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:i15:audio",
+          "transcript": "Thanks for being patient."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thanks for being patient.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Переставте частини, почавши з результату: If I had a car, I would drive you home.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Переставте частини, почавши з результату: If I had a car, I would drive you home.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would drive you home if I had a car.",
+        "localizedMeaning": {
+          "ru": "Переставьте части, начав с результата: If I had a car, I would drive you home.",
+          "uk": "Переставте частини, почавши з результату: If I had a car, I would drive you home."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "drive",
+          "you",
+          "home",
+          "if",
+          "I",
+          "had",
+          "a",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-02:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-02:i17:r1",
+          "text": "I can walk home from here."
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i17:r2",
+          "text": "I can cycle home from here."
+        },
+        {
+          "responseId": "en:lesson-27:session-02:i17:r3",
+          "text": "I can walk home with you."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-02:i17:audio",
+          "transcript": "I can walk home from here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-02:i17:r1",
+            "targetText": "I can walk home from here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i17:r2",
+            "targetText": "I can cycle home from here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i17:r3",
+            "targetText": "I can walk home with you.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-02:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can walk home from here.",
+              "uk": "У записі звучить I can walk home from here."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-02:i17:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can walk home from here.",
+              "uk": "У записі звучить I can walk home from here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "55b1e73ddfbc3d56386193f85a7d14ae1c3e5027af97015590cae6595efe66c7"
+}

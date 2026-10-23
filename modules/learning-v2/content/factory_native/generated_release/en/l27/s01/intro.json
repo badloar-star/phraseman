@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb",
+    "uk": "if + past simple, would + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Если бы было больше времени",
+        "uk": "Якби було більше часу"
+      },
+      "bodyByLocale": {
+        "ru": "У вас мало свободного времени, но вы представляете другую жизнь: If I had more time, I would travel — если бы у меня было больше времени, я бы путешествовал. Had здесь не рассказ о прошлом: это воображаемая ситуация сейчас или в будущем. После if ставим past simple, а в результате — would и начальную форму: would travel. Possibly — возможно. I would possibly take a train — возможно, я бы поехал поездом. Так вы оставляете выбор открытым.",
+        "uk": "У вас мало вільного часу, але ви уявляєте інше життя: If I had more time, I would travel — якби в мене було більше часу, я б подорожував. Had тут не розповідь про минуле: це уявна ситуація зараз або в майбутньому. Після if ставимо past simple, а в результаті — would і початкову форму: would travel. Possibly — можливо. I would possibly take a train — можливо, я б поїхав потягом. Так ви залишаєте вибір відкритим."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-01:intro1:r1",
+              "text": "If I had more time, I would travel."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro1:r2",
+              "text": "If I would have more time, I would travel."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro1:r3",
+              "text": "If I had more time, I would travelled."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-01:intro1:r1",
+              "text": "If I had more time, I would travel."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro1:r2",
+              "text": "If I would have more time, I would travel."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro1:r3",
+              "text": "If I had more time, I would travelled."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дом с садом",
+        "uk": "Будинок із садом"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает небольшой дом. Naturally — естественным образом, без вмешательства человека. These flowers grow naturally here — эти цветы растут здесь сами по себе. Вы представляете свой сад: We would grow vegetables if we had a garden — мы бы выращивали овощи, если бы у нас был сад. Результат можно поставить первым; перед if в таком порядке запятая обычно не нужна. Сад пока существует только в разговоре, а список овощей уже занял целую страницу.",
+        "uk": "Друг показує невеликий будинок. Naturally — природним чином, без втручання людини. These flowers grow naturally here — ці квіти ростуть тут самі по собі. Ви уявляєте свій сад: We would grow vegetables if we had a garden — ми б вирощували овочі, якби в нас був сад. Результат можна поставити першим; перед if у такому порядку кома зазвичай не потрібна. Сад поки існує лише в розмові, а список овочів уже зайняв цілу сторінку."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-01:intro2:r1",
+              "text": "We would grow vegetables if we had a garden."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro2:r2",
+              "text": "We would growing vegetables if we had a garden."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro2:r3",
+              "text": "We would grow vegetables if we would had a garden."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-01:intro2:r1",
+              "text": "We would grow vegetables if we had a garden."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro2:r2",
+              "text": "We would growing vegetables if we had a garden."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro2:r3",
+              "text": "We would grow vegetables if we would had a garden."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сказать своё мнение",
+        "uk": "Висловити свою думку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы осматриваете комнату вдвоём. Obviously — очевидно: It is obviously too small — она явно слишком маленькая. Frankly — откровенно говоря: Frankly, I need a break — откровенно говоря, мне нужен перерыв. Это слово делает мнение прямым; с незнакомым человеком оно иногда звучит резко. Друг спрашивает о возможном переезде. I would move if I found a job — я бы переехал, если бы нашёл работу. Found — форма find; здесь вы представляете условие, а не сообщаете, что уже нашли работу.",
+        "uk": "Ви оглядаєте кімнату вдвох. Obviously — очевидно: It is obviously too small — вона явно замала. Frankly — відверто кажучи: Frankly, I need a break — відверто кажучи, мені потрібна перерва. Це слово робить думку прямою; з незнайомою людиною воно іноді звучить різко. Друг запитує про можливий переїзд. I would move if I found a job — я б переїхав, якби знайшов роботу. Found — форма find; тут ви уявляєте умову, а не повідомляєте, що вже знайшли роботу."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-01:intro3:r1",
+              "text": "I would move if I found a job."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro3:r2",
+              "text": "I would to move if I found a job."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro3:r3",
+              "text": "I would move if I finded a job."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-01:intro3:r1",
+              "text": "I would move if I found a job."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro3:r2",
+              "text": "I would to move if I found a job."
+            },
+            {
+              "responseId": "en:lesson-27:session-01:intro3:r3",
+              "text": "I would move if I finded a job."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "28545ede42b2f16043e4621261b55c70a2034c996a61b0dacf96f7acaab92b43"
+}

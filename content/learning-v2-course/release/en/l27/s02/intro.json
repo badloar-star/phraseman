@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; past simple / present perfect",
+    "uk": "if + past simple, would + base verb; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "После неловкого разговора",
+        "uk": "Після незручної розмови"
+      },
+      "bodyByLocale": {
+        "ru": "Truly — действительно, искренне. I am truly sorry — мне искренне жаль. Rudely — грубо, невежливо. He spoke rudely to me — он грубо со мной разговаривал. Это описание его манеры говорить, а не оценка всех его поступков. Друг спрашивает, как вы поступили бы на его месте. I would talk to him if I had his number — я бы поговорил с ним, если бы у меня был его номер. Номера сейчас нет: после if стоит had, а would talk описывает возможное действие в воображаемой ситуации.",
+        "uk": "Truly — справді, щиро. I am truly sorry — мені щиро шкода. Rudely — грубо, неввічливо. He spoke rudely to me — він грубо зі мною розмовляв. Це опис його манери говорити, а не оцінка всіх його вчинків. Друг запитує, як ви вчинили б на його місці. I would talk to him if I had his number — я б поговорив із ним, якби в мене був його номер. Номера зараз немає: після if стоїть had, а would talk описує можливу дію в уявній ситуації."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-02:intro1:r1",
+              "text": "I would talk to him if I had his number."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro1:r2",
+              "text": "I would talked to him if I had his number."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro1:r3",
+              "text": "I would talk to him if I would had his number."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-02:intro1:r1",
+              "text": "I would talk to him if I had his number."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro1:r2",
+              "text": "I would talked to him if I had his number."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro1:r3",
+              "text": "I would talk to him if I would had his number."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Потише, пожалуйста",
+        "uk": "Тихіше, будь ласка"
+      },
+      "bodyByLocale": {
+        "ru": "Softly — тихо, негромко, когда речь о голосе. Please speak softly — пожалуйста, говори тихо. В соседней комнате спит ребёнок. Друг рассказывает о вчерашнем вечере: I called her yesterday — я позвонил ей вчера. Yesterday называет законченное время, поэтому здесь called. I have spoken to her — я с ней поговорил: сообщаем результат сейчас, без указания законченного времени. Нельзя просто добавить yesterday к этой форме have spoken.",
+        "uk": "Softly — тихо, неголосно, коли йдеться про голос. Please speak softly — будь ласка, говори тихо. У сусідній кімнаті спить дитина. Друг розповідає про вчорашній вечір: I called her yesterday — я зателефонував їй учора. Yesterday називає завершений час, тому тут called. I have spoken to her — я з нею поговорив: повідомляємо результат зараз, без зазначення завершеного часу. Не можна просто додати yesterday до цієї форми have spoken."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-02:intro2:r1",
+              "text": "I called her yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro2:r2",
+              "text": "I have called her yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro2:r3",
+              "text": "I call her yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-02:intro2:r1",
+              "text": "I called her yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro2:r2",
+              "text": "I have called her yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro2:r3",
+              "text": "I call her yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рассмотреть внимательнее",
+        "uk": "Роздивитися уважніше"
+      },
+      "bodyByLocale": {
+        "ru": "Closely — внимательно, пристально. Look closely at the photo — внимательно посмотри на фотографию. Здесь closely описывает внимание; для физической близости часто используют close. Вы пытаетесь прочитать мелкую надпись: I would read it if I had my glasses — я бы прочитал это, если бы у меня были очки. Друг уже ищет свои очки. Они у него на голове — там искать обычно забывают.",
+        "uk": "Closely — уважно, пильно. Look closely at the photo — уважно подивися на фотографію. Тут closely описує увагу; для фізичної близькості часто використовують close. Ви намагаєтеся прочитати дрібний напис: I would read it if I had my glasses — я б прочитав це, якби в мене були окуляри. Друг уже шукає свої окуляри. Вони в нього на голові — там шукати зазвичай забувають."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-02:intro3:r1",
+              "text": "I would read it if I had my glasses."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro3:r2",
+              "text": "I would reading it if I had my glasses."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro3:r3",
+              "text": "I would read it if I would have my glasses."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-02:intro3:r1",
+              "text": "I would read it if I had my glasses."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro3:r2",
+              "text": "I would reading it if I had my glasses."
+            },
+            {
+              "responseId": "en:lesson-27:session-02:intro3:r3",
+              "text": "I would read it if I would have my glasses."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "974d54d5a4551b1d5fc24e8847fbaae354184d22e9d98794c9a35ef0c270209c"
+}

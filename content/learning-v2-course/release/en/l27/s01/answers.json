@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-01:word:possibly",
+    "correctText": "possibly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i01",
+    "correctText": "I would possibly take a train.",
+    "correctResponseId": "en:lesson-27:session-01:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i03",
+    "correctText": "Where would you go?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i04",
+    "correctText": "I would go to the coast.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i05",
+    "correctText": "I cannot afford it right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:word:naturally",
+    "correctText": "naturally",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i06",
+    "correctText": "These flowers grow naturally here.",
+    "correctResponseId": "en:lesson-27:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i07",
+    "correctText": "We would grow vegetables if we had a garden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i09",
+    "correctText": "Is it far from the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:word:obviously",
+    "correctText": "obviously",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i10",
+    "correctText": "It is obviously too small.",
+    "correctResponseId": "en:lesson-27:session-01:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i11",
+    "correctText": "Let us choose a cheaper place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i12",
+    "correctText": "move",
+    "correctResponseId": "en:lesson-27:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:word:frankly",
+    "correctText": "frankly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i13",
+    "correctText": "Frankly, I need a break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i14",
+    "correctText": "Shall we sit down for a while?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i15",
+    "correctText": "would",
+    "correctResponseId": "en:lesson-27:session-01:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i16",
+    "correctText": "I would visit you every weekend.",
+    "correctResponseId": "en:lesson-27:session-01:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-01:i17",
+    "correctText": "Thanks for your help.",
+    "correctResponseId": null
+  }
+]

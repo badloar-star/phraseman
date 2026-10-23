@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-01:intro1:r2": {
+          "ru": "В условии нужно had, без would.",
+          "uk": "В умові потрібно had, без would."
+        },
+        "en:lesson-27:session-01:intro1:r3": {
+          "ru": "После would нужна начальная форма travel.",
+          "uk": "Після would потрібна початкова форма travel."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-01:intro2:r2": {
+          "ru": "После would нужно grow.",
+          "uk": "Після would потрібно grow."
+        },
+        "en:lesson-27:session-01:intro2:r3": {
+          "ru": "В условии нужно had без would.",
+          "uk": "В умові потрібно had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-01:intro3:r2": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        },
+        "en:lesson-27:session-01:intro3:r3": {
+          "ru": "Прошедшая форма find — found.",
+          "uk": "Минула форма find — found."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4c1a14709b6b2c323de9977de6681a54f6c9684ebabb0cc0b8608e5f102142ae"
+}

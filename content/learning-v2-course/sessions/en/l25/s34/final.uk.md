@@ -53,99 +53,99 @@ Toenails — нігті на ногах; fingernails — на руках. I had 
 <!-- interaction_id: en:lesson-25:session-34:word:nostril; family: word_card -->
 > **nostril** — Ніздря. Nostril — один із двох зовнішніх отворів носа.
 
-**2 · Скажіть: «З моєї ніздрі вже перестала йти кров до того моменту, коли прийшла медсестра.»**
-<!-- interaction_id: en:lesson-25:session-34:i01; family: phrase_builder -->
-Плитки: `arrived` `nurse` `the` `time` `the` `by` `bleeding` `stopped` `had` `nostril` `My` → **My nostril had stopped bleeding by the time the nurse arrived.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-34:i01; family: listen_choose -->
+🔊 *My left nostril is blocked.* → **My left nostril is blocked.** · My right nostril is blocked. · His left nostril is blocked.
+- My right nostril is blocked. — *У записі звучить My left nostril is blocked.*
+- His left nostril is blocked. — *У записі звучить My left nostril is blocked.*
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-34:i02; family: context_gap_grammar -->
-My nostril ___ stopped bleeding by the time the nurse arrived. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Вам важко дихати носом. Попросіть серветку: «Можна мені серветку?»**
+<!-- interaction_id: en:lesson-25:session-34:i02; family: scripted_repeat_compare -->
+🎙 **Can I have a tissue?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-34:i03; family: listen_choose -->
-🔊 *My nostril had stopped bleeding by the time the nurse arrived.* → **My nostril had stopped bleeding by the time the nurse arrived.** · His nostril had stopped bleeding by the time the nurse arrived. · My nostril had stopped bleeding by the time the doctor arrived.
-- His nostril had stopped bleeding by the time the nurse arrived. — *У записі звучить My nostril had stopped bleeding by the time the nurse arrived.*
-- My nostril had stopped bleeding by the time the doctor arrived. — *У записі звучить My nostril had stopped bleeding by the time the nurse arrived.*
-
-**5 · Картка слова — knuckle**
+**4 · Картка слова — knuckle**
 <!-- interaction_id: en:lesson-25:session-34:word:knuckle; family: word_card -->
 > **knuckle** — Кісточка пальця. Knuckle — суглоб пальця, особливо помітний на стиснутому кулаці.
 
-**6 · Скажіть: «Кісточка мого пальця вже набрякла до того моменту, коли ми дісталися додому.»**
+**5 · Показуючи суглоб пальця, ви пояснюєте, де болить. Виберіть назву цієї частини тіла.**
+<!-- interaction_id: en:lesson-25:session-34:i03; family: context_gap_grammar -->
+My ___ hurts. → **knuckle** · nostril · tissue
+- nostril — *Nostril — ніздря; ви показуєте суглоб пальця.*
+- tissue — *Tissue — серветка, а не частина тіла.*
+
+**6 · Поясніть послідовність: «Я забив руку до того, як ми вийшли з дому».**
 <!-- interaction_id: en:lesson-25:session-34:i04; family: phrase_builder -->
-Плитки: `home` `got` `we` `time` `the` `by` `swollen` `had` `knuckle` `My` → **My knuckle had swollen by the time we got home.**
+Плитки: `home` `left` `we` `before` `hand` `my` `hurt` `I` → **I hurt my hand before we left home.**
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-34:i05; family: context_gap_grammar -->
-My knuckle ___ swollen by the time we got home. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-34:i06; family: listen_choose -->
-🔊 *My knuckle had swollen by the time we got home.* → **My knuckle had swollen by the time we got home.** · His knuckle had swollen by the time we got home. · My knuckle had swollen by the time they got home.
-- His knuckle had swollen by the time we got home. — *У записі звучить My knuckle had swollen by the time we got home.*
-- My knuckle had swollen by the time they got home. — *У записі звучить My knuckle had swollen by the time we got home.*
-
-**9 · Картка слова — fingernails**
+**7 · Картка слова — fingernails**
 <!-- interaction_id: en:lesson-25:session-34:word:fingernails; family: word_card -->
 > **fingernails** — Нігті на руках. Один ніготь на руці — fingernail.
 
-**10 · Скажіть: «Я вже підстриг нігті на руках до того моменту, коли вона знайшла пилочку.»**
-<!-- interaction_id: en:lesson-25:session-34:i07; family: phrase_builder -->
-Плитки: `file` `the` `found` `she` `time` `the` `by` `fingernails` `my` `cut` `had` `I` → **I had cut my fingernails by the time she found the file.**
+**8 · Почуйте опис нігтів на руках.**
+<!-- interaction_id: en:lesson-25:session-34:i05; family: listen_build_dictation -->
+🔊 *My fingernails are too long.* Плитки: `long` `too` `are` `fingernails` `My` → **My fingernails are too long.**
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-34:i08; family: context_gap_grammar -->
-I ___ cut my fingernails by the time she found the file. → **had** · have · was
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**9 · Ви підстригли нігті вчора. Виберіть час для завершеної події.**
+<!-- interaction_id: en:lesson-25:session-34:i06; family: context_gap_grammar -->
+I ___ my nails yesterday. → **cut** · have cut · had cutting
+- have cut — *Yesterday називає завершений момент; тут потрібен Past Simple cut.*
+- had cutting — *Had cutting не утворює Past Perfect; для вчорашньої події досить cut.*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-34:i09; family: listen_choose -->
-🔊 *I had cut my fingernails by the time she found the file.* → **I had cut my fingernails by the time she found the file.** · He had cut his fingernails by the time she found the file. · I had cut my fingernails by the time he found the file.
-- He had cut his fingernails by the time she found the file. — *У записі звучить I had cut my fingernails by the time she found the file.*
-- I had cut my fingernails by the time he found the file. — *У записі звучить I had cut my fingernails by the time she found the file.*
-
-**13 · Картка слова — toenails**
+**10 · Картка слова — toenails**
 <!-- interaction_id: en:lesson-25:session-34:word:toenails; family: word_card -->
 > **toenails** — Нігті на ногах. Один ніготь на нозі — toenail.
 
-**14 · Скажіть: «Я вже нафарбувала нігті на ногах до того моменту, коли вона приїхала.»**
-<!-- interaction_id: en:lesson-25:session-34:i10; family: phrase_builder -->
-Плитки: `arrived` `she` `time` `the` `by` `toenails` `my` `painted` `had` `I` → **I had painted my toenails by the time she arrived.**
+**11 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-34:i07; family: listen_choose -->
+🔊 *I have already painted my toenails.* → **I have already painted my toenails.** · I have already painted my fingernails. · She has already painted her toenails.
+- I have already painted my fingernails. — *У записі звучить I have already painted my toenails.*
+- She has already painted her toenails. — *У записі звучить I have already painted my toenails.*
 
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-34:i11; family: context_gap_grammar -->
-I ___ painted my toenails by the time she arrived. → **had** · have · was
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**12 · Зіставте частини тіла з перекладом**
+<!-- interaction_id: en:lesson-25:session-34:i08; family: speed_match -->
+nostril — ніздря · knuckle — кісточка пальця · fingernails — нігті на руках · toenails — нігті на ногах
+
+**13 · Одну серветку вже використали. Попросіть ще одну.**
+<!-- interaction_id: en:lesson-25:session-34:i09; family: context_gap_grammar -->
+Can I have ___ tissue? → **another** · other · others
+- other — *Перед одниною tissue потрібно another.*
+- others — *Others замінює іменник, а тут після пропуску стоїть tissue.*
+
+**14 · На прийомі уточніть: «Біль почався сьогодні вранці».**
+<!-- interaction_id: en:lesson-25:session-34:i10; family: scripted_repeat_compare -->
+🎙 **The pain started this morning.**
+
+**15 · Розкажіть про колишній стан: «Мої руки раніше були дуже сухими».**
+<!-- interaction_id: en:lesson-25:session-34:i11; family: phrase_builder -->
+Плитки: `dry` `very` `be` `to` `used` `hands` `My` → **My hands used to be very dry.**
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-34:i12; family: listen_choose -->
-🔊 *I had painted my toenails by the time she arrived.* → **I had painted my toenails by the time she arrived.** · She had painted her toenails by the time I arrived. · I had painted my toenails by the time he arrived.
-- She had painted her toenails by the time I arrived. — *У записі звучить I had painted my toenails by the time she arrived.*
-- I had painted my toenails by the time he arrived. — *У записі звучить I had painted my toenails by the time she arrived.*
+🔊 *We had left by the time the nurse called.* → **We had left by the time the nurse called.** · We had arrived by the time the nurse called. · We had left by the time the doctor called.
+- We had arrived by the time the nurse called. — *У записі звучить We had left by the time the nurse called.*
+- We had left by the time the doctor called. — *У записі звучить We had left by the time the nurse called.*
 
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-34:i13; family: speed_match -->
-nostril — ніздря · knuckle — кісточка пальця · fingernails — нігті на руках · toenails — нігті на ногах
+**17 · Спочатку ви помили руки, потім почали готувати. Виберіть зв’язок подій.**
+<!-- interaction_id: en:lesson-25:session-34:i13; family: context_gap_grammar -->
+I started cooking ___ I washed my hands. → **after** · before · while
+- before — *Before означало б, що готувати почали раніше за миття рук.*
+- while — *While означає одночасність, а тут дії йдуть одна за одною.*
 
-**18 · Уже закінчив**
+**18 · Почуйте прохання передати крем.**
 <!-- interaction_id: en:lesson-25:session-34:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+🔊 *Please pass me the hand cream.* Плитки: `cream` `hand` `the` `me` `pass` `Please` → **Please pass me the hand cream.**
 
-**19 · Потяг уже поїхав**
-<!-- interaction_id: en:lesson-25:session-34:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**19 · Вам пропонують допомогу. Дайте відповідь: «Дякую, тепер мені краще».**
+<!-- interaction_id: en:lesson-25:session-34:i15; family: scripted_repeat_compare -->
+🎙 **Thank you, I feel better now.**
 
-**20 · Скажіть: «Він уже підстриг нігті на руках до того моменту, коли я знайшов пилочку».**
-<!-- interaction_id: en:lesson-25:session-34:i16; family: scripted_repeat_compare -->
-🎙 **He had cut his fingernails by the time I found the file.**
+**20 · Лікар прийшов після того, як біль минув. Виберіть had для ранішої події.**
+<!-- interaction_id: en:lesson-25:session-34:i16; family: context_gap_grammar -->
+The pain ___ stopped by the time the doctor arrived. → **had** · has · is
+- has — *Has stopped стосується теперішнього, а момент arrived — у минулому.*
+- is — *Для завершення до минулої події потрібно had stopped.*
 
-**21 · Скажіть: «Вона вже нафарбувала нігті на ногах до того моменту, коли він приїхав».**
-<!-- interaction_id: en:lesson-25:session-34:i17; family: scripted_repeat_compare -->
-🎙 **She had painted her toenails by the time he arrived.**
+**21 · Уточніть, куди поклали ножиці: «Я залишив ножиці у ванній».**
+<!-- interaction_id: en:lesson-25:session-34:i17; family: phrase_builder -->
+Плитки: `bathroom` `the` `in` `scissors` `the` `left` `I` → **I left the scissors in the bathroom.**
 

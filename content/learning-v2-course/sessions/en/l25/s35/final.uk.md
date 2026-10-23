@@ -53,99 +53,99 @@ Incident — пригода, окрема подія, часто неприєм�
 <!-- interaction_id: en:lesson-25:session-35:word:rumour; family: word_card -->
 > **rumour** — Чутка. Rumour — повідомлення, яке передають одне одному, не знаючи точно, чи воно правдиве.
 
-**2 · Скажіть: «Чутка вже поширилася до того моменту, коли я її почув.»**
-<!-- interaction_id: en:lesson-25:session-35:i01; family: phrase_builder -->
-Плитки: `it` `heard` `I` `time` `the` `by` `spread` `had` `rumour` `The` → **The rumour had spread by the time I heard it.**
+**2 · Ніхто не підтвердив новину. Виберіть слово «чутка».**
+<!-- interaction_id: en:lesson-25:session-35:i01; family: context_gap_grammar -->
+It is only a ___. → **rumour** · receipt · promise
+- receipt — *Receipt — чек, а тут неперевірена новина.*
+- promise — *Promise — обіцянка, а не неперевірене повідомлення.*
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-35:i02; family: context_gap_grammar -->
-The rumour ___ spread by the time I heard it. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Уточніть джерело новини: «Хто тобі це сказав?»**
+<!-- interaction_id: en:lesson-25:session-35:i02; family: scripted_repeat_compare -->
+🎙 **Who told you that?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-35:i03; family: listen_choose -->
-🔊 *The rumour had spread by the time I heard it.* → **The rumour had spread by the time I heard it.** · The rumour had spread by the time she heard it. · The rumour had spread by the time I arrived.
-- The rumour had spread by the time she heard it. — *У записі звучить The rumour had spread by the time I heard it.*
-- The rumour had spread by the time I arrived. — *У записі звучить The rumour had spread by the time I heard it.*
-
-**5 · Картка слова — prank**
+**4 · Картка слова — prank**
 <!-- interaction_id: en:lesson-25:session-35:word:prank; family: word_card -->
 > **prank** — Розіграш. Prank — дія, якою розігрують або намагаються розсмішити іншу людину.
 
-**6 · Скажіть: «Вони вже спланували розіграш до того моменту, коли я прийшов.»**
+**5 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-35:i03; family: listen_choose -->
+🔊 *The prank upset my brother.* → **The prank upset my brother.** · The prank upset my sister. · The joke upset my brother.
+- The prank upset my sister. — *У записі звучить The prank upset my brother.*
+- The joke upset my brother. — *У записі звучить The prank upset my brother.*
+
+**6 · Вибачтеся за те, що сталося: «Вибач, що я тебе налякав».**
 <!-- interaction_id: en:lesson-25:session-35:i04; family: phrase_builder -->
-Плитки: `arrived` `I` `time` `the` `by` `prank` `the` `planned` `had` `They` → **They had planned the prank by the time I arrived.**
+Плитки: `you` `scared` `I` `sorry` `am` `I` → **I am sorry I scared you.**
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-35:i05; family: context_gap_grammar -->
-They ___ planned the prank by the time I arrived. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-35:i06; family: listen_choose -->
-🔊 *They had planned the prank by the time I arrived.* → **They had planned the prank by the time I arrived.** · We had planned the prank by the time she arrived. · They had planned the prank by the time I called.
-- We had planned the prank by the time she arrived. — *У записі звучить They had planned the prank by the time I arrived.*
-- They had planned the prank by the time I called. — *У записі звучить They had planned the prank by the time I arrived.*
-
-**9 · Картка слова — fault**
+**7 · Картка слова — fault**
 <!-- interaction_id: en:lesson-25:session-35:word:fault; family: word_card -->
 > **fault** — Несправність. Fault тут — те, через що річ працює неправильно.
 
-**10 · Скажіть: «Ми вже знайшли несправність до того моменту, коли вона зателефонувала.»**
-<!-- interaction_id: en:lesson-25:session-35:i07; family: phrase_builder -->
-Плитки: `called` `she` `time` `the` `by` `fault` `the` `found` `had` `We` → **We had found the fault by the time she called.**
+**8 · Почуйте повідомлення про несправність.**
+<!-- interaction_id: en:lesson-25:session-35:i05; family: listen_build_dictation -->
+🔊 *There is a fault in the washing machine.* Плитки: `machine` `washing` `the` `in` `fault` `a` `is` `There` → **There is a fault in the washing machine.**
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-35:i08; family: context_gap_grammar -->
-We ___ found the fault by the time she called. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**9 · Майстер знайшов причину вчора. Виберіть Past Simple.**
+<!-- interaction_id: en:lesson-25:session-35:i06; family: context_gap_grammar -->
+The repairman ___ the problem yesterday. → **found** · has found · finding
+- has found — *Yesterday вимагає розповіді про завершену подію: found.*
+- finding — *Finding без допоміжного дієслова тут не підходить.*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-35:i09; family: listen_choose -->
-🔊 *We had found the fault by the time she called.* → **We had found the fault by the time she called.** · They had found the fault by the time she called. · We had found the fault by the time he called.
-- They had found the fault by the time she called. — *У записі звучить We had found the fault by the time she called.*
-- We had found the fault by the time he called. — *У записі звучить We had found the fault by the time she called.*
-
-**13 · Картка слова — incident**
+**10 · Картка слова — incident**
 <!-- interaction_id: en:lesson-25:session-35:word:incident; family: word_card -->
 > **incident** — Пригода. Incident — окрема подія, часто неприємна чи незвична.
 
-**14 · Скажіть: «Він уже описав пригоду до того моменту, коли ми дісталися додому.»**
-<!-- interaction_id: en:lesson-25:session-35:i10; family: phrase_builder -->
-Плитки: `home` `got` `we` `time` `the` `by` `incident` `the` `described` `had` `He` → **He had described the incident by the time we got home.**
+**11 · Повідомте, що пригода сталася після обіду: «Пригода сталася після обіду».**
+<!-- interaction_id: en:lesson-25:session-35:i07; family: phrase_builder -->
+Плитки: `lunch` `after` `happened` `incident` `The` → **The incident happened after lunch.**
 
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-35:i11; family: context_gap_grammar -->
-He ___ described the incident by the time we got home. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**12 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-35:i08; family: listen_choose -->
+🔊 *Nobody was hurt.* → **Nobody was hurt.** · Somebody was hurt. · Nobody was there.
+- Somebody was hurt. — *У записі звучить Nobody was hurt.*
+- Nobody was there. — *У записі звучить Nobody was hurt.*
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-35:i12; family: listen_choose -->
-🔊 *He had described the incident by the time we got home.* → **He had described the incident by the time we got home.** · She had described the incident by the time we got home. · He had described the incident by the time they got home.
-- She had described the incident by the time we got home. — *У записі звучить He had described the incident by the time we got home.*
-- He had described the incident by the time they got home. — *У записі звучить He had described the incident by the time we got home.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-35:i13; family: speed_match -->
+**13 · Зіставте слова та значення**
+<!-- interaction_id: en:lesson-25:session-35:i09; family: speed_match -->
 rumour — чутка · prank — розіграш · fault — несправність · incident — пригода
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-35:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Майстер закінчив ремонт раніше за ваше повернення. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-35:i10; family: context_gap_grammar -->
+The repairman ___ finished by the time I got home. → **had** · has · is
+- has — *Has finished пов’язує дію з теперішнім, а got задає минулий момент.*
+- is — *Тут потрібно had finished — уже закінчив до минулого моменту.*
 
-**19 · Потяг уже поїхав**
-<!-- interaction_id: en:lesson-25:session-35:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**15 · Ви не розчули пояснення. Попросіть: «Будь ласка, розкажи мені ще раз».**
+<!-- interaction_id: en:lesson-25:session-35:i11; family: scripted_repeat_compare -->
+🎙 **Please tell me again.**
 
-**20 · Скажіть: «Він уже знайшов несправність до того моменту, коли я зателефонував».**
-<!-- interaction_id: en:lesson-25:session-35:i16; family: scripted_repeat_compare -->
-🎙 **He had found the fault by the time I called.**
+**16 · Порівняйте з минулим: «Я раніше вірив усьому, що він казав».**
+<!-- interaction_id: en:lesson-25:session-35:i12; family: phrase_builder -->
+Плитки: `said` `he` `everything` `believe` `to` `used` `I` → **I used to believe everything he said.**
 
-**21 · Скажіть: «Ми вже спланували розіграш до того моменту, коли він прийшов».**
+**17 · Спочатку ви почули пояснення, потім зрозуміли жарт. Виберіть зв’язок подій.**
+<!-- interaction_id: en:lesson-25:session-35:i13; family: context_gap_grammar -->
+I understood the joke ___ I heard the explanation. → **after** · before · while
+- before — *Before означало б, що ви зрозуміли жарт до пояснення.*
+- while — *While означає одночасність; тут розуміння прийшло після пояснення.*
+
+**18 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-35:i14; family: listen_choose -->
+🔊 *I have already spoken to the manager.* → **I have already spoken to the manager.** · I have already written to the manager. · She has already spoken to the manager.
+- I have already written to the manager. — *У записі звучить I have already spoken to the manager.*
+- She has already spoken to the manager. — *У записі звучить I have already spoken to the manager.*
+
+**19 · Перший приклад незрозумілий. Попросіть ще один.**
+<!-- interaction_id: en:lesson-25:session-35:i15; family: context_gap_grammar -->
+Can you give me ___ example? → **another** · other · others
+- other — *Перед одниною example вживаємо another.*
+- others — *Others замінює іменник, але example тут уже є.*
+
+**20 · Почуйте, де залишили повідомлення.**
+<!-- interaction_id: en:lesson-25:session-35:i16; family: listen_build_dictation -->
+🔊 *I left a message on your phone.* Плитки: `phone` `your` `on` `message` `a` `left` `I` → **I left a message on your phone.**
+
+**21 · Завершіть розмову після з’ясування обставин: «Тепер я розумію, що сталося».**
 <!-- interaction_id: en:lesson-25:session-35:i17; family: scripted_repeat_compare -->
-🎙 **We had planned the prank by the time he arrived.**
+🎙 **Now I understand what happened.**
 

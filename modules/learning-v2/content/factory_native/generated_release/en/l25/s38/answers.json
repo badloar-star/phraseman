@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-38:i01",
-    "correctText": "The listener had heard the news by the time I called.",
-    "correctResponseId": null
+    "correctText": "My friend is a good listener.",
+    "correctResponseId": "en:lesson-25:session-38:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-38:i02",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-38:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-38:i03",
-    "correctText": "The listener had heard the news by the time I called.",
-    "correctResponseId": "en:lesson-25:session-38:i03:r1"
+    "correctText": "Can I talk to you?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-38:word:viewer",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-38:i03",
+    "correctText": "viewer",
+    "correctResponseId": "en:lesson-25:session-38:i03:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-38:i04",
-    "correctText": "The viewer had changed the channel by the time the film started.",
+    "correctText": "When does the programme start?",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-38:i05",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-38:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-38:i06",
-    "correctText": "The viewer had changed the channel by the time the film started.",
-    "correctResponseId": "en:lesson-25:session-38:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-38:word:learner",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-38:i07",
-    "correctText": "The learner had finished the exercise by the time I arrived.",
+    "interactionId": "en:lesson-25:session-38:i05",
+    "correctText": "The learner needs more time.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-38:i08",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-38:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-38:i09",
-    "correctText": "The learner had finished the exercise by the time I arrived.",
-    "correctResponseId": "en:lesson-25:session-38:i09:r1"
+    "interactionId": "en:lesson-25:session-38:i06",
+    "correctText": "I do not understand this part.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-38:word:pensioner",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-38:i07",
+    "correctText": "The pensioner took the bus to the market.",
+    "correctResponseId": "en:lesson-25:session-38:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-38:i08",
+    "correctText": "gone",
+    "correctResponseId": "en:lesson-25:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-38:i09",
+    "correctText": "en:lesson-25:session-38:i09:p1=listener\nen:lesson-25:session-38:i09:p2=viewer\nen:lesson-25:session-38:i09:p3=learner\nen:lesson-25:session-38:i09:p4=pensioner",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-25:session-38:i10",
-    "correctText": "The pensioner had caught the bus by the time it started raining.",
+    "correctText": "I used to listen to the radio every morning.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-38:i11",
-    "correctText": "had",
+    "correctText": "has already ended",
     "correctResponseId": "en:lesson-25:session-38:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-38:i12",
-    "correctText": "The pensioner had caught the bus by the time it started raining.",
+    "correctText": "I finished the exercise ten minutes ago.",
     "correctResponseId": "en:lesson-25:session-38:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-38:i13",
-    "correctText": "en:lesson-25:session-38:i13:p1=listener\nen:lesson-25:session-38:i13:p2=viewer\nen:lesson-25:session-38:i13:p3=learner\nen:lesson-25:session-38:i13:p4=pensioner",
+    "correctText": "Can I help you with those bags?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-38:i14",
-    "correctText": "She had finished before I called.",
-    "correctResponseId": null
+    "correctText": "after",
+    "correctResponseId": "en:lesson-25:session-38:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-38:i15",
-    "correctText": "The train had left when we arrived.",
+    "correctText": "I can carry them to the door.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-38:i16",
-    "correctText": "The listener had heard the news by the time we called.",
-    "correctResponseId": null
+    "correctText": "another",
+    "correctResponseId": "en:lesson-25:session-38:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-38:i17",
-    "correctText": "The learner had finished the exercise by the time we arrived.",
+    "correctText": "Thank you for listening to me.",
     "correctResponseId": null
   }
 ]

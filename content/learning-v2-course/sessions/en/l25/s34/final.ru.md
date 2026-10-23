@@ -53,99 +53,99 @@ Toenails — ногти на ногах; fingernails — на руках. I had 
 <!-- interaction_id: en:lesson-25:session-34:word:nostril; family: word_card -->
 > **nostril** — Ноздря. Nostril — одно из двух наружных отверстий носа.
 
-**2 · Скажите: «Из моей ноздри уже перестала идти кровь к тому моменту, когда пришла медсестра.»**
-<!-- interaction_id: en:lesson-25:session-34:i01; family: phrase_builder -->
-Плитки: `arrived` `nurse` `the` `time` `the` `by` `bleeding` `stopped` `had` `nostril` `My` → **My nostril had stopped bleeding by the time the nurse arrived.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-34:i01; family: listen_choose -->
+🔊 *My left nostril is blocked.* → **My left nostril is blocked.** · My right nostril is blocked. · His left nostril is blocked.
+- My right nostril is blocked. — *В записи звучит My left nostril is blocked.*
+- His left nostril is blocked. — *В записи звучит My left nostril is blocked.*
 
-**3 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-34:i02; family: context_gap_grammar -->
-My nostril ___ stopped bleeding by the time the nurse arrived. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**3 · Вам трудно дышать носом. Попросите салфетку: «Можно мне салфетку?»**
+<!-- interaction_id: en:lesson-25:session-34:i02; family: scripted_repeat_compare -->
+🎙 **Can I have a tissue?**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-34:i03; family: listen_choose -->
-🔊 *My nostril had stopped bleeding by the time the nurse arrived.* → **My nostril had stopped bleeding by the time the nurse arrived.** · His nostril had stopped bleeding by the time the nurse arrived. · My nostril had stopped bleeding by the time the doctor arrived.
-- His nostril had stopped bleeding by the time the nurse arrived. — *В записи звучит My nostril had stopped bleeding by the time the nurse arrived.*
-- My nostril had stopped bleeding by the time the doctor arrived. — *В записи звучит My nostril had stopped bleeding by the time the nurse arrived.*
-
-**5 · Карточка слова — knuckle**
+**4 · Карточка слова — knuckle**
 <!-- interaction_id: en:lesson-25:session-34:word:knuckle; family: word_card -->
 > **knuckle** — Костяшка пальца. Knuckle — сустав пальца, особенно заметный на сжатом кулаке.
 
-**6 · Скажите: «Костяшка моего пальца уже опухла к тому моменту, когда мы добрались домой.»**
+**5 · Показывая сустав пальца, вы объясняете, где больно. Выберите название этой части тела.**
+<!-- interaction_id: en:lesson-25:session-34:i03; family: context_gap_grammar -->
+My ___ hurts. → **knuckle** · nostril · tissue
+- nostril — *Nostril — ноздря; вы показываете сустав пальца.*
+- tissue — *Tissue — салфетка, а не часть тела.*
+
+**6 · Объясните последовательность: «Я ушиб руку до того, как мы вышли из дома».**
 <!-- interaction_id: en:lesson-25:session-34:i04; family: phrase_builder -->
-Плитки: `home` `got` `we` `time` `the` `by` `swollen` `had` `knuckle` `My` → **My knuckle had swollen by the time we got home.**
+Плитки: `home` `left` `we` `before` `hand` `my` `hurt` `I` → **I hurt my hand before we left home.**
 
-**7 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-34:i05; family: context_gap_grammar -->
-My knuckle ___ swollen by the time we got home. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-34:i06; family: listen_choose -->
-🔊 *My knuckle had swollen by the time we got home.* → **My knuckle had swollen by the time we got home.** · His knuckle had swollen by the time we got home. · My knuckle had swollen by the time they got home.
-- His knuckle had swollen by the time we got home. — *В записи звучит My knuckle had swollen by the time we got home.*
-- My knuckle had swollen by the time they got home. — *В записи звучит My knuckle had swollen by the time we got home.*
-
-**9 · Карточка слова — fingernails**
+**7 · Карточка слова — fingernails**
 <!-- interaction_id: en:lesson-25:session-34:word:fingernails; family: word_card -->
 > **fingernails** — Ногти на руках. Один ноготь на руке — fingernail.
 
-**10 · Скажите: «Я уже подстриг ногти на руках к тому моменту, когда она нашла пилочку.»**
-<!-- interaction_id: en:lesson-25:session-34:i07; family: phrase_builder -->
-Плитки: `file` `the` `found` `she` `time` `the` `by` `fingernails` `my` `cut` `had` `I` → **I had cut my fingernails by the time she found the file.**
+**8 · Услышьте описание ногтей на руках.**
+<!-- interaction_id: en:lesson-25:session-34:i05; family: listen_build_dictation -->
+🔊 *My fingernails are too long.* Плитки: `long` `too` `are` `fingernails` `My` → **My fingernails are too long.**
 
-**11 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-34:i08; family: context_gap_grammar -->
-I ___ cut my fingernails by the time she found the file. → **had** · have · was
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**9 · Вы подстригли ногти вчера. Выберите время для законченного события.**
+<!-- interaction_id: en:lesson-25:session-34:i06; family: context_gap_grammar -->
+I ___ my nails yesterday. → **cut** · have cut · had cutting
+- have cut — *Yesterday называет законченный момент; здесь нужен Past Simple cut.*
+- had cutting — *Had cutting не образует Past Perfect; для вчерашнего события достаточно cut.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-34:i09; family: listen_choose -->
-🔊 *I had cut my fingernails by the time she found the file.* → **I had cut my fingernails by the time she found the file.** · He had cut his fingernails by the time she found the file. · I had cut my fingernails by the time he found the file.
-- He had cut his fingernails by the time she found the file. — *В записи звучит I had cut my fingernails by the time she found the file.*
-- I had cut my fingernails by the time he found the file. — *В записи звучит I had cut my fingernails by the time she found the file.*
-
-**13 · Карточка слова — toenails**
+**10 · Карточка слова — toenails**
 <!-- interaction_id: en:lesson-25:session-34:word:toenails; family: word_card -->
 > **toenails** — Ногти на ногах. Один ноготь на ноге — toenail.
 
-**14 · Скажите: «Я уже накрасила ногти на ногах к тому моменту, когда она приехала.»**
-<!-- interaction_id: en:lesson-25:session-34:i10; family: phrase_builder -->
-Плитки: `arrived` `she` `time` `the` `by` `toenails` `my` `painted` `had` `I` → **I had painted my toenails by the time she arrived.**
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-34:i07; family: listen_choose -->
+🔊 *I have already painted my toenails.* → **I have already painted my toenails.** · I have already painted my fingernails. · She has already painted her toenails.
+- I have already painted my fingernails. — *В записи звучит I have already painted my toenails.*
+- She has already painted her toenails. — *В записи звучит I have already painted my toenails.*
 
-**15 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-34:i11; family: context_gap_grammar -->
-I ___ painted my toenails by the time she arrived. → **had** · have · was
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**12 · Соотнесите части тела с переводом**
+<!-- interaction_id: en:lesson-25:session-34:i08; family: speed_match -->
+nostril — ноздря · knuckle — костяшка пальца · fingernails — ногти на руках · toenails — ногти на ногах
+
+**13 · Одна салфетка уже использована. Попросите ещё одну.**
+<!-- interaction_id: en:lesson-25:session-34:i09; family: context_gap_grammar -->
+Can I have ___ tissue? → **another** · other · others
+- other — *Перед единственным числом tissue нужно another.*
+- others — *Others заменяет существительное, а здесь после пропуска стоит tissue.*
+
+**14 · На приёме уточните: «Боль началась сегодня утром».**
+<!-- interaction_id: en:lesson-25:session-34:i10; family: scripted_repeat_compare -->
+🎙 **The pain started this morning.**
+
+**15 · Расскажите о прежнем состоянии: «Мои руки раньше были очень сухими».**
+<!-- interaction_id: en:lesson-25:session-34:i11; family: phrase_builder -->
+Плитки: `dry` `very` `be` `to` `used` `hands` `My` → **My hands used to be very dry.**
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-34:i12; family: listen_choose -->
-🔊 *I had painted my toenails by the time she arrived.* → **I had painted my toenails by the time she arrived.** · She had painted her toenails by the time I arrived. · I had painted my toenails by the time he arrived.
-- She had painted her toenails by the time I arrived. — *В записи звучит I had painted my toenails by the time she arrived.*
-- I had painted my toenails by the time he arrived. — *В записи звучит I had painted my toenails by the time she arrived.*
+🔊 *We had left by the time the nurse called.* → **We had left by the time the nurse called.** · We had arrived by the time the nurse called. · We had left by the time the doctor called.
+- We had arrived by the time the nurse called. — *В записи звучит We had left by the time the nurse called.*
+- We had left by the time the doctor called. — *В записи звучит We had left by the time the nurse called.*
 
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-34:i13; family: speed_match -->
-nostril — ноздря · knuckle — костяшка пальца · fingernails — ногти на руках · toenails — ногти на ногах
+**17 · Сначала вы помыли руки, затем стали готовить. Выберите связь событий.**
+<!-- interaction_id: en:lesson-25:session-34:i13; family: context_gap_grammar -->
+I started cooking ___ I washed my hands. → **after** · before · while
+- before — *Before означало бы, что готовить начали раньше мытья рук.*
+- while — *While означает одновременность, а здесь действия следуют одно за другим.*
 
-**18 · Уже закончил**
+**18 · Услышьте просьбу передать крем.**
 <!-- interaction_id: en:lesson-25:session-34:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+🔊 *Please pass me the hand cream.* Плитки: `cream` `hand` `the` `me` `pass` `Please` → **Please pass me the hand cream.**
 
-**19 · Поезд уже ушёл**
-<!-- interaction_id: en:lesson-25:session-34:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**19 · Вам предлагают помощь. Ответьте: «Спасибо, теперь мне лучше».**
+<!-- interaction_id: en:lesson-25:session-34:i15; family: scripted_repeat_compare -->
+🎙 **Thank you, I feel better now.**
 
-**20 · Скажите: «Он уже подстриг ногти на руках к тому моменту, когда я нашёл пилочку».**
-<!-- interaction_id: en:lesson-25:session-34:i16; family: scripted_repeat_compare -->
-🎙 **He had cut his fingernails by the time I found the file.**
+**20 · Врач пришёл после того, как боль прошла. Выберите had для более раннего события.**
+<!-- interaction_id: en:lesson-25:session-34:i16; family: context_gap_grammar -->
+The pain ___ stopped by the time the doctor arrived. → **had** · has · is
+- has — *Has stopped относится к настоящему, а момент arrived находится в прошлом.*
+- is — *Для завершения до прошлого события нужно had stopped.*
 
-**21 · Скажите: «Она уже накрасила ногти на ногах к тому моменту, когда он приехал».**
-<!-- interaction_id: en:lesson-25:session-34:i17; family: scripted_repeat_compare -->
-🎙 **She had painted her toenails by the time he arrived.**
+**21 · Уточните, куда положили ножницы: «Я оставил ножницы в ванной».**
+<!-- interaction_id: en:lesson-25:session-34:i17; family: phrase_builder -->
+Плитки: `bathroom` `the` `in` `scissors` `the` `left` `I` → **I left the scissors in the bathroom.**
 

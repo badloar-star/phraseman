@@ -53,99 +53,99 @@ Caller здесь — звонящий, человек, который звон�
 <!-- interaction_id: en:lesson-25:session-37:word:traveller; family: word_card -->
 > **traveller** — Путешественник. Traveller — человек, который путешествует или находится в поездке.
 
-**2 · Скажите: «Путешественник уже собрал вещи к тому моменту, когда приехало такси.»**
+**2 · Предложите помочь человеку в поездке: «Путешественнику нужна карта».**
 <!-- interaction_id: en:lesson-25:session-37:i01; family: phrase_builder -->
-Плитки: `arrived` `taxi` `the` `time` `the` `by` `packed` `had` `traveller` `The` → **The traveller had packed by the time the taxi arrived.**
+Плитки: `map` `a` `needs` `traveller` `The` → **The traveller needs a map.**
 
-**3 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-37:i02; family: context_gap_grammar -->
-The traveller ___ packed by the time the taxi arrived. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-37:i02; family: listen_choose -->
+🔊 *The station is opposite the hotel.* → **The station is opposite the hotel.** · The station is behind the hotel. · The shop is opposite the hotel.
+- The station is behind the hotel. — *В записи звучит The station is opposite the hotel.*
+- The shop is opposite the hotel. — *В записи звучит The station is opposite the hotel.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-37:i03; family: listen_choose -->
-🔊 *The traveller had packed by the time the taxi arrived.* → **The traveller had packed by the time the taxi arrived.** · The traveller had packed by the time the bus arrived. · The traveller had packed by the time we arrived.
-- The traveller had packed by the time the bus arrived. — *В записи звучит The traveller had packed by the time the taxi arrived.*
-- The traveller had packed by the time we arrived. — *В записи звучит The traveller had packed by the time the taxi arrived.*
-
-**5 · Карточка слова — shopper**
+**4 · Карточка слова — shopper**
 <!-- interaction_id: en:lesson-25:session-37:word:shopper; family: word_card -->
 > **shopper** — Покупатель. Shopper — человек, который ходит по магазинам или выбирает покупки.
 
-**6 · Скажите: «Покупатель уже заплатил к тому моменту, когда я подошёл к кассе.»**
-<!-- interaction_id: en:lesson-25:session-37:i04; family: phrase_builder -->
-Плитки: `till` `the` `reached` `I` `time` `the` `by` `paid` `had` `shopper` `The` → **The shopper had paid by the time I reached the till.**
+**5 · Человек выбирает продукты в магазине. Кто это?**
+<!-- interaction_id: en:lesson-25:session-37:i03; family: context_gap_grammar -->
+The ___ is choosing some fruit. → **shopper** · driver · cook
+- driver — *Driver — водитель; здесь человека называют по тому, что он делает покупки.*
+- cook — *Cook — повар; в этой ситуации человек выбирает покупки.*
 
-**7 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-37:i05; family: context_gap_grammar -->
-The shopper ___ paid by the time I reached the till. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**6 · В магазине уточните цену: «Сколько стоят эти яблоки?»**
+<!-- interaction_id: en:lesson-25:session-37:i04; family: scripted_repeat_compare -->
+🎙 **How much are these apples?**
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-37:i06; family: listen_choose -->
-🔊 *The shopper had paid by the time I reached the till.* → **The shopper had paid by the time I reached the till.** · The shopper had paid by the time she reached the till. · The shopper had paid by the time I reached the door.
-- The shopper had paid by the time she reached the till. — *В записи звучит The shopper had paid by the time I reached the till.*
-- The shopper had paid by the time I reached the door. — *В записи звучит The shopper had paid by the time I reached the till.*
-
-**9 · Карточка слова — reader**
+**7 · Карточка слова — reader**
 <!-- interaction_id: en:lesson-25:session-37:word:reader; family: word_card -->
 > **reader** — Читатель. Reader — человек, который читает.
 
-**10 · Скажите: «Читатель уже закончил книгу к тому моменту, когда мы встретились.»**
-<!-- interaction_id: en:lesson-25:session-37:i07; family: phrase_builder -->
-Плитки: `met` `we` `time` `the` `by` `book` `the` `finished` `had` `reader` `The` → **The reader had finished the book by the time we met.**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-37:i05; family: listen_choose -->
+🔊 *The reader turned the page.* → **The reader turned the page.** · The reader closed the book. · The reader opened the book.
+- The reader closed the book. — *В записи звучит The reader turned the page.*
+- The reader opened the book. — *В записи звучит The reader turned the page.*
 
-**11 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-37:i08; family: context_gap_grammar -->
-The reader ___ finished the book by the time we met. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**9 · Объясните свой выбор: «Я уже читал эту книгу». Используйте have.**
+<!-- interaction_id: en:lesson-25:session-37:i06; family: phrase_builder -->
+Плитки: `book` `this` `read` `already` `have` `I` → **I have already read this book.**
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-37:i09; family: listen_choose -->
-🔊 *The reader had finished the book by the time we met.* → **The reader had finished the book by the time we met.** · The reader had finished the story by the time we met. · The reader had finished the book by the time I called.
-- The reader had finished the story by the time we met. — *В записи звучит The reader had finished the book by the time we met.*
-- The reader had finished the book by the time I called. — *В записи звучит The reader had finished the book by the time we met.*
-
-**13 · Карточка слова — caller**
+**10 · Карточка слова — caller**
 <!-- interaction_id: en:lesson-25:session-37:word:caller; family: word_card -->
 > **caller** — Звонящий. Caller здесь — человек, который звонит по телефону.
 
-**14 · Скажите: «Звонящий уже оставил сообщение к тому моменту, когда я нашёл телефон.»**
-<!-- interaction_id: en:lesson-25:session-37:i10; family: phrase_builder -->
-Плитки: `phone` `my` `found` `I` `time` `the` `by` `message` `a` `left` `had` `caller` `The` → **The caller had left a message by the time I found my phone.**
+**11 · Услышьте, что сообщил звонящий.**
+<!-- interaction_id: en:lesson-25:session-37:i07; family: listen_build_dictation -->
+🔊 *The caller gave me her name.* Плитки: `name` `her` `me` `gave` `caller` `The` → **The caller gave me her name.**
 
-**15 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-37:i11; family: context_gap_grammar -->
-The caller ___ left a message by the time I found my phone. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**12 · Вы не расслышали имя по телефону. Попросите: «Не могли бы вы повторить своё имя?»**
+<!-- interaction_id: en:lesson-25:session-37:i08; family: scripted_repeat_compare -->
+🎙 **Could you repeat your name?**
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-37:i12; family: listen_choose -->
-🔊 *The caller had left a message by the time I found my phone.* → **The caller had left a message by the time I found my phone.** · The caller had left a message by the time she found her phone. · The caller had left a message by the time I got home.
-- The caller had left a message by the time she found her phone. — *В записи звучит The caller had left a message by the time I found my phone.*
-- The caller had left a message by the time I got home. — *В записи звучит The caller had left a message by the time I found my phone.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-37:i13; family: speed_match -->
+**13 · Соотнесите людей и названия**
+<!-- interaction_id: en:lesson-25:session-37:i09; family: speed_match -->
 traveller — путешественник · shopper — покупатель · reader — читатель · caller — звонящий
 
-**18 · Уже закончил**
-<!-- interaction_id: en:lesson-25:session-37:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Поезд ушёл раньше вашего прихода. Выберите had.**
+<!-- interaction_id: en:lesson-25:session-37:i10; family: context_gap_grammar -->
+The train ___ left by the time I arrived. → **had** · has · is
+- has — *Has left относится к настоящему, а arrived задаёт прошлый момент.*
+- is — *Нужно had left: уже ушёл к моменту в прошлом.*
 
-**19 · Поезд уже ушёл**
-<!-- interaction_id: en:lesson-25:session-37:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-37:i11; family: listen_choose -->
+🔊 *I bought the tickets yesterday.* → **I bought the tickets yesterday.** · I booked the room yesterday. · I bought the tickets last week.
+- I booked the room yesterday. — *В записи звучит I bought the tickets yesterday.*
+- I bought the tickets last week. — *В записи звучит I bought the tickets yesterday.*
 
-**20 · Скажите: «Путешественник уже собрал вещи к тому моменту, когда я пришёл».**
-<!-- interaction_id: en:lesson-25:session-37:i16; family: scripted_repeat_compare -->
-🎙 **The traveller had packed by the time I arrived.**
+**16 · Первую книгу прочитали. Попросите другую книгу.**
+<!-- interaction_id: en:lesson-25:session-37:i12; family: context_gap_grammar -->
+Can I borrow ___ book? → **another** · other · others
+- other — *Перед book в единственном числе нужно another.*
+- others — *Others заменяет существительное; здесь уже стоит book.*
 
-**21 · Скажите: «Читатель уже закончил рассказ к тому моменту, когда она позвонила».**
-<!-- interaction_id: en:lesson-25:session-37:i17; family: scripted_repeat_compare -->
-🎙 **The reader had finished the story by the time she called.**
+**17 · Расскажите о прежней привычке: «Я раньше читал в автобусе».**
+<!-- interaction_id: en:lesson-25:session-37:i13; family: phrase_builder -->
+Плитки: `bus` `the` `on` `read` `to` `used` `I` → **I used to read on the bus.**
+
+**18 · Друг спешит закончить книгу. Успокойте: «Ты можешь вернуть её завтра».**
+<!-- interaction_id: en:lesson-25:session-37:i14; family: scripted_repeat_compare -->
+🎙 **You can return it tomorrow.**
+
+**19 · Вы проверили номер и только потом позвонили. Выберите связь событий.**
+<!-- interaction_id: en:lesson-25:session-37:i15; family: context_gap_grammar -->
+I checked the number ___ I called. → **before** · after · while
+- after — *After означало бы, что номер проверили после звонка.*
+- while — *While означало бы одновременность, а здесь проверка была раньше.*
+
+**20 · Услышьте, когда перезвонят.**
+<!-- interaction_id: en:lesson-25:session-37:i16; family: listen_build_dictation -->
+🔊 *I will call you back after lunch.* Плитки: `lunch` `after` `back` `you` `call` `will` `I` → **I will call you back after lunch.**
+
+**21 · В детстве каждую субботу вы ходили в библиотеку. Выберите would для повторявшегося действия.**
+<!-- interaction_id: en:lesson-25:session-37:i17; family: context_gap_grammar -->
+As a child I ___ visit the library every Saturday. → **would** · had · was
+- had — *Had visit неверно; для привычного действия здесь подходит would visit.*
+- was — *Was visit неверно; используйте would visit.*
 

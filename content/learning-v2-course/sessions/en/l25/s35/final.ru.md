@@ -53,99 +53,99 @@ Incident — происшествие, отдельное событие, час
 <!-- interaction_id: en:lesson-25:session-35:word:rumour; family: word_card -->
 > **rumour** — Слух. Rumour — сообщение, которое передают друг другу, не зная точно, правда ли оно.
 
-**2 · Скажите: «Слух уже распространился к тому моменту, когда я его услышал.»**
-<!-- interaction_id: en:lesson-25:session-35:i01; family: phrase_builder -->
-Плитки: `it` `heard` `I` `time` `the` `by` `spread` `had` `rumour` `The` → **The rumour had spread by the time I heard it.**
+**2 · Никто не подтвердил новость. Выберите слово «слух».**
+<!-- interaction_id: en:lesson-25:session-35:i01; family: context_gap_grammar -->
+It is only a ___. → **rumour** · receipt · promise
+- receipt — *Receipt — чек, а здесь непроверенная новость.*
+- promise — *Promise — обещание, а не непроверенное сообщение.*
 
-**3 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-35:i02; family: context_gap_grammar -->
-The rumour ___ spread by the time I heard it. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**3 · Уточните источник новости: «Кто тебе это сказал?»**
+<!-- interaction_id: en:lesson-25:session-35:i02; family: scripted_repeat_compare -->
+🎙 **Who told you that?**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-35:i03; family: listen_choose -->
-🔊 *The rumour had spread by the time I heard it.* → **The rumour had spread by the time I heard it.** · The rumour had spread by the time she heard it. · The rumour had spread by the time I arrived.
-- The rumour had spread by the time she heard it. — *В записи звучит The rumour had spread by the time I heard it.*
-- The rumour had spread by the time I arrived. — *В записи звучит The rumour had spread by the time I heard it.*
-
-**5 · Карточка слова — prank**
+**4 · Карточка слова — prank**
 <!-- interaction_id: en:lesson-25:session-35:word:prank; family: word_card -->
 > **prank** — Розыгрыш. Prank — действие, которым разыгрывают или пытаются рассмешить другого человека.
 
-**6 · Скажите: «Они уже спланировали розыгрыш к тому моменту, когда я пришёл.»**
+**5 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-35:i03; family: listen_choose -->
+🔊 *The prank upset my brother.* → **The prank upset my brother.** · The prank upset my sister. · The joke upset my brother.
+- The prank upset my sister. — *В записи звучит The prank upset my brother.*
+- The joke upset my brother. — *В записи звучит The prank upset my brother.*
+
+**6 · Извинитесь за случившееся: «Прости, что я тебя напугал».**
 <!-- interaction_id: en:lesson-25:session-35:i04; family: phrase_builder -->
-Плитки: `arrived` `I` `time` `the` `by` `prank` `the` `planned` `had` `They` → **They had planned the prank by the time I arrived.**
+Плитки: `you` `scared` `I` `sorry` `am` `I` → **I am sorry I scared you.**
 
-**7 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-35:i05; family: context_gap_grammar -->
-They ___ planned the prank by the time I arrived. → **had** · have · were
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- were — *Для действия до другого события в прошлом нужно had + третья форма.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-35:i06; family: listen_choose -->
-🔊 *They had planned the prank by the time I arrived.* → **They had planned the prank by the time I arrived.** · We had planned the prank by the time she arrived. · They had planned the prank by the time I called.
-- We had planned the prank by the time she arrived. — *В записи звучит They had planned the prank by the time I arrived.*
-- They had planned the prank by the time I called. — *В записи звучит They had planned the prank by the time I arrived.*
-
-**9 · Карточка слова — fault**
+**7 · Карточка слова — fault**
 <!-- interaction_id: en:lesson-25:session-35:word:fault; family: word_card -->
 > **fault** — Неисправность. Fault здесь — то, из-за чего вещь работает неправильно.
 
-**10 · Скажите: «Мы уже нашли неисправность к тому моменту, когда она позвонила.»**
-<!-- interaction_id: en:lesson-25:session-35:i07; family: phrase_builder -->
-Плитки: `called` `she` `time` `the` `by` `fault` `the` `found` `had` `We` → **We had found the fault by the time she called.**
+**8 · Услышьте сообщение о неисправности.**
+<!-- interaction_id: en:lesson-25:session-35:i05; family: listen_build_dictation -->
+🔊 *There is a fault in the washing machine.* Плитки: `machine` `washing` `the` `in` `fault` `a` `is` `There` → **There is a fault in the washing machine.**
 
-**11 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-35:i08; family: context_gap_grammar -->
-We ___ found the fault by the time she called. → **had** · have · were
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- were — *Для действия до другого события в прошлом нужно had + третья форма.*
+**9 · Мастер нашёл причину вчера. Выберите Past Simple.**
+<!-- interaction_id: en:lesson-25:session-35:i06; family: context_gap_grammar -->
+The repairman ___ the problem yesterday. → **found** · has found · finding
+- has found — *Yesterday требует рассказа о законченном событии: found.*
+- finding — *Finding без вспомогательного глагола здесь не подходит.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-35:i09; family: listen_choose -->
-🔊 *We had found the fault by the time she called.* → **We had found the fault by the time she called.** · They had found the fault by the time she called. · We had found the fault by the time he called.
-- They had found the fault by the time she called. — *В записи звучит We had found the fault by the time she called.*
-- We had found the fault by the time he called. — *В записи звучит We had found the fault by the time she called.*
-
-**13 · Карточка слова — incident**
+**10 · Карточка слова — incident**
 <!-- interaction_id: en:lesson-25:session-35:word:incident; family: word_card -->
 > **incident** — Происшествие. Incident — отдельное событие, часто неприятное или необычное.
 
-**14 · Скажите: «Он уже описал происшествие к тому моменту, когда мы добрались домой.»**
-<!-- interaction_id: en:lesson-25:session-35:i10; family: phrase_builder -->
-Плитки: `home` `got` `we` `time` `the` `by` `incident` `the` `described` `had` `He` → **He had described the incident by the time we got home.**
+**11 · Сообщите, что происшествие было после обеда: «Происшествие случилось после обеда».**
+<!-- interaction_id: en:lesson-25:session-35:i07; family: phrase_builder -->
+Плитки: `lunch` `after` `happened` `incident` `The` → **The incident happened after lunch.**
 
-**15 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-35:i11; family: context_gap_grammar -->
-He ___ described the incident by the time we got home. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**12 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-35:i08; family: listen_choose -->
+🔊 *Nobody was hurt.* → **Nobody was hurt.** · Somebody was hurt. · Nobody was there.
+- Somebody was hurt. — *В записи звучит Nobody was hurt.*
+- Nobody was there. — *В записи звучит Nobody was hurt.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-35:i12; family: listen_choose -->
-🔊 *He had described the incident by the time we got home.* → **He had described the incident by the time we got home.** · She had described the incident by the time we got home. · He had described the incident by the time they got home.
-- She had described the incident by the time we got home. — *В записи звучит He had described the incident by the time we got home.*
-- He had described the incident by the time they got home. — *В записи звучит He had described the incident by the time we got home.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-35:i13; family: speed_match -->
+**13 · Соотнесите слова и значения**
+<!-- interaction_id: en:lesson-25:session-35:i09; family: speed_match -->
 rumour — слух · prank — розыгрыш · fault — неисправность · incident — происшествие
 
-**18 · Уже закончил**
-<!-- interaction_id: en:lesson-25:session-35:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Мастер закончил ремонт раньше вашего возвращения. Выберите had.**
+<!-- interaction_id: en:lesson-25:session-35:i10; family: context_gap_grammar -->
+The repairman ___ finished by the time I got home. → **had** · has · is
+- has — *Has finished связывает действие с настоящим, а got задаёт прошлый момент.*
+- is — *Здесь нужно had finished — уже закончил к прошлому моменту.*
 
-**19 · Поезд уже ушёл**
-<!-- interaction_id: en:lesson-25:session-35:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**15 · Вы не расслышали объяснение. Попросите: «Пожалуйста, расскажи мне ещё раз».**
+<!-- interaction_id: en:lesson-25:session-35:i11; family: scripted_repeat_compare -->
+🎙 **Please tell me again.**
 
-**20 · Скажите: «Он уже нашёл неисправность к тому моменту, когда я позвонил».**
-<!-- interaction_id: en:lesson-25:session-35:i16; family: scripted_repeat_compare -->
-🎙 **He had found the fault by the time I called.**
+**16 · Сравните с прошлым: «Я раньше верил всему, что он говорил».**
+<!-- interaction_id: en:lesson-25:session-35:i12; family: phrase_builder -->
+Плитки: `said` `he` `everything` `believe` `to` `used` `I` → **I used to believe everything he said.**
 
-**21 · Скажите: «Мы уже спланировали розыгрыш к тому моменту, когда он пришёл».**
+**17 · Сначала вы услышали объяснение, потом поняли шутку. Выберите связь событий.**
+<!-- interaction_id: en:lesson-25:session-35:i13; family: context_gap_grammar -->
+I understood the joke ___ I heard the explanation. → **after** · before · while
+- before — *Before означало бы, что вы поняли шутку до объяснения.*
+- while — *While означает одновременность; здесь понимание пришло после объяснения.*
+
+**18 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-35:i14; family: listen_choose -->
+🔊 *I have already spoken to the manager.* → **I have already spoken to the manager.** · I have already written to the manager. · She has already spoken to the manager.
+- I have already written to the manager. — *В записи звучит I have already spoken to the manager.*
+- She has already spoken to the manager. — *В записи звучит I have already spoken to the manager.*
+
+**19 · Первый пример непонятен. Попросите ещё один.**
+<!-- interaction_id: en:lesson-25:session-35:i15; family: context_gap_grammar -->
+Can you give me ___ example? → **another** · other · others
+- other — *Перед единственным числом example используем another.*
+- others — *Others заменяет существительное, но example здесь уже есть.*
+
+**20 · Услышьте, где оставили сообщение.**
+<!-- interaction_id: en:lesson-25:session-35:i16; family: listen_build_dictation -->
+🔊 *I left a message on your phone.* Плитки: `phone` `your` `on` `message` `a` `left` `I` → **I left a message on your phone.**
+
+**21 · Завершите разговор после выяснения обстоятельств: «Теперь я понимаю, что произошло».**
 <!-- interaction_id: en:lesson-25:session-35:i17; family: scripted_repeat_compare -->
-🎙 **We had planned the prank by the time he arrived.**
+🎙 **Now I understand what happened.**
 

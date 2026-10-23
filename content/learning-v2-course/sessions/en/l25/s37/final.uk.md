@@ -53,99 +53,99 @@ Caller тут — людина, яка телефонує. The caller had left a
 <!-- interaction_id: en:lesson-25:session-37:word:traveller; family: word_card -->
 > **traveller** — Мандрівник. Traveller — людина, яка подорожує чи перебуває в поїздці.
 
-**2 · Скажіть: «Мандрівник уже зібрав речі до того моменту, коли приїхало таксі.»**
+**2 · Запропонуйте допомогти людині в поїздці: «Мандрівникові потрібна мапа».**
 <!-- interaction_id: en:lesson-25:session-37:i01; family: phrase_builder -->
-Плитки: `arrived` `taxi` `the` `time` `the` `by` `packed` `had` `traveller` `The` → **The traveller had packed by the time the taxi arrived.**
+Плитки: `map` `a` `needs` `traveller` `The` → **The traveller needs a map.**
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-37:i02; family: context_gap_grammar -->
-The traveller ___ packed by the time the taxi arrived. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-37:i02; family: listen_choose -->
+🔊 *The station is opposite the hotel.* → **The station is opposite the hotel.** · The station is behind the hotel. · The shop is opposite the hotel.
+- The station is behind the hotel. — *У записі звучить The station is opposite the hotel.*
+- The shop is opposite the hotel. — *У записі звучить The station is opposite the hotel.*
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-37:i03; family: listen_choose -->
-🔊 *The traveller had packed by the time the taxi arrived.* → **The traveller had packed by the time the taxi arrived.** · The traveller had packed by the time the bus arrived. · The traveller had packed by the time we arrived.
-- The traveller had packed by the time the bus arrived. — *У записі звучить The traveller had packed by the time the taxi arrived.*
-- The traveller had packed by the time we arrived. — *У записі звучить The traveller had packed by the time the taxi arrived.*
-
-**5 · Картка слова — shopper**
+**4 · Картка слова — shopper**
 <!-- interaction_id: en:lesson-25:session-37:word:shopper; family: word_card -->
 > **shopper** — Покупець. Shopper — людина, яка ходить по магазинах або вибирає покупки.
 
-**6 · Скажіть: «Покупець уже заплатив до того моменту, коли я підійшов до каси.»**
-<!-- interaction_id: en:lesson-25:session-37:i04; family: phrase_builder -->
-Плитки: `till` `the` `reached` `I` `time` `the` `by` `paid` `had` `shopper` `The` → **The shopper had paid by the time I reached the till.**
+**5 · Людина вибирає продукти в магазині. Хто це?**
+<!-- interaction_id: en:lesson-25:session-37:i03; family: context_gap_grammar -->
+The ___ is choosing some fruit. → **shopper** · driver · cook
+- driver — *Driver — водій; тут людину називають за тим, що вона робить покупки.*
+- cook — *Cook — кухар; у цій ситуації людина вибирає покупки.*
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-37:i05; family: context_gap_grammar -->
-The shopper ___ paid by the time I reached the till. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**6 · У магазині уточніть ціну: «Скільки коштують ці яблука?»**
+<!-- interaction_id: en:lesson-25:session-37:i04; family: scripted_repeat_compare -->
+🎙 **How much are these apples?**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-37:i06; family: listen_choose -->
-🔊 *The shopper had paid by the time I reached the till.* → **The shopper had paid by the time I reached the till.** · The shopper had paid by the time she reached the till. · The shopper had paid by the time I reached the door.
-- The shopper had paid by the time she reached the till. — *У записі звучить The shopper had paid by the time I reached the till.*
-- The shopper had paid by the time I reached the door. — *У записі звучить The shopper had paid by the time I reached the till.*
-
-**9 · Картка слова — reader**
+**7 · Картка слова — reader**
 <!-- interaction_id: en:lesson-25:session-37:word:reader; family: word_card -->
 > **reader** — Читач. Reader — людина, яка читає.
 
-**10 · Скажіть: «Читач уже закінчив книжку до того моменту, коли ми зустрілися.»**
-<!-- interaction_id: en:lesson-25:session-37:i07; family: phrase_builder -->
-Плитки: `met` `we` `time` `the` `by` `book` `the` `finished` `had` `reader` `The` → **The reader had finished the book by the time we met.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-37:i05; family: listen_choose -->
+🔊 *The reader turned the page.* → **The reader turned the page.** · The reader closed the book. · The reader opened the book.
+- The reader closed the book. — *У записі звучить The reader turned the page.*
+- The reader opened the book. — *У записі звучить The reader turned the page.*
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-37:i08; family: context_gap_grammar -->
-The reader ___ finished the book by the time we met. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**9 · Поясніть свій вибір: «Я вже читав цю книжку». Використайте have.**
+<!-- interaction_id: en:lesson-25:session-37:i06; family: phrase_builder -->
+Плитки: `book` `this` `read` `already` `have` `I` → **I have already read this book.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-37:i09; family: listen_choose -->
-🔊 *The reader had finished the book by the time we met.* → **The reader had finished the book by the time we met.** · The reader had finished the story by the time we met. · The reader had finished the book by the time I called.
-- The reader had finished the story by the time we met. — *У записі звучить The reader had finished the book by the time we met.*
-- The reader had finished the book by the time I called. — *У записі звучить The reader had finished the book by the time we met.*
-
-**13 · Картка слова — caller**
+**10 · Картка слова — caller**
 <!-- interaction_id: en:lesson-25:session-37:word:caller; family: word_card -->
 > **caller** — Той, хто телефонує. Caller тут — людина, яка телефонує.
 
-**14 · Скажіть: «Той, хто телефонував, уже залишив повідомлення до того моменту, коли я знайшов телефон.»**
-<!-- interaction_id: en:lesson-25:session-37:i10; family: phrase_builder -->
-Плитки: `phone` `my` `found` `I` `time` `the` `by` `message` `a` `left` `had` `caller` `The` → **The caller had left a message by the time I found my phone.**
+**11 · Почуйте, що повідомила людина, яка телефонувала.**
+<!-- interaction_id: en:lesson-25:session-37:i07; family: listen_build_dictation -->
+🔊 *The caller gave me her name.* Плитки: `name` `her` `me` `gave` `caller` `The` → **The caller gave me her name.**
 
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-37:i11; family: context_gap_grammar -->
-The caller ___ left a message by the time I found my phone. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**12 · Ви не розчули ім’я телефоном. Попросіть: «Чи могли б ви повторити своє ім’я?»**
+<!-- interaction_id: en:lesson-25:session-37:i08; family: scripted_repeat_compare -->
+🎙 **Could you repeat your name?**
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-37:i12; family: listen_choose -->
-🔊 *The caller had left a message by the time I found my phone.* → **The caller had left a message by the time I found my phone.** · The caller had left a message by the time she found her phone. · The caller had left a message by the time I got home.
-- The caller had left a message by the time she found her phone. — *У записі звучить The caller had left a message by the time I found my phone.*
-- The caller had left a message by the time I got home. — *У записі звучить The caller had left a message by the time I found my phone.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-37:i13; family: speed_match -->
+**13 · Зіставте людей та назви**
+<!-- interaction_id: en:lesson-25:session-37:i09; family: speed_match -->
 traveller — мандрівник · shopper — покупець · reader — читач · caller — той, хто телефонує
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-37:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Поїзд поїхав раніше за ваш прихід. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-37:i10; family: context_gap_grammar -->
+The train ___ left by the time I arrived. → **had** · has · is
+- has — *Has left стосується теперішнього, а arrived задає минулий момент.*
+- is — *Потрібно had left: уже поїхав до моменту в минулому.*
 
-**19 · Потяг уже поїхав**
-<!-- interaction_id: en:lesson-25:session-37:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-37:i11; family: listen_choose -->
+🔊 *I bought the tickets yesterday.* → **I bought the tickets yesterday.** · I booked the room yesterday. · I bought the tickets last week.
+- I booked the room yesterday. — *У записі звучить I bought the tickets yesterday.*
+- I bought the tickets last week. — *У записі звучить I bought the tickets yesterday.*
 
-**20 · Скажіть: «Мандрівник уже зібрав речі до того моменту, коли я прийшов».**
-<!-- interaction_id: en:lesson-25:session-37:i16; family: scripted_repeat_compare -->
-🎙 **The traveller had packed by the time I arrived.**
+**16 · Першу книжку прочитали. Попросіть іншу книжку.**
+<!-- interaction_id: en:lesson-25:session-37:i12; family: context_gap_grammar -->
+Can I borrow ___ book? → **another** · other · others
+- other — *Перед book в однині потрібно another.*
+- others — *Others замінює іменник; тут уже стоїть book.*
 
-**21 · Скажіть: «Читач уже закінчив оповідання до того моменту, коли вона зателефонувала».**
-<!-- interaction_id: en:lesson-25:session-37:i17; family: scripted_repeat_compare -->
-🎙 **The reader had finished the story by the time she called.**
+**17 · Розкажіть про колишню звичку: «Я раніше читав в автобусі».**
+<!-- interaction_id: en:lesson-25:session-37:i13; family: phrase_builder -->
+Плитки: `bus` `the` `on` `read` `to` `used` `I` → **I used to read on the bus.**
+
+**18 · Друг поспішає дочитати книжку. Заспокойте: «Ти можеш повернути її завтра».**
+<!-- interaction_id: en:lesson-25:session-37:i14; family: scripted_repeat_compare -->
+🎙 **You can return it tomorrow.**
+
+**19 · Ви перевірили номер і лише потім зателефонували. Виберіть зв’язок подій.**
+<!-- interaction_id: en:lesson-25:session-37:i15; family: context_gap_grammar -->
+I checked the number ___ I called. → **before** · after · while
+- after — *After означало б, що номер перевірили після дзвінка.*
+- while — *While означало б одночасність, а тут перевірка була раніше.*
+
+**20 · Почуйте, коли зателефонують знову.**
+<!-- interaction_id: en:lesson-25:session-37:i16; family: listen_build_dictation -->
+🔊 *I will call you back after lunch.* Плитки: `lunch` `after` `back` `you` `call` `will` `I` → **I will call you back after lunch.**
+
+**21 · У дитинстві щосуботи ви ходили до бібліотеки. Виберіть would для повторюваної дії.**
+<!-- interaction_id: en:lesson-25:session-37:i17; family: context_gap_grammar -->
+As a child I ___ visit the library every Saturday. → **would** · had · was
+- had — *Had visit неправильно; для звичної дії тут підходить would visit.*
+- was — *Was visit неправильно; використайте would visit.*
 

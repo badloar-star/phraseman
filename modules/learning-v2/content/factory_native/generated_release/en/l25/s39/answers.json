@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-39:i01",
-    "correctText": "I had heard her version by the time we met.",
-    "correctResponseId": null
+    "correctText": "I want to hear your version of the story.",
+    "correctResponseId": "en:lesson-25:session-39:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-39:i02",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-39:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-39:i03",
-    "correctText": "I had heard her version by the time we met.",
-    "correctResponseId": "en:lesson-25:session-39:i03:r1"
+    "correctText": "What happened first?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-39:word:preference",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-39:i04",
-    "correctText": "She had explained her preference by the time we ordered.",
+    "interactionId": "en:lesson-25:session-39:i03",
+    "correctText": "Do you have a preference?",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-39:i05",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-39:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-39:i06",
-    "correctText": "She had explained her preference by the time we ordered.",
-    "correctResponseId": "en:lesson-25:session-39:i06:r1"
+    "interactionId": "en:lesson-25:session-39:i04",
+    "correctText": "no",
+    "correctResponseId": "en:lesson-25:session-39:i04:r1"
   },
   {
     "interactionId": "en:lesson-25:session-39:word:similarity",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-39:i07",
-    "correctText": "I had noticed the similarity by the time he showed me the photo.",
+    "interactionId": "en:lesson-25:session-39:i05",
+    "correctText": "similarity",
+    "correctResponseId": "en:lesson-25:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-39:i06",
+    "correctText": "Both photos show the same house.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-39:i08",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-39:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-39:i09",
-    "correctText": "I had noticed the similarity by the time he showed me the photo.",
-    "correctResponseId": "en:lesson-25:session-39:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-39:word:obstacle",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-39:i10",
-    "correctText": "We had removed the obstacle by the time the bus arrived.",
+    "interactionId": "en:lesson-25:session-39:i07",
+    "correctText": "A fallen tree was an obstacle on the path.",
+    "correctResponseId": "en:lesson-25:session-39:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-39:i08",
+    "correctText": "Let us take another route.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-39:i11",
+    "interactionId": "en:lesson-25:session-39:i09",
+    "correctText": "en:lesson-25:session-39:i09:p1=version\nen:lesson-25:session-39:i09:p2=preference\nen:lesson-25:session-39:i09:p3=similarity\nen:lesson-25:session-39:i09:p4=obstacle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-39:i10",
     "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-39:i11:r1"
+    "correctResponseId": "en:lesson-25:session-39:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-39:i11",
+    "correctText": "I used to prefer tea.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-39:i12",
-    "correctText": "We had removed the obstacle by the time the bus arrived.",
+    "correctText": "I have already seen that photo.",
     "correctResponseId": "en:lesson-25:session-39:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-39:i13",
-    "correctText": "en:lesson-25:session-39:i13:p1=version\nen:lesson-25:session-39:i13:p2=preference\nen:lesson-25:session-39:i13:p3=similarity\nen:lesson-25:session-39:i13:p4=obstacle",
-    "correctResponseId": null
+    "correctText": "after",
+    "correctResponseId": "en:lesson-25:session-39:i13:r1"
   },
   {
     "interactionId": "en:lesson-25:session-39:i14",
-    "correctText": "She had finished before I called.",
+    "correctText": "It is clear now.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-39:i15",
-    "correctText": "The train had left when we arrived.",
+    "correctText": "We found a shorter way home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-39:i16",
-    "correctText": "We had heard his version by the time we met.",
-    "correctResponseId": null
+    "correctText": "another",
+    "correctResponseId": "en:lesson-25:session-39:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-39:i17",
-    "correctText": "They had removed the obstacle by the time the car arrived.",
+    "correctText": "We got home before dark.",
     "correctResponseId": null
   }
 ]

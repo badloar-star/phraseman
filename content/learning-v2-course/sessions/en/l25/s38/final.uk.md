@@ -53,99 +53,99 @@ Pensioner — пенсіонер, людина, яка отримує пенсі
 <!-- interaction_id: en:lesson-25:session-38:word:listener; family: word_card -->
 > **listener** — Слухач. Listener — людина, яка слухає.
 
-**2 · Скажіть: «Слухач уже почув новини до того моменту, коли я зателефонував.»**
-<!-- interaction_id: en:lesson-25:session-38:i01; family: phrase_builder -->
-Плитки: `called` `I` `time` `the` `by` `news` `the` `heard` `had` `listener` `The` → **The listener had heard the news by the time I called.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-38:i01; family: listen_choose -->
+🔊 *My friend is a good listener.* → **My friend is a good listener.** · My brother is a good listener. · My friend is a good singer.
+- My brother is a good listener. — *У записі звучить My friend is a good listener.*
+- My friend is a good singer. — *У записі звучить My friend is a good listener.*
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-38:i02; family: context_gap_grammar -->
-The listener ___ heard the news by the time I called. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Ви хочете виговоритися. Запитайте: «Можна мені з тобою поговорити?»**
+<!-- interaction_id: en:lesson-25:session-38:i02; family: scripted_repeat_compare -->
+🎙 **Can I talk to you?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-38:i03; family: listen_choose -->
-🔊 *The listener had heard the news by the time I called.* → **The listener had heard the news by the time I called.** · The listener had heard the news by the time she called. · The listener had heard the news by the time I arrived.
-- The listener had heard the news by the time she called. — *У записі звучить The listener had heard the news by the time I called.*
-- The listener had heard the news by the time I arrived. — *У записі звучить The listener had heard the news by the time I called.*
-
-**5 · Картка слова — viewer**
+**4 · Картка слова — viewer**
 <!-- interaction_id: en:lesson-25:session-38:word:viewer; family: word_card -->
 > **viewer** — Глядач. Viewer — людина, яка дивиться, наприклад телевізійну передачу.
 
-**6 · Скажіть: «Глядач уже перемкнув канал до того моменту, коли почався фільм.»**
+**5 · Людина дивиться передачу по телевізору. Виберіть слово «глядач».**
+<!-- interaction_id: en:lesson-25:session-38:i03; family: context_gap_grammar -->
+The ___ changed the channel. → **viewer** · listener · driver
+- listener — *Listener називає того, хто слухає; тут ідеться про перегляд передачі.*
+- driver — *Driver — водій; тут людину називають глядачем.*
+
+**6 · Уточніть час передачі: «Коли починається програма?»**
 <!-- interaction_id: en:lesson-25:session-38:i04; family: phrase_builder -->
-Плитки: `started` `film` `the` `time` `the` `by` `channel` `the` `changed` `had` `viewer` `The` → **The viewer had changed the channel by the time the film started.**
+Плитки: `start` `programme` `the` `does` `When` → **When does the programme start?**
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-38:i05; family: context_gap_grammar -->
-The viewer ___ changed the channel by the time the film started. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-38:i06; family: listen_choose -->
-🔊 *The viewer had changed the channel by the time the film started.* → **The viewer had changed the channel by the time the film started.** · The viewer had changed the channel by the time the news started. · The viewer had changed the channel by the time I arrived.
-- The viewer had changed the channel by the time the news started. — *У записі звучить The viewer had changed the channel by the time the film started.*
-- The viewer had changed the channel by the time I arrived. — *У записі звучить The viewer had changed the channel by the time the film started.*
-
-**9 · Картка слова — learner**
+**7 · Картка слова — learner**
 <!-- interaction_id: en:lesson-25:session-38:word:learner; family: word_card -->
 > **learner** — Учень. Learner — людина, яка чогось навчається.
 
-**10 · Скажіть: «Учень уже закінчив вправу до того моменту, коли я прийшов.»**
-<!-- interaction_id: en:lesson-25:session-38:i07; family: phrase_builder -->
-Плитки: `arrived` `I` `time` `the` `by` `exercise` `the` `finished` `had` `learner` `The` → **The learner had finished the exercise by the time I arrived.**
+**8 · Почуйте, яка допомога потрібна учневі.**
+<!-- interaction_id: en:lesson-25:session-38:i05; family: listen_build_dictation -->
+🔊 *The learner needs more time.* Плитки: `time` `more` `needs` `learner` `The` → **The learner needs more time.**
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-38:i08; family: context_gap_grammar -->
-The learner ___ finished the exercise by the time I arrived. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**9 · Попросіть пояснити ще раз: «Я не розумію цю частину».**
+<!-- interaction_id: en:lesson-25:session-38:i06; family: scripted_repeat_compare -->
+🎙 **I do not understand this part.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-38:i09; family: listen_choose -->
-🔊 *The learner had finished the exercise by the time I arrived.* → **The learner had finished the exercise by the time I arrived.** · The learner had finished the exercise by the time she arrived. · The learner had finished the lesson by the time I arrived.
-- The learner had finished the exercise by the time she arrived. — *У записі звучить The learner had finished the exercise by the time I arrived.*
-- The learner had finished the lesson by the time I arrived. — *У записі звучить The learner had finished the exercise by the time I arrived.*
-
-**13 · Картка слова — pensioner**
+**10 · Картка слова — pensioner**
 <!-- interaction_id: en:lesson-25:session-38:word:pensioner; family: word_card -->
 > **pensioner** — Пенсіонер. Pensioner — людина, яка отримує пенсію.
 
-**14 · Скажіть: «Пенсіонер уже встиг на автобус до того моменту, коли почався дощ.»**
-<!-- interaction_id: en:lesson-25:session-38:i10; family: phrase_builder -->
-Плитки: `raining` `started` `it` `time` `the` `by` `bus` `the` `caught` `had` `pensioner` `The` → **The pensioner had caught the bus by the time it started raining.**
+**11 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-38:i07; family: listen_choose -->
+🔊 *The pensioner took the bus to the market.* → **The pensioner took the bus to the market.** · The pensioner took the bus to the hospital. · The pensioner took the train to the market.
+- The pensioner took the bus to the hospital. — *У записі звучить The pensioner took the bus to the market.*
+- The pensioner took the train to the market. — *У записі звучить The pensioner took the bus to the market.*
 
-**15 · Доповніть розповідь про минуле.**
+**12 · Автобус поїхав раніше за ваш прихід. Виберіть третю форму після had.**
+<!-- interaction_id: en:lesson-25:session-38:i08; family: context_gap_grammar -->
+The bus had ___ by the time I reached the stop. → **gone** · went · go
+- went — *Went — Past Simple; після had потрібна третя форма gone.*
+- go — *Go — початкова форма; тут потрібно had gone.*
+
+**13 · Зіставте слова з перекладом**
+<!-- interaction_id: en:lesson-25:session-38:i09; family: speed_match -->
+listener — слухач · viewer — глядач · learner — учень · pensioner — пенсіонер
+
+**14 · Розкажіть про колишню звичку: «Я раніше слухав радіо щоранку».**
+<!-- interaction_id: en:lesson-25:session-38:i10; family: phrase_builder -->
+Плитки: `morning` `every` `radio` `the` `to` `listen` `to` `used` `I` → **I used to listen to the radio every morning.**
+
+**15 · Передача вже закінчилася, і зараз її більше не показують. Виберіть Present Perfect.**
 <!-- interaction_id: en:lesson-25:session-38:i11; family: context_gap_grammar -->
-The pensioner ___ caught the bus by the time it started raining. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+The programme ___. → **has already ended** · have already ended · has already end
+- have already ended — *Programme в однині вимагає has.*
+- has already end — *Після has потрібна третя форма ended.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-38:i12; family: listen_choose -->
-🔊 *The pensioner had caught the bus by the time it started raining.* → **The pensioner had caught the bus by the time it started raining.** · The pensioner had caught the train by the time it started raining. · The pensioner had caught the bus by the time it started snowing.
-- The pensioner had caught the train by the time it started raining. — *У записі звучить The pensioner had caught the bus by the time it started raining.*
-- The pensioner had caught the bus by the time it started snowing. — *У записі звучить The pensioner had caught the bus by the time it started raining.*
+🔊 *I finished the exercise ten minutes ago.* → **I finished the exercise ten minutes ago.** · I started the exercise ten minutes ago. · I finished the exercise an hour ago.
+- I started the exercise ten minutes ago. — *У записі звучить I finished the exercise ten minutes ago.*
+- I finished the exercise an hour ago. — *У записі звучить I finished the exercise ten minutes ago.*
 
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-38:i13; family: speed_match -->
-listener — слухач · viewer — глядач · learner — учень · pensioner — пенсіонер
+**17 · Почуйте пропозицію допомогти із сумками.**
+<!-- interaction_id: en:lesson-25:session-38:i13; family: listen_build_dictation -->
+🔊 *Can I help you with those bags?* Плитки: `bags` `those` `with` `you` `help` `I` `Can` → **Can I help you with those bags?**
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-38:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**18 · Спочатку ви поснідали, потім вийшли по покупки. Виберіть зв’язок подій.**
+<!-- interaction_id: en:lesson-25:session-38:i14; family: context_gap_grammar -->
+I went shopping ___ I had breakfast. → **after** · before · while
+- before — *Before означало б, що по покупки пішли раніше за сніданок.*
+- while — *While означає одночасність, а тут дії послідовні.*
 
-**19 · Потяг уже поїхав**
-<!-- interaction_id: en:lesson-25:session-38:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**19 · Допоможіть людині з важкими сумками: «Я можу віднести їх до дверей».**
+<!-- interaction_id: en:lesson-25:session-38:i15; family: scripted_repeat_compare -->
+🎙 **I can carry them to the door.**
 
-**20 · Скажіть: «Слухач уже почув новини до того моменту, коли ми зателефонували».**
-<!-- interaction_id: en:lesson-25:session-38:i16; family: scripted_repeat_compare -->
-🎙 **The listener had heard the news by the time we called.**
+**20 · Усі місця в цьому ряду зайняті. Ви пропонуєте пошукати ще один стілець.**
+<!-- interaction_id: en:lesson-25:session-38:i16; family: context_gap_grammar -->
+Let us find ___ chair. → **another** · other · others
+- other — *Chair в однині, тому another.*
+- others — *Others не ставиться перед chair.*
 
-**21 · Скажіть: «Учень уже закінчив вправу до того моменту, коли ми прийшли».**
-<!-- interaction_id: en:lesson-25:session-38:i17; family: scripted_repeat_compare -->
-🎙 **The learner had finished the exercise by the time we arrived.**
+**21 · Завершіть розмову подякою: «Дякую, що мене вислухав».**
+<!-- interaction_id: en:lesson-25:session-38:i17; family: phrase_builder -->
+Плитки: `me` `to` `listening` `for` `you` `Thank` → **Thank you for listening to me.**
 

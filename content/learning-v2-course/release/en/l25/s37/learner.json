@@ -52,29 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Путешественник уже собрал вещи к тому моменту, когда приехало такси.»",
+      "prompt": "Предложите помочь человеку в поездке: «Путешественнику нужна карта».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Путешественник уже собрал вещи к тому моменту, когда приехало такси.»",
+      "accessibilityLabel": "Предложите помочь человеку в поездке: «Путешественнику нужна карта».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The traveller had packed by the time the taxi arrived.",
+        "targetPhrase": "The traveller needs a map.",
         "localizedMeaning": {
-          "ru": "Скажите: «Путешественник уже собрал вещи к тому моменту, когда приехало такси.»",
-          "uk": "Скажіть: «Мандрівник уже зібрав речі до того моменту, коли приїхало таксі.»"
+          "ru": "Предложите помочь человеку в поездке: «Путешественнику нужна карта».",
+          "uk": "Запропонуйте допомогти людині в поїздці: «Мандрівникові потрібна мапа»."
         },
         "orderedTokens": [
           "The",
           "traveller",
-          "had",
-          "packed",
-          "by",
-          "the",
-          "time",
-          "the",
-          "taxi",
-          "arrived"
+          "needs",
+          "a",
+          "map"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,139 +84,70 @@
       "interactionId": "en:lesson-25:session-37:i02",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-37:i02:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i02:r2",
-          "text": "has"
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i02:r3",
-          "text": "was"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "The traveller ___ packed by the time the taxi arrived.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-37:i02:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i02:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i02:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-37:i02:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i02:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-37:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-37:i03:r1",
-          "text": "The traveller had packed by the time the taxi arrived."
+          "responseId": "en:lesson-25:session-37:i02:r1",
+          "text": "The station is opposite the hotel."
         },
         {
-          "responseId": "en:lesson-25:session-37:i03:r2",
-          "text": "The traveller had packed by the time the bus arrived."
+          "responseId": "en:lesson-25:session-37:i02:r2",
+          "text": "The station is behind the hotel."
         },
         {
-          "responseId": "en:lesson-25:session-37:i03:r3",
-          "text": "The traveller had packed by the time we arrived."
+          "responseId": "en:lesson-25:session-37:i02:r3",
+          "text": "The shop is opposite the hotel."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-37:i03:audio"
+        "en:lesson-25:session-37:i02:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-37:i03:audio",
-          "transcript": "The traveller had packed by the time the taxi arrived."
+          "audioTargetId": "en:lesson-25:session-37:i02:audio",
+          "transcript": "The station is opposite the hotel."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-37:i03:r1",
-            "targetText": "The traveller had packed by the time the taxi arrived.",
+            "responseId": "en:lesson-25:session-37:i02:r1",
+            "targetText": "The station is opposite the hotel.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-37:i03:r2",
-            "targetText": "The traveller had packed by the time the bus arrived.",
+            "responseId": "en:lesson-25:session-37:i02:r2",
+            "targetText": "The station is behind the hotel.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-37:i03:r3",
-            "targetText": "The traveller had packed by the time we arrived.",
+            "responseId": "en:lesson-25:session-37:i02:r3",
+            "targetText": "The shop is opposite the hotel.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-37:i03:r2",
+            "responseId": "en:lesson-25:session-37:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The traveller had packed by the time the taxi arrived.",
-              "uk": "У записі звучить The traveller had packed by the time the taxi arrived."
+              "ru": "В записи звучит The station is opposite the hotel.",
+              "uk": "У записі звучить The station is opposite the hotel."
             }
           },
           {
-            "responseId": "en:lesson-25:session-37:i03:r3",
+            "responseId": "en:lesson-25:session-37:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The traveller had packed by the time the taxi arrived.",
-              "uk": "У записі звучить The traveller had packed by the time the taxi arrived."
+              "ru": "В записи звучит The station is opposite the hotel.",
+              "uk": "У записі звучить The station is opposite the hotel."
             }
           }
         ],
@@ -232,7 +158,7 @@
     },
     {
       "interactionId": "en:lesson-25:session-37:word:shopper",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -274,108 +200,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-37:i04",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Покупатель уже заплатил к тому моменту, когда я подошёл к кассе.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Покупатель уже заплатил к тому моменту, когда я подошёл к кассе.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The shopper had paid by the time I reached the till.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Покупатель уже заплатил к тому моменту, когда я подошёл к кассе.»",
-          "uk": "Скажіть: «Покупець уже заплатив до того моменту, коли я підійшов до каси.»"
-        },
-        "orderedTokens": [
-          "The",
-          "shopper",
-          "had",
-          "paid",
-          "by",
-          "the",
-          "time",
-          "I",
-          "reached",
-          "the",
-          "till"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-37:i05",
-      "ordinal": 10,
+      "interactionId": "en:lesson-25:session-37:i03",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
+      "prompt": "Человек выбирает продукты в магазине. Кто это?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-37:i05:r1",
-          "text": "had"
+          "responseId": "en:lesson-25:session-37:i03:r1",
+          "text": "shopper"
         },
         {
-          "responseId": "en:lesson-25:session-37:i05:r2",
-          "text": "has"
+          "responseId": "en:lesson-25:session-37:i03:r2",
+          "text": "driver"
         },
         {
-          "responseId": "en:lesson-25:session-37:i05:r3",
-          "text": "was"
+          "responseId": "en:lesson-25:session-37:i03:r3",
+          "text": "cook"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "accessibilityLabel": "Человек выбирает продукты в магазине. Кто это?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
+          "ru": "Человек выбирает продукты в магазине. Кто это?",
+          "uk": "Людина вибирає продукти в магазині. Хто це?"
         },
-        "gappedTargetPhrase": "The shopper ___ paid by the time I reached the till.",
+        "gappedTargetPhrase": "The ___ is choosing some fruit.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-37:i05:r1",
-            "text": "had"
+            "responseId": "en:lesson-25:session-37:i03:r1",
+            "text": "shopper"
           },
           {
-            "responseId": "en:lesson-25:session-37:i05:r2",
-            "text": "has"
+            "responseId": "en:lesson-25:session-37:i03:r2",
+            "text": "driver"
           },
           {
-            "responseId": "en:lesson-25:session-37:i05:r3",
-            "text": "was"
+            "responseId": "en:lesson-25:session-37:i03:r3",
+            "text": "cook"
           }
         ],
-        "testedDimension": "Дополните рассказ о прошлом.",
+        "testedDimension": "Человек выбирает продукты в магазине. Кто это?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-37:i05:r2",
+            "responseId": "en:lesson-25:session-37:i03:r2",
             "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
+            "testedDimension": "Человек выбирает продукты в магазине. Кто это?",
             "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              "ru": "Driver — водитель; здесь человека называют по тому, что он делает покупки.",
+              "uk": "Driver — водій; тут людину називають за тим, що вона робить покупки."
             }
           },
           {
-            "responseId": "en:lesson-25:session-37:i05:r3",
+            "responseId": "en:lesson-25:session-37:i03:r3",
             "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
+            "testedDimension": "Человек выбирает продукты в магазине. Кто это?",
             "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              "ru": "Cook — повар; в этой ситуации человек выбирает покупки.",
+              "uk": "Cook — кухар; у цій ситуації людина вибирає покупки."
             }
           }
         ]
@@ -383,85 +269,42 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-37:i06",
-      "ordinal": 11,
+      "interactionId": "en:lesson-25:session-37:i04",
+      "ordinal": 9,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-37:i06:r1",
-          "text": "The shopper had paid by the time I reached the till."
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i06:r2",
-          "text": "The shopper had paid by the time she reached the till."
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i06:r3",
-          "text": "The shopper had paid by the time I reached the door."
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В магазине уточните цену: «Сколько стоят эти яблоки?»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-37:i06:audio"
+        "en:lesson-25:session-37:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "В магазине уточните цену: «Сколько стоят эти яблоки?»",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-37:i06:audio",
-          "transcript": "The shopper had paid by the time I reached the till."
+          "audioTargetId": "en:lesson-25:session-37:i04:audio",
+          "transcript": "How much are these apples?"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-37:i06:r1",
-            "targetText": "The shopper had paid by the time I reached the till.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i06:r2",
-            "targetText": "The shopper had paid by the time she reached the till.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i06:r3",
-            "targetText": "The shopper had paid by the time I reached the door.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-37:i06:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The shopper had paid by the time I reached the till.",
-              "uk": "У записі звучить The shopper had paid by the time I reached the till."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The shopper had paid by the time I reached the till.",
-              "uk": "У записі звучить The shopper had paid by the time I reached the till."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "How much are these apples?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-25:session-37:word:reader",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Карточка слова — reader",
@@ -502,35 +345,106 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-37:i07",
-      "ordinal": 13,
+      "interactionId": "en:lesson-25:session-37:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-37:i05:r1",
+          "text": "The reader turned the page."
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i05:r2",
+          "text": "The reader closed the book."
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i05:r3",
+          "text": "The reader opened the book."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-37:i05:audio",
+          "transcript": "The reader turned the page."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-37:i05:r1",
+            "targetText": "The reader turned the page.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i05:r2",
+            "targetText": "The reader closed the book.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i05:r3",
+            "targetText": "The reader opened the book.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The reader turned the page.",
+              "uk": "У записі звучить The reader turned the page."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The reader turned the page.",
+              "uk": "У записі звучить The reader turned the page."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-37:i06",
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Читатель уже закончил книгу к тому моменту, когда мы встретились.»",
+      "prompt": "Объясните свой выбор: «Я уже читал эту книгу». Используйте have.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Читатель уже закончил книгу к тому моменту, когда мы встретились.»",
+      "accessibilityLabel": "Объясните свой выбор: «Я уже читал эту книгу». Используйте have.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The reader had finished the book by the time we met.",
+        "targetPhrase": "I have already read this book.",
         "localizedMeaning": {
-          "ru": "Скажите: «Читатель уже закончил книгу к тому моменту, когда мы встретились.»",
-          "uk": "Скажіть: «Читач уже закінчив книжку до того моменту, коли ми зустрілися.»"
+          "ru": "Объясните свой выбор: «Я уже читал эту книгу». Используйте have.",
+          "uk": "Поясніть свій вибір: «Я вже читав цю книжку». Використайте have."
         },
         "orderedTokens": [
-          "The",
-          "reader",
-          "had",
-          "finished",
-          "the",
-          "book",
-          "by",
-          "the",
-          "time",
-          "we",
-          "met"
+          "I",
+          "have",
+          "already",
+          "read",
+          "this",
+          "book"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -542,153 +456,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-37:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-37:i08:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i08:r2",
-          "text": "has"
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i08:r3",
-          "text": "was"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "The reader ___ finished the book by the time we met.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-37:i08:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i08:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i08:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-37:i08:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i08:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-37:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-37:i09:r1",
-          "text": "The reader had finished the book by the time we met."
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i09:r2",
-          "text": "The reader had finished the story by the time we met."
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i09:r3",
-          "text": "The reader had finished the book by the time I called."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-37:i09:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-37:i09:audio",
-          "transcript": "The reader had finished the book by the time we met."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-37:i09:r1",
-            "targetText": "The reader had finished the book by the time we met.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i09:r2",
-            "targetText": "The reader had finished the story by the time we met.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i09:r3",
-            "targetText": "The reader had finished the book by the time I called.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-37:i09:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The reader had finished the book by the time we met.",
-              "uk": "У записі звучить The reader had finished the book by the time we met."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i09:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The reader had finished the book by the time we met.",
-              "uk": "У записі звучить The reader had finished the book by the time we met."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-37:word:caller",
-      "ordinal": 16,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -730,37 +499,33 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-37:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
+      "interactionId": "en:lesson-25:session-37:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Звонящий уже оставил сообщение к тому моменту, когда я нашёл телефон.»",
+      "prompt": "Услышьте, что сообщил звонящий.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Звонящий уже оставил сообщение к тому моменту, когда я нашёл телефон.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-37:i07:audio"
+      ],
+      "accessibilityLabel": "Услышьте, что сообщил звонящий.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The caller had left a message by the time I found my phone.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Звонящий уже оставил сообщение к тому моменту, когда я нашёл телефон.»",
-          "uk": "Скажіть: «Той, хто телефонував, уже залишив повідомлення до того моменту, коли я знайшов телефон.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-37:i07:audio",
+          "transcript": "The caller gave me her name."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The caller gave me her name.",
         "orderedTokens": [
           "The",
           "caller",
-          "had",
-          "left",
-          "a",
-          "message",
-          "by",
-          "the",
-          "time",
-          "I",
-          "found",
-          "my",
-          "phone"
+          "gave",
+          "me",
+          "her",
+          "name"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -772,166 +537,54 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-37:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-37:i11:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i11:r2",
-          "text": "has"
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i11:r3",
-          "text": "was"
-        }
-      ],
+      "interactionId": "en:lesson-25:session-37:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы не расслышали имя по телефону. Попросите: «Не могли бы вы повторить своё имя?»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "audioTargetIds": [
+        "en:lesson-25:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Вы не расслышали имя по телефону. Попросите: «Не могли бы вы повторить своё имя?»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-37:i08:audio",
+          "transcript": "Could you repeat your name?"
         },
-        "gappedTargetPhrase": "The caller ___ left a message by the time I found my phone.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-37:i11:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i11:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i11:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-37:i11:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i11:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you repeat your name?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-37:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-37:i12:r1",
-          "text": "The caller had left a message by the time I found my phone."
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i12:r2",
-          "text": "The caller had left a message by the time she found her phone."
-        },
-        {
-          "responseId": "en:lesson-25:session-37:i12:r3",
-          "text": "The caller had left a message by the time I got home."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-37:i12:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-37:i12:audio",
-          "transcript": "The caller had left a message by the time I found my phone."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-37:i12:r1",
-            "targetText": "The caller had left a message by the time I found my phone.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i12:r2",
-            "targetText": "The caller had left a message by the time she found her phone.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i12:r3",
-            "targetText": "The caller had left a message by the time I got home.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-37:i12:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The caller had left a message by the time I found my phone.",
-              "uk": "У записі звучить The caller had left a message by the time I found my phone."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-37:i12:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The caller had left a message by the time I found my phone.",
-              "uk": "У записі звучить The caller had left a message by the time I found my phone."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-37:i13",
-      "ordinal": 20,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-37:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините формы с переводом",
+      "prompt": "Соотнесите людей и названия",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините формы с переводом",
+      "accessibilityLabel": "Соотнесите людей и названия",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-37:i13:p1",
+            "pairId": "en:lesson-25:session-37:i09:p1",
             "target": "traveller",
             "meaningByLocale": {
               "ru": "путешественник",
@@ -939,7 +592,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-37:i13:p2",
+            "pairId": "en:lesson-25:session-37:i09:p2",
             "target": "shopper",
             "meaningByLocale": {
               "ru": "покупатель",
@@ -947,7 +600,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-37:i13:p3",
+            "pairId": "en:lesson-25:session-37:i09:p3",
             "target": "reader",
             "meaningByLocale": {
               "ru": "читатель",
@@ -955,7 +608,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-37:i13:p4",
+            "pairId": "en:lesson-25:session-37:i09:p4",
             "target": "caller",
             "meaningByLocale": {
               "ru": "звонящий",
@@ -990,103 +643,276 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поезд ушёл раньше вашего прихода. Выберите had.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-37:i10:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i10:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i10:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поезд ушёл раньше вашего прихода. Выберите had.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Поезд ушёл раньше вашего прихода. Выберите had.",
+          "uk": "Поїзд поїхав раніше за ваш прихід. Виберіть had."
+        },
+        "gappedTargetPhrase": "The train ___ left by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-37:i10:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i10:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i10:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Поезд ушёл раньше вашего прихода. Выберите had.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-37:i10:r2",
+            "correct": false,
+            "testedDimension": "Поезд ушёл раньше вашего прихода. Выберите had.",
+            "feedbackByLocale": {
+              "ru": "Has left относится к настоящему, а arrived задаёт прошлый момент.",
+              "uk": "Has left стосується теперішнього, а arrived задає минулий момент."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i10:r3",
+            "correct": false,
+            "testedDimension": "Поезд ушёл раньше вашего прихода. Выберите had.",
+            "feedbackByLocale": {
+              "ru": "Нужно had left: уже ушёл к моменту в прошлом.",
+              "uk": "Потрібно had left: уже поїхав до моменту в минулому."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-37:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-37:i11:r1",
+          "text": "I bought the tickets yesterday."
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i11:r2",
+          "text": "I booked the room yesterday."
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i11:r3",
+          "text": "I bought the tickets last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-37:i11:audio",
+          "transcript": "I bought the tickets yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-37:i11:r1",
+            "targetText": "I bought the tickets yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i11:r2",
+            "targetText": "I booked the room yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i11:r3",
+            "targetText": "I bought the tickets last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I bought the tickets yesterday.",
+              "uk": "У записі звучить I bought the tickets yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I bought the tickets yesterday.",
+              "uk": "У записі звучить I bought the tickets yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-37:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Первую книгу прочитали. Попросите другую книгу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-37:i12:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i12:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i12:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Первую книгу прочитали. Попросите другую книгу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Первую книгу прочитали. Попросите другую книгу.",
+          "uk": "Першу книжку прочитали. Попросіть іншу книжку."
+        },
+        "gappedTargetPhrase": "Can I borrow ___ book?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-37:i12:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i12:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i12:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Первую книгу прочитали. Попросите другую книгу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Первую книгу прочитали. Попросите другую книгу.",
+            "feedbackByLocale": {
+              "ru": "Перед book в единственном числе нужно another.",
+              "uk": "Перед book в однині потрібно another."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Первую книгу прочитали. Попросите другую книгу.",
+            "feedbackByLocale": {
+              "ru": "Others заменяет существительное; здесь уже стоит book.",
+              "uk": "Others замінює іменник; тут уже стоїть book."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-37:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о прежней привычке: «Я раньше читал в автобусе».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о прежней привычке: «Я раньше читал в автобусе».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used to read on the bus.",
+        "localizedMeaning": {
+          "ru": "Расскажите о прежней привычке: «Я раньше читал в автобусе».",
+          "uk": "Розкажіть про колишню звичку: «Я раніше читав в автобусі»."
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "read",
+          "on",
+          "the",
+          "bus"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-37:i14",
       "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Уже закончил",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спешит закончить книгу. Успокойте: «Ты можешь вернуть её завтра».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-37:i14:audio"
       ],
-      "accessibilityLabel": "Уже закончил",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-37:i14:audio",
-          "transcript": "She had finished before I called."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She had finished before I called.",
-        "orderedTokens": [
-          "She",
-          "had",
-          "finished",
-          "before",
-          "I",
-          "called"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-37:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Поезд уже ушёл",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-37:i15:audio"
-      ],
-      "accessibilityLabel": "Поезд уже ушёл",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-37:i15:audio",
-          "transcript": "The train had left when we arrived."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The train had left when we arrived.",
-        "orderedTokens": [
-          "The",
-          "train",
-          "had",
-          "left",
-          "when",
-          "we",
-          "arrived"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-37:i16",
-      "ordinal": 23,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Путешественник уже собрал вещи к тому моменту, когда я пришёл».",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-37:i16:audio"
-      ],
-      "accessibilityLabel": "Скажите: «Путешественник уже собрал вещи к тому моменту, когда я пришёл».",
+      "accessibilityLabel": "Друг спешит закончить книгу. Успокойте: «Ты можешь вернуть её завтра».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-37:i16:audio",
-          "transcript": "The traveller had packed by the time I arrived."
+          "audioTargetId": "en:lesson-25:session-37:i14:audio",
+          "transcript": "You can return it tomorrow."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The traveller had packed by the time I arrived.",
+        "targetPhrase": "You can return it tomorrow.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1100,34 +926,178 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-37:i17",
-      "ordinal": 24,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Читатель уже закончил рассказ к тому моменту, когда она позвонила».",
+      "interactionId": "en:lesson-25:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы проверили номер и только потом позвонили. Выберите связь событий.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-37:i15:r1",
+          "text": "before"
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i15:r2",
+          "text": "after"
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i15:r3",
+          "text": "while"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы проверили номер и только потом позвонили. Выберите связь событий.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы проверили номер и только потом позвонили. Выберите связь событий.",
+          "uk": "Ви перевірили номер і лише потім зателефонували. Виберіть зв’язок подій."
+        },
+        "gappedTargetPhrase": "I checked the number ___ I called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-37:i15:r1",
+            "text": "before"
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i15:r2",
+            "text": "after"
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i15:r3",
+            "text": "while"
+          }
+        ],
+        "testedDimension": "Вы проверили номер и только потом позвонили. Выберите связь событий.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-37:i15:r2",
+            "correct": false,
+            "testedDimension": "Вы проверили номер и только потом позвонили. Выберите связь событий.",
+            "feedbackByLocale": {
+              "ru": "After означало бы, что номер проверили после звонка.",
+              "uk": "After означало б, що номер перевірили після дзвінка."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i15:r3",
+            "correct": false,
+            "testedDimension": "Вы проверили номер и только потом позвонили. Выберите связь событий.",
+            "feedbackByLocale": {
+              "ru": "While означало бы одновременность, а здесь проверка была раньше.",
+              "uk": "While означало б одночасність, а тут перевірка була раніше."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-37:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, когда перезвонят.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-37:i17:audio"
+        "en:lesson-25:session-37:i16:audio"
       ],
-      "accessibilityLabel": "Скажите: «Читатель уже закончил рассказ к тому моменту, когда она позвонила».",
+      "accessibilityLabel": "Услышьте, когда перезвонят.",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-37:i17:audio",
-          "transcript": "The reader had finished the story by the time she called."
+          "audioTargetId": "en:lesson-25:session-37:i16:audio",
+          "transcript": "I will call you back after lunch."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The reader had finished the story by the time she called.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "hiddenTargetPhrase": "I will call you back after lunch.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "call",
+          "you",
+          "back",
+          "after",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-37:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В детстве каждую субботу вы ходили в библиотеку. Выберите would для повторявшегося действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-37:i17:r1",
+          "text": "would"
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i17:r2",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-37:i17:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В детстве каждую субботу вы ходили в библиотеку. Выберите would для повторявшегося действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В детстве каждую субботу вы ходили в библиотеку. Выберите would для повторявшегося действия.",
+          "uk": "У дитинстві щосуботи ви ходили до бібліотеки. Виберіть would для повторюваної дії."
+        },
+        "gappedTargetPhrase": "As a child I ___ visit the library every Saturday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-37:i17:r1",
+            "text": "would"
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i17:r2",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i17:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "В детстве каждую субботу вы ходили в библиотеку. Выберите would для повторявшегося действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-37:i17:r2",
+            "correct": false,
+            "testedDimension": "В детстве каждую субботу вы ходили в библиотеку. Выберите would для повторявшегося действия.",
+            "feedbackByLocale": {
+              "ru": "Had visit неверно; для привычного действия здесь подходит would visit.",
+              "uk": "Had visit неправильно; для звичної дії тут підходить would visit."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-37:i17:r3",
+            "correct": false,
+            "testedDimension": "В детстве каждую субботу вы ходили в библиотеку. Выберите would для повторявшегося действия.",
+            "feedbackByLocale": {
+              "ru": "Was visit неверно; используйте would visit.",
+              "uk": "Was visit неправильно; використайте would visit."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -1139,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "57567f34f03701b45c4ed4b0f69542fbc5b389f419330927a170300399c202d2"
+  "learnerFingerprint": "83a6d397965982da654db1ff42273dc8dccfea86f43ed721d74b7f98ec77d31e"
 }

@@ -53,99 +53,99 @@ Flatter — лестити: часто хвалити людину більше 
 <!-- interaction_id: en:lesson-25:session-36:word:entertained; family: word_card -->
 > **entertained** — Розважив. Entertain — розважати; entertained — третя форма.
 
-**2 · Скажіть: «Він уже розважив дітей до того моменту, коли вечеря була готова.»**
-<!-- interaction_id: en:lesson-25:session-36:i01; family: phrase_builder -->
-Плитки: `ready` `was` `dinner` `time` `the` `by` `children` `the` `entertained` `had` `He` → **He had entertained the children by the time dinner was ready.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-36:i01; family: listen_choose -->
+🔊 *My sister entertained the children with a song.* → **My sister entertained the children with a song.** · My brother entertained the children with a song. · My sister entertained the guests with a song.
+- My brother entertained the children with a song. — *У записі звучить My sister entertained the children with a song.*
+- My sister entertained the guests with a song. — *У записі звучить My sister entertained the children with a song.*
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-36:i02; family: context_gap_grammar -->
-He ___ entertained the children by the time dinner was ready. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Запропонуйте дітям заняття: «Давайте пограємо, поки чекаємо».**
+<!-- interaction_id: en:lesson-25:session-36:i02; family: phrase_builder -->
+Плитки: `wait` `we` `while` `game` `a` `play` `us` `Let` → **Let us play a game while we wait.**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-36:i03; family: listen_choose -->
-🔊 *He had entertained the children by the time dinner was ready.* → **He had entertained the children by the time dinner was ready.** · She had entertained the children by the time dinner was ready. · He had entertained the guests by the time dinner was ready.
-- She had entertained the children by the time dinner was ready. — *У записі звучить He had entertained the children by the time dinner was ready.*
-- He had entertained the guests by the time dinner was ready. — *У записі звучить He had entertained the children by the time dinner was ready.*
-
-**5 · Картка слова — amazed**
+**4 · Картка слова — amazed**
 <!-- interaction_id: en:lesson-25:session-36:word:amazed; family: word_card -->
 > **amazed** — Вразив. Amaze — сильно здивувати; amazed — третя форма.
 
-**6 · Скажіть: «Її розповідь уже вразила мене до того моменту, коли ми дісталися додому.»**
-<!-- interaction_id: en:lesson-25:session-36:i04; family: phrase_builder -->
-Плитки: `home` `got` `we` `time` `the` `by` `me` `amazed` `had` `story` `Her` → **Her story had amazed me by the time we got home.**
+**5 · Результат був несподіваним і дуже вас здивував. Виберіть amazed.**
+<!-- interaction_id: en:lesson-25:session-36:i03; family: context_gap_grammar -->
+The result ___ me. → **amazed** · entertained · invited
+- entertained — *Entertained — розважив; ідеться саме про сильне здивування.*
+- invited — *Invited — запросив; результат не запрошує людину.*
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-36:i05; family: context_gap_grammar -->
-Her story ___ amazed me by the time we got home. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**6 · Поділіться враженням: «Я ніколи раніше не бачив нічого подібного».**
+<!-- interaction_id: en:lesson-25:session-36:i04; family: scripted_repeat_compare -->
+🎙 **I have never seen anything like it before.**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-36:i06; family: listen_choose -->
-🔊 *Her story had amazed me by the time we got home.* → **Her story had amazed me by the time we got home.** · His story had amazed me by the time we got home. · Her story had amazed us by the time we got home.
-- His story had amazed me by the time we got home. — *У записі звучить Her story had amazed me by the time we got home.*
-- Her story had amazed us by the time we got home. — *У записі звучить Her story had amazed me by the time we got home.*
-
-**9 · Картка слова — irritated**
+**7 · Картка слова — irritated**
 <!-- interaction_id: en:lesson-25:session-36:word:irritated; family: word_card -->
 > **irritated** — Спричинив подразнення. Irritate — дратувати людину або подразнювати частину тіла; irritated — третя форма.
 
-**10 · Скажіть: «Дим уже спричинив подразнення очей до того моменту, коли я відчинив вікно.»**
-<!-- interaction_id: en:lesson-25:session-36:i07; family: phrase_builder -->
-Плитки: `window` `the` `opened` `I` `time` `the` `by` `eyes` `my` `irritated` `had` `smoke` `The` → **The smoke had irritated my eyes by the time I opened the window.**
+**8 · Почуйте, що спричинило подразнення шкіри.**
+<!-- interaction_id: en:lesson-25:session-36:i05; family: listen_build_dictation -->
+🔊 *The new soap irritated my skin.* Плитки: `skin` `my` `irritated` `soap` `new` `The` → **The new soap irritated my skin.**
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-36:i08; family: context_gap_grammar -->
-The smoke ___ irritated my eyes by the time I opened the window. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**9 · Ви перестали користуватися милом після появи подразнення. Виберіть зв’язок подій.**
+<!-- interaction_id: en:lesson-25:session-36:i06; family: context_gap_grammar -->
+I stopped using the soap ___ my skin became red. → **after** · before · until
+- before — *Before означало б, що ви перестали користуватися милом раніше за почервоніння.*
+- until — *Until не передає тут послідовність двох подій.*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-36:i09; family: listen_choose -->
-🔊 *The smoke had irritated my eyes by the time I opened the window.* → **The smoke had irritated my eyes by the time I opened the window.** · The smoke had irritated her eyes by the time she opened the window. · The smoke had irritated my eyes by the time I opened the door.
-- The smoke had irritated her eyes by the time she opened the window. — *У записі звучить The smoke had irritated my eyes by the time I opened the window.*
-- The smoke had irritated my eyes by the time I opened the door. — *У записі звучить The smoke had irritated my eyes by the time I opened the window.*
-
-**13 · Картка слова — flattered**
+**10 · Картка слова — flattered**
 <!-- interaction_id: en:lesson-25:session-36:word:flattered; family: word_card -->
 > **flattered** — Полестив. Flatter — лестити, часто хвалити більше заслуженого задля прихильності; flattered — третя форма.
 
-**14 · Скажіть: «Він полестив мені до того, як попросив грошей.»**
-<!-- interaction_id: en:lesson-25:session-36:i10; family: phrase_builder -->
-Плитки: `money` `for` `asked` `he` `before` `me` `flattered` `had` `He` → **He had flattered me before he asked for money.**
+**11 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-36:i07; family: listen_choose -->
+🔊 *He flattered me before asking for help.* → **He flattered me before asking for help.** · He thanked me before asking for help. · He flattered her before asking for help.
+- He thanked me before asking for help. — *У записі звучить He flattered me before asking for help.*
+- He flattered her before asking for help. — *У записі звучить He flattered me before asking for help.*
 
-**15 · Доповніть розповідь про минуле.**
+**12 · Зіставте дії з перекладом**
+<!-- interaction_id: en:lesson-25:session-36:i08; family: speed_match -->
+entertained — розважив · amazed — вразив · irritated — спричинив подразнення · flattered — полестив
+
+**13 · На надто щедру похвалу дайте відповідь: «Це дуже мило з твого боку».**
+<!-- interaction_id: en:lesson-25:session-36:i09; family: scripted_repeat_compare -->
+🎙 **That is very kind of you.**
+
+**14 · Розкажіть, що ви думали раніше: «Я раніше вважав цю гру нудною».**
+<!-- interaction_id: en:lesson-25:session-36:i10; family: phrase_builder -->
+Плитки: `boring` `was` `game` `this` `think` `to` `used` `I` → **I used to think this game was boring.**
+
+**15 · Діти заснули до кінця розповіді. Виберіть третю форму після had.**
 <!-- interaction_id: en:lesson-25:session-36:i11; family: context_gap_grammar -->
-He ___ flattered me before he asked for money. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+The children had ___ asleep by the time I finished the story. → **fallen** · fell · fall
+- fell — *Fell — Past Simple; після had потрібна третя форма fallen.*
+- fall — *Fall — початкова форма; після had потрібна fallen.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-36:i12; family: listen_choose -->
-🔊 *He had flattered me before he asked for money.* → **He had flattered me before he asked for money.** · She had flattered me before she asked for money. · He had flattered her before he asked for money.
-- She had flattered me before she asked for money. — *У записі звучить He had flattered me before he asked for money.*
-- He had flattered her before he asked for money. — *У записі звучить He had flattered me before he asked for money.*
+🔊 *We watched a funny film last night.* → **We watched a funny film last night.** · We watched a sad film last night. · We watched a funny film last week.
+- We watched a sad film last night. — *У записі звучить We watched a funny film last night.*
+- We watched a funny film last week. — *У записі звучить We watched a funny film last night.*
 
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-36:i13; family: speed_match -->
-entertained — розважив · amazed — вразив · irritated — спричинив подразнення · flattered — полестив
+**17 · Почуйте прохання зробити музику тихішою.**
+<!-- interaction_id: en:lesson-25:session-36:i13; family: listen_build_dictation -->
+🔊 *Could you turn the music down?* Плитки: `down` `music` `the` `turn` `you` `Could` → **Could you turn the music down?**
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-36:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**18 · Першу пісню вже заспівали. Діти просять ще одну.**
+<!-- interaction_id: en:lesson-25:session-36:i14; family: context_gap_grammar -->
+Please sing ___ song. → **another** · other · others
+- other — *Song в однині, тому another.*
+- others — *Others не ставиться перед іменником song.*
 
-**19 · Потяг уже поїхав**
-<!-- interaction_id: en:lesson-25:session-36:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**19 · Після веселого вечора подякуйте: «Дякую за чудовий вечір».**
+<!-- interaction_id: en:lesson-25:session-36:i15; family: scripted_repeat_compare -->
+🎙 **Thank you for a lovely evening.**
 
-**20 · Скажіть: «Вона вже розважила гостей до того моменту, коли вечеря була готова».**
-<!-- interaction_id: en:lesson-25:session-36:i16; family: scripted_repeat_compare -->
-🎙 **She had entertained the guests by the time dinner was ready.**
+**20 · Ви вже розповіли другові новину; важливий результат зараз. Виберіть Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-36:i16; family: context_gap_grammar -->
+I ___ him the news. → **have already told** · already telling · have already tell
+- already telling — *Для завершеної дії тут потрібно have already told.*
+- have already tell — *Після have потрібна третя форма told, не tell.*
 
-**21 · Скажіть: «Його розповідь уже вразила нас до того моменту, коли ми дісталися додому».**
-<!-- interaction_id: en:lesson-25:session-36:i17; family: scripted_repeat_compare -->
-🎙 **His story had amazed us by the time we got home.**
+**21 · Висловіть бажання знову побачити друзів: «Сподіваюся скоро побачити вас знову».**
+<!-- interaction_id: en:lesson-25:session-36:i17; family: phrase_builder -->
+Плитки: `soon` `again` `you` `see` `to` `hope` `I` → **I hope to see you again soon.**
 

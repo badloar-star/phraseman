@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-14:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        },
+        "en:lesson-26:session-14:intro1:r3": {
+          "ru": "После have нужна третья форма put.",
+          "uk": "Після have потрібна третя форма put."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-14:intro2:r2": {
+          "ru": "После have нужна форма packed.",
+          "uk": "Після have потрібна форма packed."
+        },
+        "en:lesson-26:session-14:intro2:r3": {
+          "ru": "С you употребляем have.",
+          "uk": "З you вживаємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-14:intro3:r2": {
+          "ru": "После had нужна форма changed.",
+          "uk": "Після had потрібна форма changed."
+        },
+        "en:lesson-26:session-14:intro3:r3": {
+          "ru": "Arrived задаёт прошлый момент, поэтому более раннее событие — had changed.",
+          "uk": "Arrived задає минулий момент, тому раніша подія — had changed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9ae7681a1484848ae5e7683e64ae653fa51bf2fe895d036ee94d62aa8cccf067"
+}

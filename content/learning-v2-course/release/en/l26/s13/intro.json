@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "just, already, yet; zero conditional; first conditional; past perfect + by the time",
+    "uk": "just, already, yet; zero conditional; first conditional; past perfect + by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Завтрак на двоих",
+        "uk": "Сніданок на двох"
+      },
+      "bodyByLocale": {
+        "ru": "Oatmeal — овсяная каша, обычно американское название знакомой porridge. I have just made oatmeal — я только что приготовил овсянку. Just стоит между have и made. Raisin — изюминка; обычно нужны raisins — изюм. If I make oatmeal, I add raisins — когда я готовлю овсянку, я добавляю изюм. Это привычка, поэтому обе части в Present Simple.",
+        "uk": "Oatmeal — вівсяна каша, зазвичай американська назва знайомої porridge. I have just made oatmeal — я щойно приготував вівсянку. Just стоїть між have та made. Raisin — родзинка; зазвичай потрібні raisins — родзинки. If I make oatmeal, I add raisins — коли я готую вівсянку, я додаю родзинки. Це звичка, тому обидві частини в Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-13:intro1:r1",
+              "text": "I have just made oatmeal."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro1:r2",
+              "text": "I have just make oatmeal."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro1:r3",
+              "text": "I has just made oatmeal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-13:intro1:r1",
+              "text": "I have just made oatmeal."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro1:r2",
+              "text": "I have just make oatmeal."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro1:r3",
+              "text": "I has just made oatmeal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что намазать на тост",
+        "uk": "Що намастити на тост"
+      },
+      "bodyByLocale": {
+        "ru": "Marmalade — цитрусовый джем, часто апельсиновый, иногда с кусочками кожуры. Это не обычное английское название конфет «мармелад». We will buy marmalade if the shop is open — мы купим цитрусовый джем, если магазин открыт. Обещание купить — will buy; возможное условие — is open без will. Have you bought bread yet? — ты уже купил хлеб? Yet стоит в конце вопроса.",
+        "uk": "Marmalade — цитрусовий джем, часто апельсиновий, іноді зі шматочками шкірки. Це не звичайна англійська назва цукерок «мармелад». We will buy marmalade if the shop is open — ми купимо цитрусовий джем, якщо магазин відчинений. Обіцянка купити — will buy; можлива умова — is open без will. Have you bought bread yet? — ти вже купив хліб? Yet стоїть у кінці питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-13:intro2:r1",
+              "text": "We will buy marmalade if the shop is open."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro2:r2",
+              "text": "We will buy marmalade if the shop will be open."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro2:r3",
+              "text": "We will buys marmalade if the shop is open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-13:intro2:r1",
+              "text": "We will buy marmalade if the shop is open."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro2:r2",
+              "text": "We will buy marmalade if the shop will be open."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro2:r3",
+              "text": "We will buys marmalade if the shop is open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обед с собой",
+        "uk": "Обід із собою"
+      },
+      "bodyByLocale": {
+        "ru": "Tortilla — тонкая круглая лепёшка, в которую можно завернуть начинку. I had filled the tortilla by the time Sam arrived — я уже положил начинку в лепёшку к тому времени, как пришёл Сэм. Had filled показывает действие раньше другого прошлого события arrived. А для готового результата сейчас: I have already packed lunch — я уже упаковал обед. В первом случае есть прошлый ориентир, во втором важен результат сейчас.",
+        "uk": "Tortilla — тонкий круглий коржик, у який можна загорнути начинку. I had filled the tortilla by the time Sam arrived — я вже поклав начинку в коржик на той час, коли прийшов Сем. Had filled показує дію раніше іншої минулої події arrived. А для готового результату зараз: I have already packed lunch — я вже спакував обід. У першому випадку є минулий орієнтир, у другому важливий результат зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-13:intro3:r1",
+              "text": "I had filled the tortilla by the time Sam arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro3:r2",
+              "text": "I had fill the tortilla by the time Sam arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro3:r3",
+              "text": "I have filled the tortilla by the time Sam arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-13:intro3:r1",
+              "text": "I had filled the tortilla by the time Sam arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro3:r2",
+              "text": "I had fill the tortilla by the time Sam arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-13:intro3:r3",
+              "text": "I have filled the tortilla by the time Sam arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8d5b9fcd2251a68ebe33af15a62d2c140830c6c1ad2b3970dd9b1cfc43028a73"
+}

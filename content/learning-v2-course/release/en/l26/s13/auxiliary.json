@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-13:intro1:r2": {
+          "ru": "После have нужна третья форма made.",
+          "uk": "Після have потрібна третя форма made."
+        },
+        "en:lesson-26:session-13:intro1:r3": {
+          "ru": "С I используем have.",
+          "uk": "З I вживаємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-13:intro2:r2": {
+          "ru": "После if здесь is open без will.",
+          "uk": "Після if тут is open без will."
+        },
+        "en:lesson-26:session-13:intro2:r3": {
+          "ru": "После will нужно buy без -s.",
+          "uk": "Після will потрібно buy без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-13:intro3:r2": {
+          "ru": "После had нужна форма filled.",
+          "uk": "Після had потрібна форма filled."
+        },
+        "en:lesson-26:session-13:intro3:r3": {
+          "ru": "Arrived задаёт прошлый ориентир, поэтому для более раннего действия had filled.",
+          "uk": "Arrived задає минулий орієнтир, тому для ранішої дії had filled."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bde999e9b85082d0a9c7de67d61f33203180f81dfa0007cbc9dde23e122de665"
+}

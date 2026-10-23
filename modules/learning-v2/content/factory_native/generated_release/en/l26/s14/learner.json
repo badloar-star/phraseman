@@ -1,0 +1,1086 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-14:word:bathrobe",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bathrobe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:word:bathrobe:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bathrobe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:word:bathrobe:audio",
+          "transcript": "bathrobe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-14:word:bathrobe:r1",
+            "targetText": "bathrobe",
+            "meaningByLocale": {
+              "ru": "Банный халат. My bathrobe — мой халат, который надевают после душа или дома.",
+              "uk": "Банний халат. My bathrobe — мій халат, який надягають після душу або вдома."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bathrobe",
+          "definitionByLocale": {
+            "ru": "Банный халат. My bathrobe — мой халат, который надевают после душа или дома.",
+            "uk": "Банний халат. My bathrobe — мій халат, який надягають після душу або вдома."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите сестру передать ваш халат: «Принеси мой банный халат, пожалуйста».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите сестру передать ваш халат: «Принеси мой банный халат, пожалуйста».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please bring my bathrobe.",
+        "localizedMeaning": {
+          "ru": "Попросите сестру передать ваш халат: «Принеси мой банный халат, пожалуйста».",
+          "uk": "Попросіть сестру передати ваш халат: «Принеси мій банний халат, будь ласка»."
+        },
+        "orderedTokens": [
+          "Please",
+          "bring",
+          "my",
+          "bathrobe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы обычно надеваете халат, когда вам холодно. Дополните условие этой привычки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-14:i02:r1",
+          "text": "feel"
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i02:r2",
+          "text": "feels"
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i02:r3",
+          "text": "feeling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы обычно надеваете халат, когда вам холодно. Дополните условие этой привычки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы обычно надеваете халат, когда вам холодно. Дополните условие этой привычки.",
+          "uk": "Ви зазвичай надягаєте халат, коли вам холодно. Доповніть умову цієї звички."
+        },
+        "gappedTargetPhrase": "If I ___ cold, I put on my bathrobe.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-14:i02:r1",
+            "text": "feel"
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i02:r2",
+            "text": "feels"
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i02:r3",
+            "text": "feeling"
+          }
+        ],
+        "testedDimension": "Вы обычно надеваете халат, когда вам холодно. Дополните условие этой привычки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Вы обычно надеваете халат, когда вам холодно. Дополните условие этой привычки.",
+            "feedbackByLocale": {
+              "ru": "С I используется feel без -s.",
+              "uk": "З I використовується feel без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Вы обычно надеваете халат, когда вам холодно. Дополните условие этой привычки.",
+            "feedbackByLocale": {
+              "ru": "Нужно сказуемое feel, не отдельная форма feeling.",
+              "uk": "Потрібен присудок feel, а не окрема форма feeling."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:word:nightie",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nightie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:word:nightie:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nightie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:word:nightie:audio",
+          "transcript": "nightie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-14:word:nightie:r1",
+            "targetText": "nightie",
+            "meaningByLocale": {
+              "ru": "Ночная рубашка; разговорное название одежды для сна.",
+              "uk": "Нічна сорочка; розмовна назва одягу для сну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nightie",
+          "definitionByLocale": {
+            "ru": "Ночная рубашка; разговорное название одежды для сна.",
+            "uk": "Нічна сорочка; розмовна назва одягу для сну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-14:i03:r1",
+          "text": "Your nightie is on the bed."
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i03:r2",
+          "text": "Your nightie is in the bag."
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i03:r3",
+          "text": "Your bathrobe is on the bed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:i03:audio",
+          "transcript": "Your nightie is on the bed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-14:i03:r1",
+            "targetText": "Your nightie is on the bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i03:r2",
+            "targetText": "Your nightie is in the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i03:r3",
+            "targetText": "Your bathrobe is on the bed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your nightie is on the bed.",
+              "uk": "У записі звучить Your nightie is on the bed."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your nightie is on the bed.",
+              "uk": "У записі звучить Your nightie is on the bed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат не может застегнуть сумку. Предложите: «Давай я тебе помогу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:i04:audio"
+      ],
+      "accessibilityLabel": "Брат не может застегнуть сумку. Предложите: «Давай я тебе помогу».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:i04:audio",
+          "transcript": "Let me help you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let me help you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:word:undershirt",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — undershirt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:word:undershirt:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — undershirt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:word:undershirt:audio",
+          "transcript": "undershirt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-14:word:undershirt:r1",
+            "targetText": "undershirt",
+            "meaningByLocale": {
+              "ru": "Нижняя майка, которую носят под другой одеждой. An undershirt — одна майка.",
+              "uk": "Спідня майка, яку носять під іншим одягом. An undershirt — одна майка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "undershirt",
+          "definitionByLocale": {
+            "ru": "Нижняя майка, которую носят под другой одеждой. An undershirt — одна майка.",
+            "uk": "Спідня майка, яку носять під іншим одягом. An undershirt — одна майка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос о чистой одежде.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос о чистой одежде.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:i05:audio",
+          "transcript": "Have you got a clean undershirt?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you got a clean undershirt?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "got",
+          "a",
+          "clean",
+          "undershirt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите план на случай холода во время поездки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-14:i06:r1",
+          "text": "gets"
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i06:r2",
+          "text": "will get"
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i06:r3",
+          "text": "getting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите план на случай холода во время поездки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите план на случай холода во время поездки.",
+          "uk": "Виберіть план на випадок холоду під час поїздки."
+        },
+        "gappedTargetPhrase": "I will wear an undershirt if it ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-14:i06:r1",
+            "text": "gets"
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i06:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i06:r3",
+            "text": "getting"
+          }
+        ],
+        "testedDimension": "Выберите план на случай холода во время поездки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-14:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите план на случай холода во время поездки.",
+            "feedbackByLocale": {
+              "ru": "В условии после if нужен Present Simple: gets.",
+              "uk": "В умові після if потрібен Present Simple: gets."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите план на случай холода во время поездки.",
+            "feedbackByLocale": {
+              "ru": "Getting не образует здесь сказуемое.",
+              "uk": "Getting не утворює тут присудка."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:word:diaper",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — diaper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:word:diaper:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — diaper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:word:diaper:audio",
+          "transcript": "diaper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-14:word:diaper:r1",
+            "targetText": "diaper",
+            "meaningByLocale": {
+              "ru": "Подгузник. Обычное американское слово; британский вариант — nappy.",
+              "uk": "Підгузок. Звичайне американське слово; британський варіант — nappy."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "diaper",
+          "definitionByLocale": {
+            "ru": "Подгузник. Обычное американское слово; британский вариант — nappy.",
+            "uk": "Підгузок. Звичайне американське слово; британський варіант — nappy."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-14:i07:r1",
+          "text": "We need another diaper."
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i07:r2",
+          "text": "We need another towel."
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i07:r3",
+          "text": "We need another bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:i07:audio",
+          "transcript": "We need another diaper."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-14:i07:r1",
+            "targetText": "We need another diaper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i07:r2",
+            "targetText": "We need another towel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i07:r3",
+            "targetText": "We need another bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-14:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need another diaper.",
+              "uk": "У записі звучить We need another diaper."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need another diaper.",
+              "uk": "У записі звучить We need another diaper."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Папа спрашивает, где запасные вещи малыша. Ответьте: «Они в маленькой сумке».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Папа спрашивает, где запасные вещи малыша. Ответьте: «Они в маленькой сумке».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are in the small bag.",
+        "localizedMeaning": {
+          "ru": "Папа спрашивает, где запасные вещи малыша. Ответьте: «Они в маленькой сумке».",
+          "uk": "Тато запитує, де запасні речі малюка. Дайте відповідь: «Вони в маленькій сумці»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "in",
+          "the",
+          "small",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мама спрашивает, готова ли ваша одежда для сна. Ответьте, что вы уже её упаковали.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-14:i09:r1",
+          "text": "already"
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i09:r2",
+          "text": "yet"
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i09:r3",
+          "text": "tomorrow"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мама спрашивает, готова ли ваша одежда для сна. Ответьте, что вы уже её упаковали.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мама спрашивает, готова ли ваша одежда для сна. Ответьте, что вы уже её упаковали.",
+          "uk": "Мама запитує, чи готовий ваш одяг для сну. Дайте відповідь, що ви вже його спакували."
+        },
+        "gappedTargetPhrase": "I have ___ packed my nightie.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-14:i09:r1",
+            "text": "already"
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i09:r2",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i09:r3",
+            "text": "tomorrow"
+          }
+        ],
+        "testedDimension": "Мама спрашивает, готова ли ваша одежда для сна. Ответьте, что вы уже её упаковали.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Мама спрашивает, готова ли ваша одежда для сна. Ответьте, что вы уже её упаковали.",
+            "feedbackByLocale": {
+              "ru": "Yet не подходит здесь перед packed в утвердительном ответе.",
+              "uk": "Yet не підходить тут перед packed у ствердній відповіді."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Мама спрашивает, готова ли ваша одежда для сна. Ответьте, что вы уже её упаковали.",
+            "feedbackByLocale": {
+              "ru": "Tomorrow означает завтра, а вещь уже в сумке.",
+              "uk": "Tomorrow означає завтра, а річ уже в сумці."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра спрашивает, где халат. Скажите: «Я повесил его за дверью».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:i10:audio"
+      ],
+      "accessibilityLabel": "Сестра спрашивает, где халат. Скажите: «Я повесил его за дверью».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:i10:audio",
+          "transcript": "I hung it behind the door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I hung it behind the door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-14:i11:r1",
+          "text": "I have just washed the undershirt."
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i11:r2",
+          "text": "I have just dried the undershirt."
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i11:r3",
+          "text": "I have just washed the shirt."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:i11:audio",
+          "transcript": "I have just washed the undershirt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-14:i11:r1",
+            "targetText": "I have just washed the undershirt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i11:r2",
+            "targetText": "I have just dried the undershirt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i11:r3",
+            "targetText": "I have just washed the shirt.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-14:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just washed the undershirt.",
+              "uk": "У записі звучить I have just washed the undershirt."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just washed the undershirt.",
+              "uk": "У записі звучить I have just washed the undershirt."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните у брата: «Ты уже вызвал такси?» Используйте yet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните у брата: «Ты уже вызвал такси?» Используйте yet.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you called a taxi yet?",
+        "localizedMeaning": {
+          "ru": "Уточните у брата: «Ты уже вызвал такси?» Используйте yet.",
+          "uk": "Уточніть у брата: «Ти вже викликав таксі?» Використайте yet."
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "called",
+          "a",
+          "taxi",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подгузник сменили до приезда машины. Дополните более раннее действие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-14:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i13:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подгузник сменили до приезда машины. Дополните более раннее действие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подгузник сменили до приезда машины. Дополните более раннее действие.",
+          "uk": "Підгузок змінили до приїзду машини. Доповніть ранішу дію."
+        },
+        "gappedTargetPhrase": "I ___ changed the diaper by the time the car arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-14:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i13:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Подгузник сменили до приезда машины. Дополните более раннее действие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-14:i13:r2",
+            "correct": false,
+            "testedDimension": "Подгузник сменили до приезда машины. Дополните более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Arrived обозначает прошлый момент; нужен Past Perfect: had changed.",
+              "uk": "Arrived позначає минулий момент; потрібен Past Perfect: had changed."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i13:r3",
+            "correct": false,
+            "testedDimension": "Подгузник сменили до приезда машины. Дополните более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Was changed означало бы другую конструкцию; здесь человек сам сменил подгузник.",
+              "uk": "Was changed означало б іншу конструкцію; тут людина сама змінила підгузок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу проверить дверь перед выходом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу проверить дверь перед выходом.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:i14:audio",
+          "transcript": "Please check that the door is locked."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please check that the door is locked.",
+        "orderedTokens": [
+          "Please",
+          "check",
+          "that",
+          "the",
+          "door",
+          "is",
+          "locked"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга спрашивает, сообщите ли вы о задержке. Пообещайте: «Я позвоню, если буду опаздывать».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Подруга спрашивает, сообщите ли вы о задержке. Пообещайте: «Я позвоню, если буду опаздывать».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:i15:audio",
+          "transcript": "I will call if I am late."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will call if I am late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-14:i16:r1",
+          "text": "There is enough room for another bag."
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i16:r2",
+          "text": "There is enough room for another box."
+        },
+        {
+          "responseId": "en:lesson-26:session-14:i16:r3",
+          "text": "There is no room for another bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-14:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-14:i16:audio",
+          "transcript": "There is enough room for another bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-14:i16:r1",
+            "targetText": "There is enough room for another bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i16:r2",
+            "targetText": "There is enough room for another box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i16:r3",
+            "targetText": "There is no room for another bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-14:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is enough room for another bag.",
+              "uk": "У записі звучить There is enough room for another bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-14:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is enough room for another bag.",
+              "uk": "У записі звучить There is enough room for another bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-14:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг предлагает прислать адрес. Ответьте: «Я перешлю его Сэму, если ты пришлёшь его мне».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг предлагает прислать адрес. Ответьте: «Я перешлю его Сэму, если ты пришлёшь его мне».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will forward it to Sam if you send it to me.",
+        "localizedMeaning": {
+          "ru": "Друг предлагает прислать адрес. Ответьте: «Я перешлю его Сэму, если ты пришлёшь его мне».",
+          "uk": "Друг пропонує надіслати адресу. Дайте відповідь: «Я перешлю її Сему, якщо ти надішлеш її мені»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "forward",
+          "it",
+          "to",
+          "Sam",
+          "if",
+          "you",
+          "send",
+          "it",
+          "to",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cbf7d1b4706e060d3b3980a0ef6c3e333a1c0d89fb25ac6a265895968927dca0"
+}

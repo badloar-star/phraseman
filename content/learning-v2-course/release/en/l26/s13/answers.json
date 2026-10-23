@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-13:word:oatmeal",
+    "correctText": "oatmeal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i01",
+    "correctText": "I have just made oatmeal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i02",
+    "correctText": "Would you like a bowl?",
+    "correctResponseId": "en:lesson-26:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:word:raisins",
+    "correctText": "raisins",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i03",
+    "correctText": "add",
+    "correctResponseId": "en:lesson-26:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i04",
+    "correctText": "That is my cup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:word:marmalade",
+    "correctText": "marmalade",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i05",
+    "correctText": "There is no marmalade left.",
+    "correctResponseId": "en:lesson-26:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i06",
+    "correctText": "Have you bought bread yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:word:tortilla",
+    "correctText": "tortilla",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i07",
+    "correctText": "Put some cheese in the tortilla.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-26:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i09",
+    "correctText": "I have already packed lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i10",
+    "correctText": "These raisins are really sweet.",
+    "correctResponseId": "en:lesson-26:session-13:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i12",
+    "correctText": "Let us wait a minute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i13",
+    "correctText": "I will wash the bowls if you clear the table.",
+    "correctResponseId": "en:lesson-26:session-13:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i14",
+    "correctText": "The marmalade is in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i15",
+    "correctText": "already",
+    "correctResponseId": "en:lesson-26:session-13:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i16",
+    "correctText": "Have we got enough tortillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-13:i17",
+    "correctText": "We will eat outside if the rain stops.",
+    "correctResponseId": null
+  }
+]

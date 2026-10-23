@@ -1,0 +1,1078 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-13:word:oatmeal",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — oatmeal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:word:oatmeal:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — oatmeal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:word:oatmeal:audio",
+          "transcript": "oatmeal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-13:word:oatmeal:r1",
+            "targetText": "oatmeal",
+            "meaningByLocale": {
+              "ru": "Овсяная каша; обычное американское название. Неисчисляемое: some oatmeal.",
+              "uk": "Вівсяна каша; звичайна американська назва. Незлічуване: some oatmeal."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "oatmeal",
+          "definitionByLocale": {
+            "ru": "Овсяная каша; обычное американское название. Неисчисляемое: some oatmeal.",
+            "uk": "Вівсяна каша; звичайна американська назва. Незлічуване: some oatmeal."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат спрашивает, что на завтрак. Ответьте: «Я только что приготовил овсянку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Брат спрашивает, что на завтрак. Ответьте: «Я только что приготовил овсянку».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:i01:audio",
+          "transcript": "I have just made oatmeal."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have just made oatmeal.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-13:i02:r1",
+          "text": "Would you like a bowl?"
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i02:r2",
+          "text": "Would you like a plate?"
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i02:r3",
+          "text": "Would you like a spoon?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:i02:audio",
+          "transcript": "Would you like a bowl?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-13:i02:r1",
+            "targetText": "Would you like a bowl?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i02:r2",
+            "targetText": "Would you like a plate?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i02:r3",
+            "targetText": "Would you like a spoon?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Would you like a bowl?",
+              "uk": "У записі звучить Would you like a bowl?"
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Would you like a bowl?",
+              "uk": "У записі звучить Would you like a bowl?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:word:raisins",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — raisins",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:word:raisins:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — raisins",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:word:raisins:audio",
+          "transcript": "raisins"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-13:word:raisins:r1",
+            "targetText": "raisins",
+            "meaningByLocale": {
+              "ru": "Изюм, изюминки. Единственное число raisin — одна изюминка; dried grapes — сушёный виноград.",
+              "uk": "Родзинки. Однина raisin — одна родзинка; dried grapes — сушений виноград."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "raisins",
+          "definitionByLocale": {
+            "ru": "Изюм, изюминки. Единственное число raisin — одна изюминка; dried grapes — сушёный виноград.",
+            "uk": "Родзинки. Однина raisin — одна родзинка; dried grapes — сушений виноград."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы обычно добавляете изюм в овсянку. Дополните описание привычки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-13:i03:r1",
+          "text": "add"
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i03:r2",
+          "text": "adds"
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i03:r3",
+          "text": "adding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы обычно добавляете изюм в овсянку. Дополните описание привычки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы обычно добавляете изюм в овсянку. Дополните описание привычки.",
+          "uk": "Ви зазвичай додаєте родзинки у вівсянку. Доповніть опис звички."
+        },
+        "gappedTargetPhrase": "If I make oatmeal, I ___ raisins.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-13:i03:r1",
+            "text": "add"
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i03:r2",
+            "text": "adds"
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i03:r3",
+            "text": "adding"
+          }
+        ],
+        "testedDimension": "Вы обычно добавляете изюм в овсянку. Дополните описание привычки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы обычно добавляете изюм в овсянку. Дополните описание привычки.",
+            "feedbackByLocale": {
+              "ru": "С I глагол add без -s.",
+              "uk": "З I дієслово add без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы обычно добавляете изюм в овсянку. Дополните описание привычки.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужно add, не отдельная форма adding.",
+              "uk": "Для звички потрібно add, а не окрема форма adding."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг собирается взять вашу чашку. Уточните: «Это моя чашка».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг собирается взять вашу чашку. Уточните: «Это моя чашка».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is my cup.",
+        "localizedMeaning": {
+          "ru": "Друг собирается взять вашу чашку. Уточните: «Это моя чашка».",
+          "uk": "Друг збирається взяти вашу чашку. Уточніть: «Це моя чашка»."
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "my",
+          "cup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:word:marmalade",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — marmalade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:word:marmalade:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — marmalade",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:word:marmalade:audio",
+          "transcript": "marmalade"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-13:word:marmalade:r1",
+            "targetText": "marmalade",
+            "meaningByLocale": {
+              "ru": "Цитрусовый джем, часто апельсиновый. Marmalade on toast — цитрусовый джем на тосте.",
+              "uk": "Цитрусовий джем, часто апельсиновий. Marmalade on toast — цитрусовий джем на тості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "marmalade",
+          "definitionByLocale": {
+            "ru": "Цитрусовый джем, часто апельсиновый. Marmalade on toast — цитрусовый джем на тосте.",
+            "uk": "Цитрусовий джем, часто апельсиновий. Marmalade on toast — цитрусовий джем на тості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-13:i05:r1",
+          "text": "There is no marmalade left."
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i05:r2",
+          "text": "There is no milk left."
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i05:r3",
+          "text": "There is some marmalade left."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:i05:audio",
+          "transcript": "There is no marmalade left."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-13:i05:r1",
+            "targetText": "There is no marmalade left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i05:r2",
+            "targetText": "There is no milk left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i05:r3",
+            "targetText": "There is some marmalade left.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is no marmalade left.",
+              "uk": "У записі звучить There is no marmalade left."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is no marmalade left.",
+              "uk": "У записі звучить There is no marmalade left."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите сестру перед походом в магазин: «Ты уже купила хлеб?» Используйте yet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите сестру перед походом в магазин: «Ты уже купила хлеб?» Используйте yet.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you bought bread yet?",
+        "localizedMeaning": {
+          "ru": "Спросите сестру перед походом в магазин: «Ты уже купила хлеб?» Используйте yet.",
+          "uk": "Запитайте сестру перед походом до магазину: «Ти вже купила хліб?» Використайте yet."
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "bought",
+          "bread",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:word:tortilla",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tortilla",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:word:tortilla:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tortilla",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:word:tortilla:audio",
+          "transcript": "tortilla"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-13:word:tortilla:r1",
+            "targetText": "tortilla",
+            "meaningByLocale": {
+              "ru": "Тонкая круглая лепёшка для начинки. A tortilla — одна лепёшка.",
+              "uk": "Тонкий круглий коржик для начинки. A tortilla — один коржик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tortilla",
+          "definitionByLocale": {
+            "ru": "Тонкая круглая лепёшка для начинки. A tortilla — одна лепёшка.",
+            "uk": "Тонкий круглий коржик для начинки. A tortilla — один коржик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу на кухне.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу на кухне.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:i07:audio",
+          "transcript": "Put some cheese in the tortilla."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Put some cheese in the tortilla.",
+        "orderedTokens": [
+          "Put",
+          "some",
+          "cheese",
+          "in",
+          "the",
+          "tortilla"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ещё не решили, идти ли в магазин. Покупка зависит от того, открыт ли он. Дополните условие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-13:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i08:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i08:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ещё не решили, идти ли в магазин. Покупка зависит от того, открыт ли он. Дополните условие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не решили, идти ли в магазин. Покупка зависит от того, открыт ли он. Дополните условие.",
+          "uk": "Ви ще не вирішили, чи йти до магазину. Покупка залежить від того, чи він відчинений. Доповніть умову."
+        },
+        "gappedTargetPhrase": "I will buy some marmalade if the shop ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-13:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i08:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i08:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Вы ещё не решили, идти ли в магазин. Покупка зависит от того, открыт ли он. Дополните условие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы ещё не решили, идти ли в магазин. Покупка зависит от того, открыт ли он. Дополните условие.",
+            "feedbackByLocale": {
+              "ru": "После if в этом условии нужен Present Simple: is.",
+              "uk": "Після if у цій умові потрібен Present Simple: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы ещё не решили, идти ли в магазин. Покупка зависит от того, открыт ли он. Дополните условие.",
+            "feedbackByLocale": {
+              "ru": "Being не образует здесь сказуемое.",
+              "uk": "Being не утворює тут присудка."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга спрашивает, закончена ли упаковка еды. Ответьте: «Я уже упаковал обед».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Подруга спрашивает, закончена ли упаковка еды. Ответьте: «Я уже упаковал обед».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:i09:audio",
+          "transcript": "I have already packed lunch."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have already packed lunch.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-13:i10:r1",
+          "text": "These raisins are really sweet."
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i10:r2",
+          "text": "These raisins are really hard."
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i10:r3",
+          "text": "These grapes are really sweet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:i10:audio",
+          "transcript": "These raisins are really sweet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-13:i10:r1",
+            "targetText": "These raisins are really sweet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i10:r2",
+            "targetText": "These raisins are really hard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i10:r3",
+            "targetText": "These grapes are really sweet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-13:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These raisins are really sweet.",
+              "uk": "У записі звучить These raisins are really sweet."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These raisins are really sweet.",
+              "uk": "У записі звучить These raisins are really sweet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "К приходу Сэма начинка уже была в лепёшке. Дополните более раннее действие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-13:i11:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i11:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i11:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "К приходу Сэма начинка уже была в лепёшке. Дополните более раннее действие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "К приходу Сэма начинка уже была в лепёшке. Дополните более раннее действие.",
+          "uk": "До приходу Сема начинка вже була в коржику. Доповніть ранішу дію."
+        },
+        "gappedTargetPhrase": "I ___ filled the tortilla by the time Sam arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-13:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i11:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i11:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "К приходу Сэма начинка уже была в лепёшке. Дополните более раннее действие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "К приходу Сэма начинка уже была в лепёшке. Дополните более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Have связывает результат с настоящим, а arrived задаёт прошлое.",
+              "uk": "Have пов’язує результат із теперішнім, а arrived задає минуле."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "К приходу Сэма начинка уже была в лепёшке. Дополните более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Для более раннего действия нужно had filled.",
+              "uk": "Для ранішої дії потрібно had filled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Овсянка ещё горячая. Предложите: «Давай подождём минуту».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Овсянка ещё горячая. Предложите: «Давай подождём минуту».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let us wait a minute.",
+        "localizedMeaning": {
+          "ru": "Овсянка ещё горячая. Предложите: «Давай подождём минуту».",
+          "uk": "Вівсянка ще гаряча. Запропонуйте: «Давай зачекаємо хвилину»."
+        },
+        "orderedTokens": [
+          "Let",
+          "us",
+          "wait",
+          "a",
+          "minute"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-13:i13:r1",
+          "text": "I will wash the bowls if you clear the table."
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i13:r2",
+          "text": "I will wash the cups if you clear the table."
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i13:r3",
+          "text": "You will wash the bowls if I clear the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:i13:audio",
+          "transcript": "I will wash the bowls if you clear the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-13:i13:r1",
+            "targetText": "I will wash the bowls if you clear the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i13:r2",
+            "targetText": "I will wash the cups if you clear the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i13:r3",
+            "targetText": "You will wash the bowls if I clear the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-13:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will wash the bowls if you clear the table.",
+              "uk": "У записі звучить I will wash the bowls if you clear the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will wash the bowls if you clear the table.",
+              "uk": "У записі звучить I will wash the bowls if you clear the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i14",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат спрашивает, где джем. Ответьте: «Цитрусовый джем в холодильнике».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Брат спрашивает, где джем. Ответьте: «Цитрусовый джем в холодильнике».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:i14:audio",
+          "transcript": "The marmalade is in the fridge."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The marmalade is in the fridge.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перед выходом папа спрашивает, взяли ли вы воду. Ответьте, что это уже сделано.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-13:i15:r1",
+          "text": "already"
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i15:r2",
+          "text": "yet"
+        },
+        {
+          "responseId": "en:lesson-26:session-13:i15:r3",
+          "text": "tomorrow"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед выходом папа спрашивает, взяли ли вы воду. Ответьте, что это уже сделано.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Перед выходом папа спрашивает, взяли ли вы воду. Ответьте, что это уже сделано.",
+          "uk": "Перед виходом тато запитує, чи взяли ви воду. Дайте відповідь, що це вже зроблено."
+        },
+        "gappedTargetPhrase": "I have ___ packed the water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-13:i15:r1",
+            "text": "already"
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i15:r2",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i15:r3",
+            "text": "tomorrow"
+          }
+        ],
+        "testedDimension": "Перед выходом папа спрашивает, взяли ли вы воду. Ответьте, что это уже сделано.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-13:i15:r2",
+            "correct": false,
+            "testedDimension": "Перед выходом папа спрашивает, взяли ли вы воду. Ответьте, что это уже сделано.",
+            "feedbackByLocale": {
+              "ru": "Yet обычно в конце вопроса или отрицания, а это утвердительный ответ.",
+              "uk": "Yet зазвичай у кінці питання або заперечення, а це ствердна відповідь."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-13:i15:r3",
+            "correct": false,
+            "testedDimension": "Перед выходом папа спрашивает, взяли ли вы воду. Ответьте, что это уже сделано.",
+            "feedbackByLocale": {
+              "ru": "Tomorrow относится к будущему, а вода уже упакована.",
+              "uk": "Tomorrow стосується майбутнього, а вода вже спакована."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос о еде с собой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос о еде с собой.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-13:i16:audio",
+          "transcript": "Have we got enough tortillas?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have we got enough tortillas?",
+        "orderedTokens": [
+          "Have",
+          "we",
+          "got",
+          "enough",
+          "tortillas"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-13:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Договоритесь: «Мы поедим на улице, если дождь прекратится».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Договоритесь: «Мы поедим на улице, если дождь прекратится».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We will eat outside if the rain stops.",
+        "localizedMeaning": {
+          "ru": "Договоритесь: «Мы поедим на улице, если дождь прекратится».",
+          "uk": "Домовтеся: «Ми поїмо надворі, якщо дощ припиниться»."
+        },
+        "orderedTokens": [
+          "We",
+          "will",
+          "eat",
+          "outside",
+          "if",
+          "the",
+          "rain",
+          "stops"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "076f5629728283798f8be1dd9fdbd2222d120cb3941b922753652d86ece3938b"
+}

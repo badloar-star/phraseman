@@ -9891,4 +9891,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"first conditional; zero conditional; just, already, yet; past perfect + by the time","uk":"first conditional; zero conditional; just, already, yet; past perfect + by the time"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 13,
+    sourceFingerprint: "48cdb467655f2dcfd2a28756549df31f155fa44122325883e6457e04c7bdb709",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"just, already, yet; zero conditional; first conditional; past perfect + by the time","uk":"just, already, yet; zero conditional; first conditional; past perfect + by the time"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 14,
+    sourceFingerprint: "da347bfdfbff138627c322893e737af4feb4ca5fa32fd0ff4b25c3758637c662",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"zero conditional; first conditional; just, already, yet; past perfect + by the time","uk":"zero conditional; first conditional; just, already, yet; past perfect + by the time"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
 ]);

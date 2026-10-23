@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-14:word:bathrobe",
+    "correctText": "bathrobe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i01",
+    "correctText": "Please bring my bathrobe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i02",
+    "correctText": "feel",
+    "correctResponseId": "en:lesson-26:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:word:nightie",
+    "correctText": "nightie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i03",
+    "correctText": "Your nightie is on the bed.",
+    "correctResponseId": "en:lesson-26:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i04",
+    "correctText": "Let me help you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:word:undershirt",
+    "correctText": "undershirt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i05",
+    "correctText": "Have you got a clean undershirt?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i06",
+    "correctText": "gets",
+    "correctResponseId": "en:lesson-26:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:word:diaper",
+    "correctText": "diaper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i07",
+    "correctText": "We need another diaper.",
+    "correctResponseId": "en:lesson-26:session-14:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i08",
+    "correctText": "They are in the small bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i09",
+    "correctText": "already",
+    "correctResponseId": "en:lesson-26:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i10",
+    "correctText": "I hung it behind the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i11",
+    "correctText": "I have just washed the undershirt.",
+    "correctResponseId": "en:lesson-26:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i12",
+    "correctText": "Have you called a taxi yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-14:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i14",
+    "correctText": "Please check that the door is locked.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i15",
+    "correctText": "I will call if I am late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i16",
+    "correctText": "There is enough room for another bag.",
+    "correctResponseId": "en:lesson-26:session-14:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-14:i17",
+    "correctText": "I will forward it to Sam if you send it to me.",
+    "correctResponseId": null
+  }
+]

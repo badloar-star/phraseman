@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "zero conditional; first conditional; just, already, yet; past perfect + by the time",
+    "uk": "zero conditional; first conditional; just, already, yet; past perfect + by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "После душа",
+        "uk": "Після душу"
+      },
+      "bodyByLocale": {
+        "ru": "Bathrobe — банный халат, который надевают после мытья или дома. I have just put on my bathrobe — я только что надел банный халат. Put сохраняет форму: put — put — put. Если описываем обычную привычку, используем настоящее время: If I feel cold, I put on my bathrobe — если мне холодно, я надеваю халат. Это не обещание на завтра, а то, что человек обычно делает.",
+        "uk": "Bathrobe — банний халат, який надягають після миття або вдома. I have just put on my bathrobe — я щойно надягнув банний халат. Put зберігає форму: put — put — put. Якщо описуємо звичайну звичку, використовуємо теперішній час: If I feel cold, I put on my bathrobe — якщо мені холодно, я надягаю халат. Це не обіцянка на завтра, а те, що людина зазвичай робить."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-14:intro1:r1",
+              "text": "I have just put on my bathrobe."
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro1:r2",
+              "text": "I has just put on my bathrobe."
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro1:r3",
+              "text": "I have just putting on my bathrobe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-14:intro1:r1",
+              "text": "I have just put on my bathrobe."
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro1:r2",
+              "text": "I has just put on my bathrobe."
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro1:r3",
+              "text": "I have just putting on my bathrobe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Собраться на ночь",
+        "uk": "Зібратися на ніч"
+      },
+      "bodyByLocale": {
+        "ru": "Nightie — ночная рубашка, разговорное название. Undershirt — нижняя майка, которую носят под другой одеждой. Have you packed your nightie yet? — ты уже положила ночную рубашку? Yet в конце вопроса показывает, что действие ожидается. I will bring an undershirt if it gets cold — я возьму нижнюю майку, если похолодает. В условии после if — gets без will.",
+        "uk": "Nightie — нічна сорочка, розмовна назва. Undershirt — спідня майка, яку носять під іншим одягом. Have you packed your nightie yet? — ти вже поклала нічну сорочку? Yet у кінці питання показує, що дію очікують. I will bring an undershirt if it gets cold — я візьму спідню майку, якщо похолодає. В умові після if — gets без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-14:intro2:r1",
+              "text": "Have you packed your nightie yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro2:r2",
+              "text": "Have you pack your nightie yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro2:r3",
+              "text": "Has you packed your nightie yet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-14:intro2:r1",
+              "text": "Have you packed your nightie yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro2:r2",
+              "text": "Have you pack your nightie yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro2:r3",
+              "text": "Has you packed your nightie yet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сумка для малыша",
+        "uk": "Сумка для малюка"
+      },
+      "bodyByLocale": {
+        "ru": "Diaper — подгузник, обычное американское слово; британское nappy вам уже знакомо. I had changed the diaper by the time the taxi arrived — я уже сменил подгузник к приезду такси. Had changed произошло раньше arrived. Если результат важен сейчас, используем I have already changed it — я уже его сменил. В обоих случаях it заменяет diaper.",
+        "uk": "Diaper — підгузок, звичайне американське слово; британське nappy вам уже знайоме. I had changed the diaper by the time the taxi arrived — я вже змінив підгузок до приїзду таксі. Had changed сталося раніше arrived. Якщо результат важливий зараз, використовуємо I have already changed it — я вже його змінив. В обох випадках it замінює diaper."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-14:intro3:r1",
+              "text": "I had changed the diaper by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro3:r2",
+              "text": "I had change the diaper by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro3:r3",
+              "text": "I have changed the diaper by the time the taxi arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-14:intro3:r1",
+              "text": "I had changed the diaper by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro3:r2",
+              "text": "I had change the diaper by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-14:intro3:r3",
+              "text": "I have changed the diaper by the time the taxi arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d07fd45ace7b3bf858f86a9dd42ddfbad2d03421dc1706e9524afb73f2633941"
+}

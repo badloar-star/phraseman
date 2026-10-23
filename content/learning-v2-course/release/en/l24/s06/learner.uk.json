@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-24:session-06:word:Spain",
+      "interactionId": "en:lesson-24:session-06:word:disappointment",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — Spain",
+      "prompt": "Картка слова — disappointment",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-06:word:Spain:audio"
+        "en:lesson-24:session-06:word:disappointment:audio"
       ],
-      "accessibilityLabel": "Картка слова — Spain",
+      "accessibilityLabel": "Картка слова — disappointment",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-06:word:Spain:audio",
-          "transcript": "Spain"
+          "audioTargetId": "en:lesson-24:session-06:word:disappointment:audio",
+          "transcript": "disappointment"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-06:word:Spain:r1",
-            "targetText": "Spain",
+            "responseId": "en:lesson-24:session-06:word:disappointment:r1",
+            "targetText": "disappointment",
             "meaningByLocale": {
-              "ru": "Испания.",
-              "uk": "Іспанія."
+              "ru": "разочарование.",
+              "uk": "розчарування."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Spain",
+          "word": "disappointment",
           "definitionByLocale": {
-            "ru": "Испания.",
-            "uk": "Іспанія."
+            "ru": "разочарование.",
+            "uk": "розчарування."
           }
         }
       },
@@ -52,27 +52,27 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Я працюю в Іспанії вже два роки.»",
+      "prompt": "Скажіть: «Він приховує своє розчарування вже тиждень.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Я працюю в Іспанії вже два роки.»",
+      "accessibilityLabel": "Скажіть: «Він приховує своє розчарування вже тиждень.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I have worked in Spain for two years.",
+        "targetPhrase": "He has hidden his disappointment for a week.",
         "localizedMeaning": {
-          "ru": "Скажите: «Я работаю в Испании уже два года.»",
-          "uk": "Скажіть: «Я працюю в Іспанії вже два роки.»"
+          "ru": "Скажите: «Он скрывает своё разочарование уже неделю.»",
+          "uk": "Скажіть: «Він приховує своє розчарування вже тиждень.»"
         },
         "orderedTokens": [
-          "I",
-          "have",
-          "worked",
-          "in",
-          "Spain",
+          "He",
+          "has",
+          "hidden",
+          "his",
+          "disappointment",
           "for",
-          "two",
-          "years"
+          "a",
+          "week"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,7 +89,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "prompt": "Виберіть for або since.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-06:i02:r1",
@@ -106,14 +106,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "accessibilityLabel": "Виберіть for або since.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово перед сроком или началом.",
-          "uk": "Виберіть слово перед тривалістю або початком."
+          "ru": "Выберите for или since.",
+          "uk": "Виберіть for або since."
         },
-        "gappedTargetPhrase": "I have worked in Spain ___ two years.",
+        "gappedTargetPhrase": "He has hidden his disappointment ___ a week.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-06:i02:r1",
@@ -128,24 +128,24 @@
             "text": "at"
           }
         ],
-        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "testedDimension": "Виберіть for або since.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-06:i02:r2",
             "correct": false,
-            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "testedDimension": "Виберіть for або since.",
             "feedbackByLocale": {
-              "ru": "Указан срок, нужен for.",
-              "uk": "Указано тривалість, потрібне for."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           },
           {
             "responseId": "en:lesson-24:session-06:i02:r3",
             "correct": false,
-            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "testedDimension": "Виберіть for або since.",
             "feedbackByLocale": {
-              "ru": "Указан срок, нужен for.",
-              "uk": "Указано тривалість, потрібне for."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           }
         ]
@@ -162,15 +162,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-06:i03:r1",
-          "text": "I have worked in Spain for two years."
+          "text": "He has hidden his disappointment for a week."
         },
         {
           "responseId": "en:lesson-24:session-06:i03:r2",
-          "text": "We have worked in Spain for two years."
+          "text": "She has hidden her disappointment for a week."
         },
         {
           "responseId": "en:lesson-24:session-06:i03:r3",
-          "text": "I have worked in Spain for three years."
+          "text": "He has hidden his disappointment for a month."
         }
       ],
       "mediaIds": [],
@@ -182,23 +182,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-06:i03:audio",
-          "transcript": "I have worked in Spain for two years."
+          "transcript": "He has hidden his disappointment for a week."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-06:i03:r1",
-            "targetText": "I have worked in Spain for two years.",
+            "targetText": "He has hidden his disappointment for a week.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-06:i03:r2",
-            "targetText": "We have worked in Spain for two years.",
+            "targetText": "She has hidden her disappointment for a week.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-06:i03:r3",
-            "targetText": "I have worked in Spain for three years.",
+            "targetText": "He has hidden his disappointment for a month.",
             "meaningByLocale": null
           }
         ],
@@ -209,8 +209,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I have worked in Spain for two years.",
-              "uk": "У записі звучить I have worked in Spain for two years."
+              "ru": "В записи звучит He has hidden his disappointment for a week.",
+              "uk": "У записі звучить He has hidden his disappointment for a week."
             }
           },
           {
@@ -218,8 +218,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I have worked in Spain for two years.",
-              "uk": "У записі звучить I have worked in Spain for two years."
+              "ru": "В записи звучит He has hidden his disappointment for a week.",
+              "uk": "У записі звучить He has hidden his disappointment for a week."
             }
           }
         ],
@@ -229,32 +229,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-06:word:Italy",
+      "interactionId": "en:lesson-24:session-06:word:excitement",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — Italy",
+      "prompt": "Картка слова — excitement",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-06:word:Italy:audio"
+        "en:lesson-24:session-06:word:excitement:audio"
       ],
-      "accessibilityLabel": "Картка слова — Italy",
+      "accessibilityLabel": "Картка слова — excitement",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-06:word:Italy:audio",
-          "transcript": "Italy"
+          "audioTargetId": "en:lesson-24:session-06:word:excitement:audio",
+          "transcript": "excitement"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-06:word:Italy:r1",
-            "targetText": "Italy",
+            "responseId": "en:lesson-24:session-06:word:excitement:r1",
+            "targetText": "excitement",
             "meaningByLocale": {
-              "ru": "Италия.",
-              "uk": "Італія."
+              "ru": "радостное волнение.",
+              "uk": "радісне хвилювання."
             }
           }
         ],
@@ -262,10 +262,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Italy",
+          "word": "excitement",
           "definitionByLocale": {
-            "ru": "Италия.",
-            "uk": "Італія."
+            "ru": "радостное волнение.",
+            "uk": "радісне хвилювання."
           }
         }
       },
@@ -277,26 +277,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Вона живе в Італії з червня.»",
+      "prompt": "Скажіть: «Моє радісне хвилювання зростає з понеділка.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Вона живе в Італії з червня.»",
+      "accessibilityLabel": "Скажіть: «Моє радісне хвилювання зростає з понеділка.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She has lived in Italy since June.",
+        "targetPhrase": "My excitement has grown since Monday.",
         "localizedMeaning": {
-          "ru": "Скажите: «Она живёт в Италии с июня.»",
-          "uk": "Скажіть: «Вона живе в Італії з червня.»"
+          "ru": "Скажите: «Моё радостное волнение усиливается с понедельника.»",
+          "uk": "Скажіть: «Моє радісне хвилювання зростає з понеділка.»"
         },
         "orderedTokens": [
-          "She",
+          "My",
+          "excitement",
           "has",
-          "lived",
-          "in",
-          "Italy",
+          "grown",
           "since",
-          "June"
+          "Monday"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -313,7 +312,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "prompt": "Виберіть for або since.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-06:i05:r1",
@@ -325,19 +324,19 @@
         },
         {
           "responseId": "en:lesson-24:session-06:i05:r3",
-          "text": "in"
+          "text": "at"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "accessibilityLabel": "Виберіть for або since.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово перед сроком или началом.",
-          "uk": "Виберіть слово перед тривалістю або початком."
+          "ru": "Выберите for или since.",
+          "uk": "Виберіть for або since."
         },
-        "gappedTargetPhrase": "She has lived in Italy ___ June.",
+        "gappedTargetPhrase": "My excitement has grown ___ Monday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-06:i05:r1",
@@ -349,27 +348,27 @@
           },
           {
             "responseId": "en:lesson-24:session-06:i05:r3",
-            "text": "in"
+            "text": "at"
           }
         ],
-        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "testedDimension": "Виберіть for або since.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-06:i05:r2",
             "correct": false,
-            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "testedDimension": "Виберіть for або since.",
             "feedbackByLocale": {
-              "ru": "Указано начало, нужен since.",
-              "uk": "Указано початок, потрібне since."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           },
           {
             "responseId": "en:lesson-24:session-06:i05:r3",
             "correct": false,
-            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "testedDimension": "Виберіть for або since.",
             "feedbackByLocale": {
-              "ru": "Указано начало, нужен since.",
-              "uk": "Указано початок, потрібне since."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           }
         ]
@@ -386,15 +385,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-06:i06:r1",
-          "text": "She has lived in Italy since June."
+          "text": "My excitement has grown since Monday."
         },
         {
           "responseId": "en:lesson-24:session-06:i06:r2",
-          "text": "He has lived in Italy since June."
+          "text": "Her excitement has grown since Monday."
         },
         {
           "responseId": "en:lesson-24:session-06:i06:r3",
-          "text": "She has lived in Italy since May."
+          "text": "My excitement has grown since Friday."
         }
       ],
       "mediaIds": [],
@@ -406,23 +405,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-06:i06:audio",
-          "transcript": "She has lived in Italy since June."
+          "transcript": "My excitement has grown since Monday."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-06:i06:r1",
-            "targetText": "She has lived in Italy since June.",
+            "targetText": "My excitement has grown since Monday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-06:i06:r2",
-            "targetText": "He has lived in Italy since June.",
+            "targetText": "Her excitement has grown since Monday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-06:i06:r3",
-            "targetText": "She has lived in Italy since May.",
+            "targetText": "My excitement has grown since Friday.",
             "meaningByLocale": null
           }
         ],
@@ -433,8 +432,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She has lived in Italy since June.",
-              "uk": "У записі звучить She has lived in Italy since June."
+              "ru": "В записи звучит My excitement has grown since Monday.",
+              "uk": "У записі звучить My excitement has grown since Monday."
             }
           },
           {
@@ -442,8 +441,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She has lived in Italy since June.",
-              "uk": "У записі звучить She has lived in Italy since June."
+              "ru": "В записи звучит My excitement has grown since Monday.",
+              "uk": "У записі звучить My excitement has grown since Monday."
             }
           }
         ],
@@ -453,32 +452,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-06:word:France",
+      "interactionId": "en:lesson-24:session-06:word:boredom",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — France",
+      "prompt": "Картка слова — boredom",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-06:word:France:audio"
+        "en:lesson-24:session-06:word:boredom:audio"
       ],
-      "accessibilityLabel": "Картка слова — France",
+      "accessibilityLabel": "Картка слова — boredom",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-06:word:France:audio",
-          "transcript": "France"
+          "audioTargetId": "en:lesson-24:session-06:word:boredom:audio",
+          "transcript": "boredom"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-06:word:France:r1",
-            "targetText": "France",
+            "responseId": "en:lesson-24:session-06:word:boredom:r1",
+            "targetText": "boredom",
             "meaningByLocale": {
-              "ru": "Франция.",
-              "uk": "Франція."
+              "ru": "скука.",
+              "uk": "нудьга."
             }
           }
         ],
@@ -486,10 +485,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "France",
+          "word": "boredom",
           "definitionByLocale": {
-            "ru": "Франция.",
-            "uk": "Франція."
+            "ru": "скука.",
+            "uk": "нудьга."
           }
         }
       },
@@ -501,27 +500,26 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Ми навчаємося у Франції вже рік.»",
+      "prompt": "Скажіть: «Нудьга залишається проблемою вже кілька тижнів.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Ми навчаємося у Франції вже рік.»",
+      "accessibilityLabel": "Скажіть: «Нудьга залишається проблемою вже кілька тижнів.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We have studied in France for a year.",
+        "targetPhrase": "Boredom has been a problem for weeks.",
         "localizedMeaning": {
-          "ru": "Скажите: «Мы учимся во Франции уже год.»",
-          "uk": "Скажіть: «Ми навчаємося у Франції вже рік.»"
+          "ru": "Скажите: «Скука остаётся проблемой уже несколько недель.»",
+          "uk": "Скажіть: «Нудьга залишається проблемою вже кілька тижнів.»"
         },
         "orderedTokens": [
-          "We",
-          "have",
-          "studied",
-          "in",
-          "France",
-          "for",
+          "Boredom",
+          "has",
+          "been",
           "a",
-          "year"
+          "problem",
+          "for",
+          "weeks"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -538,7 +536,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "prompt": "Виберіть for або since.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-06:i08:r1",
@@ -555,14 +553,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "accessibilityLabel": "Виберіть for або since.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово перед сроком или началом.",
-          "uk": "Виберіть слово перед тривалістю або початком."
+          "ru": "Выберите for или since.",
+          "uk": "Виберіть for або since."
         },
-        "gappedTargetPhrase": "We have studied in France ___ a year.",
+        "gappedTargetPhrase": "Boredom has been a problem ___ weeks.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-06:i08:r1",
@@ -577,24 +575,24 @@
             "text": "at"
           }
         ],
-        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "testedDimension": "Виберіть for або since.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-06:i08:r2",
             "correct": false,
-            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "testedDimension": "Виберіть for або since.",
             "feedbackByLocale": {
-              "ru": "Указан срок, нужен for.",
-              "uk": "Указано тривалість, потрібне for."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           },
           {
             "responseId": "en:lesson-24:session-06:i08:r3",
             "correct": false,
-            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "testedDimension": "Виберіть for або since.",
             "feedbackByLocale": {
-              "ru": "Указан срок, нужен for.",
-              "uk": "Указано тривалість, потрібне for."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           }
         ]
@@ -611,15 +609,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-06:i09:r1",
-          "text": "We have studied in France for a year."
+          "text": "Boredom has been a problem for weeks."
         },
         {
           "responseId": "en:lesson-24:session-06:i09:r2",
-          "text": "They have studied in France for a year."
+          "text": "Boredom has been a problem for months."
         },
         {
           "responseId": "en:lesson-24:session-06:i09:r3",
-          "text": "We have studied in France for two years."
+          "text": "Boredom has been a problem for years."
         }
       ],
       "mediaIds": [],
@@ -631,23 +629,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-06:i09:audio",
-          "transcript": "We have studied in France for a year."
+          "transcript": "Boredom has been a problem for weeks."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-06:i09:r1",
-            "targetText": "We have studied in France for a year.",
+            "targetText": "Boredom has been a problem for weeks.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-06:i09:r2",
-            "targetText": "They have studied in France for a year.",
+            "targetText": "Boredom has been a problem for months.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-06:i09:r3",
-            "targetText": "We have studied in France for two years.",
+            "targetText": "Boredom has been a problem for years.",
             "meaningByLocale": null
           }
         ],
@@ -658,8 +656,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We have studied in France for a year.",
-              "uk": "У записі звучить We have studied in France for a year."
+              "ru": "В записи звучит Boredom has been a problem for weeks.",
+              "uk": "У записі звучить Boredom has been a problem for weeks."
             }
           },
           {
@@ -667,8 +665,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We have studied in France for a year.",
-              "uk": "У записі звучить We have studied in France for a year."
+              "ru": "В записи звучит Boredom has been a problem for weeks.",
+              "uk": "У записі звучить Boredom has been a problem for weeks."
             }
           }
         ],
@@ -678,32 +676,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-06:word:Germany",
+      "interactionId": "en:lesson-24:session-06:word:loneliness",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — Germany",
+      "prompt": "Картка слова — loneliness",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-06:word:Germany:audio"
+        "en:lesson-24:session-06:word:loneliness:audio"
       ],
-      "accessibilityLabel": "Картка слова — Germany",
+      "accessibilityLabel": "Картка слова — loneliness",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-06:word:Germany:audio",
-          "transcript": "Germany"
+          "audioTargetId": "en:lesson-24:session-06:word:loneliness:audio",
+          "transcript": "loneliness"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-06:word:Germany:r1",
-            "targetText": "Germany",
+            "responseId": "en:lesson-24:session-06:word:loneliness:r1",
+            "targetText": "loneliness",
             "meaningByLocale": {
-              "ru": "Германия.",
-              "uk": "Німеччина."
+              "ru": "одиночество.",
+              "uk": "самотність."
             }
           }
         ],
@@ -711,10 +709,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Germany",
+          "word": "loneliness",
           "definitionByLocale": {
-            "ru": "Германия.",
-            "uk": "Німеччина."
+            "ru": "одиночество.",
+            "uk": "самотність."
           }
         }
       },
@@ -726,26 +724,26 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Він працює в Німеччині з 2020 року.»",
+      "prompt": "Скажіть: «Вона живе з відчуттям самотності з червня.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Він працює в Німеччині з 2020 року.»",
+      "accessibilityLabel": "Скажіть: «Вона живе з відчуттям самотності з червня.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He has worked in Germany since 2020.",
+        "targetPhrase": "She has lived with loneliness since June.",
         "localizedMeaning": {
-          "ru": "Скажите: «Он работает в Германии с 2020 года.»",
-          "uk": "Скажіть: «Він працює в Німеччині з 2020 року.»"
+          "ru": "Скажите: «Она живёт с чувством одиночества с июня.»",
+          "uk": "Скажіть: «Вона живе з відчуттям самотності з червня.»"
         },
         "orderedTokens": [
-          "He",
+          "She",
           "has",
-          "worked",
-          "in",
-          "Germany",
+          "lived",
+          "with",
+          "loneliness",
           "since",
-          "2020"
+          "June"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -762,7 +760,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово перед тривалістю або початком.",
+      "prompt": "Виберіть for або since.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-06:i11:r1",
@@ -774,19 +772,19 @@
         },
         {
           "responseId": "en:lesson-24:session-06:i11:r3",
-          "text": "in"
+          "text": "at"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+      "accessibilityLabel": "Виберіть for або since.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово перед сроком или началом.",
-          "uk": "Виберіть слово перед тривалістю або початком."
+          "ru": "Выберите for или since.",
+          "uk": "Виберіть for або since."
         },
-        "gappedTargetPhrase": "He has worked in Germany ___ 2020.",
+        "gappedTargetPhrase": "She has lived with loneliness ___ June.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-06:i11:r1",
@@ -798,27 +796,27 @@
           },
           {
             "responseId": "en:lesson-24:session-06:i11:r3",
-            "text": "in"
+            "text": "at"
           }
         ],
-        "testedDimension": "Виберіть слово перед тривалістю або початком.",
+        "testedDimension": "Виберіть for або since.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-06:i11:r2",
             "correct": false,
-            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "testedDimension": "Виберіть for або since.",
             "feedbackByLocale": {
-              "ru": "Указано начало, нужен since.",
-              "uk": "Указано початок, потрібне since."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           },
           {
             "responseId": "en:lesson-24:session-06:i11:r3",
             "correct": false,
-            "testedDimension": "Виберіть слово перед тривалістю або початком.",
+            "testedDimension": "Виберіть for або since.",
             "feedbackByLocale": {
-              "ru": "Указано начало, нужен since.",
-              "uk": "Указано початок, потрібне since."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           }
         ]
@@ -835,15 +833,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-06:i12:r1",
-          "text": "He has worked in Germany since 2020."
+          "text": "She has lived with loneliness since June."
         },
         {
           "responseId": "en:lesson-24:session-06:i12:r2",
-          "text": "She has worked in Germany since 2020."
+          "text": "He has lived with loneliness since June."
         },
         {
           "responseId": "en:lesson-24:session-06:i12:r3",
-          "text": "He has worked in Germany since 2021."
+          "text": "She has lived with loneliness since May."
         }
       ],
       "mediaIds": [],
@@ -855,23 +853,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-06:i12:audio",
-          "transcript": "He has worked in Germany since 2020."
+          "transcript": "She has lived with loneliness since June."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-06:i12:r1",
-            "targetText": "He has worked in Germany since 2020.",
+            "targetText": "She has lived with loneliness since June.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-06:i12:r2",
-            "targetText": "She has worked in Germany since 2020.",
+            "targetText": "He has lived with loneliness since June.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-06:i12:r3",
-            "targetText": "He has worked in Germany since 2021.",
+            "targetText": "She has lived with loneliness since May.",
             "meaningByLocale": null
           }
         ],
@@ -882,8 +880,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит He has worked in Germany since 2020.",
-              "uk": "У записі звучить He has worked in Germany since 2020."
+              "ru": "В записи звучит She has lived with loneliness since June.",
+              "uk": "У записі звучить She has lived with loneliness since June."
             }
           },
           {
@@ -891,8 +889,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит He has worked in Germany since 2020.",
-              "uk": "У записі звучить He has worked in Germany since 2020."
+              "ru": "В записи звучит She has lived with loneliness since June.",
+              "uk": "У записі звучить She has lived with loneliness since June."
             }
           }
         ],
@@ -917,48 +915,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-24:session-06:i13:p1",
-            "target": "Spain",
+            "target": "disappointment",
             "meaningByLocale": {
-              "ru": "Испания",
-              "uk": "Іспанія"
+              "ru": "разочарование",
+              "uk": "розчарування"
             }
           },
           {
             "pairId": "en:lesson-24:session-06:i13:p2",
-            "target": "Italy",
+            "target": "excitement",
             "meaningByLocale": {
-              "ru": "Италия",
-              "uk": "Італія"
+              "ru": "радостное волнение",
+              "uk": "радісне хвилювання"
             }
           },
           {
             "pairId": "en:lesson-24:session-06:i13:p3",
-            "target": "France",
+            "target": "boredom",
             "meaningByLocale": {
-              "ru": "Франция",
-              "uk": "Франція"
+              "ru": "скука",
+              "uk": "нудьга"
             }
           },
           {
             "pairId": "en:lesson-24:session-06:i13:p4",
-            "target": "Germany",
+            "target": "loneliness",
             "meaningByLocale": {
-              "ru": "Германия",
-              "uk": "Німеччина"
+              "ru": "одиночество",
+              "uk": "самотність"
             }
           }
         ],
         "leftColumn": [
-          "Spain",
-          "Italy",
-          "France",
-          "Germany"
+          "disappointment",
+          "excitement",
+          "boredom",
+          "loneliness"
         ],
         "rightColumn": [
-          "Іспанія",
-          "Італія",
-          "Франція",
-          "Німеччина"
+          "розчарування",
+          "радісне хвилювання",
+          "нудьга",
+          "самотність"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -980,29 +978,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Тривалість: два роки",
+      "prompt": "Інша кімната",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-06:i14:audio"
       ],
-      "accessibilityLabel": "Тривалість: два роки",
+      "accessibilityLabel": "Інша кімната",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-06:i14:audio",
-          "transcript": "I have lived here for two years."
+          "transcript": "I have booked another room."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I have lived here for two years.",
+        "hiddenTargetPhrase": "I have booked another room.",
         "orderedTokens": [
           "I",
           "have",
-          "lived",
-          "here",
-          "for",
-          "two",
-          "years"
+          "booked",
+          "another",
+          "room"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1019,28 +1015,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Початок: червень",
+      "prompt": "Інші гості поїхали",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-06:i15:audio"
       ],
-      "accessibilityLabel": "Початок: червень",
+      "accessibilityLabel": "Інші гості поїхали",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-06:i15:audio",
-          "transcript": "She has worked here since June."
+          "transcript": "The other guests left yesterday."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She has worked here since June.",
+        "hiddenTargetPhrase": "The other guests left yesterday.",
         "orderedTokens": [
-          "She",
-          "has",
-          "worked",
-          "here",
-          "since",
-          "June"
+          "The",
+          "other",
+          "guests",
+          "left",
+          "yesterday"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1057,21 +1052,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Я живу в Німеччині вже рік».",
+      "prompt": "Скажіть: «Він приховує своє розчарування з понеділка».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-06:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Я живу в Німеччині вже рік».",
+      "accessibilityLabel": "Скажіть: «Він приховує своє розчарування з понеділка».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-06:i16:audio",
-          "transcript": "I have lived in Germany for a year."
+          "transcript": "He has hidden his disappointment since Monday."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have lived in Germany for a year.",
+        "targetPhrase": "He has hidden his disappointment since Monday.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1090,21 +1085,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Ми працюємо в Італії з травня».",
+      "prompt": "Скажіть: «Вона живе з відчуттям самотності вже рік».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-06:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Ми працюємо в Італії з травня».",
+      "accessibilityLabel": "Скажіть: «Вона живе з відчуттям самотності вже рік».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-06:i17:audio",
-          "transcript": "We have worked in Italy since May."
+          "transcript": "She has lived with loneliness for a year."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We have worked in Italy since May.",
+        "targetPhrase": "She has lived with loneliness for a year.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1124,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "46ad80b133b0c0aa823dd46f266c00b6be5c8a39d128756a81d18685a2f93334"
+  "learnerFingerprint": "23b256657826288417e668eccf7c2c33c2e55cf7b8e0f9f7dde7d0600e825b6d"
 }

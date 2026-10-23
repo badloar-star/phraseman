@@ -1,52 +1,52 @@
 [
   {
-    "interactionId": "en:lesson-24:session-05:word:Canada",
-    "correctText": "Canada",
+    "interactionId": "en:lesson-24:session-05:word:divorce",
+    "correctText": "divorce",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-05:i01",
-    "correctText": "I have lived in Canada for a year.",
+    "correctText": "We have known about their divorce since May.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-05:i02",
-    "correctText": "for",
+    "correctText": "since",
     "correctResponseId": "en:lesson-24:session-05:i02:r1"
   },
   {
     "interactionId": "en:lesson-24:session-05:i03",
-    "correctText": "I have lived in Canada for a year.",
+    "correctText": "We have known about their divorce since May.",
     "correctResponseId": "en:lesson-24:session-05:i03:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-05:word:India",
-    "correctText": "India",
+    "interactionId": "en:lesson-24:session-05:word:engagement",
+    "correctText": "engagement",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-05:i04",
-    "correctText": "She has worked in India since May.",
+    "correctText": "They have kept their engagement secret for a month.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-05:i05",
-    "correctText": "since",
+    "correctText": "for",
     "correctResponseId": "en:lesson-24:session-05:i05:r1"
   },
   {
     "interactionId": "en:lesson-24:session-05:i06",
-    "correctText": "She has worked in India since May.",
+    "correctText": "They have kept their engagement secret for a month.",
     "correctResponseId": "en:lesson-24:session-05:i06:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-05:word:Egypt",
-    "correctText": "Egypt",
+    "interactionId": "en:lesson-24:session-05:word:widow",
+    "correctText": "widow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-05:i07",
-    "correctText": "We have stayed in Egypt for three weeks.",
+    "correctText": "She has been a widow for two years.",
     "correctResponseId": null
   },
   {
@@ -56,17 +56,17 @@
   },
   {
     "interactionId": "en:lesson-24:session-05:i09",
-    "correctText": "We have stayed in Egypt for three weeks.",
+    "correctText": "She has been a widow for two years.",
     "correctResponseId": "en:lesson-24:session-05:i09:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-05:word:Australia",
-    "correctText": "Australia",
+    "interactionId": "en:lesson-24:session-05:word:widower",
+    "correctText": "widower",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-05:i10",
-    "correctText": "He has lived in Australia since 2020.",
+    "correctText": "He has been a widower since 2020.",
     "correctResponseId": null
   },
   {
@@ -76,32 +76,32 @@
   },
   {
     "interactionId": "en:lesson-24:session-05:i12",
-    "correctText": "He has lived in Australia since 2020.",
+    "correctText": "He has been a widower since 2020.",
     "correctResponseId": "en:lesson-24:session-05:i12:r1"
   },
   {
     "interactionId": "en:lesson-24:session-05:i13",
-    "correctText": "en:lesson-24:session-05:i13:p1=Canada\nen:lesson-24:session-05:i13:p2=India\nen:lesson-24:session-05:i13:p3=Egypt\nen:lesson-24:session-05:i13:p4=Australia",
+    "correctText": "en:lesson-24:session-05:i13:p1=divorce\nen:lesson-24:session-05:i13:p2=engagement\nen:lesson-24:session-05:i13:p3=widow\nen:lesson-24:session-05:i13:p4=widower",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-05:i14",
-    "correctText": "I have lived here for two years.",
+    "correctText": "I have booked another room.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-05:i15",
-    "correctText": "She has worked here since June.",
+    "correctText": "The other guests left yesterday.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-05:i16",
-    "correctText": "I have lived in Australia for a year.",
+    "correctText": "We have known about their divorce since June.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-05:i17",
-    "correctText": "We have worked in Canada since May.",
+    "correctText": "He has been a widower for three years.",
     "correctResponseId": null
   }
 ]

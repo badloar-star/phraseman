@@ -1,151 +1,151 @@
-# Английский · Урок 24 · Занятие 6 — Где вы живёте и учитесь
+# Английский · Урок 24 · Занятие 06 — Говорим о чувствах
 
-**Ситуация.** Вы рассказываете о жизни и учёбе в европейских странах.
+**Ситуация.** Вы рассказываете о чувствах и о том, как долго они длятся.
 
 **Что вы освоите:** present perfect + for duration; since starting point
-**Новые слова:** Spain, Italy, France, Germany
+**Новые слова:** disappointment, excitement, boredom, loneliness
 
 ## Интро 1
 
-### Страна и язык
+### Не оправдались ожидания
 
-Spain — Испания. Spanish вы уже знаете: это испанский язык или «испанский». I have worked in Spain for two years — я работаю в Испании уже два года. Страна — Spain, язык — Spanish: название языка не подойдёт вместо страны после in. Кофе вы уже умеете заказывать, осталось привыкнуть к новому расписанию.
+Disappointment — разочарование: вы ожидали чего-то хорошего, но всё вышло иначе. He has hidden his disappointment for a week — он скрывает своё разочарование уже неделю. Hidden — форма hide. For a week показывает, как долго это продолжается, а не день начала.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I have worked in Spain for two years.**
-- ❌ I have worked in Spain since two years. — *Срок — for, начало — since.*
-- ❌ I has worked in Spain for two years. — *С I и we нужно have, с he — has.*
+- ✅ **He has hidden his disappointment for a week.**
+- ❌ He has hidden his disappointment since a week. — *Срок — for, начало — since.*
+- ❌ He have hidden his disappointment for a week. — *Здесь подлежащее в единственном числе: нужно has.*
 
 ---
 
 ## Интро 2
 
-### Где вы учитесь
+### Ждём встречи
 
-Italy — Италия, France — Франция. She has lived in Italy since June — она живёт в Италии с июня. We have studied in France for a year — мы учимся во Франции уже год. Здесь study in France означает учиться во Франции, а study French — изучать французский.
+Excitement — радостное волнение. Например, вы ждёте встречи с друзьями: My excitement has grown since Monday — моё радостное волнение усиливается с понедельника. Grown — форма grow, здесь «усиливаться». Boredom — скука. Boredom has been a problem for weeks — скука остаётся проблемой уже несколько недель. Since Monday называет начало, for weeks — длительность.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We have studied in France for a year.**
-- ❌ We have studied in France since a year. — *Срок — for, начало — since.*
-- ❌ We has studied in France for a year. — *С I и we нужно have, с he — has.*
+- ✅ **My excitement has grown since Monday.**
+- ❌ My excitement has grown for Monday. — *Срок — for, начало — since.*
+- ❌ My excitement have grown since Monday. — *Здесь подлежащее в единственном числе: нужно has.*
 
 ---
 
 ## Интро 3
 
-### Работа за границей
+### Не хватает общения
 
-Germany — Германия, German — немецкий язык. He has worked in Germany since 2020 — он работает в Германии с 2020 года. Во всех четырёх названиях стран этого занятия нет the: in Spain, in Italy, in France, in Germany. For показывает длительность, since — начало.
+Loneliness — одиночество, чувство нехватки общения и близости. She has lived with loneliness since June — она живёт с чувством одиночества с июня. Здесь since June показывает, когда началось это состояние. Lonely описывает человека, loneliness называет чувство. С she используем has lived.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **He has worked in Germany since 2020.**
-- ❌ He has worked in Germany for 2020. — *Срок — for, начало — since.*
-- ❌ He have worked in Germany since 2020. — *С I и we нужно have, с he — has.*
+- ✅ **She has lived with loneliness since June.**
+- ❌ She has lived with loneliness for June. — *Срок — for, начало — since.*
+- ❌ She have lived with loneliness since June. — *Здесь подлежащее в единственном числе: нужно has.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — Spain**
-<!-- interaction_id: en:lesson-24:session-06:word:Spain; family: word_card -->
-> **Spain** — Испания.
+**1 · Карточка слова — disappointment**
+<!-- interaction_id: en:lesson-24:session-06:word:disappointment; family: word_card -->
+> **disappointment** — разочарование.
 
-**2 · Скажите: «Я работаю в Испании уже два года.»**
+**2 · Скажите: «Он скрывает своё разочарование уже неделю.»**
 <!-- interaction_id: en:lesson-24:session-06:i01; family: phrase_builder -->
-Плитки: `years` `two` `for` `Spain` `in` `worked` `have` `I` → **I have worked in Spain for two years.**
+Плитки: `week` `a` `for` `disappointment` `his` `hidden` `has` `He` → **He has hidden his disappointment for a week.**
 
-**3 · Выберите слово перед сроком или началом.**
+**3 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-06:i02; family: context_gap_grammar -->
-I have worked in Spain ___ two years. → **for** · since · at
-- since — *Указан срок, нужен for.*
-- at — *Указан срок, нужен for.*
+He has hidden his disappointment ___ a week. → **for** · since · at
+- since — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-06:i03; family: listen_choose -->
-🔊 *I have worked in Spain for two years.* → **I have worked in Spain for two years.** · We have worked in Spain for two years. · I have worked in Spain for three years.
-- We have worked in Spain for two years. — *В записи звучит I have worked in Spain for two years.*
-- I have worked in Spain for three years. — *В записи звучит I have worked in Spain for two years.*
+🔊 *He has hidden his disappointment for a week.* → **He has hidden his disappointment for a week.** · She has hidden her disappointment for a week. · He has hidden his disappointment for a month.
+- She has hidden her disappointment for a week. — *В записи звучит He has hidden his disappointment for a week.*
+- He has hidden his disappointment for a month. — *В записи звучит He has hidden his disappointment for a week.*
 
-**5 · Карточка слова — Italy**
-<!-- interaction_id: en:lesson-24:session-06:word:Italy; family: word_card -->
-> **Italy** — Италия.
+**5 · Карточка слова — excitement**
+<!-- interaction_id: en:lesson-24:session-06:word:excitement; family: word_card -->
+> **excitement** — радостное волнение.
 
-**6 · Скажите: «Она живёт в Италии с июня.»**
+**6 · Скажите: «Моё радостное волнение усиливается с понедельника.»**
 <!-- interaction_id: en:lesson-24:session-06:i04; family: phrase_builder -->
-Плитки: `June` `since` `Italy` `in` `lived` `has` `She` → **She has lived in Italy since June.**
+Плитки: `Monday` `since` `grown` `has` `excitement` `My` → **My excitement has grown since Monday.**
 
-**7 · Выберите слово перед сроком или началом.**
+**7 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-06:i05; family: context_gap_grammar -->
-She has lived in Italy ___ June. → **since** · for · in
-- for — *Указано начало, нужен since.*
-- in — *Указано начало, нужен since.*
+My excitement has grown ___ Monday. → **since** · for · at
+- for — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-06:i06; family: listen_choose -->
-🔊 *She has lived in Italy since June.* → **She has lived in Italy since June.** · He has lived in Italy since June. · She has lived in Italy since May.
-- He has lived in Italy since June. — *В записи звучит She has lived in Italy since June.*
-- She has lived in Italy since May. — *В записи звучит She has lived in Italy since June.*
+🔊 *My excitement has grown since Monday.* → **My excitement has grown since Monday.** · Her excitement has grown since Monday. · My excitement has grown since Friday.
+- Her excitement has grown since Monday. — *В записи звучит My excitement has grown since Monday.*
+- My excitement has grown since Friday. — *В записи звучит My excitement has grown since Monday.*
 
-**9 · Карточка слова — France**
-<!-- interaction_id: en:lesson-24:session-06:word:France; family: word_card -->
-> **France** — Франция.
+**9 · Карточка слова — boredom**
+<!-- interaction_id: en:lesson-24:session-06:word:boredom; family: word_card -->
+> **boredom** — скука.
 
-**10 · Скажите: «Мы учимся во Франции уже год.»**
+**10 · Скажите: «Скука остаётся проблемой уже несколько недель.»**
 <!-- interaction_id: en:lesson-24:session-06:i07; family: phrase_builder -->
-Плитки: `year` `a` `for` `France` `in` `studied` `have` `We` → **We have studied in France for a year.**
+Плитки: `weeks` `for` `problem` `a` `been` `has` `Boredom` → **Boredom has been a problem for weeks.**
 
-**11 · Выберите слово перед сроком или началом.**
+**11 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-06:i08; family: context_gap_grammar -->
-We have studied in France ___ a year. → **for** · since · at
-- since — *Указан срок, нужен for.*
-- at — *Указан срок, нужен for.*
+Boredom has been a problem ___ weeks. → **for** · since · at
+- since — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-06:i09; family: listen_choose -->
-🔊 *We have studied in France for a year.* → **We have studied in France for a year.** · They have studied in France for a year. · We have studied in France for two years.
-- They have studied in France for a year. — *В записи звучит We have studied in France for a year.*
-- We have studied in France for two years. — *В записи звучит We have studied in France for a year.*
+🔊 *Boredom has been a problem for weeks.* → **Boredom has been a problem for weeks.** · Boredom has been a problem for months. · Boredom has been a problem for years.
+- Boredom has been a problem for months. — *В записи звучит Boredom has been a problem for weeks.*
+- Boredom has been a problem for years. — *В записи звучит Boredom has been a problem for weeks.*
 
-**13 · Карточка слова — Germany**
-<!-- interaction_id: en:lesson-24:session-06:word:Germany; family: word_card -->
-> **Germany** — Германия.
+**13 · Карточка слова — loneliness**
+<!-- interaction_id: en:lesson-24:session-06:word:loneliness; family: word_card -->
+> **loneliness** — одиночество.
 
-**14 · Скажите: «Он работает в Германии с 2020 года.»**
+**14 · Скажите: «Она живёт с чувством одиночества с июня.»**
 <!-- interaction_id: en:lesson-24:session-06:i10; family: phrase_builder -->
-Плитки: `2020` `since` `Germany` `in` `worked` `has` `He` → **He has worked in Germany since 2020.**
+Плитки: `June` `since` `loneliness` `with` `lived` `has` `She` → **She has lived with loneliness since June.**
 
-**15 · Выберите слово перед сроком или началом.**
+**15 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-06:i11; family: context_gap_grammar -->
-He has worked in Germany ___ 2020. → **since** · for · in
-- for — *Указано начало, нужен since.*
-- in — *Указано начало, нужен since.*
+She has lived with loneliness ___ June. → **since** · for · at
+- for — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-06:i12; family: listen_choose -->
-🔊 *He has worked in Germany since 2020.* → **He has worked in Germany since 2020.** · She has worked in Germany since 2020. · He has worked in Germany since 2021.
-- She has worked in Germany since 2020. — *В записи звучит He has worked in Germany since 2020.*
-- He has worked in Germany since 2021. — *В записи звучит He has worked in Germany since 2020.*
+🔊 *She has lived with loneliness since June.* → **She has lived with loneliness since June.** · He has lived with loneliness since June. · She has lived with loneliness since May.
+- He has lived with loneliness since June. — *В записи звучит She has lived with loneliness since June.*
+- She has lived with loneliness since May. — *В записи звучит She has lived with loneliness since June.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-24:session-06:i13; family: speed_match -->
-Spain — Испания · Italy — Италия · France — Франция · Germany — Германия
+disappointment — разочарование · excitement — радостное волнение · boredom — скука · loneliness — одиночество
 
-**18 · Срок: два года**
+**18 · Другая комната**
 <!-- interaction_id: en:lesson-24:session-06:i14; family: listen_build_dictation -->
-🔊 *I have lived here for two years.* Плитки: `years` `two` `for` `here` `lived` `have` `I` → **I have lived here for two years.**
+🔊 *I have booked another room.* Плитки: `room` `another` `booked` `have` `I` → **I have booked another room.**
 
-**19 · Начало: июнь**
+**19 · Другие гости уехали**
 <!-- interaction_id: en:lesson-24:session-06:i15; family: listen_build_dictation -->
-🔊 *She has worked here since June.* Плитки: `June` `since` `here` `worked` `has` `She` → **She has worked here since June.**
+🔊 *The other guests left yesterday.* Плитки: `yesterday` `left` `guests` `other` `The` → **The other guests left yesterday.**
 
-**20 · Скажите: «Я живу в Германии уже год».**
+**20 · Скажите: «Он скрывает своё разочарование с понедельника».**
 <!-- interaction_id: en:lesson-24:session-06:i16; family: scripted_repeat_compare -->
-🎙 **I have lived in Germany for a year.**
+🎙 **He has hidden his disappointment since Monday.**
 
-**21 · Скажите: «Мы работаем в Италии с мая».**
+**21 · Скажите: «Она живёт с чувством одиночества уже год».**
 <!-- interaction_id: en:lesson-24:session-06:i17; family: scripted_repeat_compare -->
-🎙 **We have worked in Italy since May.**
+🎙 **She has lived with loneliness for a year.**
 

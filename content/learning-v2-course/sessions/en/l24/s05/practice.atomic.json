@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-24:session-05:word:Canada",
+        "interactionId": "en:lesson-24:session-05:word:divorce",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — Canada",
+        "prompt": "Карточка слова — divorce",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-24:session-05:word:Canada:audio"
+          "en:lesson-24:session-05:word:divorce:audio"
         ],
-        "accessibilityLabel": "Карточка слова — Canada",
+        "accessibilityLabel": "Карточка слова — divorce",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-24:session-05:word:Canada:audio",
-            "transcript": "Canada"
+            "audioTargetId": "en:lesson-24:session-05:word:divorce:audio",
+            "transcript": "divorce"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-24:session-05:word:Canada:r1",
-              "targetText": "Canada",
+              "responseId": "en:lesson-24:session-05:word:divorce:r1",
+              "targetText": "divorce",
               "meaningByLocale": {
-                "ru": "Канада.",
-                "uk": "Канада."
+                "ru": "развод.",
+                "uk": "розлучення."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "Canada",
+            "word": "divorce",
             "definitionByLocale": {
-              "ru": "Канада.",
-              "uk": "Канада."
+              "ru": "развод.",
+              "uk": "розлучення."
             }
           }
         },
@@ -52,27 +52,27 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Я живу в Канаде уже год.»",
+        "prompt": "Скажите: «Мы знаем об их разводе с мая.»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Я живу в Канаде уже год.»",
+        "accessibilityLabel": "Скажите: «Мы знаем об их разводе с мая.»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I have lived in Canada for a year.",
+          "targetPhrase": "We have known about their divorce since May.",
           "localizedMeaning": {
-            "ru": "Скажите: «Я живу в Канаде уже год.»",
-            "uk": "Скажіть: «Я живу в Канаді вже рік.»"
+            "ru": "Скажите: «Мы знаем об их разводе с мая.»",
+            "uk": "Скажіть: «Ми знаємо про їхнє розлучення з травня.»"
           },
           "orderedTokens": [
-            "I",
+            "We",
             "have",
-            "lived",
-            "in",
-            "Canada",
-            "for",
-            "a",
-            "year"
+            "known",
+            "about",
+            "their",
+            "divorce",
+            "since",
+            "May"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -89,15 +89,15 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите слово перед сроком или началом.",
+        "prompt": "Выберите for или since.",
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i02:r1",
-            "text": "for"
+            "text": "since"
           },
           {
             "responseId": "en:lesson-24:session-05:i02:r2",
-            "text": "since"
+            "text": "for"
           },
           {
             "responseId": "en:lesson-24:session-05:i02:r3",
@@ -106,46 +106,46 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "accessibilityLabel": "Выберите for или since.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово перед сроком или началом.",
-            "uk": "Виберіть слово перед тривалістю або початком."
+            "ru": "Выберите for или since.",
+            "uk": "Виберіть for або since."
           },
-          "gappedTargetPhrase": "I have lived in Canada ___ a year.",
+          "gappedTargetPhrase": "We have known about their divorce ___ May.",
           "gapOptions": [
             {
               "responseId": "en:lesson-24:session-05:i02:r1",
-              "text": "for"
+              "text": "since"
             },
             {
               "responseId": "en:lesson-24:session-05:i02:r2",
-              "text": "since"
+              "text": "for"
             },
             {
               "responseId": "en:lesson-24:session-05:i02:r3",
               "text": "at"
             }
           ],
-          "testedDimension": "Выберите слово перед сроком или началом.",
+          "testedDimension": "Выберите for или since.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-24:session-05:i02:r2",
               "correct": false,
-              "testedDimension": "Выберите слово перед сроком или началом.",
+              "testedDimension": "Выберите for или since.",
               "feedbackByLocale": {
-                "ru": "Указан срок, нужен for.",
-                "uk": "Указано тривалість, потрібне for."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             },
             {
               "responseId": "en:lesson-24:session-05:i02:r3",
               "correct": false,
-              "testedDimension": "Выберите слово перед сроком или началом.",
+              "testedDimension": "Выберите for или since.",
               "feedbackByLocale": {
-                "ru": "Указан срок, нужен for.",
-                "uk": "Указано тривалість, потрібне for."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             }
           ]
@@ -162,15 +162,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i03:r1",
-            "text": "I have lived in Canada for a year."
+            "text": "We have known about their divorce since May."
           },
           {
             "responseId": "en:lesson-24:session-05:i03:r2",
-            "text": "We have lived in Canada for a year."
+            "text": "They have known about their divorce since May."
           },
           {
             "responseId": "en:lesson-24:session-05:i03:r3",
-            "text": "I have lived in Canada for two years."
+            "text": "We have known about their divorce since June."
           }
         ],
         "mediaIds": [],
@@ -182,23 +182,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i03:audio",
-            "transcript": "I have lived in Canada for a year."
+            "transcript": "We have known about their divorce since May."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-24:session-05:i03:r1",
-              "targetText": "I have lived in Canada for a year.",
+              "targetText": "We have known about their divorce since May.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i03:r2",
-              "targetText": "We have lived in Canada for a year.",
+              "targetText": "They have known about their divorce since May.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i03:r3",
-              "targetText": "I have lived in Canada for two years.",
+              "targetText": "We have known about their divorce since June.",
               "meaningByLocale": null
             }
           ],
@@ -209,8 +209,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I have lived in Canada for a year.",
-                "uk": "У записі звучить I have lived in Canada for a year."
+                "ru": "В записи звучит We have known about their divorce since May.",
+                "uk": "У записі звучить We have known about their divorce since May."
               }
             },
             {
@@ -218,8 +218,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I have lived in Canada for a year.",
-                "uk": "У записі звучить I have lived in Canada for a year."
+                "ru": "В записи звучит We have known about their divorce since May.",
+                "uk": "У записі звучить We have known about their divorce since May."
               }
             }
           ],
@@ -229,32 +229,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-24:session-05:word:India",
+        "interactionId": "en:lesson-24:session-05:word:engagement",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — India",
+        "prompt": "Карточка слова — engagement",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-24:session-05:word:India:audio"
+          "en:lesson-24:session-05:word:engagement:audio"
         ],
-        "accessibilityLabel": "Карточка слова — India",
+        "accessibilityLabel": "Карточка слова — engagement",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-24:session-05:word:India:audio",
-            "transcript": "India"
+            "audioTargetId": "en:lesson-24:session-05:word:engagement:audio",
+            "transcript": "engagement"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-24:session-05:word:India:r1",
-              "targetText": "India",
+              "responseId": "en:lesson-24:session-05:word:engagement:r1",
+              "targetText": "engagement",
               "meaningByLocale": {
-                "ru": "Индия.",
-                "uk": "Індія."
+                "ru": "помолвка.",
+                "uk": "заручини."
               }
             }
           ],
@@ -262,10 +262,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "India",
+            "word": "engagement",
             "definitionByLocale": {
-              "ru": "Индия.",
-              "uk": "Індія."
+              "ru": "помолвка.",
+              "uk": "заручини."
             }
           }
         },
@@ -277,26 +277,28 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Она работает в Индии с мая.»",
+        "prompt": "Скажите: «Они скрывают свою помолвку уже месяц.»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Она работает в Индии с мая.»",
+        "accessibilityLabel": "Скажите: «Они скрывают свою помолвку уже месяц.»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She has worked in India since May.",
+          "targetPhrase": "They have kept their engagement secret for a month.",
           "localizedMeaning": {
-            "ru": "Скажите: «Она работает в Индии с мая.»",
-            "uk": "Скажіть: «Вона працює в Індії з травня.»"
+            "ru": "Скажите: «Они скрывают свою помолвку уже месяц.»",
+            "uk": "Скажіть: «Вони тримають свої заручини в таємниці вже місяць.»"
           },
           "orderedTokens": [
-            "She",
-            "has",
-            "worked",
-            "in",
-            "India",
-            "since",
-            "May"
+            "They",
+            "have",
+            "kept",
+            "their",
+            "engagement",
+            "secret",
+            "for",
+            "a",
+            "month"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -313,63 +315,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите слово перед сроком или началом.",
+        "prompt": "Выберите for или since.",
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i05:r1",
-            "text": "since"
-          },
-          {
-            "responseId": "en:lesson-24:session-05:i05:r2",
             "text": "for"
           },
           {
+            "responseId": "en:lesson-24:session-05:i05:r2",
+            "text": "since"
+          },
+          {
             "responseId": "en:lesson-24:session-05:i05:r3",
-            "text": "in"
+            "text": "at"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "accessibilityLabel": "Выберите for или since.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово перед сроком или началом.",
-            "uk": "Виберіть слово перед тривалістю або початком."
+            "ru": "Выберите for или since.",
+            "uk": "Виберіть for або since."
           },
-          "gappedTargetPhrase": "She has worked in India ___ May.",
+          "gappedTargetPhrase": "They have kept their engagement secret ___ a month.",
           "gapOptions": [
             {
               "responseId": "en:lesson-24:session-05:i05:r1",
-              "text": "since"
-            },
-            {
-              "responseId": "en:lesson-24:session-05:i05:r2",
               "text": "for"
             },
             {
+              "responseId": "en:lesson-24:session-05:i05:r2",
+              "text": "since"
+            },
+            {
               "responseId": "en:lesson-24:session-05:i05:r3",
-              "text": "in"
+              "text": "at"
             }
           ],
-          "testedDimension": "Выберите слово перед сроком или началом.",
+          "testedDimension": "Выберите for или since.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-24:session-05:i05:r2",
               "correct": false,
-              "testedDimension": "Выберите слово перед сроком или началом.",
+              "testedDimension": "Выберите for или since.",
               "feedbackByLocale": {
-                "ru": "Указано начало, нужен since.",
-                "uk": "Указано початок, потрібне since."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             },
             {
               "responseId": "en:lesson-24:session-05:i05:r3",
               "correct": false,
-              "testedDimension": "Выберите слово перед сроком или началом.",
+              "testedDimension": "Выберите for или since.",
               "feedbackByLocale": {
-                "ru": "Указано начало, нужен since.",
-                "uk": "Указано початок, потрібне since."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             }
           ]
@@ -386,15 +388,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i06:r1",
-            "text": "She has worked in India since May."
+            "text": "They have kept their engagement secret for a month."
           },
           {
             "responseId": "en:lesson-24:session-05:i06:r2",
-            "text": "He has worked in India since May."
+            "text": "We have kept our engagement secret for a month."
           },
           {
             "responseId": "en:lesson-24:session-05:i06:r3",
-            "text": "She has worked in India since June."
+            "text": "They have kept their engagement secret for a week."
           }
         ],
         "mediaIds": [],
@@ -406,23 +408,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i06:audio",
-            "transcript": "She has worked in India since May."
+            "transcript": "They have kept their engagement secret for a month."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-24:session-05:i06:r1",
-              "targetText": "She has worked in India since May.",
+              "targetText": "They have kept their engagement secret for a month.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i06:r2",
-              "targetText": "He has worked in India since May.",
+              "targetText": "We have kept our engagement secret for a month.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i06:r3",
-              "targetText": "She has worked in India since June.",
+              "targetText": "They have kept their engagement secret for a week.",
               "meaningByLocale": null
             }
           ],
@@ -433,8 +435,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She has worked in India since May.",
-                "uk": "У записі звучить She has worked in India since May."
+                "ru": "В записи звучит They have kept their engagement secret for a month.",
+                "uk": "У записі звучить They have kept their engagement secret for a month."
               }
             },
             {
@@ -442,8 +444,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She has worked in India since May.",
-                "uk": "У записі звучить She has worked in India since May."
+                "ru": "В записи звучит They have kept their engagement secret for a month.",
+                "uk": "У записі звучить They have kept their engagement secret for a month."
               }
             }
           ],
@@ -453,32 +455,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-24:session-05:word:Egypt",
+        "interactionId": "en:lesson-24:session-05:word:widow",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — Egypt",
+        "prompt": "Карточка слова — widow",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-24:session-05:word:Egypt:audio"
+          "en:lesson-24:session-05:word:widow:audio"
         ],
-        "accessibilityLabel": "Карточка слова — Egypt",
+        "accessibilityLabel": "Карточка слова — widow",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-24:session-05:word:Egypt:audio",
-            "transcript": "Egypt"
+            "audioTargetId": "en:lesson-24:session-05:word:widow:audio",
+            "transcript": "widow"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-24:session-05:word:Egypt:r1",
-              "targetText": "Egypt",
+              "responseId": "en:lesson-24:session-05:word:widow:r1",
+              "targetText": "widow",
               "meaningByLocale": {
-                "ru": "Египет.",
-                "uk": "Єгипет."
+                "ru": "вдова.",
+                "uk": "вдова."
               }
             }
           ],
@@ -486,10 +488,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "Egypt",
+            "word": "widow",
             "definitionByLocale": {
-              "ru": "Египет.",
-              "uk": "Єгипет."
+              "ru": "вдова.",
+              "uk": "вдова."
             }
           }
         },
@@ -501,27 +503,27 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Мы находимся в Египте уже три недели.»",
+        "prompt": "Скажите: «Она вдова уже два года.»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Мы находимся в Египте уже три недели.»",
+        "accessibilityLabel": "Скажите: «Она вдова уже два года.»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We have stayed in Egypt for three weeks.",
+          "targetPhrase": "She has been a widow for two years.",
           "localizedMeaning": {
-            "ru": "Скажите: «Мы находимся в Египте уже три недели.»",
-            "uk": "Скажіть: «Ми перебуваємо в Єгипті вже три тижні.»"
+            "ru": "Скажите: «Она вдова уже два года.»",
+            "uk": "Скажіть: «Вона вдова вже два роки.»"
           },
           "orderedTokens": [
-            "We",
-            "have",
-            "stayed",
-            "in",
-            "Egypt",
+            "She",
+            "has",
+            "been",
+            "a",
+            "widow",
             "for",
-            "three",
-            "weeks"
+            "two",
+            "years"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -538,7 +540,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите слово перед сроком или началом.",
+        "prompt": "Выберите for или since.",
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i08:r1",
@@ -555,14 +557,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "accessibilityLabel": "Выберите for или since.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово перед сроком или началом.",
-            "uk": "Виберіть слово перед тривалістю або початком."
+            "ru": "Выберите for или since.",
+            "uk": "Виберіть for або since."
           },
-          "gappedTargetPhrase": "We have stayed in Egypt ___ three weeks.",
+          "gappedTargetPhrase": "She has been a widow ___ two years.",
           "gapOptions": [
             {
               "responseId": "en:lesson-24:session-05:i08:r1",
@@ -577,24 +579,24 @@
               "text": "at"
             }
           ],
-          "testedDimension": "Выберите слово перед сроком или началом.",
+          "testedDimension": "Выберите for или since.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-24:session-05:i08:r2",
               "correct": false,
-              "testedDimension": "Выберите слово перед сроком или началом.",
+              "testedDimension": "Выберите for или since.",
               "feedbackByLocale": {
-                "ru": "Указан срок, нужен for.",
-                "uk": "Указано тривалість, потрібне for."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             },
             {
               "responseId": "en:lesson-24:session-05:i08:r3",
               "correct": false,
-              "testedDimension": "Выберите слово перед сроком или началом.",
+              "testedDimension": "Выберите for или since.",
               "feedbackByLocale": {
-                "ru": "Указан срок, нужен for.",
-                "uk": "Указано тривалість, потрібне for."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             }
           ]
@@ -611,15 +613,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i09:r1",
-            "text": "We have stayed in Egypt for three weeks."
+            "text": "She has been a widow for two years."
           },
           {
             "responseId": "en:lesson-24:session-05:i09:r2",
-            "text": "They have stayed in Egypt for three weeks."
+            "text": "She has been a widow for three years."
           },
           {
             "responseId": "en:lesson-24:session-05:i09:r3",
-            "text": "We have stayed in Egypt for two weeks."
+            "text": "She has been a widow for two months."
           }
         ],
         "mediaIds": [],
@@ -631,23 +633,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i09:audio",
-            "transcript": "We have stayed in Egypt for three weeks."
+            "transcript": "She has been a widow for two years."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-24:session-05:i09:r1",
-              "targetText": "We have stayed in Egypt for three weeks.",
+              "targetText": "She has been a widow for two years.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i09:r2",
-              "targetText": "They have stayed in Egypt for three weeks.",
+              "targetText": "She has been a widow for three years.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i09:r3",
-              "targetText": "We have stayed in Egypt for two weeks.",
+              "targetText": "She has been a widow for two months.",
               "meaningByLocale": null
             }
           ],
@@ -658,8 +660,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We have stayed in Egypt for three weeks.",
-                "uk": "У записі звучить We have stayed in Egypt for three weeks."
+                "ru": "В записи звучит She has been a widow for two years.",
+                "uk": "У записі звучить She has been a widow for two years."
               }
             },
             {
@@ -667,8 +669,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We have stayed in Egypt for three weeks.",
-                "uk": "У записі звучить We have stayed in Egypt for three weeks."
+                "ru": "В записи звучит She has been a widow for two years.",
+                "uk": "У записі звучить She has been a widow for two years."
               }
             }
           ],
@@ -678,32 +680,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-24:session-05:word:Australia",
+        "interactionId": "en:lesson-24:session-05:word:widower",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — Australia",
+        "prompt": "Карточка слова — widower",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-24:session-05:word:Australia:audio"
+          "en:lesson-24:session-05:word:widower:audio"
         ],
-        "accessibilityLabel": "Карточка слова — Australia",
+        "accessibilityLabel": "Карточка слова — widower",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-24:session-05:word:Australia:audio",
-            "transcript": "Australia"
+            "audioTargetId": "en:lesson-24:session-05:word:widower:audio",
+            "transcript": "widower"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-24:session-05:word:Australia:r1",
-              "targetText": "Australia",
+              "responseId": "en:lesson-24:session-05:word:widower:r1",
+              "targetText": "widower",
               "meaningByLocale": {
-                "ru": "Австралия.",
-                "uk": "Австралія."
+                "ru": "вдовец.",
+                "uk": "вдівець."
               }
             }
           ],
@@ -711,10 +713,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "Australia",
+            "word": "widower",
             "definitionByLocale": {
-              "ru": "Австралия.",
-              "uk": "Австралія."
+              "ru": "вдовец.",
+              "uk": "вдівець."
             }
           }
         },
@@ -726,24 +728,24 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Он живёт в Австралии с 2020 года.»",
+        "prompt": "Скажите: «Он вдовец с 2020 года.»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Он живёт в Австралии с 2020 года.»",
+        "accessibilityLabel": "Скажите: «Он вдовец с 2020 года.»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He has lived in Australia since 2020.",
+          "targetPhrase": "He has been a widower since 2020.",
           "localizedMeaning": {
-            "ru": "Скажите: «Он живёт в Австралии с 2020 года.»",
-            "uk": "Скажіть: «Він живе в Австралії з 2020 року.»"
+            "ru": "Скажите: «Он вдовец с 2020 года.»",
+            "uk": "Скажіть: «Він вдівець із 2020 року.»"
           },
           "orderedTokens": [
             "He",
             "has",
-            "lived",
-            "in",
-            "Australia",
+            "been",
+            "a",
+            "widower",
             "since",
             "2020"
           ],
@@ -762,7 +764,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите слово перед сроком или началом.",
+        "prompt": "Выберите for или since.",
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i11:r1",
@@ -774,19 +776,19 @@
           },
           {
             "responseId": "en:lesson-24:session-05:i11:r3",
-            "text": "in"
+            "text": "at"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите слово перед сроком или началом.",
+        "accessibilityLabel": "Выберите for или since.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово перед сроком или началом.",
-            "uk": "Виберіть слово перед тривалістю або початком."
+            "ru": "Выберите for или since.",
+            "uk": "Виберіть for або since."
           },
-          "gappedTargetPhrase": "He has lived in Australia ___ 2020.",
+          "gappedTargetPhrase": "He has been a widower ___ 2020.",
           "gapOptions": [
             {
               "responseId": "en:lesson-24:session-05:i11:r1",
@@ -798,27 +800,27 @@
             },
             {
               "responseId": "en:lesson-24:session-05:i11:r3",
-              "text": "in"
+              "text": "at"
             }
           ],
-          "testedDimension": "Выберите слово перед сроком или началом.",
+          "testedDimension": "Выберите for или since.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-24:session-05:i11:r2",
               "correct": false,
-              "testedDimension": "Выберите слово перед сроком или началом.",
+              "testedDimension": "Выберите for или since.",
               "feedbackByLocale": {
-                "ru": "Указано начало, нужен since.",
-                "uk": "Указано початок, потрібне since."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             },
             {
               "responseId": "en:lesson-24:session-05:i11:r3",
               "correct": false,
-              "testedDimension": "Выберите слово перед сроком или началом.",
+              "testedDimension": "Выберите for или since.",
               "feedbackByLocale": {
-                "ru": "Указано начало, нужен since.",
-                "uk": "Указано початок, потрібне since."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             }
           ]
@@ -835,15 +837,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i12:r1",
-            "text": "He has lived in Australia since 2020."
+            "text": "He has been a widower since 2020."
           },
           {
             "responseId": "en:lesson-24:session-05:i12:r2",
-            "text": "She has lived in Australia since 2020."
+            "text": "He has been a widower since 2021."
           },
           {
             "responseId": "en:lesson-24:session-05:i12:r3",
-            "text": "He has lived in Australia since 2021."
+            "text": "He has been a widower since 2019."
           }
         ],
         "mediaIds": [],
@@ -855,23 +857,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i12:audio",
-            "transcript": "He has lived in Australia since 2020."
+            "transcript": "He has been a widower since 2020."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-24:session-05:i12:r1",
-              "targetText": "He has lived in Australia since 2020.",
+              "targetText": "He has been a widower since 2020.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i12:r2",
-              "targetText": "She has lived in Australia since 2020.",
+              "targetText": "He has been a widower since 2021.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i12:r3",
-              "targetText": "He has lived in Australia since 2021.",
+              "targetText": "He has been a widower since 2019.",
               "meaningByLocale": null
             }
           ],
@@ -882,8 +884,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит He has lived in Australia since 2020.",
-                "uk": "У записі звучить He has lived in Australia since 2020."
+                "ru": "В записи звучит He has been a widower since 2020.",
+                "uk": "У записі звучить He has been a widower since 2020."
               }
             },
             {
@@ -891,8 +893,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит He has lived in Australia since 2020.",
-                "uk": "У записі звучить He has lived in Australia since 2020."
+                "ru": "В записи звучит He has been a widower since 2020.",
+                "uk": "У записі звучить He has been a widower since 2020."
               }
             }
           ],
@@ -917,48 +919,48 @@
           "pairGrid": [
             {
               "pairId": "en:lesson-24:session-05:i13:p1",
-              "target": "Canada",
+              "target": "divorce",
               "meaningByLocale": {
-                "ru": "Канада",
-                "uk": "Канада"
+                "ru": "развод",
+                "uk": "розлучення"
               }
             },
             {
               "pairId": "en:lesson-24:session-05:i13:p2",
-              "target": "India",
+              "target": "engagement",
               "meaningByLocale": {
-                "ru": "Индия",
-                "uk": "Індія"
+                "ru": "помолвка",
+                "uk": "заручини"
               }
             },
             {
               "pairId": "en:lesson-24:session-05:i13:p3",
-              "target": "Egypt",
+              "target": "widow",
               "meaningByLocale": {
-                "ru": "Египет",
-                "uk": "Єгипет"
+                "ru": "вдова",
+                "uk": "вдова"
               }
             },
             {
               "pairId": "en:lesson-24:session-05:i13:p4",
-              "target": "Australia",
+              "target": "widower",
               "meaningByLocale": {
-                "ru": "Австралия",
-                "uk": "Австралія"
+                "ru": "вдовец",
+                "uk": "вдівець"
               }
             }
           ],
           "leftColumn": [
-            "Canada",
-            "India",
-            "Egypt",
-            "Australia"
+            "divorce",
+            "engagement",
+            "widow",
+            "widower"
           ],
           "rightColumn": [
-            "Канада",
-            "Индия",
-            "Египет",
-            "Австралия"
+            "развод",
+            "помолвка",
+            "вдова",
+            "вдовец"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -980,29 +982,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Срок: два года",
+        "prompt": "Другая комната",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-24:session-05:i14:audio"
         ],
-        "accessibilityLabel": "Срок: два года",
+        "accessibilityLabel": "Другая комната",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i14:audio",
-            "transcript": "I have lived here for two years."
+            "transcript": "I have booked another room."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I have lived here for two years.",
+          "hiddenTargetPhrase": "I have booked another room.",
           "orderedTokens": [
             "I",
             "have",
-            "lived",
-            "here",
-            "for",
-            "two",
-            "years"
+            "booked",
+            "another",
+            "room"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1019,28 +1019,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Начало: июнь",
+        "prompt": "Другие гости уехали",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-24:session-05:i15:audio"
         ],
-        "accessibilityLabel": "Начало: июнь",
+        "accessibilityLabel": "Другие гости уехали",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i15:audio",
-            "transcript": "She has worked here since June."
+            "transcript": "The other guests left yesterday."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She has worked here since June.",
+          "hiddenTargetPhrase": "The other guests left yesterday.",
           "orderedTokens": [
-            "She",
-            "has",
-            "worked",
-            "here",
-            "since",
-            "June"
+            "The",
+            "other",
+            "guests",
+            "left",
+            "yesterday"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1057,21 +1056,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Я живу в Австралии уже год».",
+        "prompt": "Скажите: «Мы знаем об их разводе с июня».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-24:session-05:i16:audio"
         ],
-        "accessibilityLabel": "Скажите: «Я живу в Австралии уже год».",
+        "accessibilityLabel": "Скажите: «Мы знаем об их разводе с июня».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i16:audio",
-            "transcript": "I have lived in Australia for a year."
+            "transcript": "We have known about their divorce since June."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I have lived in Australia for a year.",
+          "targetPhrase": "We have known about their divorce since June.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1090,21 +1089,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Мы работаем в Канаде с мая».",
+        "prompt": "Скажите: «Он вдовец уже три года».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-24:session-05:i17:audio"
         ],
-        "accessibilityLabel": "Скажите: «Мы работаем в Канаде с мая».",
+        "accessibilityLabel": "Скажите: «Он вдовец уже три года».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i17:audio",
-            "transcript": "We have worked in Canada since May."
+            "transcript": "He has been a widower for three years."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We have worked in Canada since May.",
+          "targetPhrase": "He has been a widower for three years.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1120,32 +1119,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-24:session-05:word:Canada",
+        "interactionId": "en:lesson-24:session-05:word:divorce",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — Canada",
+        "prompt": "Картка слова — divorce",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-24:session-05:word:Canada:audio"
+          "en:lesson-24:session-05:word:divorce:audio"
         ],
-        "accessibilityLabel": "Картка слова — Canada",
+        "accessibilityLabel": "Картка слова — divorce",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-24:session-05:word:Canada:audio",
-            "transcript": "Canada"
+            "audioTargetId": "en:lesson-24:session-05:word:divorce:audio",
+            "transcript": "divorce"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-24:session-05:word:Canada:r1",
-              "targetText": "Canada",
+              "responseId": "en:lesson-24:session-05:word:divorce:r1",
+              "targetText": "divorce",
               "meaningByLocale": {
-                "ru": "Канада.",
-                "uk": "Канада."
+                "ru": "развод.",
+                "uk": "розлучення."
               }
             }
           ],
@@ -1153,10 +1152,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "Canada",
+            "word": "divorce",
             "definitionByLocale": {
-              "ru": "Канада.",
-              "uk": "Канада."
+              "ru": "развод.",
+              "uk": "розлучення."
             }
           }
         },
@@ -1168,27 +1167,27 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Я живу в Канаді вже рік.»",
+        "prompt": "Скажіть: «Ми знаємо про їхнє розлучення з травня.»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Я живу в Канаді вже рік.»",
+        "accessibilityLabel": "Скажіть: «Ми знаємо про їхнє розлучення з травня.»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I have lived in Canada for a year.",
+          "targetPhrase": "We have known about their divorce since May.",
           "localizedMeaning": {
-            "ru": "Скажите: «Я живу в Канаде уже год.»",
-            "uk": "Скажіть: «Я живу в Канаді вже рік.»"
+            "ru": "Скажите: «Мы знаем об их разводе с мая.»",
+            "uk": "Скажіть: «Ми знаємо про їхнє розлучення з травня.»"
           },
           "orderedTokens": [
-            "I",
+            "We",
             "have",
-            "lived",
-            "in",
-            "Canada",
-            "for",
-            "a",
-            "year"
+            "known",
+            "about",
+            "their",
+            "divorce",
+            "since",
+            "May"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1205,15 +1204,15 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "prompt": "Виберіть for або since.",
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i02:r1",
-            "text": "for"
+            "text": "since"
           },
           {
             "responseId": "en:lesson-24:session-05:i02:r2",
-            "text": "since"
+            "text": "for"
           },
           {
             "responseId": "en:lesson-24:session-05:i02:r3",
@@ -1222,46 +1221,46 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "accessibilityLabel": "Виберіть for або since.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово перед сроком или началом.",
-            "uk": "Виберіть слово перед тривалістю або початком."
+            "ru": "Выберите for или since.",
+            "uk": "Виберіть for або since."
           },
-          "gappedTargetPhrase": "I have lived in Canada ___ a year.",
+          "gappedTargetPhrase": "We have known about their divorce ___ May.",
           "gapOptions": [
             {
               "responseId": "en:lesson-24:session-05:i02:r1",
-              "text": "for"
+              "text": "since"
             },
             {
               "responseId": "en:lesson-24:session-05:i02:r2",
-              "text": "since"
+              "text": "for"
             },
             {
               "responseId": "en:lesson-24:session-05:i02:r3",
               "text": "at"
             }
           ],
-          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "testedDimension": "Виберіть for або since.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-24:session-05:i02:r2",
               "correct": false,
-              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "testedDimension": "Виберіть for або since.",
               "feedbackByLocale": {
-                "ru": "Указан срок, нужен for.",
-                "uk": "Указано тривалість, потрібне for."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             },
             {
               "responseId": "en:lesson-24:session-05:i02:r3",
               "correct": false,
-              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "testedDimension": "Виберіть for або since.",
               "feedbackByLocale": {
-                "ru": "Указан срок, нужен for.",
-                "uk": "Указано тривалість, потрібне for."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             }
           ]
@@ -1278,15 +1277,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i03:r1",
-            "text": "I have lived in Canada for a year."
+            "text": "We have known about their divorce since May."
           },
           {
             "responseId": "en:lesson-24:session-05:i03:r2",
-            "text": "We have lived in Canada for a year."
+            "text": "They have known about their divorce since May."
           },
           {
             "responseId": "en:lesson-24:session-05:i03:r3",
-            "text": "I have lived in Canada for two years."
+            "text": "We have known about their divorce since June."
           }
         ],
         "mediaIds": [],
@@ -1298,23 +1297,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i03:audio",
-            "transcript": "I have lived in Canada for a year."
+            "transcript": "We have known about their divorce since May."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-24:session-05:i03:r1",
-              "targetText": "I have lived in Canada for a year.",
+              "targetText": "We have known about their divorce since May.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i03:r2",
-              "targetText": "We have lived in Canada for a year.",
+              "targetText": "They have known about their divorce since May.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i03:r3",
-              "targetText": "I have lived in Canada for two years.",
+              "targetText": "We have known about their divorce since June.",
               "meaningByLocale": null
             }
           ],
@@ -1325,8 +1324,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I have lived in Canada for a year.",
-                "uk": "У записі звучить I have lived in Canada for a year."
+                "ru": "В записи звучит We have known about their divorce since May.",
+                "uk": "У записі звучить We have known about their divorce since May."
               }
             },
             {
@@ -1334,8 +1333,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I have lived in Canada for a year.",
-                "uk": "У записі звучить I have lived in Canada for a year."
+                "ru": "В записи звучит We have known about their divorce since May.",
+                "uk": "У записі звучить We have known about their divorce since May."
               }
             }
           ],
@@ -1345,32 +1344,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-24:session-05:word:India",
+        "interactionId": "en:lesson-24:session-05:word:engagement",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — India",
+        "prompt": "Картка слова — engagement",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-24:session-05:word:India:audio"
+          "en:lesson-24:session-05:word:engagement:audio"
         ],
-        "accessibilityLabel": "Картка слова — India",
+        "accessibilityLabel": "Картка слова — engagement",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-24:session-05:word:India:audio",
-            "transcript": "India"
+            "audioTargetId": "en:lesson-24:session-05:word:engagement:audio",
+            "transcript": "engagement"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-24:session-05:word:India:r1",
-              "targetText": "India",
+              "responseId": "en:lesson-24:session-05:word:engagement:r1",
+              "targetText": "engagement",
               "meaningByLocale": {
-                "ru": "Индия.",
-                "uk": "Індія."
+                "ru": "помолвка.",
+                "uk": "заручини."
               }
             }
           ],
@@ -1378,10 +1377,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "India",
+            "word": "engagement",
             "definitionByLocale": {
-              "ru": "Индия.",
-              "uk": "Індія."
+              "ru": "помолвка.",
+              "uk": "заручини."
             }
           }
         },
@@ -1393,26 +1392,28 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Вона працює в Індії з травня.»",
+        "prompt": "Скажіть: «Вони тримають свої заручини в таємниці вже місяць.»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Вона працює в Індії з травня.»",
+        "accessibilityLabel": "Скажіть: «Вони тримають свої заручини в таємниці вже місяць.»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She has worked in India since May.",
+          "targetPhrase": "They have kept their engagement secret for a month.",
           "localizedMeaning": {
-            "ru": "Скажите: «Она работает в Индии с мая.»",
-            "uk": "Скажіть: «Вона працює в Індії з травня.»"
+            "ru": "Скажите: «Они скрывают свою помолвку уже месяц.»",
+            "uk": "Скажіть: «Вони тримають свої заручини в таємниці вже місяць.»"
           },
           "orderedTokens": [
-            "She",
-            "has",
-            "worked",
-            "in",
-            "India",
-            "since",
-            "May"
+            "They",
+            "have",
+            "kept",
+            "their",
+            "engagement",
+            "secret",
+            "for",
+            "a",
+            "month"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1429,63 +1430,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "prompt": "Виберіть for або since.",
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i05:r1",
-            "text": "since"
-          },
-          {
-            "responseId": "en:lesson-24:session-05:i05:r2",
             "text": "for"
           },
           {
+            "responseId": "en:lesson-24:session-05:i05:r2",
+            "text": "since"
+          },
+          {
             "responseId": "en:lesson-24:session-05:i05:r3",
-            "text": "in"
+            "text": "at"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "accessibilityLabel": "Виберіть for або since.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово перед сроком или началом.",
-            "uk": "Виберіть слово перед тривалістю або початком."
+            "ru": "Выберите for или since.",
+            "uk": "Виберіть for або since."
           },
-          "gappedTargetPhrase": "She has worked in India ___ May.",
+          "gappedTargetPhrase": "They have kept their engagement secret ___ a month.",
           "gapOptions": [
             {
               "responseId": "en:lesson-24:session-05:i05:r1",
-              "text": "since"
-            },
-            {
-              "responseId": "en:lesson-24:session-05:i05:r2",
               "text": "for"
             },
             {
+              "responseId": "en:lesson-24:session-05:i05:r2",
+              "text": "since"
+            },
+            {
               "responseId": "en:lesson-24:session-05:i05:r3",
-              "text": "in"
+              "text": "at"
             }
           ],
-          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "testedDimension": "Виберіть for або since.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-24:session-05:i05:r2",
               "correct": false,
-              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "testedDimension": "Виберіть for або since.",
               "feedbackByLocale": {
-                "ru": "Указано начало, нужен since.",
-                "uk": "Указано початок, потрібне since."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             },
             {
               "responseId": "en:lesson-24:session-05:i05:r3",
               "correct": false,
-              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "testedDimension": "Виберіть for або since.",
               "feedbackByLocale": {
-                "ru": "Указано начало, нужен since.",
-                "uk": "Указано початок, потрібне since."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             }
           ]
@@ -1502,15 +1503,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i06:r1",
-            "text": "She has worked in India since May."
+            "text": "They have kept their engagement secret for a month."
           },
           {
             "responseId": "en:lesson-24:session-05:i06:r2",
-            "text": "He has worked in India since May."
+            "text": "We have kept our engagement secret for a month."
           },
           {
             "responseId": "en:lesson-24:session-05:i06:r3",
-            "text": "She has worked in India since June."
+            "text": "They have kept their engagement secret for a week."
           }
         ],
         "mediaIds": [],
@@ -1522,23 +1523,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i06:audio",
-            "transcript": "She has worked in India since May."
+            "transcript": "They have kept their engagement secret for a month."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-24:session-05:i06:r1",
-              "targetText": "She has worked in India since May.",
+              "targetText": "They have kept their engagement secret for a month.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i06:r2",
-              "targetText": "He has worked in India since May.",
+              "targetText": "We have kept our engagement secret for a month.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i06:r3",
-              "targetText": "She has worked in India since June.",
+              "targetText": "They have kept their engagement secret for a week.",
               "meaningByLocale": null
             }
           ],
@@ -1549,8 +1550,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She has worked in India since May.",
-                "uk": "У записі звучить She has worked in India since May."
+                "ru": "В записи звучит They have kept their engagement secret for a month.",
+                "uk": "У записі звучить They have kept their engagement secret for a month."
               }
             },
             {
@@ -1558,8 +1559,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She has worked in India since May.",
-                "uk": "У записі звучить She has worked in India since May."
+                "ru": "В записи звучит They have kept their engagement secret for a month.",
+                "uk": "У записі звучить They have kept their engagement secret for a month."
               }
             }
           ],
@@ -1569,32 +1570,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-24:session-05:word:Egypt",
+        "interactionId": "en:lesson-24:session-05:word:widow",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — Egypt",
+        "prompt": "Картка слова — widow",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-24:session-05:word:Egypt:audio"
+          "en:lesson-24:session-05:word:widow:audio"
         ],
-        "accessibilityLabel": "Картка слова — Egypt",
+        "accessibilityLabel": "Картка слова — widow",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-24:session-05:word:Egypt:audio",
-            "transcript": "Egypt"
+            "audioTargetId": "en:lesson-24:session-05:word:widow:audio",
+            "transcript": "widow"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-24:session-05:word:Egypt:r1",
-              "targetText": "Egypt",
+              "responseId": "en:lesson-24:session-05:word:widow:r1",
+              "targetText": "widow",
               "meaningByLocale": {
-                "ru": "Египет.",
-                "uk": "Єгипет."
+                "ru": "вдова.",
+                "uk": "вдова."
               }
             }
           ],
@@ -1602,10 +1603,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "Egypt",
+            "word": "widow",
             "definitionByLocale": {
-              "ru": "Египет.",
-              "uk": "Єгипет."
+              "ru": "вдова.",
+              "uk": "вдова."
             }
           }
         },
@@ -1617,27 +1618,27 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Ми перебуваємо в Єгипті вже три тижні.»",
+        "prompt": "Скажіть: «Вона вдова вже два роки.»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Ми перебуваємо в Єгипті вже три тижні.»",
+        "accessibilityLabel": "Скажіть: «Вона вдова вже два роки.»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We have stayed in Egypt for three weeks.",
+          "targetPhrase": "She has been a widow for two years.",
           "localizedMeaning": {
-            "ru": "Скажите: «Мы находимся в Египте уже три недели.»",
-            "uk": "Скажіть: «Ми перебуваємо в Єгипті вже три тижні.»"
+            "ru": "Скажите: «Она вдова уже два года.»",
+            "uk": "Скажіть: «Вона вдова вже два роки.»"
           },
           "orderedTokens": [
-            "We",
-            "have",
-            "stayed",
-            "in",
-            "Egypt",
+            "She",
+            "has",
+            "been",
+            "a",
+            "widow",
             "for",
-            "three",
-            "weeks"
+            "two",
+            "years"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1654,7 +1655,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "prompt": "Виберіть for або since.",
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i08:r1",
@@ -1671,14 +1672,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "accessibilityLabel": "Виберіть for або since.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово перед сроком или началом.",
-            "uk": "Виберіть слово перед тривалістю або початком."
+            "ru": "Выберите for или since.",
+            "uk": "Виберіть for або since."
           },
-          "gappedTargetPhrase": "We have stayed in Egypt ___ three weeks.",
+          "gappedTargetPhrase": "She has been a widow ___ two years.",
           "gapOptions": [
             {
               "responseId": "en:lesson-24:session-05:i08:r1",
@@ -1693,24 +1694,24 @@
               "text": "at"
             }
           ],
-          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "testedDimension": "Виберіть for або since.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-24:session-05:i08:r2",
               "correct": false,
-              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "testedDimension": "Виберіть for або since.",
               "feedbackByLocale": {
-                "ru": "Указан срок, нужен for.",
-                "uk": "Указано тривалість, потрібне for."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             },
             {
               "responseId": "en:lesson-24:session-05:i08:r3",
               "correct": false,
-              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "testedDimension": "Виберіть for або since.",
               "feedbackByLocale": {
-                "ru": "Указан срок, нужен for.",
-                "uk": "Указано тривалість, потрібне for."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             }
           ]
@@ -1727,15 +1728,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i09:r1",
-            "text": "We have stayed in Egypt for three weeks."
+            "text": "She has been a widow for two years."
           },
           {
             "responseId": "en:lesson-24:session-05:i09:r2",
-            "text": "They have stayed in Egypt for three weeks."
+            "text": "She has been a widow for three years."
           },
           {
             "responseId": "en:lesson-24:session-05:i09:r3",
-            "text": "We have stayed in Egypt for two weeks."
+            "text": "She has been a widow for two months."
           }
         ],
         "mediaIds": [],
@@ -1747,23 +1748,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i09:audio",
-            "transcript": "We have stayed in Egypt for three weeks."
+            "transcript": "She has been a widow for two years."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-24:session-05:i09:r1",
-              "targetText": "We have stayed in Egypt for three weeks.",
+              "targetText": "She has been a widow for two years.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i09:r2",
-              "targetText": "They have stayed in Egypt for three weeks.",
+              "targetText": "She has been a widow for three years.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i09:r3",
-              "targetText": "We have stayed in Egypt for two weeks.",
+              "targetText": "She has been a widow for two months.",
               "meaningByLocale": null
             }
           ],
@@ -1774,8 +1775,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We have stayed in Egypt for three weeks.",
-                "uk": "У записі звучить We have stayed in Egypt for three weeks."
+                "ru": "В записи звучит She has been a widow for two years.",
+                "uk": "У записі звучить She has been a widow for two years."
               }
             },
             {
@@ -1783,8 +1784,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We have stayed in Egypt for three weeks.",
-                "uk": "У записі звучить We have stayed in Egypt for three weeks."
+                "ru": "В записи звучит She has been a widow for two years.",
+                "uk": "У записі звучить She has been a widow for two years."
               }
             }
           ],
@@ -1794,32 +1795,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-24:session-05:word:Australia",
+        "interactionId": "en:lesson-24:session-05:word:widower",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — Australia",
+        "prompt": "Картка слова — widower",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-24:session-05:word:Australia:audio"
+          "en:lesson-24:session-05:word:widower:audio"
         ],
-        "accessibilityLabel": "Картка слова — Australia",
+        "accessibilityLabel": "Картка слова — widower",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-24:session-05:word:Australia:audio",
-            "transcript": "Australia"
+            "audioTargetId": "en:lesson-24:session-05:word:widower:audio",
+            "transcript": "widower"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-24:session-05:word:Australia:r1",
-              "targetText": "Australia",
+              "responseId": "en:lesson-24:session-05:word:widower:r1",
+              "targetText": "widower",
               "meaningByLocale": {
-                "ru": "Австралия.",
-                "uk": "Австралія."
+                "ru": "вдовец.",
+                "uk": "вдівець."
               }
             }
           ],
@@ -1827,10 +1828,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "Australia",
+            "word": "widower",
             "definitionByLocale": {
-              "ru": "Австралия.",
-              "uk": "Австралія."
+              "ru": "вдовец.",
+              "uk": "вдівець."
             }
           }
         },
@@ -1842,24 +1843,24 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Він живе в Австралії з 2020 року.»",
+        "prompt": "Скажіть: «Він вдівець із 2020 року.»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Він живе в Австралії з 2020 року.»",
+        "accessibilityLabel": "Скажіть: «Він вдівець із 2020 року.»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He has lived in Australia since 2020.",
+          "targetPhrase": "He has been a widower since 2020.",
           "localizedMeaning": {
-            "ru": "Скажите: «Он живёт в Австралии с 2020 года.»",
-            "uk": "Скажіть: «Він живе в Австралії з 2020 року.»"
+            "ru": "Скажите: «Он вдовец с 2020 года.»",
+            "uk": "Скажіть: «Він вдівець із 2020 року.»"
           },
           "orderedTokens": [
             "He",
             "has",
-            "lived",
-            "in",
-            "Australia",
+            "been",
+            "a",
+            "widower",
             "since",
             "2020"
           ],
@@ -1878,7 +1879,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть слово перед тривалістю або початком.",
+        "prompt": "Виберіть for або since.",
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i11:r1",
@@ -1890,19 +1891,19 @@
           },
           {
             "responseId": "en:lesson-24:session-05:i11:r3",
-            "text": "in"
+            "text": "at"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть слово перед тривалістю або початком.",
+        "accessibilityLabel": "Виберіть for або since.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово перед сроком или началом.",
-            "uk": "Виберіть слово перед тривалістю або початком."
+            "ru": "Выберите for или since.",
+            "uk": "Виберіть for або since."
           },
-          "gappedTargetPhrase": "He has lived in Australia ___ 2020.",
+          "gappedTargetPhrase": "He has been a widower ___ 2020.",
           "gapOptions": [
             {
               "responseId": "en:lesson-24:session-05:i11:r1",
@@ -1914,27 +1915,27 @@
             },
             {
               "responseId": "en:lesson-24:session-05:i11:r3",
-              "text": "in"
+              "text": "at"
             }
           ],
-          "testedDimension": "Виберіть слово перед тривалістю або початком.",
+          "testedDimension": "Виберіть for або since.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-24:session-05:i11:r2",
               "correct": false,
-              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "testedDimension": "Виберіть for або since.",
               "feedbackByLocale": {
-                "ru": "Указано начало, нужен since.",
-                "uk": "Указано початок, потрібне since."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             },
             {
               "responseId": "en:lesson-24:session-05:i11:r3",
               "correct": false,
-              "testedDimension": "Виберіть слово перед тривалістю або початком.",
+              "testedDimension": "Виберіть for або since.",
               "feedbackByLocale": {
-                "ru": "Указано начало, нужен since.",
-                "uk": "Указано початок, потрібне since."
+                "ru": "For показывает длительность, since — начало.",
+                "uk": "For показує тривалість, since — початок."
               }
             }
           ]
@@ -1951,15 +1952,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-24:session-05:i12:r1",
-            "text": "He has lived in Australia since 2020."
+            "text": "He has been a widower since 2020."
           },
           {
             "responseId": "en:lesson-24:session-05:i12:r2",
-            "text": "She has lived in Australia since 2020."
+            "text": "He has been a widower since 2021."
           },
           {
             "responseId": "en:lesson-24:session-05:i12:r3",
-            "text": "He has lived in Australia since 2021."
+            "text": "He has been a widower since 2019."
           }
         ],
         "mediaIds": [],
@@ -1971,23 +1972,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i12:audio",
-            "transcript": "He has lived in Australia since 2020."
+            "transcript": "He has been a widower since 2020."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-24:session-05:i12:r1",
-              "targetText": "He has lived in Australia since 2020.",
+              "targetText": "He has been a widower since 2020.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i12:r2",
-              "targetText": "She has lived in Australia since 2020.",
+              "targetText": "He has been a widower since 2021.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-24:session-05:i12:r3",
-              "targetText": "He has lived in Australia since 2021.",
+              "targetText": "He has been a widower since 2019.",
               "meaningByLocale": null
             }
           ],
@@ -1998,8 +1999,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит He has lived in Australia since 2020.",
-                "uk": "У записі звучить He has lived in Australia since 2020."
+                "ru": "В записи звучит He has been a widower since 2020.",
+                "uk": "У записі звучить He has been a widower since 2020."
               }
             },
             {
@@ -2007,8 +2008,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит He has lived in Australia since 2020.",
-                "uk": "У записі звучить He has lived in Australia since 2020."
+                "ru": "В записи звучит He has been a widower since 2020.",
+                "uk": "У записі звучить He has been a widower since 2020."
               }
             }
           ],
@@ -2033,48 +2034,48 @@
           "pairGrid": [
             {
               "pairId": "en:lesson-24:session-05:i13:p1",
-              "target": "Canada",
+              "target": "divorce",
               "meaningByLocale": {
-                "ru": "Канада",
-                "uk": "Канада"
+                "ru": "развод",
+                "uk": "розлучення"
               }
             },
             {
               "pairId": "en:lesson-24:session-05:i13:p2",
-              "target": "India",
+              "target": "engagement",
               "meaningByLocale": {
-                "ru": "Индия",
-                "uk": "Індія"
+                "ru": "помолвка",
+                "uk": "заручини"
               }
             },
             {
               "pairId": "en:lesson-24:session-05:i13:p3",
-              "target": "Egypt",
+              "target": "widow",
               "meaningByLocale": {
-                "ru": "Египет",
-                "uk": "Єгипет"
+                "ru": "вдова",
+                "uk": "вдова"
               }
             },
             {
               "pairId": "en:lesson-24:session-05:i13:p4",
-              "target": "Australia",
+              "target": "widower",
               "meaningByLocale": {
-                "ru": "Австралия",
-                "uk": "Австралія"
+                "ru": "вдовец",
+                "uk": "вдівець"
               }
             }
           ],
           "leftColumn": [
-            "Canada",
-            "India",
-            "Egypt",
-            "Australia"
+            "divorce",
+            "engagement",
+            "widow",
+            "widower"
           ],
           "rightColumn": [
-            "Канада",
-            "Індія",
-            "Єгипет",
-            "Австралія"
+            "розлучення",
+            "заручини",
+            "вдова",
+            "вдівець"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2096,29 +2097,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Тривалість: два роки",
+        "prompt": "Інша кімната",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-24:session-05:i14:audio"
         ],
-        "accessibilityLabel": "Тривалість: два роки",
+        "accessibilityLabel": "Інша кімната",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i14:audio",
-            "transcript": "I have lived here for two years."
+            "transcript": "I have booked another room."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I have lived here for two years.",
+          "hiddenTargetPhrase": "I have booked another room.",
           "orderedTokens": [
             "I",
             "have",
-            "lived",
-            "here",
-            "for",
-            "two",
-            "years"
+            "booked",
+            "another",
+            "room"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2135,28 +2134,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Початок: червень",
+        "prompt": "Інші гості поїхали",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-24:session-05:i15:audio"
         ],
-        "accessibilityLabel": "Початок: червень",
+        "accessibilityLabel": "Інші гості поїхали",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i15:audio",
-            "transcript": "She has worked here since June."
+            "transcript": "The other guests left yesterday."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She has worked here since June.",
+          "hiddenTargetPhrase": "The other guests left yesterday.",
           "orderedTokens": [
-            "She",
-            "has",
-            "worked",
-            "here",
-            "since",
-            "June"
+            "The",
+            "other",
+            "guests",
+            "left",
+            "yesterday"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2173,21 +2171,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Я живу в Австралії вже рік».",
+        "prompt": "Скажіть: «Ми знаємо про їхнє розлучення з червня».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-24:session-05:i16:audio"
         ],
-        "accessibilityLabel": "Скажіть: «Я живу в Австралії вже рік».",
+        "accessibilityLabel": "Скажіть: «Ми знаємо про їхнє розлучення з червня».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i16:audio",
-            "transcript": "I have lived in Australia for a year."
+            "transcript": "We have known about their divorce since June."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I have lived in Australia for a year.",
+          "targetPhrase": "We have known about their divorce since June.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2206,21 +2204,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Ми працюємо в Канаді з травня».",
+        "prompt": "Скажіть: «Він вдівець уже три роки».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-24:session-05:i17:audio"
         ],
-        "accessibilityLabel": "Скажіть: «Ми працюємо в Канаді з травня».",
+        "accessibilityLabel": "Скажіть: «Він вдівець уже три роки».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-24:session-05:i17:audio",
-            "transcript": "We have worked in Canada since May."
+            "transcript": "He has been a widower for three years."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We have worked in Canada since May.",
+          "targetPhrase": "He has been a widower for three years.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2237,53 +2235,53 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-24:session-05:word:Canada",
-      "correctText": "Canada",
+      "interactionId": "en:lesson-24:session-05:word:divorce",
+      "correctText": "divorce",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-24:session-05:i01",
-      "correctText": "I have lived in Canada for a year.",
+      "correctText": "We have known about their divorce since May.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-24:session-05:i02",
-      "correctText": "for",
+      "correctText": "since",
       "correctResponseId": "en:lesson-24:session-05:i02:r1"
     },
     {
       "interactionId": "en:lesson-24:session-05:i03",
-      "correctText": "I have lived in Canada for a year.",
+      "correctText": "We have known about their divorce since May.",
       "correctResponseId": "en:lesson-24:session-05:i03:r1"
     },
     {
-      "interactionId": "en:lesson-24:session-05:word:India",
-      "correctText": "India",
+      "interactionId": "en:lesson-24:session-05:word:engagement",
+      "correctText": "engagement",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-24:session-05:i04",
-      "correctText": "She has worked in India since May.",
+      "correctText": "They have kept their engagement secret for a month.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-24:session-05:i05",
-      "correctText": "since",
+      "correctText": "for",
       "correctResponseId": "en:lesson-24:session-05:i05:r1"
     },
     {
       "interactionId": "en:lesson-24:session-05:i06",
-      "correctText": "She has worked in India since May.",
+      "correctText": "They have kept their engagement secret for a month.",
       "correctResponseId": "en:lesson-24:session-05:i06:r1"
     },
     {
-      "interactionId": "en:lesson-24:session-05:word:Egypt",
-      "correctText": "Egypt",
+      "interactionId": "en:lesson-24:session-05:word:widow",
+      "correctText": "widow",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-24:session-05:i07",
-      "correctText": "We have stayed in Egypt for three weeks.",
+      "correctText": "She has been a widow for two years.",
       "correctResponseId": null
     },
     {
@@ -2293,17 +2291,17 @@
     },
     {
       "interactionId": "en:lesson-24:session-05:i09",
-      "correctText": "We have stayed in Egypt for three weeks.",
+      "correctText": "She has been a widow for two years.",
       "correctResponseId": "en:lesson-24:session-05:i09:r1"
     },
     {
-      "interactionId": "en:lesson-24:session-05:word:Australia",
-      "correctText": "Australia",
+      "interactionId": "en:lesson-24:session-05:word:widower",
+      "correctText": "widower",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-24:session-05:i10",
-      "correctText": "He has lived in Australia since 2020.",
+      "correctText": "He has been a widower since 2020.",
       "correctResponseId": null
     },
     {
@@ -2313,7 +2311,7 @@
     },
     {
       "interactionId": "en:lesson-24:session-05:i12",
-      "correctText": "He has lived in Australia since 2020.",
+      "correctText": "He has been a widower since 2020.",
       "correctResponseId": "en:lesson-24:session-05:i12:r1"
     },
     {
@@ -2323,22 +2321,22 @@
     },
     {
       "interactionId": "en:lesson-24:session-05:i14",
-      "correctText": "I have lived here for two years.",
+      "correctText": "I have booked another room.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-24:session-05:i15",
-      "correctText": "She has worked here since June.",
+      "correctText": "The other guests left yesterday.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-24:session-05:i16",
-      "correctText": "I have lived in Australia for a year.",
+      "correctText": "We have known about their divorce since June.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-24:session-05:i17",
-      "correctText": "We have worked in Canada since May.",
+      "correctText": "He has been a widower for three years.",
       "correctResponseId": null
     }
   ]

@@ -1,151 +1,151 @@
-# Англійська · Урок 24 · Заняття 6 — Де ви живете й навчаєтеся
+# Англійська · Урок 24 · Заняття 06 — Говоримо про почуття
 
-**Ситуація.** Ви розповідаєте про життя й навчання в європейських країнах.
+**Ситуація.** Ви розповідаєте про почуття та про те, як довго вони тривають.
 
 **Що ви опануєте:** present perfect + for duration; since starting point
-**Нові слова:** Spain, Italy, France, Germany
+**Нові слова:** disappointment, excitement, boredom, loneliness
 
 ## Інтро 1
 
-### Країна й мова
+### Не справдилися очікування
 
-Spain — Іспанія. Spanish ви вже знаєте: це іспанська мова або «іспанський». I have worked in Spain for two years — я працюю в Іспанії вже два роки. Країна — Spain, мова — Spanish: назва мови не підійде замість країни після in. Каву ви вже вмієте замовляти, залишилося звикнути до нового розкладу.
+Disappointment — розчарування: ви очікували чогось хорошого, але все вийшло інакше. He has hidden his disappointment for a week — він приховує своє розчарування вже тиждень. Hidden — форма hide. For a week показує, як довго це триває, а не день початку.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I have worked in Spain for two years.**
-- ❌ I have worked in Spain since two years. — *Тривалість — for, початок — since.*
-- ❌ I has worked in Spain for two years. — *З I та we потрібно have, з he — has.*
+- ✅ **He has hidden his disappointment for a week.**
+- ❌ He has hidden his disappointment since a week. — *Тривалість — for, початок — since.*
+- ❌ He have hidden his disappointment for a week. — *Тут підмет в однині: потрібне has.*
 
 ---
 
 ## Інтро 2
 
-### Де ви навчаєтеся
+### Чекаємо зустрічі
 
-Italy — Італія, France — Франція. She has lived in Italy since June — вона живе в Італії з червня. We have studied in France for a year — ми навчаємося у Франції вже рік. Тут study in France означає навчатися у Франції, а study French — вивчати французьку.
+Excitement — радісне хвилювання. Наприклад, ви чекаєте зустрічі з друзями: My excitement has grown since Monday — моє радісне хвилювання зростає з понеділка. Grown — форма grow, тут «посилюватися». Boredom — нудьга. Boredom has been a problem for weeks — нудьга залишається проблемою вже кілька тижнів. Since Monday називає початок, for weeks — тривалість.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We have studied in France for a year.**
-- ❌ We have studied in France since a year. — *Тривалість — for, початок — since.*
-- ❌ We has studied in France for a year. — *З I та we потрібно have, з he — has.*
+- ✅ **My excitement has grown since Monday.**
+- ❌ My excitement has grown for Monday. — *Тривалість — for, початок — since.*
+- ❌ My excitement have grown since Monday. — *Тут підмет в однині: потрібне has.*
 
 ---
 
 ## Інтро 3
 
-### Робота за кордоном
+### Бракує спілкування
 
-Germany — Німеччина, German — німецька мова. He has worked in Germany since 2020 — він працює в Німеччині з 2020 року. У всіх чотирьох назвах країн цього заняття немає the: in Spain, in Italy, in France, in Germany. For показує тривалість, since — початок.
+Loneliness — самотність, відчуття нестачі спілкування та близькості. She has lived with loneliness since June — вона живе з відчуттям самотності з червня. Тут since June показує, коли почався цей стан. Lonely описує людину, loneliness називає відчуття. Із she використовуємо has lived.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **He has worked in Germany since 2020.**
-- ❌ He has worked in Germany for 2020. — *Тривалість — for, початок — since.*
-- ❌ He have worked in Germany since 2020. — *З I та we потрібно have, з he — has.*
+- ✅ **She has lived with loneliness since June.**
+- ❌ She has lived with loneliness for June. — *Тривалість — for, початок — since.*
+- ❌ She have lived with loneliness since June. — *Тут підмет в однині: потрібне has.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — Spain**
-<!-- interaction_id: en:lesson-24:session-06:word:Spain; family: word_card -->
-> **Spain** — Іспанія.
+**1 · Картка слова — disappointment**
+<!-- interaction_id: en:lesson-24:session-06:word:disappointment; family: word_card -->
+> **disappointment** — розчарування.
 
-**2 · Скажіть: «Я працюю в Іспанії вже два роки.»**
+**2 · Скажіть: «Він приховує своє розчарування вже тиждень.»**
 <!-- interaction_id: en:lesson-24:session-06:i01; family: phrase_builder -->
-Плитки: `years` `two` `for` `Spain` `in` `worked` `have` `I` → **I have worked in Spain for two years.**
+Плитки: `week` `a` `for` `disappointment` `his` `hidden` `has` `He` → **He has hidden his disappointment for a week.**
 
-**3 · Виберіть слово перед тривалістю або початком.**
+**3 · Виберіть for або since.**
 <!-- interaction_id: en:lesson-24:session-06:i02; family: context_gap_grammar -->
-I have worked in Spain ___ two years. → **for** · since · at
-- since — *Указано тривалість, потрібне for.*
-- at — *Указано тривалість, потрібне for.*
+He has hidden his disappointment ___ a week. → **for** · since · at
+- since — *For показує тривалість, since — початок.*
+- at — *For показує тривалість, since — початок.*
 
 **4 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-06:i03; family: listen_choose -->
-🔊 *I have worked in Spain for two years.* → **I have worked in Spain for two years.** · We have worked in Spain for two years. · I have worked in Spain for three years.
-- We have worked in Spain for two years. — *У записі звучить I have worked in Spain for two years.*
-- I have worked in Spain for three years. — *У записі звучить I have worked in Spain for two years.*
+🔊 *He has hidden his disappointment for a week.* → **He has hidden his disappointment for a week.** · She has hidden her disappointment for a week. · He has hidden his disappointment for a month.
+- She has hidden her disappointment for a week. — *У записі звучить He has hidden his disappointment for a week.*
+- He has hidden his disappointment for a month. — *У записі звучить He has hidden his disappointment for a week.*
 
-**5 · Картка слова — Italy**
-<!-- interaction_id: en:lesson-24:session-06:word:Italy; family: word_card -->
-> **Italy** — Італія.
+**5 · Картка слова — excitement**
+<!-- interaction_id: en:lesson-24:session-06:word:excitement; family: word_card -->
+> **excitement** — радісне хвилювання.
 
-**6 · Скажіть: «Вона живе в Італії з червня.»**
+**6 · Скажіть: «Моє радісне хвилювання зростає з понеділка.»**
 <!-- interaction_id: en:lesson-24:session-06:i04; family: phrase_builder -->
-Плитки: `June` `since` `Italy` `in` `lived` `has` `She` → **She has lived in Italy since June.**
+Плитки: `Monday` `since` `grown` `has` `excitement` `My` → **My excitement has grown since Monday.**
 
-**7 · Виберіть слово перед тривалістю або початком.**
+**7 · Виберіть for або since.**
 <!-- interaction_id: en:lesson-24:session-06:i05; family: context_gap_grammar -->
-She has lived in Italy ___ June. → **since** · for · in
-- for — *Указано початок, потрібне since.*
-- in — *Указано початок, потрібне since.*
+My excitement has grown ___ Monday. → **since** · for · at
+- for — *For показує тривалість, since — початок.*
+- at — *For показує тривалість, since — початок.*
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-06:i06; family: listen_choose -->
-🔊 *She has lived in Italy since June.* → **She has lived in Italy since June.** · He has lived in Italy since June. · She has lived in Italy since May.
-- He has lived in Italy since June. — *У записі звучить She has lived in Italy since June.*
-- She has lived in Italy since May. — *У записі звучить She has lived in Italy since June.*
+🔊 *My excitement has grown since Monday.* → **My excitement has grown since Monday.** · Her excitement has grown since Monday. · My excitement has grown since Friday.
+- Her excitement has grown since Monday. — *У записі звучить My excitement has grown since Monday.*
+- My excitement has grown since Friday. — *У записі звучить My excitement has grown since Monday.*
 
-**9 · Картка слова — France**
-<!-- interaction_id: en:lesson-24:session-06:word:France; family: word_card -->
-> **France** — Франція.
+**9 · Картка слова — boredom**
+<!-- interaction_id: en:lesson-24:session-06:word:boredom; family: word_card -->
+> **boredom** — нудьга.
 
-**10 · Скажіть: «Ми навчаємося у Франції вже рік.»**
+**10 · Скажіть: «Нудьга залишається проблемою вже кілька тижнів.»**
 <!-- interaction_id: en:lesson-24:session-06:i07; family: phrase_builder -->
-Плитки: `year` `a` `for` `France` `in` `studied` `have` `We` → **We have studied in France for a year.**
+Плитки: `weeks` `for` `problem` `a` `been` `has` `Boredom` → **Boredom has been a problem for weeks.**
 
-**11 · Виберіть слово перед тривалістю або початком.**
+**11 · Виберіть for або since.**
 <!-- interaction_id: en:lesson-24:session-06:i08; family: context_gap_grammar -->
-We have studied in France ___ a year. → **for** · since · at
-- since — *Указано тривалість, потрібне for.*
-- at — *Указано тривалість, потрібне for.*
+Boredom has been a problem ___ weeks. → **for** · since · at
+- since — *For показує тривалість, since — початок.*
+- at — *For показує тривалість, since — початок.*
 
 **12 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-06:i09; family: listen_choose -->
-🔊 *We have studied in France for a year.* → **We have studied in France for a year.** · They have studied in France for a year. · We have studied in France for two years.
-- They have studied in France for a year. — *У записі звучить We have studied in France for a year.*
-- We have studied in France for two years. — *У записі звучить We have studied in France for a year.*
+🔊 *Boredom has been a problem for weeks.* → **Boredom has been a problem for weeks.** · Boredom has been a problem for months. · Boredom has been a problem for years.
+- Boredom has been a problem for months. — *У записі звучить Boredom has been a problem for weeks.*
+- Boredom has been a problem for years. — *У записі звучить Boredom has been a problem for weeks.*
 
-**13 · Картка слова — Germany**
-<!-- interaction_id: en:lesson-24:session-06:word:Germany; family: word_card -->
-> **Germany** — Німеччина.
+**13 · Картка слова — loneliness**
+<!-- interaction_id: en:lesson-24:session-06:word:loneliness; family: word_card -->
+> **loneliness** — самотність.
 
-**14 · Скажіть: «Він працює в Німеччині з 2020 року.»**
+**14 · Скажіть: «Вона живе з відчуттям самотності з червня.»**
 <!-- interaction_id: en:lesson-24:session-06:i10; family: phrase_builder -->
-Плитки: `2020` `since` `Germany` `in` `worked` `has` `He` → **He has worked in Germany since 2020.**
+Плитки: `June` `since` `loneliness` `with` `lived` `has` `She` → **She has lived with loneliness since June.**
 
-**15 · Виберіть слово перед тривалістю або початком.**
+**15 · Виберіть for або since.**
 <!-- interaction_id: en:lesson-24:session-06:i11; family: context_gap_grammar -->
-He has worked in Germany ___ 2020. → **since** · for · in
-- for — *Указано початок, потрібне since.*
-- in — *Указано початок, потрібне since.*
+She has lived with loneliness ___ June. → **since** · for · at
+- for — *For показує тривалість, since — початок.*
+- at — *For показує тривалість, since — початок.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-06:i12; family: listen_choose -->
-🔊 *He has worked in Germany since 2020.* → **He has worked in Germany since 2020.** · She has worked in Germany since 2020. · He has worked in Germany since 2021.
-- She has worked in Germany since 2020. — *У записі звучить He has worked in Germany since 2020.*
-- He has worked in Germany since 2021. — *У записі звучить He has worked in Germany since 2020.*
+🔊 *She has lived with loneliness since June.* → **She has lived with loneliness since June.** · He has lived with loneliness since June. · She has lived with loneliness since May.
+- He has lived with loneliness since June. — *У записі звучить She has lived with loneliness since June.*
+- She has lived with loneliness since May. — *У записі звучить She has lived with loneliness since June.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-24:session-06:i13; family: speed_match -->
-Spain — Іспанія · Italy — Італія · France — Франція · Germany — Німеччина
+disappointment — розчарування · excitement — радісне хвилювання · boredom — нудьга · loneliness — самотність
 
-**18 · Тривалість: два роки**
+**18 · Інша кімната**
 <!-- interaction_id: en:lesson-24:session-06:i14; family: listen_build_dictation -->
-🔊 *I have lived here for two years.* Плитки: `years` `two` `for` `here` `lived` `have` `I` → **I have lived here for two years.**
+🔊 *I have booked another room.* Плитки: `room` `another` `booked` `have` `I` → **I have booked another room.**
 
-**19 · Початок: червень**
+**19 · Інші гості поїхали**
 <!-- interaction_id: en:lesson-24:session-06:i15; family: listen_build_dictation -->
-🔊 *She has worked here since June.* Плитки: `June` `since` `here` `worked` `has` `She` → **She has worked here since June.**
+🔊 *The other guests left yesterday.* Плитки: `yesterday` `left` `guests` `other` `The` → **The other guests left yesterday.**
 
-**20 · Скажіть: «Я живу в Німеччині вже рік».**
+**20 · Скажіть: «Він приховує своє розчарування з понеділка».**
 <!-- interaction_id: en:lesson-24:session-06:i16; family: scripted_repeat_compare -->
-🎙 **I have lived in Germany for a year.**
+🎙 **He has hidden his disappointment since Monday.**
 
-**21 · Скажіть: «Ми працюємо в Італії з травня».**
+**21 · Скажіть: «Вона живе з відчуттям самотності вже рік».**
 <!-- interaction_id: en:lesson-24:session-06:i17; family: scripted_repeat_compare -->
-🎙 **We have worked in Italy since May.**
+🎙 **She has lived with loneliness for a year.**
 

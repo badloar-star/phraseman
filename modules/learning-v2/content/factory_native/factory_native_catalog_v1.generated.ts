@@ -9053,14 +9053,14 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 5,
-    sourceFingerprint: "86dbdeeadf02cd5b3357da71fb3f5bee4d888a381dac769a99e50b1011973387",
+    sourceFingerprint: "23b51982496be34566dde8030ba3d49146e61db793e2119ec75d990f5cf6fedf",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + for duration; since starting point","uk":"present perfect + for duration; since starting point"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 6,
-    sourceFingerprint: "7b9e7fe5962f2e42cae082059bb2ce72430e2ea923dc57add17e91be27aa1cc3",
+    sourceFingerprint: "0a360f42a1ad62e794d73a5c91c441f1a5dc12cb4e3340ba03206ea523597d15",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + for duration; since starting point","uk":"present perfect + for duration; since starting point"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),

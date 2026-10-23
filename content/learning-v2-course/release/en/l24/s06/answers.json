@@ -1,12 +1,12 @@
 [
   {
-    "interactionId": "en:lesson-24:session-06:word:Spain",
-    "correctText": "Spain",
+    "interactionId": "en:lesson-24:session-06:word:disappointment",
+    "correctText": "disappointment",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-06:i01",
-    "correctText": "I have worked in Spain for two years.",
+    "correctText": "He has hidden his disappointment for a week.",
     "correctResponseId": null
   },
   {
@@ -16,17 +16,17 @@
   },
   {
     "interactionId": "en:lesson-24:session-06:i03",
-    "correctText": "I have worked in Spain for two years.",
+    "correctText": "He has hidden his disappointment for a week.",
     "correctResponseId": "en:lesson-24:session-06:i03:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-06:word:Italy",
-    "correctText": "Italy",
+    "interactionId": "en:lesson-24:session-06:word:excitement",
+    "correctText": "excitement",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-06:i04",
-    "correctText": "She has lived in Italy since June.",
+    "correctText": "My excitement has grown since Monday.",
     "correctResponseId": null
   },
   {
@@ -36,17 +36,17 @@
   },
   {
     "interactionId": "en:lesson-24:session-06:i06",
-    "correctText": "She has lived in Italy since June.",
+    "correctText": "My excitement has grown since Monday.",
     "correctResponseId": "en:lesson-24:session-06:i06:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-06:word:France",
-    "correctText": "France",
+    "interactionId": "en:lesson-24:session-06:word:boredom",
+    "correctText": "boredom",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-06:i07",
-    "correctText": "We have studied in France for a year.",
+    "correctText": "Boredom has been a problem for weeks.",
     "correctResponseId": null
   },
   {
@@ -56,17 +56,17 @@
   },
   {
     "interactionId": "en:lesson-24:session-06:i09",
-    "correctText": "We have studied in France for a year.",
+    "correctText": "Boredom has been a problem for weeks.",
     "correctResponseId": "en:lesson-24:session-06:i09:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-06:word:Germany",
-    "correctText": "Germany",
+    "interactionId": "en:lesson-24:session-06:word:loneliness",
+    "correctText": "loneliness",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-06:i10",
-    "correctText": "He has worked in Germany since 2020.",
+    "correctText": "She has lived with loneliness since June.",
     "correctResponseId": null
   },
   {
@@ -76,32 +76,32 @@
   },
   {
     "interactionId": "en:lesson-24:session-06:i12",
-    "correctText": "He has worked in Germany since 2020.",
+    "correctText": "She has lived with loneliness since June.",
     "correctResponseId": "en:lesson-24:session-06:i12:r1"
   },
   {
     "interactionId": "en:lesson-24:session-06:i13",
-    "correctText": "en:lesson-24:session-06:i13:p1=Spain\nen:lesson-24:session-06:i13:p2=Italy\nen:lesson-24:session-06:i13:p3=France\nen:lesson-24:session-06:i13:p4=Germany",
+    "correctText": "en:lesson-24:session-06:i13:p1=disappointment\nen:lesson-24:session-06:i13:p2=excitement\nen:lesson-24:session-06:i13:p3=boredom\nen:lesson-24:session-06:i13:p4=loneliness",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-06:i14",
-    "correctText": "I have lived here for two years.",
+    "correctText": "I have booked another room.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-06:i15",
-    "correctText": "She has worked here since June.",
+    "correctText": "The other guests left yesterday.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-06:i16",
-    "correctText": "I have lived in Germany for a year.",
+    "correctText": "He has hidden his disappointment since Monday.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-06:i17",
-    "correctText": "We have worked in Italy since May.",
+    "correctText": "She has lived with loneliness for a year.",
     "correctResponseId": null
   }
 ]

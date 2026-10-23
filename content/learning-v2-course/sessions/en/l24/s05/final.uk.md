@@ -1,151 +1,151 @@
-# Англійська · Урок 24 · Заняття 5 — Життя в іншій країні
+# Англійська · Урок 24 · Заняття 05 — Зміни в родині
 
-**Ситуація.** Ви розповідаєте, як давно живете або працюєте за кордоном.
+**Ситуація.** Ви розповідаєте про сімейні зміни й про те, скільки часу минуло.
 
 **Що ви опануєте:** present perfect + for duration; since starting point
-**Нові слова:** Canada, India, Egypt, Australia
+**Нові слова:** divorce, engagement, widow, widower
 
 ## Інтро 1
 
-### Рік в іншій країні
+### Коли ми дізналися
 
-Canada — Канада, India — Індія. Назви пишемо з великої літери. I have lived in Canada for a year — я живу в Канаді вже рік і продовжую жити там зараз. Перед Canada тут немає the. Рік минув, а зимова куртка все ще корисна.
+Divorce — розлучення, припинення шлюбу. We have known about their divorce since May — ми знаємо про їхнє розлучення з травня. Since May називає момент, коли ми про це дізналися. Have known пов’язує той момент із теперішнім: ми й досі це знаємо.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I have lived in Canada for a year.**
-- ❌ I have lived in Canada since a year. — *Тривалість — for, початок — since.*
-- ❌ I has lived in Canada for a year. — *З I потрібно have, з she та he — has.*
+- ✅ **We have known about their divorce since May.**
+- ❌ We have known about their divorce for May. — *Тривалість — for, початок — since.*
+- ❌ We has known about their divorce since May. — *З we і they потрібно have, з he та she — has.*
 
 ---
 
 ## Інтро 2
 
-### Робота й подорож
+### Поки це таємниця
 
-She has worked in India since May — вона працює в Індії з травня. Since May відповідає, коли все почалося. Egypt — Єгипет. We have stayed in Egypt for three weeks — ми перебуваємо в Єгипті вже три тижні. Stay тут означає тимчасово перебувати, наприклад під час подорожі; for three weeks показує, скільки часу вже минуло.
+Engagement — заручини: люди домовилися одружитися. They have kept their engagement secret for a month — вони тримають свої заручини в таємниці вже місяць. Kept — знайома форма keep. Keep something secret означає не розповідати про це іншим. For a month показує тривалість, а не дату початку.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She has worked in India since May.**
-- ❌ She has worked in India for May. — *Тривалість — for, початок — since.*
-- ❌ She have worked in India since May. — *З I потрібно have, з she та he — has.*
+- ✅ **They have kept their engagement secret for a month.**
+- ❌ They have kept their engagement secret since a month. — *Тривалість — for, початок — since.*
+- ❌ They has kept their engagement secret for a month. — *З we і they потрібно have, з he та she — has.*
 
 ---
 
 ## Інтро 3
 
-### З якого року
+### Скільки років
 
-Australia — Австралія. He has lived in Australia since 2020 — він живе в Австралії з 2020 року. Назва країни після in, а початок строку після since: in Australia since 2020. Якщо називаємо тривалість, використовуємо for: for six years.
+Widow — вдова, жінка, у якої помер чоловік. Widower — вдівець, чоловік, у якого померла дружина. She has been a widow for two years — вона вдова вже два роки. He has been a widower since 2020 — він вдівець із 2020 року. For two years називає тривалість, since 2020 — її початок. В обох прикладах стан триває зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **He has lived in Australia since 2020.**
-- ❌ He has lived in Australia for 2020. — *Тривалість — for, початок — since.*
-- ❌ He have lived in Australia since 2020. — *З I потрібно have, з she та he — has.*
+- ✅ **He has been a widower since 2020.**
+- ❌ He has been a widower for 2020. — *Тривалість — for, початок — since.*
+- ❌ He have been a widower since 2020. — *З we і they потрібно have, з he та she — has.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — Canada**
-<!-- interaction_id: en:lesson-24:session-05:word:Canada; family: word_card -->
-> **Canada** — Канада.
+**1 · Картка слова — divorce**
+<!-- interaction_id: en:lesson-24:session-05:word:divorce; family: word_card -->
+> **divorce** — розлучення.
 
-**2 · Скажіть: «Я живу в Канаді вже рік.»**
+**2 · Скажіть: «Ми знаємо про їхнє розлучення з травня.»**
 <!-- interaction_id: en:lesson-24:session-05:i01; family: phrase_builder -->
-Плитки: `year` `a` `for` `Canada` `in` `lived` `have` `I` → **I have lived in Canada for a year.**
+Плитки: `May` `since` `divorce` `their` `about` `known` `have` `We` → **We have known about their divorce since May.**
 
-**3 · Виберіть слово перед тривалістю або початком.**
+**3 · Виберіть for або since.**
 <!-- interaction_id: en:lesson-24:session-05:i02; family: context_gap_grammar -->
-I have lived in Canada ___ a year. → **for** · since · at
-- since — *Указано тривалість, потрібне for.*
-- at — *Указано тривалість, потрібне for.*
+We have known about their divorce ___ May. → **since** · for · at
+- for — *For показує тривалість, since — початок.*
+- at — *For показує тривалість, since — початок.*
 
 **4 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-05:i03; family: listen_choose -->
-🔊 *I have lived in Canada for a year.* → **I have lived in Canada for a year.** · We have lived in Canada for a year. · I have lived in Canada for two years.
-- We have lived in Canada for a year. — *У записі звучить I have lived in Canada for a year.*
-- I have lived in Canada for two years. — *У записі звучить I have lived in Canada for a year.*
+🔊 *We have known about their divorce since May.* → **We have known about their divorce since May.** · They have known about their divorce since May. · We have known about their divorce since June.
+- They have known about their divorce since May. — *У записі звучить We have known about their divorce since May.*
+- We have known about their divorce since June. — *У записі звучить We have known about their divorce since May.*
 
-**5 · Картка слова — India**
-<!-- interaction_id: en:lesson-24:session-05:word:India; family: word_card -->
-> **India** — Індія.
+**5 · Картка слова — engagement**
+<!-- interaction_id: en:lesson-24:session-05:word:engagement; family: word_card -->
+> **engagement** — заручини.
 
-**6 · Скажіть: «Вона працює в Індії з травня.»**
+**6 · Скажіть: «Вони тримають свої заручини в таємниці вже місяць.»**
 <!-- interaction_id: en:lesson-24:session-05:i04; family: phrase_builder -->
-Плитки: `May` `since` `India` `in` `worked` `has` `She` → **She has worked in India since May.**
+Плитки: `month` `a` `for` `secret` `engagement` `their` `kept` `have` `They` → **They have kept their engagement secret for a month.**
 
-**7 · Виберіть слово перед тривалістю або початком.**
+**7 · Виберіть for або since.**
 <!-- interaction_id: en:lesson-24:session-05:i05; family: context_gap_grammar -->
-She has worked in India ___ May. → **since** · for · in
-- for — *Указано початок, потрібне since.*
-- in — *Указано початок, потрібне since.*
+They have kept their engagement secret ___ a month. → **for** · since · at
+- since — *For показує тривалість, since — початок.*
+- at — *For показує тривалість, since — початок.*
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-05:i06; family: listen_choose -->
-🔊 *She has worked in India since May.* → **She has worked in India since May.** · He has worked in India since May. · She has worked in India since June.
-- He has worked in India since May. — *У записі звучить She has worked in India since May.*
-- She has worked in India since June. — *У записі звучить She has worked in India since May.*
+🔊 *They have kept their engagement secret for a month.* → **They have kept their engagement secret for a month.** · We have kept our engagement secret for a month. · They have kept their engagement secret for a week.
+- We have kept our engagement secret for a month. — *У записі звучить They have kept their engagement secret for a month.*
+- They have kept their engagement secret for a week. — *У записі звучить They have kept their engagement secret for a month.*
 
-**9 · Картка слова — Egypt**
-<!-- interaction_id: en:lesson-24:session-05:word:Egypt; family: word_card -->
-> **Egypt** — Єгипет.
+**9 · Картка слова — widow**
+<!-- interaction_id: en:lesson-24:session-05:word:widow; family: word_card -->
+> **widow** — вдова.
 
-**10 · Скажіть: «Ми перебуваємо в Єгипті вже три тижні.»**
+**10 · Скажіть: «Вона вдова вже два роки.»**
 <!-- interaction_id: en:lesson-24:session-05:i07; family: phrase_builder -->
-Плитки: `weeks` `three` `for` `Egypt` `in` `stayed` `have` `We` → **We have stayed in Egypt for three weeks.**
+Плитки: `years` `two` `for` `widow` `a` `been` `has` `She` → **She has been a widow for two years.**
 
-**11 · Виберіть слово перед тривалістю або початком.**
+**11 · Виберіть for або since.**
 <!-- interaction_id: en:lesson-24:session-05:i08; family: context_gap_grammar -->
-We have stayed in Egypt ___ three weeks. → **for** · since · at
-- since — *Указано тривалість, потрібне for.*
-- at — *Указано тривалість, потрібне for.*
+She has been a widow ___ two years. → **for** · since · at
+- since — *For показує тривалість, since — початок.*
+- at — *For показує тривалість, since — початок.*
 
 **12 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-05:i09; family: listen_choose -->
-🔊 *We have stayed in Egypt for three weeks.* → **We have stayed in Egypt for three weeks.** · They have stayed in Egypt for three weeks. · We have stayed in Egypt for two weeks.
-- They have stayed in Egypt for three weeks. — *У записі звучить We have stayed in Egypt for three weeks.*
-- We have stayed in Egypt for two weeks. — *У записі звучить We have stayed in Egypt for three weeks.*
+🔊 *She has been a widow for two years.* → **She has been a widow for two years.** · She has been a widow for three years. · She has been a widow for two months.
+- She has been a widow for three years. — *У записі звучить She has been a widow for two years.*
+- She has been a widow for two months. — *У записі звучить She has been a widow for two years.*
 
-**13 · Картка слова — Australia**
-<!-- interaction_id: en:lesson-24:session-05:word:Australia; family: word_card -->
-> **Australia** — Австралія.
+**13 · Картка слова — widower**
+<!-- interaction_id: en:lesson-24:session-05:word:widower; family: word_card -->
+> **widower** — вдівець.
 
-**14 · Скажіть: «Він живе в Австралії з 2020 року.»**
+**14 · Скажіть: «Він вдівець із 2020 року.»**
 <!-- interaction_id: en:lesson-24:session-05:i10; family: phrase_builder -->
-Плитки: `2020` `since` `Australia` `in` `lived` `has` `He` → **He has lived in Australia since 2020.**
+Плитки: `2020` `since` `widower` `a` `been` `has` `He` → **He has been a widower since 2020.**
 
-**15 · Виберіть слово перед тривалістю або початком.**
+**15 · Виберіть for або since.**
 <!-- interaction_id: en:lesson-24:session-05:i11; family: context_gap_grammar -->
-He has lived in Australia ___ 2020. → **since** · for · in
-- for — *Указано початок, потрібне since.*
-- in — *Указано початок, потрібне since.*
+He has been a widower ___ 2020. → **since** · for · at
+- for — *For показує тривалість, since — початок.*
+- at — *For показує тривалість, since — початок.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-05:i12; family: listen_choose -->
-🔊 *He has lived in Australia since 2020.* → **He has lived in Australia since 2020.** · She has lived in Australia since 2020. · He has lived in Australia since 2021.
-- She has lived in Australia since 2020. — *У записі звучить He has lived in Australia since 2020.*
-- He has lived in Australia since 2021. — *У записі звучить He has lived in Australia since 2020.*
+🔊 *He has been a widower since 2020.* → **He has been a widower since 2020.** · He has been a widower since 2021. · He has been a widower since 2019.
+- He has been a widower since 2021. — *У записі звучить He has been a widower since 2020.*
+- He has been a widower since 2019. — *У записі звучить He has been a widower since 2020.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-24:session-05:i13; family: speed_match -->
-Canada — Канада · India — Індія · Egypt — Єгипет · Australia — Австралія
+divorce — розлучення · engagement — заручини · widow — вдова · widower — вдівець
 
-**18 · Тривалість: два роки**
+**18 · Інша кімната**
 <!-- interaction_id: en:lesson-24:session-05:i14; family: listen_build_dictation -->
-🔊 *I have lived here for two years.* Плитки: `years` `two` `for` `here` `lived` `have` `I` → **I have lived here for two years.**
+🔊 *I have booked another room.* Плитки: `room` `another` `booked` `have` `I` → **I have booked another room.**
 
-**19 · Початок: червень**
+**19 · Інші гості поїхали**
 <!-- interaction_id: en:lesson-24:session-05:i15; family: listen_build_dictation -->
-🔊 *She has worked here since June.* Плитки: `June` `since` `here` `worked` `has` `She` → **She has worked here since June.**
+🔊 *The other guests left yesterday.* Плитки: `yesterday` `left` `guests` `other` `The` → **The other guests left yesterday.**
 
-**20 · Скажіть: «Я живу в Австралії вже рік».**
+**20 · Скажіть: «Ми знаємо про їхнє розлучення з червня».**
 <!-- interaction_id: en:lesson-24:session-05:i16; family: scripted_repeat_compare -->
-🎙 **I have lived in Australia for a year.**
+🎙 **We have known about their divorce since June.**
 
-**21 · Скажіть: «Ми працюємо в Канаді з травня».**
+**21 · Скажіть: «Він вдівець уже три роки».**
 <!-- interaction_id: en:lesson-24:session-05:i17; family: scripted_repeat_compare -->
-🎙 **We have worked in Canada since May.**
+🎙 **He has been a widower for three years.**
 

@@ -1,151 +1,151 @@
-# Английский · Урок 24 · Занятие 5 — Жизнь в другой стране
+# Английский · Урок 24 · Занятие 05 — Перемены в семье
 
-**Ситуация.** Вы рассказываете, как давно живёте или работаете за границей.
+**Ситуация.** Вы рассказываете о семейных переменах и о том, сколько времени прошло.
 
 **Что вы освоите:** present perfect + for duration; since starting point
-**Новые слова:** Canada, India, Egypt, Australia
+**Новые слова:** divorce, engagement, widow, widower
 
 ## Интро 1
 
-### Год в другой стране
+### Когда мы узнали
 
-Canada — Канада, India — Индия. Названия пишем с большой буквы. I have lived in Canada for a year — я живу в Канаде уже год и продолжаю жить там сейчас. Перед Canada здесь нет the. Год прошёл, а зимняя куртка всё ещё полезна.
+Divorce — развод, прекращение брака. We have known about their divorce since May — мы знаем об их разводе с мая. Since May называет момент, когда мы об этом узнали. Have known связывает тот момент с настоящим: мы по-прежнему это знаем.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I have lived in Canada for a year.**
-- ❌ I have lived in Canada since a year. — *Срок — for, начало — since.*
-- ❌ I has lived in Canada for a year. — *С I нужно have, с she и he — has.*
+- ✅ **We have known about their divorce since May.**
+- ❌ We have known about their divorce for May. — *Срок — for, начало — since.*
+- ❌ We has known about their divorce since May. — *С we и they нужно have, с he и she — has.*
 
 ---
 
 ## Интро 2
 
-### Работа и поездка
+### Пока это секрет
 
-She has worked in India since May — она работает в Индии с мая. Since May отвечает, когда всё началось. Egypt — Египет. We have stayed in Egypt for three weeks — мы находимся в Египте уже три недели. Stay здесь означает временно находиться, например во время поездки; for three weeks показывает, сколько времени уже прошло.
+Engagement — помолвка: люди договорились пожениться. They have kept their engagement secret for a month — они скрывают свою помолвку уже месяц. Kept — знакомая форма keep. Keep something secret означает не рассказывать об этом другим. For a month показывает длительность, не дату начала.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She has worked in India since May.**
-- ❌ She has worked in India for May. — *Срок — for, начало — since.*
-- ❌ She have worked in India since May. — *С I нужно have, с she и he — has.*
+- ✅ **They have kept their engagement secret for a month.**
+- ❌ They have kept their engagement secret since a month. — *Срок — for, начало — since.*
+- ❌ They has kept their engagement secret for a month. — *С we и they нужно have, с he и she — has.*
 
 ---
 
 ## Интро 3
 
-### С какого года
+### Сколько лет
 
-Australia — Австралия. He has lived in Australia since 2020 — он живёт в Австралии с 2020 года. Название страны после in, а начало срока после since: in Australia since 2020. Если называем длительность, используем for: for six years.
+Widow — вдова, женщина, у которой умер муж. Widower — вдовец, мужчина, у которого умерла жена. She has been a widow for two years — она вдова уже два года. He has been a widower since 2020 — он вдовец с 2020 года. For two years называет срок, since 2020 — его начало. В обоих примерах состояние продолжается сейчас.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **He has lived in Australia since 2020.**
-- ❌ He has lived in Australia for 2020. — *Срок — for, начало — since.*
-- ❌ He have lived in Australia since 2020. — *С I нужно have, с she и he — has.*
+- ✅ **He has been a widower since 2020.**
+- ❌ He has been a widower for 2020. — *Срок — for, начало — since.*
+- ❌ He have been a widower since 2020. — *С we и they нужно have, с he и she — has.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — Canada**
-<!-- interaction_id: en:lesson-24:session-05:word:Canada; family: word_card -->
-> **Canada** — Канада.
+**1 · Карточка слова — divorce**
+<!-- interaction_id: en:lesson-24:session-05:word:divorce; family: word_card -->
+> **divorce** — развод.
 
-**2 · Скажите: «Я живу в Канаде уже год.»**
+**2 · Скажите: «Мы знаем об их разводе с мая.»**
 <!-- interaction_id: en:lesson-24:session-05:i01; family: phrase_builder -->
-Плитки: `year` `a` `for` `Canada` `in` `lived` `have` `I` → **I have lived in Canada for a year.**
+Плитки: `May` `since` `divorce` `their` `about` `known` `have` `We` → **We have known about their divorce since May.**
 
-**3 · Выберите слово перед сроком или началом.**
+**3 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-05:i02; family: context_gap_grammar -->
-I have lived in Canada ___ a year. → **for** · since · at
-- since — *Указан срок, нужен for.*
-- at — *Указан срок, нужен for.*
+We have known about their divorce ___ May. → **since** · for · at
+- for — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-05:i03; family: listen_choose -->
-🔊 *I have lived in Canada for a year.* → **I have lived in Canada for a year.** · We have lived in Canada for a year. · I have lived in Canada for two years.
-- We have lived in Canada for a year. — *В записи звучит I have lived in Canada for a year.*
-- I have lived in Canada for two years. — *В записи звучит I have lived in Canada for a year.*
+🔊 *We have known about their divorce since May.* → **We have known about their divorce since May.** · They have known about their divorce since May. · We have known about their divorce since June.
+- They have known about their divorce since May. — *В записи звучит We have known about their divorce since May.*
+- We have known about their divorce since June. — *В записи звучит We have known about their divorce since May.*
 
-**5 · Карточка слова — India**
-<!-- interaction_id: en:lesson-24:session-05:word:India; family: word_card -->
-> **India** — Индия.
+**5 · Карточка слова — engagement**
+<!-- interaction_id: en:lesson-24:session-05:word:engagement; family: word_card -->
+> **engagement** — помолвка.
 
-**6 · Скажите: «Она работает в Индии с мая.»**
+**6 · Скажите: «Они скрывают свою помолвку уже месяц.»**
 <!-- interaction_id: en:lesson-24:session-05:i04; family: phrase_builder -->
-Плитки: `May` `since` `India` `in` `worked` `has` `She` → **She has worked in India since May.**
+Плитки: `month` `a` `for` `secret` `engagement` `their` `kept` `have` `They` → **They have kept their engagement secret for a month.**
 
-**7 · Выберите слово перед сроком или началом.**
+**7 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-05:i05; family: context_gap_grammar -->
-She has worked in India ___ May. → **since** · for · in
-- for — *Указано начало, нужен since.*
-- in — *Указано начало, нужен since.*
+They have kept their engagement secret ___ a month. → **for** · since · at
+- since — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-05:i06; family: listen_choose -->
-🔊 *She has worked in India since May.* → **She has worked in India since May.** · He has worked in India since May. · She has worked in India since June.
-- He has worked in India since May. — *В записи звучит She has worked in India since May.*
-- She has worked in India since June. — *В записи звучит She has worked in India since May.*
+🔊 *They have kept their engagement secret for a month.* → **They have kept their engagement secret for a month.** · We have kept our engagement secret for a month. · They have kept their engagement secret for a week.
+- We have kept our engagement secret for a month. — *В записи звучит They have kept their engagement secret for a month.*
+- They have kept their engagement secret for a week. — *В записи звучит They have kept their engagement secret for a month.*
 
-**9 · Карточка слова — Egypt**
-<!-- interaction_id: en:lesson-24:session-05:word:Egypt; family: word_card -->
-> **Egypt** — Египет.
+**9 · Карточка слова — widow**
+<!-- interaction_id: en:lesson-24:session-05:word:widow; family: word_card -->
+> **widow** — вдова.
 
-**10 · Скажите: «Мы находимся в Египте уже три недели.»**
+**10 · Скажите: «Она вдова уже два года.»**
 <!-- interaction_id: en:lesson-24:session-05:i07; family: phrase_builder -->
-Плитки: `weeks` `three` `for` `Egypt` `in` `stayed` `have` `We` → **We have stayed in Egypt for three weeks.**
+Плитки: `years` `two` `for` `widow` `a` `been` `has` `She` → **She has been a widow for two years.**
 
-**11 · Выберите слово перед сроком или началом.**
+**11 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-05:i08; family: context_gap_grammar -->
-We have stayed in Egypt ___ three weeks. → **for** · since · at
-- since — *Указан срок, нужен for.*
-- at — *Указан срок, нужен for.*
+She has been a widow ___ two years. → **for** · since · at
+- since — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-05:i09; family: listen_choose -->
-🔊 *We have stayed in Egypt for three weeks.* → **We have stayed in Egypt for three weeks.** · They have stayed in Egypt for three weeks. · We have stayed in Egypt for two weeks.
-- They have stayed in Egypt for three weeks. — *В записи звучит We have stayed in Egypt for three weeks.*
-- We have stayed in Egypt for two weeks. — *В записи звучит We have stayed in Egypt for three weeks.*
+🔊 *She has been a widow for two years.* → **She has been a widow for two years.** · She has been a widow for three years. · She has been a widow for two months.
+- She has been a widow for three years. — *В записи звучит She has been a widow for two years.*
+- She has been a widow for two months. — *В записи звучит She has been a widow for two years.*
 
-**13 · Карточка слова — Australia**
-<!-- interaction_id: en:lesson-24:session-05:word:Australia; family: word_card -->
-> **Australia** — Австралия.
+**13 · Карточка слова — widower**
+<!-- interaction_id: en:lesson-24:session-05:word:widower; family: word_card -->
+> **widower** — вдовец.
 
-**14 · Скажите: «Он живёт в Австралии с 2020 года.»**
+**14 · Скажите: «Он вдовец с 2020 года.»**
 <!-- interaction_id: en:lesson-24:session-05:i10; family: phrase_builder -->
-Плитки: `2020` `since` `Australia` `in` `lived` `has` `He` → **He has lived in Australia since 2020.**
+Плитки: `2020` `since` `widower` `a` `been` `has` `He` → **He has been a widower since 2020.**
 
-**15 · Выберите слово перед сроком или началом.**
+**15 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-05:i11; family: context_gap_grammar -->
-He has lived in Australia ___ 2020. → **since** · for · in
-- for — *Указано начало, нужен since.*
-- in — *Указано начало, нужен since.*
+He has been a widower ___ 2020. → **since** · for · at
+- for — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-05:i12; family: listen_choose -->
-🔊 *He has lived in Australia since 2020.* → **He has lived in Australia since 2020.** · She has lived in Australia since 2020. · He has lived in Australia since 2021.
-- She has lived in Australia since 2020. — *В записи звучит He has lived in Australia since 2020.*
-- He has lived in Australia since 2021. — *В записи звучит He has lived in Australia since 2020.*
+🔊 *He has been a widower since 2020.* → **He has been a widower since 2020.** · He has been a widower since 2021. · He has been a widower since 2019.
+- He has been a widower since 2021. — *В записи звучит He has been a widower since 2020.*
+- He has been a widower since 2019. — *В записи звучит He has been a widower since 2020.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-24:session-05:i13; family: speed_match -->
-Canada — Канада · India — Индия · Egypt — Египет · Australia — Австралия
+divorce — развод · engagement — помолвка · widow — вдова · widower — вдовец
 
-**18 · Срок: два года**
+**18 · Другая комната**
 <!-- interaction_id: en:lesson-24:session-05:i14; family: listen_build_dictation -->
-🔊 *I have lived here for two years.* Плитки: `years` `two` `for` `here` `lived` `have` `I` → **I have lived here for two years.**
+🔊 *I have booked another room.* Плитки: `room` `another` `booked` `have` `I` → **I have booked another room.**
 
-**19 · Начало: июнь**
+**19 · Другие гости уехали**
 <!-- interaction_id: en:lesson-24:session-05:i15; family: listen_build_dictation -->
-🔊 *She has worked here since June.* Плитки: `June` `since` `here` `worked` `has` `She` → **She has worked here since June.**
+🔊 *The other guests left yesterday.* Плитки: `yesterday` `left` `guests` `other` `The` → **The other guests left yesterday.**
 
-**20 · Скажите: «Я живу в Австралии уже год».**
+**20 · Скажите: «Мы знаем об их разводе с июня».**
 <!-- interaction_id: en:lesson-24:session-05:i16; family: scripted_repeat_compare -->
-🎙 **I have lived in Australia for a year.**
+🎙 **We have known about their divorce since June.**
 
-**21 · Скажите: «Мы работаем в Канаде с мая».**
+**21 · Скажите: «Он вдовец уже три года».**
 <!-- interaction_id: en:lesson-24:session-05:i17; family: scripted_repeat_compare -->
-🎙 **We have worked in Canada since May.**
+🎙 **He has been a widower for three years.**
 

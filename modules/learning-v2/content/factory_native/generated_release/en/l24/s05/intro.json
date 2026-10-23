@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-05:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Год в другой стране",
-        "uk": "Рік в іншій країні"
+        "ru": "Когда мы узнали",
+        "uk": "Коли ми дізналися"
       },
       "bodyByLocale": {
-        "ru": "Canada — Канада, India — Индия. Названия пишем с большой буквы. I have lived in Canada for a year — я живу в Канаде уже год и продолжаю жить там сейчас. Перед Canada здесь нет the. Год прошёл, а зимняя куртка всё ещё полезна.",
-        "uk": "Canada — Канада, India — Індія. Назви пишемо з великої літери. I have lived in Canada for a year — я живу в Канаді вже рік і продовжую жити там зараз. Перед Canada тут немає the. Рік минув, а зимова куртка все ще корисна."
+        "ru": "Divorce — развод, прекращение брака. We have known about their divorce since May — мы знаем об их разводе с мая. Since May называет момент, когда мы об этом узнали. Have known связывает тот момент с настоящим: мы по-прежнему это знаем.",
+        "uk": "Divorce — розлучення, припинення шлюбу. We have known about their divorce since May — ми знаємо про їхнє розлучення з травня. Since May називає момент, коли ми про це дізналися. Have known пов’язує той момент із теперішнім: ми й досі це знаємо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-05:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-05:intro1:r1",
-              "text": "I have lived in Canada for a year."
+              "text": "We have known about their divorce since May."
             },
             {
               "responseId": "en:lesson-24:session-05:intro1:r2",
-              "text": "I have lived in Canada since a year."
+              "text": "We have known about their divorce for May."
             },
             {
               "responseId": "en:lesson-24:session-05:intro1:r3",
-              "text": "I has lived in Canada for a year."
+              "text": "We has known about their divorce since May."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-05:intro1:r1",
-              "text": "I have lived in Canada for a year."
+              "text": "We have known about their divorce since May."
             },
             {
               "responseId": "en:lesson-24:session-05:intro1:r2",
-              "text": "I have lived in Canada since a year."
+              "text": "We have known about their divorce for May."
             },
             {
               "responseId": "en:lesson-24:session-05:intro1:r3",
-              "text": "I has lived in Canada for a year."
+              "text": "We has known about their divorce since May."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Работа и поездка",
-        "uk": "Робота й подорож"
+        "ru": "Пока это секрет",
+        "uk": "Поки це таємниця"
       },
       "bodyByLocale": {
-        "ru": "She has worked in India since May — она работает в Индии с мая. Since May отвечает, когда всё началось. Egypt — Египет. We have stayed in Egypt for three weeks — мы находимся в Египте уже три недели. Stay здесь означает временно находиться, например во время поездки; for three weeks показывает, сколько времени уже прошло.",
-        "uk": "She has worked in India since May — вона працює в Індії з травня. Since May відповідає, коли все почалося. Egypt — Єгипет. We have stayed in Egypt for three weeks — ми перебуваємо в Єгипті вже три тижні. Stay тут означає тимчасово перебувати, наприклад під час подорожі; for three weeks показує, скільки часу вже минуло."
+        "ru": "Engagement — помолвка: люди договорились пожениться. They have kept their engagement secret for a month — они скрывают свою помолвку уже месяц. Kept — знакомая форма keep. Keep something secret означает не рассказывать об этом другим. For a month показывает длительность, не дату начала.",
+        "uk": "Engagement — заручини: люди домовилися одружитися. They have kept their engagement secret for a month — вони тримають свої заручини в таємниці вже місяць. Kept — знайома форма keep. Keep something secret означає не розповідати про це іншим. For a month показує тривалість, а не дату початку."
       },
       "question": {
         "interactionId": "en:lesson-24:session-05:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-05:intro2:r1",
-              "text": "She has worked in India since May."
+              "text": "They have kept their engagement secret for a month."
             },
             {
               "responseId": "en:lesson-24:session-05:intro2:r2",
-              "text": "She has worked in India for May."
+              "text": "They have kept their engagement secret since a month."
             },
             {
               "responseId": "en:lesson-24:session-05:intro2:r3",
-              "text": "She have worked in India since May."
+              "text": "They has kept their engagement secret for a month."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-05:intro2:r1",
-              "text": "She has worked in India since May."
+              "text": "They have kept their engagement secret for a month."
             },
             {
               "responseId": "en:lesson-24:session-05:intro2:r2",
-              "text": "She has worked in India for May."
+              "text": "They have kept their engagement secret since a month."
             },
             {
               "responseId": "en:lesson-24:session-05:intro2:r3",
-              "text": "She have worked in India since May."
+              "text": "They has kept their engagement secret for a month."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "С какого года",
-        "uk": "З якого року"
+        "ru": "Сколько лет",
+        "uk": "Скільки років"
       },
       "bodyByLocale": {
-        "ru": "Australia — Австралия. He has lived in Australia since 2020 — он живёт в Австралии с 2020 года. Название страны после in, а начало срока после since: in Australia since 2020. Если называем длительность, используем for: for six years.",
-        "uk": "Australia — Австралія. He has lived in Australia since 2020 — він живе в Австралії з 2020 року. Назва країни після in, а початок строку після since: in Australia since 2020. Якщо називаємо тривалість, використовуємо for: for six years."
+        "ru": "Widow — вдова, женщина, у которой умер муж. Widower — вдовец, мужчина, у которого умерла жена. She has been a widow for two years — она вдова уже два года. He has been a widower since 2020 — он вдовец с 2020 года. For two years называет срок, since 2020 — его начало. В обоих примерах состояние продолжается сейчас.",
+        "uk": "Widow — вдова, жінка, у якої помер чоловік. Widower — вдівець, чоловік, у якого померла дружина. She has been a widow for two years — вона вдова вже два роки. He has been a widower since 2020 — він вдівець із 2020 року. For two years називає тривалість, since 2020 — її початок. В обох прикладах стан триває зараз."
       },
       "question": {
         "interactionId": "en:lesson-24:session-05:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-05:intro3:r1",
-              "text": "He has lived in Australia since 2020."
+              "text": "He has been a widower since 2020."
             },
             {
               "responseId": "en:lesson-24:session-05:intro3:r2",
-              "text": "He has lived in Australia for 2020."
+              "text": "He has been a widower for 2020."
             },
             {
               "responseId": "en:lesson-24:session-05:intro3:r3",
-              "text": "He have lived in Australia since 2020."
+              "text": "He have been a widower since 2020."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-05:intro3:r1",
-              "text": "He has lived in Australia since 2020."
+              "text": "He has been a widower since 2020."
             },
             {
               "responseId": "en:lesson-24:session-05:intro3:r2",
-              "text": "He has lived in Australia for 2020."
+              "text": "He has been a widower for 2020."
             },
             {
               "responseId": "en:lesson-24:session-05:intro3:r3",
-              "text": "He have lived in Australia since 2020."
+              "text": "He have been a widower since 2020."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "369e50973888c514f55427613d763035221b3c9b4a316905eaf5239e9b278778"
+  "introFingerprint": "ecf3922d5f439bf80e36c9d7457bf542607e861558e477e404123ba4a967bb43"
 }

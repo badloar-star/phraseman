@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-01:intro1:r2": {
+          "ru": "С I используем have.",
+          "uk": "З I використовуємо have."
+        },
+        "en:lesson-23:session-01:intro1:r3": {
+          "ru": "Нужны have/has и третья форма глагола.",
+          "uk": "Потрібні have/has і третя форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-01:intro2:r2": {
+          "ru": "С she используем has.",
+          "uk": "Із she використовуємо has."
+        },
+        "en:lesson-23:session-01:intro2:r3": {
+          "ru": "Нужны have/has и третья форма глагола.",
+          "uk": "Потрібні have/has і третя форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-01:intro3:r2": {
+          "ru": "С we используем have.",
+          "uk": "З we використовуємо have."
+        },
+        "en:lesson-23:session-01:intro3:r3": {
+          "ru": "Нужны have/has и третья форма глагола.",
+          "uk": "Потрібні have/has і третя форма дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c8dcb708c6f2cc52d4fab04547e2b7d18d4e4624b444548967ff3e256f81c9ba"
+}

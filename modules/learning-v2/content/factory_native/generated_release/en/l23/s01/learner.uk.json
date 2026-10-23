@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-01:word:miscount",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — miscount",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:word:miscount:audio"
+      ],
+      "accessibilityLabel": "Картка слова — miscount",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:word:miscount:audio",
+          "transcript": "miscount"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-01:word:miscount:r1",
+            "targetText": "miscount",
+            "meaningByLocale": {
+              "ru": "ошибиться при подсчёте.",
+              "uk": "помилитися під час підрахунку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "miscount",
+          "definitionByLocale": {
+            "ru": "ошибиться при подсчёте.",
+            "uk": "помилитися під час підрахунку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-01:i03:r1",
+          "text": "miscounted"
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i03:r2",
+          "text": "miscount"
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i03:r3",
+          "text": "miscounts"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "I have ___ the tickets.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-01:i03:r1",
+            "text": "miscounted"
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i03:r2",
+            "text": "miscount"
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i03:r3",
+            "text": "miscounts"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i01",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Квитків виявилося менше, ніж ви сказали. Скажіть: «Я помилився під час підрахунку квитків».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Квитків виявилося менше, ніж ви сказали. Скажіть: «Я помилився під час підрахунку квитків».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have miscounted the tickets.",
+        "localizedMeaning": {
+          "ru": "Билетов оказалось меньше, чем вы сказали. Скажите: «Я ошибся при подсчёте билетов».",
+          "uk": "Квитків виявилося менше, ніж ви сказали. Скажіть: «Я помилився під час підрахунку квитків»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "miscounted",
+          "the",
+          "tickets"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-01:i02:r1",
+          "text": "I have miscounted the tickets."
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i02:r2",
+          "text": "You have miscounted the tickets."
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i02:r3",
+          "text": "They have miscounted the tickets."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:i02:audio",
+          "transcript": "I have miscounted the tickets."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-01:i02:r1",
+            "targetText": "I have miscounted the tickets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i02:r2",
+            "targetText": "You have miscounted the tickets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i02:r3",
+            "targetText": "They have miscounted the tickets.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have miscounted the tickets.",
+              "uk": "У записі звучить I have miscounted the tickets."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have miscounted the tickets.",
+              "uk": "У записі звучить I have miscounted the tickets."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:word:misdial",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — misdial",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:word:misdial:audio"
+      ],
+      "accessibilityLabel": "Картка слова — misdial",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:word:misdial:audio",
+          "transcript": "misdial"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-01:word:misdial:r1",
+            "targetText": "misdial",
+            "meaningByLocale": {
+              "ru": "неправильно набрать номер.",
+              "uk": "неправильно набрати номер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "misdial",
+          "definitionByLocale": {
+            "ru": "неправильно набрать номер.",
+            "uk": "неправильно набрати номер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-01:i06:r1",
+          "text": "misdialled"
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i06:r2",
+          "text": "misdial"
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i06:r3",
+          "text": "misdials"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "She has ___ the number.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-01:i06:r1",
+            "text": "misdialled"
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i06:r2",
+            "text": "misdial"
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i06:r3",
+            "text": "misdials"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i04",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На дзвінок відповіла незнайома людина. Скажіть: «Вона неправильно набрала номер».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На дзвінок відповіла незнайома людина. Скажіть: «Вона неправильно набрала номер».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has misdialled the number.",
+        "localizedMeaning": {
+          "ru": "На звонок ответил незнакомый человек. Скажите: «Она неправильно набрала номер».",
+          "uk": "На дзвінок відповіла незнайома людина. Скажіть: «Вона неправильно набрала номер»."
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "misdialled",
+          "the",
+          "number"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-01:i05:r1",
+          "text": "She has misdialled the number."
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i05:r2",
+          "text": "You have misdialled the number."
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i05:r3",
+          "text": "They have misdialled the number."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:i05:audio",
+          "transcript": "She has misdialled the number."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-01:i05:r1",
+            "targetText": "She has misdialled the number.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i05:r2",
+            "targetText": "You have misdialled the number.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i05:r3",
+            "targetText": "They have misdialled the number.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has misdialled the number.",
+              "uk": "У записі звучить She has misdialled the number."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has misdialled the number.",
+              "uk": "У записі звучить She has misdialled the number."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:word:repack",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — repack",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:word:repack:audio"
+      ],
+      "accessibilityLabel": "Картка слова — repack",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:word:repack:audio",
+          "transcript": "repack"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-01:word:repack:r1",
+            "targetText": "repack",
+            "meaningByLocale": {
+              "ru": "перепаковать вещи.",
+              "uk": "перепакувати речі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "repack",
+          "definitionByLocale": {
+            "ru": "перепаковать вещи.",
+            "uk": "перепакувати речі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i09",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-01:i09:r1",
+          "text": "repacked"
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i09:r2",
+          "text": "repack"
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i09:r3",
+          "text": "repacks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "We have ___ the bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-01:i09:r1",
+            "text": "repacked"
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i09:r2",
+            "text": "repack"
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i09:r3",
+            "text": "repacks"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Тепер речі вміщуються в сумку. Скажіть: «Ми перепакували сумку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тепер речі вміщуються в сумку. Скажіть: «Ми перепакували сумку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have repacked the bag.",
+        "localizedMeaning": {
+          "ru": "Теперь вещи помещаются в сумку. Скажите: «Мы перепаковали сумку».",
+          "uk": "Тепер речі вміщуються в сумку. Скажіть: «Ми перепакували сумку»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "repacked",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-01:i08:r1",
+          "text": "We have repacked the bag."
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i08:r2",
+          "text": "You have repacked the bag."
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i08:r3",
+          "text": "They have repacked the bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:i08:audio",
+          "transcript": "We have repacked the bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-01:i08:r1",
+            "targetText": "We have repacked the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i08:r2",
+            "targetText": "You have repacked the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i08:r3",
+            "targetText": "They have repacked the bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have repacked the bag.",
+              "uk": "У записі звучить We have repacked the bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have repacked the bag.",
+              "uk": "У записі звучить We have repacked the bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:word:rebook",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rebook",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:word:rebook:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rebook",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:word:rebook:audio",
+          "transcript": "rebook"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-01:word:rebook:r1",
+            "targetText": "rebook",
+            "meaningByLocale": {
+              "ru": "забронировать заново.",
+              "uk": "забронювати заново."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rebook",
+          "definitionByLocale": {
+            "ru": "забронировать заново.",
+            "uk": "забронювати заново."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i12",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-01:i12:r1",
+          "text": "rebooked"
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i12:r2",
+          "text": "rebook"
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i12:r3",
+          "text": "rebooks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "He has ___ the flight.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-01:i12:r1",
+            "text": "rebooked"
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i12:r2",
+            "text": "rebook"
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i12:r3",
+            "text": "rebooks"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i10",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У нього тепер інше бронювання. Скажіть: «Він заново забронював переліт».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У нього тепер інше бронювання. Скажіть: «Він заново забронював переліт».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has rebooked the flight.",
+        "localizedMeaning": {
+          "ru": "У него теперь другое бронирование. Скажите: «Он заново забронировал перелёт».",
+          "uk": "У нього тепер інше бронювання. Скажіть: «Він заново забронював переліт»."
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "rebooked",
+          "the",
+          "flight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i11",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-01:i11:r1",
+          "text": "He has rebooked the flight."
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i11:r2",
+          "text": "You have rebooked the flight."
+        },
+        {
+          "responseId": "en:lesson-23:session-01:i11:r3",
+          "text": "They have rebooked the flight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:i11:audio",
+          "transcript": "He has rebooked the flight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-01:i11:r1",
+            "targetText": "He has rebooked the flight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i11:r2",
+            "targetText": "You have rebooked the flight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i11:r3",
+            "targetText": "They have rebooked the flight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has rebooked the flight.",
+              "uk": "У записі звучить He has rebooked the flight."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has rebooked the flight.",
+              "uk": "У записі звучить He has rebooked the flight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-01:i13:p1",
+            "target": "miscount",
+            "meaningByLocale": {
+              "ru": "ошибиться при подсчёте",
+              "uk": "помилитися під час підрахунку"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-01:i13:p2",
+            "target": "misdial",
+            "meaningByLocale": {
+              "ru": "неправильно набрать номер",
+              "uk": "неправильно набрати номер"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-01:i13:p3",
+            "target": "repack",
+            "meaningByLocale": {
+              "ru": "перепаковать вещи",
+              "uk": "перепакувати речі"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-01:i13:p4",
+            "target": "rebook",
+            "meaningByLocale": {
+              "ru": "забронировать заново",
+              "uk": "забронювати заново"
+            }
+          }
+        ],
+        "leftColumn": [
+          "miscount",
+          "misdial",
+          "repack",
+          "rebook"
+        ],
+        "rightColumn": [
+          "помилитися під час підрахунку",
+          "неправильно набрати номер",
+          "перепакувати речі",
+          "забронювати заново"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: ввічливе питання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: ввічливе питання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:i14:audio",
+          "transcript": "Could I check my ticket?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I check my ticket?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "check",
+          "my",
+          "ticket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: належність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: належність",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:i15:audio",
+          "transcript": "This bag is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This bag is mine.",
+        "orderedTokens": [
+          "This",
+          "bag",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я заново забронював переліт».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я заново забронював переліт».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:i16:audio",
+          "transcript": "I have rebooked the flight."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have rebooked the flight.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-01:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона перепакувала сумку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона перепакувала сумку».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-01:i17:audio",
+          "transcript": "She has repacked the bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has repacked the bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d75be46773b81b3e9713160128f03faf1b7493a841802d0944e02ae30b7c9034"
+}

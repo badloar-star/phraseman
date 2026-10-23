@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-01:word:miscount",
+    "correctText": "miscount",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i03",
+    "correctText": "miscounted",
+    "correctResponseId": "en:lesson-23:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i01",
+    "correctText": "I have miscounted the tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i02",
+    "correctText": "I have miscounted the tickets.",
+    "correctResponseId": "en:lesson-23:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:word:misdial",
+    "correctText": "misdial",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i06",
+    "correctText": "misdialled",
+    "correctResponseId": "en:lesson-23:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i04",
+    "correctText": "She has misdialled the number.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i05",
+    "correctText": "She has misdialled the number.",
+    "correctResponseId": "en:lesson-23:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:word:repack",
+    "correctText": "repack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i09",
+    "correctText": "repacked",
+    "correctResponseId": "en:lesson-23:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i07",
+    "correctText": "We have repacked the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i08",
+    "correctText": "We have repacked the bag.",
+    "correctResponseId": "en:lesson-23:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:word:rebook",
+    "correctText": "rebook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i12",
+    "correctText": "rebooked",
+    "correctResponseId": "en:lesson-23:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i10",
+    "correctText": "He has rebooked the flight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i11",
+    "correctText": "He has rebooked the flight.",
+    "correctResponseId": "en:lesson-23:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i13",
+    "correctText": "en:lesson-23:session-01:i13:p1=miscount\nen:lesson-23:session-01:i13:p2=misdial\nen:lesson-23:session-01:i13:p3=repack\nen:lesson-23:session-01:i13:p4=rebook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i14",
+    "correctText": "Could I check my ticket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i15",
+    "correctText": "This bag is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i16",
+    "correctText": "I have rebooked the flight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-01:i17",
+    "correctText": "She has repacked the bag.",
+    "correctResponseId": null
+  }
+]

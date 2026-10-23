@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-02:word:reopen",
+    "correctText": "reopen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i03",
+    "correctText": "reopened",
+    "correctResponseId": "en:lesson-23:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i01",
+    "correctText": "They have reopened the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i02",
+    "correctText": "They have reopened the shop.",
+    "correctResponseId": "en:lesson-23:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:word:reorganise",
+    "correctText": "reorganise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i06",
+    "correctText": "reorganised",
+    "correctResponseId": "en:lesson-23:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i04",
+    "correctText": "I have reorganised the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i05",
+    "correctText": "I have reorganised the kitchen.",
+    "correctResponseId": "en:lesson-23:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:word:redecorate",
+    "correctText": "redecorate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i09",
+    "correctText": "redecorated",
+    "correctResponseId": "en:lesson-23:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i07",
+    "correctText": "We have redecorated the bedroom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i08",
+    "correctText": "We have redecorated the bedroom.",
+    "correctResponseId": "en:lesson-23:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:word:replant",
+    "correctText": "replant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i12",
+    "correctText": "replanted",
+    "correctResponseId": "en:lesson-23:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i10",
+    "correctText": "She has replanted the flowers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i11",
+    "correctText": "She has replanted the flowers.",
+    "correctResponseId": "en:lesson-23:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i13",
+    "correctText": "en:lesson-23:session-02:i13:p1=reopen\nen:lesson-23:session-02:i13:p2=reorganise\nen:lesson-23:session-02:i13:p3=redecorate\nen:lesson-23:session-02:i13:p4=replant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i14",
+    "correctText": "We need another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i15",
+    "correctText": "You mustn't touch the flowers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i16",
+    "correctText": "We have reopened the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-02:i17",
+    "correctText": "He has redecorated the bedroom.",
+    "correctResponseId": null
+  }
+]

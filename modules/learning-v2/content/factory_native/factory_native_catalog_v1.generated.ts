@@ -8631,4 +8631,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 23, sessionOrdinal: 1,
+    sourceFingerprint: "8e8f6fc9fb19ed20b8ef08c638030292daf5abf5ee7445694f2ea13f0f9f69b8",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"subject + have|has + past participle","uk":"subject + have|has + past participle"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 23, sessionOrdinal: 2,
+    sourceFingerprint: "dda4c322eb47fccf8822723c82562a30506196fcc6b8b31190a5c727c3fbc9ec",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"subject + have|has + past participle","uk":"subject + have|has + past participle"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
+  }),
 ]);

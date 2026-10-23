@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-02:intro1:r2": {
+          "ru": "С they нужно have.",
+          "uk": "Із they потрібно have."
+        },
+        "en:lesson-23:session-02:intro1:r3": {
+          "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+          "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-02:intro2:r2": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        },
+        "en:lesson-23:session-02:intro2:r3": {
+          "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+          "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-02:intro3:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-23:session-02:intro3:r3": {
+          "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+          "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8c50f502eb9419caa824d3ebef1b5ad6ebe96310ac4a76806aa1aca7569bf1ec"
+}

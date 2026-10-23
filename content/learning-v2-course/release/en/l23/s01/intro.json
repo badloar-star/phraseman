@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Результат сейчас",
+        "uk": "Результат зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Miscount — ошибиться при подсчёте. Вы пересчитали билеты и обнаружили ошибку. Present Perfect связывает сделанное с ситуацией сейчас. Формула: I/you/we/they + have, he/she/it + has, затем третья форма глагола. У сегодняшних правильных глаголов она заканчивается на -ed. Have и has здесь не означают «иметь».",
+        "uk": "Miscount — помилитися під час підрахунку. Ви перерахували квитки й виявили помилку. Present Perfect пов’язує зроблене із ситуацією зараз. Формула: I/you/we/they + have, he/she/it + has, потім третя форма дієслова. У сьогоднішніх правильних дієслів вона закінчується на -ed. Have і has тут не означають «мати»."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-01:intro1:r1",
+              "text": "I have miscounted the tickets."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro1:r2",
+              "text": "I has miscounted the tickets."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro1:r3",
+              "text": "I have miscount the tickets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-01:intro1:r1",
+              "text": "I have miscounted the tickets."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro1:r2",
+              "text": "I has miscounted the tickets."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro1:r3",
+              "text": "I have miscount the tickets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "С she используем has",
+        "uk": "Із she використовуємо has"
+      },
+      "bodyByLocale": {
+        "ru": "Misdial — набрать неправильный номер. Misdialled — третья форма в британском написании; американское misdialed тоже правильно. Сейчас на линии другой человек.",
+        "uk": "Misdial — набрати неправильний номер. Misdialled — третя форма у британському написанні; американське misdialed теж правильне. Зараз на лінії інша людина."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-01:intro2:r1",
+              "text": "She has misdialled the number."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro2:r2",
+              "text": "She have misdialled the number."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro2:r3",
+              "text": "She has misdial the number."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-01:intro2:r1",
+              "text": "She has misdialled the number."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro2:r2",
+              "text": "She have misdialled the number."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro2:r3",
+              "text": "She has misdial the number."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сделать заново",
+        "uk": "Зробити заново"
+      },
+      "bodyByLocale": {
+        "ru": "Repack — перепаковать, уложить вещи заново. Rebook — забронировать заново. We have repacked: сумка теперь собрана иначе. He has rebooked: у него теперь другое бронирование. Здесь не называем законченное время вроде yesterday.",
+        "uk": "Repack — перепакувати, скласти речі заново. Rebook — забронювати заново. We have repacked: сумка тепер складена інакше. He has rebooked: у нього тепер інше бронювання. Тут не називаємо завершений час на зразок yesterday."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-01:intro3:r1",
+              "text": "We have repacked the bag."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro3:r2",
+              "text": "We has repacked the bag."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro3:r3",
+              "text": "We have repack the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-01:intro3:r1",
+              "text": "We have repacked the bag."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro3:r2",
+              "text": "We has repacked the bag."
+            },
+            {
+              "responseId": "en:lesson-23:session-01:intro3:r3",
+              "text": "We have repack the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "83f68744a93016b1f52d3813ca685d2da42a68b31dd201c725ffc3470e201392"
+}

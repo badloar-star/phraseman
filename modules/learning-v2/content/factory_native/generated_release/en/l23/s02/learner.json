@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-02:word:reopen",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reopen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:word:reopen:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reopen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:word:reopen:audio",
+          "transcript": "reopen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-02:word:reopen:r1",
+            "targetText": "reopen",
+            "meaningByLocale": {
+              "ru": "снова открыть.",
+              "uk": "знову відкрити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reopen",
+          "definitionByLocale": {
+            "ru": "снова открыть.",
+            "uk": "знову відкрити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму после have или has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-02:i03:r1",
+          "text": "reopened"
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i03:r2",
+          "text": "reopen"
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i03:r3",
+          "text": "reopens"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму после have или has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "They have ___ the shop.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-02:i03:r1",
+            "text": "reopened"
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i03:r2",
+            "text": "reopen"
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i03:r3",
+            "text": "reopens"
+          }
+        ],
+        "testedDimension": "Выберите третью форму после have или has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i01",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Магазин снова работает. Скажите: «Они снова открыли магазин».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин снова работает. Скажите: «Они снова открыли магазин».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They have reopened the shop.",
+        "localizedMeaning": {
+          "ru": "Магазин снова работает. Скажите: «Они снова открыли магазин».",
+          "uk": "Магазин знову працює. Скажіть: «Вони знову відкрили магазин»."
+        },
+        "orderedTokens": [
+          "They",
+          "have",
+          "reopened",
+          "the",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-02:i02:r1",
+          "text": "They have reopened the shop."
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i02:r2",
+          "text": "You have reopened the shop."
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i02:r3",
+          "text": "He has reopened the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:i02:audio",
+          "transcript": "They have reopened the shop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-02:i02:r1",
+            "targetText": "They have reopened the shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i02:r2",
+            "targetText": "You have reopened the shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i02:r3",
+            "targetText": "He has reopened the shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They have reopened the shop.",
+              "uk": "У записі звучить They have reopened the shop."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They have reopened the shop.",
+              "uk": "У записі звучить They have reopened the shop."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:word:reorganise",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reorganise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:word:reorganise:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reorganise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:word:reorganise:audio",
+          "transcript": "reorganise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-02:word:reorganise:r1",
+            "targetText": "reorganise",
+            "meaningByLocale": {
+              "ru": "организовать по-новому.",
+              "uk": "організувати по-новому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reorganise",
+          "definitionByLocale": {
+            "ru": "организовать по-новому.",
+            "uk": "організувати по-новому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму после have или has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-02:i06:r1",
+          "text": "reorganised"
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i06:r2",
+          "text": "reorganise"
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i06:r3",
+          "text": "reorganises"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму после have или has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "I have ___ the kitchen.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-02:i06:r1",
+            "text": "reorganised"
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i06:r2",
+            "text": "reorganise"
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i06:r3",
+            "text": "reorganises"
+          }
+        ],
+        "testedDimension": "Выберите третью форму после have или has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i04",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Теперь посуда лежит удобнее. Скажите: «Я по-новому организовал кухню».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Теперь посуда лежит удобнее. Скажите: «Я по-новому организовал кухню».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have reorganised the kitchen.",
+        "localizedMeaning": {
+          "ru": "Теперь посуда лежит удобнее. Скажите: «Я по-новому организовал кухню».",
+          "uk": "Тепер посуд лежить зручніше. Скажіть: «Я по-новому організував кухню»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "reorganised",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-02:i05:r1",
+          "text": "I have reorganised the kitchen."
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i05:r2",
+          "text": "You have reorganised the kitchen."
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i05:r3",
+          "text": "He has reorganised the kitchen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:i05:audio",
+          "transcript": "I have reorganised the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-02:i05:r1",
+            "targetText": "I have reorganised the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i05:r2",
+            "targetText": "You have reorganised the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i05:r3",
+            "targetText": "He has reorganised the kitchen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have reorganised the kitchen.",
+              "uk": "У записі звучить I have reorganised the kitchen."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have reorganised the kitchen.",
+              "uk": "У записі звучить I have reorganised the kitchen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:word:redecorate",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — redecorate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:word:redecorate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — redecorate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:word:redecorate:audio",
+          "transcript": "redecorate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-02:word:redecorate:r1",
+            "targetText": "redecorate",
+            "meaningByLocale": {
+              "ru": "заново отделать комнату.",
+              "uk": "заново оздобити кімнату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "redecorate",
+          "definitionByLocale": {
+            "ru": "заново отделать комнату.",
+            "uk": "заново оздобити кімнату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i09",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму после have или has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-02:i09:r1",
+          "text": "redecorated"
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i09:r2",
+          "text": "redecorate"
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i09:r3",
+          "text": "redecorates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму после have или has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "We have ___ the bedroom.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-02:i09:r1",
+            "text": "redecorated"
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i09:r2",
+            "text": "redecorate"
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i09:r3",
+            "text": "redecorates"
+          }
+        ],
+        "testedDimension": "Выберите третью форму после have или has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В спальне теперь другие обои. Скажите: «Мы заново отделали спальню».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В спальне теперь другие обои. Скажите: «Мы заново отделали спальню».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have redecorated the bedroom.",
+        "localizedMeaning": {
+          "ru": "В спальне теперь другие обои. Скажите: «Мы заново отделали спальню».",
+          "uk": "У спальні тепер інші шпалери. Скажіть: «Ми заново оздобили спальню»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "redecorated",
+          "the",
+          "bedroom"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-02:i08:r1",
+          "text": "We have redecorated the bedroom."
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i08:r2",
+          "text": "You have redecorated the bedroom."
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i08:r3",
+          "text": "He has redecorated the bedroom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:i08:audio",
+          "transcript": "We have redecorated the bedroom."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-02:i08:r1",
+            "targetText": "We have redecorated the bedroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i08:r2",
+            "targetText": "You have redecorated the bedroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i08:r3",
+            "targetText": "He has redecorated the bedroom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have redecorated the bedroom.",
+              "uk": "У записі звучить We have redecorated the bedroom."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have redecorated the bedroom.",
+              "uk": "У записі звучить We have redecorated the bedroom."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:word:replant",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — replant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:word:replant:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — replant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:word:replant:audio",
+          "transcript": "replant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-02:word:replant:r1",
+            "targetText": "replant",
+            "meaningByLocale": {
+              "ru": "пересадить растение.",
+              "uk": "пересадити рослину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "replant",
+          "definitionByLocale": {
+            "ru": "пересадить растение.",
+            "uk": "пересадити рослину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i12",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму после have или has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-02:i12:r1",
+          "text": "replanted"
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i12:r2",
+          "text": "replant"
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i12:r3",
+          "text": "replants"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму после have или has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "She has ___ the flowers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-02:i12:r1",
+            "text": "replanted"
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i12:r2",
+            "text": "replant"
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i12:r3",
+            "text": "replants"
+          }
+        ],
+        "testedDimension": "Выберите третью форму после have или has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i10",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Цветы теперь растут в другом месте. Скажите: «Она пересадила цветы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цветы теперь растут в другом месте. Скажите: «Она пересадила цветы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has replanted the flowers.",
+        "localizedMeaning": {
+          "ru": "Цветы теперь растут в другом месте. Скажите: «Она пересадила цветы».",
+          "uk": "Квіти тепер ростуть в іншому місці. Скажіть: «Вона пересадила квіти»."
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "replanted",
+          "the",
+          "flowers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i11",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-02:i11:r1",
+          "text": "She has replanted the flowers."
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i11:r2",
+          "text": "You have replanted the flowers."
+        },
+        {
+          "responseId": "en:lesson-23:session-02:i11:r3",
+          "text": "He has replanted the flowers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:i11:audio",
+          "transcript": "She has replanted the flowers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-02:i11:r1",
+            "targetText": "She has replanted the flowers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i11:r2",
+            "targetText": "You have replanted the flowers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i11:r3",
+            "targetText": "He has replanted the flowers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has replanted the flowers.",
+              "uk": "У записі звучить She has replanted the flowers."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has replanted the flowers.",
+              "uk": "У записі звучить She has replanted the flowers."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-02:i13:p1",
+            "target": "reopen",
+            "meaningByLocale": {
+              "ru": "снова открыть",
+              "uk": "знову відкрити"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-02:i13:p2",
+            "target": "reorganise",
+            "meaningByLocale": {
+              "ru": "организовать по-новому",
+              "uk": "організувати по-новому"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-02:i13:p3",
+            "target": "redecorate",
+            "meaningByLocale": {
+              "ru": "заново отделать комнату",
+              "uk": "заново оздобити кімнату"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-02:i13:p4",
+            "target": "replant",
+            "meaningByLocale": {
+              "ru": "пересадить растение",
+              "uk": "пересадити рослину"
+            }
+          }
+        ],
+        "leftColumn": [
+          "reopen",
+          "reorganise",
+          "redecorate",
+          "replant"
+        ],
+        "rightColumn": [
+          "снова открыть",
+          "организовать по-новому",
+          "заново отделать комнату",
+          "пересадить растение"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: нужно другое место",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: нужно другое место",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:i14:audio",
+          "transcript": "We need another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We need another place.",
+        "orderedTokens": [
+          "We",
+          "need",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:i15:audio",
+          "transcript": "You mustn't touch the flowers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't touch the flowers.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "touch",
+          "the",
+          "flowers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы снова открыли магазин».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы снова открыли магазин».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:i16:audio",
+          "transcript": "We have reopened the shop."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have reopened the shop.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-02:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Он заново отделал спальню».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Он заново отделал спальню».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-02:i17:audio",
+          "transcript": "He has redecorated the bedroom."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He has redecorated the bedroom.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "30d23e326847f921d6a91bd68689cd7399ab7affdf7eb1f5176b06acc12272a1"
+}

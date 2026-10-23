@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нагрузки оказалось слишком много",
+        "uk": "Навантаження виявилося завеликим"
+      },
+      "bodyByLocale": {
+        "ru": "Overwork — работать слишком много, до переутомления. I have overworked: я слишком много работал и теперь чувствую последствия. Здесь have — помощник для Present Perfect, а не «иметь».",
+        "uk": "Overwork — працювати забагато, до перевтоми. I have overworked: я працював забагато й тепер відчуваю наслідки. Тут have — помічник для Present Perfect, а не «мати»."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-04:intro1:r1",
+              "text": "I have overworked."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro1:r2",
+              "text": "I has overworked."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro1:r3",
+              "text": "I have overwork."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-04:intro1:r1",
+              "text": "I have overworked."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro1:r2",
+              "text": "I has overworked."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro1:r3",
+              "text": "I have overwork."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Перестаралась",
+        "uk": "Перестаралася"
+      },
+      "bodyByLocale": {
+        "ru": "Overdo — сделать что-то чрезмерно. Overdo it — перестараться: например, выполнить слишком много упражнений. Третья форма — overdone, как done у do. She has overdone it: она перестаралась, и теперь ей нужен отдых.",
+        "uk": "Overdo — зробити щось надмірно. Overdo it — перестаратися: наприклад, виконати забагато вправ. Третя форма — overdone, як done у do. She has overdone it: вона перестаралася, і тепер їй потрібен відпочинок."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-04:intro2:r1",
+              "text": "She has overdone it."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro2:r2",
+              "text": "She have overdone it."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro2:r3",
+              "text": "She has overdo it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-04:intro2:r1",
+              "text": "She has overdone it."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro2:r2",
+              "text": "She have overdone it."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro2:r3",
+              "text": "She has overdo it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не так, как казалось",
+        "uk": "Не так, як здавалося"
+      },
+      "bodyByLocale": {
+        "ru": "Underestimate — недооценить: например, решить, что поездка будет дешевле. Exaggerate — преувеличивать: описывать проблему как более серьёзную, чем она есть. We have underestimated the cost: теперь видно, что денег нужно больше.",
+        "uk": "Underestimate — недооцінити: наприклад, вирішити, що подорож буде дешевшою. Exaggerate — перебільшувати: описувати проблему як серйознішу, ніж вона є. We have underestimated the cost: тепер видно, що грошей потрібно більше."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-04:intro3:r1",
+              "text": "We have underestimated the cost."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro3:r2",
+              "text": "We has underestimated the cost."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro3:r3",
+              "text": "We have underestimate the cost."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-04:intro3:r1",
+              "text": "We have underestimated the cost."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro3:r2",
+              "text": "We has underestimated the cost."
+            },
+            {
+              "responseId": "en:lesson-23:session-04:intro3:r3",
+              "text": "We have underestimate the cost."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "32c53e4790ff8b3a364ba0effae63a49397f6cd062c6ba7175479d4b269f591b"
+}

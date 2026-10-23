@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-03:word:restock",
+    "correctText": "restock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i01",
+    "correctText": "restocked",
+    "correctResponseId": "en:lesson-23:session-03:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i02",
+    "correctText": "We have restocked the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i03",
+    "correctText": "We have restocked the fridge.",
+    "correctResponseId": "en:lesson-23:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:word:disinfect",
+    "correctText": "disinfect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i04",
+    "correctText": "disinfected",
+    "correctResponseId": "en:lesson-23:session-03:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i05",
+    "correctText": "She has disinfected the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i06",
+    "correctText": "She has disinfected the table.",
+    "correctResponseId": "en:lesson-23:session-03:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:word:bleach",
+    "correctText": "bleach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i07",
+    "correctText": "bleached",
+    "correctResponseId": "en:lesson-23:session-03:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i08",
+    "correctText": "I have bleached the towels.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i09",
+    "correctText": "I have bleached the towels.",
+    "correctResponseId": "en:lesson-23:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:word:air-dry",
+    "correctText": "air-dry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i10",
+    "correctText": "air-dried",
+    "correctResponseId": "en:lesson-23:session-03:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i11",
+    "correctText": "He has air-dried the shirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i12",
+    "correctText": "He has air-dried the shirt.",
+    "correctResponseId": "en:lesson-23:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i13",
+    "correctText": "en:lesson-23:session-03:i13:p1=restock\nen:lesson-23:session-03:i13:p2=disinfect\nen:lesson-23:session-03:i13:p3=bleach\nen:lesson-23:session-03:i13:p4=air-dry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i14",
+    "correctText": "I need another towel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i15",
+    "correctText": "You mustn't mix these products.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i16",
+    "correctText": "I have restocked the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-03:i17",
+    "correctText": "We have air-dried the shirt.",
+    "correctResponseId": null
+  }
+]

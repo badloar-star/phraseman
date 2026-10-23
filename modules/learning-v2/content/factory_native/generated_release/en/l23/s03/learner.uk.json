@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-03:word:restock",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — restock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:word:restock:audio"
+      ],
+      "accessibilityLabel": "Картка слова — restock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:word:restock:audio",
+          "transcript": "restock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-03:word:restock:r1",
+            "targetText": "restock",
+            "meaningByLocale": {
+              "ru": "пополнить запас.",
+              "uk": "поповнити запас."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "restock",
+          "definitionByLocale": {
+            "ru": "пополнить запас.",
+            "uk": "поповнити запас."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-03:i01:r1",
+          "text": "restocked"
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i01:r2",
+          "text": "restock"
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i01:r3",
+          "text": "restocks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "We have ___ the fridge.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-03:i01:r1",
+            "text": "restocked"
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i01:r2",
+            "text": "restock"
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i01:r3",
+            "text": "restocks"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-03:i01:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "После have или has используйте третью форму глагола.",
+              "uk": "Після have або has використайте третю форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i01:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "После have или has используйте третью форму глагола.",
+              "uk": "Після have або has використайте третю форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У холодильнику знову є продукти. Скажіть: «Ми поповнили запаси в холодильнику».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У холодильнику знову є продукти. Скажіть: «Ми поповнили запаси в холодильнику».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have restocked the fridge.",
+        "localizedMeaning": {
+          "ru": "В холодильнике снова есть продукты. Скажите: «Мы пополнили запасы в холодильнике».",
+          "uk": "У холодильнику знову є продукти. Скажіть: «Ми поповнили запаси в холодильнику»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "restocked",
+          "the",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-03:i03:r1",
+          "text": "We have restocked the fridge."
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i03:r2",
+          "text": "You have restocked the fridge."
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i03:r3",
+          "text": "They have restocked the fridge."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:i03:audio",
+          "transcript": "We have restocked the fridge."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-03:i03:r1",
+            "targetText": "We have restocked the fridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i03:r2",
+            "targetText": "You have restocked the fridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i03:r3",
+            "targetText": "They have restocked the fridge.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have restocked the fridge.",
+              "uk": "У записі звучить We have restocked the fridge."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have restocked the fridge.",
+              "uk": "У записі звучить We have restocked the fridge."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:word:disinfect",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — disinfect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:word:disinfect:audio"
+      ],
+      "accessibilityLabel": "Картка слова — disinfect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:word:disinfect:audio",
+          "transcript": "disinfect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-03:word:disinfect:r1",
+            "targetText": "disinfect",
+            "meaningByLocale": {
+              "ru": "дезинфицировать.",
+              "uk": "дезінфікувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disinfect",
+          "definitionByLocale": {
+            "ru": "дезинфицировать.",
+            "uk": "дезінфікувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-03:i04:r1",
+          "text": "disinfected"
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i04:r2",
+          "text": "disinfect"
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i04:r3",
+          "text": "disinfects"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "She has ___ the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-03:i04:r1",
+            "text": "disinfected"
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i04:r2",
+            "text": "disinfect"
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i04:r3",
+            "text": "disinfects"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-03:i04:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "После have или has используйте третью форму глагола.",
+              "uk": "Після have або has використайте третю форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i04:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "После have или has используйте третью форму глагола.",
+              "uk": "Після have або has використайте третю форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Стіл оброблено відповідним засобом. Скажіть: «Вона продезінфікувала стіл».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стіл оброблено відповідним засобом. Скажіть: «Вона продезінфікувала стіл».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has disinfected the table.",
+        "localizedMeaning": {
+          "ru": "Стол обработан подходящим средством. Скажите: «Она продезинфицировала стол».",
+          "uk": "Стіл оброблено відповідним засобом. Скажіть: «Вона продезінфікувала стіл»."
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "disinfected",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-03:i06:r1",
+          "text": "She has disinfected the table."
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i06:r2",
+          "text": "You have disinfected the table."
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i06:r3",
+          "text": "They have disinfected the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:i06:audio",
+          "transcript": "She has disinfected the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-03:i06:r1",
+            "targetText": "She has disinfected the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i06:r2",
+            "targetText": "You have disinfected the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i06:r3",
+            "targetText": "They have disinfected the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has disinfected the table.",
+              "uk": "У записі звучить She has disinfected the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has disinfected the table.",
+              "uk": "У записі звучить She has disinfected the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:word:bleach",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bleach",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:word:bleach:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bleach",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:word:bleach:audio",
+          "transcript": "bleach"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-03:word:bleach:r1",
+            "targetText": "bleach",
+            "meaningByLocale": {
+              "ru": "отбеливать.",
+              "uk": "відбілювати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bleach",
+          "definitionByLocale": {
+            "ru": "отбеливать.",
+            "uk": "відбілювати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-03:i07:r1",
+          "text": "bleached"
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i07:r2",
+          "text": "bleach"
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i07:r3",
+          "text": "bleaches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "I have ___ the towels.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-03:i07:r1",
+            "text": "bleached"
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i07:r2",
+            "text": "bleach"
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i07:r3",
+            "text": "bleaches"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-03:i07:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "После have или has используйте третью форму глагола.",
+              "uk": "Після have або has використайте третю форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i07:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "После have или has используйте третью форму глагола.",
+              "uk": "Після have або has використайте третю форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Білі рушники тепер без плям. Скажіть: «Я відбілив рушники».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Білі рушники тепер без плям. Скажіть: «Я відбілив рушники».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have bleached the towels.",
+        "localizedMeaning": {
+          "ru": "Белые полотенца теперь без пятен. Скажите: «Я отбелил полотенца».",
+          "uk": "Білі рушники тепер без плям. Скажіть: «Я відбілив рушники»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "bleached",
+          "the",
+          "towels"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-03:i09:r1",
+          "text": "I have bleached the towels."
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i09:r2",
+          "text": "You have bleached the towels."
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i09:r3",
+          "text": "They have bleached the towels."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:i09:audio",
+          "transcript": "I have bleached the towels."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-03:i09:r1",
+            "targetText": "I have bleached the towels.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i09:r2",
+            "targetText": "You have bleached the towels.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i09:r3",
+            "targetText": "They have bleached the towels.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have bleached the towels.",
+              "uk": "У записі звучить I have bleached the towels."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have bleached the towels.",
+              "uk": "У записі звучить I have bleached the towels."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:word:air-dry",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — air-dry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:word:air-dry:audio"
+      ],
+      "accessibilityLabel": "Картка слова — air-dry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:word:air-dry:audio",
+          "transcript": "air-dry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-03:word:air-dry:r1",
+            "targetText": "air-dry",
+            "meaningByLocale": {
+              "ru": "сушить без сушилки.",
+              "uk": "сушити без сушарки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "air-dry",
+          "definitionByLocale": {
+            "ru": "сушить без сушилки.",
+            "uk": "сушити без сушарки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-03:i10:r1",
+          "text": "air-dried"
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i10:r2",
+          "text": "air-dry"
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i10:r3",
+          "text": "air-dries"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "He has ___ the shirt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-03:i10:r1",
+            "text": "air-dried"
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i10:r2",
+            "text": "air-dry"
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i10:r3",
+            "text": "air-dries"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-03:i10:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "После have или has используйте третью форму глагола.",
+              "uk": "Після have або has використайте третю форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i10:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "После have или has используйте третью форму глагола.",
+              "uk": "Після have або has використайте третю форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сорочка висохла без сушарки. Скажіть: «Він висушив сорочку на повітрі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сорочка висохла без сушарки. Скажіть: «Він висушив сорочку на повітрі».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has air-dried the shirt.",
+        "localizedMeaning": {
+          "ru": "Рубашка высохла без сушилки. Скажите: «Он высушил рубашку на воздухе».",
+          "uk": "Сорочка висохла без сушарки. Скажіть: «Він висушив сорочку на повітрі»."
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "air-dried",
+          "the",
+          "shirt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-03:i12:r1",
+          "text": "He has air-dried the shirt."
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i12:r2",
+          "text": "You have air-dried the shirt."
+        },
+        {
+          "responseId": "en:lesson-23:session-03:i12:r3",
+          "text": "They have air-dried the shirt."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:i12:audio",
+          "transcript": "He has air-dried the shirt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-03:i12:r1",
+            "targetText": "He has air-dried the shirt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i12:r2",
+            "targetText": "You have air-dried the shirt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i12:r3",
+            "targetText": "They have air-dried the shirt.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has air-dried the shirt.",
+              "uk": "У записі звучить He has air-dried the shirt."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has air-dried the shirt.",
+              "uk": "У записі звучить He has air-dried the shirt."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-03:i13:p1",
+            "target": "restock",
+            "meaningByLocale": {
+              "ru": "пополнить запас",
+              "uk": "поповнити запас"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-03:i13:p2",
+            "target": "disinfect",
+            "meaningByLocale": {
+              "ru": "дезинфицировать",
+              "uk": "дезінфікувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-03:i13:p3",
+            "target": "bleach",
+            "meaningByLocale": {
+              "ru": "отбеливать",
+              "uk": "відбілювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-03:i13:p4",
+            "target": "air-dry",
+            "meaningByLocale": {
+              "ru": "сушить без сушилки",
+              "uk": "сушити без сушарки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "restock",
+          "disinfect",
+          "bleach",
+          "air-dry"
+        ],
+        "rightColumn": [
+          "поповнити запас",
+          "дезінфікувати",
+          "відбілювати",
+          "сушити без сушарки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший рушник",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший рушник",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:i14:audio",
+          "transcript": "I need another towel."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need another towel.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "another",
+          "towel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:i15:audio",
+          "transcript": "You mustn't mix these products."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't mix these products.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "mix",
+          "these",
+          "products"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я поповнив запаси в холодильнику».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я поповнив запаси в холодильнику».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:i16:audio",
+          "transcript": "I have restocked the fridge."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have restocked the fridge.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми висушили сорочку на повітрі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми висушили сорочку на повітрі».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-03:i17:audio",
+          "transcript": "We have air-dried the shirt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have air-dried the shirt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6dc9ffedb6912e7ec633b0ff9c370cf32bcaea8bf93fa71d6e9f31abcef16658"
+}

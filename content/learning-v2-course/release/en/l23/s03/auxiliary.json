@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-03:intro1:r2": {
+          "ru": "С we ставим have.",
+          "uk": "Із we ставимо have."
+        },
+        "en:lesson-23:session-03:intro1:r3": {
+          "ru": "После have или has используйте третью форму глагола.",
+          "uk": "Після have або has використайте третю форму дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-03:intro2:r2": {
+          "ru": "С she ставим has.",
+          "uk": "Із she ставимо has."
+        },
+        "en:lesson-23:session-03:intro2:r3": {
+          "ru": "После have или has используйте третью форму глагола.",
+          "uk": "Після have або has використайте третю форму дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-03:intro3:r2": {
+          "ru": "С he ставим has.",
+          "uk": "Із he ставимо has."
+        },
+        "en:lesson-23:session-03:intro3:r3": {
+          "ru": "После have или has используйте третью форму глагола.",
+          "uk": "Після have або has використайте третю форму дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5632b99fa5ebda48d965aed5c62dc627a0630757052af5c4531e13fd18e44992"
+}

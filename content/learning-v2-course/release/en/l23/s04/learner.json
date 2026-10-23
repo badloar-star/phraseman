@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-04:word:overwork",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overwork",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:word:overwork:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overwork",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:word:overwork:audio",
+          "transcript": "overwork"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-04:word:overwork:r1",
+            "targetText": "overwork",
+            "meaningByLocale": {
+              "ru": "работать слишком много.",
+              "uk": "працювати забагато."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overwork",
+          "definitionByLocale": {
+            "ru": "работать слишком много.",
+            "uk": "працювати забагато."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму после have или has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-04:i01:r1",
+          "text": "overworked"
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i01:r2",
+          "text": "overwork"
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i01:r3",
+          "text": "overworks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму после have или has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "I have ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-04:i01:r1",
+            "text": "overworked"
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i01:r2",
+            "text": "overwork"
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i01:r3",
+            "text": "overworks"
+          }
+        ],
+        "testedDimension": "Выберите третью форму после have или has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-04:i01:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i01:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы устали после слишком большой нагрузки. Скажите: «Я слишком много работал».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы устали после слишком большой нагрузки. Скажите: «Я слишком много работал».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have overworked.",
+        "localizedMeaning": {
+          "ru": "Вы устали после слишком большой нагрузки. Скажите: «Я слишком много работал».",
+          "uk": "Ви втомилися після надмірного навантаження. Скажіть: «Я працював забагато»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "overworked"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-04:i03:r1",
+          "text": "I have overworked."
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i03:r2",
+          "text": "You have overworked."
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i03:r3",
+          "text": "They have overworked."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:i03:audio",
+          "transcript": "I have overworked."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-04:i03:r1",
+            "targetText": "I have overworked.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i03:r2",
+            "targetText": "You have overworked.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i03:r3",
+            "targetText": "They have overworked.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have overworked.",
+              "uk": "У записі звучить I have overworked."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have overworked.",
+              "uk": "У записі звучить I have overworked."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:word:overdo",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overdo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:word:overdo:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overdo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:word:overdo:audio",
+          "transcript": "overdo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-04:word:overdo:r1",
+            "targetText": "overdo",
+            "meaningByLocale": {
+              "ru": "перестараться.",
+              "uk": "перестаратися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overdo",
+          "definitionByLocale": {
+            "ru": "перестараться.",
+            "uk": "перестаратися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму после have или has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-04:i04:r1",
+          "text": "overdone"
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i04:r2",
+          "text": "overdo"
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i04:r3",
+          "text": "overdoes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму после have или has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "She has ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-04:i04:r1",
+            "text": "overdone"
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i04:r2",
+            "text": "overdo"
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i04:r3",
+            "text": "overdoes"
+          }
+        ],
+        "testedDimension": "Выберите третью форму после have или has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-04:i04:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i04:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Она сделала слишком много и теперь устала. Скажите: «Она перестаралась».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Она сделала слишком много и теперь устала. Скажите: «Она перестаралась».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has overdone it.",
+        "localizedMeaning": {
+          "ru": "Она сделала слишком много и теперь устала. Скажите: «Она перестаралась».",
+          "uk": "Вона зробила забагато й тепер втомилася. Скажіть: «Вона перестаралася»."
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "overdone",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-04:i06:r1",
+          "text": "She has overdone it."
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i06:r2",
+          "text": "You have overdone it."
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i06:r3",
+          "text": "They have overdone it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:i06:audio",
+          "transcript": "She has overdone it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-04:i06:r1",
+            "targetText": "She has overdone it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i06:r2",
+            "targetText": "You have overdone it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i06:r3",
+            "targetText": "They have overdone it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-04:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has overdone it.",
+              "uk": "У записі звучить She has overdone it."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has overdone it.",
+              "uk": "У записі звучить She has overdone it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:word:underestimate",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — underestimate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:word:underestimate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — underestimate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:word:underestimate:audio",
+          "transcript": "underestimate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-04:word:underestimate:r1",
+            "targetText": "underestimate",
+            "meaningByLocale": {
+              "ru": "недооценить.",
+              "uk": "недооцінити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "underestimate",
+          "definitionByLocale": {
+            "ru": "недооценить.",
+            "uk": "недооцінити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму после have или has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-04:i07:r1",
+          "text": "underestimated"
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i07:r2",
+          "text": "underestimate"
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i07:r3",
+          "text": "underestimates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму после have или has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "We have ___ the cost.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-04:i07:r1",
+            "text": "underestimated"
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i07:r2",
+            "text": "underestimate"
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i07:r3",
+            "text": "underestimates"
+          }
+        ],
+        "testedDimension": "Выберите третью форму после have или has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-04:i07:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i07:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Нужно больше денег, чем вы рассчитывали. Скажите: «Мы недооценили стоимость».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Нужно больше денег, чем вы рассчитывали. Скажите: «Мы недооценили стоимость».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have underestimated the cost.",
+        "localizedMeaning": {
+          "ru": "Нужно больше денег, чем вы рассчитывали. Скажите: «Мы недооценили стоимость».",
+          "uk": "Потрібно більше грошей, ніж ви розраховували. Скажіть: «Ми недооцінили вартість»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "underestimated",
+          "the",
+          "cost"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-04:i09:r1",
+          "text": "We have underestimated the cost."
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i09:r2",
+          "text": "You have underestimated the cost."
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i09:r3",
+          "text": "They have underestimated the cost."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:i09:audio",
+          "transcript": "We have underestimated the cost."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-04:i09:r1",
+            "targetText": "We have underestimated the cost.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i09:r2",
+            "targetText": "You have underestimated the cost.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i09:r3",
+            "targetText": "They have underestimated the cost.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have underestimated the cost.",
+              "uk": "У записі звучить We have underestimated the cost."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have underestimated the cost.",
+              "uk": "У записі звучить We have underestimated the cost."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:word:exaggerate",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — exaggerate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:word:exaggerate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — exaggerate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:word:exaggerate:audio",
+          "transcript": "exaggerate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-04:word:exaggerate:r1",
+            "targetText": "exaggerate",
+            "meaningByLocale": {
+              "ru": "преувеличивать.",
+              "uk": "перебільшувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exaggerate",
+          "definitionByLocale": {
+            "ru": "преувеличивать.",
+            "uk": "перебільшувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму после have или has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-04:i10:r1",
+          "text": "exaggerated"
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i10:r2",
+          "text": "exaggerate"
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i10:r3",
+          "text": "exaggerates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму после have или has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "He has ___ the problem.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-04:i10:r1",
+            "text": "exaggerated"
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i10:r2",
+            "text": "exaggerate"
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i10:r3",
+            "text": "exaggerates"
+          }
+        ],
+        "testedDimension": "Выберите третью форму после have или has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-04:i10:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i10:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму после have или has.",
+            "feedbackByLocale": {
+              "ru": "Нужны have/has и третья форма глагола.",
+              "uk": "Потрібні have/has і третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Проблема не такая большая, как он сказал. Скажите: «Он преувеличил проблему».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Проблема не такая большая, как он сказал. Скажите: «Он преувеличил проблему».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has exaggerated the problem.",
+        "localizedMeaning": {
+          "ru": "Проблема не такая большая, как он сказал. Скажите: «Он преувеличил проблему».",
+          "uk": "Проблема не така велика, як він сказав. Скажіть: «Він перебільшив проблему»."
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "exaggerated",
+          "the",
+          "problem"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-04:i12:r1",
+          "text": "He has exaggerated the problem."
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i12:r2",
+          "text": "You have exaggerated the problem."
+        },
+        {
+          "responseId": "en:lesson-23:session-04:i12:r3",
+          "text": "They have exaggerated the problem."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:i12:audio",
+          "transcript": "He has exaggerated the problem."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-04:i12:r1",
+            "targetText": "He has exaggerated the problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i12:r2",
+            "targetText": "You have exaggerated the problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i12:r3",
+            "targetText": "They have exaggerated the problem.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-04:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has exaggerated the problem.",
+              "uk": "У записі звучить He has exaggerated the problem."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-04:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has exaggerated the problem.",
+              "uk": "У записі звучить He has exaggerated the problem."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-04:i13:p1",
+            "target": "overwork",
+            "meaningByLocale": {
+              "ru": "работать слишком много",
+              "uk": "працювати забагато"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-04:i13:p2",
+            "target": "overdo",
+            "meaningByLocale": {
+              "ru": "перестараться",
+              "uk": "перестаратися"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-04:i13:p3",
+            "target": "underestimate",
+            "meaningByLocale": {
+              "ru": "недооценить",
+              "uk": "недооцінити"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-04:i13:p4",
+            "target": "exaggerate",
+            "meaningByLocale": {
+              "ru": "преувеличивать",
+              "uk": "перебільшувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "overwork",
+          "overdo",
+          "underestimate",
+          "exaggerate"
+        ],
+        "rightColumn": [
+          "работать слишком много",
+          "перестараться",
+          "недооценить",
+          "преувеличивать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: другой план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: другой план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:i14:audio",
+          "transcript": "We need another plan."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We need another plan.",
+        "orderedTokens": [
+          "We",
+          "need",
+          "another",
+          "plan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:i15:audio",
+          "transcript": "You mustn't drive when you are tired."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't drive when you are tired.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "drive",
+          "when",
+          "you",
+          "are",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я перестарался».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я перестарался».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:i16:audio",
+          "transcript": "I have overdone it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have overdone it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она преувеличила проблему».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она преувеличила проблему».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-04:i17:audio",
+          "transcript": "She has exaggerated the problem."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has exaggerated the problem.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9b4a7e5196a73034728b5ba9374df6325b822c2c5a1d010dfd934e899cdffc78"
+}

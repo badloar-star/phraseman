@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-04:intro1:r2": {
+          "ru": "С I используйте have.",
+          "uk": "З I використайте have."
+        },
+        "en:lesson-23:session-04:intro1:r3": {
+          "ru": "Нужны have/has и третья форма глагола.",
+          "uk": "Потрібні have/has і третя форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-04:intro2:r2": {
+          "ru": "С she используйте has.",
+          "uk": "Із she використайте has."
+        },
+        "en:lesson-23:session-04:intro2:r3": {
+          "ru": "Нужны have/has и третья форма глагола.",
+          "uk": "Потрібні have/has і третя форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-04:intro3:r2": {
+          "ru": "С we используйте have.",
+          "uk": "Із we використайте have."
+        },
+        "en:lesson-23:session-04:intro3:r3": {
+          "ru": "Нужны have/has и третья форма глагола.",
+          "uk": "Потрібні have/has і третя форма дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b81acb5f535d0db7059f6a2adce026a168e4da20dcdf1dbdaf2bab2bad2fcce2"
+}

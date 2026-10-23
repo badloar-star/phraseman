@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Продукты снова на месте",
+        "uk": "Продукти знову на місці"
+      },
+      "bodyByLocale": {
+        "ru": "Restock — пополнить запас. We have restocked the fridge: вы сходили за продуктами, и холодильник теперь снова полон. Have + restocked связывает действие с результатом сейчас.",
+        "uk": "Restock — поповнити запас. We have restocked the fridge: ви сходили по продукти, і холодильник тепер знову повний. Have + restocked пов’язує дію з результатом зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-03:intro1:r1",
+              "text": "We have restocked the fridge."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro1:r2",
+              "text": "We has restocked the fridge."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro1:r3",
+              "text": "We have restock the fridge."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-03:intro1:r1",
+              "text": "We have restocked the fridge."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro1:r2",
+              "text": "We has restocked the fridge."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro1:r3",
+              "text": "We have restock the fridge."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Два действия при уборке",
+        "uk": "Дві дії під час прибирання"
+      },
+      "bodyByLocale": {
+        "ru": "Disinfect — дезинфицировать; это действие, а знакомое disinfectant — средство. Bleach здесь глагол «отбеливать». Disinfect the table — обработать стол, bleach the towels — отбелить полотенца. Не путайте эти действия с обычным мытьём.",
+        "uk": "Disinfect — дезінфікувати; це дія, а знайоме disinfectant — засіб. Bleach тут дієслово «відбілювати». Disinfect the table — обробити стіл, bleach the towels — відбілити рушники. Не плутайте ці дії зі звичайним миттям."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-03:intro2:r1",
+              "text": "She has disinfected the table."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro2:r2",
+              "text": "She have disinfected the table."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro2:r3",
+              "text": "She has disinfect the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-03:intro2:r1",
+              "text": "She has disinfected the table."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro2:r2",
+              "text": "She have disinfected the table."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro2:r3",
+              "text": "She has disinfect the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сушка без машины",
+        "uk": "Сушіння без машини"
+      },
+      "bodyByLocale": {
+        "ru": "Air-dry — сушить на воздухе, без сушилки, в комнате или на улице. В air-dried буква y меняется на i перед -ed, как в знакомом dried. He has air-dried the shirt: рубашка теперь сухая.",
+        "uk": "Air-dry — сушити на повітрі, без сушарки, у кімнаті або надворі. В air-dried літера y змінюється на i перед -ed, як у знайомому dried. He has air-dried the shirt: сорочка тепер суха."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-03:intro3:r1",
+              "text": "He has air-dried the shirt."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro3:r2",
+              "text": "He have air-dried the shirt."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro3:r3",
+              "text": "He has air-dry the shirt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-03:intro3:r1",
+              "text": "He has air-dried the shirt."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro3:r2",
+              "text": "He have air-dried the shirt."
+            },
+            {
+              "responseId": "en:lesson-23:session-03:intro3:r3",
+              "text": "He has air-dry the shirt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4749e69272d9664d6315da4031c526d57ebefad556689750f09244f4a40d4a15"
+}

@@ -8645,4 +8645,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"subject + have|has + past participle","uk":"subject + have|has + past participle"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 23, sessionOrdinal: 3,
+    sourceFingerprint: "58010d7b3dc7b78a10cd7be0934445e9fa17b1afeca28188db1958c69f1ada9b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"subject + have|has + past participle","uk":"subject + have|has + past participle"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 23, sessionOrdinal: 4,
+    sourceFingerprint: "91c0827f1122f7085f0e0f820a1fb9791f515494d62e4a7ae660c39ea88fca4b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"subject + have|has + past participle","uk":"subject + have|has + past participle"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
+  }),
 ]);

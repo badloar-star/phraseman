@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-04:word:overwork",
+    "correctText": "overwork",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i01",
+    "correctText": "overworked",
+    "correctResponseId": "en:lesson-23:session-04:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i02",
+    "correctText": "I have overworked.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i03",
+    "correctText": "I have overworked.",
+    "correctResponseId": "en:lesson-23:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:word:overdo",
+    "correctText": "overdo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i04",
+    "correctText": "overdone",
+    "correctResponseId": "en:lesson-23:session-04:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i05",
+    "correctText": "She has overdone it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i06",
+    "correctText": "She has overdone it.",
+    "correctResponseId": "en:lesson-23:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:word:underestimate",
+    "correctText": "underestimate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i07",
+    "correctText": "underestimated",
+    "correctResponseId": "en:lesson-23:session-04:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i08",
+    "correctText": "We have underestimated the cost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i09",
+    "correctText": "We have underestimated the cost.",
+    "correctResponseId": "en:lesson-23:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:word:exaggerate",
+    "correctText": "exaggerate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i10",
+    "correctText": "exaggerated",
+    "correctResponseId": "en:lesson-23:session-04:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i11",
+    "correctText": "He has exaggerated the problem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i12",
+    "correctText": "He has exaggerated the problem.",
+    "correctResponseId": "en:lesson-23:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i13",
+    "correctText": "en:lesson-23:session-04:i13:p1=overwork\nen:lesson-23:session-04:i13:p2=overdo\nen:lesson-23:session-04:i13:p3=underestimate\nen:lesson-23:session-04:i13:p4=exaggerate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i14",
+    "correctText": "We need another plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i15",
+    "correctText": "You mustn't drive when you are tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i16",
+    "correctText": "I have overdone it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-04:i17",
+    "correctText": "She has exaggerated the problem.",
+    "correctResponseId": null
+  }
+]
